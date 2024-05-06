@@ -22,7 +22,7 @@ The diagram is designed to fit on both A4 and US-Letter sized paper. `Script His
 
   - **Bopomofo**: Maybe over 10m users? Wikipedia says its a method of computer input in Taiwan and Taiwan is around 23m people.
   - **Brahmi**: Seems the Northern/Southern Brahmi distinction is mostly grouping convenience?
-  - **Chinese script styles**: The way I read it, the Wikipedia articles seem to imply these are style variations rather than full-fledged different scripts, so I've chosen to group them together, spitting out the earliest Oracle Bone script.
+  - **Chinese script styles**: The way I read it, the Wikipedia articles seem to imply these are style variations rather than full-fledged different scripts, so I've chosen to group them together, splitting out the earliest Oracle Bone script.
   - **Georgian**: I opted to group this with the Greek family due to greater similarity.
   - **Hentaigana**: Maybe over 10m users? Wikipedia says its rare, but Japan is 100m+ people.
   - **Pahawh Hmong**, Mainly derived from Lao but Wikipedia mentions it derives a few letters from Pollard and Fraser. Since it's just a few letters, and the diagram would be a mess trying to incoporate that, I didn't. Also, unlike the other abugidas, it seems this one's vowel-based.
