@@ -13,7 +13,7 @@ The diagram is designed to fit on both A4 and US-Letter sized paper. `Script His
   - All **current** writing scripts are intended to be included, but for space and sanity the least used ones have to be left out.
     - The script must not be moribund or have revival efforts whose success is uncertain.
     - Scripts with a specialized use case (not for general communication) are excluded if they do not exist in Unicode.
-  - Scripts are additionally included if they are an ancestor to a modern script. However, chains of historical scripts are skipped, there must be meaninful splits to include them.
+  - Scripts are additionally included if they are an ancestor to a modern script. However, linear chains of historical scripts are skipped, there must be meaninful splits to include them.
     - "Extra" added letters don't count as a new script.
   - The specific symbols used to identify writing system type were mostly chosen by taking the largest system of that type and simply finding something that worked with the font I was using. Though with Latin, I wanted a non-Latin looking symbol.
   - There are probably mistakes.
