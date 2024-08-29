@@ -1,12 +1,14 @@
 # Writing System History
 
+*The PDF & HTML versions are clickable: all of the scripts and most of the legend are linked to an appropriate Wikipedia page.*
+
 ![Writing System History](https://github.com/DPenner1/WritingSystemHistory/blob/main/Script%20History.png)
 
-This projects's objective is to provide a visual reference as to how modern writing scripts are related. This is not a coding project, but it can serve as a quick reference for internationalization testing (but is by no means sufficient). 
+This project's objective is to provide a visual reference as to how modern writing scripts are related. This is not a coding project, but it can serve as a quick reference for internationalization testing (but is by no means sufficient).
 
-**The PDF version is clickable**: all of the scripts and most of the legend are linked to an appropriate Wikipedia page.
 
-The diagram is designed to fit on both A4 and US-Letter sized paper. `Script History.xml` is the source file for draw.io.
+
+The diagram is designed to fit on both A4 and US-Letter sized paper. `Script History.drawio` is the source file for draw.io.
 
 ## General Diagram Notes
 
@@ -25,14 +27,13 @@ For space and sanity, some scripts have to be left out. In order to have semi-ob
 
   1. All **currently used** writing scripts are included if they are in Unicode and are in some natural active non-moribund use (or were moribund but with revival attempts too recent to determine success)
   2. Include all ancestor scripts of the currently used scripts, but remove the following, unless they are the earliest known ancestor:
-     1. Scripts with no splits/branches. Eg. There's the script lineage of Sukhothai > Fakkham > Tai Noi > Lao. Fakkham and Tai Noi are excluded as they don't branch off anywhere else on the diagram, but Sukhothai remains as it branches to Thai and Tai Viet.
-     2. Scripts whose only splits/branches are similarly named. Eg. The Telugu-Kannada script only branches into Telugu and Kannada, and is removed.
+     1. Historical scripts with no splits/branches. Eg. There's the script lineage of Sukhothai > Fakkham > Tai Noi > Lao. Fakkham and Tai Noi are excluded as they don't branch off anywhere else on the diagram, but Sukhothai remains as it branches to Thai and Tai Viet.
+     2. Historical scripts whose only splits/branches are similarly named. Eg. The Telugu-Kannada script only branches into Telugu and Kannada, and is removed.
 
 Naturally, there's a judgment call here, made worse by the fact scripts on the boundary of inclusion/exclusion are also lesser known and hard to research. Most marginal inclusions/exclusions were due to this boundary, but here's some notes on a few peculiar exclusions:
 
   - Runic: Everyday use long dead, but various new use cases occasionally pop up, though no sufficent current use that I can see. A single letter as a symbol for Bluetooth doesn't count.
   - Nyiakeng Puachue Hmong: Probably should be included, but researching this one is proving difficult in terms of what the current use is and where it derives from, though I can visually see that it's probably somewhere in the Khmer branch. And the long name will be fun to try to fit on the diagram.
-  - Grantha: Sources were very contradictory as to current use, perhaps due to multiple historical versions of Grantha. It also has confusing historical interaction with Tamil.
 
 ## Script specific notes
 
@@ -40,7 +41,7 @@ Naturally, there's a judgment call here, made worse by the fact scripts on the b
 
   - **Baybayin**: Quite a few theories on origin, one of them is Gujarati which I am not including without stronger evidence as that would be hard to link with the current diagram layout.
   - **Bopomofo**: Maybe over 10m users? It's used for computer input in Taiwan and Taiwan is around 23m people.
-  - **Brahmi**: Seems the Northern/Southern Brahmi distinction is mostly geographic grouping convenience? I can't find a lot of sources making the distinction, but it's useful for this diagram.
+  - **Brahmi**: The majority academic opinion seems to favour Aramaic origin, but some advocate independent derivision or derivision from the Indus Script. Also, Seems the Northern/Southern Brahmi distinction is mostly geographic grouping convenience? I can't find a lot of sources making the distinction, and Wikipedia doesn't really cite precise criteria on the grouping, but it's useful for this diagram.
   - **Chinese script styles**: The way I read it, the Wikipedia articles seem to imply these are closer to variations rather than full-fledged different scripts, so I've chosen to group them together, splitting out the earliest Oracle Bone script. But extremely uncertain about this one.
   - **Georgian**: Very disputed origin. It seems the majority opinion is that it's Greek-based, so I've shaded it that way, but also added Independent as I don't really have another way of indicating that on the diagram
   - **Hentaigana**: Maybe over 10m users? Wikipedia says its rare, but Japan is 100m+ people.
