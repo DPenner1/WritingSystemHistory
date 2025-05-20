@@ -1,6 +1,6 @@
 # Writing System History
 
-*The PDF & HTML versions are clickable: all of the scripts and most of the legend are linked to an appropriate Wikipedia page.*
+*The [HTML](https://github.com/DPenner1/WritingSystemHistory/blob/main/Script%20History.html) & [PDF](https://github.com/DPenner1/WritingSystemHistory/blob/main/Script%20History.pdf) versions are clickable: all of the scripts and most of the legend are linked to an appropriate Wikipedia page.*
 
 ![Writing System History](https://github.com/DPenner1/WritingSystemHistory/blob/main/Script%20History.png)
 
@@ -12,7 +12,7 @@ The diagram is designed to fit on both A4 and US-Letter sized paper. `Script His
 
 ## General Diagram Notes
 
-  - Reminder that writing scripts and spoken language can have very different histories.
+  - The diagram shows **graphical** derivision of scripts which can be very different from spoken language derivation. 
   - "Specialized use" means use in specific use cases, but not for general default written communication of a language (or the language itself is specialized).
   - I generally went with Wikipedia's article title for the name of the scripts.
   - The specific symbols used to identify writing system type were mostly chosen by taking the largest system of that type and simply finding something that worked with the font I was using. Though with Latin, I wanted a non-Latin looking symbol.
@@ -25,10 +25,14 @@ The diagram is designed to fit on both A4 and US-Letter sized paper. `Script His
 
 For space and sanity, some scripts have to be left out. In order to have semi-objective criteria for this, here's what I've landed on:
 
-  1. All **currently used** writing scripts are included if they are in Unicode and are in some natural active non-moribund use (or were moribund but with revival attempts too recent to determine success)
-  2. Include all ancestor scripts of the currently used scripts, but remove the following, unless they are the earliest known ancestor:
-     1. Historical scripts with no splits/branches. Eg. There's the script lineage of Sukhothai > Fakkham > Tai Noi > Lao. Fakkham and Tai Noi are excluded as they don't branch off anywhere else on the diagram, but Sukhothai remains as it branches to Thai and Tai Viet.
-     2. Historical scripts whose only splits/branches are similarly named. Eg. The Telugu-Kannada script only branches into Telugu and Kannada, and is removed.
+  1. **Currently used** writing scripts are included if they are:
+     1. In Unicode, _and_ 
+     2. In some natural non-moribund use. By "natural," this excludes revival attempts that are too recent to judge successful.
+  2. **Historical scripts** are included if they are:
+     1. The earliest known ancestor of a currently script, _or_ 
+     2. An intermediate ancestor that has more than one distinctly named branch. Examples for this are:
+         1. The script lineage of Sukhothai > Fakkham > Tai Noi > Lao. Fakkham and Tai Noi are excluded as they don't branch off anywhere else on the diagram, but Sukhothai remains as it branches to Thai and Tai Viet.
+         2. The Telugu-Kannada script only branches into Telugu and Kannada, and is excluded.
 
 Naturally, there's a judgment call here, made worse by the fact scripts on the boundary of inclusion/exclusion are also lesser known and hard to research. Most marginal inclusions/exclusions were due to this boundary, but here's some notes on a few peculiar exclusions:
 
@@ -37,7 +41,7 @@ Naturally, there's a judgment call here, made worse by the fact scripts on the b
 
 ## Script specific notes
 
-*Mostly based on reading Wikipedia, sometimes Omniglot, sometimes further*
+*My sources were mainly [Wikipedia](https://en.wikipedia.org), [Omniglot](https://www.omniglot.com/), and [Endangered Alphabets](https://www.endangeredalphabets.com/)*
 
   - **Baybayin**: Quite a few theories on origin, one of them is Gujarati which I am not including without stronger evidence as that would be hard to link with the current diagram layout.
   - **Bopomofo**: Maybe over 10m users? It's used for computer input in Taiwan and Taiwan is around 23m people.
@@ -48,7 +52,7 @@ Naturally, there's a judgment call here, made worse by the fact scripts on the b
   - **Kayah Li**: Appears to have come up with many unique letter glyphs, but with likely influence from Thai and Burmese, so I've shaded it Brahmic & Independent.
   - **Pahawh Hmong**, Mainly derived from Lao but derives a few letters from Pollard and Fraser. Since it's just a few letters, and the diagram would be a mess trying to incoporate that, I didn't. Also, unlike the other abugidas, it seems this one's vowel-based.
   - **Pitman Shorthand**: I went for Abugida based on vowels appearing to be diacritical to consonants.
-  - **Thaana**: The Brahmic half is because it partially derives from various numeral systems! It's unclear exactly where in the Brahmic branch various numeral systems split off from though.
+  - **Thaana**: Partially derived from Brahmic numerals! However, it's not shown as Brahmic on the diagram as the precise origin of Brahmic numerals is unclear. Furthermore, numbers aren't generally considered a language so their representation shouldn't be considered a writing system to be included in this diagram.
   - **Tifinagh**: Marginal inclusion for both Tifinagh or Neo-Tifinagh. Frequently sources would just use Tifinagh for the modern version, but sources that distinguished did tend to say Tifinagh had some limited use. Notably, Tifinagh was the only script I found written from bottom to top.
 
 
