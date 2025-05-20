@@ -19,6 +19,7 @@ The diagram is designed to fit on both A4 and US-Letter sized paper. `Script His
   - Some scripts have multiple possible writing directions or are difficult to categorize. There are multiple symbols for these, I attempted to list the most dominant first.
   - "Extra" added letters don't count as a new script.
   - There is a line on how many letters "imported" from a secondary script counts as an arrow in the diagram. No hard line currently, there's a gulf between the "few" Fraser and Pollard derived letters in Pahawh Hmong (according to Wikipedia) and the seven Demotic derived letters in Coptic (Demotic in turn derived from Egyptian Hieroglyphs).
+  - There was secondary effort to place independent scripts near linguistically related scripts. Mru and Sunuwar are used for Tibetic languages. The 4 scripts near the bottom left are all for Austroasiatic languages. Adlam and N'ko are together as West African scripts, though would preferably be placed near Vai.
   - There are probably mistakes.
 
 ## Script Inclusion Criteria
@@ -29,10 +30,10 @@ For space and sanity, some scripts have to be left out. In order to have semi-ob
      1. In Unicode, _and_ 
      2. In some natural non-moribund use. By "natural," this excludes revival attempts that are too recent to judge successful.
   2. **Historical scripts** are included if they are:
-     1. The earliest known ancestor of a currently script, _or_ 
+     1. The earliest known ancestor of a currently used script, _or_ 
      2. An intermediate ancestor that has more than one distinctly named branch. Examples for this are:
          1. The script lineage of Sukhothai > Fakkham > Tai Noi > Lao. Fakkham and Tai Noi are excluded as they don't branch off anywhere else on the diagram, but Sukhothai remains as it branches to Thai and Tai Viet.
-         2. The Telugu-Kannada script only branches into Telugu and Kannada, and is excluded.
+         2. The Telugu-Kannada script only branches into Telugu and Kannada, so is excluded.
 
 Naturally, there's a judgment call here, made worse by the fact scripts on the boundary of inclusion/exclusion are also lesser known and hard to research. Most marginal inclusions/exclusions were due to this boundary, but here's some notes on a few peculiar exclusions:
 
@@ -41,7 +42,7 @@ Naturally, there's a judgment call here, made worse by the fact scripts on the b
 
 ## Script specific notes
 
-*My sources were mainly [Wikipedia](https://en.wikipedia.org), [Omniglot](https://www.omniglot.com/), and [Endangered Alphabets](https://www.endangeredalphabets.com/)*
+*My sources were mainly [Wikipedia](https://en.wikipedia.org), [Omniglot](https://www.omniglot.com/), and [Endangered Alphabets](https://www.endangeredalphabets.com/alphabets/)*
 
   - **Baybayin**: Quite a few theories on origin, one of them is Gujarati which I am not including without stronger evidence as that would be hard to link with the current diagram layout.
   - **Bopomofo**: Maybe over 10m users? It's used for computer input in Taiwan and Taiwan is around 23m people.
@@ -54,6 +55,7 @@ Naturally, there's a judgment call here, made worse by the fact scripts on the b
   - **Pitman Shorthand**: I went for Abugida based on vowels appearing to be diacritical to consonants.
   - **Thaana**: Partially derived from Brahmic numerals! However, it's not shown as Brahmic on the diagram as the precise origin of Brahmic numerals is unclear. Furthermore, numbers aren't generally considered a language so their representation shouldn't be considered a writing system to be included in this diagram.
   - **Tifinagh**: Marginal inclusion for both Tifinagh or Neo-Tifinagh. Frequently sources would just use Tifinagh for the modern version, but sources that distinguished did tend to say Tifinagh had some limited use. Notably, Tifinagh was the only script I found written from bottom to top.
+  - **Yi**: Just so much contradiction in the sources.
 
 
 
