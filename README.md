@@ -6,7 +6,7 @@
 
 This project's objective is to provide a visual reference as to how modern writing scripts are related. This is not a coding project, but it can serve as a quick reference for internationalization testing (but is by no means sufficient).
 
-The diagram is designed to fit on both A4 and US-Letter sized paper (though margins are tight).
+The diagram is designed to fit on both A4 and US-Letter sized paper with at least 1/4" margins.
 
 ## General Diagram Notes
 
@@ -27,9 +27,9 @@ For space and sanity, some scripts have to be left out. In order to have semi-ob
 
   1. **Currently used** writing scripts are included if they are:
      1. In Unicode, _and_
-     2. In some natural non-moribund use. By "natural," this excludes new creation or revival attempts which are too recent to judge successful.
+     2. In some natural non-moribund use. By "natural," this excludes new creations or revival attempts which are too recent to judge successful.
   2. **Historical scripts** are included if they are:
-     1. The earliest known ancestor of a currently used script, _or_
+     1. An earliest known ancestor of a currently used script, _or_
      2. An intermediate ancestor that has more than one distinctly named branch. Examples for this are:
          1. The script lineage of Sukhothai > Fakkham > Tai Noi > Lao. Fakkham and Tai Noi are excluded as they don't branch off anywhere else on the diagram, but Sukhothai remains as it branches to Thai and Tai Viet.
          2. The Telugu-Kannada script only branches into Telugu and Kannada, so is excluded.
@@ -41,7 +41,7 @@ Naturally, there's a judgment call here, made worse by the fact scripts on the b
 *My sources were mainly [Wikipedia](https://en.wikipedia.org), [Omniglot](https://www.omniglot.com/), [Endangered Alphabets](https://www.endangeredalphabets.net/alphabets/) and sometimes Unicode inclusion proposals.*
 
   - **Baybayin**: Quite a few theories on origin, one of them is Gujarati which I am not including without stronger evidence as that would be hard to link with the current diagram layout.
-  - **Bopomofo**: Maybe over 10m users? It's used for computer input in Taiwan and Taiwan is around 23m people.
+  - **Bopomofo**: Based on it being used for computer input in Taiwan and Taiwan being around 23m people, I've bolded it for being used by over 10m people.
   - **Brahmi**: The majority academic opinion seems to favour Aramaic origin, but some advocate independent derivision or derivision from the Indus Script. Also, seems the Northern/Southern Brahmi distinction is mostly geographic grouping convenience? I can't find a lot of sources making the distinction, and Wikipedia doesn't really cite precise criteria on the grouping, but it's useful for this diagram.
   - **Chinese scripts**: [Chinese script style](https://en.wikipedia.org/wiki/Chinese_script_styles) evolved gradually over time, from Oracle Bone to present day Regular script. Luckily, it appears all descendant scripts branched off after Regular script, allowing me to mostly gloss over this distinction in the diagram. I did include both Traditional and Simplified Chinese as a separate scripts on the basis of separate Unicode code points existing.
   - **Georgian**: Disputed origin. It seems the majority opinion is that it's derived from Greek, so I've shaded it that way, but also shaded it partially Independent as I don't really have another way of indicating that on the diagram
