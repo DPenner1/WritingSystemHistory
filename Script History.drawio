@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
   <diagram id="0" name="Page-1">
-    <mxGraphModel dx="1434" dy="838" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1195" dy="698" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -77,7 +77,7 @@
         </mxCell>
         <UserObject label="&lt;font style=&quot;font-weight: 700; font-size: 11px;&quot;&gt;گ&lt;/font&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;Aramaic&amp;nbsp;&lt;b&gt;◂&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Aramaic_alphabet" linkTarget="_blank" id="23">
           <mxCell style="whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;fillColor=#FFE599;" parent="1" vertex="1">
-            <mxGeometry x="491" y="440" width="81" height="30" as="geometry" />
+            <mxGeometry x="481.78" y="440" width="81" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="25" value="" style="endArrow=classic;html=1;" parent="1" source="18" target="23" edge="1">
@@ -88,7 +88,7 @@
         </mxCell>
         <UserObject label="&lt;font style=&quot;font-size: 11px;&quot;&gt;گ&lt;/font&gt;&amp;nbsp;&lt;span style=&quot;font-weight: normal;&quot;&gt;Hebrew&lt;/span&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b&gt;◂&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Hebrew_alphabet" linkTarget="_blank" id="26">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFE599;" parent="1" vertex="1">
-            <mxGeometry x="599.75" y="500" width="79" height="30" as="geometry" />
+            <mxGeometry x="482.78" y="500" width="79" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="27" value="" style="endArrow=classic;html=1;" parent="1" source="23" target="26" edge="1">
@@ -99,7 +99,7 @@
         </mxCell>
         <UserObject label="&lt;b&gt;दे&amp;nbsp;&lt;/b&gt;Brahmi&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Brahmi_script" linkTarget="_blank" id="28">
           <mxCell style="whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;gradientColor=#FFCCCC;gradientDirection=east;fillColor=#CCFFFF;" parent="1" vertex="1">
-            <mxGeometry x="353.99999999999994" y="560" width="73" height="30" as="geometry" />
+            <mxGeometry x="344.74999999999994" y="560" width="73" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="29" value="" style="endArrow=classic;html=1;dashed=1;" parent="1" source="23" target="28" edge="1">
@@ -197,12 +197,12 @@
         </mxCell>
         <UserObject label="&lt;b&gt;दे&amp;nbsp;&lt;/b&gt;Thai ▸" link="https://en.wikipedia.org/wiki/Thai_script" linkTarget="_blank" id="52">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFCCCC;" parent="1" vertex="1">
-            <mxGeometry x="600.75" y="620" width="58" height="30" as="geometry" />
+            <mxGeometry x="504" y="620" width="58" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;span title=&quot;Sanskrit-language text&quot;&gt;&lt;span lang=&quot;sa&quot;&gt;दे&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Lao&lt;/span&gt; ▸" link="https://en.wikipedia.org/wiki/Lao_script" id="53">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFCCCC;" parent="1" vertex="1">
-            <mxGeometry x="747" y="680" width="52.5" height="30" as="geometry" />
+            <mxGeometry x="591.77" y="620" width="52.5" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="54" value="" style="endArrow=classic;html=1;" parent="1" source="50" target="49" edge="1">
@@ -230,7 +230,7 @@
         </mxCell>
         <UserObject label="&lt;b&gt;दे&amp;nbsp;&lt;/b&gt;Tamil&amp;nbsp;▸" link="https://en.wikipedia.org/wiki/Tamil_script" linkTarget="_blank" id="62">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFCCCC;" parent="1" vertex="1">
-            <mxGeometry x="427.00000000000006" y="620" width="65" height="30" as="geometry" />
+            <mxGeometry x="417.78000000000003" y="620" width="65" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;b style=&quot;font-style: normal;&quot;&gt;दे&amp;nbsp;&lt;/b&gt;Kadamba&lt;span style=&quot;font-style: normal; font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Kadamba_script" linkTarget="_blank" id="64">
@@ -262,7 +262,7 @@
         </mxCell>
         <UserObject label="&lt;font style=&quot;font-weight: 700; font-size: 11px;&quot;&gt;گ&lt;/font&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;Syriac&amp;nbsp;&lt;b&gt;◂&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Syriac_alphabet" linkTarget="_blank" id="72">
           <mxCell style="whiteSpace=wrap;html=1;dashed=1;fillColor=#FFE599;dashPattern=8 8;" parent="1" vertex="1">
-            <mxGeometry x="390.90000000000003" y="440" width="69" height="30" as="geometry" />
+            <mxGeometry x="383.85" y="440" width="69" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="73" value="" style="endArrow=classic;html=1;" parent="1" source="23" target="72" edge="1">
@@ -279,7 +279,7 @@
         </mxCell>
         <UserObject label="&lt;font style=&quot;font-size: 11px;&quot;&gt;گ&lt;/font&gt;&amp;nbsp;&lt;u&gt;Arabic&lt;/u&gt;&amp;nbsp;&lt;b&gt;◂&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Arabic_script" linkTarget="_blank" id="76">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFE599;" parent="1" vertex="1">
-            <mxGeometry x="494.50000000000006" y="500" width="74" height="30" as="geometry" />
+            <mxGeometry x="573.78" y="500" width="74" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="79" value="" style="endArrow=classic;html=1;" parent="1" source="72" target="80" edge="1">
@@ -290,7 +290,7 @@
         </mxCell>
         <UserObject label="&lt;b&gt;&amp;nbsp;Ω&amp;nbsp;&lt;/b&gt;Mongolian&lt;b&gt;▼&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Mongolian_script" linkTarget="_blank" id="80">
           <mxCell style="whiteSpace=wrap;html=1;fillColor=#FFE599;" parent="1" vertex="1">
-            <mxGeometry x="337.25" y="500" width="94" height="30" as="geometry" />
+            <mxGeometry x="331" y="500" width="94" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;b&gt;Ω&amp;nbsp;&lt;/b&gt;Asomtavruli&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Georgian_scripts" linkTarget="_blank" id="86">
@@ -300,12 +300,12 @@
         </UserObject>
         <UserObject label="&lt;b&gt;Ω&amp;nbsp;&lt;/b&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Armenian&lt;/span&gt;&amp;nbsp;▸" link="https://en.wikipedia.org/wiki/Armenian_alphabet" linkTarget="_blank" id="87">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#CCCCFF;" parent="1" vertex="1">
-            <mxGeometry x="709.5000000000001" y="380" width="90" height="30" as="geometry" />
+            <mxGeometry x="709.5000000000001" y="320" width="90" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;b&gt;Ω&amp;nbsp;&lt;/b&gt;&lt;u&gt;Cyrillic&lt;/u&gt;&amp;nbsp;▸" link="https://en.wikipedia.org/wiki/Cyrillic_script" linkTarget="_blank" id="89">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#CCCCFF;" parent="1" vertex="1">
-            <mxGeometry x="723.5" y="320" width="76" height="30" as="geometry" />
+            <mxGeometry x="724" y="260" width="76" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="90" value="" style="endArrow=classic;html=1;" parent="1" source="20" target="89" edge="1">
@@ -334,7 +334,7 @@
         </mxCell>
         <UserObject label="&lt;b&gt;दे&amp;nbsp;&lt;/b&gt;Tai Viet&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Tai_Viet_script" linkTarget="_blank" id="115">
           <mxCell style="whiteSpace=wrap;html=1;fillColor=#FFCCCC;" parent="1" vertex="1">
-            <mxGeometry x="511.7500000000001" y="620" width="70" height="30" as="geometry" />
+            <mxGeometry x="730.0000000000001" y="680" width="70" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="116" value="" style="endArrow=classic;html=1;" parent="1" source="EHmsX5NUKX4iTEuCxSPg-277" target="115" edge="1">
@@ -427,7 +427,7 @@
             <mxGeometry x="745" y="200" width="54.5" height="30" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="141" value="" style="endArrow=classic;html=1;dashed=1;" parent="1" target="140" edge="1">
+        <mxCell id="141" value="" style="endArrow=classic;html=1;dashed=1;" parent="1" target="140" edge="1" source="138">
           <mxGeometry x="95" y="428" width="50" height="50" as="geometry">
             <mxPoint x="701.75" y="215" as="sourcePoint" />
             <mxPoint x="196.88636363636374" y="193" as="targetPoint" />
@@ -521,7 +521,7 @@
         </UserObject>
         <UserObject label="&lt;b&gt;दे&amp;nbsp;&lt;/b&gt;Thaana&amp;nbsp;&lt;b&gt;◂&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Thaana" linkTarget="_blank" id="174">
           <mxCell style="whiteSpace=wrap;html=1;fillColor=#E6E6E6;gradientColor=none;gradientDirection=east;" parent="1" vertex="1">
-            <mxGeometry x="444.75" y="560" width="74" height="30" as="geometry" />
+            <mxGeometry x="625.75" y="560" width="74" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;b&gt;दे&amp;nbsp;&lt;/b&gt;Batak&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Batak_script" linkTarget="_blank" id="177">
@@ -580,8 +580,8 @@
           </mxCell>
         </UserObject>
         <UserObject label="&lt;b&gt;दे&lt;/b&gt;&lt;b style=&quot;font-size: 11px;&quot;&gt;&amp;nbsp;&lt;/b&gt;Pahawh Hmong&amp;nbsp;&lt;span style=&quot;font-weight: 700;&quot;&gt;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Pahawh_Hmong" linkTarget="_blank" id="203">
-          <mxCell style="whiteSpace=wrap;html=1;fillColor=#FFCCCC;gradientColor=#E6E6E6;gradientDirection=west;" parent="1" vertex="1">
-            <mxGeometry x="677.0000000000001" y="620" width="122.5" height="30" as="geometry" />
+          <mxCell style="whiteSpace=wrap;html=1;fillColor=#FFCCCC;gradientColor=#E6E6E6;gradientDirection=east;" parent="1" vertex="1">
+            <mxGeometry x="677.0000000000002" y="620" width="122.5" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;b&gt;दे&amp;nbsp;&lt;/b&gt;Tai Tham&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Tai_Tham_script" linkTarget="_blank" id="204">
@@ -617,9 +617,9 @@
             <mxPoint x="89.00692307692309" y="894" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <UserObject label="&lt;b&gt;Ω &lt;/b&gt;Fraser&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Fraser_script" linkTarget="_blank" id="210">
+        <UserObject label="&lt;b&gt;Ω &lt;/b&gt;Fraser / Lisu&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Fraser_script" linkTarget="_blank" id="210">
           <mxCell style="whiteSpace=wrap;html=1;fillColor=#CCCCFF;" parent="1" vertex="1">
-            <mxGeometry x="516.5" y="200" width="71" height="30" as="geometry" />
+            <mxGeometry x="500" y="200" width="101.11" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="211" value="" style="endArrow=classic;html=1;" parent="1" source="88" target="210" edge="1">
@@ -639,9 +639,9 @@
             <mxGeometry x="661" y="140" width="60.5" height="30" as="geometry" />
           </mxCell>
         </UserObject>
-        <UserObject label="&lt;b&gt;दे&amp;nbsp;&lt;/b&gt;Pollard&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Pollard_script" linkTarget="_blank" id="219">
+        <UserObject label="&lt;b&gt;दे&amp;nbsp;&lt;/b&gt;Pollard Miao&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Pollard_script" linkTarget="_blank" id="219">
           <mxCell style="whiteSpace=wrap;html=1;fillColor=#CCCCFF;gradientColor=#CCFFFF;gradientDirection=west;" parent="1" vertex="1">
-            <mxGeometry x="401.78000000000003" y="200" width="72" height="30" as="geometry" />
+            <mxGeometry x="370" y="200" width="100" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="220" value="" style="endArrow=classic;html=1;" parent="1" source="88" target="219" edge="1">
@@ -668,7 +668,7 @@
         </mxCell>
         <UserObject label="&lt;b&gt;दे&lt;/b&gt;&lt;b style=&quot;font-size: 11px;&quot;&gt;&amp;nbsp;&lt;/b&gt;Sharada&amp;nbsp;&lt;b&gt;▸&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Sharada_script" id="226">
           <mxCell style="whiteSpace=wrap;html=1;dashed=1;fillColor=#CCFFFF;dashPattern=8 8;" parent="1" vertex="1">
-            <mxGeometry x="145.88000000000002" y="500" width="80.25" height="30" as="geometry" />
+            <mxGeometry x="144.88000000000002" y="500" width="80.25" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="227" value="" style="endArrow=classic;html=1;" parent="1" source="30" target="226" edge="1">
@@ -764,7 +764,7 @@
         </mxCell>
         <UserObject label="&lt;b&gt;दे&amp;nbsp;&lt;/b&gt;&lt;i&gt;Sukhothai&lt;/i&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Sukhothai_script" linkTarget="_blank" id="EHmsX5NUKX4iTEuCxSPg-277">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=0;fillColor=#FFCCCC;dashed=1;dashPattern=1 4;" parent="1" vertex="1">
-            <mxGeometry x="615.9400000000002" y="680" width="89" height="30" as="geometry" />
+            <mxGeometry x="607.5000000000001" y="680" width="89" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="EHmsX5NUKX4iTEuCxSPg-278" value="" style="endArrow=classic;html=1;" parent="1" source="EHmsX5NUKX4iTEuCxSPg-277" target="52" edge="1">
@@ -849,7 +849,7 @@
         </mxCell>
         <UserObject label="&lt;b&gt;Ω&lt;/b&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Braille&lt;/span&gt; ▸" link="https://en.wikipedia.org/wiki/Braille" linkTarget="_blank" id="EHmsX5NUKX4iTEuCxSPg-300">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#E6E6E6;" parent="1" vertex="1">
-            <mxGeometry x="339.6" y="140" width="76" height="30" as="geometry" />
+            <mxGeometry x="327" y="140" width="73" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="EHmsX5NUKX4iTEuCxSPg-305" value="" style="endArrow=classic;html=1;" parent="1" source="EHmsX5NUKX4iTEuCxSPg-285" target="199" edge="1">
@@ -956,20 +956,9 @@
             <mxGeometry x="729.5" y="140" width="70" height="30" as="geometry" />
           </mxCell>
         </UserObject>
-        <UserObject label="&lt;b&gt;Ω &lt;/b&gt;Osage&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Osage_script" linkTarget="_blank" id="EHmsX5NUKX4iTEuCxSPg-332">
-          <mxCell style="whiteSpace=wrap;html=1;fillColor=#CCCCFF;" parent="1" vertex="1">
-            <mxGeometry x="728.5000000000001" y="260" width="71" height="30" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <mxCell id="EHmsX5NUKX4iTEuCxSPg-333" value="" style="endArrow=classic;html=1;" parent="1" source="88" target="EHmsX5NUKX4iTEuCxSPg-332" edge="1">
-          <mxGeometry x="175" y="395" width="50" height="50" as="geometry">
-            <mxPoint x="662.75" y="306" as="sourcePoint" />
-            <mxPoint x="675.75" y="270" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <UserObject label="&lt;b&gt;Ω&amp;nbsp;&lt;/b&gt;Hanifi Rohingya&amp;nbsp;&lt;b&gt;◂&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Hanifi_Rohingya_script" linkTarget="_blank" id="EHmsX5NUKX4iTEuCxSPg-334">
           <mxCell style="whiteSpace=wrap;html=1;fillColor=#FFE599;" parent="1" vertex="1">
-            <mxGeometry x="536" y="560" width="124" height="30" as="geometry" />
+            <mxGeometry x="677" y="500" width="124" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="EHmsX5NUKX4iTEuCxSPg-335" value="" style="endArrow=classic;html=1;" parent="1" source="76" target="EHmsX5NUKX4iTEuCxSPg-334" edge="1">
@@ -1002,7 +991,7 @@
         </mxCell>
         <UserObject label="&lt;b&gt;Ω&lt;/b&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;SignWriting&lt;/span&gt;&amp;nbsp;▼▸" link="https://en.wikipedia.org/wiki/SignWriting" linkTarget="_blank" id="8tH24z78lBlKkCgDe4kR-259">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#E6E6E6;" parent="1" vertex="1">
-            <mxGeometry x="422.75000000000006" y="140" width="112" height="30" as="geometry" />
+            <mxGeometry x="407" y="140" width="110" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="8tH24z78lBlKkCgDe4kR-261" value="" style="endArrow=classic;html=1;" parent="1" source="T748fFu64r8brhYCckHo-256" target="161" edge="1">
@@ -1152,14 +1141,14 @@
             <mxPoint x="114.52999999999999" y="630" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <UserObject label="&lt;b&gt;Ω&lt;/b&gt;&amp;nbsp;Zaghawa&amp;nbsp;&lt;b&gt;▸&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Zaghawa_alphabet" linkTarget="_blank" id="PRtkuU6TpP4-jG2XQO4W-261">
+        <UserObject label="&lt;b&gt;Ω&lt;/b&gt;&amp;nbsp;Zaghawa / Beria&amp;nbsp;&lt;b&gt;▸&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Zaghawa_alphabet" linkTarget="_blank" id="PRtkuU6TpP4-jG2XQO4W-261">
           <mxCell style="whiteSpace=wrap;html=1;fillColor=#E6E6E6;" parent="1" vertex="1">
-            <mxGeometry x="562" y="140" width="90" height="30" as="geometry" />
+            <mxGeometry x="531" y="140" width="122" height="30" as="geometry" />
           </mxCell>
         </UserObject>
-        <UserObject label="&lt;span style=&quot;font-weight: 400;&quot;&gt;Nyiakeng&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Puachue Hmong&lt;/span&gt;&lt;/div&gt;" link="https://en.wikipedia.org/wiki/Nyiakeng_Puachue_Hmong" linkTarget="_blank" id="PRtkuU6TpP4-jG2XQO4W-263">
-          <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFCCCC;gradientColor=#FFE599;gradientDirection=west;" parent="1" vertex="1">
-            <mxGeometry x="676.5" y="557" width="123.5" height="36" as="geometry" />
+        <UserObject label="&lt;b&gt;Ω&amp;nbsp;&lt;/b&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Nyiakeng&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-weight: 400; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Puachue Hmong&amp;nbsp;&lt;/span&gt;▸" link="https://en.wikipedia.org/wiki/Nyiakeng_Puachue_Hmong" linkTarget="_blank" id="PRtkuU6TpP4-jG2XQO4W-263">
+          <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFCCCC;gradientColor=#FFE599;gradientDirection=east;" parent="1" vertex="1">
+            <mxGeometry x="433.40999999999997" y="560" width="177.73" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="PRtkuU6TpP4-jG2XQO4W-264" value="" style="endArrow=classic;html=1;dashed=1;" parent="1" source="26" target="PRtkuU6TpP4-jG2XQO4W-263" edge="1">
@@ -1175,32 +1164,33 @@
           </mxGeometry>
         </mxCell>
         <UserObject label="&lt;b&gt;Ω&amp;nbsp;&lt;/b&gt;Nushkuri&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Georgian_scripts" linkTarget="_blank" id="cqdc6oIfAutHnj04ZcWR-258">
-          <mxCell style="whiteSpace=wrap;html=1;fontStyle=0;fillColor=#CCCCFF;gradientColor=#E6E6E6;gradientDirection=west;dashed=1;dashPattern=8 8;" vertex="1" parent="1">
-            <mxGeometry x="712.88" y="440" width="85" height="30" as="geometry" />
+          <mxCell style="whiteSpace=wrap;html=1;fontStyle=0;fillColor=#CCCCFF;gradientColor=#E6E6E6;gradientDirection=west;dashed=1;dashPattern=8 8;" parent="1" vertex="1">
+            <mxGeometry x="712" y="380" width="85" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;b&gt;Ω&amp;nbsp;&lt;/b&gt;Mkhedruli&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Georgian_scripts" linkTarget="_blank" id="cqdc6oIfAutHnj04ZcWR-259">
-          <mxCell style="whiteSpace=wrap;html=1;fontStyle=0;fillColor=#CCCCFF;gradientColor=#E6E6E6;gradientDirection=west;" vertex="1" parent="1">
-            <mxGeometry x="710.75" y="500" width="89.25" height="30" as="geometry" />
+          <mxCell style="whiteSpace=wrap;html=1;fontStyle=0;fillColor=#CCCCFF;gradientColor=#E6E6E6;gradientDirection=west;" parent="1" vertex="1">
+            <mxGeometry x="710.75" y="440" width="89.25" height="30" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="cqdc6oIfAutHnj04ZcWR-260" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="86" target="cqdc6oIfAutHnj04ZcWR-258">
+        <mxCell id="cqdc6oIfAutHnj04ZcWR-260" value="" style="endArrow=classic;html=1;" parent="1" source="86" target="cqdc6oIfAutHnj04ZcWR-258" edge="1">
           <mxGeometry x="195" y="415" width="50" height="50" as="geometry">
             <mxPoint x="675" y="360" as="sourcePoint" />
             <mxPoint x="735" y="390" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cqdc6oIfAutHnj04ZcWR-261" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="cqdc6oIfAutHnj04ZcWR-258" target="cqdc6oIfAutHnj04ZcWR-259">
+        <mxCell id="cqdc6oIfAutHnj04ZcWR-261" value="" style="endArrow=classic;html=1;" parent="1" source="cqdc6oIfAutHnj04ZcWR-258" target="cqdc6oIfAutHnj04ZcWR-259" edge="1">
           <mxGeometry x="195" y="415" width="50" height="50" as="geometry">
             <mxPoint x="675" y="360" as="sourcePoint" />
             <mxPoint x="735" y="390" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <UserObject label="&lt;font style=&quot;font-weight: 700; font-size: 11px;&quot;&gt;&lt;b style=&quot;font-size: 12px;&quot;&gt;Ω&amp;nbsp;&lt;/b&gt;&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;▸&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Nyiakeng_Puachue_Hmong" linkTarget="_blank" id="cqdc6oIfAutHnj04ZcWR-265">
-          <mxCell style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-            <mxGeometry x="678" y="560" width="120" height="30" as="geometry" />
-          </mxCell>
-        </UserObject>
+        <mxCell id="A9JiXoEehY12hbWH83EZ-256" value="" style="endArrow=classic;html=1;dashed=1;" edge="1" parent="1" source="53" target="PRtkuU6TpP4-jG2XQO4W-263">
+          <mxGeometry x="671" y="750" width="50" height="50" as="geometry">
+            <mxPoint x="562" y="630" as="sourcePoint" />
+            <mxPoint x="589" y="603" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
