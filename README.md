@@ -1,6 +1,6 @@
 # Writing System History
 
-*The [HTML](https://github.com/DPenner1/WritingSystemHistory/blob/main/Script%20History.html) & [PDF](https://github.com/DPenner1/WritingSystemHistory/blob/main/Script%20History.pdf) versions are clickable: all of the scripts and most of the legend are linked to an appropriate Wikipedia page.*
+*The [HTML](https://github.com/DPenner1/WritingSystemHistory/blob/main/Modern%20Script%20History.html) & [PDF](https://github.com/DPenner1/WritingSystemHistory/blob/main/Modern%20Script%20History.pdf) versions are clickable: all of the scripts and most of the legend are linked to an appropriate Wikipedia page.*
 
 ![Writing System History](https://github.com/DPenner1/WritingSystemHistory/blob/main/Modern%20Script%20History.png)
 
