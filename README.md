@@ -8,11 +8,13 @@ This project's objective is to provide a visual reference as to how modern writi
 
 The diagram is designed to fit on both A4 and US-Letter sized paper with at least 1/4" margins.
 
+*There is now also a much bigger diagram representing all scripts in Unicode. The timeline is complete, but still to add a legend and script samples in that one. This README currently discusses just the Modern history shown above.*
+
 ## General Diagram Notes
 
   - The diagram shows **graphical** derivision of scripts which can be very different from spoken language derivation.
   - "Specialized use" means use in specific use cases, but not for general default written communication of a language (or the language itself is specialized). Most frequently, this is religious or ceremonial uses.
-  - I generally went with Wikipedia's article title for the name of the scripts, though there were some exceptions for where the same script had very different names.
+  - I generally went with Wikipedia's article title for the name of the scripts, though there were some exceptions , particularly where Unicode had a distinct name for it.
   - The specific symbols used to identify writing system type were mostly chosen by taking the largest system of that type and simply finding something that worked with the font I was using. Though with Latin, I wanted a non-Latin looking symbol.
   - Some scripts have multiple possible writing directions or are difficult to categorize. There are multiple symbols for these, I attempted to list the most dominant first.
   - There is a line on how many letters "imported" from a secondary script counts as an arrow in the diagram. No hard line currently, there's a gulf between the possibly "few" Fraser and Pollard derived letters in Pahawh Hmong (according to Wikipedia) and the seven Demotic derived letters in Coptic (Demotic in turn derived from Egyptian Hieroglyphs).
@@ -42,7 +44,7 @@ There's also the consideration of what counts as separate scripts, especially as
 *My sources were mainly [Wikipedia](https://en.wikipedia.org), [Omniglot](https://www.omniglot.com/), [Endangered Alphabets](https://www.endangeredalphabets.net/alphabets/) and sometimes Unicode inclusion proposals.*
 
   - **Asomtavruli (Old Georgian)**: Disputed origin. It seems the majority opinion is that it's derived from Greek, so I've shaded it that way, but also shaded it partially Independent as I don't really have another way of indicating that on the diagram.
-  - **Baybayin**: Quite a few theories on origin, one of them is Gujarati which I am not including without stronger evidence as that would be hard to link with the current diagram layout.
+  - **Baybayin**: Quite a few theories on origin, one of them is Gujarati which I am not including without stronger evidence as that would be hard to link with the current diagram layout. In the full diagram, I picked the earliest date that made it make sense.
   - **Bopomofo**: Based on it being used for computer input in Taiwan and Taiwan being around 23m people, I've bolded it for being used by over 10m people.
   - **Brahmi**: The majority academic opinion seems to favour Aramaic origin, but some advocate independent derivision or derivision from the Indus Script. Also, seems the Northern/Southern Brahmi distinction is mostly geographic grouping convenience? I can't find a lot of sources making the distinction, and Wikipedia doesn't really cite precise criteria on the grouping, but it's useful for this diagram.
   - **Hentaigana**: Maybe over 10m users? Wikipedia says its rare, but Japan is 100m+ people.
