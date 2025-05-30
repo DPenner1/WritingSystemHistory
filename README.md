@@ -8,7 +8,7 @@ This project's objective is to provide a visual reference as to how modern writi
 
 The diagram is designed to fit on both A4 and US-Letter sized paper with at least 1/4" margins.
 
-*There is now also a much bigger diagram representing all scripts in Unicode. The timeline is complete, but still to add a legend and script samples in that one. This README currently discusses just the Modern history shown above.*
+*There is now also a much bigger diagram representing all scripts in Unicode. The timeline is complete, but I still want to add script samples. This README currently discusses just the Modern systems chart shown above.*
 
 ## General Diagram Notes
 
