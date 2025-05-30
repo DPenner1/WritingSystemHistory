@@ -54,6 +54,7 @@ There's also the consideration of what counts as separate scripts, especially as
   - **Pitman Shorthand**: I went for Abugida based on vowels appearing to be diacritical to consonants.
   - **Thaana**: Uniquely, the letters are derived from Arabic and Indic numeral systems. Numbers aren't generally considered a language so their representation aren't considered a writing system to be included in this diagram. Thus, Thaana gets the independent group in this diagram.
   - **Tifinagh**: Marginal inclusion for both Tifinagh or Neo-Tifinagh. Frequently sources would just use Tifinagh for the modern version, but sources that distinguished did tend to say Tifinagh had some limited use. Notably, Tifinagh was one of two scripts I found written from bottom to top (with the other being Hanuno'o).
+  - **Ulu / Rejang**: Rejang is part of the highly related Ulu group of scripts. I couldn't tell whether Unicode has Rejang as a stand-alone script or intended it to represent all Ulu scripts (with variants being dealt with in font).
   - **Yi**: Just so much contradiction in the sources, I did my best.
 
 
