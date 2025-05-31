@@ -44,7 +44,6 @@ For space and sanity, some scripts have to be left out. In order to have semi-ob
 
 Naturally, there's a judgment call here, made worse by the fact scripts on the boundary of inclusion/exclusion are also lesser known and hard to research. Most marginal inclusions/exclusions were due to this boundary.
 
-
 In the All Scripts diagram, this turned out to be much less an issue. It starts by including all Unicode scripts (up to anticipated v17) and then including all historical ancestors (as per Wikipedia.) by default. A few non-branching historical ancestors then get excluded for space reasons. I did specially include non-Unicode Maya and Indus scripts for historical significance, though admittedly the latter is not yet determined to be a full-fledged writing script.
 
 A bigger issue in the All Scripts diagram was the consideration of what counts as separate scripts, especially as they frequently evolve gradually. This was purely a judgement call, mostly following along with Wikipedia. For the most part removing non-branching historical ancestors resulted in being able to sidestep this question in the Modern Scripts diagram, but it was somewhat challenging for the [Chinese script(s)](https://en.wikipedia.org/wiki/Chinese_script_styles) and [Georgian script(s)](https://en.wikipedia.org/wiki/Georgian_scripts). Note that having a few "extra" letters won't count as a separate script in this diagram.
@@ -70,7 +69,7 @@ A bigger issue in the All Scripts diagram was the consideration of what counts a
 
 ## Script samples
 
-I'm not an expert in all these languages of course. To try to show the samples neutrally, I generally used the first four letters of the alphabet (or Unicode Block where I couldn't quite figure out for sure the alphabetic order). The first three are uppercase and the next are lowercase when the script has casing (ABCdefg). For the Brahmic family which usually separates consonants and vowels, I tried to stick to the traditional ordering of consonants (*k*, *kh*, *g*, *gh*, *n*, etc.). Where the script was too ordered by appearance I did break this pattern to showcase a variety of distinct characters.
+I'm not an expert in all these languages of course. To try to show the samples neutrally, I generally used the first 7 letters of the alphabet (or Unicode Block where I couldn't quite figure out for sure the alphabetic order). The first three are uppercase and the next are lowercase when the script has casing (ABCdefg). For the Brahmic family which usually separates consonants and vowels, I tried to stick to the traditional ordering of consonants (*k*, *kh*, *g*, *gh*, *n*, etc.). Where the script was too ordered by appearance I did break this pattern to showcase a variety of distinct characters.
 
 For space reasons, some only got 5 letters and others none at all. Otherwise when there is no script, this is because I did not have a font that supported it and did not want to go hunting for it (in particular if it's not in Unicode yet!).
 
