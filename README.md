@@ -5,7 +5,7 @@ This project consists of two diagrams:
   1. A minimalistic diagram designed to show the history of **currently used** scripts while fitting on A4 & US Letter sized paper for easy printing.
   2. A comprehensive diagram showing the history of **all scripts** in Unicode, including a timeline and location of origin.
 
-Note that the PDF & HTML versions are **clickable**: all of the scripts and most of the legend are linked to an appropriate Wikipedia page.
+Note that the PDF & HTML versions are **clickable**: all of the scripts and most of the legend are linked to an appropriate Wikipedia page *(however, I wasn't careful with fonts - I'm not sure whether they are embedded or not, so PDFs/HTML/SVG files may not look as intended - I'll try to take a look at this early/mid June)* .
 
 Here is the minimalistic diagram:
 
