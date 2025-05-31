@@ -10,7 +10,7 @@
    id="svg254"
    sodipodi:docname="All Script History.svg"
    inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
-   inkscape:export-filename="All Script History.pdf"
+   inkscape:export-filename="All Script History.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -28,15 +28,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="true"
-     inkscape:zoom="1.2845213"
-     inkscape:cx="360.83481"
-     inkscape:cy="290.7698"
+     inkscape:zoom="4.2452351"
+     inkscape:cx="1841.2408"
+     inkscape:cy="3070.3835"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer17"
+     inkscape:current-layer="layer2"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -55,6 +55,18 @@
   </sodipodi:namedview>
   <defs
      id="defs1">
+    <rect
+       x="2572.5691"
+       y="1940.9187"
+       width="58.406025"
+       height="48.130891"
+       id="rect214" />
+    <rect
+       x="2678.5721"
+       y="650.72655"
+       width="9.2026068"
+       height="12.679147"
+       id="rect166" />
     <linearGradient
        id="linearGradient41"
        inkscape:collect="always">
@@ -894,9 +906,9 @@
        sodipodi:nodetypes="cccczcccc" />
     <path
        style="display:inline;fill:url(#linearGradient30);stroke:#000000;stroke-width:0.999998;stroke-dasharray:none;stroke-opacity:1"
-       d="m 919.40258,3348.2817 -0.50963,130.7519 c 0,0 0.98576,2.0422 4.1992,3.9339 3.21344,1.8917 5.94036,1.5399 5.94036,1.5399 l 574.86559,0.355 v 25.2508 l -561.77843,-0.6148 c 0,0 2.01128,4.0911 4.84285,7.0299 2.83157,2.9387 7.00035,2.5414 7.00035,2.5414 l 1634.47243,0.3545 v 25.2508 l -1634.47243,-0.2863 c 0,0 -2.43507,-11.3183 -8.21535,-20.7319 -5.23545,-8.5263 -11.77447,-14.3799 -11.77447,-14.3799 l -4.61123,-0.045 c 0,0 -1.1548,-7.0411 -3.7428,-12.1155 -2.58799,-5.0745 -6.75162,-8.6855 -6.75162,-8.6855 0,0 1.85767,303.5987 7.01498,326.0893 10.31462,44.9812 77.78332,30.2149 77.78332,30.2149 l 150.165,0.3545 v 25.2508 l -150.165,-0.2863 c 0,0 -24.46062,0.1421 -46.6328,-9.7107 -22.17218,-9.8528 -36.96323,-36.6879 -36.96323,-36.6879 0,0 0.2818,50.0783 2.32036,55.734 2.03857,5.6557 6.99153,0.064 6.99153,0.064 l 300.64474,0.3545 v 25.2508 l -300.64499,-0.2863 c 0,0 -13.1476,0.7432 -15.41629,-14.916 -2.43676,-16.8192 -1.39415,-536.9943 -1.39415,-536.9943"
+       d="m 919.40258,3348.2817 -0.50963,130.7519 c 0,0 0.98576,2.0422 4.1992,3.9339 3.21344,1.8917 5.94036,1.5399 5.94036,1.5399 l 574.86559,0.355 v 25.2508 l -561.77843,-0.6148 c 0,0 2.01128,4.0911 4.84285,7.0299 2.83157,2.9387 7.00035,2.5414 7.00035,2.5414 l 1634.47243,0.3545 v 25.2508 l -1634.47243,-0.2863 c 0,0 -2.43507,-11.3183 -8.21535,-20.7319 -5.23545,-8.5263 -11.77447,-14.3799 -11.77447,-14.3799 l -4.61123,-0.045 c 0,0 -1.1548,-7.0411 -3.7428,-12.1155 -2.58799,-5.0745 -6.75162,-8.6855 -6.75162,-8.6855 0,0 1.85767,303.5987 7.01498,326.0893 10.31462,44.9812 77.78332,30.2149 77.78332,30.2149 l 150.165,0.3545 v 25.2508 l -150.165,-0.2863 c 0,0 -59.57494,-3.2318 -74.44415,-20.4022 -14.86922,-17.1703 -12.79247,-29.5686 -12.79247,-29.5686 l -3.85821,-467.2211"
        id="path9"
-       sodipodi:nodetypes="cczccccsccccscczcsccccscsccccsc" />
+       sodipodi:nodetypes="cczccccsccccscczcscccczcc" />
     <path
        style="display:inline;fill:url(#linearGradient10);stroke:#000000;stroke-width:0.999998;stroke-dasharray:none;stroke-opacity:1"
        d="m 773.93038,3354.4807 -0.0318,493.6434 h -6.56517 l -0.0564,-493.5897"
@@ -970,9 +982,9 @@
        sodipodi:nodetypes="cczzccccccccccsczzccczzzzczcczccccczcccczccccszzzczcczccczcczcccccccczcczczcczccccsczccccsczcccczccscccscczccczcczcczczccczcccczcccczczcccczczccczzzzccczzczcczcczsczcczccccczcscccczczcccczczcccczczcccczcczcscczczcccczczcczc" />
     <path
        style="display:inline;fill:url(#linearGradient37);stroke:#000000;stroke-width:0.999986;stroke-dasharray:none;stroke-opacity:1"
-       d="m 2200.7832,4114.5391 h -62.6687 c 0,0 5.6539,4.2048 7.3305,17.3506 1.6765,13.1457 2.088,27.3035 2.088,27.3035 h -7.9019 c 0,0 -0.393,-15.6227 -2.3985,-26.0961 -2.0052,-10.4734 -9.9036,-18.558 -9.9036,-18.558 l -123.4801,-0.01 c 0,0 1.3547,6.8691 6.4442,9.8076 5.0895,2.9384 12.1586,0.078 12.1586,0.078 l 89.4949,-0.1088 v 25.2508 l -89.4949,-0.052 c 0,0 -7.2819,-12.0472 -15.2475,-20.426 -7.9655,-8.3788 -19.1086,-14.5576 -19.1086,-14.5576 l -1084.27623,-0.1432 c 0,0 -2.95439,0.7314 -5.68054,3.9654 -2.72614,3.2341 -2.81584,6.1139 -2.81584,6.1139 l 308.77801,0.1773 c 0,0 7.5147,9.8104 19.8768,14.0985 12.3621,4.2881 48.4,18.1163 63.839,23.3205 15.439,5.2041 15.1811,-3.114 15.1811,-3.114 v 2e-4 l 1205.8132,0.3545 v 25.2508 l -1205.8132,-0.2863 c 0,0 0.7386,-5.1936 -15.6546,-13.5463 -16.3932,-8.3527 -51.2401,-20.4373 -63.6022,-24.734 -12.3621,-4.2967 -19.6401,3.9071 -19.6401,3.9071 l -324.72221,-0.2863 c 0,0 -17.91445,2.4262 -23.92482,-24.7464 -6.01037,-27.1726 -16.94866,-150.3172 -16.94866,-150.3172 l -9.43486,-0.018 c 0,0 -5.98948,-9.765 -21.79714,-10.0755 -15.80766,-0.3105 -15.10618,-2.0815 -28.49843,-18.3697 -12.13799,-16.8458 -11.38123,-88.8685 -11.38123,-88.8685 l 6.81099,0.5005 c 0,0 4.8e-4,48.599 6.08711,74.0426 7.75899,24.7469 11.98749,25.4238 26.6078,25.7694 14.62031,0.3456 22.1709,-8.3178 22.1709,-8.3178 l 412.24965,0.089 v 0 c 0,0 9.8801,-50.7413 22.804,-75.349 15.4212,-29.3626 39.9668,-61.9245 39.9668,-61.9245 l 7.0206,7.2105 -6.3726,5.0871 c 0,0 -15.2299,20.2488 -32.5299,52.4331 -17.3,32.1843 -21.1334,72.6311 -21.1334,72.6311 l 140.5024,0.044 c 0,0 3.9345,-23.2131 13.4868,-40.346 9.5523,-17.1329 26.4897,-29.9438 26.4897,-29.9438 l 1157.0892,0.3545 v 25.2508 l -1157.0892,-0.2863 c 0,0 -3.7675,-8.7148 -9.5367,-5.0406 -6.6538,4.2375 -8.8854,11.7026 -8.8854,11.7026 0,0 17.848,12.9483 24.4964,11.729 6.6485,-1.2193 6.2923,-8.859 6.2923,-8.859 l 1144.6658,0.3545 v 25.2508 l -1144.6658,-0.2863 c 0,0 -26.9594,-22.1844 -33.6126,-20.4905 -6.6532,1.694 -10.2075,30.6543 -10.2075,30.6543 l 1189.3086,0.089 v 25.2508 l -701.3028,-0.036 c 0,0 1.0358,3.9848 9.9462,11.2751 8.9105,7.2904 16.9181,6.1329 16.9181,6.1329 l 6.403,0.5957 -0.035,8.265 -6.2618,0.1228 c 0,0 -12.2575,-6.2877 -24.732,-13.4161 -12.4746,-7.1283 -20.6719,-13.0097 -20.6719,-13.0097 h -429.5872 c 0,0 0.5871,4.5181 4.3549,7.0633 3.7679,2.5451 9.587,2.3544 9.587,2.3544 l 349.7266,0.3545 v 25.2508 l -349.7266,-0.2863 c 0,0 -1.9448,-8.508 -10.0078,-19.4416 -8.0631,-10.9336 -15.557,-15.3311 -15.557,-15.3311 l -29.2564,-0.036 c 0,0 47.1465,49.5925 83.3203,60.4082 36.1737,10.8158 108.0489,6.3045 133.6323,4.7709 25.5834,-1.5336 59.2105,-20.2589 59.2105,-20.2589 l 205.3976,0.089 c 0,0 11.6342,-3.2514 21.4775,-9.4672 7.3847,-4.6632 13.6421,-9.0442 13.6421,-9.0442 l 6.8043,2.9161 -7.4523,5.5129 c 0,0 -5.2132,-0.015 -10.5594,3.2252 -5.3463,3.2401 -7.1578,6.9462 -7.1578,6.9462 l 691.2108,0.1765 v 25.2508 l -913.3628,-0.2863 c 0,0 -1.8911,2.197 -2.4758,4.7789 -0.5846,2.5819 -0.104,5.1482 -0.104,5.1482 l 606.0824,-0.022 0.034,24.7063 -617.199,0.1845 c 0,0 -7.1655,-18.4005 -47.2248,-26.2885 -40.0594,-7.8881 -106.6826,1.2481 -141.4435,-11.9538 -34.7609,-13.202 -89.4528,-66.8288 -89.4528,-66.8288 l -498.46273,-0.036 c 0,0 -0.70782,6.6015 6.1003,9.8209 6.80812,3.2193 12.2857,-0.2711 12.2857,-0.2711 l 300.35043,0.3545 v 25.2508 l -300.35043,-0.2863 c 0,0 -8.58921,1.4055 -15.81373,-6.6816 -7.22451,-8.0871 -11.25605,-19.2152 -11.25605,-19.2152 0,0 2.26186,22.6638 10.86685,32.9437 8.72001,10.4172 16.70746,2.8163 16.70746,2.8163 l 250.051,0.3545 v 25.2508 l -250.051,-0.2863 c 0,0 -7.87485,-3.5545 -14.81534,-11.4275 -6.94049,-7.873 -12.39773,-20.8266 -12.39773,-20.8266 0,0 0.91469,38.4576 52.03605,52.9049 51.12135,14.4473 74.61342,-10.8962 74.61342,-10.8962 l 150.4497,0.3545 v 25.2508 l -150.4497,-0.2863 c 0,0 -67.71615,2.3301 -105.5317,-17.8319 -37.81555,-20.1621 -30.90513,-87.3107 -30.90513,-87.3107 l -22.24468,-0.018 c 0,0 10.05674,111.4259 15.40221,136.3803 5.34547,24.9545 19.20739,13.3463 19.20739,13.3463 v -8e-4 l 4.39123,0.089 c 0,0 8.42859,-5.4645 13.72491,-14.4318 5.29631,-8.9674 6.32444,-20.8775 6.32444,-20.8775 l 1390.02753,0.1772 c 0,0 7.9025,-4.0326 14.3878,-17.2435 5.271,-12.7555 4.3787,-26.84 4.3787,-26.84 h 6.6704 c 0,0 0.1242,24.6712 -5.1915,33.2871 -5.2001,8.4285 -8.7252,10.8857 -8.7252,10.8857 l 284.1747,0.088 v 25.2508 l -68.3454,-0.036 c 0,0 1.0531,120.2705 6.3874,145.4891 5.3344,25.2186 12.3662,14.2132 12.3662,14.2132 l 48.8416,0.075 v 25.1111 l -48.8416,0.1327 c 0,0 -4.4064,0.9558 -14.1809,-13.4967 -9.7746,-14.4525 -11.1296,-171.5595 -11.1296,-171.5595 l -304.9062,-0.036 c 0,0 3.2519,2.5224 7.9318,11.882 4.6798,9.3596 7.1785,32.7376 7.1785,32.7376 l -8.1628,0.037 c 0,0 -0.2613,-14.1148 -5.3155,-27.5927 -5.0542,-13.4778 -10.5821,-17.0822 -10.5821,-17.0822 z"
+       d="m 2200.7832,4114.5391 h -62.6687 c 0,0 5.6539,4.2048 7.3305,17.3506 1.6765,13.1457 2.088,27.3035 2.088,27.3035 h -7.9019 c 0,0 -0.393,-15.6227 -2.3985,-26.0961 -2.0052,-10.4734 -9.9036,-18.558 -9.9036,-18.558 l -123.4801,-0.01 c 0,0 1.3547,6.8691 6.4442,9.8076 5.0895,2.9384 12.1586,0.078 12.1586,0.078 l 89.4949,-0.1088 v 25.2508 l -89.4949,-0.052 c 0,0 -7.2819,-12.0472 -15.2475,-20.426 -7.9655,-8.3788 -19.1086,-14.5576 -19.1086,-14.5576 l -1084.27623,-0.1432 c 0,0 -2.95439,0.7314 -5.68054,3.9654 -2.72614,3.2341 -2.81584,6.1139 -2.81584,6.1139 l 308.77801,0.1773 c 0,0 7.5147,9.8104 19.8768,14.0985 12.3621,4.2881 48.4,18.1163 63.839,23.3205 15.439,5.2041 15.1811,-3.114 15.1811,-3.114 v 2e-4 l 1205.8132,0.3545 v 25.2508 l -1205.8132,-0.2863 c 0,0 0.7386,-5.1936 -15.6546,-13.5463 -16.3932,-8.3527 -51.2401,-20.4373 -63.6022,-24.734 -12.3621,-4.2967 -19.6401,3.9071 -19.6401,3.9071 l -324.72221,-0.2863 c 0,0 -17.91445,2.4262 -23.92482,-24.7464 -6.01037,-27.1726 -16.94866,-150.3172 -16.94866,-150.3172 l -9.43486,-0.018 c 0,0 -8.31265,-9.6359 -21.79714,-10.0755 -13.48449,-0.4396 -22.12023,-0.3836 -30.37456,-19.1535 -8.25433,-18.7695 -9.76431,-88.0847 -9.76431,-88.0847 l 6.81099,0.5005 c 0,0 0.25969,48.599 6.34632,74.0426 7.75899,24.7469 11.98749,25.4238 26.6078,25.7694 14.62031,0.3456 22.1709,-8.3178 22.1709,-8.3178 l 412.24965,0.089 v 0 c 0,0 9.8801,-50.7413 22.804,-75.349 15.4212,-29.3626 39.9668,-61.9245 39.9668,-61.9245 l 7.0206,7.2105 -6.3726,5.0871 c 0,0 -15.2299,20.2488 -32.5299,52.4331 -17.3,32.1843 -21.1334,72.6311 -21.1334,72.6311 l 140.5024,0.044 c 0,0 3.9345,-23.2131 13.4868,-40.346 9.5523,-17.1329 26.4897,-29.9438 26.4897,-29.9438 l 1157.0892,0.3545 v 25.2508 l -1157.0892,-0.2863 c 0,0 -3.7675,-8.7148 -9.5367,-5.0406 -6.6538,4.2375 -8.8854,11.7026 -8.8854,11.7026 0,0 17.848,12.9483 24.4964,11.729 6.6485,-1.2193 6.2923,-8.859 6.2923,-8.859 l 1144.6658,0.3545 v 25.2508 l -1144.6658,-0.2863 c 0,0 -26.9594,-22.1844 -33.6126,-20.4905 -6.6532,1.694 -10.2075,30.6543 -10.2075,30.6543 l 1189.3086,0.089 v 25.2508 l -701.3028,-0.036 c 0,0 1.0358,3.9848 9.9462,11.2751 8.9105,7.2904 16.9181,6.1329 16.9181,6.1329 l 6.403,0.5957 -0.035,8.265 -6.2618,0.1228 c 0,0 -12.2575,-6.2877 -24.732,-13.4161 -12.4746,-7.1283 -20.6719,-13.0097 -20.6719,-13.0097 h -429.5872 c 0,0 0.5871,4.5181 4.3549,7.0633 3.7679,2.5451 9.587,2.3544 9.587,2.3544 l 349.7266,0.3545 v 25.2508 l -349.7266,-0.2863 c 0,0 -1.9448,-8.508 -10.0078,-19.4416 -8.0631,-10.9336 -15.557,-15.3311 -15.557,-15.3311 l -29.2564,-0.036 c 0,0 47.1465,49.5925 83.3203,60.4082 36.1737,10.8158 108.0489,6.3045 133.6323,4.7709 25.5834,-1.5336 59.2105,-20.2589 59.2105,-20.2589 l 205.3976,0.089 c 0,0 11.6342,-3.2514 21.4775,-9.4672 7.3847,-4.6632 13.6421,-9.0442 13.6421,-9.0442 l 6.8043,2.9161 -7.4523,5.5129 c 0,0 -5.2132,-0.015 -10.5594,3.2252 -5.3463,3.2401 -7.1578,6.9462 -7.1578,6.9462 l 691.2108,0.1765 v 25.2508 l -913.3628,-0.2863 c 0,0 -1.8911,2.197 -2.4758,4.7789 -0.5846,2.5819 -0.104,5.1482 -0.104,5.1482 l 606.0824,-0.022 0.034,24.7063 -617.199,0.1845 c 0,0 -7.1655,-18.4005 -47.2248,-26.2885 -40.0594,-7.8881 -106.6826,1.2481 -141.4435,-11.9538 -34.7609,-13.202 -89.4528,-66.8288 -89.4528,-66.8288 l -498.46273,-0.036 c 0,0 -0.70782,6.6015 6.1003,9.8209 6.80812,3.2193 12.2857,-0.2711 12.2857,-0.2711 l 300.35043,0.3545 v 25.2508 l -300.35043,-0.2863 c 0,0 -8.58921,1.4055 -15.81373,-6.6816 -7.22451,-8.0871 -11.25605,-19.2152 -11.25605,-19.2152 0,0 2.26186,22.6638 10.86685,32.9437 8.72001,10.4172 16.70746,2.8163 16.70746,2.8163 l 250.051,0.3545 v 25.2508 l -250.051,-0.2863 c 0,0 -7.87485,-3.5545 -14.81534,-11.4275 -6.94049,-7.873 -12.39773,-20.8266 -12.39773,-20.8266 0,0 0.91469,38.4576 52.03605,52.9049 51.12135,14.4473 74.61342,-10.8962 74.61342,-10.8962 l 150.4497,0.3545 v 25.2508 l -150.4497,-0.2863 c 0,0 -67.71615,2.3301 -105.5317,-17.8319 -37.81555,-20.1621 -30.90513,-87.3107 -30.90513,-87.3107 l -22.24468,-0.018 c 0,0 10.05674,111.4259 15.40221,136.3803 5.34547,24.9545 19.20739,13.3463 19.20739,13.3463 v -8e-4 l 4.39123,0.089 c 0,0 8.42859,-5.4645 13.72491,-14.4318 5.29631,-8.9674 6.32444,-20.8775 6.32444,-20.8775 l 1390.02753,0.1772 c 0,0 7.9025,-4.0326 14.3878,-17.2435 5.271,-12.7555 4.3787,-26.84 4.3787,-26.84 h 6.6704 c 0,0 0.1242,24.6712 -5.1915,33.2871 -5.2001,8.4285 -8.7252,10.8857 -8.7252,10.8857 l 284.1747,0.088 v 25.2508 l -68.3454,-0.036 c 0,0 1.0531,120.2705 6.3874,145.4891 5.3344,25.2186 12.3662,14.2132 12.3662,14.2132 l 48.8416,0.075 v 25.1111 l -48.8416,0.1327 c 0,0 -4.4064,0.9558 -14.1809,-13.4967 -9.7746,-14.4525 -11.1296,-171.5595 -11.1296,-171.5595 l -304.9062,-0.036 c 0,0 3.2519,2.5224 7.9318,11.882 4.6798,9.3596 7.1785,32.7376 7.1785,32.7376 l -8.1628,0.037 c 0,0 -0.2613,-14.1148 -5.3155,-27.5927 -5.0542,-13.4778 -10.5821,-17.0822 -10.5821,-17.0822 z"
        id="path303-2-6-02-6-3-6-89-9-0-0"
-       sodipodi:nodetypes="cczcczcczccsccccsccccccccccsccccczcccczcccczcscccczczcczzccczccczccsccscccczcccczcczcccczcczcccczcczcccczcczcczzccccczzcczcczscczzccccscccsczccccsczcsccscc" />
+       sodipodi:nodetypes="cczcczcczccsccccsccccccccccsccccczzccczcccczcscccczczcczzccczccczccsccscccczcccczcczcccczcczcccczcczcccczcczcczzccccczzcczcczscczzccccscccsczccccsczcsccscc" />
     <path
        style="fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:0.999998;stroke-dasharray:none;stroke-opacity:1"
        d="m 1429.3976,1871.9589 427.7374,-0.061 c 0,0 7.7115,-0.3123 13.9047,-5.1533 6.1932,-4.8409 8.3847,-12.4545 8.3847,-12.4545 l 709.3987,-0.1342 v 25.2509 l -709.3987,0.2024 -5.5603,4.7852 5.5144,4.8245 709.7652,-0.012 v 25.2509 l -709.7652,0.08 c 0,0 -2.736,-5.9313 -8.7309,-11.3078 -5.9948,-5.3764 -13.5126,-6.0814 -13.5126,-6.0814 l -427.7374,-0.01 c 0,0 -26.6539,-0.097 -44.8448,10.2139 -18.1908,10.3109 -37.4164,29.9977 -37.4164,29.9977 l -7.0954,-7.1001 3.1548,-5.752 c 0,0 18.7877,-9.1609 42.4548,-23.3611 23.6671,-14.2003 43.747,-29.1781 43.747,-29.1781 z"
@@ -1071,7 +1083,7 @@
        sodipodi:nodetypes="ccccc" />
     <path
        style="fill:#d5e8d4;fill-opacity:1;stroke:#000000;stroke-width:0.99999;stroke-dasharray:none;stroke-opacity:1"
-       d="m 2588.7802,3089.3995 v 24.9223 l -735.0633,0.3436 v -25.319 z"
+       d="m 2588.7802,3054.5369 v 24.9223 l -735.0633,0.3436 v -25.319 z"
        id="path303-9-4-3-5-1-4-0-2"
        sodipodi:nodetypes="ccccc" />
     <path
@@ -1342,33 +1354,6 @@
      inkscape:label="Script Text"
      style="display:inline">
     <a
-       id="a323"
-       xlink:href="https://en.wikipedia.org/wiki/Egyptian_hieroglyphs"
-       target="_blank"
-       transform="translate(-10.230761,-431.12137)">
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         x="206.76025"
-         y="996.97321"
-         id="text255-0-7-0-5-7-0"
-         transform="translate(-21.062508,3075.0237)"><tspan
-           sodipodi:role="line"
-           id="tspan255-2-2-8-8-8-14"
-           x="206.76025"
-           y="996.97321"><tspan
-   style="font-style:italic"
-   id="tspan288-7-5-5"><tspan
-   style="font-weight:bold"
-   id="tspan293-0-9-7">文 か </tspan><tspan
-   id="tspan323"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan> </tspan>Egyptian Hieroglyphics <tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320">◂</tspan> <tspan
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan313-0">▸</tspan></tspan></text>
-    </a>
-    <a
        id="a323-5"
        xlink:href="https://en.wikipedia.org/wiki/Linear_A"
        target="_blank"
@@ -1387,7 +1372,7 @@
    style="font-style:italic"
    id="tspan288-7-5-5-7"><tspan
    style="font-weight:bold"
-   id="tspan293-0-9-7-3">文 か</tspan> </tspan>Linear A <tspan
+   id="tspan293-0-9-7-3">文か</tspan> </tspan>Linear A <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan313-0-1">▸</tspan></tspan></text>
     </a>
@@ -1458,7 +1443,7 @@
    style="font-weight:bold"
    id="tspan293-0-9-7-3-6-1">か</tspan> </tspan>Cypriot <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan313-0-1-0-9">▸</tspan></tspan></text>
+   id="tspan87">◂</tspan></tspan></text>
     </a>
     <a
        id="a323-5-6"
@@ -1479,35 +1464,9 @@
    style="font-style:italic"
    id="tspan288-7-5-5-7-9"><tspan
    style="font-weight:bold"
-   id="tspan293-0-9-7-3-2">か 文</tspan> </tspan>Linear B <tspan
+   id="tspan293-0-9-7-3-2">か文</tspan> </tspan>Linear B <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan313-0-1-8">▸</tspan></tspan></text>
-    </a>
-    <a
-       id="a323-7"
-       xlink:href="https://en.wikipedia.org/wiki/Hieratic"
-       target="_blank"
-       transform="translate(-11.385129,-361.09491)">
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         x="203.43178"
-         y="4071.3855"
-         id="text255-0-7-0-5-7-0-6"><tspan
-           sodipodi:role="line"
-           id="tspan255-2-2-8-8-8-14-97"
-           x="203.43178"
-           y="4071.3855"><tspan
-   style="font-style:italic"
-   id="tspan288-7-5-5-2"><tspan
-   style="font-weight:bold"
-   id="tspan293-0-9-7-6">文 </tspan><tspan
-   id="tspan323-40"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan> </tspan>Hieratic <tspan
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-7">◂</tspan> <tspan
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan331">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-7-2"
@@ -1530,7 +1489,7 @@
    style="font-weight:bold"
    id="tspan293-0-9-7-6-5">文</tspan><tspan
    id="tspan323-40-2"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan> </tspan>Demotic <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan> Demotic</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan320-7-0">◂</tspan> </tspan></text>
     </a>
@@ -1538,7 +1497,7 @@
        id="a323-7-2-3"
        xlink:href="https://en.wikipedia.org/wiki/Old_Turkic_script"
        target="_blank"
-       transform="translate(1409.4608,-3396.326)">
+       transform="translate(1412.4312,-3374.6842)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -1560,7 +1519,7 @@
        id="a323-7-2-3-4"
        xlink:href="https://en.wikipedia.org/wiki/Old_Hungarian_script"
        target="_blank"
-       transform="translate(1519.4993,-212.74526)">
+       transform="translate(1519.4993,-211.29721)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -1577,7 +1536,7 @@
    style="font-style:italic"
    id="tspan288-7-5-5-2-1-2-8"> </tspan>Old Hungarian <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-7-0-8-7">▸</tspan> </tspan></text>
+   id="tspan320-7-0-8-7">◂</tspan> </tspan></text>
     </a>
     <a
        id="a323-7-2-8"
@@ -1648,7 +1607,9 @@
    style="font-style:italic"
    id="tspan288-7-5-5-2-1-4-2-6"> </tspan>Old Italic <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-7-0-9-2-8">◂ ▸</tspan> </tspan></text>
+   id="tspan320-7-0-9-2-8">▸<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan249"> </tspan>◂</tspan> </tspan></text>
     </a>
     <a
        id="a323-7-2-8-5-2-3"
@@ -1670,7 +1631,9 @@
    style="font-style:italic"
    id="tspan288-7-5-5-2-1-4-2-6-4"> </tspan>Runic <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-7-0-9-2-8-6">▸◂</tspan> </tspan></text>
+   id="tspan320-7-0-9-2-8-6">▸<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan62"> </tspan>◂</tspan> </tspan></text>
     </a>
     <a
        id="a323-7-2-8-5-2-3-9"
@@ -1802,7 +1765,9 @@
    style="font-style:italic"
    id="tspan288-7-5-5-2-1-4-2-6-4-6-7-5-2"> </tspan>Carian <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-7-0-9-2-8-6-4-4-8-9">▸ ◂ </tspan> </tspan></text>
+   id="tspan320-7-0-9-2-8-6-4-4-8-9">▸<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan90"> </tspan>◂ </tspan> </tspan></text>
     </a>
     <a
        id="a323-7-2-8-5-2-3-9-0-6-5-6"
@@ -1966,7 +1931,7 @@
        id="a323-7-2-9-5-1"
        xlink:href="https://en.wikipedia.org/wiki/Kurdish_alphabets#Yezidi_script"
        target="_blank"
-       transform="translate(1675.5371,-966.13955)">
+       transform="translate(1675.5371,-1001.0022)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -2050,7 +2015,7 @@
    id="tspan25-2"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
    style="font-style:italic"
-   id="tspan288-7-5-5-0-13-2"> </tspan>Sidetic <tspan
+   id="tspan288-7-5-5-0-13-2"> Sidetic</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan320-69-9-9">◂</tspan></tspan></text>
     </a>
@@ -2195,7 +2160,7 @@
        id="a323-19-7-9-2-5"
        xlink:href="https://en.wikipedia.org/wiki/Osage_script"
        target="_blank"
-       transform="translate(2344.4801,217.95007)">
+       transform="translate(2345.0407,218.26057)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -2311,7 +2276,7 @@
        id="a323-19-7-9-2-5-4-0"
        xlink:href="https://en.wikipedia.org/wiki/Pau_Cin_Hau_script"
        target="_blank"
-       transform="translate(2153.7082,-3211.8545)">
+       transform="translate(2153.7082,-3231.8901)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -2507,9 +2472,9 @@
    id="tspan340-1-7-6"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ωदेか</tspan><tspan
    style="font-style:italic"
-   id="tspan288-7-5-5-0-1-7-6-4-3-5-8-9"> </tspan>Phag's-pa <tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-69-4-6-6-6-7-5-9-4">▸</tspan></tspan></text>
+   id="tspan288-7-5-5-0-1-7-6-4-3-5-8-9"> </tspan>'Phags-pa <tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan250">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-9-2-5-4-3-3-9"
@@ -2538,7 +2503,7 @@
        id="a323-19-7-9-2-5-4-3-3-9-1"
        xlink:href="https://en.wikipedia.org/wiki/Bhaiksuki_script"
        target="_blank"
-       transform="translate(1560.4789,-2061.3124)">
+       transform="translate(1573.2678,-2082.3521)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -2583,7 +2548,7 @@
        id="a323-19-7-9-2-5-4-3-3-9-1-7"
        xlink:href="https://en.wikipedia.org/wiki/Siddha%E1%B9%83_script"
        target="_blank"
-       transform="translate(1336.2519,-1465.3647)">
+       transform="translate(1336.2519,-1466.1004)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3052,7 +3017,7 @@
        id="a323-19-7-9-2-5-4-3-8-4"
        xlink:href="https://en.wikipedia.org/wiki/Ahom_script"
        target="_blank"
-       transform="translate(1688.3133,-3211.6722)">
+       transform="translate(1688.3133,-3211.9414)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3176,17 +3141,15 @@
    id="tspan340-1-9-7-1-8"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">दे</tspan><tspan
    style="font-style:italic"
-   id="tspan288-7-5-5-0-1-7-6-4-3-5-6-4-2-7"> </tspan>Lai Tay / Tai Yo <tspan
+   id="tspan288-7-5-5-0-1-7-6-4-3-5-6-4-2-7"> Lai Tay / Tai Yo</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan27">▼</tspan><tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-69-4-6-6-6-7-5-3-3-20-3" /></tspan></text>
+   id="tspan27">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-9-2-5-4-3-8-4-4-0-3"
        xlink:href="https://en.wikipedia.org/wiki/Tai_Viet_script"
        target="_blank"
-       transform="translate(1820.6211,-2631.3174)">
+       transform="translate(1820.6211,-2631.7742)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3232,7 +3195,7 @@
        id="a323-19-7-9-2-5-4-3-8-4-4-0-3-8"
        xlink:href="https://en.wikipedia.org/wiki/Pahawh_Hmong"
        target="_blank"
-       transform="translate(2251.1227,-2526.3047)">
+       transform="translate(2252.8304,-2526.3047)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3272,7 +3235,7 @@
    style="font-style:italic"
    id="tspan288-7-5-5-0-1-7-6-4-3-5-6-4-2-7-9-6-2"> </tspan>Thaana<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan140-1"> ▸</tspan></tspan></text>
+   id="tspan140-1"> ◂</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-9-2-5-4-3-8-4-2"
@@ -3301,7 +3264,7 @@
        id="a323-19-7-9-2-5-4-3-8-4-2-9"
        xlink:href="https://en.wikipedia.org/wiki/Tai_Le_script"
        target="_blank"
-       transform="translate(1688.5973,-3175.9268)">
+       transform="translate(1688.5973,-3176.4049)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3324,7 +3287,7 @@
        id="a323-19-7-9-2-5-4-3-8-4-2-9-3"
        xlink:href="https://en.wikipedia.org/wiki/Baybayin"
        target="_blank"
-       transform="translate(1696.9921,-2990.9549)">
+       transform="translate(1696.9921,-2991.7407)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3391,7 +3354,7 @@
     </a>
     <a
        id="a323-19-7-9-2-5-4-3-8-4-2-9-3-8-3-1"
-       xlink:href="https://en.wikipedia.org/wiki/Sundanese_script"
+       xlink:href="https://en.wikipedia.org/wiki/Old_Sundanese_script"
        target="_blank"
        transform="translate(1721.7084,-2816.286)">
       <text
@@ -3408,15 +3371,39 @@
    id="tspan340-1-9-7-4-8-3-9-2-9"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">दे</tspan><tspan
    style="font-style:italic"
-   id="tspan288-7-5-5-0-1-7-6-4-3-5-6-4-1-8-6-46-4-0"> </tspan>Sundanese <tspan
+   id="tspan288-7-5-5-0-1-7-6-4-3-5-6-4-1-8-6-46-4-0"> Old Sundanese</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan320-69-4-6-6-6-7-5-3-3-2-6-0-8-7-1">▸</tspan></tspan></text>
+    </a>
+    <a
+       id="a323-19-7-9-2-5-4-3-8-4-2-9-3-8-3-1-8"
+       xlink:href="https://en.wikipedia.org/wiki/Sundanese_script"
+       target="_blank"
+       transform="translate(2259.6547,-2826.6375)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="206.76025"
+         y="996.97321"
+         id="text255-0-7-0-5-7-0-0-6-7-3-0-6-4-5-3-2-2-8-5-6-0-9"
+         transform="translate(-21.062508,3075.0237)"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-8-8-14-0-5-60-8-9-5-6-0-51-6-8-67-4-2-8-7"
+           x="206.76025"
+           y="996.97321"><tspan
+   id="tspan340-1-9-7-4-8-3-9-2-9-3"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">दे</tspan><tspan
+   style="font-style:italic"
+   id="tspan288-7-5-5-0-1-7-6-4-3-5-6-4-1-8-6-46-4-0-6"> </tspan>Sundanese <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan320-69-4-6-6-6-7-5-3-3-2-6-0-8-7-1-1">▸</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-9-2-5-4-3-8-4-2-9-3-7"
        xlink:href="https://en.wikipedia.org/wiki/Batak_script"
        target="_blank"
-       transform="translate(1694.9894,-2956.9256)">
+       transform="translate(1694.9894,-2956.0449)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3548,10 +3535,12 @@
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">दे</tspan><tspan
    style="font-style:italic"
    id="tspan288-7-5-5-0-1-7-6-4-3-5-6-4-1-8-2"> </tspan>Hanuno'o <tspan
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan138">▲ </tspan><tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-69-4-6-6-6-7-5-3-3-2-6-96">▸</tspan></tspan></text>
+   id="tspan320-69-4-6-6-6-7-5-3-3-2-6-96">▸</tspan><tspan
+   id="tspan184"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"> </tspan><tspan
+   id="tspan183"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▲</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-9-2-5-4-3-8-4-2-9-9"
@@ -3574,7 +3563,11 @@
    style="font-style:italic"
    id="tspan288-7-5-5-0-1-7-6-4-3-5-6-4-1-8-5"> </tspan>Tagbanwa <tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-69-4-6-6-6-7-5-3-3-2-6-5">▸</tspan></tspan></text>
+   id="tspan320-69-4-6-6-6-7-5-3-3-2-6-5">▸</tspan><tspan
+   id="tspan180"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"> </tspan><tspan
+   id="tspan178"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▲</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-9-2-5-4-3-8-4-2-9-5"
@@ -3626,7 +3619,7 @@
        id="a323-19-7-9-2-5-4-3-8-4-2-9-0-2"
        xlink:href="https://en.wikipedia.org/wiki/New_Tai_Lue_alphabet"
        target="_blank"
-       transform="translate(2246.74,-3360.7614)">
+       transform="translate(2243.2093,-3360.7614)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3649,7 +3642,7 @@
        id="a323-19-7-9-2-5-4-3-8-6"
        xlink:href="https://en.wikipedia.org/wiki/Takri_script"
        target="_blank"
-       transform="translate(1818.6417,-1955.5047)">
+       transform="translate(1821.0873,-1955.745)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3672,7 +3665,7 @@
        id="a323-19-7-9-2-5-4-3-8-6-3"
        xlink:href="https://en.wikipedia.org/wiki/Dogri_script"
        target="_blank"
-       transform="translate(2057.6858,-1990.8452)">
+       transform="translate(2058.7165,-2014.0366)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3764,7 +3757,7 @@
        id="a323-19-7-9-2-5-4-3-8-6-0-6-7"
        xlink:href="https://en.wikipedia.org/wiki/Mahajani"
        target="_blank"
-       transform="translate(1622.2752,-1745.408)">
+       transform="translate(1622.2752,-1745.6098)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3810,7 +3803,7 @@
        id="a323-19-7-9-2-5-4-3-8-6-0-6-7-8-5"
        xlink:href="https://en.wikipedia.org/wiki/Pracalit_script"
        target="_blank"
-       transform="translate(1569.9241,-1606.0041)">
+       transform="translate(1570.5756,-1606.0041)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3833,7 +3826,7 @@
        id="a323-19-7-9-2-5-4-3-8-6-0-6-7-8-5-3"
        xlink:href="https://en.wikipedia.org/wiki/Ranjana_script"
        target="_blank"
-       transform="translate(1569.7996,-1640.8757)">
+       transform="translate(1570.8855,-1640.8757)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3966,7 +3959,7 @@
        id="a323-19-7-9-9"
        xlink:href="https://en.wikipedia.org/wiki/Braille"
        target="_blank"
-       transform="translate(2019.6626,137.80234)">
+       transform="translate(2019.6626,138.40934)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -4047,7 +4040,7 @@
    id="tspan23-8"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ωदे</tspan><tspan
    style="font-style:italic"
-   id="tspan288-7-5-5-0-1-7-5-4-79"> </tspan>Sunwar <tspan
+   id="tspan288-7-5-5-0-1-7-5-4-79"> </tspan>Sunuwar <tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan320-69-4-6-1-13-60">▸</tspan></tspan></text>
     </a>
@@ -4069,7 +4062,7 @@
    id="tspan23-0"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
    style="font-style:italic"
-   id="tspan288-7-5-5-0-1-7-5-4-0"> </tspan>Chisoi <tspan
+   id="tspan288-7-5-5-0-1-7-5-4-0"> Chisoi</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan320-69-4-6-1-13-6">▸</tspan></tspan></text>
     </a>
@@ -4091,7 +4084,7 @@
    id="tspan23-5"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
    style="font-style:italic"
-   id="tspan288-7-5-5-0-1-7-5-4-8"> </tspan>Tolong Siki <tspan
+   id="tspan288-7-5-5-0-1-7-5-4-8"> Tolong Siki</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan320-69-4-6-1-13-50">▸</tspan></tspan></text>
     </a>
@@ -4099,23 +4092,46 @@
        id="a323-19-7-9-9-1-6-8"
        xlink:href="https://en.wikipedia.org/wiki/Mundari_Bani"
        target="_blank"
-       transform="translate(2231.4029,-2061.8299)">
+       transform="translate(2263.3648,-2060.906)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         x="161.86966"
-         y="4071.9968"
+         x="162.63358"
+         y="4072.718"
          id="text255-0-7-0-5-7-0-0-6-7-0-3-40-3"><tspan
            sodipodi:role="line"
            id="tspan255-2-2-8-8-8-14-0-5-60-5-7-3-3"
-           x="161.86966"
-           y="4071.9968"><tspan
+           x="162.63358"
+           y="4072.718"><tspan
    id="tspan23-5-3"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan222"> </tspan>      </tspan><tspan
    style="font-style:italic"
-   id="tspan288-7-5-5-0-1-7-5-4-8-8"> </tspan>Mundari Bani <tspan
+   id="tspan288-7-5-5-0-1-7-5-4-8-8">      </tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan320-69-4-6-1-13-50-0">▸</tspan></tspan></text>
+    </a>
+    <a
+       id="a323-19-7-9-9-1-6-8-5"
+       xlink:href="https://en.wikipedia.org/wiki/Mundari_Bani"
+       target="_blank"
+       transform="translate(2241.9598,-2050.5416)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="217.33482"
+         y="4055.3674"
+         id="text255-0-7-0-5-7-0-0-6-7-0-3-40-3-7"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-8-8-14-0-5-60-5-7-3-3-0"
+           x="217.33482"
+           y="4055.3674">Mundari</tspan><tspan
+           sodipodi:role="line"
+           x="217.33482"
+           y="4068.7009"
+           id="tspan221">Bani</tspan></text>
     </a>
     <a
        id="a323-19-7-9-9-1-7"
@@ -4143,7 +4159,7 @@
        id="a323-19-7-9-9-1-7-80"
        xlink:href="https://en.wikipedia.org/wiki/Mru_script"
        target="_blank"
-       transform="translate(2327.1904,-1886.2757)">
+       transform="translate(2272.4514,-1887.2035)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -4297,7 +4313,7 @@
        id="a323-19-7-9-9-1-0-1-0-1"
        xlink:href="https://en.wikipedia.org/wiki/Limbu_script"
        target="_blank"
-       transform="translate(1838.3837,-3501.1442)">
+       transform="translate(1838.3837,-3501.5055)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -4334,9 +4350,11 @@
    id="tspan345"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
    style="font-style:italic"
-   id="tspan288-7-5-5-0-1-7-5-1"> </tspan>Ogham <tspan
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan346">▼ </tspan><tspan
+   id="tspan288-7-5-5-0-1-7-5-1"> </tspan>Ogham<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan65"> ▲</tspan><tspan
+   id="tspan69"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"> </tspan><tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan320-69-4-6-1-7">▸</tspan></tspan></text>
     </a>
@@ -4452,7 +4470,9 @@
    style="font-style:italic"
    id="tspan288-7-5-5-0-1-7-5-9"> </tspan>SignWriting<tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan336"> ▸ </tspan><tspan
+   id="tspan336"> ▸</tspan><tspan
+   id="tspan64"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"> </tspan><tspan
    id="tspan338"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▼</tspan></tspan></text>
     </a>
@@ -4475,26 +4495,24 @@
    id="tspan328-9"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
    style="font-style:italic"
-   id="tspan288-7-5-5-0-1-1"> </tspan>Zaghawa / Beria <tspan
+   id="tspan288-7-5-5-0-1-1"> Zaghawa / Beria</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan329">▸</tspan></tspan></text>
     </a>
     <a
-       id="a323-19-7-7-8"
+       id="a160"
        xlink:href="https://en.wikipedia.org/wiki/Osmanya_script"
-       target="_blank"
-       transform="translate(2194.4269,-432.0612)">
+       target="_blank">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         x="206.76025"
-         y="996.97321"
-         id="text255-0-7-0-5-7-0-0-6-6-0"
-         transform="translate(-21.062508,3075.0237)"><tspan
+         x="2323.0178"
+         y="3619.0774"
+         id="text255-0-7-0-5-7-0-0-6-6-0"><tspan
            sodipodi:role="line"
            id="tspan255-2-2-8-8-8-14-0-5-6-6"
-           x="206.76025"
-           y="996.97321"><tspan
+           x="2323.0178"
+           y="3619.0774"><tspan
    id="tspan328-9-2"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
    style="font-style:italic"
@@ -4596,35 +4614,10 @@
    id="tspan313-0-7">▸</tspan></tspan></text>
     </a>
     <a
-       id="a323-0"
-       xlink:href="https://en.wikipedia.org/wiki/Paleohispanic_scripts"
-       target="_blank"
-       transform="translate(748.74846,-176.40113)">
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         x="206.76025"
-         y="996.97321"
-         id="text255-0-7-0-5-7-0-2"
-         transform="translate(-21.062508,3075.0237)"><tspan
-           sodipodi:role="line"
-           id="tspan255-2-2-8-8-8-14-9"
-           x="206.76025"
-           y="996.97321"><tspan
-   style="font-style:italic"
-   id="tspan288-7-5-5-5"><tspan
-   style="font-weight:bold"
-   id="tspan293-0-9-7-7">か</tspan><tspan
-   id="tspan323-4"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan> </tspan>Paleohispanic <tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-6">◂</tspan></tspan></text>
-    </a>
-    <a
        id="a323-0-6"
        xlink:href="https://en.wikipedia.org/wiki/Palmyrene_alphabet"
        target="_blank"
-       transform="translate(1027.9183,-1072.1274)">
+       transform="translate(1024.9891,-1071.2486)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -4747,6 +4740,56 @@
    id="tspan320-6-2-8-6">◂</tspan></tspan></text>
     </a>
     <a
+       id="a323-0-6-7-7-8"
+       xlink:href="https://en.wikipedia.org/wiki/Egyptian_hieroglyphs"
+       target="_blank"
+       transform="translate(-10.077395,-431.76705)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="206.76025"
+         y="996.97321"
+         id="text255-0-7-0-5-7-0-2-2-9-5-8"
+         transform="translate(-21.062508,3075.0237)"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-8-8-14-9-8-7-7-5"
+           x="206.76025"
+           y="996.97321"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan21-0">文گ </tspan>Egyptian Hieroglyphs <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan320-6-2-8-6-9">◂<tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan48"> </tspan>▸</tspan></tspan></text>
+    </a>
+    <a
+       id="a323-0-6-7-7-8-1"
+       xlink:href="https://en.wikipedia.org/wiki/Hieratic"
+       target="_blank"
+       transform="translate(6.5618063,-361.4323)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="206.76025"
+         y="996.97321"
+         id="text255-0-7-0-5-7-0-2-2-9-5-8-1"
+         transform="translate(-21.062508,3075.0237)"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-8-8-14-9-8-7-7-5-5"
+           x="206.76025"
+           y="996.97321"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan21-0-9">文گ </tspan>Hieratic <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan320-6-2-8-6-9-8">◂</tspan><tspan
+   id="tspan66"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"> </tspan><tspan
+   id="tspan53"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▼</tspan></tspan></text>
+    </a>
+    <a
        id="a323-0-6-7-7-0"
        xlink:href="https://en.wikipedia.org/wiki/Ancient_South_Arabian_script"
        target="_blank"
@@ -4792,7 +4835,7 @@
        id="a323-0-6-7-7-0-5-1"
        xlink:href="https://en.wikipedia.org/wiki/Phoenician_alphabet"
        target="_blank"
-       transform="translate(520.31781,-791.96662)">
+       transform="translate(520.31781,-791.52959)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -4813,7 +4856,7 @@
        id="a323-0-6-7-7-0-5-1-0"
        xlink:href="https://en.wikipedia.org/wiki/Paleo-Hebrew_alphabet"
        target="_blank"
-       transform="translate(568.64164,-721.42972)"
+       transform="translate(569.9145,-721.94538)"
        style="display:inline">
       <text
          xml:space="preserve"
@@ -4850,7 +4893,9 @@
            x="206.76025"
            y="996.97321"><tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan21-7-1-0-6">گ </tspan>Proto-Sinaitic <tspan
+   id="tspan21-7-1-0-6">گ </tspan><tspan
+   style="font-style:italic"
+   id="tspan91">Proto-Sinaitic</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan320-6-2-8-6-2-7-5-4">?</tspan></tspan></text>
     </a>
@@ -5014,7 +5059,7 @@
        id="a323-0-6-7-7-0-6-3"
        xlink:href="https://en.wikipedia.org/wiki/Ugaritic_alphabet"
        target="_blank"
-       transform="translate(372.09947,-826.3485)"
+       transform="translate(375.36712,-847.58826)"
        style="display:inline">
       <text
          xml:space="preserve"
@@ -5178,7 +5223,7 @@
            x="206.76025"
            y="996.97321"><tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan33-7">گ 文</tspan> Inscriptional Pahlavi <tspan
+   id="tspan33-7">گ文</tspan> Inscriptional Pahlavi <tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan320-6-2-8-4-4-0-8">◂</tspan></tspan></text>
     </a>
@@ -5531,7 +5576,7 @@
        id="a278"
        xlink:href="https://en.wikipedia.org/wiki/Traditional_Chinese_characters"
        target="_blank"
-       transform="translate(19.382185,9.9280624)">
+       transform="translate(19.382185,8.7913532)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -5566,9 +5611,11 @@
            x="1284.5302"
            y="206.07445"><tspan
              style="font-weight:bold"
-             id="tspan271-6">Ω か Bopomofo</tspan><tspan
+             id="tspan271-6">Ωか Bopomofo</tspan><tspan
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-             id="tspan258-1-4-1-4-6-29"> ▸ ◂</tspan></tspan></text>
+             id="tspan258-1-4-1-4-6-29"> </tspan><tspan
+             id="tspan248"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▸ ◂</tspan></tspan></text>
     </a>
     <a
        id="a264"
@@ -5590,7 +5637,7 @@
    style="font-weight:bold"
    id="tspan295">か</tspan> Man'yogana</tspan> <tspan
    id="tspan260"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▼</tspan></tspan></text>
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▼</tspan></tspan></text>
     </a>
     <a
        id="a304"
@@ -5635,30 +5682,6 @@
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▼ </tspan><tspan
    id="tspan282"
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">◂</tspan></tspan></text>
-    </a>
-    <a
-       id="a282"
-       xlink:href="https://en.wikipedia.org/wiki/Jurchen_script"
-       target="_blank"
-       transform="translate(19.382185,9.0525564)">
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         x="1762.1024"
-         y="171.4549"
-         id="text255-0-7-0-0-5-6"><tspan
-           sodipodi:role="line"
-           id="tspan255-2-2-8-3-6-2"
-           x="1762.1024"
-           y="171.4549"><tspan
-   style="font-style:italic"
-   id="tspan285"><tspan
-   style="font-weight:bold"
-   id="tspan301">文</tspan> Jurchen</tspan> <tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan258-1-4-1-4-64-6">か </tspan><tspan
-   id="tspan284"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▸</tspan></tspan></text>
     </a>
     <a
        id="a306"
@@ -5707,36 +5730,39 @@
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▸</tspan></tspan></text>
     </a>
     <a
-       id="a1"
+       id="a159"
        xlink:href="https://en.wikipedia.org/wiki/Hangul"
-       target="_blank"
-       transform="translate(-10.617815,-10.187834)">
+       target="_blank">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:103.501;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
          x="2048.0964"
          y="134.90932"
          id="text255-9-4-5-3"
-         transform="translate(-79.17508,270.00638)"><tspan
+         transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan52"><tspan
+           id="tspan92"><tspan
              style="font-weight:bold"
-             id="tspan47">Ω </tspan><tspan
+             id="tspan40">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan48">か </tspan><tspan
+             id="tspan49">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan49">Hangul</tspan><tspan
+             id="tspan51">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan50"> ▼ </tspan><tspan
+             id="tspan52"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan51">▸</tspan></tspan></text>
+             id="tspan63">▸</tspan><tspan
+             style="font-size:8px"
+             id="tspan84"> </tspan><tspan
+             style="font-size:9.33333px"
+             id="tspan85">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
        xlink:href="https://en.wikipedia.org/wiki/Elbasan_alphabet"
        target="_blank"
-       transform="translate(1851.0559,137.789)">
+       transform="translate(1856.2407,160.2173)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -5773,11 +5799,13 @@
    style="font-style:italic"
    id="tspan288-7-5-9-6"><tspan
    style="font-weight:bold"
-   id="tspan293-0-9-0-0">文か</tspan> Maya</tspan> <tspan
+   id="tspan293-0-9-0-0">文 か</tspan> Maya</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan318-5">◂</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan313-8-5">▸</tspan><tspan
+   id="tspan57"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"> </tspan><tspan
    id="tspan344"
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▼</tspan></tspan></text>
     </a>
@@ -6046,7 +6074,7 @@
       </a>
       <path
          style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         d="m 1816.4992,2571.9257 107.977,0"
+         d="m 1816.4992,2571.9257 h 107.977"
          id="path46-6-8"
          sodipodi:nodetypes="cc" />
     </g>
@@ -6078,7 +6106,7 @@
       </a>
       <path
          style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         d="m 1695.485,4037.3087 39.4981,0"
+         d="m 1695.485,4037.3087 h 39.4981"
          id="path46-6-9"
          sodipodi:nodetypes="cc" />
     </g>
@@ -6111,7 +6139,7 @@
       </a>
       <path
          style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         d="m 924.06276,4106.7477 28.52577,0"
+         d="m 924.06276,4106.7477 h 28.52577"
          id="path46-6-9-6"
          sodipodi:nodetypes="cc" />
     </g>
@@ -6142,26 +6170,1441 @@
       </a>
       <path
          style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         d="m 1393.9831,3177.033 37.5601,0"
+         d="m 1393.9831,3177.033 h 37.5601"
          id="path46-6-9-9"
          sodipodi:nodetypes="cc" />
     </g>
+    <a
+       id="a282"
+       xlink:href="https://en.wikipedia.org/wiki/Jurchen_script"
+       target="_blank"
+       transform="translate(19.382185,9.0525564)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="1762.1024"
+         y="171.4549"
+         id="text255-0-7-0-0-5-6"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-3-6-2"
+           x="1762.1024"
+           y="171.4549"><tspan
+   style="font-style:italic"
+   id="tspan285"><tspan
+   style="font-weight:bold"
+   id="tspan301">文</tspan> Jurchen</tspan> <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan258-1-4-1-4-64-6">か </tspan><tspan
+   id="tspan284"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▸</tspan></tspan></text>
+    </a>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer19"
+     inkscape:label="Script Samples">
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1929.4227"
+       y="894.74567"
+       id="text174"><tspan
+         sodipodi:role="line"
+         id="tspan174"
+         x="1929.4227"
+         y="894.74567">ᥐᥑᥒᥓᥔᥕᥖ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="1995.679"
+       y="1010.4492"
+       id="text185"><tspan
+         sodipodi:role="line"
+         id="tspan185"
+         x="1995.679"
+         y="1010.4492">ᝣᝤᝥᝦᝧᝨᝩ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="2532.2361"
+       y="1255.8463"
+       id="text193"><tspan
+         sodipodi:role="line"
+         id="tspan193"
+         x="2532.2361"
+         y="1255.8463">ᮊᮌᮍᮎᮏ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2166.1729"
+       y="1291.119"
+       id="text194"><tspan
+         sodipodi:role="line"
+         id="tspan194"
+         x="2166.1729"
+         y="1291.119">ꤰꤱꤲꤳꤴꤵꤶ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="1758.2415"
+       y="1324.3903"
+       id="text195"><tspan
+         sodipodi:role="line"
+         id="tspan195"
+         x="1758.2415"
+         y="1324.3903">ᬓᬔᬕᬖᬗᬘ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1596.2566"
+       y="1405.6519"
+       id="text196"><tspan
+         sodipodi:role="line"
+         id="tspan196"
+         x="1596.2566"
+         y="1405.6519">កខគឃងចឆ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:tb-rl;direction:ltr;text-anchor:start;fill:#000000"
+       x="-317.29663"
+       y="1721.4363"
+       id="text150"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         x="-317.29663"
+         y="1721.4363"
+         id="tspan151">あいうえおかき</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:tb-rl;direction:ltr;text-anchor:start;fill:#000000"
+       x="-496.50766"
+       y="1965.7697"
+       id="text150-2"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         x="-496.50766"
+         y="1965.7697"
+         id="tspan151-4">ꡀꡁꡂꡃꡄꡅꡆ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:tb-rl;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="-141.96957"
+       y="2086.3425"
+       id="text144"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan144"
+         x="-141.96957"
+         y="2086.3425">𛅰𛆀𛆐𛆠𛆰𛇀𛇐</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:tb-rl;direction:ltr;text-anchor:start;fill:#000000"
+       x="-176.62743"
+       y="2443.8955"
+       id="text145"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan145"
+         x="-176.62743"
+         y="2443.8955">丐丠丰乀乐习买</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2473.5728"
+       y="251.23671"
+       id="text146"><tspan
+         sodipodi:role="line"
+         id="tspan146"
+         x="2473.5728"
+         y="251.23671">ㄅㄆㄇㄈㄉㄊㄋ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:tb-rl;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="-282.10333"
+       y="1724.1349"
+       id="text148"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         x="-282.10333"
+         y="1724.1349"
+         id="tspan149">アイウエオカキ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="1516.88"
+       y="3895.968"
+       id="text71-2"><tspan
+         sodipodi:role="line"
+         id="tspan71-1"
+         x="1516.88"
+         y="3895.968">ԱԲԳդեզէ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="1540.5184"
+       y="3931.2634"
+       id="text71-2-5"><tspan
+         sodipodi:role="line"
+         x="1540.5184"
+         y="3931.2634"
+         id="tspan80">ႠႡႢႣႤႥႦ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="1593.9816"
+       y="4001.7715"
+       id="text71-2-5-1"><tspan
+         sodipodi:role="line"
+         x="1593.9816"
+         y="4001.7715"
+         id="tspan80-2">𐔰𐔱𐔲𐔳𐔴𐔵𐔶</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="1808.6663"
+       y="3860.7644"
+       id="text71-2-5-1-2"><tspan
+         sodipodi:role="line"
+         x="1808.6663"
+         y="3860.7644"
+         id="tspan80-2-9">𐲀𐲁𐲂𐳄𐳆𐳇𐳉</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="1750.6326"
+       y="4036.2561"
+       id="text71-2-5-1-8"><tspan
+         sodipodi:role="line"
+         x="1750.6326"
+         y="4036.2561"
+         id="tspan80-2-0">АБВгдеж</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="1747.0031"
+       y="4071.3423"
+       id="text71-2-5-1-8-1"><tspan
+         sodipodi:role="line"
+         x="1747.0031"
+         y="4071.3423"
+         id="tspan80-2-0-1">ⰀⰁⰂⰃⰄⰅⰆ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="1809.9921"
+       y="3931.0527"
+       id="text71-2-8"><tspan
+         sodipodi:role="line"
+         x="1809.9921"
+         y="3931.0527"
+         id="tspan86">აბგდევზ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="2525.571"
+       y="4001.6235"
+       id="text71-2-8-5-5"><tspan
+         sodipodi:role="line"
+         x="2525.571"
+         y="4001.6235"
+         id="tspan86-0-8">𐑐𐑑𐑒𐑓𐑔𐑕𐑖</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="2390.8857"
+       y="4141.7944"
+       id="text71-2-8-5-5-4"><tspan
+         sodipodi:role="line"
+         x="2390.8857"
+         y="4141.7944"
+         id="tspan86-0-8-7">𛰀𛰐𛰠𛰰𛱀𐑐𛱐𛱠</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
+       x="-1559.5548"
+       y="-4203.1982"
+       id="text71-4-1"
+       transform="scale(-1)"><tspan
+         sodipodi:role="line"
+         id="tspan71-4-7"
+         x="-1559.5548"
+         y="-4203.1982">᚛ᚁᚄᚇᚎᚒ᚜</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
+       x="1372.9725"
+       y="4175.9531"
+       id="text71-10-6"><tspan
+         sodipodi:role="line"
+         id="tspan71-3-3"
+         x="1372.9725"
+         y="4175.9531">ᚠᚢᚦᚨᚱᚲᚷ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
+       x="2266.1907"
+       y="4212.6709"
+       id="text89"><tspan
+         sodipodi:role="line"
+         id="tspan89"
+         x="2266.1907"
+         y="4212.6709">⠴⠵⠶⠷⠸⠹⠺</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="2233.3223"
+       y="4291.5947"
+       id="text81"><tspan
+         sodipodi:role="line"
+         id="tspan81"
+         x="2233.3223"
+         y="4291.5947">𐐀𐐁𐐂𐐫𐐬𐐭𐐮</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2251.9624"
+       y="4396.123"
+       id="text82"><tspan
+         sodipodi:role="line"
+         id="tspan82"
+         x="2251.9624"
+         y="4396.123">ᎠᎡᎢᎣᎤᎥᎦ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2347.9749"
+       y="4361.4858"
+       id="text82-1"><tspan
+         sodipodi:role="line"
+         id="tspan82-8"
+         x="2347.9749"
+         y="4361.4858">ᐁᐯᑌᑫᒉᒣᓀ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2499.1973"
+       y="4326.1099"
+       id="text83"><tspan
+         sodipodi:role="line"
+         id="tspan83"
+         x="2499.1973"
+         y="4326.1099">𞄀𞄤‎𞄁𞄥𞄂𞄦𞄃‎</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2036.5051"
+       y="4210.3491"
+       id="text114"><tspan
+         sodipodi:role="line"
+         id="tspan114"
+         x="2036.5051"
+         y="4210.3491">𐔀‎𐔁‎𐔂‎𐔃‎𐔄‎𐔅‎𐔆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="900.3291"
+       y="3966.217"
+       id="text71"><tspan
+         sodipodi:role="line"
+         id="tspan71"
+         x="900.3291"
+         y="3966.217">ΑΒΓδεζη</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="1369.9177"
+       y="3815.8225"
+       id="text71-7"><tspan
+         sodipodi:role="line"
+         id="tspan71-7"
+         x="1369.9177"
+         y="3815.8225">ⲀⲂⲄⲇⲉⲋⲍ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="417.93414"
+       y="3897.083"
+       id="text71-5"><tspan
+         sodipodi:role="line"
+         id="tspan71-38"
+         x="417.93414"
+         y="3897.083">𐘀𐘐𐘠𐘰𐙀𐙐𐙠</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="771.32611"
+       y="3931.5039"
+       id="text71-5-4-6"><tspan
+         sodipodi:role="line"
+         id="tspan71-38-3-0"
+         x="771.32611"
+         y="3931.5039">𐠀𐠁𐠂𐠃𐠄𐠅𐠈</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
+       x="581.33038"
+       y="3897.1692"
+       id="text71-5-1"><tspan
+         sodipodi:role="line"
+         id="tspan71-38-8"
+         x="581.33038"
+         y="3897.1692">𐀀𐀁𐀂𐀃𐀄</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="706.04517"
+       y="3862.8235"
+       id="text71-5-1-8"><tspan
+         sodipodi:role="line"
+         id="tspan71-38-8-9"
+         x="706.04517"
+         y="3862.8235">𔐀𔐐𔐠𔐰𔑀𔑐𔑠‎</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="967.99396"
+       y="4105.9302"
+       id="text71-4"><tspan
+         sodipodi:role="line"
+         id="tspan71-4"
+         x="967.99396"
+         y="4105.9302">ABCdefg</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="967.7403"
+       y="4141.4722"
+       id="text71-10"><tspan
+         sodipodi:role="line"
+         id="tspan71-3"
+         x="967.7403"
+         y="4141.4722">𐌀𐌁𐌂𐌃𐌄𐌅𐌆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="980.27582"
+       y="4001.0977"
+       id="text71-3"><tspan
+         sodipodi:role="line"
+         id="tspan71-85"
+         x="980.27582"
+         y="4001.0977">𐊠𐋍𐊢𐊣𐊤𐊥𐋏</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="968.32227"
+       y="4036.144"
+       id="text71-1"><tspan
+         sodipodi:role="line"
+         id="tspan71-5"
+         x="968.32227"
+         y="4036.144">𐤠𐤡𐤢𐤣𐤤𐤥𐤦</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="1068.5311"
+       y="4071.3887"
+       id="text71-8"><tspan
+         sodipodi:role="line"
+         id="tspan71-8"
+         x="1068.5311"
+         y="4071.3887">𐊀𐊂𐊄𐊅𐊆𐊇𐊈</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
+       x="335.88419"
+       y="3643.7095"
+       id="text71-5-1-8-0"><tspan
+         sodipodi:role="line"
+         id="tspan71-38-8-9-3"
+         x="335.88419"
+         y="3643.7095">𓀀𓀐𓀠𓀰𓁀𓁐𓁠‎</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="1273.3823"
+       y="3676.2764"
+       id="text71-3-9"><tspan
+         sodipodi:role="line"
+         id="tspan71-85-2"
+         x="1273.3823"
+         y="3676.2764">𐦀𐦁𐦂𐦃𐦄𐦅𐦆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
+       x="1189.7855"
+       y="3745.4321"
+       id="text88"><tspan
+         sodipodi:role="line"
+         id="tspan88"
+         x="1189.7855"
+         y="3745.4321">𐦠𐦡𐦢𐦣𐦤𐦥𐦦</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2381.9136"
+       y="3640.1851"
+       id="text116"><tspan
+         sodipodi:role="line"
+         id="tspan116"
+         x="2381.9136"
+         y="3640.1851">𐒀𐒁𐒂𐒃𐒄𐒅𐒆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2418.6553"
+       y="3500.4731"
+       id="text94"><tspan
+         sodipodi:role="line"
+         id="tspan94"
+         x="2418.6553"
+         y="3500.4731">𖫐𖫑𖫒𖫓𖫔𖫕𖫖</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2487.28"
+       y="3570.252"
+       id="text95"><tspan
+         sodipodi:role="line"
+         id="tspan95"
+         x="2487.28"
+         y="3570.252">𖹀‎𖹁‎𖹂𖹤‎𖹥‎𖹦‎𖹧</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="2486.3638"
+       y="3676.8354"
+       id="text96"><tspan
+         sodipodi:role="line"
+         id="tspan96"
+         x="2486.3638"
+         y="3676.8354">ߊߋߌߍߎߏߐ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="2472.918"
+       y="3746.0872"
+       id="text97"><tspan
+         sodipodi:role="line"
+         id="tspan97"
+         x="2472.918"
+         y="3746.0872">𞠀𞠐𞠠𞠰𞡀𞡐𞡠</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2250.0176"
+       y="3781.0388"
+       id="text98"><tspan
+         sodipodi:role="line"
+         x="2250.0176"
+         y="3781.0388"
+         id="tspan110">ꔀꔤꕉꕱꖕꖺꗡ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="2327.3362"
+       y="3710.9805"
+       id="text113"><tspan
+         sodipodi:role="line"
+         id="tspan113"
+         x="2327.3362"
+         y="3710.9805">ꚠꚡꚢꚣꚤꚥꚦ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1251.2959"
+       y="3210.592"
+       id="text119"><tspan
+         sodipodi:role="line"
+         id="tspan119"
+         x="1251.2959"
+         y="3210.592">אבגדהוז</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1243.9568"
+       y="3175.6753"
+       id="text120"><tspan
+         sodipodi:role="line"
+         id="tspan120"
+         x="1243.9568"
+         y="3175.6753">𐢁𐢃𐢄𐢅𐢇𐢈𐢉</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1449.5144"
+       y="3175.0217"
+       id="text121"><tspan
+         sodipodi:role="line"
+         id="tspan121"
+         x="1449.5144"
+         y="3175.0217">ابجدرسص</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="793.40265"
+       y="3280.7461"
+       id="text71-9"><tspan
+         sodipodi:role="line"
+         id="tspan71-2"
+         x="793.40265"
+         y="3280.7461">𐤀𐤁𐤂𐤃𐤄𐤅𐤆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="874.09467"
+       y="3421.437"
+       id="text47"><tspan
+         sodipodi:role="line"
+         id="tspan47"
+         x="874.09467"
+         y="3421.437">𐩠𐩡𐩢𐩣𐩤𐩥𐩦</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="932.27191"
+       y="3246.6606"
+       id="text74"><tspan
+         sodipodi:role="line"
+         id="tspan74"
+         x="932.27191"
+         y="3246.6606">𐡀𐡁𐡂𐡃𐡄𐡅𐡆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="971.4942"
+       y="3177.0645"
+       id="text79"><tspan
+         sodipodi:role="line"
+         id="tspan79"
+         x="971.4942"
+         y="3177.0645">𐎠𐎡𐎢𐎣𐎤𐎥𐎦</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="398.37006"
+       y="3142.0659"
+       id="text79-7"><tspan
+         sodipodi:role="line"
+         id="tspan79-5"
+         x="398.37006"
+         y="3142.0659">𒀀𒀐𒀠𒀰𒁀𒁐𒁠</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1315.8784"
+       y="3466.3625"
+       id="text111"><tspan
+         sodipodi:role="line"
+         id="tspan111"
+         x="1315.8784"
+         y="3466.3625">ሀሉሒማሤርሶ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1007.2572"
+       y="3385.7493"
+       id="text112"><tspan
+         sodipodi:role="line"
+         id="tspan112"
+         x="1007.2572"
+         y="3385.7493">𐪀𐪁𐪂𐪃𐪄𐪅𐪆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="556.42706"
+       y="3245.9058"
+       id="text115"><tspan
+         sodipodi:role="line"
+         id="tspan115"
+         x="556.42706"
+         y="3245.9058">𐎀𐎁𐎂𐎃𐎄𐎅𐎆𐎇</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1038.0475"
+       y="3350.8804"
+       id="text117"><tspan
+         sodipodi:role="line"
+         id="tspan117"
+         x="1038.0475"
+         y="3350.8804">ࠀࠁࠂࠃࠄࠅࠆ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1382.2687"
+       y="3280.8181"
+       id="text118"><tspan
+         sodipodi:role="line"
+         id="tspan118"
+         x="1382.2687"
+         y="3280.8181">ࡀࡁࡂࡃࡄࡅࡆ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1302.0127"
+       y="3105.0605"
+       id="text122"><tspan
+         sodipodi:role="line"
+         id="tspan122"
+         x="1302.0127"
+         y="3105.0605">𐭠𐭡𐭢𐭣𐭤𐭥𐭦</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1511.845"
+       y="3103.7"
+       id="text123"><tspan
+         sodipodi:role="line"
+         id="tspan123"
+         x="1511.845"
+         y="3103.7">𐮀𐮁𐮂𐮃𐮄</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1477.702"
+       y="3033.8887"
+       id="text124"><tspan
+         sodipodi:role="line"
+         id="tspan124"
+         x="1477.702"
+         y="3033.8887">𐬀𐬄𐬅𐬆𐬈𐬊𐬌</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1227.7316"
+       y="3071.2271"
+       id="text125"><tspan
+         sodipodi:role="line"
+         id="tspan125"
+         x="1227.7316"
+         y="3071.2271">𐿦𐿥𐿤𐿣𐿢𐿡𐿠</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1248.5198"
+       y="3035.3442"
+       id="text128"><tspan
+         sodipodi:role="line"
+         id="tspan128"
+         x="1248.5198"
+         y="3035.3442">𐣠𐣡𐣢𐣣𐣤𐣥𐣦</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1297.1448"
+       y="3001.0725"
+       id="text129"><tspan
+         sodipodi:role="line"
+         id="tspan129"
+         x="1297.1448"
+         y="3001.0725">𐡠𐡡𐡢𐡣𐡤𐡥𐡦</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1318.821"
+       y="2965.3359"
+       id="text130"><tspan
+         sodipodi:role="line"
+         id="tspan130"
+         x="1318.821"
+         y="2965.3359">ܐܒܓܕܗܘܙ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="1920.3422"
+       y="3070.0107"
+       id="text131"><tspan
+         sodipodi:role="line"
+         id="tspan131"
+         x="1920.3422"
+         y="3070.0107">𐺀𐺁𐺂𐺃𐺄𐺅𐺆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1399.2855"
+       y="2894.728"
+       id="text134"><tspan
+         sodipodi:role="line"
+         id="tspan134"
+         x="1399.2855"
+         y="2894.728">𐼀𐼂𐼄𐼅𐼇𐼈𐼉</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1574.6571"
+       y="2895.0471"
+       id="text135"><tspan
+         sodipodi:role="line"
+         id="tspan135"
+         x="1574.6571"
+         y="2895.0471">𐼰𐼱𐼲𐼳𐼴𐼵𐼶</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1133.5463"
+       y="2851.6626"
+       id="text143"><tspan
+         sodipodi:role="line"
+         id="tspan143"
+         x="1133.5463"
+         y="2851.6626">𐨐𐨑𐨒𐨓𐨱𐨕𐨖</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2049.3999"
+       y="395.7507"
+       id="text156"><tspan
+         sodipodi:role="line"
+         id="tspan156"
+         x="2049.3999"
+         y="395.7507">가갑갢갳걄걕걦</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="2008.2369"
+       y="4000.7554"
+       id="text71-2-8-5"><tspan
+         sodipodi:role="line"
+         x="2008.2369"
+         y="4000.7554"
+         id="tspan86-0">𐍐‎𐍑‎𐍒‎𐍓‎𐍔‎</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1452.2279"
+       y="2930.3723"
+       id="text132"><tspan
+         sodipodi:role="line"
+         id="tspan132"
+         x="1452.2279"
+         y="2930.3723">𐫀𐫁𐫂𐫃𐫄𐫅𐫆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:tb-rl;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="-212.13504"
+       y="1643.1948"
+       id="text145-3"
+       transform="rotate(-90)"><tspan
+         id="tspan145-8"
+         x="-212.13504"
+         y="1643.1948"
+         sodipodi:role="line">丐丠豐乀樂習買</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2142.9353"
+       y="534.88684"
+       id="text160"><tspan
+         sodipodi:role="line"
+         id="tspan160"
+         x="2142.9353"
+         y="534.88684">ᰀᰂᰃᰅᰆᰇᰈ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2157.5737"
+       y="569.36902"
+       id="text161"><tspan
+         sodipodi:role="line"
+         id="tspan161"
+         x="2157.5737"
+         y="569.36902">ᤁᤂᤃᤄᤅᤆᤇ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2458.1958"
+       y="641.41547"
+       id="text165"><tspan
+         sodipodi:role="line"
+         id="tspan165"
+         x="2458.1958"
+         y="641.41547">𖼀𖼁𖼂𖼃𖼄𖼅𖼆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2446.783"
+       y="676.54022"
+       id="text167"><tspan
+         sodipodi:role="line"
+         id="tspan167"
+         x="2446.783"
+         y="676.54022">ꓐꓑꓒꓓꓔꓕꓖ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2513.3784"
+       y="711.23077"
+       id="text168"><tspan
+         sodipodi:role="line"
+         id="tspan168"
+         x="2513.3784"
+         y="711.23077">ᦀᦁᦂᦃᦄᦅᦆ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1950.3157"
+       y="755.34326"
+       id="text169"><tspan
+         sodipodi:role="line"
+         id="tspan169"
+         x="1950.3157"
+         y="755.34326">ᨠᨡᨢᨣᨤᨥᨦ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1851.3871"
+       y="790.21735"
+       id="text170"><tspan
+         sodipodi:role="line"
+         id="tspan170"
+         x="1851.3871"
+         y="790.21735">ကခဂဃငစဆ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2339.3215"
+       y="860.74756"
+       id="text171"><tspan
+         sodipodi:role="line"
+         id="tspan171"
+         x="2339.3215"
+         y="860.74756">𑫀‎𑫁‎𑫂𑫃𑫄‎𑫅‎𑫆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2512.6926"
+       y="824.41394"
+       id="text172"><tspan
+         sodipodi:role="line"
+         id="tspan172"
+         x="2512.6926"
+         y="824.41394">ꤋꤌꤍꤎꤏꤐꤑ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1929.9031"
+       y="859.53058"
+       id="text173"><tspan
+         sodipodi:role="line"
+         id="tspan173"
+         x="1929.9031"
+         y="859.53058">𑜀𑜁𑜂𑜃𑜄𑜅𑜆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2069.6331"
+       y="1438.3612"
+       id="text197"><tspan
+         sodipodi:role="line"
+         id="tspan197"
+         x="2069.6331"
+         y="1438.3612">ꪀꪁꪂꪃꪄꪅꪆꪇ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1994.7208"
+       y="1474.9038"
+       id="text198"><tspan
+         sodipodi:role="line"
+         id="tspan198"
+         x="1994.7208"
+         y="1474.9038">กขคฆงจฉ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2046.035"
+       y="1509.3169"
+       id="text199"><tspan
+         sodipodi:role="line"
+         id="tspan199"
+         x="2046.035"
+         y="1509.3169">ກຂຄງຈສຊ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2125.2075"
+       y="1589.5559"
+       id="text201"><tspan
+         sodipodi:role="line"
+         id="tspan201"
+         x="2125.2075"
+         y="1589.5559">ހށނރބޅކ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1621.0371"
+       y="1624.2719"
+       id="text202"><tspan
+         sodipodi:role="line"
+         id="tspan202"
+         x="1621.0371"
+         y="1624.2719">𑌕𑌖𑌗𑌘𑌙𑌹𑌚𑌛</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1737.2712"
+       y="1660.0557"
+       id="text203"><tspan
+         sodipodi:role="line"
+         id="tspan203"
+         x="1737.2712"
+         y="1660.0557">കഖഗഘങചഛ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1672.543"
+       y="1695.0391"
+       id="text204"><tspan
+         sodipodi:role="line"
+         id="tspan204"
+         x="1672.543"
+         y="1695.0391">කඛගඝඞහච</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1512.2185"
+       y="1728.6821"
+       id="text205"><tspan
+         sodipodi:role="line"
+         id="tspan205"
+         x="1512.2185"
+         y="1728.6821">கஙசஞடணத</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2316.8462"
+       y="1765.316"
+       id="text206"><tspan
+         sodipodi:role="line"
+         id="tspan206"
+         x="2316.8462"
+         y="1765.316">ꢒꢓꢔꢕꢖꢰꢲ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1945.9996"
+       y="1869.9913"
+       id="text207"><tspan
+         sodipodi:role="line"
+         id="tspan207"
+         x="1945.9996"
+         y="1869.9913">కఖగఘఙచఛ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1956.9927"
+       y="1905.4958"
+       id="text208"><tspan
+         sodipodi:role="line"
+         id="tspan208"
+         x="1956.9927"
+         y="1905.4958">ಕಖಗಘಙಚಛ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1174.0204"
+       y="1941.9973"
+       id="text209"><tspan
+         sodipodi:role="line"
+         id="tspan209"
+         x="1174.0204"
+         y="1941.9973">𑀓𑀔𑀕𑀖𑀗𑀘𑀙</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1573.7084"
+       y="1974.7235"
+       id="text210"><tspan
+         sodipodi:role="line"
+         id="tspan210"
+         x="1573.7084"
+         y="1974.7235">ꯀꯈꯉꯆꯇꯊꯅ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1750.7174"
+       y="2057.8054"
+       id="text211"><tspan
+         sodipodi:role="line"
+         id="tspan211"
+         x="1750.7174"
+         y="2057.8054">𑰎𑰏𑰐𑰑𑰒</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:tb-rl;direction:ltr;text-anchor:start;fill:#000000"
+       x="-602.31952"
+       y="1918.5331"
+       id="text162"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan162"
+         x="-602.31952"
+         y="1918.5331">ᠠ‍ᠡ‍ᠢ‍ᠣ‍ᠨ‍ᠩ‍ᠪ‍</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1593.9604"
+       y="675.93756"
+       id="text163"><tspan
+         sodipodi:role="line"
+         id="tspan163"
+         x="1593.9604"
+         y="675.93756">𐰀𐰁𐰂𐰃𐰄𐰅𐰆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1639.0736"
+       y="929.92529"
+       id="text175"><tspan
+         sodipodi:role="line"
+         id="tspan175"
+         x="1639.0736"
+         y="929.92529">𑄇𑄈𑄉𑄊𑄋𑄌𑄍</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1956.5176"
+       y="976.14709"
+       id="text176"><tspan
+         sodipodi:role="line"
+         id="tspan176"
+         x="1956.5176"
+         y="976.14709">ᝃᝄᝅᝆᝇᝈᝉ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1957.3475"
+       y="1081.2606"
+       id="text189"><tspan
+         sodipodi:role="line"
+         id="tspan189"
+         x="1957.3475"
+         y="1081.2606">ᜃᜄᜅᜆᜇᜈᜉ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1936.0697"
+       y="1115.4531"
+       id="text190"><tspan
+         sodipodi:role="line"
+         id="tspan190"
+         x="1936.0697"
+         y="1115.4531">ᯀᯂᯅᯇᯉᯋᯎ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2061.9351"
+       y="1149.8226"
+       id="text191"><tspan
+         sodipodi:role="line"
+         id="tspan191"
+         x="2061.9351"
+         y="1149.8226">ᨀᨁᨂᨃᨄᨅᨆ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2053.8965"
+       y="1220.6111"
+       id="text192"><tspan
+         sodipodi:role="line"
+         id="tspan192"
+         x="2053.8965"
+         y="1220.6111">ꦏꦑꦒꦓꦔꦲꦕ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1651.8959"
+       y="2150.7676"
+       id="text212"><tspan
+         sodipodi:role="line"
+         id="tspan212"
+         x="1651.8959"
+         y="2150.7676">𑆑𑆒𑆓𑆔𑆕𑆖𑆗</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2529.0591"
+       y="1942.2932"
+       id="text213"><tspan
+         sodipodi:role="line"
+         id="tspan213"
+         x="2529.0591"
+         y="1942.2932">𑃐𑃑𑃒𑃓𑃔𑃕𑃖</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2453.4453"
+       y="2081.709"
+       id="text215"><tspan
+         sodipodi:role="line"
+         id="tspan215"
+         x="2453.4453"
+         y="2081.709">ᱚᱛᱜᱝᱞᱟᱠ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2505.1633"
+       y="2186.6077"
+       id="text216"><tspan
+         sodipodi:role="line"
+         id="tspan216"
+         x="2505.1633"
+         y="2186.6077">𖩀𖩁𖩂𖩃𖩄𖩅‎𖩆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="2537.5469"
+       y="2221.4241"
+       id="text217"><tspan
+         sodipodi:role="line"
+         id="tspan217"
+         x="2537.5469"
+         y="2221.4241">𞋀𞋁𞋂𞋃𞋄‎ </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2535.6008"
+       y="2362.9812"
+       id="text218"><tspan
+         sodipodi:role="line"
+         id="tspan218"
+         x="2535.6008"
+         y="2362.9812">𑢠𑢡𑣂𑣃‎𑣄‎‎</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2056.8384"
+       y="2116.6208"
+       id="text219"><tspan
+         sodipodi:role="line"
+         id="tspan219"
+         x="2056.8384"
+         y="2116.6208">𑚊𑚋𑚌𑚍𑚎𑚏𑚐</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2244.4309"
+       y="2081.5762"
+       id="text220"><tspan
+         sodipodi:role="line"
+         id="tspan220"
+         x="2244.4309"
+         y="2081.5762">𑠊𑠋𑠌𑠍𑠎</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2012.6281"
+       y="2187.0459"
+       id="text224"><tspan
+         sodipodi:role="line"
+         id="tspan224"
+         x="2012.6281"
+         y="2187.0459">𑈈𑈉𑈊𑈋𑈌𑈍𑈎</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2168.2122"
+       y="2221.2886"
+       id="text225"><tspan
+         sodipodi:role="line"
+         id="tspan225"
+         x="2168.2122"
+         y="2221.2886">𑊄𑊅𑊆𑊈𑊊‎𑊋‎𑊌</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2088.4709"
+       y="2256.4197"
+       id="text226"><tspan
+         sodipodi:role="line"
+         id="tspan226"
+         x="2088.4709"
+         y="2256.4197">𑊺𑊻𑊼𑊽𑊾𑊿𑋀</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2085.6506"
+       y="2291.739"
+       id="text227"><tspan
+         sodipodi:role="line"
+         id="tspan227"
+         x="2085.6506"
+         y="2291.739">ਕਖਗਘਙਚਛ </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1880.1541"
+       y="2326.7686"
+       id="text228"><tspan
+         sodipodi:role="line"
+         id="tspan228"
+         x="1880.1541"
+         y="2326.7686">𑅕‎𑅖‎𑅗‎𑅘‎𑅙‎𑅚‎𑅛</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1866.2444"
+       y="2467.3064"
+       id="text229"><tspan
+         sodipodi:role="line"
+         id="tspan229"
+         x="1866.2444"
+         y="2467.3064">𑐎𑐏𑐐𑐑𑐒𑐓𑐔</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1957.8901"
+       y="2501.3821"
+       id="text230"><tspan
+         sodipodi:role="line"
+         id="tspan230"
+         x="1957.8901"
+         y="2501.3821">କଖଗଘଙହଚ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1866.6429"
+       y="2536.5603"
+       id="text231"><tspan
+         sodipodi:role="line"
+         id="tspan231"
+         x="1866.6429"
+         y="2536.5603">𑒏𑒐𑒑𑒒𑒓𑒔𑒕</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1939.424"
+       y="2571.123"
+       id="text232"><tspan
+         sodipodi:role="line"
+         id="tspan232"
+         x="1939.424"
+         y="2571.123">কখগঘঙচছ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2109.6909"
+       y="2606.6953"
+       id="text233"><tspan
+         sodipodi:role="line"
+         id="tspan233"
+         x="2109.6909"
+         y="2606.6953">ꠇꠈꠉꠊꠢꠌꠍ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2061.8708"
+       y="2641.771"
+       id="text234"><tspan
+         sodipodi:role="line"
+         id="tspan234"
+         x="2061.8708"
+         y="2641.771">𑂍𑂎𑂏𑂐𑂑𑂒𑂓</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1593.1227"
+       y="2607.0012"
+       id="text236"><tspan
+         sodipodi:role="line"
+         id="tspan236"
+         x="1593.1227"
+         y="2607.0012">𑖎𑖏𑖐𑖑𑖒𑖓𑖔</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2205.8865"
+       y="2711.1763"
+       id="text238"><tspan
+         sodipodi:role="line"
+         id="tspan238"
+         x="2205.8865"
+         y="2711.1763">𑵱𑵲𑵳𑵴𑵵𑵶𑵷</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1985.0999"
+       y="2676.6433"
+       id="text237"><tspan
+         sodipodi:role="line"
+         id="tspan237"
+         x="1985.0999"
+         y="2676.6433">𑘎𑘏𑘐𑘑𑘒𑘓𑘔</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2102.9255"
+       y="2747.1799"
+       id="text239"><tspan
+         sodipodi:role="line"
+         id="tspan239"
+         x="2102.9255"
+         y="2747.1799">કખગઘઙચછ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1852.7039"
+       y="2817.0417"
+       id="text240"><tspan
+         sodipodi:role="line"
+         id="tspan240"
+         x="1852.7039"
+         y="2817.0417">कखगघङचछ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="2479.7979"
+       y="2850.926"
+       id="text241"><tspan
+         sodipodi:role="line"
+         id="tspan241"
+         x="2479.7979"
+         y="2850.926">𑴀𑴁𑴂𑴃𑴄𑴅𑴆</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1601.3004"
+       y="464.72632"
+       id="text157"><tspan
+         sodipodi:role="line"
+         id="tspan157"
+         x="1601.3004"
+         y="464.72632">ཀཁགངཅཆཇ</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
+       x="1626.6285"
+       y="501.69238"
+       id="text158"><tspan
+         sodipodi:role="line"
+         id="tspan158"
+         x="1626.6285"
+         y="501.69238">𑱲𑱳𑱴𑱵𑱶𑱷‎𑱸</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;vector-effect:none;fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none"
+       x="2547.4771"
+       y="1546.658"
+       id="text246"><tspan
+         sodipodi:role="line"
+         id="tspan246" /></text>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer5"
-     inkscape:label="Chart Text"
-     sodipodi:insensitive="true">
+     inkscape:label="Chart Text">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        x="139.47557"
-       y="165.90849"
+       y="163.90146"
        id="text314"><tspan
          sodipodi:role="line"
          id="tspan314"
          x="139.47557"
-         y="165.90849"
+         y="163.90146"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">East Asia</tspan></text>
     <text
        xml:space="preserve"
@@ -6184,37 +7627,37 @@
          id="tspan314-6-8"
          x="2369.0183"
          y="91.354301"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">Modern (timescale change)</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">Modern Era (timescale change)</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        x="139.00031"
-       y="771.90961"
+       y="773.4729"
        id="text314-6"><tspan
          sodipodi:role="line"
          id="tspan314-4"
          x="139.00031"
-         y="771.90961"
+         y="773.4729"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">Southeast</tspan><tspan
          sodipodi:role="line"
          x="139.00031"
-         y="805.24298"
+         y="806.80627"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
          id="tspan315">Asia</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        x="139.73599"
-       y="1607.4736"
+       y="1608.4641"
        id="text314-6-7"><tspan
          sodipodi:role="line"
          id="tspan314-4-2"
          x="139.73599"
-         y="1607.4736"
+         y="1608.4641"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">South</tspan><tspan
          sodipodi:role="line"
          x="139.73599"
-         y="1640.807"
+         y="1641.7975"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
          id="tspan315-2">Asia</tspan></text>
     <text
@@ -6232,64 +7675,64 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        x="140.03873"
-       y="2911.6841"
+       y="2913.8633"
        id="text314-6-7-3"><tspan
          sodipodi:role="line"
          x="140.03873"
-         y="2911.6841"
+         y="2913.8633"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
          id="tspan7">West &amp;</tspan><tspan
          sodipodi:role="line"
          x="140.03873"
-         y="2945.0176"
+         y="2947.1968"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
          id="tspan10">Central</tspan><tspan
          sodipodi:role="line"
          x="140.03873"
-         y="2978.3508"
+         y="2980.53"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
          id="tspan11">Asia</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        x="140.63443"
-       y="3480.1875"
+       y="3484.1555"
        id="text314-6-7-3-6"><tspan
          sodipodi:role="line"
          x="140.63443"
-         y="3480.1875"
+         y="3484.1555"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
          id="tspan315-2-2-5">Africa</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        x="140.21776"
-       y="4306.3843"
+       y="4308.8906"
        id="text314-6-7-3-6-0"><tspan
          sodipodi:role="line"
          x="140.21776"
-         y="4306.3843"
+         y="4308.8906"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
          id="tspan315-2-2-5-2">Americas</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        x="140.14615"
-       y="3880.4951"
+       y="3879.2422"
        id="text314-6-7-3-6-3"><tspan
          sodipodi:role="line"
          x="140.14615"
-         y="3880.4951"
+         y="3879.2422"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
          id="tspan315-2-2-5-4">Europe,</tspan><tspan
          sodipodi:role="line"
          x="140.14615"
-         y="3913.8286"
+         y="3912.5757"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
          id="tspan316">Anatolia &amp;</tspan><tspan
          sodipodi:role="line"
          x="140.14615"
-         y="3947.1619"
+         y="3945.9089"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
          id="tspan1">Caucasus</tspan></text>
     <text
@@ -6382,14 +7825,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-       x="1631.9618"
-       y="3843.5881"
+       x="1623.1863"
+       y="3844.5283"
        id="text317-8-5-0-3-73"><tspan
          sodipodi:role="line"
          id="tspan317-0-6-9-2-61"
-         x="1631.9618"
-         y="3843.5881"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">from Old Turkic (Mongolia)</tspan></text>
+         x="1623.1863"
+         y="3844.5283"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">from Old Turkic (Mongolia)</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:end;writing-mode:lr-tb;direction:ltr;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
@@ -6723,41 +8166,47 @@
        id="a126"
        xlink:href="https://github.com/DPenner1/"
        target="_blank"
-       transform="translate(-168.00643,-22.008982)">
+       transform="translate(-186.83995,-30.335466)">
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="384.20239"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+         x="246.58478"
          y="102.8505"
          id="text317-3-6"><tspan
            sodipodi:role="line"
-           id="tspan317-7-6"
-           x="384.20239"
+           x="246.58478"
            y="102.8505"
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Chart by DPenner1 - https://github.com/DPenner1</tspan></text>
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;text-anchor:start"
+           id="tspan243">Chart by u/DPenner1</tspan></text>
     </a>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       x="59.744827"
+       y="88.250099"
+       id="text317-3-6-3"><tspan
+         sodipodi:role="line"
+         x="59.744827"
+         y="88.250099"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;text-anchor:start"
+         id="tspan243-9">Last Updated: May 31, 2025</tspan></text>
     <a
        id="a126-1"
        xlink:href="https://github.com/DPenner1/"
        target="_blank"
-       transform="translate(787.09895,2839.2337)"
-       style="fill:#f2f2f2">
+       transform="translate(787.19411,3225.7787)"
+       style="fill:#fafafa;fill-opacity:1">
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.6339px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="293.24185"
-         y="91.19857"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.6339px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+         x="292.92737"
+         y="102.20563"
          id="text317-3-6-9"><tspan
            sodipodi:role="line"
-           x="293.24185"
-           y="91.19857"
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.65359px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#f2f2f2;stroke-width:2"
-           id="tspan40">by DPenner1</tspan><tspan
-           sodipodi:role="line"
-           x="293.24185"
-           y="118.24094"
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.65359px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#f2f2f2;stroke-width:2"
-           id="tspan42">github.com/DPenner1</tspan></text>
+           x="292.92737"
+           y="102.20563"
+           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.65359px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#fafafa;fill-opacity:1;stroke-width:2"
+           id="tspan42">Chart by u/DPenner1</tspan></text>
     </a>
     <text
        xml:space="preserve"
@@ -6857,22 +8306,22 @@
          x="269.40463"
          y="454.50607" />
       <rect
-         style="fill:#d5e8d4;fill-opacity:1;stroke:#000000;stroke-width:0.999999;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:#d5e8d4;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
          id="rect11-5-1"
-         width="88.345901"
+         width="42.049522"
          height="24.943851"
-         x="368.03314"
-         y="540.96582" />
+         x="459.41092"
+         y="541.04895" />
       <rect
-         style="fill:#d5e8d4;fill-opacity:1;stroke:#000000;stroke-width:0.999994;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:#d5e8d4;fill-opacity:1;stroke:#000000;stroke-width:0.999995;stroke-dasharray:none;stroke-opacity:1"
          id="rect11-5-1-9"
-         width="59.7948"
+         width="30.876633"
          height="24.943851"
-         x="559.69629"
+         x="588.61444"
          y="540.97369" />
       <path
-         style="fill:none;stroke:#000000;stroke-width:2;stroke-dasharray:12, 12;stroke-dashoffset:0;stroke-opacity:1"
-         d="M 459.53465,553.36282 H 560.16172"
+         style="fill:none;stroke:#000000;stroke-width:1.99999;stroke-dasharray:11.9999, 11.9999;stroke-dashoffset:0;stroke-opacity:1"
+         d="m 501.56656,553.36281 h 85.65908"
          id="path6-5" />
     </g>
     <g
@@ -6967,7 +8416,7 @@
          id="a63"
          xlink:href="https://en.wikipedia.org/wiki/List_of_writing_systems#List_of_writing_systems_by_adoption"
          target="_blank"
-         transform="translate(0.41781942,5.5041656)">
+         transform="translate(0.41781942,-12.440181)">
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -6992,7 +8441,7 @@
            x="273.80753"
            y="557.26947"><tspan
    style="font-weight:bold"
-   id="tspan46-2">Script Revival</tspan>:</tspan></text>
+   id="tspan46-2">Script extinction then revival</tspan>:</tspan></text>
       <a
          id="a63-4"
          xlink:href="https://en.wikipedia.org/wiki/Writing_system#Directionality_and_orientation"
@@ -7019,7 +8468,7 @@
          id="a65"
          xlink:href="https://en.wikipedia.org/wiki/Unicode"
          target="_blank"
-         transform="translate(-2.3833664,-49.146356)">
+         transform="translate(-2.3833664,-15.334519)">
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -7052,7 +8501,7 @@
       </a>
       <g
          id="g64"
-         transform="translate(-0.79356302,4.2420779)">
+         transform="translate(-0.79356302,-13.702269)">
         <a
            id="a64"
            xlink:href="https://en.wikipedia.org/wiki/List_of_writing_systems#List_of_writing_systems_by_adoption"
@@ -7068,7 +8517,7 @@
                x="274.7128"
                y="526.74072"><tspan
    style="font-weight:bold"
-   id="tspan46-1">Bold Underline</tspan>: Over 100 million users</tspan></text>
+   id="tspan46-1">Bold underline</tspan>: Over 100 million users</tspan></text>
         </a>
         <path
            style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -7095,7 +8544,7 @@
    style="font-style:italic;font-weight:bold"
    id="tspan288-7-5-0">文</tspan> <tspan
    style="font-weight:bold"
-   id="tspan55">Logograph</tspan>: Each word is a distinct character </tspan></text>
+   id="tspan55">Logograph</tspan>: Words are distinct characters </tspan></text>
       </a>
       <a
          id="a57"
@@ -7115,27 +8564,26 @@
    style="font-style:italic;font-weight:bold"
    id="tspan288-7-5-0-4">か</tspan> <tspan
    style="font-weight:bold"
-   id="tspan56">Syllabary</tspan>: Each syllable is a distinct character</tspan></text>
+   id="tspan56">Syllabary</tspan>: Syllables are distinct characters</tspan></text>
       </a>
       <a
-         id="a57-6"
+         id="a158"
          xlink:href="https://en.wikipedia.org/wiki/Alphabet"
-         target="_blank"
-         transform="translate(-0.30903825,37.123543)">
+         target="_blank">
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-           x="286.66983"
-           y="616.58667"
+           x="286.36078"
+           y="653.71021"
            id="text255-0-7-0-5-7-3-0-7"><tspan
              sodipodi:role="line"
              id="tspan255-2-2-8-8-8-8-0-5"
-             x="286.66983"
-             y="616.58667"><tspan
+             x="286.36078"
+             y="653.71021"><tspan
    style="font-weight:bold"
    id="tspan67">Ω</tspan> <tspan
    style="font-weight:bold"
-   id="tspan56-9">True Alphabet</tspan>: Vowels are distinct characters</tspan></text>
+   id="tspan56-9">True alphabet</tspan>: Vowels are on par with consonants</tspan></text>
       </a>
       <a
          id="a57-6-1"
@@ -7157,7 +8605,7 @@
    style="font-weight:bold"
    id="tspan67-5">दे Ω</tspan> <tspan
    style="font-weight:bold"
-   id="tspan56-9-8">Alphabets</tspan>: Each consonant is a distinct character</tspan></text>
+   id="tspan56-9-8">Alphabets</tspan>: Consonants are distinct characters</tspan></text>
       </a>
       <a
          id="a57-6-2"
@@ -7198,7 +8646,7 @@
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan68">گ </tspan><tspan
    style="font-weight:bold"
-   id="tspan56-9-9-3">Abjad</tspan>: Vowels are optional</tspan></text>
+   id="tspan56-9-9-3">Abjad</tspan>: Vowels are optional or non-existant</tspan></text>
       </a>
     </g>
   </g>
