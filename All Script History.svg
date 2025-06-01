@@ -27,16 +27,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     showgrid="true"
-     inkscape:zoom="4.2452351"
-     inkscape:cx="1841.2408"
-     inkscape:cy="3070.3835"
+     showgrid="false"
+     inkscape:zoom="1.2480217"
+     inkscape:cx="520.82428"
+     inkscape:cy="436.2905"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer5"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -51,7 +51,7 @@
        opacity="0.14901961"
        empspacing="5"
        enabled="true"
-       visible="true" />
+       visible="false" />
   </sodipodi:namedview>
   <defs
      id="defs1">
@@ -861,7 +861,7 @@
        sodipodi:nodetypes="ccccc" />
     <path
        style="fill:#ccccff;fill-opacity:1;stroke:#000000;stroke-width:0.999999;stroke-dasharray:none;stroke-opacity:1"
-       d="M 2319.4154,866.13147 V 688.84873 c 0,0 0.5364,-8.04909 9.2103,-8.66865 8.6738,-0.61957 15.3611,3.97075 15.3611,3.97075 h 245.0368 v -24.93737 h -245.077 c 0,0 -5.859,6.86863 -11.0403,12.66016 -5.1813,5.79153 -13.505,4.69266 -13.505,4.69266 h 0.01 l -0.01,-16.05471 c 0,0 0.4397,-9.4821 7.4505,-13.34702 7.0108,-3.86491 37.6456,1.84773 37.6456,1.84773 l 5.5452,-5.47697 -4.9136,-6.47152 c 0,0 -35.8749,0.66445 -43.7879,6.80621 -7.913,6.14177 -8.636,16.7429 -8.636,16.7429 h 0.01 l -0.01,3333.1132 6.7303,-0.1144 -0.01,-3118.38404 c 0,0 -0.1691,-2.61483 2.7525,-4.75739 2.9217,-2.14256 11.6343,-1.93107 11.6343,-1.93107 l 4.0904,-5.55117 -4.1877,-6.23289 c 0,0 -1.6284,2.43583 -5.8161,5.84444 -4.1878,3.40861 -8.4834,3.53189 -8.4834,3.53189 z"
+       d="M 2319.4154,866.13147 V 688.84873 c 0,0 0.5364,-8.04909 9.2103,-8.66865 8.6738,-0.61957 15.3611,3.97075 15.3611,3.97075 h 245.0368 v -24.93737 h -245.077 c 0,0 -5.859,6.86863 -11.0403,12.66016 -5.1813,5.79153 -13.505,4.69266 -13.505,4.69266 h 0.01 l -0.01,-16.05471 c 0,0 0.4397,-9.4821 7.4505,-13.34702 7.0108,-3.86491 37.6456,1.84773 37.6456,1.84773 l 5.5452,-5.47697 -4.9136,-6.47152 c 0,0 -35.8749,0.66445 -43.7879,6.80621 -7.913,6.14177 -8.636,16.7429 -8.636,16.7429 h 0.01 l -0.01,3365.4862 6.7303,-0.1144 -0.01,-3150.75704 c 0,0 -0.1691,-2.61483 2.7525,-4.75739 2.9217,-2.14256 11.6343,-1.93107 11.6343,-1.93107 l 4.0904,-5.55117 -4.1877,-6.23289 c 0,0 -1.6284,2.43583 -5.8161,5.84444 -4.1878,3.40861 -8.4834,3.53189 -8.4834,3.53189 z"
        id="path303-9-4-6-2-8-09-5-0-1-2-1-1"
        sodipodi:nodetypes="ccscccczccczccczcccccscccsc" />
     <path
@@ -972,9 +972,9 @@
        sodipodi:nodetypes="cczcccczcczcccczczcccczczcccczczcccczczcccczczcccczcscccczcccczczcccczcscccczcczcczcczcczcccscccczcccczczcccczccczccccczcccczcczcccczcczcccczcczcczczzczczzccscccczscccczcccczcczcccscccscccacczzccccccczcczccczcccczcczcccscccscczcczczccczccccczcccczccccczcczccccczcccczczcczc" />
     <path
        style="display:inline;fill:url(#linearGradient30);stroke:#000000;stroke-width:0.999998;stroke-dasharray:none;stroke-opacity:1"
-       d="m 1503.5129,3254.4172 v -25.2508 l -368.954,-0.044 c 0,0 3.1596,-14.4087 10.7688,-19.7578 7.6092,-5.3491 33.2167,9.9253 33.2167,9.9253 l 1189.8713,0.1432 v 0 c 0,0 13.9402,2.3237 21.93,15.027 9.3627,14.886 8.5495,29.659 8.5495,29.659 h 7.339 c 0,0 0.638,-18.5164 -7.1553,-30.3554 -7.7933,-11.8389 -11.9391,-14.2586 -11.9391,-14.2586 l 202.3055,0.072 v -25.2508 l -1410.9009,-0.3545 c 0,0 -21.8056,11.2863 -28.7885,8.0651 -6.9829,-3.2212 3.4581,-17.8271 3.4581,-17.8271 l 1435.6103,0.2863 v -25.2508 L 1153.214,3158.89 c 0,0 -6.3289,19.2924 -13.3893,38.0291 -7.0604,18.7367 -17.6562,32.0925 -17.6562,32.0925 l -19.0644,-0.022 9.3787,-89.2522 c 0,0 2.259,-23.359 13.8069,-28.2615 11.5479,-4.9025 27.4901,2.2807 27.4901,2.2807 l 125.0034,0.1428 c 0,0 7.0635,4.494 15.08,14.8735 8.0166,10.3794 10.8943,20.8532 10.8943,20.8532 l 149.9445,0.2863 v -25.2509 l -149.9445,-0.3545 c 0,0 -5.4018,0.3815 -8.8203,-2.4176 -3.4185,-2.7991 -4.5149,-7.919 -4.5149,-7.919 l 202.6338,0.4626 c 0,0 3.3318,-8.8632 7.5042,-8.8382 4.1724,0.025 7.4102,8.9014 7.4102,8.9014 h 45.5585 v -25.1297 h -44.7352 c 0,0 -3.7504,8.6673 -7.959,8.7433 -4.2086,0.076 -7.7787,-8.5928 -7.7787,-8.5928 l -144.1893,-0.1238 v 7e-4 c 0,0 0.4265,-3.8736 2.1996,-6.5416 1.773,-2.6679 4.9292,-3.032 4.9292,-3.032 l 397.6041,0.2863 v -25.2509 l -368.568,-0.1772 c 0,0 -2.0796,-0.7552 5.472,-5.7896 7.5515,-5.0344 12.9455,-4.6748 12.9455,-4.6748 h 299.9047 v -24.8122 h -304.9391 c 0,0 -2.5172,5.7535 -8.9899,16.9011 -6.4728,11.1475 -14.4549,18.2865 -14.4549,18.2865 v 10e-5 l -18.9744,-0.089 c 0,0 -2.1148,10.0664 -6.0481,19.2915 -3.9333,9.2252 -11.2149,15.5872 -11.2149,15.5872 l -185.9528,-0.9418 c 0,0 -6.4589,7.6196 -14.0255,11.2909 -7.5666,3.6713 -22.1153,6.1465 -22.1153,6.1465 v 0 c 0,0 6.2313,-13.8196 15.3063,-21.8257 9.075,-8.006 21.077,-4.347 21.077,-4.347 l 185.4312,0.2863 v -25.2508 l -185.4312,-0.3545 c 0,0 -4.4919,7.3682 -14.5604,17.285 -10.0685,9.9169 -18.7573,5.5242 -18.7573,5.5242 0,0 10.9292,-31.0321 27.3536,-36.4616 16.4244,-5.4295 32.4853,3.4675 32.4853,3.4675 l 176.6295,0.2863 v -25.2508 l -176.6295,0.1835 c 0,0 -18.4067,2.3194 -29.4927,8.8277 -11.086,6.5083 -24.6449,18.9713 -24.6449,18.9713 0,0 4.8366,-44.1042 28.086,-48.8246 23.2494,-4.7204 52.0893,11.1143 52.0893,11.1143 l 159.6691,0.025 v -25.2508 l -159.3867,0.2367 c 0,0 -11.6683,4.7398 -26.9186,5.4054 -15.2503,0.6656 -30.4248,-1.4156 -30.4248,-1.4156 v -3e-4 c 0,0 21.6537,-19.5264 48.4706,-25.4566 26.8168,-5.9302 55.6787,11.5638 55.6787,11.5638 l 1336.0756,0.2863 v -25.2508 l -1311.5945,-0.1765 c 0,0 6.9023,-38.3405 11.1241,-45.8916 4.2218,-7.5511 14.2065,0.585 14.2065,0.585 l 17.7394,0.072 c 0,0 8.3184,3.4864 18.7723,13.4259 10.454,9.9395 14.0512,21.8189 14.0512,21.8189 l 350.2907,-0.1974 v -24.9485 l -350.2907,-0.033 c 0,0 -5.9601,-0.2035 -11.1796,-3.161 -5.2196,-2.9574 -6.4586,-6.8329 -6.4586,-6.8329 l 467.1361,0.1431 v -25.2508 l -332.7213,-0.082 c 0,0 25.4509,-16.2135 29.7202,-36.2232 4.269,-20.0096 4.314,-247.881 4.314,-247.881 l -6.8544,-6.096 c 0,0 3.6699,235.1524 -7.3261,256.4043 -8.4161,16.2659 -37.2017,33.6116 -37.2017,33.6116 l -149.9915,-0.089 c 0,0 -13.1354,-0.7561 -18.5656,10.8144 -5.4302,11.5705 -17.4684,59.7222 -17.4684,59.7222 l -13.7777,-0.089 c 0,0 -85.2817,-5.129 -117.0549,39.1366 -31.7732,44.2655 -40.3034,240.4691 -40.3034,240.4691 l -105.76552,-0.022 c 0,0 4.72391,-0.7268 19.27052,-20.8649 14.5467,-20.1382 11.133,-66.2462 11.133,-66.2462 h -6.7401 c 0,0 2.0783,41.9728 -7.7256,58.2105 -9.80389,16.2377 -31.01757,28.8786 -31.01757,28.8786 v 0 l -120.84527,-0.044 c 0,0 -4.23301,11.0562 -12.11181,20.5973 -7.8788,9.5411 -17.25671,15.0408 -17.25671,15.0408 l -121.22826,-0.01 c 0,0 -73.68504,25.1119 -138.41217,64.6838 -64.72712,39.572 -126.40941,124.9155 -126.40941,124.9155 0,0 24.49989,-81.2361 56.70472,-130.7032 32.20482,-49.4671 58.20037,-69.152 58.20037,-69.152 l 80.01718,0.2863 V 3229.22 l -80.01718,-0.3545 c 0,0 -35.19781,49.0949 -66.56529,95.2522 -31.36748,46.1572 -57.71642,125.162 -57.71642,125.162 l -150.66345,-0.3545 c 0,0 -4.18772,5.9436 -17.96107,9.7313 -13.77336,3.7877 -27.87342,2.2402 -40.19926,23.0614 -12.32584,20.8212 -26.54089,143.4222 -26.54089,143.4222 h 8.26843 c 0,0 8.87882,-136.0552 35.04819,-152.2389 26.16938,-16.1837 41.3846,1.343 41.3846,1.343 l 150.66345,0.2863 c 0,0 77.24917,1.8006 136.12151,-5.2113 58.87233,-7.0119 142.40192,-40.027 142.40192,-40.027 l 491.25119,0.1431 c 0,0 16.2314,6.8977 29.5276,17.8683 13.2962,10.9707 25.144,27.6318 25.144,27.6318 l 1334.0846,0.2863 v -25.2508 l -1334.0846,-0.3545 c 0,0 -10.2406,0.071 -18.8478,-6.0696 -8.6073,-6.141 -10.6786,-14.0395 -10.6786,-14.0395 l 279.2304,0.072 v -25.2508 l -795.62679,-0.3545 c 0,0 -56.68978,35.8099 -97.71125,48.7539 -41.02147,12.9441 -158.44698,13.6706 -158.44698,13.6706 0,0 225.82783,-76.5896 301.6889,-81.1013 75.86107,-4.5117 99.63737,9.1241 99.63737,9.1241 l 524.89425,0.2863 v -25.2508 l -524.89425,-0.3545 c 0,0 -26.55499,-0.2293 -110.95523,7.0057 -84.40024,7.235 -296.07466,83.8025 -296.07466,83.8025 0,0 62.15566,-82.8949 124.62482,-124.0257 62.46916,-41.1309 133.58288,-46.5796 133.58288,-46.5796 l 7.08271,-0.052 c 0,0 13.25841,8.5731 24.02261,28.249 10.7642,19.6759 16.69413,41.5028 16.69413,41.5028 H 2589.3106 v -25.6743 H 753.77705 c 0,0 -5.34479,-5.6778 -12.87715,-20.3704 -7.53237,-14.6925 -9.55815,-23.6895 -9.55815,-23.6895 l 10.28303,0.036 c 0,0 10.2307,2.9337 17.77084,15.4973 7.77347,12.9525 7.71201,28.4853 7.71201,28.4853 h 6.6019 c 0,0 0.47968,-12.0541 -4.3062,-26.2614 -4.70033,-13.9533 -12.69628,-17.645 -12.69628,-17.645 l 130.48512,0.027 c 0,0 9.98329,2.9207 17.52343,15.4843 7.77347,12.9525 7.71201,28.4853 7.71201,28.4853 h 6.6019 c 0,0 0.47968,-12.0541 -4.3062,-26.2614 -4.70033,-13.9533 -12.71914,-17.6542 -12.71914,-17.6542 l 251.98873,0.067 v -25.2508 l -314.09505,0.17 c 0,0 1.20328,-4.8806 5.30344,-7.7325 4.10017,-2.8518 9.41937,-2.5875 9.41937,-2.5875 l 422.21464,0.1668 c 0,0 5.5491,48.2545 9.9532,59.9593 3.9161,10.4078 16.9697,10.105 16.9697,10.105 l 399.9576,-0.3545 v -25.2508 l -399.9576,0.2863 c 0,0 -8.4186,6.5967 -11.8309,2.502 -3.4122,-4.0947 -7.3358,-38.9896 -7.3358,-38.9896 0,0 7.3443,4.9837 10.6183,10.0627 3.2741,5.079 8.4955,17.0945 8.4955,17.0945 l 1285.6125,-0.3545 v -25.2508 l -1285.6125,0.2863 c 0,0 -6.211,0.7223 -11.0413,-2.4324 -4.8303,-3.1548 -6.0978,-7.5957 -6.0978,-7.5957 z"
+       d="m 2459.357,3159.0673 -1306.143,-0.1777 c 0,0 -6.3289,19.2924 -13.3893,38.0291 -7.0604,18.7367 -17.6562,32.0925 -17.6562,32.0925 l -19.0644,-0.022 9.3787,-89.2522 c 0,0 2.259,-23.359 13.8069,-28.2615 11.5479,-4.9025 27.4901,2.2807 27.4901,2.2807 l 125.0034,0.1428 c 0,0 7.0635,4.494 15.08,14.8735 8.0166,10.3794 10.8943,20.8532 10.8943,20.8532 l 149.9445,0.2863 v -25.2509 l -149.9445,-0.3545 c 0,0 -5.4018,0.3815 -8.8203,-2.4176 -3.4185,-2.7991 -4.5149,-7.919 -4.5149,-7.919 l 202.6338,0.4626 c 0,0 3.3318,-8.8632 7.5042,-8.8382 4.1724,0.025 7.4102,8.9014 7.4102,8.9014 h 45.5585 v -25.1297 h -44.7352 c 0,0 -3.7504,8.6673 -7.959,8.7433 -4.2086,0.076 -7.7787,-8.5928 -7.7787,-8.5928 l -144.1893,-0.1238 v 7e-4 c 0,0 0.4265,-3.8736 2.1996,-6.5416 1.773,-2.6679 4.9292,-3.032 4.9292,-3.032 l 397.6041,0.2863 v -25.2509 l -368.568,-0.1772 c 0,0 -2.0796,-0.7552 5.472,-5.7896 7.5515,-5.0344 12.9455,-4.6748 12.9455,-4.6748 h 299.9047 v -24.8122 h -304.9391 c 0,0 -2.5172,5.7535 -8.9899,16.9011 -6.4728,11.1475 -14.4549,18.2865 -14.4549,18.2865 v 10e-5 l -18.9744,-0.089 c 0,0 -2.1148,10.0664 -6.0481,19.2915 -3.9333,9.2252 -11.2149,15.5872 -11.2149,15.5872 l -185.9528,-0.9418 c 0,0 -6.4589,7.6196 -14.0255,11.2909 -7.5666,3.6713 -22.1153,6.1465 -22.1153,6.1465 v 0 c 0,0 6.2313,-13.8196 15.3063,-21.8257 9.075,-8.006 21.077,-4.347 21.077,-4.347 l 185.4312,0.2863 v -25.2508 l -185.4312,-0.3545 c 0,0 -4.4919,7.3682 -14.5604,17.285 -10.0685,9.9169 -18.7573,5.5242 -18.7573,5.5242 0,0 10.9292,-31.0321 27.3536,-36.4616 16.4244,-5.4295 32.4853,3.4675 32.4853,3.4675 l 176.6295,0.2863 v -25.2508 l -176.6295,0.1835 c 0,0 -18.4067,2.3194 -29.4927,8.8277 -11.086,6.5083 -24.6449,18.9713 -24.6449,18.9713 0,0 4.8366,-44.1042 28.086,-48.8246 23.2494,-4.7204 52.0893,11.1143 52.0893,11.1143 l 159.6691,0.025 v -25.2508 l -159.3867,0.2367 c 0,0 -11.6683,4.7398 -26.9186,5.4054 -15.2503,0.6656 -30.4248,-1.4156 -30.4248,-1.4156 v -3e-4 c 0,0 21.6537,-19.5264 48.4706,-25.4566 26.8168,-5.9302 55.6787,11.5638 55.6787,11.5638 l 1336.0756,0.2863 v -25.2508 l -1311.5945,-0.1765 c 0,0 6.9023,-38.3405 11.1241,-45.8916 4.2218,-7.5511 14.2065,0.585 14.2065,0.585 l 17.7394,0.072 c 0,0 8.3184,3.4864 18.7723,13.4259 10.454,9.9395 14.0512,21.8189 14.0512,21.8189 l 350.2907,-0.1974 v -24.9485 l -350.2907,-0.033 c 0,0 -5.9601,-0.2035 -11.1796,-3.161 -5.2196,-2.9574 -6.4586,-6.8329 -6.4586,-6.8329 l 467.1361,0.1431 v -25.2508 l -332.7213,-0.082 c 0,0 25.4509,-16.2135 29.7202,-36.2232 4.269,-20.0096 4.314,-247.881 4.314,-247.881 l -6.8544,-6.096 c 0,0 3.6699,235.1524 -7.3261,256.4043 -8.4161,16.2659 -37.2017,33.6116 -37.2017,33.6116 l -149.9915,-0.089 c 0,0 -13.1354,-0.7561 -18.5656,10.8144 -5.4302,11.5705 -17.4684,59.7222 -17.4684,59.7222 l -13.7777,-0.089 c 0,0 -85.2817,-5.129 -117.0549,39.1366 -31.7732,44.2655 -40.3034,240.4691 -40.3034,240.4691 l -105.76552,-0.022 c 0,0 4.72391,-0.7268 19.27052,-20.8649 14.5467,-20.1382 11.133,-66.2462 11.133,-66.2462 h -6.7401 c 0,0 2.0783,41.9728 -7.7256,58.2105 -9.80389,16.2377 -31.01757,28.8786 -31.01757,28.8786 v 0 l -120.84527,-0.044 c 0,0 -4.23301,11.0562 -12.11181,20.5973 -7.8788,9.5411 -17.25671,15.0408 -17.25671,15.0408 l -121.22826,-0.01 c 0,0 -73.68504,25.1119 -138.41217,64.6838 -64.72712,39.572 -126.40941,124.9155 -126.40941,124.9155 0,0 24.49989,-81.2361 56.70472,-130.7032 32.20482,-49.4671 58.20037,-69.152 58.20037,-69.152 l 80.01718,0.2863 V 3229.22 l -80.01718,-0.3545 c 0,0 -35.19781,49.0949 -66.56529,95.2522 -31.36748,46.1572 -57.71642,125.162 -57.71642,125.162 l -150.66345,-0.3545 c 0,0 -4.18772,5.9436 -17.96107,9.7313 -13.77336,3.7877 -27.87342,2.2402 -40.19926,23.0614 -12.32584,20.8212 -26.54089,143.4222 -26.54089,143.4222 h 8.26843 c 0,0 8.87882,-136.0552 35.04819,-152.2389 26.16938,-16.1837 41.3846,1.343 41.3846,1.343 l 150.66345,0.2863 c 0,0 77.24917,1.8006 136.12151,-5.2113 58.87233,-7.0119 142.40192,-40.027 142.40192,-40.027 l 491.25119,0.1431 c 0,0 16.2314,6.8977 29.5276,17.8683 13.2962,10.9707 25.144,27.6318 25.144,27.6318 l 1334.0846,0.2863 v -25.2508 l -1334.0846,-0.3545 c 0,0 -10.2406,0.071 -18.8478,-6.0696 -8.6073,-6.141 -10.6786,-14.0395 -10.6786,-14.0395 l 279.2304,0.072 v -25.2508 l -795.62679,-0.3545 c 0,0 -56.68978,35.8099 -97.71125,48.7539 -41.02147,12.9441 -158.44698,13.6706 -158.44698,13.6706 0,0 225.82783,-76.5896 301.6889,-81.1013 75.86107,-4.5117 99.63737,9.1241 99.63737,9.1241 l 524.89425,0.2863 v -25.2508 l -524.89425,-0.3545 c 0,0 -26.55499,-0.2293 -110.95523,7.0057 -84.40024,7.235 -296.07466,83.8025 -296.07466,83.8025 0,0 62.15566,-82.8949 124.62482,-124.0257 62.46916,-41.1309 133.58288,-46.5796 133.58288,-46.5796 l 7.08271,-0.052 c 0,0 13.25841,8.5731 24.02261,28.249 10.7642,19.6759 16.69413,41.5028 16.69413,41.5028 H 2589.3106 v -25.6743 H 753.77705 c 0,0 -5.34479,-5.6778 -12.87715,-20.3704 -7.53237,-14.6925 -9.55815,-23.6895 -9.55815,-23.6895 l 10.28303,0.036 c 0,0 10.2307,2.9337 17.77084,15.4973 7.77347,12.9525 7.71201,28.4853 7.71201,28.4853 h 6.6019 c 0,0 0.47968,-12.0541 -4.3062,-26.2614 -4.70033,-13.9533 -12.69628,-17.645 -12.69628,-17.645 l 130.48512,0.027 c 0,0 9.98329,2.9207 17.52343,15.4843 7.77347,12.9525 7.71201,28.4853 7.71201,28.4853 h 6.6019 c 0,0 0.47968,-12.0541 -4.3062,-26.2614 -4.70033,-13.9533 -12.71914,-17.6542 -12.71914,-17.6542 l 251.98873,0.067 v -25.2508 l -314.09505,0.17 c 0,0 1.20328,-4.8806 5.30344,-7.7325 4.10017,-2.8518 9.41937,-2.5875 9.41937,-2.5875 l 422.21464,0.1668 c 0,0 5.5491,48.2545 9.9532,59.9593 3.9161,10.4078 16.9697,10.105 16.9697,10.105 l 399.9576,-0.3545 v -25.2508 l -399.9576,0.2863 c 0,0 -8.4186,6.5967 -11.8309,2.502 -3.4122,-4.0947 -7.3358,-38.9896 -7.3358,-38.9896 0,0 7.3443,4.9837 10.6183,10.0627 3.2741,5.079 8.4955,17.0945 8.4955,17.0945 l 1285.6125,-0.3545 v -25.2508 l -1285.6125,0.2863 c 0,0 -6.211,0.7223 -11.0413,-2.4324 -4.8303,-3.1548 -6.0978,-7.5957 -6.0978,-7.5957 l 216.9467,0.052 v -25.2508 l -368.954,-0.044 c 0,0 3.1596,-14.4087 10.7688,-19.7578 7.6092,-5.3491 33.2167,9.9253 33.2167,9.9253 l 1189.8713,0.1432 v 0 c 0,0 13.9402,2.3237 21.93,15.027 9.3627,14.886 8.5495,29.659 8.5495,29.659 h 7.339 c 0,0 0.638,-18.5164 -7.1553,-30.3554 -7.7933,-11.8389 -11.9391,-14.2586 -11.9391,-14.2586 l 202.3055,0.072 v -25.2508 l -1410.9009,-0.3545 c 0,0 -21.8056,11.2863 -28.7885,8.0651 -6.9829,-3.2212 3.4581,-17.8271 3.4581,-17.8271 l 1435.6103,0.2863 v -25.2508 l -111.9684,-0.089 c 0,0 1.8347,-4.5253 7.558,-7.387 5.7232,-2.8616 10.0848,-2.4659 10.0848,-2.4659 h 94.7821 v -24.8963 l -94.9677,0 c 0,0 -5.4288,10.3868 -14.8722,20.9748 -9.4434,10.5881 -20.0839,13.6858 -20.0839,13.6858 z"
        id="path5"
-       sodipodi:nodetypes="ccczcccsccscccczcccczcccsccsccccsccsccccscccsccccsccccscccsccsccsccccscsccccscsccccsccsccccsccsccccsccccsccsccsccsccsccsccczcczsccccscsccccsccccsccsccsccssccszcccszczccccccccccsccsccsccscczczccsccccscsccccscc" />
+       sodipodi:nodetypes="cczcccsccsccccsccsccccscccsccccsccccscccsccsccsccccscsccccscsccccsccsccccsccsccccsccccsccsccsccsccsccsccczcczsccccscsccccsccccsccsccsccssccszcccszczccccccccccsccsccsccscczczccsccccscsccccscccczcccsccscccczccccsccccsc" />
     <path
        style="fill:#ccffff;fill-opacity:1;stroke:#000000;stroke-width:0.999999;stroke-dasharray:none;stroke-opacity:1"
        d="m 2004.4332,2414.8096 -250.9449,-0.089 c 0,0 -1.1586,8.6489 -4.9677,12.8537 -3.8091,4.2048 -9.274,5.1981 -9.274,5.1981 l -56.3058,-0.035 c 0,0 -25.5131,40.4091 -37.2245,79.7773 -11.7115,39.3683 -18.4094,76.9602 -18.4094,76.9602 l -111.3695,0.081 c 0,0 -21.3991,0.3617 -23.7644,-44.9587 -2.3654,-45.3203 -6.0689,-479.6519 -6.0689,-479.6519 0,0 17.3599,34.6391 37.6479,56.1567 20.288,21.5176 54.4356,38.6437 54.4356,38.6437 l 22.3069,0.072 c 0,0 33.5599,28.4302 50.1576,45.9251 16.5977,17.4949 52.7085,59.0445 52.7085,59.0445 l 61.137,0.2863 c 0,0 0.3042,13.296 10.1688,32.6549 9.8645,19.3589 28.9866,37.1342 28.9866,37.1342 l 775.8134,-0.5135 v -25.0111 l -775.8134,0.2049 c 0,0 -17.4157,-1.6331 -25.3451,-19.0951 -7.9294,-17.462 -6.9442,-28.2714 -6.9442,-28.2714 0,0 71.5327,14.061 113.9847,23.3688 42.4519,9.3078 108.9847,14.4674 108.9847,14.4674 l 594.4294,0.2863 v -25.2508 l -594.4294,-0.3545 c 0,0 -52.0165,13.5706 -96.1712,6.1824 -44.1547,-7.3883 -123.5513,-24.8468 -123.5513,-24.8468 0,0 143.9601,-0.6564 182.0237,-0.1685 38.0636,0.4879 47.0408,9.1672 47.0408,9.1672 l 585.4925,0.2863 v -25.2508 l -585.4925,-0.3545 c 0,0 -7.4743,8.7191 -46.955,8.8493 -39.4807,0.13 -182.3921,0.097 -182.3921,0.097 0,0 179.4076,-24.2718 233.7961,-25.8807 54.3885,-1.6089 95.0862,6.9719 95.0862,6.9719 l 326.1633,0.2863 v -25.2508 l -326.1633,-0.3545 c 0,0 -66.2999,6.3154 -121.9597,13.0579 -26.9854,3.269 -209.8795,24.9796 -209.8795,24.9796 0,0 61.0742,-35.8712 90.6501,-42.1287 29.5759,-6.2575 91.6679,-5.4624 91.6679,-5.4624 l 474.994,0.2863 v -25.2508 l -474.994,-0.3545 v 5e-4 c 0,0 -65.9465,13.6523 -97.4784,24.3133 -31.5319,10.6611 -91.7131,45.9534 -91.7131,45.9534 l -61.137,-0.3545 c 0,0 -34.7346,-22.8819 -47.091,-36.145 -12.3565,-13.2631 -27.0476,-43.4336 -27.0476,-43.4336 l 960.4017,0.1431 v -25.2508 l -603.8987,-0.1773 c 0,0 2.9978,-4.74 7.1403,-7.0423 4.1425,-2.3022 10.394,-2.704 10.394,-2.704 l 422.1383,-0.1389 v -25.2508 l -196.5663,0.018 c 0,0 2.0621,-3.99 6.0077,-6.6575 3.9455,-2.6676 9.5947,-3.0704 9.5947,-3.0704 l 49.2405,-0.033 v -25.2508 l -49.2405,-0.035 v 3e-4 c 0,0 -3.432,10.6419 -10.2298,20.5215 -6.7978,9.8795 -15.3116,14.5429 -15.3116,14.5429 l -215.633,0.035 c 0,0 -4.5915,13.2853 -10.8187,21.1482 -6.2273,7.863 -15.157,13.8278 -15.157,13.8278 l -399.096,-0.089 c 0,0 -33.2495,-4.8395 -48.2496,-16.1328 -15.0001,-11.2933 -39.1661,-60.5942 -39.1661,-60.5942 0,0 163.958,-0.8616 203.0818,-0.4686 39.1238,0.393 59.4977,10.0722 59.4977,10.0722 l 50.0999,-0.1056 v -25.2508 l -50.0999,0.037 c 0,0 -18.9344,8.5024 -59.7888,8.7013 -40.8545,0.199 -202.8379,0.4948 -202.8379,0.4948 0,0 8.6448,-23.0626 11.1647,-35.6618 2.5198,-12.5992 10.2537,-32.2084 10.2537,-32.2084 l 591.289,0.2863 v -25.2508 l -591.289,-0.3545 -25.9666,86.9118 v -153.001 h -7.0716 v 149.7206 l -100.7048,-0.3545 v -8e-4 c 0,0 -6.9498,0.5386 -12.6218,-15.2171 -5.6721,-15.7558 -17.9011,-89.4335 -17.9011,-89.4335 l -6.5183,7.3579 1.9411,5.2851 c 0,0 19.4034,100.2009 24.7632,108.9493 5.3598,8.7483 10.3369,8.3774 10.3369,8.3774 l 100.7048,0.2863 c 0,0 0.8271,434.7615 4.107,483.1851 3.2798,48.4236 32.7255,64.6497 32.7255,64.6497 l 12.1932,-0.038 c 0,0 1.9945,44.0463 6.4935,76.747 4.499,32.7008 19.1538,45.8449 19.1538,45.8449 l 114.4505,0.2863 c 0,0 9.909,31.0531 28.805,48.8759 18.8959,17.8228 57.0159,38.379 57.0159,38.379 l 393.2666,0.1431 c 0,0 12.3509,0.7708 24.6671,14.8281 12.3163,14.0574 12.8164,109.7568 12.8164,109.7568 h 6.9284 c 0,0 -0.054,-74.4279 -6.0395,-99.1293 -5.7384,-23.6821 -15.1309,-25.3836 -15.1309,-25.3836 l 418.5586,0.072 v -25.2508 l -235.7782,-0.088 c 0,0 3.2563,-4.9197 7.2634,-7.4832 4.0071,-2.5635 8.4861,-2.5925 8.4861,-2.5925 l 220.1629,0.2863 v -25.2508 l -220.1629,-0.3545 c 0,0 -5.3428,14.2139 -10.969,21.9321 -5.6262,7.7183 -16.6748,13.3734 -16.6748,13.3734 l -587.3942,-0.1773 c 0,0 -31.218,0.8481 -52.0756,-18.7379 -20.8576,-19.586 -24.9853,-45.154 -24.9853,-45.154 0,0 22.6825,15.2908 35.9673,24.6972 13.2847,9.4065 40.9255,29.2907 40.9255,29.2907 l 475.4395,0.2863 v -25.2508 l -475.4395,-0.3545 c 0,0 -23.9288,-1.8751 -34.8219,-7.6333 -10.8932,-5.7581 -35.0994,-26.4427 -35.0994,-26.4427 0,0 108.1734,3.0798 204.2932,10.0288 96.1198,6.949 137.0305,14.8183 137.0305,14.8183 l 563.7332,0.2863 v -25.2508 l -563.7332,-0.3545 c 0,0 -24.4763,9.8591 -134.8167,2.7341 -110.3404,-7.1253 -200.5381,-7.9364 -200.5381,-7.9364 0,0 199.9539,-12.1118 284.843,-13.8828 84.889,-1.771 128.5975,8.8335 128.5975,8.8335 l 485.2809,0.2863 v -25.2508 l -485.2809,-0.3545 c 0,0 -49.8017,7.1511 -129.9756,9.3329 -80.1739,2.1818 -289.7301,15.2648 -289.7301,15.2648 0,0 82.0147,-20.9971 136.488,-30.9863 54.4733,-9.9892 108.4494,-3.2457 108.4494,-3.2457 l 499.8581,0.2863 v -25.2508 l -499.8581,-0.3545 c 0,0 -70.4317,16.0853 -117.1913,23.4845 -46.7596,7.3992 -134.7307,30.9989 -134.7307,30.9989 0,0 125.1261,-47.626 196.4097,-60.0364 71.2835,-12.4105 130.8293,-3.8788 130.8293,-3.8788 l 425.533,0.2863 v -25.2508 l -418.063,-0.1764 c 0,0 -0.1503,-3.7477 0.3221,-6.2302 0.4725,-2.4826 0.9305,-3.5518 0.9305,-3.5518 l 576.6146,-0.1054 v -25.2508 l -576.6146,0.037 c 0,0 -4.2856,10.3719 -5.2718,16.2274 -0.9862,5.8555 -0.6454,18.9058 -0.6454,18.9058 l -2.8054,-0.014 c 0,0 -127.5133,18.3227 -183.4616,32.9331 -55.9482,14.6105 -152.228,54.7297 -152.228,54.7297 l -114.4505,-0.3545 c 0,0 -10.6793,-3.863 -13.4513,-25.0774 -2.772,-21.2143 -5.6788,-72.2335 -5.6788,-72.2335 l 319.3049,-0.076 v -24.813 l -218.0445,-0.1761 c 0,0 0.135,-42.2639 26.7528,-46.9624 26.689,-4.7111 40.9552,2.4884 40.9552,2.4884 l 81.0627,0.2863 c 0,0 6.4499,7.0335 9.6039,12.7465 3.1541,5.7129 9.3206,21.5311 9.3206,21.5311 l 785.0005,0.2863 v -25.2508 l -785.0005,-0.3545 c 0,0 -4.8554,-1.0399 -9.0542,-6.2356 -4.1988,-5.1956 -4.3785,-8.2801 -4.3785,-8.2801 0,0 3.684,-2.7728 7.5096,-0.5058 3.8256,2.267 5.9365,5.9144 5.9365,5.9144 l 785.1308,-0.4679 v -25.2508 l -785.1308,0.3997 c 0,0 -2.7803,2.7937 -5.6414,5.0958 -2.8611,2.3021 -7.6781,-0.4228 -7.6781,-0.4228 0,0 35.78,-24.4187 71.4893,-29.9447 35.7093,-5.5261 42.3424,15.4753 42.3424,15.4753 l 684.6519,0.2863 V 2485.15 l -684.6519,-0.3545 c 0,0 -29.8133,-0.2342 -66.5622,8.9029 -36.7489,9.137 -52.8879,26.4291 -52.8879,26.4291 l -81.0627,-0.3545 c 0,0 -10.1159,6.9566 -28.6713,12.7675 -18.5554,5.811 -27.3079,8.6749 -27.3079,8.6749 0,0 4.8958,-34.9196 12.325,-51.402 7.4292,-16.4824 22.9788,-32.0746 22.9788,-32.0746 l 56.3058,0.073 c 0,0 5.8116,1.5452 9.7342,6.3251 3.9226,4.7799 4.4709,10.8707 4.4709,10.8707 l 359.4085,0.2863 v -25.2509 l -359.4085,-0.3545 -4.6113,-4.6573 4.6479,-4.9892 835.0149,-0.7752 v -25.2509 l -568.8043,0.8842 c 0,0 2.3963,0 15.1114,-14.5296 12.7152,-14.5319 11.6303,-65.57 11.6303,-65.57 h -7.5646 c 0,0 0.5013,48.8855 -13.1762,63.8438 -13.6775,14.9583 -21.2666,16.1653 -21.2666,16.1653 z"
@@ -2064,6 +2064,30 @@
    id="tspan288-7-5-5-0-1-6"> A</tspan>vestan <tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan320-69-4-0">◂</tspan></tspan></text>
+    </a>
+    <a
+       id="a323-19-7-3-3"
+       xlink:href="https://en.wikipedia.org/wiki/Hanifi_Rohingya_script"
+       target="_blank"
+       transform="translate(2297.1727,-952.28513)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="206.76025"
+         y="996.97321"
+         id="text255-0-7-0-5-7-0-0-6-3-1"
+         transform="translate(-21.062508,3075.0237)"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-8-8-14-0-5-3-9"
+           x="206.76025"
+           y="996.97321"><tspan
+   id="tspan328-8-4"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan288-7-5-5-0-1-6-7"> Hanifi Rohingya</tspan> <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan320-69-4-0-8">◂</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-9"
@@ -5588,11 +5612,13 @@
            x="1284.5302"
            y="206.07445"><tspan
              style="font-weight:bold"
-             id="tspan271">文 Regular / Traditional Chinese (Hanzi / Kanji / Hanza)</tspan><tspan
+             id="tspan271">文 Regular / Traditional Chinese (Hanzi / Kanji / Hanja / Chu Han)</tspan><tspan
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
              id="tspan258-1-4-1-4-6"> </tspan><tspan
              id="tspan260-0-0-3-0-9"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▼</tspan></tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▼ </tspan><tspan
+             id="tspan49"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▸</tspan></tspan></text>
     </a>
     <a
        id="a278-2"
@@ -5677,7 +5703,7 @@
            y="205.94601"
            sodipodi:role="line"><tspan
    style="font-weight:bold"
-   id="tspan300">文</tspan> Khitan small <tspan
+   id="tspan300">文か</tspan> Khitan small <tspan
    id="tspan260-0-0-3-0-0"
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▼ </tspan><tspan
    id="tspan282"
@@ -5742,21 +5768,21 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan92"><tspan
+           id="tspan101"><tspan
              style="font-weight:bold"
-             id="tspan40">Ω</tspan><tspan
+             id="tspan7">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan49">か </tspan><tspan
+             id="tspan40">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan51">Hangul</tspan><tspan
+             id="tspan52">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan52"> </tspan><tspan
+             id="tspan63"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan63">▸</tspan><tspan
+             id="tspan84">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan84"> </tspan><tspan
+             id="tspan85"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan85">▼</tspan></tspan></text>
+             id="tspan92">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
@@ -5799,7 +5825,7 @@
    style="font-style:italic"
    id="tspan288-7-5-9-6"><tspan
    style="font-weight:bold"
-   id="tspan293-0-9-0-0">文 か</tspan> Maya</tspan> <tspan
+   id="tspan293-0-9-0-0">文か</tspan> Maya</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan318-5">◂</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
@@ -6183,21 +6209,21 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         x="1762.1024"
-         y="171.4549"
+         x="1770.0269"
+         y="171.03783"
          id="text255-0-7-0-0-5-6"><tspan
            sodipodi:role="line"
            id="tspan255-2-2-8-3-6-2"
-           x="1762.1024"
-           y="171.4549"><tspan
-   style="font-style:italic"
-   id="tspan285"><tspan
+           x="1770.0269"
+           y="171.03783"><tspan
+             style="font-style:italic"
+             id="tspan285"><tspan
    style="font-weight:bold"
-   id="tspan301">文</tspan> Jurchen</tspan> <tspan
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan258-1-4-1-4-64-6">か </tspan><tspan
-   id="tspan284"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▸</tspan></tspan></text>
+   id="tspan301">文か</tspan> Jurchen</tspan><tspan
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+             id="tspan258-1-4-1-4-64-6"> </tspan><tspan
+             id="tspan284"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▸</tspan></tspan></text>
     </a>
   </g>
   <g
@@ -6984,12 +7010,12 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:tb-rl;direction:ltr;text-anchor:start;display:inline;fill:#000000"
        x="-212.13504"
-       y="1643.1948"
+       y="1718.0135"
        id="text145-3"
        transform="rotate(-90)"><tspan
          id="tspan145-8"
          x="-212.13504"
-         y="1643.1948"
+         y="1718.0135"
          sodipodi:role="line">丐丠豐乀樂習買</tspan></text>
     <text
        xml:space="preserve"
@@ -7590,6 +7616,16 @@
        id="text246"><tspan
          sodipodi:role="line"
          id="tspan246" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke-width:1;-inkscape-stroke:none"
+       x="2496.7827"
+       y="3142.1199"
+       id="text51"><tspan
+         sodipodi:role="line"
+         id="tspan51"
+         x="2496.7827"
+         y="3142.1199">𐴅𐴄𐴃𐴂𐴁𐴀𐴋</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -7681,17 +7717,12 @@
          x="140.03873"
          y="2913.8633"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan7">West &amp;</tspan><tspan
+         id="tspan10">Central &amp;</tspan><tspan
          sodipodi:role="line"
          x="140.03873"
          y="2947.1968"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan10">Central</tspan><tspan
-         sodipodi:role="line"
-         x="140.03873"
-         y="2980.53"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan11">Asia</tspan></text>
+         id="tspan11">West Asia</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
@@ -7783,12 +7814,12 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        x="139.65137"
-       y="2995.0173"
+       y="2964.9138"
        id="text317-8-5"><tspan
          sodipodi:role="line"
          id="tspan317-0-6"
          x="139.65137"
-         y="2995.0173"
+         y="2964.9138"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">(excl. Anatolia &amp; Caucasus)</tspan></text>
     <text
        xml:space="preserve"
@@ -8189,7 +8220,7 @@
          x="59.744827"
          y="88.250099"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;text-anchor:start"
-         id="tspan243-9">Last Updated: May 31, 2025</tspan></text>
+         id="tspan243-9">Last Updated: June 1, 2025</tspan></text>
     <a
        id="a126-1"
        xlink:href="https://github.com/DPenner1/"
@@ -8305,20 +8336,16 @@
          height="24.943851"
          x="269.40463"
          y="454.50607" />
-      <rect
-         style="fill:#d5e8d4;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+      <path
          id="rect11-5-1"
-         width="42.049522"
-         height="24.943851"
-         x="459.41092"
-         y="541.04895" />
-      <rect
-         style="fill:#d5e8d4;fill-opacity:1;stroke:#000000;stroke-width:0.999995;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:#d5e8d4;stroke:#000000"
+         d="m 459.41092,541.04895 h 42.04952 v 24.94385 h -42.04952"
+         sodipodi:nodetypes="cccc" />
+      <path
          id="rect11-5-1-9"
-         width="30.876633"
-         height="24.943851"
-         x="588.61444"
-         y="540.97369" />
+         style="fill:#d5e8d4;stroke:#000000;stroke-width:0.999995"
+         d="m 619.49107,565.91755 h -30.87663 v -24.94386 h 30.87663"
+         sodipodi:nodetypes="cccc" />
       <path
          style="fill:none;stroke:#000000;stroke-width:1.99999;stroke-dasharray:11.9999, 11.9999;stroke-dashoffset:0;stroke-opacity:1"
          d="m 501.56656,553.36281 h 85.65908"
@@ -8416,7 +8443,7 @@
          id="a63"
          xlink:href="https://en.wikipedia.org/wiki/List_of_writing_systems#List_of_writing_systems_by_adoption"
          target="_blank"
-         transform="translate(0.41781942,-12.440181)">
+         transform="translate(0.41781942,-11.748089)">
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -8468,7 +8495,7 @@
          id="a65"
          xlink:href="https://en.wikipedia.org/wiki/Unicode"
          target="_blank"
-         transform="translate(-2.3833664,-15.334519)">
+         transform="translate(-2.3833664,-14.642427)">
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -8501,7 +8528,7 @@
       </a>
       <g
          id="g64"
-         transform="translate(-0.79356302,-13.702269)">
+         transform="translate(-0.79356302,-13.010177)">
         <a
            id="a64"
            xlink:href="https://en.wikipedia.org/wiki/List_of_writing_systems#List_of_writing_systems_by_adoption"
