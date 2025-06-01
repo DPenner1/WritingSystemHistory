@@ -27,16 +27,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     showgrid="false"
-     inkscape:zoom="1.2480217"
-     inkscape:cx="520.82428"
-     inkscape:cy="436.2905"
+     showgrid="true"
+     inkscape:zoom="4.3227735"
+     inkscape:cx="2048.1064"
+     inkscape:cy="4187.7049"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer5"
+     inkscape:current-layer="layer2"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -51,7 +51,7 @@
        opacity="0.14901961"
        empspacing="5"
        enabled="true"
-       visible="false" />
+       visible="true" />
   </sodipodi:namedview>
   <defs
      id="defs1">
@@ -1613,9 +1613,9 @@
     </a>
     <a
        id="a323-7-2-8-5-2-3"
-       xlink:href="https://en.wikipedia.org/wiki/Runes"
+       xlink:href="https://en.wikipedia.org/wiki/Medieval_runes"
        target="_blank"
-       transform="translate(706.55064,103.17449)">
+       transform="translate(1255.3309,103.59151)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -1629,11 +1629,82 @@
    id="tspan339-7-7"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
    style="font-style:italic"
-   id="tspan288-7-5-5-2-1-4-2-6-4"> </tspan>Runic <tspan
+   id="tspan288-7-5-5-2-1-4-2-6-4"> </tspan>Medieval Runes <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-7-0-9-2-8-6">▸<tspan
+   id="tspan320-7-0-9-2-8-6">▸</tspan> </tspan></text>
+    </a>
+    <a
+       id="a323-7-2-8-5-2-3-8"
+       xlink:href="https://en.wikipedia.org/wiki/Dalecarlian_runes"
+       target="_blank"
+       transform="translate(1430.6854,103.95718)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="599.3407"
+         y="4071.9968"
+         id="text255-0-7-0-5-7-0-6-8-1-7-9-2-7"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-8-8-14-97-0-6-6-7-8-9"
+           x="599.3407"
+           y="4071.9968"><tspan
+   id="tspan339-7-7-2"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
+   style="font-style:italic"
+   id="tspan288-7-5-5-2-1-4-2-6-4-0"> </tspan>Dalecarlian Runes <tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan320-7-0-9-2-8-6-2">▸</tspan> </tspan></text>
+    </a>
+    <a
+       id="a323-7-2-8-5-2-3-7"
+       xlink:href="https://en.wikipedia.org/wiki/Elder_Futhark"
+       target="_blank"
+       transform="translate(705.89326,103.46052)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="599.3407"
+         y="4071.9968"
+         id="text255-0-7-0-5-7-0-6-8-1-7-9-2-5"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-8-8-14-97-0-6-6-7-8-3"
+           x="599.3407"
+           y="4071.9968"><tspan
+   id="tspan339-7-7-56"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
+   style="font-style:italic"
+   id="tspan288-7-5-5-2-1-4-2-6-4-2"> </tspan>Elder Futhark <tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan320-7-0-9-2-8-6-9">▸<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan62"> </tspan>◂</tspan> </tspan></text>
+   id="tspan62-1"> </tspan>◂</tspan> </tspan></text>
+    </a>
+    <a
+       id="a323-7-2-8-5-2-3-7-0"
+       xlink:href="https://en.wikipedia.org/wiki/Younger_Futhark"
+       target="_blank"
+       transform="translate(897.69424,104.16915)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="706.78357"
+         y="4070.5884"
+         id="text255-0-7-0-5-7-0-6-8-1-7-9-2-5-9"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-8-8-14-97-0-6-6-7-8-3-3"
+           x="706.78357"
+           y="4070.5884"><tspan
+   id="tspan339-7-7-56-6"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
+   style="font-style:italic"
+   id="tspan288-7-5-5-2-1-4-2-6-4-2-0"> </tspan>Younger Futhark <tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan320-7-0-9-2-8-6-9-6">▸<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan62-1-2"> </tspan>◂</tspan> </tspan></text>
     </a>
     <a
        id="a323-7-2-8-5-2-3-9"
@@ -5768,21 +5839,21 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan101"><tspan
+           id="tspan99"><tspan
              style="font-weight:bold"
-             id="tspan7">Ω</tspan><tspan
+             id="tspan50">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan40">か </tspan><tspan
+             id="tspan62">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan52">Hangul</tspan><tspan
+             id="tspan75">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan63"> </tspan><tspan
+             id="tspan76"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan84">▸</tspan><tspan
+             id="tspan78">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan85"> </tspan><tspan
+             id="tspan93"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan92">▼</tspan></tspan></text>
+             id="tspan98">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
@@ -6458,14 +6529,14 @@
          y="-4203.1982">᚛ᚁᚄᚇᚎᚒ᚜</tspan></text>
     <text
        xml:space="preserve"
-       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
-       x="1372.9725"
-       y="4175.9531"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
+       x="1413.2815"
+       y="4176.2529"
        id="text71-10-6"><tspan
          sodipodi:role="line"
          id="tspan71-3-3"
-         x="1372.9725"
-         y="4175.9531">ᚠᚢᚦᚨᚱᚲᚷ</tspan></text>
+         x="1413.2815"
+         y="4176.2529">ᚠᚢᚦᚨᚱᚲᚷ</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
