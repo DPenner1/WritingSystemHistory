@@ -27,8 +27,8 @@ And a section of the comprehensive diagram (as the full thing is excessive for a
   - There was effort to place independent scripts near related scripts. For the Modern diagram, this is linguistic similarity, for the All Scripts diagram this is more geographic.
   - In the All Scripts diagram, I did not show disputed derivations. I simply picked the majority opinion, or where there was no obvious one I could determine, I first favored non-independent derivation, then whichever one made the diagram work better (generally when sibling branches originate around the same time)
   - The script groups in the legend are ordered by a rough estimate of total population using them.
-  - Modern Scripts diagram was made in Draw.IO and All Scripts in Inkscape (.svg).
   - For the All Scripts timeline, date, in particular before 1800, are frequently not known with absolute precision and might commonly have an acceptable range of a century, sometimes two. Part of this is lack of historical/archaeological record, and part of this is that scripts tend to gradually evolve so an absolute date is a bit nebulous.
+  - Modern Scripts diagram was made in Draw.IO and All Scripts in Inkscape (.svg).
 
 
 ## Script Inclusion Criteria
@@ -46,7 +46,7 @@ For space and sanity, some scripts have to be left out. In order to have semi-ob
 
 Naturally, there's a judgment call here, made worse by the fact scripts on the boundary of inclusion/exclusion are also lesser known and hard to research. Most marginal inclusions/exclusions were due to this boundary.
 
-In the All Scripts diagram, this turned out to be much less an issue. It starts by including all Unicode scripts (up to anticipated v17) and then including all historical ancestors (as per Wikipedia) by default. A few non-branching historical ancestors then get excluded for space reasons. I did specially include non-Unicode Maya and Indus scripts for historical significance, though admittedly the latter is not yet determined to be a full-fledged writing script.
+In the All Scripts diagram, this turned out to be much less of an issue. It starts by including all Unicode scripts (up to anticipated v17) and then including all non-Unicode historical ancestors (as per Wikipedia) by default. A few non-branching historical ancestors then get excluded for space reasons. I did specially include non-Unicode Maya and Indus scripts for historical significance, though admittedly the latter is not yet determined to be a full-fledged writing script.
 
 A bigger issue in the All Scripts diagram was the consideration of what counts as separate scripts, especially as they frequently evolve gradually. This was purely a judgement call, mostly following along with Wikipedia. For the most part removing non-branching historical ancestors resulted in being able to sidestep this question in the Modern Scripts diagram, but it was still somewhat challenging for the [Chinese script(s)](https://en.wikipedia.org/wiki/Chinese_script_styles) and [Georgian script(s)](https://en.wikipedia.org/wiki/Georgian_scripts). Note that having a few "extra" letters won't count as a separate script in this diagram.
 
