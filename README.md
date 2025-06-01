@@ -5,7 +5,7 @@ This project consists of two diagrams:
   1. A minimalistic diagram designed to show the history of **currently used** scripts while fitting on A4 & US Letter sized paper for easy printing.
   2. A comprehensive diagram showing the history of **all scripts** in Unicode, including a timeline and location of origin.
 
-Note that the PDF & HTML versions are **clickable**: all of the scripts and most of the legend are linked to an appropriate Wikipedia page.
+Note that the PDF & HTML versions are **clickable**: all of the scripts and most of the legend are linked to an appropriate Wikipedia page *(however, I wasn't careful with fonts - I'm not sure whether they are embedded or not, so PDFs/HTML/SVG files may not look as intended - I'll try to take a look at this early/mid June)* .
 
 Here is the minimalistic diagram:
 
@@ -73,7 +73,7 @@ A bigger issue in the All Scripts diagram was the consideration of what counts a
 
 ## Script samples
 
-I'm not an expert in all these languages of course. To try to show the samples neutrally, I generally used the first four letters of the alphabet (or Unicode Block where I couldn't quite figure out for sure the alphabetic order). The first three are uppercase and the next are lowercase when the script has casing (ABCdefg). For the Brahmic family which usually separates consonants and vowels, I tried to stick to the traditional ordering of consonants (*k*, *kh*, *g*, *gh*, *n*, etc.). Where the script was too ordered by appearance I did break this pattern to showcase a variety of distinct characters.
+I'm not an expert in all these languages of course. To try to show the samples neutrally, I generally used the first 7 letters of the alphabet (or Unicode Block where I couldn't quite figure out for sure the alphabetic order). The first three are uppercase and the next are lowercase when the script has casing (ABCdefg). For the Brahmic family which usually separates consonants and vowels, I tried to stick to the traditional ordering of consonants (*k*, *kh*, *g*, *gh*, *n*, etc.). Where the script was too ordered by appearance I did break this pattern to showcase a variety of distinct characters.
 
 For space reasons, some only got 5 letters and others none at all. Otherwise when there is no script, this is because I did not have a font that supported it and did not want to go hunting for it (in particular if it's not in Unicode yet!).
 
