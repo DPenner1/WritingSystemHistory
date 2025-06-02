@@ -28,15 +28,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="0.46145102"
-     inkscape:cx="1025.0275"
-     inkscape:cy="1845.2663"
+     inkscape:zoom="3.5562044"
+     inkscape:cx="1046.3403"
+     inkscape:cy="3828.3795"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer5"
+     inkscape:current-layer="layer2"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -55,6 +55,12 @@
   </sodipodi:namedview>
   <defs
      id="defs1">
+    <rect
+       x="191.97448"
+       y="3709.4671"
+       width="5.3538701"
+       height="32.888059"
+       id="rect66" />
     <rect
        x="2572.5691"
        y="1940.9187"
@@ -1467,31 +1473,6 @@
    id="tspan293-0-9-7-3-2">か文</tspan> </tspan>Linear B <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan313-0-1-8">▸</tspan></tspan></text>
-    </a>
-    <a
-       id="a323-7-2"
-       xlink:href="https://en.wikipedia.org/wiki/Demotic_(Egyptian)"
-       target="_blank"
-       transform="translate(724.65561,-291.81972)">
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         x="206.76025"
-         y="996.97321"
-         id="text255-0-7-0-5-7-0-6-8"
-         transform="translate(-21.062508,3075.0237)"><tspan
-           sodipodi:role="line"
-           id="tspan255-2-2-8-8-8-14-97-0"
-           x="206.76025"
-           y="996.97321"><tspan
-   style="font-style:italic"
-   id="tspan288-7-5-5-2-1"><tspan
-   style="font-weight:bold"
-   id="tspan293-0-9-7-6-5">文</tspan><tspan
-   id="tspan323-40-2"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan> Demotic</tspan> <tspan
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-7-0">◂</tspan> </tspan></text>
     </a>
     <a
        id="a323-7-2-3"
@@ -4885,6 +4866,30 @@
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▼</tspan></tspan></text>
     </a>
     <a
+       id="a323-0-6-7-7-8-1-1"
+       xlink:href="https://en.wikipedia.org/wiki/Demotic_(Egyptian)"
+       target="_blank"
+       transform="translate(720.50293,-291.81046)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="206.76025"
+         y="996.97321"
+         id="text255-0-7-0-5-7-0-2-2-9-5-8-1-2"
+         transform="translate(-21.062508,3075.0237)"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-8-8-14-9-8-7-7-5-5-9"
+           x="206.76025"
+           y="996.97321"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan21-0-9-3">文گ </tspan><tspan
+   style="font-style:italic"
+   id="tspan85">Demotic</tspan> <tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan320-6-2-8-6-9-8-9">◂</tspan></tspan></text>
+    </a>
+    <a
        id="a323-0-6-7-7-0"
        xlink:href="https://en.wikipedia.org/wiki/Ancient_South_Arabian_script"
        target="_blank"
@@ -5839,7 +5844,7 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan92"><tspan
+           id="tspan101"><tspan
              style="font-weight:bold"
              id="tspan7">Ω</tspan><tspan
              style="font-weight:bold"
@@ -5851,9 +5856,9 @@
              style="font-size:13.3333px"
              id="tspan63">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan84"> </tspan><tspan
+             id="tspan92"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan85">▼</tspan></tspan></text>
+             id="tspan100">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
@@ -8413,6 +8418,11 @@
          x="328.92688"
          y="225.39378"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:32px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">Legend</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="translate(-0.5,-0.5)"
+       id="text66"
+       style="fill:#000000;font-size:13.33333333px;-inkscape-font-specification:'Sans, Normal';font-family:Sans;text-orientation:auto;stroke-width:1.00000002;-inkscape-stroke:none;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect66)" />
   </g>
   <g
      inkscape:groupmode="layer"
