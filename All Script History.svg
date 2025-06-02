@@ -27,16 +27,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     showgrid="true"
-     inkscape:zoom="4.3227735"
-     inkscape:cx="2048.1064"
-     inkscape:cy="4187.7049"
+     showgrid="false"
+     inkscape:zoom="5.6185714"
+     inkscape:cx="2087.0074"
+     inkscape:cy="146.21155"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="a306-8"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -51,7 +51,7 @@
        opacity="0.14901961"
        empspacing="5"
        enabled="true"
-       visible="true" />
+       visible="false" />
   </sodipodi:namedview>
   <defs
      id="defs1">
@@ -721,122 +721,122 @@
      sodipodi:insensitive="true">
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:2.98781;stroke-dasharray:none;stroke-opacity:1"
-       d="M 229.24904,119.31227 V 4378.9255"
+       d="M 229.24904,119.31227 V 4379.443"
        id="path310"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="M 329.25537,119.31216 V 4379.2169"
+       d="M 329.25537,119.31216 V 4379.443"
        id="path310-0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995937;stroke-dasharray:none;stroke-opacity:1"
-       d="M 429.26172,119.31217 V 4379.4877"
+       d="M 429.26172,119.31217 V 4379.443"
        id="path310-2"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995937;stroke-dasharray:none;stroke-opacity:1"
-       d="M 529.26805,119.31216 V 4378.9063"
+       d="M 529.26805,119.31216 V 4379.443"
        id="path310-28"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="M 629.27438,119.31216 V 4379.2693"
+       d="M 629.27438,119.31216 V 4379.443"
        id="path310-04"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:2.98781;stroke-dasharray:none;stroke-opacity:1"
-       d="M 729.28077,119.31217 V 4379.4129"
+       d="M 729.28077,119.31217 V 4379.443"
        id="path310-1"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="M 829.28714,119.3122 V 4379.4693"
+       d="M 829.28714,119.3122 V 4379.443"
        id="path310-25"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995937;stroke-dasharray:none;stroke-opacity:1"
-       d="M 929.29343,119.31217 V 4379.546"
+       d="M 929.29343,119.31217 V 4379.443"
        id="path310-9"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995932;stroke-dasharray:none;stroke-opacity:1"
-       d="M 1029.2998,119.31217 V 4379.6408"
+       d="M 1029.2998,119.31217 V 4379.443"
        id="path310-6"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="M 1129.3062,119.31217 V 4379.5858"
+       d="M 1129.3062,119.31217 V 4379.443"
        id="path310-02"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:2.98781;stroke-dasharray:none;stroke-opacity:1"
-       d="M 1229.3125,119.31217 V 4379.3193"
+       d="M 1229.3125,119.31217 V 4379.443"
        id="path310-3"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="M 1329.3188,119.31217 V 4379.2863"
+       d="M 1329.3188,119.31217 V 4379.443"
        id="path310-7"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995937;stroke-dasharray:none;stroke-opacity:1"
-       d="M 1429.3252,119.31217 V 4379.1677"
+       d="M 1429.3252,119.31217 V 4379.443"
        id="path310-14"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="M 1529.3316,119.3122 V 4379.2363"
+       d="M 1529.3316,119.3122 V 4379.443"
        id="path310-4"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="M 1629.3379,119.31217 V 4379.4524"
+       d="M 1629.3379,119.31217 V 4379.443"
        id="path310-64"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:2.98781;stroke-dasharray:none;stroke-opacity:1"
-       d="M 1729.3442,119.31217 V 4379.178"
+       d="M 1729.3442,119.31217 V 4379.443"
        id="path310-8"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995937;stroke-dasharray:none;stroke-opacity:1"
-       d="M 1829.3507,119.31217 V 4379.0059"
+       d="M 1829.3507,119.31217 V 4379.443"
        id="path310-288"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="M 1929.357,119.31217 V 4379.3277"
+       d="M 1929.357,119.31217 V 4379.443"
        id="path310-83"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="M 2030.3428,119.07968 V 4379.7292"
+       d="M 2030.3428,119.07968 V 4379.443"
        id="path310-33"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:2.48984;stroke-dasharray:4.97968, 2.48984;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 2129.3695,119.54465 V 4379.4252"
+       d="M 2129.3695,119.54465 V 4379.443"
        id="path310-47"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="M 2229.376,119.31217 V 4379.5847"
+       d="M 2229.376,119.31217 V 4379.443"
        id="path310-90"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="M 2329.3823,119.31216 V 4379.7509"
+       d="M 2329.3823,119.31216 V 4379.443"
        id="path310-79"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:0.995936;stroke-dasharray:none;stroke-opacity:1"
-       d="m 2429.0464,119.7654 v 4259.714"
+       d="M 2429.0464,119.7654 V 4379.443"
        id="path310-90-7"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#888888;stroke-width:2.98781;stroke-dasharray:none;stroke-opacity:1"
-       d="M 2529.0187,119.75541 V 4379.444"
+       d="M 2529.0187,119.75541 V 4379.443"
        id="path310-79-5"
        sodipodi:nodetypes="cc" />
   </g>
@@ -5566,12 +5566,12 @@
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
          x="1618.0928"
-         y="276.51083"
+         y="275.9769"
          id="text255-9-7-7"><tspan
            sodipodi:role="line"
            id="tspan255-8-5-4"
            x="1618.0928"
-           y="276.51083"><tspan
+           y="275.9769"><tspan
    style="font-weight:bold"
    id="tspan296-1">か</tspan> Nushu<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
@@ -5581,7 +5581,7 @@
        id="a274"
        xlink:href="https://en.wikipedia.org/wiki/Oracle_bone_script"
        target="_blank"
-       transform="translate(19.382185,9.7169934)">
+       transform="translate(19.382185,10.137739)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -5762,7 +5762,7 @@
        id="a281"
        xlink:href="https://en.wikipedia.org/wiki/Khitan_small_script"
        target="_blank"
-       transform="translate(565.59592,-26.064649)">
+       transform="translate(565.59592,-25.433531)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -5839,21 +5839,21 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan99"><tspan
+           id="tspan100"><tspan
              style="font-weight:bold"
-             id="tspan50">Ω</tspan><tspan
+             id="tspan7">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan62">か </tspan><tspan
+             id="tspan40">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan75">Hangul</tspan><tspan
+             id="tspan52">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan76"> </tspan><tspan
+             id="tspan63"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan78">▸</tspan><tspan
+             id="tspan84">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan93"> </tspan><tspan
+             id="tspan85"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan98">▼</tspan></tspan></text>
+             id="tspan92">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
@@ -6275,7 +6275,7 @@
        id="a282"
        xlink:href="https://en.wikipedia.org/wiki/Jurchen_script"
        target="_blank"
-       transform="translate(19.382185,9.0525564)"
+       transform="translate(19.382185,9.473302)"
        style="display:inline">
       <text
          xml:space="preserve"
@@ -6407,13 +6407,13 @@
          y="2443.8955">丐丠丰乀乐习买</tspan></text>
     <text
        xml:space="preserve"
-       style="display:inline;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333305px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
-       x="2473.5728"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
+       x="2478.0115"
        y="251.23671"
        id="text146"><tspan
          sodipodi:role="line"
          id="tspan146"
-         x="2473.5728"
+         x="2478.0115"
          y="251.23671">ㄅㄆㄇㄈㄉㄊㄋ</tspan></text>
     <text
        xml:space="preserve"
@@ -7081,12 +7081,12 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:tb-rl;direction:ltr;text-anchor:start;display:inline;fill:#000000"
        x="-212.13504"
-       y="1718.0135"
+       y="1715.0953"
        id="text145-3"
        transform="rotate(-90)"><tspan
          id="tspan145-8"
          x="-212.13504"
-         y="1718.0135"
+         y="1715.0953"
          sodipodi:role="line">丐丠豐乀樂習買</tspan></text>
     <text
        xml:space="preserve"
