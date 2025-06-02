@@ -5,7 +5,7 @@ This project consists of two diagrams:
   1. A minimalistic diagram designed to show the history of **currently used** scripts while fitting on both A4 & US Letter sized paper with 1/4" margins for easy printing.
   2. A comprehensive diagram showing the history of **all scripts** in Unicode, including a timeline and location of origin.
 
-Note that the PDF & HTML versions are **clickable**: all of the scripts and most of the legend are linked to an appropriate Wikipedia page *(however, I wasn't careful with fonts - I'm not sure whether they are embedded or not, so PDFs/HTML/SVG files may not look as intended - I'll try to take a look at this early/mid June)* .
+Note that the PDF & HTML versions are **clickable**: all of the scripts and most of the legend are linked to an appropriate Wikipedia page.
 
 Here is the minimalistic diagram:
 
@@ -29,7 +29,7 @@ And a section of the comprehensive diagram (as the full thing is excessive for a
   - The script groups in the legend are ordered by a rough estimate of total population using them.
   - For the All Scripts timeline, dates before 1800 in particular are frequently not known with absolute precision and might commonly have an acceptable range of a century, sometimes two. Part of this is lack of historical/archaeological record, and part of this is that scripts tend to gradually evolve so an absolute date is a bit nebulous. Unless I could find more specific text, when Wikipedia said something like "5th century," I by default put it in the middle of the century, so 450. I did the same for info-box dates like "c. 800" as I found this tended to be said as 9th century in the article text, so I moved it up to 850 in the diagram.
   - The structure of the All Scripts diagram allowed me to use the same box to show evolutions of a script (see esp. early Chinese). This does not imply older versions aren't still used for specialized cases (eg. Clerical is still used for calligraphy, old Georgian scripts are still used for religious purposes), but it does mean that there is no significant exteneded simultaneous use of the script versions in question.
-  - Modern Scripts diagram was made in Draw.IO and All Scripts in Inkscape (.svg).
+  - Modern Scripts diagram was made in Draw.IO and All Scripts in Inkscape SVG, though I don't recommend looking at the SVG directly due to fonts not being embedded.
 
 ## Script Inclusion Criteria
 
