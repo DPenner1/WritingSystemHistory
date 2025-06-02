@@ -10,9 +10,9 @@
    id="svg254"
    sodipodi:docname="All Script History.svg"
    inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
-   inkscape:export-filename="All Script History.png"
-   inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96"
+   inkscape:export-filename="All Script History 2X.png"
+   inkscape:export-xdpi="192"
+   inkscape:export-ydpi="192"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -28,15 +28,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="5.6185714"
-     inkscape:cx="2087.0074"
-     inkscape:cy="146.21155"
+     inkscape:zoom="0.46145102"
+     inkscape:cx="1025.0275"
+     inkscape:cy="1845.2663"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="a306-8"
+     inkscape:current-layer="layer5"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -856,7 +856,7 @@
        sodipodi:nodetypes="ccczcccczcccczcczcccczcccczcczccczcccczcccczcczcczcccczccscc" />
     <path
        style="fill:url(#linearGradient21);stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-       d="m 2304.8833,643.53233 0.01,3572.37897 -6.7303,0.5836 0.01,-3572.59242 z"
+       d="m 2304.8833,643.53233 0.01,3572.37897 -6.7303,0.5836 0.01,-3572.9458 z"
        id="path303-9-4-6-2-8-09-5-0-1-2-1-5"
        sodipodi:nodetypes="ccccc" />
     <path
@@ -886,7 +886,7 @@
        sodipodi:nodetypes="cccczccczc" />
     <path
        style="fill:url(#radialGradient44);stroke:#000000;stroke-width:1"
-       d="m 2298.1643,644.43465 c 0,0 -0.2414,-8.2541 5.2826,-12.92409 5.524,-4.66999 10.5439,-4.3858 10.5439,-4.3858 l -0.1627,6.54142 c 0,0 -3.4599,-0.17016 -6.133,2.57938 -2.8592,2.94096 -2.8022,7.98446 -2.8022,7.98446"
+       d="m 2298.1643,644.43465 c 0,0 -0.2414,-8.2541 5.2826,-12.92409 5.524,-4.66999 10.7608,-4.3858 10.7608,-4.3858 l -0.1627,6.54142 c 0,0 -3.6768,-0.17016 -6.3499,2.57938 -2.8592,2.94096 -2.8022,7.98446 -2.8022,7.98446"
        id="path42"
        sodipodi:nodetypes="czccsc" />
     <path
@@ -1223,9 +1223,9 @@
      inkscape:label="Split Box">
     <path
        style="fill:url(#linearGradient32);stroke:none"
-       d="m 1084.4877,1940.9104 c -15.7367,0.015 -38.2994,-1.0464 -51.2815,4.5066 -12.9821,5.5531 -20.4023,1.0116 -1.9036,-5.555 18.4987,-6.5667 37.0255,-5.6512 52.843,-5.9841 15.8175,-0.3329 19.5009,-9.4481 19.5009,-9.4481 l 243.8671,0.064 v 25.2509 l -243.755,-0.3435 c 0,0 -3.5342,-8.5056 -19.2709,-8.4908 z"
+       d="m 1031.3026,1939.862 c 18.4987,-6.5667 37.0255,-5.6512 52.843,-5.9841 15.8175,-0.3329 19.5009,-9.4481 19.5009,-9.4481 l 243.8671,0.064 v 25.2509 l -243.755,-0.3435 c 0,0 -3.5342,-8.5056 -19.2709,-8.4908 -15.7367,0.015 -38.2994,-1.0464 -51.2815,4.5066 z"
        id="path30"
-       sodipodi:nodetypes="zzzzccccz" />
+       sodipodi:nodetypes="czcccczcc" />
     <path
        style="fill:url(#linearGradient127);fill-opacity:1;stroke:#000000;stroke-width:0.999997;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
        d="m 2435.1145,808.78506 153.8367,-0.006 v 25.2509 l -153.7745,-0.33498 v -11.70645"
@@ -1322,7 +1322,7 @@
        transform="matrix(0.37878564,0.92548443,-0.92554608,0.37863499,0,0)" />
     <path
        style="fill:url(#radialGradient44-1);stroke:#000000;stroke-width:1"
-       d="m 2293.2844,4336.2615 c 0.7002,-0.3708 1.4177,-0.8757 2.086,-1.563 2.8593,-2.9408 2.8022,-7.9844 2.8022,-7.9844 l 6.7286,-0.2047 c 0,0 0.2414,8.2541 -5.2826,12.9241 -1.381,1.1675 -2.7305,2.0254 -3.9779,2.6554"
+       d="m 2293.2844,4336.2615 c 0.7002,-0.3708 1.4177,-0.8757 2.086,-1.563 2.8593,-2.9408 2.8314,-8.1713 2.8314,-8.1713 l 6.6994,-0.083 c 0,0 0.2414,8.319 -5.2826,12.989 -1.381,1.1675 -2.7305,2.0254 -3.9779,2.6554"
        id="path42-9"
        sodipodi:nodetypes="csccsc" />
     <path
@@ -5839,21 +5839,21 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan100"><tspan
+           id="tspan92"><tspan
              style="font-weight:bold"
              id="tspan7">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan40">か </tspan><tspan
+             id="tspan10">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan52">Hangul</tspan><tspan
+             id="tspan40">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan63"> </tspan><tspan
+             id="tspan52"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan84">▸</tspan><tspan
+             id="tspan63">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan85"> </tspan><tspan
+             id="tspan84"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan92">▼</tspan></tspan></text>
+             id="tspan85">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
@@ -7702,17 +7702,22 @@
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="Chart Text">
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-       x="139.47557"
-       y="163.90146"
-       id="text314"><tspan
-         sodipodi:role="line"
-         id="tspan314"
+    <a
+       id="a1"
+       xlink:href="https://en.wikipedia.org/wiki/East_Asia"
+       target="_blank">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
          x="139.47557"
          y="163.90146"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">East Asia</tspan></text>
+         id="text314"><tspan
+           sodipodi:role="line"
+           id="tspan314"
+           x="139.47557"
+           y="163.90146"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">East Asia</tspan></text>
+    </a>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
@@ -7735,38 +7740,48 @@
          x="2369.0183"
          y="91.354301"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">Modern Era (timescale change)</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-       x="139.00031"
-       y="773.4729"
-       id="text314-6"><tspan
-         sodipodi:role="line"
-         id="tspan314-4"
+    <a
+       id="a2"
+       xlink:href="https://en.wikipedia.org/wiki/Southeast_Asia"
+       target="_blank">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
          x="139.00031"
          y="773.4729"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">Southeast</tspan><tspan
-         sodipodi:role="line"
-         x="139.00031"
-         y="806.80627"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan315">Asia</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-       x="139.73599"
-       y="1608.4641"
-       id="text314-6-7"><tspan
-         sodipodi:role="line"
-         id="tspan314-4-2"
+         id="text314-6"><tspan
+           sodipodi:role="line"
+           id="tspan314-4"
+           x="139.00031"
+           y="773.4729"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">Southeast</tspan><tspan
+           sodipodi:role="line"
+           x="139.00031"
+           y="806.80627"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
+           id="tspan315">Asia</tspan></text>
+    </a>
+    <a
+       id="a3"
+       xlink:href="https://en.wikipedia.org/wiki/South_Asia"
+       target="_blank">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
          x="139.73599"
          y="1608.4641"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">South</tspan><tspan
-         sodipodi:role="line"
-         x="139.73599"
-         y="1641.7975"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan315-2">Asia</tspan></text>
+         id="text314-6-7"><tspan
+           sodipodi:role="line"
+           id="tspan314-4-2"
+           x="139.73599"
+           y="1608.4641"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">South</tspan><tspan
+           sodipodi:role="line"
+           x="139.73599"
+           y="1641.7975"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
+           id="tspan315-2">Asia</tspan></text>
+    </a>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
@@ -7778,65 +7793,120 @@
          y="504.71078"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
          id="tspan315-2-0">South Asia</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-       x="140.03873"
-       y="2913.8633"
-       id="text314-6-7-3"><tspan
-         sodipodi:role="line"
+    <a
+       id="a8"
+       xlink:href="https://en.wikipedia.org/wiki/Central_Asia"
+       target="_blank">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
          x="140.03873"
          y="2913.8633"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan10">Central &amp;</tspan><tspan
-         sodipodi:role="line"
-         x="140.03873"
-         y="2947.1968"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan11">West Asia</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-       x="140.63443"
-       y="3484.1555"
-       id="text314-6-7-3-6"><tspan
-         sodipodi:role="line"
+         id="text314-6-7-3"><tspan
+           sodipodi:role="line"
+           x="140.03873"
+           y="2913.8633"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
+           id="tspan11">Central &amp;</tspan></text>
+    </a>
+    <a
+       id="a9"
+       xlink:href="https://en.wikipedia.org/wiki/West_Asia"
+       target="_blank">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+         x="140.10445"
+         y="2947.2939"
+         id="text314-6-7-3-7"><tspan
+           sodipodi:role="line"
+           x="140.10443"
+           y="2947.2939"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
+           id="tspan11-3">West Asia</tspan></text>
+    </a>
+    <a
+       id="a10"
+       xlink:href="https://en.wikipedia.org/wiki/Africa"
+       target="_blank">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
          x="140.63443"
          y="3484.1555"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan315-2-2-5">Africa</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-       x="140.21776"
-       y="4308.8906"
-       id="text314-6-7-3-6-0"><tspan
-         sodipodi:role="line"
+         id="text314-6-7-3-6"><tspan
+           sodipodi:role="line"
+           x="140.63443"
+           y="3484.1555"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
+           id="tspan315-2-2-5">Africa</tspan></text>
+    </a>
+    <a
+       id="a11"
+       xlink:href="https://en.wikipedia.org/wiki/Americas"
+       target="_blank">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
          x="140.21776"
          y="4308.8906"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan315-2-2-5-2">Americas</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-       x="140.14615"
-       y="3879.2422"
-       id="text314-6-7-3-6-3"><tspan
-         sodipodi:role="line"
+         id="text314-6-7-3-6-0"><tspan
+           sodipodi:role="line"
+           x="140.21776"
+           y="4308.8906"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
+           id="tspan315-2-2-5-2">Americas</tspan></text>
+    </a>
+    <a
+       id="a66"
+       xlink:href="https://en.wikipedia.org/wiki/Europe"
+       target="_blank">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
          x="140.14615"
          y="3879.2422"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan315-2-2-5-4">Europe,</tspan><tspan
-         sodipodi:role="line"
-         x="140.14615"
-         y="3912.5757"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan316">Anatolia &amp;</tspan><tspan
-         sodipodi:role="line"
-         x="140.14615"
-         y="3945.9089"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
-         id="tspan1">Caucasus</tspan></text>
+         id="text314-6-7-3-6-3"><tspan
+           sodipodi:role="line"
+           x="140.14615"
+           y="3879.2422"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
+           id="tspan1">Europe,</tspan></text>
+    </a>
+    <a
+       id="a53"
+       xlink:href="https://en.wikipedia.org/wiki/Caucasus"
+       target="_blank"
+       transform="translate(1.2387473,-156.25834)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+         x="138.80508"
+         y="4102.0547"
+         id="text314-6-7-3-6-3-9"><tspan
+           sodipodi:role="line"
+           x="138.80508"
+           y="4102.0547"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
+           id="tspan1-0">Caucasus</tspan></text>
+    </a>
+    <a
+       id="a52"
+       xlink:href="https://en.wikipedia.org/wiki/Anatolia"
+       target="_blank"
+       transform="translate(-3.9186397,-143.16418)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+         x="144.00758"
+         y="4055.7407"
+         id="text314-6-7-3-6-3-2"><tspan
+           sodipodi:role="line"
+           x="144.00758"
+           y="4055.7407"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none"
+           id="tspan1-2">Anatolia &amp;</tspan></text>
+    </a>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
