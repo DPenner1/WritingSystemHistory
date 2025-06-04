@@ -25,13 +25,17 @@ And a section of the comprehensive diagram (as the full thing is excessive for a
   - Some scripts have multiple possible writing directions or are difficult to categorize. There are multiple symbols for these, I attempted to list the most dominant first. For a few scripts written and read in separate directions (eg. Tagbanwa, Hanuno'o), the reading direction is listed first.
   - Sometimes scripts incorporate letters from other scripts. In order to count as a derivation, the amount of borrowed letters should be at least 20%. This percentage was derived from the Coptic borrowing of Demotic letters and hence ultimately Egyptian Hieroglyphic characters. I wanted this on the diagram as it appears to constitute the only *current* use of Egyptian Hieroglyph derived characters outside of the Proto-Sinaitic branch. For partial independent creation, the same percentage provisionally applies, but I find that less interesting so I might change that in the future.
   - There was effort to place independent scripts near related scripts. For the Modern diagram, this is linguistic similarity, for the All Scripts diagram this is more geographic.
-  - In the All Scripts diagram, I did not show disputed derivations. I simply picked the majority opinion, or where there was no obvious one I could determine, I first favoured non-independent derivation, then whichever one made the diagram work better (generally when sibling branches originate around the same time).
   - The script groups in the legend are ordered by a rough estimate of total population using them.
-  - For the All Scripts timeline, dates before 1800 in particular are frequently not known with absolute precision and might commonly have an acceptable range of a century, sometimes two. Part of this is lack of historical/archaeological record, and part of this is that scripts tend to gradually evolve so an absolute date is a bit nebulous. Unless I could find more specific text, when Wikipedia said something like "5th century," I by default put it in the middle of the century, so 450. I did the same for info-box dates like "c. 800" as I found this tended to be said as 9th century in the article text, so I moved it up to 850 in the diagram.
-  - The structure of the All Scripts diagram allowed me to use the same box to show evolutions of a script (see esp. early Chinese). This does not imply older versions aren't still used for specialized cases (eg. Clerical is still used for calligraphy, old Georgian scripts are still used for religious purposes), but it does mean that there is no significant exteneded simultaneous use of the script versions in question.
   - Modern Scripts diagram was made in Draw.IO and All Scripts in Inkscape SVG, though I don't recommend looking at the SVG directly due to fonts not being embedded.
 
-## Script Inclusion Criteria
+  ## All Scripts Diagram Notes
+  
+  - I did not show disputed derivations. I simply picked the majority opinion, or where there was no obvious one I could determine, I first favoured non-independent derivation, then whichever one made the diagram work better (generally when sibling branches originate around the same time).
+  - Dates before 1800 in particular are frequently not known with absolute precision and might commonly have an acceptable range of a century, sometimes two. Part of this is lack of historical/archaeological record, and part of this is that scripts tend to gradually evolve so an absolute date is a bit nebulous. Unless I could find more specific text, when Wikipedia said something like "5th century," I by default put it in the middle of the century, so 450. I did the same for info-box dates like "c. 800" as I found this tended to be said as 9th century in the article text, so I moved it up to 850 in the diagram.
+  - The structure allowed me to use the same box to show evolutions of a script (see esp. early Chinese). This does not imply older versions aren't still used for specialized cases (eg. Clerical is still used for calligraphy, old Georgian scripts are still used for religious purposes), but it does mean that there is no significant exteneded simultaneous use of the script versions in question.
+
+
+## Modern Scripts Inclusion Criteria
 
 For space and sanity, some scripts have to be left out. In order to have semi-objective criteria for this, here's what I've landed on for the Modern Scripts diagram:
 
@@ -46,12 +50,13 @@ For space and sanity, some scripts have to be left out. In order to have semi-ob
 
 Naturally, there's a judgment call here, made worse by the fact scripts on the boundary of inclusion/exclusion are also lesser known and hard to research. Most marginal inclusions/exclusions were due to this boundary.
 
-In the All Scripts diagram, this turned out to be much less of an issue. It starts by including all Unicode scripts (up to anticipated v17) and then including all non-Unicode historical ancestors (as per Wikipedia) by default. A few non-branching historical ancestors then get excluded for space reasons. I did specially include non-Unicode Maya and Indus scripts for historical significance, though admittedly the latter is not yet determined to be a full-fledged writing script. 
+## All Scripts Inclusion Criteria
 
-There's also some "extra" scripts where Unicode considers it to be part of another one, but I felt it should be split out based on my reading of Wikipedia. Eg. Hentaigana is encoded as a part of Kana in Unicode, Hieratic is considered a font variation of Egyptian Hieroglyphics, etc. A special case occurs with Jurchen which exists as a continuation of Khitan small. It's included as I did not want to show Khitan small going extinct if it simply evolved into Jurchen, though the precise relationships between the two and Khitan large (not on diagram) are not yet fully understood.
+In the All Scripts diagram, inclusion criteria turned out to be much less of an issue. It starts by including all Unicode scripts (up to anticipated v17) and then including all non-Unicode historical ancestors (as per Wikipedia) by default. A few non-branching historical ancestors then get excluded for space reasons (I only recall excluding Tai Noi, an intermediate between Fakkham and Lao). I did specially include non-Unicode Maya and Indus scripts for historical significance, though admittedly the latter is not yet determined to be a full-fledged writing script.
 
 A bigger issue in the All Scripts diagram was the consideration of what counts as separate scripts, especially as they frequently evolve gradually. This was purely a judgement call, mostly following along with Wikipedia. For the most part removing non-branching historical ancestors resulted in being able to sidestep this question in the Modern Scripts diagram, but it was still somewhat challenging for the [Chinese script(s)](https://en.wikipedia.org/wiki/Chinese_script_styles) and [Georgian script(s)](https://en.wikipedia.org/wiki/Georgian_scripts). Note that having a few "extra" letters won't count as a separate script in this diagram.
 
+Along this line, there are some "extra" scripts where Unicode considers it to be part of another one, but I felt it should be split out based on my reading of Wikipedia. Eg. Hentaigana is encoded as a part of Kana in Unicode, Hieratic is considered a font variation of Egyptian Hieroglyphics, etc. A special case occurs with Jurchen which exists as a continuation of Khitan small. It's included as I did not want to show Khitan small going extinct if it simply evolved into Jurchen, though the precise relationships between the two and Khitan large (not on diagram) are not yet fully understood.
 
 ## Script specific notes
 
@@ -81,6 +86,3 @@ For scripts with a primarily vertical writing direction, the diagram is intended
 For space reasons, some only got 5 letters and others none at all. Otherwise when there is no script, this is because I did not have a font that supported it and did not want to go hunting for it (in particular if it's not in Unicode yet!).
 
 Some scripts may appear larger or smaller. To keep things neutral, I simply used the default sans serif font on my machine and used a consistent software font point size. Size differences would be due to the font itself (it's been a while since I've done any graphical work on Windows so I'm not sure if it's the same, but my Linux Mint text programs generally just let me specify Sans and presumably selects an appropriate font that has the characters in question).
-
-
-
