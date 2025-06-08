@@ -28,15 +28,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="true"
-     inkscape:zoom="1.306559"
-     inkscape:cx="1669.6529"
-     inkscape:cy="4001.7328"
+     inkscape:zoom="0.68580643"
+     inkscape:cx="1302.1167"
+     inkscape:cy="285.79493"
      inkscape:window-width="1920"
-     inkscape:window-height="1011"
-     inkscape:window-x="1080"
-     inkscape:window-y="840"
+     inkscape:window-height="1168"
+     inkscape:window-x="622"
+     inkscape:window-y="1920"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer8"
+     inkscape:current-layer="layer5"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -894,7 +894,7 @@
        sodipodi:nodetypes="cczcccczcczcczcccczcczcccczcccczcscczc" />
     <path
        style="fill:#ccffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-       d="m 2039.4063,719.29088 -0.01,1598.99102 6.7303,-5.0655 -0.01,-1594.09278 c 0,0 -0.4742,-10.07908 10.2226,-13.44659 10.6968,-3.36752 15.2528,8.91401 15.2528,8.91401 h 32.2886 v -25.35542 h -32.2886 c 0,0 -17.4651,3.19587 -25.3327,11.36948 -7.8676,8.17361 -6.853,18.68578 -6.853,18.68578 z"
+       d="m 2039.4063,719.29088 -0.01,1598.99102 6.7303,-5.0655 -0.01,-1594.09278 c 0,0 -0.4742,-10.07908 10.2226,-13.44659 10.6968,-3.36752 15.2528,8.91401 15.2528,8.91401 h 32.2886 v -25.35542 h -32.2886 c 0,0 -16.3778,-0.65725 -24.9723,8.18491 -8.5944,8.84217 -7.2134,21.87035 -7.2134,21.87035 z"
        id="path303-9-4-6-2-8-09-5-0-1-2-1-9"
        sodipodi:nodetypes="ccccscccczc" />
     <path
@@ -944,7 +944,7 @@
        sodipodi:nodetypes="cccc" />
     <path
        style="fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:0.999997;stroke-dasharray:none;stroke-opacity:1"
-       d="m 2138.2188,720.98699 -0.011,692.24271 7.6234,4.6048 -0.011,-694.35486 c 0,0 -0.2891,-14.27376 10.7208,-17.55011 11.01,-3.27635 15.5657,8.63597 15.5657,8.63597 h 417.3872 v -25.09815 h -417.3677 c 0,0 -14.4889,-1.11516 -24.7953,6.39139 -10.3063,7.50656 -9.1121,25.12825 -9.1121,25.12825 z"
+       d="m 2138.2188,720.98699 -0.011,692.24271 7.6234,4.6048 -0.011,-694.35486 c 0,0 -0.2891,-14.27376 10.7208,-17.55011 11.01,-3.27635 15.5657,8.63597 15.5657,8.63597 h 417.3872 v -25.09815 h -417.3677 c 0,0 -14.277,-0.33824 -24.5834,6.39139 -10.3064,6.72963 -9.324,25.12825 -9.324,25.12825 z"
        id="path303-9-4-6-2-8-09-5-0-1-2-7-2"
        sodipodi:nodetypes="cccczcccczc" />
   </g>
@@ -5911,21 +5911,21 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan93"><tspan
+           id="tspan99"><tspan
              style="font-weight:bold"
-             id="tspan50">Ω</tspan><tspan
+             id="tspan7">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan51">か </tspan><tspan
+             id="tspan10">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan62">Hangul</tspan><tspan
+             id="tspan40">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan75"> </tspan><tspan
+             id="tspan52"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan76">▸</tspan><tspan
+             id="tspan63">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan78"> </tspan><tspan
+             id="tspan92"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan84">▼</tspan></tspan></text>
+             id="tspan98">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
@@ -7795,7 +7795,7 @@
          id="tspan314-6"
          x="1330.576"
          y="85.318184"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">Timeline of Writing Systems' Graphical Evolution</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:37.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none">Timeline of Writing Systems’ Graphical Evolution</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffcccc;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
@@ -8462,7 +8462,7 @@
          x="59.744827"
          y="88.250099"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;text-anchor:start"
-         id="tspan243-9">Last Updated: June 7, 2025</tspan></text>
+         id="tspan243-9">Last Updated: June 8, 2025</tspan></text>
     <a
        id="a126-1"
        xlink:href="https://github.com/DPenner1/"
