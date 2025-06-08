@@ -28,15 +28,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="20.183091"
-     inkscape:cx="2448.1879"
-     inkscape:cy="1452.0818"
+     inkscape:zoom="3.5584881"
+     inkscape:cx="1863.2913"
+     inkscape:cy="1770.2743"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer19"
+     inkscape:current-layer="layer2"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -879,7 +879,7 @@
        sodipodi:nodetypes="ccczcccczcccczcczcccczcccczcczccczcccczcccczcczcczcccczccscc" />
     <path
        style="fill:url(#linearGradient21);stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-       d="m 2304.8833,638.51498 0.01,3572.37892 -6.7303,0.5836 0.01,-3572.94575 z"
+       d="m 2304.8833,638.51498 0.01,3594.99012 -6.7303,0.5836 0.01,-3595.55695 z"
        id="path303-9-4-6-2-8-09-5-0-1-2-1-5"
        sodipodi:nodetypes="ccccc" />
     <path
@@ -2840,7 +2840,7 @@
        id="a323-19-7-9-2-5-4-3-8-5-6"
        xlink:href="https://en.wikipedia.org/wiki/Tigalari_script"
        target="_blank"
-       transform="translate(1631.3772,-2354.8741)">
+       transform="translate(1631.3772,-2355.1551)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -2909,7 +2909,7 @@
        id="a323-19-7-9-2-5-4-3-8-5-6-4-38"
        xlink:href="https://en.wikipedia.org/wiki/Tamil_script"
        target="_blank"
-       transform="translate(1271.5113,-2249.2297)">
+       transform="translate(1271.5113,-2250.2354)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -2933,7 +2933,7 @@
        id="a323-19-7-9-2-5-4-3-8-5-6-4-38-4"
        xlink:href="https://en.wikipedia.org/wiki/Malayalam_script"
        target="_blank"
-       transform="translate(1631.4041,-2320.1959)">
+       transform="translate(1631.4041,-2321.039)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -2957,7 +2957,7 @@
        id="a323-19-7-9-2-5-4-3-8-5-6-4-38-3"
        xlink:href="https://en.wikipedia.org/wiki/Sinhala_script"
        target="_blank"
-       transform="translate(1418.8268,-2284.787)">
+       transform="translate(1418.8268,-2285.6151)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -5877,21 +5877,21 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan93"><tspan
+           id="tspan99"><tspan
              style="font-weight:bold"
-             id="tspan50">Ω</tspan><tspan
+             id="tspan7">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan51">か </tspan><tspan
+             id="tspan10">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan62">Hangul</tspan><tspan
+             id="tspan40">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan75"> </tspan><tspan
+             id="tspan52"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan76">▸</tspan><tspan
+             id="tspan63">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan78"> </tspan><tspan
+             id="tspan92"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan84">▼</tspan></tspan></text>
+             id="tspan98">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
@@ -7285,32 +7285,32 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
        x="1904.1044"
-       y="1751.005"
+       y="1750.162"
        id="text203"><tspan
          sodipodi:role="line"
          id="tspan203"
          x="1904.1044"
-         y="1751.005">കഖഗഘങചഛ</tspan></text>
+         y="1750.162">കഖഗഘങചഛ</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
        x="1672.543"
-       y="1786.2385"
+       y="1785.4104"
        id="text204"><tspan
          sodipodi:role="line"
          id="tspan204"
          x="1672.543"
-         y="1786.2385">කඛගඝඞහච</tspan></text>
+         y="1785.4104">කඛගඝඞහච</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
        x="1512.2185"
-       y="1820.2975"
+       y="1819.8665"
        id="text205"><tspan
          sodipodi:role="line"
          id="tspan205"
          x="1512.2185"
-         y="1820.2975">கஙசஞடணத</tspan></text>
+         y="1819.8665">கஙசஞடணத</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
