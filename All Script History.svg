@@ -27,16 +27,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     showgrid="true"
-     inkscape:zoom="2.2097367"
-     inkscape:cx="1935.5247"
-     inkscape:cy="1408.0863"
+     showgrid="false"
+     inkscape:zoom="0.58949216"
+     inkscape:cx="1815.9699"
+     inkscape:cy="3659.9299"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer19"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -51,7 +51,7 @@
        opacity="0.14901961"
        empspacing="5"
        enabled="true"
-       visible="true" />
+       visible="false" />
   </sodipodi:namedview>
   <defs
      id="defs1">
@@ -1828,7 +1828,7 @@
        id="a323-7-2-8-5-2-3-9-0-6-5"
        xlink:href="https://en.wikipedia.org/wiki/Carian_alphabets"
        target="_blank"
-       transform="translate(306.54657,-86.675795)">
+       transform="translate(306.54657,-85.968412)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3267,7 +3267,7 @@
        id="a323-19-7-9-2-5-4-3-8-4-4"
        xlink:href="https://en.wikipedia.org/wiki/Makasar_script"
        target="_blank"
-       transform="translate(1870.9151,-3076.252)">
+       transform="translate(1870.9151,-3075.9864)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -3290,7 +3290,7 @@
        id="a323-19-7-9-2-5-4-3-8-4-4-0"
        xlink:href="https://en.wikipedia.org/wiki/Lai_Tay_script"
        target="_blank"
-       transform="translate(1821.4561,-2890.3374)">
+       transform="translate(1821.4561,-2891.4302)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -5911,21 +5911,21 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan99"><tspan
+           id="tspan93"><tspan
              style="font-weight:bold"
-             id="tspan7">Ω</tspan><tspan
+             id="tspan50">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan10">か </tspan><tspan
+             id="tspan51">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan40">Hangul</tspan><tspan
+             id="tspan62">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan52"> </tspan><tspan
+             id="tspan75"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan63">▸</tspan><tspan
+             id="tspan76">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan92"> </tspan><tspan
+             id="tspan78"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan98">▼</tspan></tspan></text>
+             id="tspan84">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
@@ -6738,52 +6738,52 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
        x="967.99396"
-       y="4091.2319"
+       y="4091.4678"
        id="text71-4"><tspan
          sodipodi:role="line"
          id="tspan71-4"
          x="967.99396"
-         y="4091.2319">ABCdefg</tspan></text>
+         y="4091.4678">ABCdefg</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
        x="967.7403"
-       y="4126.7739"
+       y="4127.2456"
        id="text71-10"><tspan
          sodipodi:role="line"
          id="tspan71-3"
          x="967.7403"
-         y="4126.7739">𐌀𐌁𐌂𐌃𐌄𐌅𐌆</tspan></text>
+         y="4127.2456">𐌀𐌁𐌂𐌃𐌄𐌅𐌆</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
        x="980.27582"
-       y="3986.3997"
+       y="3987.1069"
        id="text71-3"><tspan
          sodipodi:role="line"
          id="tspan71-85"
          x="980.27582"
-         y="3986.3997">𐊠𐋍𐊢𐊣𐊤𐊥𐋏</tspan></text>
+         y="3987.1069">𐊠𐋍𐊢𐊣𐊤𐊥𐋏</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
        x="968.32227"
-       y="4021.446"
+       y="4022.1533"
        id="text71-1"><tspan
          sodipodi:role="line"
          id="tspan71-5"
          x="968.32227"
-         y="4021.446">𐤠𐤡𐤢𐤣𐤤𐤥𐤦</tspan></text>
+         y="4022.1533">𐤠𐤡𐤢𐤣𐤤𐤥𐤦</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
        x="1068.5311"
-       y="4056.6907"
+       y="4057.1624"
        id="text71-8"><tspan
          sodipodi:role="line"
          id="tspan71-8"
          x="1068.5311"
-         y="4056.6907">𐊀𐊂𐊄𐊅𐊆𐊇𐊈</tspan></text>
+         y="4057.1624">𐊀𐊂𐊄𐊅𐊆𐊇𐊈</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
@@ -7239,12 +7239,12 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
        x="2339.3113"
-       y="1496.5193"
+       y="1496.8833"
        id="text171"><tspan
          sodipodi:role="line"
          id="tspan171"
          x="2339.3113"
-         y="1496.5193">𑫀‎𑫁‎𑫂𑫃𑫄‎𑫅‎𑫆</tspan></text>
+         y="1496.8833">𑫀‎𑫁‎𑫂𑫃𑫄‎𑫅‎𑫆</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
