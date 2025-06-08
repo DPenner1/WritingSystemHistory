@@ -27,16 +27,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     showgrid="false"
-     inkscape:zoom="3.5584881"
-     inkscape:cx="1863.2913"
-     inkscape:cy="1770.2743"
+     showgrid="true"
+     inkscape:zoom="1.306559"
+     inkscape:cx="1669.6529"
+     inkscape:cy="4001.7328"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer8"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -51,7 +51,7 @@
        opacity="0.14901961"
        empspacing="5"
        enabled="true"
-       visible="false" />
+       visible="true" />
   </sodipodi:namedview>
   <defs
      id="defs1">
@@ -1847,6 +1847,40 @@
    id="tspan320-7-0-9-2-8-6-4-4-8-9">▸<tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan90"> </tspan>◂ </tspan> </tspan></text>
+    </a>
+    <a
+       id="a323-7-2-8-5-2-3-9-0-6-5-7"
+       xlink:href="https://en.wikipedia.org/wiki/Carolingian_minuscule"
+       target="_blank"
+       transform="translate(926.58153,18.64018)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="691.45599"
+         y="4077.657"
+         id="text255-0-7-0-5-7-0-6-8-1-7-9-2-6-4-6-3-5"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-8-8-14-97-0-6-6-7-8-7-9-0-5-3"
+           x="691.45599"
+           y="4077.657">Carolingian miniscule (lowercase letter forms)</tspan></text>
+    </a>
+    <a
+       id="a323-7-2-8-5-2-3-9-0-6-5-7-0"
+       xlink:href="https://en.wikipedia.org/wiki/Greek_minuscule"
+       target="_blank"
+       transform="translate(846.54303,-121.32374)"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
+         x="799.50726"
+         y="4077.937"
+         id="text255-0-7-0-5-7-0-6-8-1-7-9-2-6-4-6-3-5-9"><tspan
+           sodipodi:role="line"
+           id="tspan255-2-2-8-8-8-14-97-0-6-6-7-8-7-9-0-5-3-3"
+           x="799.50726"
+           y="4077.937">Greek miniscule (lowercase letter forms)</tspan></text>
     </a>
     <a
        id="a323-7-2-8-5-2-3-9-0-6-5-6"
@@ -5877,21 +5911,21 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan99"><tspan
+           id="tspan93"><tspan
              style="font-weight:bold"
-             id="tspan7">Ω</tspan><tspan
+             id="tspan50">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan10">か </tspan><tspan
+             id="tspan51">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan40">Hangul</tspan><tspan
+             id="tspan62">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan52"> </tspan><tspan
+             id="tspan75"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan63">▸</tspan><tspan
+             id="tspan76">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan92"> </tspan><tspan
+             id="tspan78"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan98">▼</tspan></tspan></text>
+             id="tspan84">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
