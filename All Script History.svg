@@ -28,15 +28,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="true"
-     inkscape:zoom="0.93871919"
-     inkscape:cx="2188.0878"
-     inkscape:cy="499.08429"
+     inkscape:zoom="2.0509731"
+     inkscape:cx="2416.9015"
+     inkscape:cy="3800.3911"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer13"
+     inkscape:current-layer="layer2"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -1149,7 +1149,7 @@
        sodipodi:nodetypes="ccccc" />
     <path
        style="display:inline;fill:#d5e8d4;fill-opacity:1;stroke:#000000;stroke-width:0.999996;stroke-dasharray:none;stroke-opacity:1"
-       d="m 202.35028,3609.8828 1224.18292,0.026 -0.036,24.9223 -344.2513,0.043 c 0,0 3.6829,3.3977 10.1038,6.7333 6.4208,3.3356 11.1752,2.8822 11.1752,2.8822 v -2e-4 l 400.2177,0.053 v 24.9223 l -400.2177,0.3436 c 0,0 -8.754,-16.0592 -17.1746,-22.8372 -8.4206,-6.778 -18.1621,-12.0542 -18.1621,-12.0542 l -888.77767,0.086 c 0,0 1.11022,25.834 3.25246,38.8176 2.14225,12.9836 8.37285,6.0616 8.37285,6.0616 l 1163.73736,0.053 v 24.9223 l -505.11123,0.086 c 0,0 9.36289,15.8365 20.91124,25.0363 11.54835,9.1999 32.99882,19.1774 32.99882,19.1774 l 120.06467,0.013 c 0,0 10.6131,-5.2637 17.3254,-13.2129 6.7124,-7.9492 12.6804,-22.0141 12.6804,-22.0141 l 449.9769,0.053 v 24.9223 l -449.9769,0.3436 c 0,0 -5.555,0.3737 -9.4326,3.1275 -3.8777,2.7538 -5.0321,6.7946 -5.0321,6.7946 l 415.0151,0.026 v 24.9223 l -167.0998,0.086 c 0,0 0.5706,3.0323 7.095,6.8986 6.5243,3.8663 10.2403,3.5112 10.2403,3.5112 l 5.2718,5.9531 -5.1071,7.1663 c 0,0 -6.9249,-7.3041 -16.8323,-13.5868 -9.9073,-6.2827 -19.0507,-9.8566 -19.0507,-9.8566 l -365.13807,0.1718 c 0,0 -23.93058,-27.5432 -41.38876,-43.1457 -17.45818,-15.6025 -36.80325,-26.3009 -36.80325,-26.3009 l -634.34418,0.1718 c 0,0 -8.35469,-0.2329 -11.23324,-12.1221 -2.87854,-11.8893 -6.36373,-57.9901 -6.36373,-57.9901 v -2e-4 l -4.75324,0.086 v -25.319 l 26.35662,0.013"
+       d="m 202.35028,3609.8828 1224.18292,0.026 -0.036,24.9223 -305.7483,0.043 c 0,0 3.6829,3.3977 10.1038,6.7333 6.4208,3.3356 11.1752,2.8822 11.1752,2.8822 v -2e-4 l 265.1889,0.053 v 24.9223 l -265.1889,0.3436 c 0,0 -8.754,-16.0592 -17.1746,-22.8372 -8.4206,-6.778 -18.1621,-12.0542 -18.1621,-12.0542 l -927.28067,0.086 c 0,0 1.11022,25.834 3.25246,38.8176 2.14225,12.9836 8.37285,6.0616 8.37285,6.0616 l 1163.73736,0.053 v 24.9223 l -505.11123,0.086 c 0,0 9.36289,15.8365 20.91124,25.0363 11.54835,9.1999 32.99882,19.1774 32.99882,19.1774 l 160.83227,0.013 c 0,0 10.6131,-5.2637 17.3254,-13.2129 6.7124,-7.9492 12.6804,-22.0141 12.6804,-22.0141 l 409.2093,0.053 v 24.9223 l -409.2093,0.3436 c 0,0 -5.555,0.3737 -9.4326,3.1275 -3.8777,2.7538 -5.0321,6.7946 -5.0321,6.7946 l 374.2475,0.026 v 24.9223 l -167.0998,0.086 c 0,0 0.5706,3.0323 7.095,6.8986 6.5243,3.8663 10.2403,3.5112 10.2403,3.5112 l 5.2718,5.9531 -5.1071,7.1663 c 0,0 -6.9249,-7.3041 -16.8323,-13.5868 -9.9073,-6.2827 -19.0507,-9.8566 -19.0507,-9.8566 l -365.13807,0.1718 c 0,0 -23.93058,-27.5432 -41.38876,-43.1457 -17.45818,-15.6025 -36.80325,-26.3009 -36.80325,-26.3009 l -634.34418,0.1718 c 0,0 -8.35469,-0.2329 -11.23324,-12.1221 -2.87854,-11.8893 -6.36373,-57.9901 -6.36373,-57.9901 v -2e-4 l -4.75324,0.086 v -25.319 l 26.35662,0.013"
        id="path303-9-4-3-5-1-4-0"
        sodipodi:nodetypes="cccczccccczcczcccczcczcccczccccscccscczcczccccc" />
     <path
@@ -2021,7 +2021,7 @@
        id="a323-7-2-9"
        xlink:href="https://en.wikipedia.org/wiki/Meroitic_script"
        target="_blank"
-       transform="translate(874.72608,-341.73219)">
+       transform="translate(912.52265,-341.16106)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -2044,7 +2044,7 @@
        id="a323-7-2-9-5"
        xlink:href="https://en.wikipedia.org/wiki/Meroitic_script"
        target="_blank"
-       transform="translate(924.13854,-410.99559)">
+       transform="translate(959.12913,-410.99559)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -2061,7 +2061,9 @@
    id="tspan323-40-2-1-8"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">देかΩ</tspan> </tspan>Meroitic Hieroglyphics <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-   id="tspan320-7-0-0-5">◂</tspan> </tspan></text>
+   id="tspan320-7-0-0-5">◂<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   id="tspan40"> </tspan>▸</tspan> </tspan></text>
     </a>
     <a
        id="a323-7-2-9-5-1"
@@ -2228,7 +2230,7 @@
        id="a323-19-7-9"
        xlink:href="https://en.wikipedia.org/wiki/Vai_syllabary"
        target="_blank"
-       transform="translate(2020.8699,-306.58386)">
+       transform="translate(2020.8699,-306.25666)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -5932,21 +5934,21 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan101"><tspan
+           id="tspan102"><tspan
              style="font-weight:bold"
-             id="tspan40">Ω</tspan><tspan
+             id="tspan52">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan52">か </tspan><tspan
+             id="tspan63">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan63">Hangul</tspan><tspan
+             id="tspan92">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan92"> </tspan><tspan
+             id="tspan98"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan98">▸</tspan><tspan
+             id="tspan99">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan99"> </tspan><tspan
+             id="tspan100"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan100">▼</tspan></tspan></text>
+             id="tspan101">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
@@ -6817,23 +6819,23 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none"
-       x="1273.3823"
-       y="3661.5784"
+       x="1314.8776"
+       y="3661.9023"
        id="text71-3-9"><tspan
          sodipodi:role="line"
          id="tspan71-85-2"
-         x="1273.3823"
-         y="3661.5784">𐦀𐦁𐦂𐦃𐦄𐦅𐦆</tspan></text>
+         x="1314.8776"
+         y="3661.9023">𐦀𐦁𐦂𐦃𐦄𐦅𐦆</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
-       x="1189.7855"
-       y="3730.7341"
+       x="1227.582"
+       y="3731.3052"
        id="text88"><tspan
          sodipodi:role="line"
          id="tspan88"
-         x="1189.7855"
-         y="3730.7341">𐦠𐦡𐦢𐦣𐦤𐦥𐦦</tspan></text>
+         x="1227.582"
+         y="3731.3052">𐦠𐦡𐦢𐦣𐦤𐦥𐦦</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
@@ -6888,11 +6890,11 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000"
        x="2250.0176"
-       y="3766.3408"
+       y="3766.8315"
        id="text98"><tspan
          sodipodi:role="line"
          x="2250.0176"
-         y="3766.3408"
+         y="3766.8315"
          id="tspan110">ꔀꔤꕉꕱꖕꖺꗡ</tspan></text>
     <text
        xml:space="preserve"
