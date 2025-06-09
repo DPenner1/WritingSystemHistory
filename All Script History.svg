@@ -27,16 +27,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     showgrid="false"
-     inkscape:zoom="1.2112509"
-     inkscape:cx="1715.9945"
-     inkscape:cy="735.19034"
+     showgrid="true"
+     inkscape:zoom="0.93871919"
+     inkscape:cx="2188.0878"
+     inkscape:cy="499.08429"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer13"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -51,7 +51,7 @@
        opacity="0.14901961"
        empspacing="5"
        enabled="true"
-       visible="false" />
+       visible="true" />
   </sodipodi:namedview>
   <defs
      id="defs1">
@@ -713,11 +713,12 @@
   <g
      inkscape:groupmode="layer"
      id="layer13"
-     inkscape:label="BG cutaways">
+     inkscape:label="BG cutaways"
+     sodipodi:insensitive="true">
     <path
        id="rect310-1"
        style="fill:#ffffff;stroke-width:1.99999"
-       d="m 2060.4084,474.43713 548.3812,0 v 139.91416 l -514.5973,0 z"
+       d="m 2060.4084,474.43713 h 548.3812 v 139.91416 h -514.5973 z"
        sodipodi:nodetypes="ccccc" />
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.99999;stroke-dasharray:none;stroke-opacity:1"
@@ -2204,7 +2205,7 @@
        id="a323-19-7-3-3"
        xlink:href="https://en.wikipedia.org/wiki/Hanifi_Rohingya_script"
        target="_blank"
-       transform="translate(2297.1625,-2541.8432)"
+       transform="translate(2293.3975,-2521.3185)"
        style="display:inline">
       <text
          xml:space="preserve"
@@ -4431,7 +4432,7 @@
        id="a323-19-7-9-9-1-0-1"
        xlink:href="https://en.wikipedia.org/wiki/Khema_script"
        target="_blank"
-       transform="translate(2257.8864,-3575.6562)">
+       transform="translate(2257.8864,-3575.1905)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -5931,21 +5932,21 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan93"><tspan
+           id="tspan101"><tspan
              style="font-weight:bold"
-             id="tspan50">Ω</tspan><tspan
+             id="tspan40">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan51">か </tspan><tspan
+             id="tspan52">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan62">Hangul</tspan><tspan
+             id="tspan63">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan75"> </tspan><tspan
+             id="tspan92"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan76">▸</tspan><tspan
+             id="tspan98">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan78"> </tspan><tspan
+             id="tspan99"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan84">▼</tspan></tspan></text>
+             id="tspan100">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
@@ -7769,12 +7770,12 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000"
        x="1626.6285"
-       y="496.67502"
+       y="497.11856"
        id="text158"><tspan
          sodipodi:role="line"
          id="tspan158"
          x="1626.6285"
-         y="496.67502">𑱲𑱳𑱴𑱵𑱶𑱷‎𑱸</tspan></text>
+         y="497.11856">𑱲𑱳𑱴𑱵𑱶𑱷‎𑱸</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;vector-effect:none;fill:#fafafa;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none"
@@ -7783,6 +7784,16 @@
        id="text246"><tspan
          sodipodi:role="line"
          id="tspan246" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke-width:1.00157"
+       x="2495.5447"
+       y="1531.8993"
+       id="text10"><tspan
+         sodipodi:role="line"
+         id="tspan10"
+         x="2495.5447"
+         y="1531.8993">𐴅𐴄𐴃𐴂𐴁𐴀𐴋</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
