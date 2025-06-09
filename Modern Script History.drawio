@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.1.1 Chrome/132.0.6834.210 Electron/34.3.3 Safari/537.36" version="26.1.1">
   <diagram id="0" name="Page-1">
-    <mxGraphModel dx="717" dy="498" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="143" dy="100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1088,7 +1088,7 @@
         </mxCell>
         <UserObject label="&lt;b&gt;दे&lt;/b&gt;&lt;b style=&quot;font-size: 11px;&quot;&gt;&amp;nbsp;&lt;/b&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Kirat Rai&amp;nbsp;&lt;/span&gt;&lt;b&gt;▸&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Kirat_Rai" linkTarget="_blank" id="La_97x2lhr50nFVP5Xat-256">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#CCFFFF;" parent="1" vertex="1">
-            <mxGeometry x="27.749999999999982" y="680" width="82.75" height="30" as="geometry" />
+            <mxGeometry x="26.73999999999998" y="680" width="82.75" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="La_97x2lhr50nFVP5Xat-257" value="" style="endArrow=classic;html=1;" parent="1" source="208" target="La_97x2lhr50nFVP5Xat-256" edge="1">
