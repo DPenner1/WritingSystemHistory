@@ -27,16 +27,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     showgrid="true"
-     inkscape:zoom="4.2322509"
-     inkscape:cx="1202.7879"
-     inkscape:cy="2922.6764"
+     showgrid="false"
+     inkscape:zoom="1.1008664"
+     inkscape:cx="1799.4918"
+     inkscape:cy="2543.9054"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer12"
+     inkscape:current-layer="layer2"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -51,7 +51,7 @@
        opacity="0.14901961"
        empspacing="5"
        enabled="true"
-       visible="true" />
+       visible="false" />
   </sodipodi:namedview>
   <defs
      id="defs1">
@@ -3244,7 +3244,7 @@
     </a>
     <a
        id="a323-19-7-9-2-5-4-3-8-4-48-7"
-       xlink:href="https://en.wikipedia.org/wiki/Chakma_script"
+       xlink:href="https://en.wikipedia.org/wiki/Cham_script"
        target="_blank"
        transform="translate(1223.648,-1560.9417)"
        style="display:inline">
@@ -5989,21 +5989,21 @@
          transform="translate(-89.792895,259.81855)"><tspan
            x="2048.0964"
            y="134.90932"
-           id="tspan105"><tspan
+           id="tspan107"><tspan
              style="font-weight:bold"
-             id="tspan7">Ω</tspan><tspan
+             id="tspan92">Ω</tspan><tspan
              style="font-weight:bold"
-             id="tspan58">か </tspan><tspan
+             id="tspan93">か </tspan><tspan
              style="font-weight:bold"
-             id="tspan62">Hangul</tspan><tspan
+             id="tspan98">Hangul</tspan><tspan
              style="font-weight:bold;font-size:9.33333px;-inkscape-font-specification:'Sans, Bold'"
-             id="tspan84"> </tspan><tspan
+             id="tspan99"> </tspan><tspan
              style="font-size:13.3333px"
-             id="tspan102">▸</tspan><tspan
+             id="tspan100">▸</tspan><tspan
              style="font-size:8px"
-             id="tspan103"> </tspan><tspan
+             id="tspan101"> </tspan><tspan
              style="font-size:9.33333px"
-             id="tspan104">▼</tspan></tspan></text>
+             id="tspan106">▼</tspan></tspan></text>
     </a>
     <a
        id="a323-19-7-7-8-4-9"
