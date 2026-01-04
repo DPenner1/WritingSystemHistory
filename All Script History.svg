@@ -28,15 +28,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="true"
-     inkscape:zoom="5.5062389"
-     inkscape:cx="1829.7426"
-     inkscape:cy="170.98786"
+     inkscape:zoom="0.17685674"
+     inkscape:cx="2239.1004"
+     inkscape:cy="551.29365"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer19"
+     inkscape:current-layer="layer8"
      inkscape:document-units="mm">
     <inkscape:grid
        id="grid254"
@@ -994,7 +994,7 @@
      inkscape:label="Main Groups">
     <path
        style="fill:#ffccff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-       d="m 2294.5569,323.06023 -665.9452,0.45589 c 0,0 -17.8017,-28.12223 -31.5644,-42.52485 -13.7627,-14.40262 -30.1847,-28.19427 -30.1847,-28.19427 l -12.8415,-0.002 c 0,0 -6.004,-15.14553 -12.5018,-23.38983 -6.4978,-8.2443 -10.1624,-11.49664 -10.1624,-11.49664 l -928.21652,-0.0216 v -25.09646 l 1057.12852,0.13961 c 0,0 13.5405,-8.29486 19.3178,-14.04061 5.7773,-5.74575 11.8498,-20.35792 11.8498,-20.35792 l 287.1338,-0.30533 0.045,25.08787 -287.2999,-0.77978 c 0,0 -3.7765,-0.27057 -9.1213,2.11522 -5.3448,2.38579 -10.7363,8.28055 -10.7363,8.28055 l 308.8906,0.0828 c 0,0 8.0098,-13.74072 18.4606,-30.56078 10.4509,-16.82007 20.2528,-39.52875 20.2528,-39.52875 l 513.6281,0.11786 v 24.8914 h -512.947 c 0,0 -9.7733,6.01083 -18.0444,20.03501 -8.2711,14.02419 -10.7163,25.04526 -10.7163,25.04526 l 418.3322,-0.0636 c 0,0 5.3631,-3.24889 17.4162,-15.87425 12.0531,-12.62536 13.9586,-19.76162 13.9586,-19.76162 l 148.6598,0.44826 0.014,25.15458 -148.4741,-0.26522 c 0,0 -3.117,-0.31487 -9.6923,2.24218 -6.5753,2.55705 -11.776,8.09332 -11.776,8.09332 l 170.1045,-0.0256 v 24.86493 l -244.8624,0.0172 c 0,0 2.5948,4.39622 7.9608,7.4113 5.366,3.01509 13.6344,2.56768 13.6344,2.56768 h 223.1306 v 24.80355 h -223.3521 c 0,0 -5.6363,-10.74189 -16.8309,-21.03872 -8.964,-8.24503 -16.0148,-13.72658 -16.0148,-13.72658 l -792.5231,0.0343 c 0,0 2.7322,5.13562 5.6469,7.85604 2.9147,2.72042 7.6397,2.94602 7.6397,2.94602 l 775.5135,-0.85981 v 25.03623 l -748.2758,-0.0509 c 0,0 6.6861,17.55226 24.1834,17.65229 17.4974,0.10002 23.5318,-7.78466 23.5318,-7.78466 l 960.7575,0.13927 v 25.01729 l -960.7877,-0.13927 c 0,0 -4.8636,-5.50214 -11.0677,-7.73769 -6.2041,-2.23555 -13.8135,-2.52787 -13.8135,-2.52787 0,0 9.9839,15.35141 15.9073,18.89883 5.9235,3.54743 8.845,1.52156 8.845,1.52156 l 960.6082,0.61197 0.018,24.1305 -280.7629,0.22794 c 0,0 1.7565,5.33525 8.8521,7.85958 7.0956,2.52432 11.9916,2.14004 11.9916,2.14004 h 259.935 v 24.9713 h -260.1721 c 0,0 -6.0095,-13.27037 -16.3153,-21.5358 -8.4852,-6.80533 -18.3457,-13.20721 -18.3457,-13.20721 z"
+       d="m 2294.5569,323.06023 -665.9452,0.45589 c 0,0 -17.8017,-28.12223 -31.5644,-42.52485 -13.7627,-14.40262 -30.1847,-28.19427 -30.1847,-28.19427 l -12.8415,-0.002 c 0,0 -6.004,-15.14553 -12.5018,-23.38983 -6.4978,-8.2443 -10.1624,-11.49664 -10.1624,-11.49664 l -928.21652,-0.0216 v -25.09646 l 1057.12852,0.13961 c 0,0 13.5405,-8.29486 19.3178,-14.04061 5.7773,-5.74575 11.8498,-20.35792 11.8498,-20.35792 l 147.6419,-0.30533 0.045,25.08787 -147.808,-0.77978 c 0,0 -3.7765,-0.27057 -9.1213,2.11522 -5.3448,2.38579 -10.7363,8.28055 -10.7363,8.28055 l 308.8906,0.0828 c 0,0 8.0098,-13.74072 18.4606,-30.56078 10.4509,-16.82007 20.2528,-39.52875 20.2528,-39.52875 l 513.6281,0.11786 v 24.8914 h -512.947 c 0,0 -9.7733,6.01083 -18.0444,20.03501 -8.2711,14.02419 -10.7163,25.04526 -10.7163,25.04526 l 418.3322,-0.0636 c 0,0 5.3631,-3.24889 17.4162,-15.87425 12.0531,-12.62536 13.9586,-19.76162 13.9586,-19.76162 l 148.6598,0.44826 0.014,25.15458 -148.4741,-0.26522 c 0,0 -3.117,-0.31487 -9.6923,2.24218 -6.5753,2.55705 -11.776,8.09332 -11.776,8.09332 l 170.1045,-0.0256 v 24.86493 l -244.8624,0.0172 c 0,0 2.5948,4.39622 7.9608,7.4113 5.366,3.01509 13.6344,2.56768 13.6344,2.56768 h 223.1306 v 24.80355 h -223.3521 c 0,0 -5.6363,-10.74189 -16.8309,-21.03872 -8.964,-8.24503 -16.0148,-13.72658 -16.0148,-13.72658 l -792.5231,0.0343 c 0,0 2.7322,5.13562 5.6469,7.85604 2.9147,2.72042 7.6397,2.94602 7.6397,2.94602 l 775.5135,-0.85981 v 25.03623 l -748.2758,-0.0509 c 0,0 6.6861,17.55226 24.1834,17.65229 17.4974,0.10002 23.5318,-7.78466 23.5318,-7.78466 l 960.7575,0.13927 v 25.01729 l -960.7877,-0.13927 c 0,0 -4.8636,-5.50214 -11.0677,-7.73769 -6.2041,-2.23555 -13.8135,-2.52787 -13.8135,-2.52787 0,0 9.9839,15.35141 15.9073,18.89883 5.9235,3.54743 8.845,1.52156 8.845,1.52156 l 960.6082,0.61197 0.018,24.1305 -280.7629,0.22794 c 0,0 1.7565,5.33525 8.8521,7.85958 7.0956,2.52432 11.9916,2.14004 11.9916,2.14004 h 259.935 v 24.9713 h -260.1721 c 0,0 -6.0095,-13.27037 -16.3153,-21.5358 -8.4852,-6.80533 -18.3457,-13.20721 -18.3457,-13.20721 z"
        id="path254"
        sodipodi:nodetypes="cczccsczcccccczczczzccczcczccccsccsczccccscccccsczccsczczsccczccccscc" />
     <path
@@ -5914,7 +5914,7 @@
        id="a281"
        xlink:href="https://en.wikipedia.org/wiki/Khitan_small_script"
        target="_blank"
-       transform="translate(569.27926,-31.858786)">
+       transform="translate(575.83878,-31.858786)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
@@ -6433,31 +6433,6 @@
          id="path46-6-9-9"
          sodipodi:nodetypes="cc" />
     </g>
-    <a
-       id="a282"
-       xlink:href="https://en.wikipedia.org/wiki/Jurchen_script"
-       target="_blank"
-       transform="translate(31.378811,3.0480464)"
-       style="display:inline">
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1"
-         x="1770.0269"
-         y="171.03783"
-         id="text255-0-7-0-0-5-6"><tspan
-           sodipodi:role="line"
-           id="tspan255-2-2-8-3-6-2"
-           x="1770.0269"
-           y="171.03783"><tspan
-             style="font-style:italic"
-             id="tspan285"><tspan
-   style="font-weight:bold"
-   id="tspan301">文か</tspan> Jurchen</tspan><tspan
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
-             id="tspan258-1-4-1-4-64-6"> </tspan><tspan
-             id="tspan284"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▸</tspan></tspan></text>
-    </a>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:9.33333px;font-family:Sans;-inkscape-font-specification:'Sans, Bold';text-align:end;writing-mode:lr-tb;direction:ltr;text-anchor:end;fill:#d85353;stroke:#000000;stroke-width:6.67087"
