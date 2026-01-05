@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
   <diagram id="0" name="Page-1">
-    <mxGraphModel dx="1025" dy="840" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1079" dy="778" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -651,7 +651,7 @@
         </mxCell>
         <UserObject label="&lt;b&gt;दे&lt;/b&gt;&lt;b style=&quot;font-size: 11px;&quot;&gt;&amp;nbsp;&lt;/b&gt;Sharada&amp;nbsp;&lt;b&gt;▸&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Sharada_script" id="226">
           <mxCell style="whiteSpace=wrap;html=1;dashed=1;fillColor=#CCFFFF;dashPattern=8 8;" parent="1" vertex="1">
-            <mxGeometry x="150.00000000000003" y="500" width="80.25" height="30" as="geometry" />
+            <mxGeometry x="147.75000000000003" y="500" width="80.25" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="227" value="" style="endArrow=classic;html=1;" parent="1" source="30" target="226" edge="1">
