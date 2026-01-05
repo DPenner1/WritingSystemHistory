@@ -57,7 +57,7 @@ In the All Scripts diagram, inclusion criteria turned out to be much less of an 
 
 A bigger issue in the All Scripts diagram was the consideration of what counts as separate scripts, especially as they frequently evolve gradually. This was purely a judgement call, mostly following along with Wikipedia. For the most part removing non-branching historical ancestors resulted in being able to sidestep this question in the Modern Scripts diagram, but it was still somewhat challenging for the [Chinese script(s)](https://en.wikipedia.org/wiki/Chinese_script_styles) and [Georgian script(s)](https://en.wikipedia.org/wiki/Georgian_scripts). Note that having a few "extra" letters won't count as a separate script in this diagram.
 
-Along this line, there are some "extra" scripts where Unicode considers it to be part of another one, but I felt it should be split out based on my reading of Wikipedia. Eg. Hentaigana is encoded as a part of Kana in Unicode, Hieratic is considered a font variation of Egyptian Hieroglyphics, etc. A special case occurs with Jurchen which exists as a continuation of Khitan small. It's included as I did not want to show Khitan small going extinct if it simply evolved into Jurchen, though the precise relationships between the two and Khitan large (not on diagram) are not yet fully understood.
+Along this line, there are some "extra" scripts where Unicode considers it to be part of another one, but I felt it should be split out based on my reading of Wikipedia. Eg. Hentaigana is encoded as a part of Kana in Unicode, Hieratic is considered a font variation of Egyptian Hieroglyphics, etc.
 
 ## Script specific notes
 
