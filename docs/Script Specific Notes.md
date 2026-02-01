@@ -21,8 +21,8 @@
   - **Inscriptional Pahlavi / Parthian**: See Pahlavi.
   - ***Kawi & derived***: Sources:
       - *[Script and Identity of Indonesia](https://jice.um.edu.my/index.php/MALINDO/article/download/21195/10785)* (Ninny Susanti, 2019).
-      - *[Revitalization of ancient Indonesian characters and the maintenance efforts in past 10 years]()* (Arif Hidayat, 2021).
-      - *[Early Indic Inscriptions of Southeast Asia](https://books.google.com/books?hl=en&lr=&id=vO_-AgAAQBAJ&oi=fnd&pg=PA53&dq=Early+Indic+Inscriptions+of+Southeast+Asia&ots=ijt5HcxGCb&sig=Vn6bLsRQziB92gLu0QHnE3P24IQ)* (Arlo Griffiths, 2014)
+      - *[Revitalization of ancient Indonesian characters and the maintenance efforts in past 10 years](https://alejournal.com/index.php/ladu/article/download/69/16)* (Arif Hidayat, 2021).
+      - *[Early Indic Inscriptions of Southeast Asia](https://books.google.com/books?hl=en&lr=&id=vO_-AgAAQBAJ&oi=fnd&pg=PA53&dq=Early+Indic+Inscriptions+of+Southeast+Asia&ots=ijt5HcxGCb&sig=Vn6bLsRQziB92gLu0QHnE3P24IQ)* (Arlo Griffiths, 2014).
   - ***Kayah Li***: Appears to have come up with many unique letter glyphs, but with likely influence from Burmese, so I've made it Brahmic & Independent.
   - **Kharosthi**: Source: *[Indic Scripts: History, Typology, Study](https://books.google.ca/books?id=n_ecDwAAQBAJ&pg=PA11&source=gbs_toc_r&cad=2#v=onepage&q&f=false)* (Peter T. Daniels, 2019). While not currently incorporated into the diagram, it acknowledges that an earlier Kharosthi date makes it more likely that Brahmic could have derived from Kharosthi. If true, then at least the current diagram deriving Brahmi from Aramaic isn't entirely inaccurate with Kharosthi then being an intermediate script.
   - **Khwarezmian**: Source: *[Deciphering the Scripts and Languages of Afrighid Khorezm: A Historiographical Review](https://inlibrary.uz/index.php/jsshrf/article/download/34109/34707)* (Mardonbek Rajapov Qosimboy ugli, 2024)
@@ -30,9 +30,9 @@
   - **Landa**: [Unicode roadmap](https://www.unicode.org/wg2/docs/n3766.pdf) explains Landa is split into two regional classes, but there is no suggestion that these two sub-classes have a common proto script.
   - **Lik-Tai**: See Tai.
   - ***Limbu***: Sources:
-      - *[The Limbu Script and the Production of Religious Books in Nepal](https://brill.com/view/journals/phen/6/1-2/article-p43_3.xml)* (Martin Gaenszle, 2021)
-      - *[Scripturalisation of ritual in eastern Nepal](https://www.academia.edu/15192972/Scripturalisation_of_ritual_in_eastern_Nepal)* (Martin Gaenszle, 2011)
-      - *[Marginalised as Minority: Tribal Citizens and Border Thinking in India](https://www.jstor.org/stable/44003637)* (Mollica Dastider, 2016)
+      - *[The Limbu Script and the Production of Religious Books in Nepal](https://brill.com/view/journals/phen/6/1-2/article-p43_3.xml)* (Martin Gaenszle, 2021).
+      - *[Scripturalisation of ritual in eastern Nepal](https://www.academia.edu/15192972/Scripturalisation_of_ritual_in_eastern_Nepal)* (Martin Gaenszle, 2011).
+      - *[Marginalised as Minority: Tribal Citizens and Border Thinking in India](https://www.jstor.org/stable/44003637)* (Mollica Dastider, 2016).
   - **Mahajani**: UIP suggests Kaithi or Devanagari as alternate ancestors. See also Landa, where a source puts it under Sharada.
   - ***Malayalam***: Old Malayalam language was written in Vatteluttu (not on diagram). Current script has some letters imported, but probably not enough to count on this diagram. At least one source has a merged Tigalari-Malayalam script for a while. Based on dates given in most sources and many discussing similarity, I've gone ahead and accepted a merged script probably existed. I saw a similar pattern with Odia/Bengali-Assamese/Tirhuta where many sources discussing the history of one just said old/proto [insert whichever script they were talking about], but there were more sources for these, some of which made clearer that the proto versions of these are the same or very close (and often called Gaudi). 
   - **Manichaean**: Not many sources, and they mostly disagree on the precise derivation. Geographically, I've placed it in West Asia due to its originators, even though seems the script ended up more used in Central Asia.
