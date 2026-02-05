@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
   <diagram id="0" name="Page-1">
-    <mxGraphModel dx="2377" dy="1405" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="951" dy="667" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -9,28 +9,22 @@
             <mxGeometry x="604.5" y="260" width="66" height="30" as="geometry" />
           </mxCell>
         </UserObject>
-        <UserObject label="&lt;font style=&quot;font-weight: 700; font-size: 10px;&quot;&gt;文&lt;/font&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;گ&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;Egyptian Hieroglyphs&amp;nbsp;&lt;b&gt;◂&amp;nbsp;&lt;/b&gt;&lt;b&gt;▸&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Egyptian_hieroglyphs" linkTarget="_blank" id="2">
+        <UserObject label="&lt;font style=&quot;font-weight: 700; font-size: 10px;&quot;&gt;&amp;nbsp;文&lt;/font&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;گ&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;Egyptian Hieroglyphs&amp;nbsp;&lt;b&gt;◂&amp;nbsp;&lt;/b&gt;&lt;b&gt;▸&lt;/b&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;▼&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Egyptian_hieroglyphs" linkTarget="_blank" id="2">
           <mxCell style="whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;fillColor=#D5E8D4;" parent="1" vertex="1">
-            <mxGeometry x="263.02" y="260" width="171.51" height="30" as="geometry" />
+            <mxGeometry x="269.74" y="260" width="180.26" height="30" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="3" value="" style="endArrow=classic;html=1;dashed=1;" parent="1" source="2" target="7" edge="1">
+        <mxCell id="3" value="" style="endArrow=classic;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" parent="1" source="2" target="7" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="119.75" y="260" as="sourcePoint" />
             <mxPoint x="539.75" y="360" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <UserObject label="&lt;font style=&quot;font-style: normal; font-weight: 700; font-size: 11px;&quot;&gt;گ&lt;/font&gt;&lt;span style=&quot;font-style: normal; font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;Proto-Sinaitic &lt;span style=&quot;font-style: normal;&quot;&gt;&lt;b&gt;?&lt;/b&gt;&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Proto-Sinaitic_script" id="7">
+        <UserObject label="&lt;font style=&quot;font-style: normal; font-weight: 700; font-size: 11px;&quot;&gt;&amp;nbsp;گ&lt;/font&gt;&lt;span style=&quot;font-style: normal; font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;Proto-Sinaitic&amp;nbsp;&lt;b style=&quot;font-style: normal;&quot;&gt;◂&amp;nbsp;&lt;/b&gt;&lt;b style=&quot;font-style: normal;&quot;&gt;▸&lt;/b&gt;&lt;span style=&quot;font-style: normal; font-weight: 700;&quot;&gt;▼&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Proto-Sinaitic_script" id="7">
           <mxCell style="whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;fillColor=#FFE599;fontStyle=2" parent="1" vertex="1">
-            <mxGeometry x="385.2800000000001" y="320" width="107" height="30" as="geometry" />
+            <mxGeometry x="424" y="320" width="126" height="30" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="10" value="" style="endArrow=classic;html=1;" parent="1" source="2" target="35Lwv9fNG1k4pm1vMkfA-256" edge="1">
-          <mxGeometry x="145" y="370" width="50" height="50" as="geometry">
-            <mxPoint x="149.75" y="450" as="sourcePoint" />
-            <mxPoint x="310.475" y="290" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="13" value="" style="endArrow=classic;html=1;" parent="1" source="7" target="14" edge="1">
           <mxGeometry x="275" y="450" width="50" height="50" as="geometry">
             <mxPoint x="279.75" y="530" as="sourcePoint" />
@@ -39,12 +33,12 @@
         </mxCell>
         <UserObject label="&lt;b&gt;दे&amp;nbsp;&lt;/b&gt;Ge&#39;ez&amp;nbsp;▸" link="https://en.wikipedia.org/wiki/Ge%CA%BDez_script" linkTarget="_blank" id="14">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FFE599;" parent="1" vertex="1">
-            <mxGeometry x="289.5" y="320" width="63" height="30" as="geometry" />
+            <mxGeometry x="325.75" y="320" width="63" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;b&gt;Ω&amp;nbsp;&lt;/b&gt;Coptic&amp;nbsp;&lt;b&gt;▸&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Coptic_script" linkTarget="_blank" id="16">
           <mxCell style="whiteSpace=wrap;html=1;dashed=1;gradientColor=#CCCCFF;fillColor=#D5E8D4;gradientDirection=east;glass=0;dashPattern=8 8;" parent="1" vertex="1">
-            <mxGeometry x="503.25" y="320" width="69" height="30" as="geometry" />
+            <mxGeometry x="475.25" y="260" width="69" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="&lt;font style=&quot;font-weight: 700; font-size: 11px;&quot;&gt;گ&lt;/font&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;Phoenician&amp;nbsp;&lt;b&gt;◂&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Phoenician_alphabet" linkTarget="_blank" id="18">
@@ -159,7 +153,7 @@
         </UserObject>
         <UserObject label="&lt;b&gt;दे&lt;/b&gt;&lt;b style=&quot;font-size: 11px;&quot;&gt;&amp;nbsp;&lt;/b&gt;Gujarati&lt;span style=&quot;font-weight: 400;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b&gt;▸&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Gujarati_script" linkTarget="_blank" id="45">
           <mxCell style="whiteSpace=wrap;html=1;fontStyle=1;fillColor=#CCFFFF;" parent="1" vertex="1">
-            <mxGeometry x="197.25" y="320" width="80" height="30" as="geometry" />
+            <mxGeometry x="216.13" y="320" width="80" height="30" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="46" value="" style="endArrow=classic;html=1;" parent="1" source="43" target="45" edge="1">
@@ -348,7 +342,7 @@
             <mxGeometry x="216" y="620" width="97" height="30" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="JWelgRsJf6Y6P_Zbk2v8-257" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="120" target="JWelgRsJf6Y6P_Zbk2v8-256">
+        <mxCell id="JWelgRsJf6Y6P_Zbk2v8-257" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="120" target="JWelgRsJf6Y6P_Zbk2v8-256" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <UserObject label="&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;&amp;nbsp;文&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 11px; font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;i&gt;Oracle Bone&lt;/i&gt;&lt;b&gt;▼&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Oracle_bone_script" linkTarget="_blank" id="120">
@@ -1185,25 +1179,14 @@
             <mxPoint x="107" y="630" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <UserObject label="&lt;font style=&quot;font-weight: 700; font-size: 10px;&quot;&gt;文&lt;/font&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;گ&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;Hieratic&amp;nbsp;&lt;b&gt;◂&lt;/b&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;▼&lt;/span&gt;" link="https://en.wikipedia.org/wiki/Hieratic" linkTarget="_blank" id="35Lwv9fNG1k4pm1vMkfA-256">
-          <mxCell style="whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;fillColor=#D5E8D4;" parent="1" vertex="1">
-            <mxGeometry x="463.26" y="260" width="99.52" height="30" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <mxCell id="35Lwv9fNG1k4pm1vMkfA-257" value="" style="endArrow=classic;html=1;" parent="1" source="35Lwv9fNG1k4pm1vMkfA-256" target="16" edge="1">
+        <mxCell id="35Lwv9fNG1k4pm1vMkfA-257" value="" style="endArrow=classic;html=1;" parent="1" source="2" target="16" edge="1">
           <mxGeometry x="145" y="370" width="50" height="50" as="geometry">
-            <mxPoint x="462" y="285" as="sourcePoint" />
+            <mxPoint x="519.2025000000001" y="290" as="sourcePoint" />
             <mxPoint x="486" y="285" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="35Lwv9fNG1k4pm1vMkfA-258" value="" style="endArrow=classic;html=1;dashed=1;" parent="1" source="35Lwv9fNG1k4pm1vMkfA-256" target="7" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="388" y="300" as="sourcePoint" />
-            <mxPoint x="413" y="330" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <UserObject label="&lt;span style=&quot;font-weight: 700;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;&amp;nbsp;文&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 11px; font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b&gt;Clerical▼&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Oracle_bone_script" linkTarget="_blank" id="JWelgRsJf6Y6P_Zbk2v8-256">
-          <mxCell style="whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=#FFCCFF;" vertex="1" parent="1">
+          <mxCell style="whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=#FFCCFF;" parent="1" vertex="1">
             <mxGeometry x="154" y="980" width="80" height="30" as="geometry" />
           </mxCell>
         </UserObject>
