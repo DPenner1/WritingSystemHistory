@@ -50,6 +50,12 @@ Some scripts may appear larger or smaller. To keep things neutral, I simply used
 
 See [here](https://github.com/DPenner1/WritingSystemHistory/blob/main/docs/Script%20Inclusion%20Criteria.md) for general inclusion criteria, and [here](https://github.com/DPenner1/WritingSystemHistory/blob/main/docs/Script%20Specific%20Notes.md) for script-specific decisions and research notes.
 
+## Next steps
+
+More documentation: Mostly along the lines of the decision making for the diagrams - there's naturally a lot of judgment calls, but as much as possible I tried to do so as consistently as possible. Clearly document all these rules.
+
+In particular the unbroken development of Chinese writing and also the Japanese system were just about the most challenging to decide. Take another research pass at these to ensure these were treated reasonably and consistently.
+
 ## Project Origins
 
 I created the Modern Scripts diagram in 2015. I was an independent contractor doing software internationalization testing and wanted a quick visual reference (I did it in personal time to avoid any potential rights issue, in addition to not being an employee). This is also why fitting it on US Letter/A4 was a design consideration, so I could print it out wherever easily. The diagram helped in that I could immediately see which scripts were widely used, and which scripts were more closely related. This latter bit was a good rule of thumb: when I wanted to test a new script, I'd try to pick one furthest away from already tested scripts to maximize my chances of finding new bugs.
