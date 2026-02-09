@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
   <diagram id="0" name="Page-1">
-    <mxGraphModel dx="1678" dy="1133" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="391" dy="264" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -489,7 +489,7 @@
             <mxPoint x="1350.5300000000002" y="1259" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <UserObject label="&lt;font style=&quot;font-weight: 700; font-size: 11px;&quot;&gt;گ&lt;/font&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;i&gt;Tifinagh&lt;/i&gt;▲&lt;b&gt;◂&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Tifinagh" linkTarget="_blank" id="170">
+        <UserObject label="&lt;font style=&quot;font-weight: 700; font-size: 11px;&quot;&gt;گ&lt;/font&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;&lt;/span&gt;Tifinagh▲&lt;b&gt;◂&lt;/b&gt;" link="https://en.wikipedia.org/wiki/Tifinagh" linkTarget="_blank" id="170">
           <mxCell style="whiteSpace=wrap;html=1;dashed=1;fillColor=#FFE599;dashPattern=8 8;" parent="1" vertex="1">
             <mxGeometry x="342.75" y="380" width="87" height="30" as="geometry" />
           </mxCell>
