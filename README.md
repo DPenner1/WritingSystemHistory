@@ -17,6 +17,7 @@ And a section of the comprehensive diagram (as the full thing is excessive for a
 
 ## General Diagram Notes
 
+  - 
   - There are probably mistakes.
   - The diagrams show **graphical** derivision of scripts which can be very different from spoken language derivation.
   - "Specialized use" means use in specific use cases, but not for general default written communication of a language (or the language itself is specialized). Most frequently, this is religious or ceremonial uses.
@@ -54,7 +55,9 @@ See [here](https://github.com/DPenner1/WritingSystemHistory/blob/main/docs/Scrip
 
 More documentation: Mostly along the lines of the decision making for the diagrams - there's naturally a lot of judgment calls, but as much as possible I tried to do so as consistently as possible. Clearly document all these rules.
 
-In particular the unbroken development of Chinese writing and also the Japanese system were just about the most challenging to decide. Take another research pass at these to ensure these were treated reasonably and consistently.
+Fonts: Take a look at standardizing/cataloguing fonts used. This would allow others to more easily contribute and also help with automating exports to end formats.
+
+Script samples: It would be great to review script samples and specifically try to show evolutions of a character regardless of alphabetic order.
 
 ## Project Origins
 
