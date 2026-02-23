@@ -8,6 +8,7 @@ DERIVATIONS_PATH = os.path.join(RESOURCE_PATH, 'derivations')
 CR_EXCLUSION_PATH = os.path.join(RESOURCE_PATH, 'cr-exclusion')
 WIKIPEDIA_PATH = os.path.join(RESOURCE_PATH, 'wikipedia-sourced')
 GENERATED_DIR_NAME = 'generated'
+GENERATED_DERIVATION_PATH = os.path.join(DERIVATIONS_PATH, GENERATED_DIR_NAME)
 
 def setup_schema(cursor):
 
@@ -252,9 +253,9 @@ def load_derivations(cursor, verify_script):
                 'Certainty Type': row['Certainty Type'].strip()
             }
 
-    script_files = (
-            [os.path.join(DERIVATIONS_PATH, f) for f in os.listdir(DERIVATIONS_PATH) if f not in ('defaults.csv', GENERATED_DIR_NAME)] +
-            [os.path.join(DERIVATIONS_PATH, GENERATED_DIR_NAME, f) for f in os.listdir(os.path.join(DERIVATIONS_PATH, GENERATED_DIR_NAME))])
+    script_files = (  # generated files first allows manual overrides (untested)
+        [os.path.join(GENERATED_DERIVATION_PATH, f) for f in os.listdir(GENERATED_DERIVATION_PATH)]
+        + [os.path.join(DERIVATIONS_PATH, f) for f in os.listdir(DERIVATIONS_PATH) if f not in ('defaults.csv', GENERATED_DIR_NAME)])
 
     for script_file in script_files:
         script = script_file.split(os.path.sep)[-1].split('.')[0]
@@ -269,7 +270,7 @@ def load_derivations(cursor, verify_script):
                 certainty = int(resolve_default(defaults, row, 'Certainty Type', script, '6')) # final default is unspecified (6)
 
                 # Assumed certainty type overrides a default source, but not a specified source (though I can't imagine making a data scenario where the latter applies)
-                if certainty == 5 and script in defaults and source == defaults[script]['Source']:
+                if certainty == 5 and script in defaults and source == defaults[script]['Source'].strip():
                     source = None
 
                 # ensure that child character is always the expected script
@@ -302,7 +303,6 @@ def get_code_to_script_dict(cursor):
     return retval
 
 def generate_data(code_to_script_dict, verify=False):
-    GENERATED_DERIVATION_PATH = os.path.join(DERIVATIONS_PATH, GENERATED_DIR_NAME)
     indic_order = ['Ka', 'Kha', 'Ga', 'Gha', 'Ṅa', 'Ca', 'Cha', 'Ja', 'Jha', 'Ña', 'Ṭa', 'Ṭha', 'Ḍa', 'Ḍha', 'Ṇa', 'Ta',
                    'Tha', 'Da', 'Dha', 'Na', 'Pa', 'Pha', 'Ba', 'Bha', 'Ma', 'Ya', 'Ra', 'La', 'Va', 'Śa', 'Ṣa', 'Sa',
                    'Ha', 'A', 'Ā', 'I', 'Ī', 'U', 'Ū', 'Ṛ', 'Ṝ', 'Ḷ', 'Ḹ', 'E', 'Ai', 'O', 'Au']

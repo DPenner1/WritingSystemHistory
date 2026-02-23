@@ -33,7 +33,7 @@ The database must be generated (~12MB). For all purposes, the `./tools/database`
   - There are some significant gaps in the data at the moment.
   - A large proportion of the derivations are algorithmically generated from sources. These aren't perfect. Ideally they would eventually be manually reviewed (but who has time for that?).
   - While the database as a whole is in beta, the implementation of standard alphabets is especially questionable. At present, it is mostly there for feedback purposes: running the script in dev mode lets me check for important data gaps with it.
-  - There are a decent number of defaults and fallbacks in the source to avoid repetitively specifying stuff in source files. Most of this is good, but at the moment I'm not 100% sure about the strategy for overriding the generated csv data with manually specified data.
+  - There are a decent number of defaults and fallbacks in the source to avoid repetitively specifying stuff in source files.
   - I have in general been lazy with csv quoting and avoided commas in the data. I'm using python csv reader, so this is pure laziness as quotes would be no issue.
 
 ## Licence info
