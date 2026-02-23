@@ -1,0 +1,76 @@
+==Comparison of I==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including I, are related as well.
+{{Indic glyph |letname = I
+ |devacp = 0907 |devaimg = Devanagari इ.svg
+ |bengcp = 0987 |bengimg = Bengali Letter I.svg
+ |tamlcp = 0B87 |tamlimg = Tamil-alphabet-இஇ.svg
+ |telucp = 0C07 
+ |oryacp = 0B07 
+ |kndacp = 0C87 
+ |mlymcp = 0D07 
+ |gujrcp = 0A87 
+ |gurucp = 0A07 
+ 
+ |brahcp = 11007 |ashokaimg = Brahmi i.svg
+ |kushanaimg = Gupta ashoka i.svg
+ |guptaimg = Gupta allahabad i.svg
+ |kharcp = 10A01
+ |tochimg = tocharian letter i.gif 
+ |siddcp = 11582 |siddimg = Siddham i.svg
+ |grancp = 11307 
+ |tibtcp = 0F68;&#x0F72 |tibtimg = Tibetan I.svg
+ |tibt2cp = 0F72 |tibt2img = Tibetan I mark.svg
+ |phagcp = A85E 
+ |zanbcp = 11A01 
+ |newacp = 11402 
+ |bhkscp = 11C02 
+ |shrdcp = 11185 
+ |mymrcp = 1023 
+ |lanacp = 1A4D 
+ |lana2cp = 1A65 
+ |khmrcp = 17A5 
+ |khmr2cp = 17B7 
+ |laoocp = 0EB4 
+ |thaicp = 0E34 
+ |tavtcp = AAB2 
+ |sinhcp = 0D89 
+ |kalicp = A924 
+ |cakmcp = 11104 
+ |talecp = 1964 
+ |ahomcp = 11722 
+ |diakcp = 11902 
+ |saurcp = A884 
+ |chamcp = AA01 
+ |modicp = 11602 
+ |nandcp = 119A2 
+ |soyocp = 11A51 
+ |sylocp = A801 
+ |gongcp = 11D62 
+ |kthiimg = Kaithi I.svg | kthicp = 11085 
+ |tirhcp = 11483 
+ |lepccp = 1C27 
+ |limbcp = 1921 
+ |mteicp = ABE4 
+ |marccp = 11CB1 
+ |takrcp = 11682 
+ |dogrcp = 11802 
+ |khojcp = 11202 
+ |sindcp = 112B2 
+ |mahjcp = 11151 
+ |multcp = 11281 
+ |balicp = 1B07 
+ |batkcp = 1BE4 
+ |javacp = A986 
+ |makacp = 11EF3 
+ |rjngcp = A947 
+ |sundcp = 1B84 
+ |tglgcp = 1701 
+ |tagbcp = 1761 
+ |buhdcp = 1741 
+ |hanocp = 1721 
+ |gonmcp = 11D02 
+ | armiimg = Ayin.svg
+ | plavaimg = Pallava I.svg 
+ | ranjimg = Ranjana i.svg
+}}
+

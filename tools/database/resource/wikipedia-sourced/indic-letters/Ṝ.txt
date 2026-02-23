@@ -1,0 +1,29 @@
+==Comparison of Ṝ==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ṝ, are related as well.
+{{Indic glyph |letname = Ṝ
+ |devacp = 0960 |devaimg = Devanagari rii.svg
+ |bengcp = 09E0 |bengimg = Bengali Letter Vocalic Rr.svg
+ |telucp = 0C60 
+ |oryacp = 0B60 
+ |kndacp = 0CE0 
+ |mlymcp = 0D60 
+ |gujrcp = 0AE0 
+ 
+ |brahcp = 1100C |ashokaimg = Brahmi rii.svg
+ |siddcp = 11587 |siddimg = Siddham rr.svg
+ |grancp = 11360 
+ |tibtcp = 0F68;&#x0F77 
+ |newacp = 11407 
+ |bhkscp = 11C07 
+ |shrdcp = 1118A 
+ |mymrcp = 1053 
+ |sinhcp = 0D8E 
+ |saurcp = A889 
+ |modicp = 11607 
+ |nandcp = 119A7 
+ |tirhcp = 11488 
+ |dogrcp = 11832 
+ | armiimg = Resh.svg
+ | ranjimg = Ranjana rii.svg
+}}
+

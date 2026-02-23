@@ -1,0 +1,71 @@
+==Comparison of E==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including E, are related as well.
+{{Indic glyph |letname = E
+ |devacp = 090F |devaimg = Devanagari ए.svg
+ |bengcp = 098F |bengimg = Bengali Letter E.svg
+ |tamlcp = 0B8F |tamlimg = Tamil-alphabet-ஏஏ.svg
+ |telucp = 0C0F 
+ |oryacp = 0B0F 
+ |kndacp = 0C8F 
+ |mlymcp = 0D0F 
+ |gujrcp = 0A8F 
+ |gurucp = 0A0F 
+ 
+ |brahcp = 1100F |ashokaimg = Brahmi e.svg
+ |kushanaimg = Gupta ashoka e.svg
+ |guptaimg = Gupta allahabad e.svg
+ |kharcp = 10A05 
+ |siddcp = 1158A |siddimg = Siddham e.svg
+ |grancp = 1130F 
+ |tibtcp = 0F68;&#x0F7A |tibtimg = Tibetan E.svg
+ |phagcp = A860 
+ |zanbcp = 11A04 
+ |newacp = 1140A 
+ |bhkscp = 11C0A 
+ |shrdcp = 1118D 
+ |mymrcp = 1027 
+ |lanacp = 1A6E 
+ |talucp = 19B5 
+ |khmrcp = 17AF 
+ |khmr2cp = 17C1 
+ |laoocp = 0EC0 
+ |thaicp = 0E40 
+ |tavtcp = AAB5 
+ |sinhcp = 0D91 
+ |kalicp = A927 
+ |cakmcp = 11106 
+ |talecp = 196B 
+ |ahomcp = 11726 
+ |diakcp = 11906 
+ |saurcp = A88C 
+ |chamcp = AA03 
+ |modicp = 1160A 
+ |nandcp = 119AA 
+ |soyocp = 11A54 
+ |sylocp = A804 
+ |kthiimg = Kaithi E.svg | kthicp = 11089 
+ |tirhcp = 1148B 
+ |lepccp = 1C2C 
+ |limbcp = 1927 
+ |mteicp = AAE0 
+ |marccp = 11CB3 
+ |takrcp = 11686 
+ |dogrcp = 11806 
+ |khojcp = 11204 
+ |sindcp = 112B6 
+ |mahjcp = 11153 
+ |multcp = 11283 
+ |balicp = 1B0F 
+ |batkcp = 1BE7 
+ |bugicp = 1A19 
+ |javacp = A98C 
+ |makacp = 11EF5 
+ |rjngcp = A949 
+ |sundcp = 1B88 
+ |gonmcp = 11D06 
+ |canscp = 1401 
+ | armiimg = Ayin.svg
+ | plavaimg = Pallava E.svg 
+ | ranjimg = Ranjana e.svg
+}}
+

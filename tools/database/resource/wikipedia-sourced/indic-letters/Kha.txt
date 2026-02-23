@@ -1,0 +1,68 @@
+==Comparison of Kha==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Kha, are related as well.
+{{Indic glyph |letname = Kha
+ |devacp = 0916 |devaimg = Devanagari ख.svg
+ |bengcp = 0996 |bengimg = Bengali Letter Kha.svg
+ |telucp = 0C16
+ |oryacp = 0B16
+ |kndacp = 0C96
+ |mlymcp = 0D16
+ |gujrcp = 0A96
+ |gurucp = 0A16
+
+|brahcp = 11014 |ashokaimg = Brahmi kh.svg |kushanaimg = Gupta ashoka kh.svg |guptaimg = Gupta allahabad kh.svg
+ |kharcp = 10A11
+ |siddcp = 1158F |siddimg = Siddham kh.svg
+ |grancp = 11316
+ |tibtcp = 0F41 |tibtimg = Tibetan Kha.svg
+ |phagcp = A841
+ |zanbcp = 11A0C
+ |newacp = 1140F
+ |bhkscp = 11C0F
+ |shrdcp = 11192
+ |mymrcp = 1001
+ |lanacp = 1A21
+ |lana2cp = 1A22
+ |talucp = 1983
+ |khmrcp = 1781
+ |laoocp = 0E82
+ |thaicp = 0E02
+ |thai2cp = 0E03
+ |tavtcp = AA82
+ |tavt2cp = AA83
+ |sinhcp = 0D9B
+ |kalicp = A90B
+ |cakmcp = 11108
+ |talecp = 1951
+ |ahomcp = 11701
+ |diakcp = 1190D
+ |saurcp = A893
+ |chamcp = AA07
+ |modicp = 1160F
+ |nandcp = 119AF
+ |soyocp = 11A5D
+ |sylocp = A808
+ |gongcp = 11D72
+ |kthiimg = Kaithi Kha.svg | kthicp = 1108E
+ |tirhcp = 11490
+ |lepccp = 1C02
+ |limbcp = 1902
+ |mteicp = ABC8
+ |marccp = 11C73
+ |takrcp = 1168B
+ |dogrcp = 1180B
+ |khojcp = 11209
+ |sindcp = 112BB
+ |mahjcp = 11156
+ |multcp = 11285
+ |balicp = 1B14
+ |javacp = A991
+ |sundcp = 1BAE
+ |gonmcp = 11D0D
+ |tochimg = Tocharian letter kha.gif
+ |kawiimg = Aksara Kawi kha.svg
+ | armiimg = Qoph.svg
+ | plavaimg = Pallava Kha.svg
+ | ranjimg = Ranjana kh.svg
+}}
+

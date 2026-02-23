@@ -1,0 +1,71 @@
+==Comparison of Pha==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Pha, are related as well.
+{{Indic glyph |letname = Pha
+ |devacp = 092B |devaimg = Devanagari फ.svg
+ |bengcp = 09AB |bengimg = Bengali Letter Pha.svg
+ |telucp = 0C2B 
+ |oryacp = 0B2B 
+ |kndacp = 0CAB 
+ |mlymcp = 0D2B 
+ |gujrcp = 0AAB 
+ |gurucp = 0A2B 
+ 
+ |brahcp = 11028 |ashokaimg = Brahmi ph.svg
+ |kushanaimg = Gupta gujarat ph.svg
+ |guptaimg = Gupta allahabad ph.svg
+ |kharcp = 10A25 
+ |siddcp = 115A3 |siddimg = Siddham ph.svg
+ |grancp = 1132B 
+ |tibtcp = 0F55 |tibtimg = Tibetan Pha.svg
+ |phagcp = A84D 
+ |zanbcp = 11A1F 
+ |newacp = 11426 
+ |bhkscp = 11C23 
+ |shrdcp = 111A6 
+ |mymrcp = 1016 
+ |lanacp = 1A39 
+ |lana2cp = 1A3A
+ |talucp = 1995 
+ |talu2cp = 199A 
+ |khmrcp = 1795 
+ |thaicp = 0E1C 
+ |thai2cp = 0E1D 
+ |laoocp = 0E9C 
+ |laoo2cp = 0E9D 
+ |tavtcp = AA9E 
+ |tavt2cp = AA9F 
+ |sinhcp = 0DB5 
+ |kalicp = A916 
+ |cakmcp = 1111C 
+ |talecp = 195A 
+ |ahomcp = 11707 
+ |diakcp = 11921 
+ |saurcp = A8A7 
+ |chamcp = AA1C 
+ |modicp = 11623 
+ |nandcp = 119C3 
+ |soyocp = 11A71 
+ |sylocp = A81A 
+ |gongcp = 11D86 
+ |kthiimg = Kaithi Pha.svg | kthicp = 110A4 
+ |tirhcp = 114A4 
+ |lepccp = 1C10 
+ |limbcp = 1911 
+ |mteicp = ABD0 
+ |marccp = 11C7F 
+ |takrcp = 1169F 
+ |dogrcp = 1181F 
+ |khojcp = 11220 
+ |sindcp = 112D3 
+ |mahjcp = 11169 
+ |multcp = 1129C 
+ |balicp = 1B28 
+ |javacp = A9A6 
+ |gonmcp = 11D21 
+ |tochimg = Tocharian letter pha.gif 
+ |kawiimg = Aksara Kawi pha.svg
+ | armiimg = Pe0.svg
+ | plavaimg = Pallava Pha.svg 
+ | ranjimg = Ranjana ph.svg
+}}
+

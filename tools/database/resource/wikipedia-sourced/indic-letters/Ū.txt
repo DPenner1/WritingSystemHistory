@@ -1,0 +1,51 @@
+==Comparison of Ū==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ū, are related as well.
+{{Indic glyph |letname = Ū
+ |devacp = 090A |devaimg = Devanagari ऊ.svg
+ |bengcp = 098A |bengimg = Bengali Letter Uu.svg
+ |tamlcp = 0B8A |tamlimg = Tamil-alphabet-ஊஊ.svg
+ |telucp = 0C0A 
+ |oryacp = 0B0A 
+ |kndacp = 0C8A 
+ |mlymcp = 0D0A 
+ |gujrcp = 0A8A 
+ |gurucp = 0A0A 
+ 
+ |brahcp = 1100A |ashokaimg = Brahmi uu.svg
+ 
+ 
+ |siddcp = 11585 |siddimg = Siddham uu.svg
+ |grancp = 1130A 
+ |tibtcp = 0F68;&#x0F71;&#x0F74 
+ |newacp = 11405 
+ |bhkscp = 11C05 
+ |shrdcp = 11188 
+ |mymrcp = 1026 
+ |lanacp = 1A50 
+ |lana2cp = 1A6A 
+ |talucp = 19B4 
+ |khmrcp = 17A9
+ |laoocp = 0EB9 
+ |thaicp = 0E39 
+ |sinhcp = 0D8C 
+ |cakmcp = 1112B 
+ |ahomcp = 11725 
+ |diakcp = 11905 
+ |saurcp = A887 
+ |modicp = 11605 
+ |nandcp = 119A5 
+ |gongcp = 11D65 
+ |kthiimg = Kaithi Uu.svg | kthicp = 11088 
+ |tirhcp = 11486 
+ |lepccp = 1C2B 
+ |mteicp = AAEC 
+ |takrcp = 11685 
+ |dogrcp = 11805 
+ |sindcp = 112B5 
+ |balicp = 1B0A 
+ |javacp = A9B9 
+ |gonmcp = 11D05 
+ | armiimg = Waw.svg
+ | ranjimg = Ranjana uu.svg
+}}
+

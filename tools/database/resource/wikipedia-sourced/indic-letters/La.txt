@@ -1,0 +1,93 @@
+==Comparison of La==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including La, are related as well.  Where multiple characters are shown, the final character is Ḷa, except for Tocharian, New Tai Lue and Tai Viet.
+{{Indic glyph |letname = La
+ |devacp = 0932 |devaimg = Devanagari l old.svg
+ |bengcp = 09B2 |bengimg = Bengali Letter La.svg
+ |tamlcp = 0BB2 |tamlimg = Tamil-alphabet-லல.svg
+ |taml2cp = 0BB3 |taml2img = Tamil-alphabet-ளள.svg
+ |telucp = 0C32 
+ |telu2cp = 0C33 
+ |oryacp = 0B32 
+ |orya2cp = 0B33 
+ |kndacp = 0CB2 
+ |knda2cp = 0CB3 
+ |mlymcp = 0D32 
+ |mlym2cp = 0D33 
+ |gujrcp = 0AB2 
+ |gurucp = 0A32 
+ 
+ |brahcp = 1102E |ashokaimg = Brahmi l.svg
+ |kushanaimg = Gupta ashoka l.svg
+ |guptaimg = Gupta allahabad l.svg
+ <!-- |brah2cp = 11075 - Issues with localisation and attestation --> 
+ |kharcp = 10A2B 
+ |siddcp = 115A9 |siddimg = Siddham l.svg
+ |grancp = 11332 
+ |gran2cp = 11333 
+ |tibtcp = 0F63 |tibtimg = Tibetan La.svg
+ |phagcp = A859 
+ |zanbcp = 11A2C 
+ |newacp = 1142E 
+ |bhkscp = 11C29 
+ |shrdcp = 111AC 
+ |mymrcp = 101C 
+ |mymr2cp = 1020 
+ |lanacp = 1A43 
+ |lana2cp = 1A4A 
+ |talucp = 199F 
+ |talu2cp = 199C 
+ |khmrcp = 179B 
+ |khmr2cp = 17A1 
+ |laoocp = 0EA5;/ຫຼ/&#x0EAC
+ |thaicp = 0E25 
+ |thai2cp = 0E2C 
+ |tavtcp = AAA9 
+ |tavt2cp = AAA8 
+ |sinhcp = 0DBD 
+ |sinh2cp = 0DC5 
+ |kalicp = A91C 
+ |cakmcp = 11123 
+ |talecp = 1958 
+ |ahomcp = 1170E 
+ |diakcp = 11928 
+ |diak2cp = 1192E 
+ |saurcp = A8AD 
+ |saur2cp = A8B3 
+ |chamcp = AA24 
+ |modicp = 11629 
+ |nandcp = 119C9 
+ |soyocp = 11A7D 
+ |sylocp = A81F 
+ |gongcp = 11D75 
+ |kthiimg = Kaithi La.svg | kthicp = 110AA 
+ |tirhcp = 114AA 
+ |lepccp = 1C1C 
+ |limbcp = 1917 
+ |mteicp = ABC2 
+ |marccp = 11C8B 
+ |takrcp = 116A5 
+ |dogrcp = 11825 
+ |khojcp = 11227 
+ |sindcp = 112DA 
+ |mahjcp = 1116E 
+ |multcp = 112A3 
+ |balicp = 1B2E 
+ |batkcp = 1BDE 
+ |bugicp = 1A12 
+ |javacp = A9AD 
+ |makacp = 11EEE 
+ |rjngcp = A93E 
+ |sundcp = 1B9C 
+ |tglgcp = 170E 
+ |tagbcp = 176E 
+ |buhdcp = 174E 
+ |hanocp = 172E 
+ |gonmcp = 11D27 
+ |hangcp = 3139
+ |tochimg = Tocharian letter la.gif |toch2img = Tocharian letter là.gif
+ |kawiimg = Aksara Kawi la.svg
+ | armiimg = Lamed.svg
+ | plavaimg = Pallava La.svg 
+ | ranjimg = Ranjana l.svg
+|batk2cp=1BDF}}
+

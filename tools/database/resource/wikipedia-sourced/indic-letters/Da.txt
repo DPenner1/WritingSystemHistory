@@ -1,0 +1,76 @@
+==Comparison of Da==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Da, are related as well.
+{{Indic glyph |letname = Da
+ |devacp = 0926 |devaimg = Devanagari द.svg
+ |bengcp = 09A6 |bengimg = Bengali Letter Da.svg
+ |telucp = 0C26 
+ |oryacp = 0B26 
+ |kndacp = 0CA6 
+ |mlymcp = 0D26 
+ |gujrcp = 0AA6 
+ |gurucp = 0A26 
+ 
+ |brahcp = 11024 |ashokaimg = Brahmi d.svg
+ |kushanaimg = Gupta ashoka d.svg
+ |guptaimg = Gupta allahabad d.svg
+ |kharcp = 10A21 
+ |siddcp = 1159F |siddimg = Siddham d.svg
+ |grancp = 11326 
+ |tibtcp = 0F51 |tibtimg = Tibetan Da.svg
+ |phagcp = A84A 
+ |zanbcp = 11A1B 
+ |newacp = 11421 
+ |bhkscp = 11C1F 
+ |shrdcp = 111A2 
+ |mymrcp = 1012 
+ |lanacp = 1A34 
+ |talucp = 1991 
+ |khmrcp = 1791 
+ |laoocp = 0E97 
+ |thaicp = 0E17 
+ |tavtcp = AA92 
+ |tavt2cp = AA93 
+ |sinhcp = 0DAF 
+ |kalicp = A918 
+ |cakmcp = 11118 
+ |ahomcp = 11713 
+ |diakcp = 1191D 
+ |saurcp = A8A3 
+ |chamcp = AA15 
+ |modicp = 1161F 
+ |nandcp = 119BF 
+ |soyocp = 11A6D 
+ |sylocp = A816 
+ |gongcp = 11D78 
+ |kthiimg = Kaithi Da.svg | kthicp = 110A0 
+ |tirhcp = 114A0 
+ |lepccp = 1C0C 
+ |limbcp = 190D 
+ |mteicp = ABD7 
+ |marccp = 11C7C 
+ |takrcp = 1169B 
+ |dogrcp = 1181B 
+ |khojcp = 1121B 
+ |sindcp = 112CF 
+ |mahjcp = 11165 
+ |multcp = 11298 
+ |balicp = 1B24 
+ |batkcp = 1BD1 
+ |bugicp = 1A09 
+ |javacp = A9A2 
+ |makacp = 11EE7 
+ |rjngcp = A934 
+ |sundcp = 1B93 
+ |tglgcp = 1707 
+ |tagbcp = 1767 
+ |buhdcp = 1747 
+ |hanocp = 1727 
+ |gonmcp = 11D1D 
+ |hangcp = 3137
+ |tochimg = Tocharian letter da.gif 
+ |kawiimg = Aksara Kawi da.svg
+ | armiimg = Daleth.svg
+ | plavaimg = Pallava Da.svg 
+ | ranjimg = Ranjana d.svg
+}}
+

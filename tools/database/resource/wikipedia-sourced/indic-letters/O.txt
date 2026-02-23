@@ -1,0 +1,72 @@
+==Comparison of O==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including O, are related as well.
+{{Indic glyph |letname = O
+ |devacp = 0913 |devaimg = Devanagari ओ.svg
+ |bengcp = 0993 |bengimg = Bengali Letter O.svg
+ |tamlcp = 0B93 |tamlimg = Tamil-alphabet-ஒஒ.svg
+ |telucp = 0C12 
+ |oryacp = 0B13 
+ |kndacp = 0C93 
+ |mlymcp = 0D13 
+ |gujrcp = 0A93 
+ |gurucp = 0A13 
+ 
+ |brahcp = 11011 |ashokaimg = Brahmi o.svg
+ |kushanaimg = Gupta ashoka o.svg
+ |guptaimg = Gupta allahabad o.svg
+ |kharcp = 10A06 
+ |siddcp = 1158C |siddimg = Siddham o.svg
+ |grancp = 11313 
+ |tibtcp = 0768;&#x0F7C |tibtimg = Tibetan O.svg
+ |phagcp = A861 
+ |zanbcp = 11A06 
+ |newacp = 1140C 
+ |bhkscp = 11C0C 
+ |shrdcp = 1118F 
+ |mymrcp = 1029 
+ |lanacp = 1A52 
+ |lana2cp = 1A70 
+ |talucp = 19B7 
+ |khmrcp = 17B1 
+ |khmr2cp = 17C4 
+ |laoocp = 0EC2 
+ |thaicp = 0E42 
+ |tavtcp = AAB6 
+ |sinhcp = 0D95 
+ |kalicp = A92A 
+ |cakmcp = 1112E 
+ |talecp = 1969 
+ |ahomcp = 11728 
+ |diakcp = 11909 
+ |saurcp = A890 
+ |chamcp = AA05 
+ |modicp = 1160C 
+ |nandcp = 119AC 
+ |soyocp = 11A55 
+ |sylocp = A805 
+ |kthiimg = Kaithi O.svg | kthicp = 1108B 
+ |tirhcp = 1148D 
+ |lepccp = 1C28 
+ |limbcp = 1928 
+ |mteicp = AAE1 
+ |marccp = 11CB4 
+ |takrcp = 11688 
+ |dogrcp = 11808 
+ |khojcp = 11206 
+ |sindcp = 112B8 
+ |mahjcp = 11154 
+ |balicp = 1B11 
+ |batkcp = 1BEC 
+ |bugicp = 1A1A 
+ |javacp = A98E 
+ |makacp = 11EF6 
+ |rjngcp = A94B 
+ |sundcp = 1B87
+ |tglgcp = 1702
+ |hanocp = 1722 
+ |gonmcp = 11D09 
+ | armiimg = Waw.svg
+ | plavaimg = Pallava O.svg 
+ | ranjimg = Ranjana o.svg
+}}
+

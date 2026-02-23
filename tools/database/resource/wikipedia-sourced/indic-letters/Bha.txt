@@ -1,0 +1,60 @@
+==Comparison of Bha==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Bha, are related as well.
+{{Indic glyph |letname = Bha
+ |devacp = 092D |devaimg = Devanagari भ.svg
+ |bengcp = 09AD |bengimg = Bengali Letter Bha.svg
+ |telucp = 0C2D 
+ |oryacp = 0B2D 
+ |kndacp = 0CAD 
+ |mlymcp = 0D2D 
+ |gujrcp = 0AAD 
+ |gurucp = 0A2D 
+ 
+ |brahcp = 1102A |ashokaimg = Brahmi bh.svg
+ |kushanaimg = Gupta ashoka bh.svg
+ |guptaimg = Gupta allahabad bh.svg
+ |kharcp = 10A27 
+ |siddcp = 115A5 |siddimg = Siddham bh.svg
+ |grancp = 1132D 
+ |zanbcp = 11A21 
+ |newacp = 11428 
+ |bhkscp = 11C25 
+ |shrdcp = 111A8 
+ |mymrcp = 1018
+ |thaicp = 0E20 
+ |laoocp = 0EA0
+ |khmrcp = 1797
+ |talucp = 1998
+ |lanacp = 1A3D
+ |sinhcp = 0DB7 
+ |cakmcp = 1111E 
+ |ahomcp = 11718 
+ |diakcp = 11923 
+ |saurcp = A8A9 
+ |chamcp = AA1E 
+ |modicp = 11625 
+ |nandcp = 119C5 
+ |soyocp = 11A73 
+ |sylocp = A81C 
+ |gongcp = 11D6F 
+ |kthiimg = Kaithi Bha.svg | kthicp = 110A6 
+ |tirhcp = 114A6 
+ |limbcp = 1913 
+ |mteicp = ABDA 
+ |takrcp = 116A1 
+ |dogrcp = 11821 
+ |khojcp = 11223 
+ |sindcp = 112D6 
+ |mahjcp = 1116B 
+ |multcp = 1129F 
+ |balicp = 1B2A 
+ |javacp = A9A8 
+ |sundcp = 1BBD
+ |gonmcp = 11D23 
+ |tochimg = Tocharian letter bha.gif 
+ |kawiimg = Aksara Kawi bha.svg
+ | armiimg = Beth.svg
+ | plavaimg = Pallava Bha.svg 
+ | ranjimg = Ranjana b.svg
+}}
+

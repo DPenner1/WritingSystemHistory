@@ -1,0 +1,17 @@
+==Comparison of Ka glyphs==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ka, are related as well.
+{{Indic glyph|letname = Ka |devacp = 0915 |devaimg = Devanagari k.svg |bengcp = 0995 |bengimg = Bengali Letter Ka.svg |gurucp = 0A15 |gujrcp = 0A95 |oryacp = 0B15 |tamlcp = 0B95 |tamlimg = Tamil-alphabet-கக.svg |telucp = 0C15 |kndacp = 0C95 |mlymcp = 0D15 |sinhcp = 0D9A |thaicp = 0E01 
+ |laoocp = 0E81
+ |laoo2cp = 0EDE
+|tibtcp = 0F40 |tibtimg = Tibetan Ka.svg |mymrcp = 1000 
+|tglgcp = 1703 |hanocp = 1723 |buhdcp = 1743 |tagbcp = 1763 |khmrcp = 1780 |limbcp = 1901 |limbimg = Лимбу буква KO. Limbu Letter KO.png |limbletname = Limbu 'Ka' |talecp = 1950 |talucp = 1982 |bugicp = 1A00 |lanacp = 1A20 |balicp = 1B13 |sundcp = 1B8A |lepccp = 1C00 
+|sylocp = A807 |phagcp = A840 |saurcp = A892 |kalicp = A90A |rjngcp = A930 |javacp = A98F |chamcp = AA06 |tavtcp = AA80 |tavt2cp = AA81 |mteicp = ABC0 
+|kharcp = 10A10 |brahcp = 11013 |ashokaimg = Brahmi k.svg |kushanaimg = Gupta ashoka k.svg |guptaimg = Gupta allahabad k.svg |kthiimg = Kaithi Ka.svg | kthicp = 1108D |soracp = 110DF |cakmcp = 11107 |mahjcp = 11155 |shrdcp = 11191 |khojcp = 11208 |multcp = 11284 |sindcp = 112BA |grancp = 11315 |newacp = 1140E |tirhcp = 1148F |siddcp = 1158E |siddimg = Siddham k.svg |siddletname = Siddhaṃ 'Ka' |modicp = 1160E |takrcp = 1168A |ahomcp = 11700 |dogrcp = 1180A |diakcp = 1190C |nandcp = 119AE |zanbcp = 11A0B |soyocp = 11A5C |pauccp = 11AC1 |bhkscp = 11C0E |bhksimg=BHAIKSUKI LETTER KA.svg |marccp = 11C72 |marcalt = 11C92 |gonmcp = 11D0C |gongcp = 11D71 |makacp = 11EE0
+|tochimg = Tocharian letter ka.gif
+|toch2img = Tocharian letter kà.gif
+|kawiimg = Aksara Kawi ka.svg
+|armiimg = kaph.svg
+|plavaimg = Pallava Ka.svg
+|ranjimg = Ranjana k.svg
+}}
+

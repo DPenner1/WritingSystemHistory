@@ -1,0 +1,60 @@
+==Comparison of Dha==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Dha, are related as well.
+{{Indic glyph |letname = Dha
+ |devacp = 0927 |devaimg = Devanagari ध.svg
+ |bengcp = 09A7 |bengimg = Bengali Letter Dha.svg
+ |telucp = 0C27
+ |oryacp = 0B27
+ |kndacp = 0CA7
+ |mlymcp = 0D27
+ |gujrcp = 0AA7
+ |gurucp = 0A27
+
+|brahcp = 11025 |ashokaimg = Brahmi dh.svg
+ |kushanaimg = Gupta ashoka dh.svg
+ |guptaimg = Gupta allahabad dh.svg
+ |kharcp = 10A22
+ |siddcp = 115A0 |siddimg = Siddham dh.svg
+ |grancp = 11327
+ |tibtcp = 0F52
+ |zanbcp = 11A1C
+ |newacp = 11422
+ |bhkscp = 11C20
+ |shrdcp = 111A3
+ |mymrcp = 1013
+ |khmrcp = 1792 
+ |thaicp = 0E18 
+ |laoocp = 0E98
+ |lanacp = 1A35
+ |talucp = 1992 
+ |sinhcp = 0DB0
+ |cakmcp = 11119
+ |ahomcp = 11714
+ |diakcp = 1191E
+ |saurcp = A8A4
+ |chamcp = AA16
+ |modicp = 11620
+ |nandcp = 119C0
+ |soyocp = 11A6E
+ |sylocp = A817
+ |gongcp = 11D79
+ |kthiimg = Kaithi Dha.svg | kthicp = 110A1
+ |tirhcp = 114A1
+ |limbcp = 190E
+ |mteicp = ABD9
+ |takrcp = 1169C
+ |dogrcp = 1181C
+ |khojcp = 1121D
+ |sindcp = 112D0
+ |mahjcp = 11166
+ |multcp = 11299
+ |balicp = 1B25
+ |javacp = A9A3
+ |gonmcp = 11D1E
+ |tochimg = Tocharian letter dha.gif
+ |kawiimg = Aksara Kawi dha.svg
+ | armiimg = Daleth.svg
+ | plavaimg = Pallava Dha.svg
+ | ranjimg = Ranjana dh.svg
+}}
+

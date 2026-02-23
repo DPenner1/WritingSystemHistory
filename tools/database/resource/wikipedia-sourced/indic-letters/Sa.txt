@@ -1,0 +1,78 @@
+==Comparison of Sa==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Sa, are related as well.
+{{Indic glyph |letname = Sa
+ |devacp = 0938 |devaimg = Devanagari स.svg
+ |bengcp = 09B8 |bengimg = Bengali Letter Sa.svg
+ |tamlcp = 0BB8 
+ |telucp = 0C38 
+ |oryacp = 0B38 
+ |kndacp = 0CB8 
+ |mlymcp = 0D38 
+ |gujrcp = 0AB8 
+ |gurucp = 0A38 
+ 
+ |brahcp = 11032 |ashokaimg = Brahmi s.svg
+ |kushanaimg = Gupta ashoka s.svg
+ |guptaimg = Gupta allahabad s.svg
+ |kharcp = 10A2F 
+ |siddcp = 115AD |siddimg = Siddham s.svg
+ |grancp = 11338 
+ |tibtcp = 0F66 |tibtimg = Tibetan Sa.svg
+ |phagcp = A85B 
+ |zanbcp = 11A30 
+ |newacp = 11433 
+ |bhkscp = 11C2D 
+ |shrdcp = 111B1 
+ |mymrcp = 101E 
+ |lanacp = 1A48 
+ |talucp = 1989 
+ |khmrcp = 179F 
+ |laoocp = 0EAA 
+ |thaicp = 0E2A 
+ |tavtcp = AA8E 
+ |tavt2cp = AA8F 
+ |sinhcp = 0DC3 
+ |kalicp = A90E 
+ |cakmcp = 11125 
+ |talecp = 1954 
+ |ahomcp = 1170F 
+ |diakcp = 1192C 
+ |saurcp = A8B1 
+ |chamcp = AA27 
+ |modicp = 1162D 
+ |nandcp = 119CD 
+ |soyocp = 11A81 
+ |sylocp = A821 
+ |gongcp = 11D89 
+ |kthicp = 110AE 
+ |tirhcp = 114AE 
+ |lepccp = 1C20 
+ |limbcp = 191B 
+ |mteicp = ABC1 
+ |marccp = 11C8D 
+ |takrcp = 116A8 
+ |dogrcp = 11829 
+ |khojcp = 11229 
+ |sindcp = 112DD 
+ |mahjcp = 11170 
+ |multcp = 112A5 
+ |balicp = 1B32 
+ |batkcp = 1BD8 
+ |bugicp = 1A14 
+ |javacp = A9B1 
+ |makacp = 11EF0 
+ |rjngcp = A93C 
+ |sundcp = 1B9E 
+ |tglgcp = 1710 
+ |tagbcp = 1770 
+ |buhdcp = 1750 
+ |hanocp = 1730 
+ |gonmcp = 11D2B 
+ |canscp = 14ed 
+ |tochimg = Tocharian letter sa.gif |toch2img = Tocharian letter sà.gif
+ |kawiimg = Aksara Kawi sa.svg
+ | armiimg = Samekh.svg
+ | plavaimg = Pallava Sa.svg 
+ | ranjimg = Ranjana s.svg
+}}
+

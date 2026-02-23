@@ -1,0 +1,80 @@
+==Comparison of Ma==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ma, are related as well.
+{{Indic glyph |letname = Ma
+ |devacp = 092E |devaimg = Devanagari म.svg
+ |bengcp = 09AE |bengimg = Bengali Letter Ma.svg
+ |tamlcp = 0BAE |tamlimg = Tamil-alphabet-மம.svg
+ |telucp = 0C2E 
+ |oryacp = 0B2E 
+ |kndacp = 0CAE 
+ |mlymcp = 0D2E 
+ |gujrcp = 0AAE 
+ |gurucp = 0A2E 
+ 
+ |brahcp = 1102B |ashokaimg = Brahmi m.svg
+ |kushanaimg = Gupta ashoka m.svg
+ |guptaimg = Gupta allahabad m.svg
+ |kharcp = 10A28 
+ |siddcp = 115A6 |siddimg = Siddham m.svg
+ |grancp = 1132E 
+ |tibtcp = 0F58 |tibtimg = Tibetan Ma.svg
+ |phagcp = A84F 
+ |zanbcp = 11A22 
+ |newacp = 11429 
+ |bhkscp = 11C26 
+ |shrdcp = 111A9 
+ |mymrcp = 1019 
+ |lanacp = 1A3E 
+ |talucp = 1999 
+ |talu2cp = 1996 
+ |khmrcp = 1798 
+ |laoocp = 0EA1 
+ |laoo2cp = 0EDD
+ |thaicp = 0E21 
+ |tavtcp = AAA3 
+ |tavt2cp = AAA2 
+ |sinhcp = 0DB8 
+ |kalicp = A917 
+ |cakmcp = 1111F 
+ |talecp = 195B 
+ |ahomcp = 11709 
+ |diakcp = 11924 
+ |saurcp = A8AA 
+ |chamcp = AA1F 
+ |modicp = 11626 
+ |nandcp = 119C6 
+ |soyocp = 11A74 
+ |sylocp = A81D 
+ |gongcp = 11D70 
+ |kthiimg = Kaithi Ma.svg | kthicp = 110A7 
+ |tirhcp = 114A7 
+ |lepccp = 1C15 
+ |limbcp = 1914 
+ |mteicp = ABC3 
+ |marccp = 11C81 
+ |takrcp = 116A2 
+ |dogrcp = 11822 
+ |khojcp = 11224 
+ |sindcp = 112D7 
+ |mahjcp = 1116C 
+ |multcp = 112A0 
+ |balicp = 1B2B 
+ |batkcp = 1BD4 
+ |bugicp = 1A06 
+ |javacp = A9A9 
+ |makacp = 11EE5 
+ |rjngcp = A938 
+ |sundcp = 1B99 
+ |tglgcp = 170B 
+ |tagbcp = 176B 
+ |buhdcp = 174B 
+ |hanocp = 172B 
+ |gonmcp = 11D24 
+ |canscp = 14a3 
+ |tochimg = Tocharian letter ma.gif |toch2img = Tocharian letter mà.gif
+ |kawiimg = Aksara Kawi ma.svg
+ | armiimg = Mem.svg
+ | plavaimg = Pallava Ma.svg 
+ | ranjimg = Ranjana m.svg
+}}
+

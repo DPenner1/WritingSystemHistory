@@ -1,0 +1,65 @@
+==Comparison of Cha==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Cha, are related as well.
+{{Indic glyph |letname = Cha
+ |devacp = 091B |devaimg = Devanagari छ.svg
+ |bengcp = 099B |bengimg = Bengali Letter Cha.svg
+ |telucp = 0C1B 
+ |oryacp = 0B1B 
+ |kndacp = 0C9B 
+ |mlymcp = 0D1B 
+ |gujrcp = 0A9B 
+ |gurucp = 0A1B 
+ 
+ |brahcp = 11019 |ashokaimg = Brahmi ch.svg
+ |kushanaimg = Gupta ashoka ch.svg
+ |guptaimg = Gupta allahabad ch.svg
+ |kharcp = 10A16 
+ |siddcp = 11594 |siddimg = Siddham ch.svg
+ |grancp = 1131B 
+ |tibtcp = 0F46 |tibtimg = Tibetan Cha.svg
+ |phagcp = A845 
+ |zanbcp = 11A11 
+ |newacp = 11415 
+ |bhkscp = 11C14 
+ |shrdcp = 11197 
+ |mymrcp = 1006 
+ |lanacp = 1A28 
+ |talucp = 1989 
+ |khmrcp = 1786 
+ |thaicp = 0E09 
+ |laoocp = 0E89
+ |tavtcp = AA8C 
+ |tavt2cp = AA8D 
+ |sinhcp = 0DA1 
+ |cakmcp = 1110D 
+ |talecp = 1961 
+ |ahomcp = 1170B 
+ |diakcp = 11912 
+ |saurcp = A898 
+ |chamcp = AA0D 
+ |modicp = 11614 
+ |nandcp = 119B4 
+ |soyocp = 11A62 
+ |sylocp = A80D 
+ |gongcp = 11D7C 
+ |kthiimg = Kaithi Cha.svg | kthicp = 11093 
+ |tirhcp = 11495 
+ |lepccp = 1C07 
+ |limbcp = 1907 
+ |marccp = 11C77 
+ |takrcp = 11690 
+ |dogrcp = 11810 
+ |khojcp = 1120F 
+ |sindcp = 112C1 
+ |mahjcp = 1115A 
+ |multcp = 1128B 
+ |balicp = 1B19 
+ |javacp = A996 
+ |gonmcp = 11D12 
+ |tochimg = Tocharian letter cha.gif 
+ |kawiimg = Aksara Kawi cha.svg
+ | armiimg = Qoph.svg
+ | plavaimg = Pallava Cha.svg 
+ | ranjimg = Ranjana ch.svg
+}}
+

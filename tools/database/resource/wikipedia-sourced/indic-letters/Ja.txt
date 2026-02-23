@@ -1,0 +1,75 @@
+==Comparison of Ja==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ja, are related as well.
+{{Indic glyph |letname = Ja
+ |devacp = 091C |devaimg = Devanagari ज.svg
+ |bengcp = 099C |bengimg = Bengali Letter Ja.svg
+ |tamlcp = 0B9C 
+ |telucp = 0C1C 
+ |oryacp = 0B1C 
+ |kndacp = 0C9C 
+ |mlymcp = 0D1C 
+ |gujrcp = 0A9C 
+ |gurucp = 0A1C 
+ 
+ |brahcp = 1101A |ashokaimg = Brahmi j.svg
+ |kushanaimg = Gupta ashoka j.svg
+ |guptaimg = Gupta allahabad j.svg
+ |kharcp = 10A17 
+ |siddcp = 11595 |siddimg = Siddham j.svg
+ |grancp = 1131C 
+ |tibtcp = 0F47 |tibtimg = Tibetan Ja.svg
+ |phagcp = A846 
+ |zanbcp = 11A12 
+ |newacp = 11416 
+ |bhkscp = 11C15 
+ |shrdcp = 11198 
+ |mymrcp = 1007 
+ |lanacp  = 1A29 | lanaimg  = Lanna letter ja.svg 
+ |lana2cp = 1A2A | lana2img = Lanna letter za.svg
+ |talucp = 198B 
+ |talu2cp = 198C 
+ |khmrcp = 1787 
+ |thaicp = 0E0A 
+ |thai2cp = 0E0B 
+ |laoocp = 0E8A 
+ |laoo2cp = 0E8C 
+ |sinhcp = 0DA2 
+ |cakmcp = 1110E 
+ |talecp = 1957 
+ |ahomcp = 1170A 
+ |diakcp = 11913 
+ |saurcp = A899 
+ |chamcp = AA0E 
+ |modicp = 11615 
+ |nandcp = 119B5 
+ |soyocp = 11A63 
+ |sylocp = A80E 
+ |gongcp = 11D80 
+ |kthiimg = Kaithi Ja.svg | kthicp = 11094 
+ |tirhcp = 11496 
+ |lepccp = 1C08 
+ |limbcp = 1908 
+ |mteicp = ABD6 
+ |marccp = 11C78 
+ |takrcp = 11691 
+ |dogrcp = 11811 
+ |khojcp = 11210 
+ |sindcp = 112C2 
+ |mahjcp = 1115B 
+ |multcp = 1128C 
+ |balicp = 1B1A 
+ |batkcp = 1BD0 
+ |bugicp = 1A0D 
+ |javacp = A997 
+ |makacp = 11EEA 
+ |rjngcp = A93A 
+ |sundcp = 1B8F 
+ |gonmcp = 11D13 
+ |canscp = 1489 
+ |tochimg = Tocharian letter ja.gif 
+ |kawiimg = Aksara Kawi ja.svg
+ | armiimg = Zayin.svg
+ | plavaimg = Pallava Ja.svg 
+ | ranjimg = Ranjana j.svg
+}}
+

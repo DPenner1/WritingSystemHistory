@@ -1,0 +1,76 @@
+==Comparison of Ha==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ha, are related as well.
+{{Indic glyph |letname = Ha
+ |devacp = 0939 |devaimg = Devanagari h.svg
+ |bengcp = 09B9 |bengimg = Bengali Letter Ha.svg
+ |tamlcp = 0BB9 
+ |telucp = 0C39 
+ |oryacp = 0B39 
+ |kndacp = 0CB9 
+ |mlymcp = 0D39 
+ |gujrcp = 0AB9 
+ |gurucp = 0A39 
+ 
+ |brahcp = 11033 |ashokaimg = Brahmi h.svg
+ |kushanaimg = Gupta ashoka h.svg
+ |guptaimg = Gupta allahabad h.svg
+ |kharcp = 10A31 
+ |siddcp = 115AE |siddimg = Siddham h.svg
+ |grancp = 11339 
+ |tibtcp = 0F67 |tibtimg = Tibetan Ha.svg
+ |phagcp = A85C 
+ |zanbcp = 11A31 
+ |newacp = 11434 
+ |bhkscp = 11C2E 
+ |shrdcp = 111B2 
+ |mymrcp = 101F 
+ |lanacp = 1A49 
+ |lana2cp = 1A4C 
+ |talucp = 19A0 
+ |khmrcp = 17A0 
+ |laoocp = 0EAB 
+ |thaicp = 0E2B 
+ |tavtcp = AAAC 
+ |tavt2cp = AAAD 
+ |sinhcp = 0DC4 
+ |kalicp = A91F 
+ |cakmcp = 11126 
+ |talecp = 195E 
+ |ahomcp = 11711 
+ |diakcp = 1192D 
+ |saurcp = A8B2 
+ |chamcp = AA28 
+ |modicp = 1162E 
+ |nandcp = 119CE 
+ |soyocp = 11A82 
+ |sylocp = A822 
+ |gongcp = 11D87 
+ |kthiimg = Kaithi Ha.svg | kthicp = 110AF 
+ |tirhcp = 114AF 
+ |lepccp = 1C1D 
+ |limbcp = 191C 
+ |mteicp = ABCD 
+ |marccp = 11C8E 
+ |takrcp = 116A9 
+ |dogrcp = 1182A 
+ |khojcp = 1122A 
+ |sindcp = 112DE 
+ |mahjcp = 11171 
+ |multcp = 112A6 
+ |balicp = 1B33 
+ |batkcp = 1BC2 
+ |bugicp = 1A16 
+ |javacp = A9B2 
+ |rjngcp = A941 
+ |sundcp = 1BA0 
+ |tglgcp = 1711 
+ |buhdcp = 1751 
+ |hanocp = 1731 
+ |gonmcp = 11D2C 
+ |tochimg = Tocharian letter ha.gif 
+ |kawiimg = Aksara Kawi ha.svg
+ | armiimg = He0.svg
+ | plavaimg = Pallava Ha.svg 
+ | ranjimg = Ranjana h.svg
+}}
+

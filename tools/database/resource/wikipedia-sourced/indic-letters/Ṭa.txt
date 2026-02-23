@@ -1,0 +1,57 @@
+==Comparison of Ṭa==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ṭa, are related as well.
+{{Indic glyph |letname = Ṭa
+ |devacp = 091F |devaimg = Devanagari ट.svg
+ |bengcp = 099F |bengimg = Bengali Letter Tta.svg
+ |tamlcp = 0B9F |tamlimg = Tamil-alphabet-டட.svg
+ |telucp = 0C1F 
+ |oryacp = 0B1F 
+ |kndacp = 0C9F 
+ |mlymcp = 0D1F 
+ |gujrcp = 0A9F 
+ |gurucp = 0A1F 
+ 
+ |brahcp = 1101D |ashokaimg = Brahmi tt.svg
+ |kushanaimg = Gupta ashoka tt.svg
+ |guptaimg = Gupta ashoka tt.svg
+ |kharcp = 10A1A |kharimg = Kharosthi tt.svg
+ |siddcp = 11598 |siddimg = Siddham tt.svg
+ |grancp = 1131F 
+ |tibtcp = 0F4A 
+ |zanbcp = 11A14 
+ |newacp = 1141A 
+ |bhkscp = 11C18 
+ |shrdcp = 1119B 
+ |mymrcp = 100B 
+ |lanacp = 1A2D 
+ |khmrcp = 178A 
+ |thaicp = 0E0F 
+ |thai2cp = 0E0E
+ |laoocp = 0E8F
+ |sinhcp = 0DA7 
+ |cakmcp = 11111 
+ |diakcp = 11916 
+ |saurcp = A89C 
+ |modicp = 11618 
+ |nandcp = 119B8 
+ |soyocp = 11A66 
+ |sylocp = A810 
+ |gongcp = 11D7D 
+ |kthiimg = Kaithi Tta.svg | kthicp = 11097 
+ |tirhcp = 11499 
+ |takrcp = 11694 
+ |dogrcp = 11814 
+ |sindcp = 112C6 
+ |mahjcp = 1115E 
+ |multcp = 11290 
+ |balicp = 1B1D 
+ |javacp = A99B 
+ |gonmcp = 11D16 
+ |canscp = 144c 
+ |tochimg = Tocharian letter tta.gif 
+ |kawiimg = Aksara Kawi tta.svg
+ | armiimg = Teth.svg
+ | plavaimg = Pallava Tta.svg 
+ | ranjimg = Ranjana tt.svg
+}}
+

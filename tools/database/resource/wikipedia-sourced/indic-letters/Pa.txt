@@ -1,0 +1,82 @@
+==Comparison of Pa==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Pa, are related as well.
+{{Indic glyph |letname = Pa
+ |devacp = 092A |devaimg = Devanagari प.svg
+ |bengcp = 09AA |bengimg = Bengali Letter Pa.svg
+ |tamlcp = 0BAA |tamlimg = Tamil-alphabet-பப.svg
+ |telucp = 0C2A 
+ |oryacp = 0B2A 
+ |kndacp = 0CAA 
+ |mlymcp = 0D2A 
+ |gujrcp = 0AAA 
+ |gurucp = 0A2A 
+ 
+ |brahcp = 11027 |ashokaimg = Brahmi p.svg
+ |kushanaimg = Gupta ashoka p.svg
+ |guptaimg = Gupta allahabad p.svg
+ |kharcp = 10A24 
+ |siddcp = 115A2 |siddimg = Siddham p.svg
+ |grancp = 1132A 
+ |tibtcp = 0F54 |tibtimg = Tibetan Pa.svg
+ |phagcp = A84C 
+ |zanbcp = 11A1E 
+ |newacp = 11425 
+ |bhkscp = 11C22 
+ |shrdcp = 111A5 
+ |mymrcp = 1015 
+ |lanacp = 1A37 
+ |lana2cp = 1A38 
+ |talucp = 19A2 
+ |talu2cp = 1994
+ |khmrcp = 1794 
+ |laoocp = 0E9A 
+ |laoo2cp = 0E9B 
+ |thaicp = 0E1A 
+ |thai2cp = 0E1B 
+ |tavtcp = AA9C 
+ |tavt2cp = AA9D 
+ |sinhcp = 0DB4 
+ |kalicp = A915 
+ |cakmcp = 1111B 
+ |talecp = 1959 
+ |ahomcp = 11706 
+ |diakcp = 11920 
+ |saurcp = A8A6 
+ |chamcp = AA1A 
+ |modicp = 11622 
+ |nandcp = 119C2 
+ |soyocp = 11A70 
+ |sylocp = A819 
+ |gongcp = 11D85 
+ |kthiimg = Kaithi Pa.svg | kthicp = 110A3 
+ |tirhcp = 114A3 
+ |lepccp = 1C0E 
+ |limbcp = 1910 
+ |mteicp = ABC4 
+ |marccp = 11C7E 
+ |takrcp = 1169E 
+ |dogrcp = 1181E 
+ |khojcp = 1121F 
+ |sindcp = 112D2 
+ |mahjcp = 11168 
+ |multcp = 1129B 
+ |balicp = 1B27 
+ |batkcp = 1BC7 
+ |bugicp = 1A04 
+ |javacp = A9A5 
+ |makacp = 11EE3 
+ |rjngcp = A936 
+ |sundcp = 1B95 
+ |tglgcp = 1709 
+ |tagbcp = 1769 
+ |buhdcp = 1749 
+ |hanocp = 1729 
+ |gonmcp = 11D20 
+ |canscp = 142f 
+ |tochimg = Tocharian letter pa.gif |toch2img = Tocharian letter pà.gif
+ |kawiimg = Aksara Kawi pa.svg
+ | armiimg = Pe0.svg
+ | plavaimg = Pallava Pa.svg 
+ | ranjimg = Ranjana p.svg
+}}
+

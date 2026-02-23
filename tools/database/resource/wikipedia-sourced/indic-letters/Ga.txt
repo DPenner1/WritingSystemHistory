@@ -1,0 +1,80 @@
+==Comparison of Ga==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ga, are related as well.
+{{Indic glyph |letname = Ga
+ |devacp = 0917 |devaimg = Devanagari ग.svg
+ |bengcp = 0997 |bengimg = Bengali Letter Ga.svg
+ |telucp = 0C17 
+ |oryacp = 0B17 
+ |kndacp = 0C97 
+ |mlymcp = 0D17 
+ |gujrcp = 0A97 
+ |gurucp = 0A17 
+ 
+ |brahcp = 11015 |ashokaimg = Brahmi g.svg
+ |kushanaimg = Gupta ashoka g.svg
+ |guptaimg = Gupta allahabad g.svg
+ |kharcp = 10A12 
+ |siddcp = 11590 |siddimg = Siddham g.svg
+ |grancp = 11317 
+ |tibtcp = 0F42 |tibtimg = Tibetan Ga.svg
+ |phagcp = A842 
+ |zanbcp = 11A0D 
+ |newacp = 11410 
+ |bhkscp = 11C10 
+ |shrdcp = 11193 
+ |mymrcp = 1002 
+ |lanacp = 1A23 
+ |lana2cp = 1A24 
+ |talucp = 1985 
+ |talu2cp = 1986 
+ |khmrcp = 1782 
+ |laoocp = 0E84 
+ |thaicp = 0E04 
+ |thai2cp = 0E05 
+ |tavtcp = AA86 
+ |tavt2cp = AA87 
+ |sinhcp = 0D9C 
+ |kalicp = A90C 
+ |cakmcp = 11109 
+ |ahomcp = 11715 
+ |diakcp = 1190E 
+ |saurcp = A894 
+ |chamcp = AA08 
+ |modicp = 11610 
+ |nandcp = 119B0 
+ |soyocp = 11A5E 
+ |sylocp = A809 
+ |gongcp = 11D76 
+ |kthiimg = Kaithi Ga.svg | kthicp = 1108F 
+ |tirhcp = 11491 
+ |lepccp = 1C03 
+ |limbcp = 1903 
+ |mteicp = ABD2 
+ |marccp = 11C74 
+ |takrcp = 1168C 
+ |dogrcp = 1180C 
+ |khojcp = 1120A 
+ |sindcp = 112BC 
+ |mahjcp = 11157 
+ |multcp = 11286 
+ |balicp = 1B15 
+ |batkcp = 1BCE 
+ |bugicp = 1A01 
+ |javacp = A992 
+ |makacp = 11EE1 
+ |rjngcp = A931 
+ |sundcp = 1B8C 
+ |tglgcp = 1704 
+ |tagbcp = 1764 
+ |buhdcp = 1744 
+ |hanocp = 1724 
+ |gonmcp = 11D0E 
+ |canscp = 146B 
+ |tochimg = Tocharian letter ga.gif 
+ |kawiimg = Aksara Kawi ga.svg
+ | armiimg = Gimel.svg
+ | plavaimg = Pallava Ga.svg 
+ | ranjimg = Ranjana g.svg
+ | hangcp = 3131
+|batk2cp=1BCF}}
+

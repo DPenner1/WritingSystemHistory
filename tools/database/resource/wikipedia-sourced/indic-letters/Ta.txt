@@ -1,0 +1,76 @@
+==Comparison of Ta==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ta, are related as well.
+{{Indic glyph |letname = Ta
+ |devacp = 0924 |devaimg = Devanagari त.svg
+ |bengcp = 09A4 |bengimg = Bengali Letter Ta.svg
+ |tamlcp = 0BA4 |tamlimg = Tamil-alphabet-தத.svg
+ |telucp = 0C24 
+ |oryacp = 0B24 
+ |kndacp = 0CA4 
+ |mlymcp = 0D24 
+ |gujrcp = 0AA4 
+ |gurucp = 0A24 
+ 
+ |brahcp = 11022 |ashokaimg = Brahmi t.svg
+ |kushanaimg = Gupta ashoka t.svg
+ |guptaimg = Gupta allahabad t.svg
+ |kharcp = 10A1f 
+ |siddcp = 1159D |siddimg = Siddham t.svg
+ |grancp = 11324 
+ |tibtcp = 0F4F |tibtimg = Tibetan Ta.svg
+ |phagcp = A848 
+ |zanbcp = 11A19 
+ |newacp = 1141F 
+ |bhkscp = 11C1D 
+ |shrdcp = 11198 
+ |mymrcp = 1010 
+ |lanacp = 1A32 
+ |talucp = 198E 
+ |khmrcp = 178F 
+ |laoocp = 0E95 
+ |laoo2cp = 0E94
+ |thaicp = 0E15 
+ |thai2cp = 0E14 
+ |tavtcp = AA94 
+ |sinhcp = 0DAD 
+ |cakmcp = 11116 
+ |talecp = 1956 
+ |ahomcp = 11704 
+ |diakcp = 1191B 
+ |saurcp = A8A1 
+ |chamcp = AA13 
+ |modicp = 1161D 
+ |nandcp = 119BD 
+ |soyocp = 11A6B 
+ |sylocp = A814 
+ |gongcp = 11D73 
+ |kthiimg = Kaithi Ta.svg | kthicp = 1109E 
+ |tirhcp = 1149E 
+ |lepccp = 1C0A 
+ |limbcp = 190B |limbimg = Лимбу буква TO. Limbu Letter TO.png
+ |mteicp = ABC7 
+ |marccp = 11C7A 
+ |takrcp = 11699 
+ |dogrcp = 11819 
+ |khojcp = 11219 
+ |sindcp = 112CD 
+ |mahjcp = 11163 
+ |multcp = 11296 
+ |balicp = 1B22 
+ |bugicp = 1A08 
+ |javacp = A9A0 
+ |makacp = 11EE6 
+ |rjngcp = A933 
+ |sundcp = 1B92 
+ |tglgcp = 1706 
+ |tagbcp = 1766 
+ |buhdcp = 1746 
+ |hanocp = 1726 
+ |gonmcp = 11D1B 
+ |tochimg = Tocharian letter ta.gif |toch2img = Tocharian letter tà.gif
+ |kawiimg = Aksara Kawi ta.svg
+ | armiimg = Taw.svg
+ | plavaimg = Pallava Ta.svg 
+ | ranjimg = Ranjana t.svg
+|batkcp=1BD6|batk2cp=1BD7}}
+

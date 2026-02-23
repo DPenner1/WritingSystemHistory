@@ -1,0 +1,37 @@
+== Comparison of Ṛ ==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ṛ, are related as well.
+{{Indic glyph |letname = Ṛ (Ṛ)
+ |devacp = 090B |devaimg = Devanagari ऋ.svg
+ |bengcp = 098B |bengimg = Bengali Letter Vocalic R.svg
+ |telucp = 0C0B
+ |oryacp = 0B0B
+ |kndacp = 0C8B
+ |mlymcp = 0D0B
+ |gujrcp = 0A8B
+
+ |brahcp = 1100B |ashokaimg = Brahmi ri.svg
+ |kushanaimg = Gupta ashoka ri.svg
+ |guptaimg = Gupta allahabad ri.svg
+ |kharcp = 10A03
+ |siddcp = 11586 |siddimg = Siddham ri.svg
+ |grancp = 1130B
+ |tibtcp = 0F68;&#x0F76
+ |newacp = 11406
+ |bhkscp = 11C06
+ |shrdcp = 11189
+ |mymrcp = 1052
+ |khmrcp = 17AB
+ |sinhcp = 0D8D
+ |saurcp = A888
+ |modicp = 11606
+ |nandcp = 119A6
+ |tirhcp = 11487
+ |dogrcp = 11831
+ |balicp = 1B0B
+ |javacp = A989
+ |sundcp = 1BBB
+ |gonmcp = 11D36
+ |armiimg = Resh.svg
+ |ranjimg = Ranjana ri.svg
+}}
+

@@ -1,0 +1,51 @@
+==Comparison of Ī==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ī, are related as well.
+{{Indic glyph |letname = Ī
+ |devacp = 0908 |devaimg = Devanagari ई.svg
+ |bengcp = 0988 |bengimg = Bengali Letter Ii.svg
+ |tamlcp = 0B88 |tamlimg = Tamil-alphabet-ஈஈ.svg
+ |telucp = 0C08 
+ |oryacp = 0B08 
+ |kndacp = 0C88 
+ |mlymcp = 0D08 
+ |gujrcp = 0A88 
+ |gurucp = 0A08 
+ 
+ |brahcp = 11008 |ashokaimg = Brahmi ii.svg
+ |siddcp = 11583 |siddimg = Siddham ii.svg
+ |grancp = 11308 
+ |newacp = 11403 
+ |bhkscp = 11C03 
+ |shrdcp = 11186 
+ |tibtcp = 0F68;&#x0F71;&#x0F72
+ |mymrcp = 1024 
+ |lanacp = 1A4E 
+ |lana2cp = 1A66 
+ |khmrcp = 17A6 
+ |khmr2cp = 17B8 
+ |laoocp = 0EB5 
+ |thaicp = 0E35 
+ |sinhcp = 0D8A 
+ |cakmcp = 11129 
+ |ahomcp = 11723 
+ |diakcp = 11903 
+ |saurcp = A885 
+ |chamcp = AA2B 
+ |modicp = 11603 
+ |nandcp = 119A3 
+ |gongcp = 11D63 
+ |kthiimg = Kaithi Ii.svg | kthicp = 11086 
+ |tirhcp = 11484 
+ |mteicp = AAEB 
+ |takrcp = 11683 
+ |dogrcp = 11803 
+ |khojcp = 1122E 
+ |sindcp = 112B3 
+ |balicp = 1B08 
+ |javacp = A987 
+ |gonmcp = 11D03 
+ | armiimg = Ayin.svg
+ | plavaimg = Pallava Ii.svg 
+ | ranjimg = Ranjana ii.svg
+}}
+

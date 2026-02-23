@@ -1,0 +1,70 @@
+==Comparison of Ca==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ca, are related as well.
+{{Indic glyph |letname = Ca
+ |devacp = 091A |devaimg = Devanagari च.svg
+ |bengcp = 099A |bengimg = Bengali Letter Ca.svg
+ |tamlcp = 0B9A |tamlimg = Tamil-alphabet-சச.svg
+ |telucp = 0C1A 
+ |oryacp = 0B1A 
+ |kndacp = 0C9A 
+ |mlymcp = 0D1A 
+ |gujrcp = 0A9A 
+ |gurucp = 0A1A 
+ 
+ |brahcp = 11018 |ashokaimg = Brahmi c.svg
+ |kushanaimg = Gupta ashoka c.svg
+ |guptaimg = Gupta allahabad c.svg
+ |kharcp = 10A15 
+ |siddcp = 11593 |siddimg = Siddham c.svg
+ |grancp = 1131A 
+ |tibtcp = 0F45 |tibtimg = Tibetan Ca.svg
+ |phagcp = A844 
+ |zanbcp = 11A10 
+ |newacp = 11414 
+ |bhkscp = 11C13 
+ |shrdcp = 11196 
+ |mymrcp = 1005 
+ |lanacp = 1A27 
+ |talucp = 1988 
+ |khmrcp = 1785 
+ |laoocp = 0E88 
+ |thaicp = 0E08 
+ |tavtcp = AA8A 
+ |tavt2cp = AA8B 
+ |sinhcp = 0DA0 
+ |cakmcp = 1110C 
+ |talecp = 1953 
+ |diakcp = 11911 
+ |saurcp = A897 
+ |chamcp = AA0C 
+ |modicp = 11613 
+ |nandcp = 119B3 
+ |soyocp = 11A61 
+ |sylocp = A80C 
+ |gongcp = 11D7B 
+ |kthiimg = Kaithi Ca.svg | kthicp = 11092 
+ |tirhcp = 11494 
+ |lepccp = 1C06 
+ |limbcp = 1906 |limbimg = Лимбу буква CO. Limbu Letter CO.png
+ |mteicp = ABC6 
+ |marccp = 11C76 
+ |takrcp = 1168F 
+ |dogrcp = 1180F 
+ |khojcp = 1120E 
+ |sindcp = 112C0 
+ |mahjcp = 11159 
+ |multcp = 1128A 
+ |balicp = 1B18 
+ |batkcp = 1BE1 
+ |bugicp = 1A0C 
+ |javacp = A995 
+ |makacp = 11EE9 
+ |rjngcp = A939 
+ |sundcp = 1B8E 
+ |gonmcp = 11D11 
+ |tochimg = Tocharian letter ca.gif 
+ |kawiimg = Aksara Kawi ca.svg
+ | armiimg = Sade 1.svg
+ | plavaimg = Pallava Ca.svg 
+}}
+

@@ -1,0 +1,58 @@
+==Comparison of Ṇa==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ṇa, are related as well.
+{{Indic glyph |letname = Ṇa
+ |devacp = 0923 |devaimg = Devanagari ण.svg
+ |bengcp = 09A3 |bengimg = Bengali Letter Nna.svg
+ |tamlcp = 0BA3 |tamlimg = Tamil-alphabet-ணண.svg
+ |telucp = 0C23 
+ |oryacp = 0B23 
+ |kndacp = 0CA3 
+ |mlymcp = 0D23 
+ |gujrcp = 0AA3 
+ |gurucp = 0A23 
+ |iscii = C1 
+ 
+ |brahcp = 11021 |ashokaimg = Brahmi nn.svg
+ |kushanaimg = Gupta ashoka nn.svg
+ |guptaimg = Gupta ashoka nn.svg
+ |kharcp = 10A1E 
+ |siddcp = 1159C |siddimg = Siddham nn.svg
+ |grancp = 11323 
+ |tibtcp = 0F4E 
+ |tibtaltcp = 0F9E 
+ |phagcp = A86C 
+ |zanbcp = 11A18
+ |newacp = 1141E
+ |bhkscp = 11C1C 
+ |shrdcp = 1119F 
+ |thaicp = 0E13
+ |laoocp = 0E93
+ |lanacp = 1A31
+ |mymrcp = 100F 
+ |khmrcp = 178E 
+ |sinhcp = 0DAB 
+ |cakmcp = 11115 
+ |diakcp = 1191A 
+ |saurcp = A8A0 
+ |modicp = 1161C 
+ |nandcp = 119BC 
+ |soyocp = 11A6A 
+ |kthiimg = Kaithi Nna.svg | kthicp = 1109D 
+ |tirhcp = 1149D 
+ |marccp = 11C7E 
+ |takrcp = 11698 
+ |dogrcp = 11818 
+ |khojcp = 11218 
+ |sindcp = 112CC 
+ |mahjcp = 11162 
+ |multcp = 11294 
+ |balicp = 1B21 
+ |javacp = A99F 
+ |gonmcp = 11D1A 
+ |tochimg = Tocharian letter nna.gif 
+ |kawiimg = Aksara Kawi nna.svg
+ | armiimg = Nun.svg
+ | plavaimg = Pallava Nna.svg 
+ | ranjimg = Ranjana nn.svg
+}}
+

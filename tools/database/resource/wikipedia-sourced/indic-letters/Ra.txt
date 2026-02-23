@@ -1,0 +1,76 @@
+==Comparison of Ra==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ra, are related as well.
+{{Indic glyph |letname = Ra
+ |devacp = 0930 |devaimg = Devanagari र.svg
+ |bengcp = 09B0 |bengimg = Bengali Letter Ra.svg
+ |tamlcp = 0BB0 |tamlimg = Tamil-alphabet-ரர.svg
+ |telucp = 0C30 
+ |oryacp = 0B30 
+ |kndacp = 0CB0 
+ |mlymcp = 0D30 
+ |gujrcp = 0AB0 
+ |gurucp = 0A30 
+ 
+ |brahcp = 1102D |ashokaimg = Brahmi r.svg
+ |kushanaimg = Gupta ashoka r.svg
+ |guptaimg = Gupta allahabad r.svg
+ |kharcp = 10A2A 
+ |siddcp = 115A8 |siddimg = Siddham r.svg
+ |grancp = 11330 
+ |tibtcp = 0F62 |tibtimg = Tibetan Ra.svg
+ |phagcp = A858 
+ |zanbcp = 11A2B 
+ |newacp = 1142C 
+ |bhkscp = 11C28 
+ |shrdcp = 111AB 
+ |mymrcp = 101B 
+ |talucp = 19A3 
+ |lanacp = 1A41 
+ |khmrcp = 179A 
+ |laoocp = 0EA3 
+ |laoo2cp = 0EAE 
+ |thaicp = 0E23 
+ |tavtcp = AAA6 
+ |tavt2cp = AAA7 
+ |sinhcp = 0DBB 
+ |kalicp = A91A 
+ |cakmcp = 11122 
+ |ahomcp = 1170D 
+ |diakcp = 11927 
+ |saurcp = A8AC 
+ |chamcp = AA23 
+ |modicp = 11628 
+ |nandcp = 119C8 
+ |soyocp = 11A7C 
+ |sylocp = A81E 
+ |gongcp = 11D88 
+ |kthiimg = Kaithi Ra.svg | kthicp = 110A9 
+ |tirhcp = 114A9 
+ |lepccp = 1C1B 
+ |limbcp = 1916 
+ |mteicp = ABD4 
+ |marccp = 11C8A 
+ |takrcp = 116A4 
+ |dogrcp = 11824 
+ |khojcp = 11226 
+ |sindcp = 112D9 
+ |mahjcp = 1116D 
+ |multcp = 112A2 
+ |balicp = 1B2D 
+ |batkcp = 1BD2 
+ |bugicp = 1A11 
+ |javacp = A9AB 
+ |makacp = 11EED 
+ |rjngcp = A93D 
+ |sundcp = 1B9B 
+ |buhdcp = 174D 
+ |hanocp = 172D 
+ |gonmcp = 11D26 
+ |canscp = 1542 
+ |tochimg = Tocharian letter ra.gif |toch2img = Tocharian letter rà.gif
+ |kawiimg = Aksara Kawi ra.svg
+ | armiimg = Resh.svg
+ | plavaimg = Pallava Ra.svg 
+ | ranjimg = Ranjana r.svg
+}}
+

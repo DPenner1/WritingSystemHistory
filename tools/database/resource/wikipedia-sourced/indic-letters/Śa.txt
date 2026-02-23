@@ -1,0 +1,57 @@
+==Comparison of Śa==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Śa, are related as well.
+{{Indic glyph |letname = Śa
+ |devacp = 0936 |devaimg = Devanagari श.svg
+ |bengcp = 09B6 |bengimg = Bengali Letter Sha.svg
+ |tamlcp = 0BB6 
+ |telucp = 0C36 
+ |oryacp = 0B36 
+ |kndacp = 0CB6 
+ |mlymcp = 0D36 
+ |gujrcp = 0AB6 
+ |gurucp = 0A36 
+ 
+ |brahcp = 11030 |ashokaimg = Brahmi sh.svg
+ |kushanaimg = Gupta ashoka sh.svg
+ |guptaimg = Gupta allahabad sh.svg
+ |kharcp = 10A2D 
+ |siddcp = 115AB |siddimg = Siddham sh.svg
+ |grancp = 11336 
+ |tibtcp = 0F64 |tibtimg = Tibetan Sha.svg
+ |phagcp = A85A 
+ |zanbcp = 11A2E 
+ |newacp = 11431 
+ |bhkscp = 11C2B 
+ |shrdcp = 111AF 
+ |mymrcp = 1050 
+ |lanacp = 1A46 
+ |khmrcp = 179D 
+ |thaicp = 0E28 
+ |laoocp = 0EA8 
+ |sinhcp = 0DC1 
+ |kalicp = A90F 
+ |diakcp = 1192A 
+ |saurcp = A8AF 
+ |modicp = 1162B 
+ |nandcp = 119CB 
+ |soyocp = 11A7F 
+ |kthiimg = Kaithi Sha.svg | kthicp = 110AC 
+ |tirhcp = 114AC 
+ |lepccp = 1C21 
+ |limbcp = 1919 
+ |mteicp = AAE9 
+ |marccp = 11C8C 
+ |takrcp = 116A7 
+ |dogrcp = 11827 
+ |sindcp = 112DC 
+ |balicp = 1B30 
+ |javacp = A9AF 
+ |sundcp = 1BAF
+ |gonmcp = 11D29 
+ |tochimg = Tocharian letter sha.gif |toch2img = Tocharian letter shà.gif
+ |kawiimg = Aksara Kawi sha.svg
+ | armiimg = Shin.svg
+ | plavaimg = Pallava Sha.svg 
+ | ranjimg = Ranjana sh.svg
+}}
+

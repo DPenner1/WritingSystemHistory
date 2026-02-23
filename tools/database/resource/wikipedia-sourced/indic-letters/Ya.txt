@@ -1,0 +1,80 @@
+==Comparison of Ya==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ya, are related as well.
+{{Indic glyph |letname = Ya
+ |devacp = 092F |devaimg = Devanagari y.svg
+ |bengcp = 09AF |bengimg = Bengali Letter Ya.svg
+ |tamlcp = 0BAF |tamlimg = Tamil-alphabet-யய.svg
+ |telucp = 0C2F 
+ |oryacp = 0B2F 
+ |kndacp = 0CAF 
+ |mlymcp = 0D2F 
+ |gujrcp = 0AAF 
+ |gurucp = 0A2F 
+ 
+ |brahcp = 1102C |ashokaimg = Brahmi y.svg
+ |kushanaimg = Gupta ashoka y.svg
+ |guptaimg = Gupta allahabad y.svg
+ |kharcp = 10A29 
+ |siddcp = 115A7 |siddimg = Siddham y.svg
+ |grancp = 1132F 
+ |tibtcp = 0F61 |tibtimg = Tibetan Ya.svg
+ |phagcp = A857 
+ |zanbcp = 11A2A 
+ |newacp = 1142B 
+ |bhkscp = 11C27 
+ |shrdcp = 111AA 
+ |mymrcp = 101A 
+ |lanacp = 1A3F 
+ |lana2cp = 1A40 
+ |talucp = 198D 
+ |talu2cp = 198A 
+ |khmrcp = 1799 
+ |pseudo laoocp = 2A;{{efn|ຍ / ຽ / ໟ / ຢ}}&#x20 
+ |laoocp = 0E8D; / ຽ / ໟ / &#x0EA2 
+ |thaicp = 0E22 
+ |tavtcp = AAA4 
+ |tavt2cp = AAA5 
+ |sinhcp = 0DBA 
+ |kalicp = A91B 
+ |cakmcp = 11120 
+<!-- |cakm2cp = 11121 unsure if derived from 𑄠 or 𑄐 -->
+ |talecp = 1955 
+ |diakcp = 11925 
+ |saurcp = A8AB 
+ |chamcp = AA22 
+ |modicp = 11627 
+ |nandcp = 119C7 
+ |soyocp = 11A7B 
+ |gongcp = 11D6C 
+ |kthiimg = Kaithi Ya.svg | kthicp = 110A8 
+ |tirhcp = 114A8 
+ |lepccp = 1C1A 
+ |limbcp = 1915 
+ |mteicp = ABCC 
+ |marccp = 11C89 
+ |takrcp = 116A3 
+ |dogrcp = 11823 
+ |khojcp = 11225 
+ |sindcp = 112D8 
+ |multcp = 112A1 
+ |balicp = 1B2C 
+ |batkcp = 1BDB 
+ |bugicp = 1A10 
+ |javacp = A9AA 
+ |makacp = 11EEC 
+ |rjngcp = A93F 
+ |sundcp = 1B9A 
+ |tglgcp = 170C 
+ |tagbcp = 176C 
+ |buhdcp = 174C 
+ |hanocp = 172C 
+ |gonmcp = 11D25 
+ |canscp = 1526 
+ |tochimg = Tocharian letter ya.gif 
+ |kawiimg = Aksara Kawi ya.svg
+ | armiimg = Yod.svg
+ | plavaimg = Pallava Ya.svg 
+ | ranjimg = Ranjana y.svg
+}}
+{{notelist|group=Lao}}
+

@@ -1,0 +1,77 @@
+==Comparison of U==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including U, are related as well.
+{{Indic glyph |letname = U
+ |devacp = 0909 |devaimg = Devanagari उ.svg
+ |bengcp = 0989 |bengimg = Bengali Letter U.svg
+ |tamlcp = 0B89 |tamlimg = Tamil-alphabet-உஉ.svg
+ |telucp = 0C09 
+ |oryacp = 0B09 
+ |kndacp = 0C89 
+ |mlymcp = 0D09 
+ |gujrcp = 0A89 
+ |gurucp = 0A09 
+ 
+ |brahcp = 11009 |ashokaimg = Brahmi u.svg
+ |kushanaimg = Gupta ashoka u.svg
+ |guptaimg = Gupta allahabad u.svg
+ |kharcp = 10A02 
+ |siddcp = 11584 |siddimg = Siddham u.svg
+ |grancp = 11309 
+ |tibtcp = 0F68;&#x0F74 |tibtimg = Tibetan U.svg
+ |phagcp = A85F 
+ |zanbcp = 11A03 
+ |newacp = 11404 
+ |bhkscp = 11C04 
+ |shrdcp = 11187 
+ |mymrcp = 1025 
+ |lanacp = 1A4F 
+ |lana2cp = 1A69 
+ |talucp = 19B3 
+ |khmrcp = 17A7 
+ |khmr2cp = 17BB 
+ |laoocp = 0EB8 
+ |thaicp = 0E38 
+ |tavtcp = AAB4 
+ |sinhcp = 0D8B 
+ |kalicp = A928 
+ |cakmcp = 11105 
+ |talecp = 1967 
+ |ahomcp = 11724 
+ |diakcp = 11904 
+ |saurcp = A886 
+ |chamcp = AA02 
+ |modicp = 11604 
+ |nandcp = 119A4 
+ |soyocp = 11A53 
+ |sylocp = A803 
+ |gongcp = 11D64 
+ |kthiimg = Kaithi U.svg | kthicp = 11087 
+ |tirhcp = 11485 
+ |lepccp = 1C2A 
+ |limbcp = 1922 
+ |mteicp = ABE8 
+ |marccp = 11CB2 
+ |takrcp = 11684 
+ |dogrcp = 11804 
+ |khojcp = 11203 
+ |sindcp = 112B4 
+ |mahjcp = 11152 
+ |multcp = 11282 
+ |balicp = 1B09 
+ |batkcp = 1BE5 
+ |bugicp = 1A18 
+ |javacp = A988 
+ |makacp = 11EF4 
+ |rjngcp = A948 
+ |sundcp = 1B85 
+ |tglgcp = 1702 
+ |tagbcp = 1762 
+ |buhdcp = 1742 
+ |hanocp = 1722 
+ |gonmcp = 11D04 
+ |tochimg = Tocharian letter u.gif 
+ | armiimg = Waw.svg
+ | plavaimg = Pallava U.svg 
+ | ranjimg = Ranjana u.svg
+}}
+

@@ -1,0 +1,77 @@
+==Comparison of Va==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Va, are related as well.
+{{Indic glyph |letname = Va
+ |devacp = 0935 |devaimg = Devanagari व.svg
+ |bengcp = 09AC |bengimg = Bengali Letter Ba.svg
+ |tamlcp = 0BB5 |tamlimg = Tamil-alphabet-வவ.svg
+ |telucp = 0C35 
+ |oryacp = 0B35 
+ |kndacp = 0CB5 
+ |mlymcp = 0D35 
+ |gujrcp = 0AB5 
+ |gurucp = 0A35 
+ 
+ |brahcp = 1102F |ashokaimg = Brahmi v.svg
+ |kushanaimg = Gupta ashoka v.svg
+ |guptaimg = Gupta allahabad v.svg
+ |kharcp = 10A2C 
+ |siddcp = 115AA |siddimg = Siddham v.svg
+ |grancp = 11335 
+ |tibtcp = 0F5D 
+ |phagcp = A853 
+ |zanbcp = 11A2D 
+ |newacp = 11430 
+ |bhkscp = 11C2A 
+ |shrdcp = 111AE 
+ |mymrcp = 101D 
+ |lanacp = 1A45 
+ |talucp = 199E 
+ |talu2cp = 199B 
+ |khmrcp = 179C 
+ |laoocp = 0EA7 
+ |thaicp = 0E27 
+ |tavtcp = AAAB 
+ |tavt2cp = AAAA 
+ |sinhcp = 0DC0 
+ |kalicp = A920 
+ |cakmcp = 11124 
+ |talecp = 195D 
+ |diakcp = 11929 
+ |saurcp = A8AE 
+ |chamcp = AA25 
+ |modicp = 1162A 
+ |nandcp = 119CA 
+ |soyocp = 11A7E 
+ |sylocp = A81B 
+ |gongcp = 11D6D 
+ |kthiimg = Kaithi Va.svg | kthicp = 110AB 
+ |tirhcp = 114AB 
+ |lepccp = 1C1F 
+ |limbcp = 1918 
+ |mteicp = ABCB 
+ |marccp = 11C85 
+ |takrcp = 116A6 
+ |dogrcp = 11826 
+ |khojcp = 11228 
+ |sindcp = 112DB 
+ |mahjcp = 1116F 
+ |multcp = 112A4 
+ |balicp = 1B2F 
+ |batkcp = 1BCB 
+ |bugicp = 1A13 
+ |javacp = A9AE 
+ |makacp = 11EEF 
+ |rjngcp = A940 
+ |sundcp = 1B9D 
+ |tglgcp = 170F 
+ |tagbcp = 176F 
+ |buhdcp = 174F 
+ |hanocp = 172F 
+ |gonmcp = 11D28 
+ |tochimg = Tocharian letter va.gif |toch2img = Tocharian letter và.gif
+ |kawiimg = Aksara Kawi wa.svg
+ | armiimg = Waw.svg
+ | plavaimg = Pallava Va.svg 
+ | ranjimg = Ranjana v.svg
+|batk2cp=1BCD|batkaltcp=1BCC}}
+

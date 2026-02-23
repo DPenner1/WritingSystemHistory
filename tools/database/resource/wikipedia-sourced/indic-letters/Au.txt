@@ -1,0 +1,50 @@
+==Comparison of Au==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Au, are related as well.
+{{Indic glyph |letname = Au
+ |devacp = 0914 |devaimg = Devanagari औ.svg
+ |bengcp = 0994 |bengimg = Bengali Letter Au.svg
+ |tamlcp = 0B94 |tamlimg = Tamil-alphabet-ஔஔ.svg
+ |telucp = 0C14 
+ |oryacp = 0B14 
+ |kndacp = 0C94 
+ |mlymcp = 0D14 
+ |gujrcp = 0A94 
+ |gurucp = 0A14 
+ 
+ |brahcp = 11012 
+ |kushanaimg = Gupta ashoka au.svg
+ |guptaimg = Gupta allahabad au.svg
+ |siddcp = 1158D |siddimg = Siddham au.svg
+ |grancp = 11314 
+ |zanbcp = 11A08 
+ |newacp = 1140D 
+ |bhkscp = 11C0D 
+ |shrdcp = 11190 
+ |mymrcp = 102A 
+ |khmrcp = 17B3 
+ |khmr2cp = 17C5 
+ |tavtcp = AABB 
+ |sinhcp = 0D96 
+ |cakmcp = 1112F 
+ |talecp = 196C 
+ |saurcp = A891 
+ |chamcp = AA31 
+ |modicp = 1160D 
+ |nandcp = 119AD 
+ |gongcp = 11D6B 
+ |kthiimg = Kaithi Au.svg | kthicp = 1108C 
+ |tirhcp = 1148E 
+ |limbcp = 1926 
+ |mteicp = AAEE 
+ |takrcp = 11689 
+ |dogrcp = 11809 
+ |khojcp = 11207 
+ |sindcp = 112B9 
+ |balicp = 1B12 
+ |rjngcp = A94C 
+ |gonmcp = 11D0B 
+ | armiimg = Waw.svg
+ | plavaimg = Pallava Au.svg 
+ | ranjimg = Ranjana au.svg
+}}
+

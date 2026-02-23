@@ -1,0 +1,59 @@
+==Comparison of Gha==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Gha, are related as well.
+{{Indic glyph |letname = Gha
+ |devacp = 0918 |devaimg = Devanagari घ.svg
+ |bengcp = 0998 |bengimg = Bengali Letter Gha.svg
+ |telucp = 0C18 
+ |oryacp = 0B18 
+ |kndacp = 0C98 
+ |mlymcp = 0D18 
+ |gujrcp = 0A98 
+ |gurucp = 0A18 
+ 
+ |brahcp = 11016 |ashokaimg = Brahmi gh.svg
+ |kushanaimg = Gupta ashoka gh.svg
+ |guptaimg = Gupta allahabad gh.svg
+ |kharcp = 10A13 
+ |siddcp = 11592 |siddimg = Siddham gh.svg
+ |grancp = 11318 
+ |tibtcp = 0F43 
+ |zanbcp = 11A0E 
+ |newacp = 11411 
+ |bhkscp = 11C11 
+ |shrdcp = 11194 
+ |mymrcp = 1003 
+ |lanacp = 1A25 
+ |khmrcp = 1783 
+ |thaicp = 0E06 
+ |laoocp = 0E86
+ |sinhcp = 0D9D 
+ |cakmcp = 1110A 
+ |ahomcp = 11717 
+ |diakcp = 1190F 
+ |saurcp = A895 
+ |chamcp = AA09 
+ |modicp = 11611 
+ |nandcp = 119B1 
+ |soyocp = 11A5F 
+ |sylocp = A80A 
+ |gongcp = 11D77 
+ |kthiimg = Kaithi Gha.svg | kthicp = 11090 
+ |tirhcp = 11492 
+ |limbcp = 1904 
+ |mteicp = ABD8 
+ |takrcp = 1168D 
+ |dogrcp = 1180D 
+ |khojcp = 1120C 
+ |sindcp = 112BE 
+ |mahjcp = 11158 
+ |multcp = 11288 
+ |balicp = 1B16 
+ |javacp = A993 
+ |gonmcp = 11D0F 
+ |tochimg = Tocharian letter gha.gif 
+ |kawiimg = Aksara Kawi gha.svg
+ | armiimg = Heth.svg
+ | plavaimg = Pallava Gha.svg 
+ | ranjimg = Ranjana gh.svg
+}}
+

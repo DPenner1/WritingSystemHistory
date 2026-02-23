@@ -1,0 +1,81 @@
+==Comparison of Ba==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ba, are related as well.
+{{Indic glyph |letname = Ba
+ |devacp = 092C |devaimg = Devanagari ब.svg
+ |bengcp = 09AC |bengimg = Bengali Letter Ba.svg
+ |telucp = 0C2C 
+ |oryacp = 0B2C 
+ |kndacp = 0CAC 
+ |mlymcp = 0D2C 
+ |gujrcp = 0AAC 
+ |gurucp = 0A2C 
+ 
+ |brahcp = 11029 |ashokaimg = Brahmi b.svg
+ |kushanaimg = Gupta ashoka b.svg
+ |guptaimg = Gupta allahabad b.svg
+ |kharcp = 10A26 
+ |siddcp = 115A4 |siddimg = Siddham b.svg
+ |grancp = 1132C 
+ |tibtcp = 0F56 |tibtimg = Tibetan Ba.svg
+ |phagcp = A84E 
+ |zanbcp = 11A20 
+ |newacp = 11427 
+ |bhkscp = 11C24 
+ |shrdcp = 111A7 
+ |thaicp = 0E1E
+ |thai2cp = 0E1F
+ |laoocp = 0E9E
+ |laoo2cp = 0E9F
+ |mymrcp = 1017 
+ |lanacp = 1A3B 
+ |lana2cp = 1A3C 
+ |talucp = 1997 
+ |talu2cp = 199D 
+ |khmrcp = 1796 
+ |tavtcp = AA9A 
+ |tavt2cp = AA9B 
+ |sinhcp = 0DB6 
+ |kalicp = A919 
+ |cakmcp = 1111D 
+ |cakm2cp = 11147 
+ |ahomcp = 11708 
+ |diakcp = 11922 
+ |saurcp = A8A8 
+ |chamcp = AA1D 
+ |modicp = 11624 
+ |nandcp = 119C4 
+ |soyocp = 11A72 
+ |sylocp = A81B 
+ |gongcp = 11D6E 
+ |kthiimg = Kaithi Ba.svg | kthicp = 110A5 
+ |tirhcp = 114A5 
+ |lepccp = 1C13 
+ |limbcp = 1912 
+ |mteicp = ABD5 
+ |marccp = 11C80 
+ |takrcp = 116A0 
+ |dogrcp = 11820 
+ |khojcp = 11221 
+ |sindcp = 112D4 
+ |mahjcp = 1116A 
+ |multcp = 1129D 
+ |balicp = 1B29 
+ |batkcp = 1BC5 
+ |bugicp = 1A05 
+ |javacp = A9A7 
+ |makacp = 11EE4 
+ |rjngcp = A937 
+ |sundcp = 1B98 
+ |tglgcp = 170A 
+ |tagbcp = 176A 
+ |buhdcp = 174A 
+ |hanocp = 172A 
+ |gonmcp = 11D22 
+ |hangcp = 3142
+ |tochimg = Tocharian letter ba.gif 
+ |kawiimg = Aksara Kawi ba.svg
+ | armiimg = Beth.svg
+ | plavaimg = Pallava Ba.svg 
+ | ranjimg = Ranjana b.svg
+|batk2cp=1BC6}}
+

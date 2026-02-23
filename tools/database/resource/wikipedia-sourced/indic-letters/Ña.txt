@@ -1,0 +1,48 @@
+==Comparison of Ña==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ña, are related as well.
+{{Indic glyph |letname = Ña
+ |devacp = 091E |devaimg = Devanagari ञ.svg
+ |bengcp = 099E |bengimg = Bengali Letter Nya.svg
+ |tamlcp = 0B9E |tamlimg = Tamil-alphabet-ஞஞ.svg
+ |telucp = 0C1E 
+ |oryacp = 0B1E 
+ |kndacp = 0C9E 
+ |mlymcp = 0D1E 
+ |gujrcp = 0A9E 
+ |gurucp = 0A1E 
+ 
+ |brahcp = 1101C |ashokaimg = Brahmi ny.svg
+ |kushanaimg = Gupta ashoka ny.svg
+ |guptaimg = Gupta ashoka ny.svg
+ |siddcp = 11597 |siddimg = Siddham ny.svg
+ |tibtcp = 0F49 |tibtimg = Tibetan Nya.svg
+ |zanbcp = 11A13 
+ |newacp = 11418 
+ |bhkscp = 11C17 
+ |mymrcp = 1009 
+ |mymr2cp = 100A 
+ |khmrcp = 1789 
+ |laoocp = 0E8E 
+ |thaicp = 0E0D 
+ |sinhcp = 0DA4 
+ |cakmcp = 11110
+ |ahomcp = 11710 
+ |diakcp = 11915 
+ |nandcp = 119B7 
+ |kthiimg = Kaithi Nya.svg | kthicp = 11096
+ |soyocp = 11A65 
+ |marccp = 11C79 
+ |dogrcp = 11813 
+ |multcp = 1128F 
+ |batkcp = 1BE0 
+ |bugicp = 1A0E
+ |lanacp = 1A2C
+ |makacp = 11EEB 
+ |gonmcp = 11D15 
+ |tochimg = Tocharian letter nya.gif 
+ |kawiimg = Aksara Kawi nya.svg
+ | armiimg = Nun.svg
+ | plavaimg = Pallava Nya.svg 
+ | ranjimg = Ranjana ny.svg
+|javacp=A99A|balicp=1B1C|rjngcp=A93B|sundcp=1B91}}
+

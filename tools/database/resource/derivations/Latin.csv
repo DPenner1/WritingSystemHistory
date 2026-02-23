@@ -1,0 +1,84 @@
+Child,Parent,Derivation Type,Notes
+A,𐌀,1,
+a,A,4,
+B,𐌁,1,
+b,B,4,
+C,𐌂,1,
+c,C,5,
+D,𐌃,1,
+d,D,1,
+E,𐌄,1,
+e,E,1,Presumably - Wikipedia did not mention it
+F,𐌅,1,
+f,F,1,Presumably - Wikipedia did not mention it
+G,C,1,
+g,G,4,
+H,𐌇,1,
+h,H,1,Presumably - Wikipedia did not mention it
+I,𐌉,1,
+i,I,1,Presumably - Wikipedia did not mention it
+J,I,1,
+j,i,1,Based on Wikipedia i page specifically using lower case
+K,𐌊,1,
+k,K,1,Presumably - Wikipedia did not mention it
+L,𐌋,1,
+l,L,1,Presumably - Wikipedia did not mention it
+M,𐌌,1,
+m,M,1,Presumably - Wikipedia did not mention it
+N,𐌍,1,
+n,N,1,Presumably - Wikipedia did not mention it
+O,𐌏,1,
+o,O,5,
+P,𐌐,1,
+p,P,1,
+Q,𐌒,1,
+q,Q,1,Presumably - Wikipedia did not mention it
+R,𐌓,1,
+r,R,4,
+S,𐌔,1,
+s,S,5,
+T,𐌕,1,
+t,T,1,Presumably - Wikipedia did not mention it
+U,V,1,
+u,U,5,
+V,𐌖,1,
+v,V,1,
+W,V,1,
+w,W,5,Presumably - Wikipedia did not mention it
+X,𐌗,5,
+x,X,5,
+Y,Υ,1,Seemingly a later introduction from Greek and not Etruscan Old Italic
+y,Y,1,Presumably - Wikipedia did not mention it
+Z,𐌆,1,
+z,Z,5,
+
+Æ,A/E,1,
+Ɑ,a,1,
+ɑ,Ɑ,1,
+Ɐ,A,1,
+ɐ,a,1,Presumably
+æ,Æ/a/e,1,Presumably
+Ç,Ꝣ,1,Surprisingly not originally from C - though probably some convergent evolution
+ç,Ç,5,Presumably
+
+Ȼ,C,1,
+ȼ,Ȼ,5,Presumably
+Đ,D,1,
+đ,Đ/d,1,Presumably
+Ə,e,8,
+ə,Ə,1,Presumably
+Ǝ,E,9,
+ǝ,e,8,
+ꟻ,F,9,
+Ᵹ,g,1,
+ᵹ,Ᵹ,1,Presumably
+Ȝ,Ᵹ,1,
+ȝ,Ȝ,5,Presumably
+
+
+Œ,O/E,1,
+œ,Œ/o/e,1,Presumably
+
+Ꝣ,Z,1,
+ꝣ,Ꝣ,5,Presumably
+

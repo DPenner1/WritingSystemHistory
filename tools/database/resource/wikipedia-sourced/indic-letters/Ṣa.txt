@@ -1,0 +1,50 @@
+==Comparison of Ṣa==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ṣa, are related as well.
+{{Indic glyph |letname = Ṣa
+ |devacp = 0937 |devaimg = Devanagari ष.svg
+ |bengcp = 09B7 |bengimg = Bengali Letter Ssa.svg
+ |tamlcp = 0BB7 
+ |telucp = 0C37 
+ |oryacp = 0B37 
+ |kndacp = 0CB7 
+ |mlymcp = 0D37 
+ |gujrcp = 0AB7 
+ 
+ |brahcp = 11031 |ashokaimg = Brahmi ss.svg
+ |kushanaimg = Gupta ashoka ss.svg
+ |guptaimg = Gupta allahabad ss.svg
+ |kharcp = 10A2E 
+ |siddcp = 115AC |siddimg = Siddham ss.svg
+ |grancp = 11337 
+ |tibtcp = 0F65 
+ |zanbcp = 11A2F 
+ |newacp = 11432 
+ |bhkscp = 11C2C 
+ |shrdcp = 111B0 
+ |mymrcp = 1051 
+ |lanacp = 1A47 
+ |khmrcp = 179E 
+ |thaicp = 0E29 
+ |laoocp = 0EA9 
+ |sinhcp = 0DC2 
+ |diakcp = 1192B 
+ |saurcp = A8B0 
+ |chamcp = AA26 
+ |modicp = 1162C 
+ |nandcp = 119CC 
+ |soyocp = 11A80 
+ |kthiimg = Kaithi Ssa.svg | kthicp = 110AD 
+ |tirhcp = 114AD 
+ |limbcp = 191A 
+ |mteicp = AAEA 
+ |dogrcp = 11828 
+ |balicp = 1B31 
+ |javacp = A9B0 
+ |gonmcp = 11D2A 
+ |tochimg = Tocharian letter ssa.gif |toch2img = Tocharian letter ssà.gif
+ |kawiimg = Aksara Kawi ssa.svg
+ | armiimg = Samekh.svg
+ | plavaimg = Pallava Ssa.svg 
+ | ranjimg = Ranjana ss.svg
+}}
+

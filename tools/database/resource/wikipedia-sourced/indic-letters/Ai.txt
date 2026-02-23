@@ -1,0 +1,51 @@
+==Comparison of Ai==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ai, are related as well.
+{{Indic glyph |letname = Ai
+ |devacp = 0910 |devaimg = Devanagari ऐ.svg
+ |bengcp = 0990 |bengimg = Bengali Letter Ai.svg
+ |tamlcp = 0B90 |tamlimg = Tamil-alphabet-ஐஐ.svg
+ |telucp = 0C10 
+ |oryacp = 0B10 
+ |kndacp = 0C90 
+ |mlymcp = 0D10 
+ |gujrcp = 0A90 
+ |gurucp = 0A10 
+ 
+ |brahcp = 11010 |ashokaimg = Brahmi ai.svg
+ |siddcp = 1158B |siddimg = Siddham ai.svg
+ |grancp = 11310 
+ |shrdcp = 1118E 
+ |mymrcp = 1032 
+ |lanacp = 1A71 
+ |lana2cp = 1A72 
+ |talucp = 19B6 
+ |khmrcp = 17B0 
+ |khmr2cp = 17C3 
+ |laoocp = 0EC4 
+ |laoo2cp = 0EC3 
+ |thaicp = 0E44 
+ |thai2cp = 0E43 
+ |tavtcp = AABC 
+ |sinhcp = 0D93 
+ |cakmcp = 1112D 
+ |talecp = 196D 
+ |saurcp = A88E 
+ |chamcp = AA04 
+ |modicp = 1160B 
+ |kthiimg = Kaithi Ai.svg | kthicp = 1108A 
+ |tirhcp = 1148C 
+ |limbcp = 1924 
+ |mteicp = AAED 
+ |takrcp = 11687 
+ |khojcp = 11205 
+ |sindcp = 112B7 
+ |balicp = 1B10 
+ |bugicp = 1A1B 
+ |javacp = A98D 
+ |rjngcp = A94A 
+ |sundcp = 1B86 
+ | armiimg = Ayin.svg
+ | plavaimg = Pallava Ai.svg 
+ | ranjimg = Ranjana ai.svg
+}}
+

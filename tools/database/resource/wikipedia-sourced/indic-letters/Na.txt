@@ -1,0 +1,80 @@
+==Comparison of Na==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Na, are related as well.
+{{Indic glyph |letname = Na
+ |devacp = 0928 |devaimg = Devanagari न.svg
+ |bengcp = 09A8 |bengimg = Bengali Letter Na.svg
+ |tamlcp = 0BA8 |tamlimg = Tamil-alphabet-நந.svg
+ |telucp = 0C28 
+ |oryacp = 0B28 
+ |kndacp = 0CA8 
+ |mlymcp = 0D28 
+ |gujrcp = 0AA8 
+ |gurucp = 0A28 
+ 
+ |brahcp = 11026 |ashokaimg = Brahmi n.svg
+ |kushanaimg = Gupta ashoka n.svg
+ |guptaimg = Gupta allahabad n.svg
+ |kharcp = 10A23 
+ |siddcp = 115A1 |siddimg = Siddham n.svg
+ |grancp = 11328 
+ |tibtcp = 0F53 |tibtimg = Tibetan Na.svg
+ |phagcp = A84B 
+ |zanbcp = 11A1D 
+ |newacp = 11423 
+ |bhkscp = 11C21 
+ |shrdcp = 111A4 
+ |mymrcp = 1014 
+ |lanacp = 1A36 
+ |talucp = 1993 
+ |talu2cp = 1990 
+ |khmrcp = 1793 
+ |laoocp = 0E99 
+ |laoo2cp = 0EDC 
+ |thaicp = 0E19 
+ |tavtcp = AA99 
+ |tavt2cp = AA98 
+ |sinhcp = 0DB1 
+ |kalicp = A914 
+ |cakmcp = 1111A 
+ |talecp = 1962 
+ |ahomcp = 11703 
+ |diakcp = 1191F 
+ |saurcp = A8A5 
+ |chamcp = AA18 
+ |modicp = 11621 
+ |nandcp = 119C1 
+ |soyocp = 11A6F 
+ |sylocp = A818 
+ |gongcp = 11D7A 
+ |kthiimg = Kaithi Na.svg | kthicp = 110A2 
+ |tirhcp = 114A2 
+ |lepccp = 1C0D 
+ |limbcp = 190F 
+ |mteicp = ABC5 
+ |marccp = 11C7D 
+ |takrcp = 1169D 
+ |dogrcp = 1181D 
+ |khojcp = 1121E 
+ |sindcp = 112D1 
+ |mahjcp = 11167 
+ |multcp = 1129A 
+ |balicp = 1B26 
+ |batkcp = 1BC9 
+ |bugicp = 1A0A 
+ |javacp = A9A4 
+ |makacp = 11EE8 
+ |rjngcp = A935 
+ |sundcp = 1B94 
+ |tglgcp = 1708 
+ |tagbcp = 1768 
+ |buhdcp = 1748 
+ |hanocp = 1728 
+ |gonmcp = 11D1F 
+ |canscp = 14c0 
+ |tochimg = Tocharian letter na.gif |toch2img = Tocharian letter nà.gif
+ |kawiimg = Aksara Kawi na.svg
+ | armiimg = Nun.svg
+ | plavaimg = Pallava Na.svg 
+ | ranjimg = Ranjana n.svg
+}}
+

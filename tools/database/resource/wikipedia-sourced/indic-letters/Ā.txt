@@ -1,0 +1,60 @@
+==Comparison of Ā==
+The various Indic scripts are generally related to each other through adaptation and borrowing, and as such the glyphs for cognate letters, including Ā, are related as well.
+{{Indic glyph |letname = Ā
+ |devacp = 0906 |devaimg = Devanagari aa.svg
+ |bengcp = 0986 |bengimg = Bengali Letter Aa.svg
+ |tamlcp = 0B86 |tamlimg = Tamil-alphabet-ஆஆ.svg
+ |telucp = 0C06 
+ |oryacp = 0B06 
+ |kndacp = 0C86 
+ |mlymcp = 0D06 
+ |gujrcp = 0A86 
+ |gurucp = 0A06 
+ 
+ |brahcp = 11006 |ashokaimg = Brahmi aa.svg
+ |kushanaimg = Gupta ashoka aa.svg
+ |guptaimg = Gupta allahabad aa.svg
+ |kharcp = 10A0C 
+ |tochimg = Tocharian letter aa.gif
+ |siddcp = 11581 |siddimg = Siddham aa.svg
+ |grancp = 11306 
+ |tibtcp = 0F68;&#x0F71 
+ |newacp = 11401 
+ |bhkscp = 11C01 
+ |shrdcp = 11184 
+ |mymrcp = 1021;&#x102C
+ |mymr2cp = 102C;, &#x102B
+ |lanacp = 1A4B;&#x1A63
+ |lana2cp = 1A63;, &#x1A64
+ |talucp = 19B1 
+ |khmrcp =  17A2;&#x17B6
+ |khmr2cp = 17B6
+ |laoocp = 0EB2 
+ |thaicp = 0E32 
+ |tavtcp = AAB1 
+ |sinhcp = 0D86 
+ |cakmcp = 11103 
+ |ahomcp = 11721 
+ |diakcp = 11901 
+ |saurcp = A883 
+ |chamcp = AA29 
+ |modicp = 11601 
+ |nandcp = 119A1 
+ |gongcp = 11D61 
+ |kthiimg = Kaithi Aa.svg | kthicp = 11084 
+ |tirhcp = 11482 
+ |lepccp = 1C26 
+ |mteicp = ABE5 
+ |marccp = 11CB0 
+ |takrcp = 11681 
+ |dogrcp = 11801 
+ |khojcp = 11201 
+ |sindcp = 112B1 
+ |balicp = 1B06 
+ |javacp = A9B4 
+ |gonmcp = 11D01 
+ | armiimg = Aleph.svg
+ | plavaimg = Pallava Aa.svg 
+ | ranjimg = Ranjana aa.svg
+}}
+
