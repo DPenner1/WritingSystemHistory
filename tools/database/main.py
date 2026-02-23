@@ -184,7 +184,7 @@ def load_lookups(cursor):
     # Even having this feels like overkill, but I was mostly specifying it in Notes anyways and the special values (4+) are useful in the code
     data = [
         (1, "Near Certain", "Sources almost all agree, or disagreeing sources are suspect"),
-        (2, "Likely", "Sources mostly agree, or a singular weak source"), # For the purposes of this project, Wikipedia does automatically count as a weak: it usually cites other sources
+        (2, "Likely", "Sources mostly agree, or a singular weak source"), # For the purposes of this project, Wikipedia does not automatically count as a weak: it usually cites other sources
         (3, "Uncertain", "Sources disagree or are hesitant"),
         (4, "Algorithmic", "Derived algorithmically, usually from Unicode Consortium data"),
         (5, "Assumed", "Derivation assumed, usually by sound value and/or glyph similarity"),
@@ -196,7 +196,7 @@ def load_derivations(cursor, verify_script):
         if field in row and row[field] and not row[field].isspace():
             return row[field].strip()
         if script in defaults_dict and field in defaults_dict[script] and defaults_dict[script][field]:
-                return defaults_dict[script][field]
+            return defaults_dict[script][field]
         return final_default
 
     pattern = re.compile(r'^U\+([0-9A-F]+)\tkTraditionalVariant\tU\+([0-9A-F]+)')
