@@ -4,7 +4,7 @@ This project consists of two diagrams and a beta-state database:
 
   1. A minimalistic diagram designed to show the history of **currently used** scripts while fitting on both A4 & US Letter sized paper with 1/4" margins for easy printing.
   2. A comprehensive diagram showing the history of **all scripts** in Unicode, including a timeline and location of origin.
-  3. A database mapping out history on a character-by-character basis. See `./tools/database/README.md` for more infomation on that. This README will focus on the diagrams.
+  3. A database mapping out history on a character-by-character basis. See [`./tools/database/README.md`](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/README.md) for more infomation on that. This README will focus on the diagrams.
 
 Note that the PDF & HTML versions are **clickable**: all of the scripts and most of the legend are linked to an appropriate Wikipedia page.
 
@@ -74,4 +74,4 @@ All rights reserved, for now. In general I'm fine with personal use, I just most
 
 The database though isn't really protectable anyways, so have at that (I'm non-EU, so don't get that sui generis database protection).
 
-The database is generated using some text sourced from Wikipedia, which is under CC BY-SA 4.0. For compliance, and further info on that see in this project `./tools/database/resource/wikipedia-sourced/licence-info.txt`.
+The database is generated using some text sourced from Wikipedia, which is under CC BY-SA 4.0. For compliance, and further info on that see in this project [`./tools/database/resource/wikipedia-sourced/licence-info.txt`](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/resource/wikipedia-sourced/licence-info.txt).
