@@ -15,17 +15,11 @@ For technical reasons, it is essentially limited to characters present in Unicod
 
 ## Getting Started
 
-The database must be generated (~12MB). For all purposes, the `./tools/database` folder is the working directory (while I am Linux-based, this should also work on Windows, but I have not tested this).
+The database must be generated (~21MB). For all purposes, the `./tools/database` folder is the working directory (while I am Linux-based, this should also work on Windows, but I have not tested this).
 
-  1. The database uses some Unicode Character Database files in its generation. Per [Unicode copyright licence](https://www.unicode.org/copyright.html), they are not included in this project. You must copy them into `./cr-exclusion`. From the (https://www.unicode.org/Public/UCD/latest/ucd/) copy the following:
-
-     - `UnicodeData.txt`
-     - `Scripts.txt`
-     - The `Unihan_Variants.txt` file from the `Unihan.zip`
-
-  3. The database is generated using Python 3, with only standard modules plus `sqlite3` (which is an optional module possibly already included in a given installation).
+  1. The database is generated using Python 3, with only standard modules plus `sqlite3` (which is an optional module possibly already included in a given installation).
   4. Generate the database by running the `./main.py` script. There is some logic for the script to try and work with an existing database, but there is no guarantee and you may have to delete the existing first. If the schema does not change though, it should just run a data update without issue.
-  5. The database `./scripts.db` appears (or is updated)! You can now run queries as you like from `sqlite3`. Alternatively, include some code at the end of `./main.py`. But I guess that should've been done before step 3. Oops.
+  5. The database `./scripts.db` appears (or is updated)! You can now run queries as you like from `sqlite3`. Alternatively, include some code at the end of `./main.py`. But I guess that should've been done before step 2. Oops.
 
 ## Random Notes
 
@@ -38,4 +32,8 @@ The database must be generated (~12MB). For all purposes, the `./tools/database`
 
 ## Licence info
 
-The database is generated using some text sourced from Wikipedia, which is under CC BY-SA 4.0. For compliance, and further info on that see in this project [`./resource/wikipedia-sourced/licence-info.txt`](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/resource/wikipedia-sourced/licence-info.txt).
+This project contains resources from some openly licensed sources.
+
+  - The database is generated from some files the [Unicode Consortium](https://home.unicode.org/). Unicode licence is at [`./resource/unicode-data/license.txt`](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/resource/unicode-data/license.txt)
+
+  - The database is generated using some text sourced from Wikipedia, which is under CC BY-SA 4.0. For compliance, and further info on that see in this project [`./resource/wikipedia-sourced/licence-info.txt`](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/resource/wikipedia-sourced/licence-info.txt).

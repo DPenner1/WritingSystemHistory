@@ -8,6 +8,7 @@ RESOURCE_PATH = os.path.join('.', 'resource')
 DERIVATIONS_PATH = os.path.join(RESOURCE_PATH, 'derivations')
 CR_EXCLUSION_PATH = os.path.join(RESOURCE_PATH, 'cr-exclusion')
 WIKIPEDIA_PATH = os.path.join(RESOURCE_PATH, 'wikipedia-sourced')
+UNICODE_PATH = os.path.join(RESOURCE_PATH, 'unicode-data')
 GENERATED_DIR_NAME = 'generated'
 GENERATED_DERIVATION_PATH = os.path.join(DERIVATIONS_PATH, GENERATED_DIR_NAME)
 
@@ -149,7 +150,7 @@ def load_code_point_data(cursor):
 
     cursor.execute("INSERT INTO code_point (id, text, bidi_class_code) VALUES (?, ?, 'Bn') ON CONFLICT DO NOTHING", (ord(NO_PARENT), NO_PARENT))
 
-    with open(os.path.join(CR_EXCLUSION_PATH, 'Scripts.txt'), 'r') as file:
+    with open(os.path.join(UNICODE_PATH, 'Scripts.txt'), 'r') as file:
         for line in file:
             if not line.isspace() and not line.startswith('#'):
                 match = pattern.match(line)
@@ -165,7 +166,7 @@ def load_code_point_data(cursor):
                         ON CONFLICT (id) DO NOTHING""",
                         (i, chr(i), script_code)) # TODO: double check stability policy
 
-    with open(os.path.join(CR_EXCLUSION_PATH, 'UnicodeData.txt'), 'r') as csvfile:
+    with open(os.path.join(UNICODE_PATH, 'UnicodeData.txt'), 'r') as csvfile:
         special_name_pattern = re.compile('^<(.+)>$')
         in_range = False
 
@@ -303,7 +304,7 @@ def load_derivations(cursor, verify_script):
         FROM code_point cp1
         WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""")
 
-    with open(os.path.join(CR_EXCLUSION_PATH, 'Unihan_Variants.txt'), 'r') as file:
+    with open(os.path.join(UNICODE_PATH, 'Unihan_Variants.txt'), 'r') as file:
         for line in file:
             if not line.isspace() and not line.startswith('#'):
                 match = pattern.match(line)
