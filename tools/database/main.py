@@ -2,6 +2,7 @@ import os
 import sqlite3
 import re
 import csv
+from enum import Enum
 
 RESOURCE_PATH = os.path.join('.', 'resource')
 DERIVATIONS_PATH = os.path.join(RESOURCE_PATH, 'derivations')
@@ -9,6 +10,18 @@ CR_EXCLUSION_PATH = os.path.join(RESOURCE_PATH, 'cr-exclusion')
 WIKIPEDIA_PATH = os.path.join(RESOURCE_PATH, 'wikipedia-sourced')
 GENERATED_DIR_NAME = 'generated'
 GENERATED_DERIVATION_PATH = os.path.join(DERIVATIONS_PATH, GENERATED_DIR_NAME)
+
+NO_PARENT = '\uFFFF'  # a Unicode non-character
+DEFAULT_DERIVATION = 1
+
+class Certainty(Enum):
+    NEAR_CERTAIN = 1
+    LIKELY = 2
+    UNCERTAIN = 3
+    AUTOMATED = 4
+    ASSUMED = 5
+    UNSPECIFIED = 6
+
 
 def setup_schema(cursor):
 
@@ -29,15 +42,18 @@ def setup_schema(cursor):
         CREATE TABLE IF NOT EXISTS code_point (
             id INTEGER PRIMARY KEY,
             text TEXT UNIQUE,
+            name TEXT,
             script_code TEXT NOT NULL DEFAULT 'Zzzz' REFERENCES script (code),
-            general_category_code TEXT NOT NULL DEFAULT 'C',
-            bidi_class_code TEXT NOT NULL DEFAULT 'ON',
+            general_category_code TEXT NOT NULL DEFAULT 'Cn',
+            bidi_class_code TEXT NOT NULL DEFAULT 'L',
             simple_uppercase_mapping_id INTEGER REFERENCES code_point(id),
             simple_lowercase_mapping_id INTEGER REFERENCES code_point(id),
-            decomposition_type TEXT,  
+            decomposition_type TEXT,
+            is_singleton_decomposition INTEGER,
             std_order_num INTEGER
         ) STRICT""")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_fk_script_code ON code_point(script_code)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_general_category_code ON code_point(general_category_code)")
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS decomposition_mapping (
@@ -62,7 +78,9 @@ def setup_schema(cursor):
         ) STRICT""")
 
     # The established derivations should be a multi-DAG (directed acyclic graph, multiple edges permitted)
-    # Code point != character, but close enough for the purposes of this project
+    # Code point != character/grapheme, but close enough for the purposes of this project
+    # A grapheme is one or more code points, and its more likely that the grapheme is then derived from those parts. With coding effort, this can be supported
+    # Not easily supported would be the other way around where the grapheme was the historically earlier character and the code points derived from it. This is presumably rare (non-existent?)
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS code_point_derivation (
             child_id INTEGER REFERENCES code_point (id),
@@ -94,8 +112,42 @@ def load_scripts(cursor):
                     u_subversion_added = ?""",
                 (code, name, id, version, subversion, name, version, subversion)) # TODO: check stability policy
 
+def update_code_point(cursor, id, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str):
+    decom_pattern = re.compile(r'^(?:<([a-zA-Z]+)> )?([\s0-9A-F]+)$')
+    decom_type = None
+    decom_ids = []
+    is_singleton = None
+
+    if decom_str:
+        match = decom_pattern.match(decom_str)
+        decom_ids = [int(id, 16) for id in match.group(2).split(' ')]
+        is_singleton = len(decom_ids) == 1
+        decom_type = match.group(1) if match.group(1) else 'canonical'
+
+    cursor.execute("""
+        UPDATE code_point
+        SET 
+            name = ?,
+            general_category_code = ?,
+            bidi_class_code = ?,
+            simple_uppercase_mapping_id = ?,
+            simple_lowercase_mapping_id = ?,
+            decomposition_type = ?,
+            is_singleton_decomposition = ?
+        WHERE id = ?""",
+        (name, general_category, bidi_class, upper_mapping, lower_mapping, decom_type, is_singleton, id))
+
+    for i, decom_id in enumerate(decom_ids):
+        cursor.execute("""
+            INSERT INTO decomposition_mapping (code_point_id, decomposition_id, order_num)
+            VALUES (?, ?, ?)
+            ON CONFLICT DO NOTHING""",  # stability policy, these won't change
+            (id, decom_id, i + 1))  # 1-index order number (I don't foresee a particular use for it in this project anyway)
+
 def load_code_point_data(cursor):
     pattern = re.compile(r'^([0-9A-F]+)(?:\.\.([0-9A-F]+))?\s*; ([_a-zA-Z]+) #')
+
+    cursor.execute("INSERT INTO code_point (id, text, bidi_class_code) VALUES (?, ?, 'Bn') ON CONFLICT DO NOTHING", (ord(NO_PARENT), NO_PARENT))
 
     with open(os.path.join(CR_EXCLUSION_PATH, 'Scripts.txt'), 'r') as file:
         for line in file:
@@ -114,39 +166,37 @@ def load_code_point_data(cursor):
                         (i, chr(i), script_code)) # TODO: double check stability policy
 
     with open(os.path.join(CR_EXCLUSION_PATH, 'UnicodeData.txt'), 'r') as csvfile:
-        decom_pattern = re.compile(r'^(?:<([a-zA-Z]+)> )?([\s0-9A-F]+)$')
+        special_name_pattern = re.compile('^<(.+)>$')
+        in_range = False
 
         for line in csv.reader(csvfile, delimiter=';'):
-            code_point = int(line[0], 16)
-            decom_type = None
-            decom_ids = []
-            if line[5]:
-                match = decom_pattern.match(line[5])
-                decom_ids = [int(id, 16) for id in match.group(2).split(' ')]
-                if match.group(1): # a compatibility match
-                    decom_type = match.group(1)
-                elif len(decom_ids) == 1:
-                    decom_type = 'singleton'
+
+            if in_range:
+                for i in range(code_point + 1, int(line[0], 16) + 1):
+                    # TODO: this is not strictly conforming for Hangul
+                    update_code_point(cursor, i, name + '-' + hex(i)[2:].upper(), general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
+                in_range = False
+            else:
+                name = None
+                match = special_name_pattern.match(line[1])
+                if match:
+                    parts = match.group(1).split(',')
+                    if len(parts) > 1:
+                        name = parts[0].strip().upper()
+                        if 'SURROGATE' in name or 'PRIVATE' in name:
+                            continue  # we aren't cataloguing these ranges
+                        in_range = True
                 else:
-                    decom_type = 'canonical'
+                    name = line[1]
 
-            cursor.execute("""
-                UPDATE code_point
-                SET 
-                    general_category_code = ?,
-                    bidi_class_code = ?,
-                    simple_uppercase_mapping_id = ?,
-                    simple_lowercase_mapping_id = ?,
-                    decomposition_type = ?
-                WHERE id = ?""",
-                (line[2], line[4], int(line[12], 16) if line[12] else None, int(line[13], 16) if line[13] else None, decom_type, code_point))
+                code_point = int(line[0], 16)
+                decom_str = line[5]
+                general_category = line[2] if line[2] else None
+                bidi_class = line[4] if line[4] else None
+                upper_mapping = int(line[12], 16) if line[12] else None
+                lower_mapping = int(line[13], 16) if line[13] else None
 
-            for i, decom_id in enumerate(decom_ids):
-                cursor.execute("""
-                    INSERT INTO decomposition_mapping (code_point_id, decomposition_id, order_num)
-                    VALUES (?, ?, ?)
-                    ON CONFLICT DO NOTHING""", # stability policy, these won't change
-                    (code_point, decom_id, i + 1))  # 1-index order number (I don't foresee a particular use for it in this project anyway)
+                update_code_point(cursor, code_point, name + '-' + line[0] if in_range else name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
 
     cursor.execute("UPDATE code_point SET std_order_num = NULL")
     with open(os.path.join(RESOURCE_PATH, 'standard_alphabets.csv'), 'r') as file:
@@ -169,7 +219,7 @@ def load_lookups(cursor):
                 (lu[0], lu[1], lu[2], lu[1], lu[2]))
 
     data = [
-        (1, "Derivation", "Standard/default/non-specific"),
+        (DEFAULT_DERIVATION, "Derivation", "Standard/default/non-specific"),
         (2, "Portion copy", "Child is a copy of a portion of the parent, allowing for stretch-distortion due to size change"),
         (3, "Simplification", "Child is a simplification of parent"),
         (4, "From cursive", "Child is derived from cursive form of the parent (who is typically non-cursive)"),
@@ -183,50 +233,73 @@ def load_lookups(cursor):
     # For this project, sourcing is generally just for the derivation fact, not necessarily for derivation type
     # Even having this feels like overkill, but I was mostly specifying it in Notes anyways and the special values (4+) are useful in the code
     data = [
-        (1, "Near Certain", "Sources almost all agree, or disagreeing sources are suspect"),
-        (2, "Likely", "Sources mostly agree, or a singular weak source"), # For the purposes of this project, Wikipedia does not automatically count as a weak: it usually cites other sources
-        (3, "Uncertain", "Sources disagree or are hesitant"),
-        (4, "Algorithmic", "Derived algorithmically, usually from Unicode Consortium data"),
-        (5, "Assumed", "Derivation assumed, usually by sound value and/or glyph similarity"),
-        (6, "Unspecified", "Not specified in data files - this is a missing data error")]
+        (Certainty.NEAR_CERTAIN.value, "Near Certain", "Sources almost all agree, or disagreeing sources are suspect"),
+        (Certainty.LIKELY.value, "Likely", "Sources mostly agree, or a singular weak source"), # For the purposes of this project, Wikipedia does not automatically count as a weak: it usually cites other sources
+        (Certainty.UNCERTAIN.value, "Uncertain", "Sources disagree or are hesitant"),
+        (Certainty.AUTOMATED.value, "Automated", "Derived without manual review, usually from Unicode Consortium data"),
+        (Certainty.ASSUMED.value, "Assumed", "Derivation assumed, usually by sound value and/or glyph similarity"),
+        (Certainty.UNSPECIFIED.value, "Unspecified", "Not specified in data files - this is a missing data error")]
     load_lookup(cursor, 'certainty_type', data)
 
 def load_derivations(cursor, verify_script):
-    def resolve_default(defaults_dict, row, field, script, final_default=None):
-        if field in row and row[field] and not row[field].isspace():
-            return row[field].strip()
+    def resolve_default(defaults_dict, script, data_row, field, overriding_default=None, override_condition=False, last_resort=None):
+        if field in data_row and data_row[field] and not data_row[field].isspace():
+            return data_row[field].strip()
+        if override_condition:
+            return overriding_default
         if script in defaults_dict and field in defaults_dict[script] and defaults_dict[script][field]:
             return defaults_dict[script][field]
-        return final_default
+        return last_resort
+
+    # Mende Kikakui is a bit of an exception here: Unicode Encoding Proposal suggests Vai-derived characters are a small minority
+    # Not including Chinese here: ideally will eventually do so for Oracle bone
+    independent_scripts = {'Mend','Egyp','Lina','Hluw','Xsux','Xpeo','Ogam','Elba','Dupl','Sgnw','Shaw','Vith','Vaii','Bamu','Berf','Nkoo','Wara','Gonm','Toto'
+                           'Osma','Adlm','Gara','Medf','Bass','Yezi','Tnsa','Olck','Thaa','Tols','Nagm','Sora','Wcho','Mroo','Onao','Sunu','Yiii','Tang'}
 
     pattern = re.compile(r'^U\+([0-9A-F]+)\tkTraditionalVariant\tU\+([0-9A-F]+)')
 
     cursor.execute("DELETE FROM code_point_derivation")  # updates generally expected on this table, just clear
 
+    # Identify all the independently-derived characters
+    cursor.execute(f"""
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
+            SELECT id, {ord(NO_PARENT)}, {DEFAULT_DERIVATION}, {Certainty.AUTOMATED.value}, 'Independent script: Assume independent character'
+            FROM code_point 
+            WHERE script_code IN ('{"','".join(independent_scripts)}')""")
+
     # add derivations from decomposition mappings, assuming the decomposed characters are the base building blocks (the parent)
-    cursor.execute("""
+    # Formatting/control/space characters are not eligible
+    cursor.execute(f"""
         INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
         SELECT
-            cp.id, 
+            cp1.id, 
             decomposition_id,
-            CASE WHEN decomposition_type = 'singleton' THEN 6 ELSE 1 END,
-            4,
+            CASE WHEN cp1.is_singleton_decomposition = 1 AND cp1.decomposition_type IN ('compat', 'canonical') THEN 6 ELSE {DEFAULT_DERIVATION} END,
+            {Certainty.AUTOMATED.value},
             'Unicode Character Database decomposition data'
-        FROM code_point cp INNER JOIN decomposition_mapping dm ON cp.id = dm.code_point_id
+        FROM 
+            code_point cp1 
+            INNER JOIN decomposition_mapping dm ON cp1.id = dm.code_point_id
+            INNER JOIN code_point cp2 ON cp2.id = dm.decomposition_id
+        WHERE 
+            cp1.general_category_code NOT LIKE 'Z_'
+            AND cp1.general_category_code NOT LIKE 'C_'
+            AND cp2.general_category_code NOT LIKE 'Z_'
+            AND cp2.general_category_code NOT LIKE 'C_'
         ON CONFLICT DO NOTHING""")
     # conflicts expected when a character decomposes into multiple copies of a code point,
     # minimal enough that this is probably the better query option than advance filtering
 
     # add derivations from case mapping, assuming lowercase to be derived from uppercase
-    cursor.execute("""
+    cursor.execute(f"""
         INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-        SELECT id, simple_uppercase_mapping_id, 1, 4, 'Unicode Character Database case mapping data'
+        SELECT id, simple_uppercase_mapping_id, {DEFAULT_DERIVATION}, {Certainty.AUTOMATED.value}, 'Unicode Character Database case mapping data'
         FROM code_point
         WHERE simple_uppercase_mapping_id IS NOT NULL""")
     # casing isn't 100% 1:1 so need to do mappings in both directions
-    cursor.execute("""
+    cursor.execute(f"""
         INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-        SELECT simple_lowercase_mapping_id, id, 1, 4, 'Unicode Character Database case mapping data'
+        SELECT simple_lowercase_mapping_id, id, {DEFAULT_DERIVATION}, {Certainty.AUTOMATED.value}, 'Unicode Character Database case mapping data'
         FROM code_point cp1
         WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""")
 
@@ -242,7 +315,7 @@ def load_derivations(cursor, verify_script):
                         cursor.execute("""
                             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
                             VALUES (?, ?, ?, ?, ?)""",
-                            (child, parent, 3, 4, 'Unihan Database'))
+                            (child, parent, 3, Certainty.AUTOMATED.value, 'Unihan Database'))
 
     defaults = {}
     with open(os.path.join(DERIVATIONS_PATH, 'defaults.csv'), 'r') as file:
@@ -261,17 +334,21 @@ def load_derivations(cursor, verify_script):
         script = script_file.split(os.path.sep)[-1].split('.')[0]
         with open(script_file, 'r') as file:
             for row in csv.DictReader(file):
-                # Child and Parent are mandatory fields, but the rest can be defaulted
                 child = row['Child'].strip()
-                parents = row['Parent'].strip()
-                notes = resolve_default(defaults, row, 'Notes', script)
-                source = resolve_default(defaults, row, 'Source', script)
-                derivation_types = resolve_default(defaults, row, 'Derivation Type', script, '1')  # final default is generic derivation (1)
-                certainty = int(resolve_default(defaults, row, 'Certainty Type', script, '6')) # final default is unspecified (6)
+                parents = row['Parent'].strip() if row['Parent'] else NO_PARENT  # This won't be in the defaults dictionary
 
-                # Assumed certainty type overrides a default source, but not a specified source (though I can't imagine making a data scenario where the latter applies)
-                if certainty == 5 and script in defaults and source == defaults[script]['Source'].strip():
-                    source = None
+                # Logic for defaulting to Uncertain on no parent: For historical scripts, this is usually more a function of a lack of records
+                # For modern scripts, the inventor is generally aware of existing writing systems, and may have been inspired
+                certainty = int(resolve_default(defaults, script, row, 'Certainty Type',
+                                                overriding_default = str(Certainty.UNCERTAIN.value),
+                                                override_condition = (parents == NO_PARENT),
+                                                last_resort = str(Certainty.UNSPECIFIED.value)))
+
+                # Overriding default here is for convenience: An Assumed certainty means there is no source, so allows us to specify a source in defaults for all else.
+                source = resolve_default(defaults, script, row, 'Source', overriding_default = None, override_condition = (certainty == Certainty.ASSUMED.value))
+
+                notes = resolve_default(defaults, script, row, 'Notes')
+                derivation_types = resolve_default(defaults, script, row, 'Derivation Type', last_resort = str(DEFAULT_DERIVATION))
 
                 # ensure that child character is always the expected script
                 if verify_script:
@@ -286,8 +363,8 @@ def load_derivations(cursor, verify_script):
                         if cursor.execute("SELECT * FROM code_point_derivation WHERE parent_id = ? AND child_id = ?", (ord(child), ord(parent))).fetchall():
                             raise ValueError("Attempted to add a 2-cycle with " + child + " and " + parent)
 
-                    # File-specified data overrides the algorithmic generated data
-                    cursor.execute("DELETE FROM code_point_derivation WHERE parent_id = ? AND child_id = ? AND certainty_type_id = 4", (ord(parent), ord(child)))
+                    # File-specified data overrides the automatically generated data
+                    cursor.execute(f"DELETE FROM code_point_derivation WHERE parent_id = ? AND child_id = ? AND certainty_type_id = {Certainty.AUTOMATED.value}", (ord(parent), ord(child)))
 
                     for derivation_type in derivation_types.split('/'):
                         cursor.execute("""
