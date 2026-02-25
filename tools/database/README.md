@@ -6,9 +6,9 @@
 
 This is a `sqlite3` database with script and character information, whose main purpose is to document historical development of writing on the individual character level. This started out as an exploration on updating the All Scripts chart with script samples that could show character development over time (objective not yet complete or even known to be feasible).
 
-In principle, there are a few neat queries that could be answered with the database (functionality yet to be written):
+There are a few neat queries that could be answered with the database:
 
-  - Given a script, what are its ancestor scripts, and in what proportions?
+  - Given a script, what are its ancestor scripts, and in what proportions? *(not yet implemented)*
   - Given a character, what are its descendents and ancestors?
 
 Though there are no current plans, the functionality of the database could be extended beyond historical character relationships in the future (if you have any interesting ideas, ideally either not done elsewhere and/or fits neatly with current DB schema, ping me either here on GitHub or [on Reddit](https://www.reddit.com/user/DPenner1/).
@@ -20,6 +20,8 @@ The database must be generated. For all purposes, the `./tools/database` folder 
   1. The database is generated using Python 3, with only standard modules plus `sqlite3` (which is an optional module possibly already included in a given installation).
   4. Generate the database by running the `./main.py` script. There is some logic for the script to try and work with an existing database, but there is no guarantee and you may have to delete the existing first. If the schema does not change though, it should just run a data update without issue.
   5. The database `./scripts.db` appears (or is updated)! You can now run queries as you like from `sqlite3`. Alternatively, include some code at the end of `./main.py`. But I guess that should've been done before step 2. Oops.
+
+The `./queries` folder contains some queries, including finding a character's ancestors and descendants. Queries suffixed with `p` are parameterized, either replace the `?`(s) or call from code with parameters. Queries suffixed with `d` are called internally by the database loading code when set to verify data integrity.
 
 ## Schema/data documentation
 
@@ -34,10 +36,11 @@ The database must be generated. For all purposes, the `./tools/database` folder 
      - *(to investigate data sources)* Han ideograph and radical relations.
   - `decomposition_mapping`: Unicode decompositions, in this project this was just an interim table from which to create automatic derivations.
   - `script`: Based on ISO 15924, but I'm likely to re-organize it later to deal with differences between what ISO supports, what Unicode supports, and the historical scripts neither has yet.
+  - The `*_type` tables are lookup tables that should be self-explanatory based on their data.
 
 ## Statistics
 
-  - (2026-02-24) There are 141,295 distinct letters in the database (defined as Unicode general category L* and having no Unicode decomposition). Of those, 27,064 have a historical ancestor specified (19.2%, including no known ancestor), of which 556 are manually reviewed (0.4%).
+  - (2026-02-24) There are 141,295 distinct letters in the database (for this project, defined as Unicode general category L* and having no Unicode decomposition). Of those, 27,064 have a historical ancestor specified (19.2%, including no known ancestor), of which 556 are manually reviewed (0.4%).
   - (2026-02-24) The database is about 20 MB.
 
 ## Random Notes

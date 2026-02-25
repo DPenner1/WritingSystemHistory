@@ -4,10 +4,13 @@ import re
 import csv
 from enum import Enum
 
+# dev mode runs data integrity checks and outputs to console
 DEV_MODE = False
 
-RESOURCE_PATH = os.path.join('.', 'resource')
-QUERY_PATH = os.path.join('.', 'queries')
+WORKING_DIRECTORY = '.'
+
+RESOURCE_PATH = os.path.join(WORKING_DIRECTORY, 'resource')
+QUERY_PATH = os.path.join(WORKING_DIRECTORY, 'queries')
 DERIVATIONS_PATH = os.path.join(RESOURCE_PATH, 'derivations')
 CR_EXCLUSION_PATH = os.path.join(RESOURCE_PATH, 'cr-exclusion')
 WIKIPEDIA_PATH = os.path.join(RESOURCE_PATH, 'wikipedia-sourced')
@@ -29,9 +32,43 @@ class Certainty(Enum):
 def get_sql_in_str_list(enumerable):
     return "('" + "','".join(enumerable) + "')"
 
-def execute_saved_query(cursor, filename, parameters):
-    with open(os.path.join(QUERY_PATH, filename)) as file:
-        return cursor.execute(file.read(), parameters).fetchall()
+def get_unique_saved_query(name_prefix):
+    queries = [f for f in os.listdir(QUERY_PATH) if f.startswith(name_prefix)]
+
+    if len(queries) == 0:
+        raise ValueError(f"No query named {name_prefix} found in {QUERY_PATH}")
+    elif len(queries) > 1:
+        raise ValueError("Multiple matching queries found: " + str(queries))
+
+    return os.path.join(QUERY_PATH, queries[0])
+
+def pretty_print_saved_query(cursor, query_name, parameters=None):
+    def print_data_row(row, pads):
+        BIDI_STRONG_ISOLATOR = '\u2068'
+        BIDI_ISOLATOR_POP = '\u2069'
+        print(f'|  {BIDI_STRONG_ISOLATOR}' + f'{BIDI_ISOLATOR_POP}  |  {BIDI_STRONG_ISOLATOR}'.join([r.ljust(p) for r, p in zip(row, pads)]) + BIDI_ISOLATOR_POP + '  |')
+    def print_separator_row(bookend_char, pads):
+        print(bookend_char + '--' + '--+--'.join(['-' * p for p in pads]) + '--' + bookend_char)
+
+    with open(get_unique_saved_query(query_name)) as file:
+        results = cursor.execute(file.read(), parameters).fetchall() if parameters else cursor.execute(file.read()).fetchall()
+        header = [x[0].replace('_', ' ').title() for x in cursor.description]
+        results = [[str(field) for field in row] for row in results]
+        pads = []
+        for i in range(len(header)):
+            # TODO - this is going to fail miserably in this project with string length != grapheme apparent length
+            pads.append(max([len(x[i]) for x in results + [header]]))
+
+        print_separator_row('+', pads)
+        print_data_row(header, pads)
+        print_separator_row('|', pads)
+        for r in results:
+            print_data_row(r, pads)
+        print_separator_row('+', pads)
+
+def execute_saved_query(cursor, query_name, parameters=None):
+    with open(get_unique_saved_query(query_name)) as file:
+        return cursor.execute(file.read(), parameters).fetchall() if parameters else cursor.execute(file.read()).fetchall()
 
 def setup_schema(cursor):
 
@@ -88,8 +125,6 @@ def setup_schema(cursor):
 
     # The established derivations should be a multi-DAG (directed acyclic graph, multiple edges permitted)
     # Code point != character/grapheme, but close enough for the purposes of this project
-    # A grapheme is one or more code points, and its more likely that the grapheme is then derived from those parts. With coding effort, this can be supported
-    # Not easily supported would be the other way around where the grapheme was the historically earlier character and the code points derived from it. This is presumably rare (non-existent?)
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS code_point_derivation (
             child_id INTEGER REFERENCES code_point (id),
@@ -272,7 +307,7 @@ def load_derivations(cursor, verify_script):
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
             SELECT id, ?, ?, ?, 'Independent script: Assume independent character'
             FROM code_point 
-            WHERE script_code IN ('{"','".join(independent_scripts)}')""", (ord(NO_PARENT), DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
+            WHERE script_code IN {get_sql_in_str_list(independent_scripts)}""", (ord(NO_PARENT), DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
 
     # add derivations from decomposition mappings, assuming the decomposed characters are the base building blocks (the parent)
     # Formatting/control/space characters are not eligible
@@ -543,15 +578,15 @@ def generate_data(code_to_script_dict, verify=False):
 def verify_script_coverage(cursor):
     def verify_script(script):
         missing_chars = cursor.execute("""
-                        SELECT cp.text FROM code_point cp INNER JOIN script s ON s.code = cp.script_code WHERE s.u_name = ? AND cp.std_order_num IS NOT NULL
-                        EXCEPT
-                        SELECT cp.text
-                        FROM 
-                            code_point_derivation cpd
-                            INNER JOIN code_point cp ON cpd.child_id = cp.id
-                            INNER JOIN script s ON s.code = cp.script_code
-                        WHERE s.u_name = ?""",
-                        (script, script)).fetchall()
+            SELECT cp.text FROM code_point cp INNER JOIN script s ON s.code = cp.script_code WHERE s.u_name = ? AND cp.std_order_num IS NOT NULL
+            EXCEPT
+            SELECT cp.text
+            FROM 
+                code_point_derivation cpd
+                INNER JOIN code_point cp ON cpd.child_id = cp.id
+                INNER JOIN script s ON s.code = cp.script_code
+            WHERE s.u_name = ?""",
+            (script, script)).fetchall()
 
         # Incomplete data not necessarily an error, we just output to audit it
         num_missing = len(missing_chars)
@@ -599,6 +634,7 @@ def load_database(con, dev_mode=False):
 
     if dev_mode:
         verify_script_coverage(cur)
+        pretty_print_saved_query(cur, 'Total derivation statistics')
     else:
         cur.execute("PRAGMA foreign_keys = ON")
 
@@ -609,6 +645,6 @@ if __name__ == '__main__':
     cursor = load_database(con, dev_mode=DEV_MODE)
 
     # do stuff here if you want, for example:
-    # print(execute_saved_query(cursor, 'Get Character Ancestors p.sql', 'a'))
+    # pretty_print_saved_query(cursor, 'Get Character Ancestors', 'a')
 
     cursor.close()
