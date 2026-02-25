@@ -4,9 +4,10 @@ import re
 import csv
 from enum import Enum
 
-DEV_MODE = True
+DEV_MODE = False
 
 RESOURCE_PATH = os.path.join('.', 'resource')
+QUERY_PATH = os.path.join('.', 'queries')
 DERIVATIONS_PATH = os.path.join(RESOURCE_PATH, 'derivations')
 CR_EXCLUSION_PATH = os.path.join(RESOURCE_PATH, 'cr-exclusion')
 WIKIPEDIA_PATH = os.path.join(RESOURCE_PATH, 'wikipedia-sourced')
@@ -27,6 +28,10 @@ class Certainty(Enum):
 
 def get_sql_in_str_list(enumerable):
     return "('" + "','".join(enumerable) + "')"
+
+def execute_saved_query(cursor, filename, parameters):
+    with open(os.path.join(QUERY_PATH, filename)) as file:
+        return cursor.execute(file.read(), parameters).fetchall()
 
 def setup_schema(cursor):
 
@@ -148,7 +153,7 @@ def update_code_point(cursor, id, name, general_category, bidi_class, upper_mapp
 def load_code_point_data(cursor):
     pattern = re.compile(r'^([0-9A-F]+)(?:\.\.([0-9A-F]+))?\s*; ([_a-zA-Z]+) #')
 
-    cursor.execute("INSERT INTO code_point (id, text, bidi_class_code) VALUES (?, ?, 'Bn') ON CONFLICT DO NOTHING", (ord(NO_PARENT), NO_PARENT))
+    cursor.execute("INSERT INTO code_point (id, text, name, bidi_class_code) VALUES (?, ?, 'NO PARENT CHARACTER', 'Bn') ON CONFLICT DO NOTHING", (ord(NO_PARENT), NO_PARENT))
 
     with open(os.path.join(UNICODE_PATH, 'Scripts.txt'), 'r') as file:
         for line in file:
@@ -603,6 +608,7 @@ if __name__ == '__main__':
     con = sqlite3.connect('scripts.db')
     cursor = load_database(con, dev_mode=DEV_MODE)
 
-    # do stuff here if you want
+    # do stuff here if you want, for example:
+    # print(execute_saved_query(cursor, 'Get Character Ancestors p.sql', 'a'))
 
     cursor.close()

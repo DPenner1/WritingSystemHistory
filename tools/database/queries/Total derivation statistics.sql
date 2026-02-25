@@ -17,4 +17,5 @@ SELECT
     '... that are manually specified' AS statistic,
     COUNT(DISTINCT cpd.child_id) AS quantity,
     ROUND(100.0 * COUNT(DISTINCT cpd.child_id)/COUNT(DISTINCT letter.id), 1) AS percentage
-FROM letter LEFT JOIN code_point_derivation cpd ON letter.id = cpd.child_id AND cpd.certainty_type_id <> 4;
+FROM letter LEFT JOIN code_point_derivation cpd ON letter.id = cpd.child_id AND cpd.certainty_type_id <> 4
+ORDER BY quantity DESC

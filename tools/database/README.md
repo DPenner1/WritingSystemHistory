@@ -38,6 +38,7 @@ The database must be generated. For all purposes, the `./tools/database` folder 
 ## Statistics
 
   - (2026-02-24) There are 141,295 distinct letters in the database (defined as Unicode general category L* and having no Unicode decomposition). Of those, 27,064 have a historical ancestor specified (19.2%, including no known ancestor), of which 556 are manually reviewed (0.4%).
+  - (2026-02-24) The database is about 20 MB.
 
 ## Random Notes
 
