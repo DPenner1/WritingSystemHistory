@@ -4,6 +4,8 @@ import re
 import csv
 from enum import Enum
 
+DEV_MODE = True
+
 RESOURCE_PATH = os.path.join('.', 'resource')
 DERIVATIONS_PATH = os.path.join(RESOURCE_PATH, 'derivations')
 CR_EXCLUSION_PATH = os.path.join(RESOURCE_PATH, 'cr-exclusion')
@@ -23,6 +25,8 @@ class Certainty(Enum):
     ASSUMED = 5
     UNSPECIFIED = 6
 
+def get_sql_in_str_list(enumerable):
+    return "('" + "','".join(enumerable) + "')"
 
 def setup_schema(cursor):
 
@@ -50,7 +54,6 @@ def setup_schema(cursor):
             simple_uppercase_mapping_id INTEGER REFERENCES code_point(id),
             simple_lowercase_mapping_id INTEGER REFERENCES code_point(id),
             decomposition_type TEXT,
-            is_singleton_decomposition INTEGER,
             std_order_num INTEGER
         ) STRICT""")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_fk_script_code ON code_point(script_code)")
@@ -117,12 +120,10 @@ def update_code_point(cursor, id, name, general_category, bidi_class, upper_mapp
     decom_pattern = re.compile(r'^(?:<([a-zA-Z]+)> )?([\s0-9A-F]+)$')
     decom_type = None
     decom_ids = []
-    is_singleton = None
 
     if decom_str:
         match = decom_pattern.match(decom_str)
         decom_ids = [int(id, 16) for id in match.group(2).split(' ')]
-        is_singleton = len(decom_ids) == 1
         decom_type = match.group(1) if match.group(1) else 'canonical'
 
     cursor.execute("""
@@ -133,10 +134,9 @@ def update_code_point(cursor, id, name, general_category, bidi_class, upper_mapp
             bidi_class_code = ?,
             simple_uppercase_mapping_id = ?,
             simple_lowercase_mapping_id = ?,
-            decomposition_type = ?,
-            is_singleton_decomposition = ?
+            decomposition_type = ?
         WHERE id = ?""",
-        (name, general_category, bidi_class, upper_mapping, lower_mapping, decom_type, is_singleton, id))
+        (name, general_category, bidi_class, upper_mapping, lower_mapping, decom_type, id))
 
     for i, decom_id in enumerate(decom_ids):
         cursor.execute("""
@@ -243,6 +243,7 @@ def load_lookups(cursor):
     load_lookup(cursor, 'certainty_type', data)
 
 def load_derivations(cursor, verify_script):
+    copy_decompositions = {'noBreak', 'small', 'sub', 'super'}
     def resolve_default(defaults_dict, script, data_row, field, overriding_default=None, override_condition=False, last_resort=None):
         if field in data_row and data_row[field] and not data_row[field].isspace():
             return data_row[field].strip()
@@ -264,45 +265,53 @@ def load_derivations(cursor, verify_script):
     # Identify all the independently-derived characters
     cursor.execute(f"""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
-            SELECT id, {ord(NO_PARENT)}, {DEFAULT_DERIVATION}, {Certainty.AUTOMATED.value}, 'Independent script: Assume independent character'
+            SELECT id, ?, ?, ?, 'Independent script: Assume independent character'
             FROM code_point 
-            WHERE script_code IN ('{"','".join(independent_scripts)}')""")
+            WHERE script_code IN ('{"','".join(independent_scripts)}')""", (ord(NO_PARENT), DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
 
     # add derivations from decomposition mappings, assuming the decomposed characters are the base building blocks (the parent)
     # Formatting/control/space characters are not eligible
     cursor.execute(f"""
         INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
         SELECT
-            cp1.id, 
+            code_point_id,
             decomposition_id,
-            CASE WHEN cp1.is_singleton_decomposition = 1 AND cp1.decomposition_type IN ('compat', 'canonical') THEN 6 ELSE {DEFAULT_DERIVATION} END,
-            {Certainty.AUTOMATED.value},
+            CASE WHEN COUNT(decomposition_id) OVER (PARTITION BY code_point_id) = 1
+                THEN CASE WHEN cp1.decomposition_type = 'canonical' THEN 6
+                          WHEN cp1.decomposition_type IN {get_sql_in_str_list(copy_decompositions)} THEN 5
+                          ELSE ?
+                     END
+                ELSE ?
+            END,
+            ?,
             'Unicode Character Database decomposition data'
-        FROM 
-            code_point cp1 
-            INNER JOIN decomposition_mapping dm ON cp1.id = dm.code_point_id
+        FROM
+            decomposition_mapping dm
+            INNER JOIN code_point cp1 ON cp1.id = dm.code_point_id
             INNER JOIN code_point cp2 ON cp2.id = dm.decomposition_id
         WHERE 
             cp1.general_category_code NOT LIKE 'Z_'
             AND cp1.general_category_code NOT LIKE 'C_'
             AND cp2.general_category_code NOT LIKE 'Z_'
             AND cp2.general_category_code NOT LIKE 'C_'
-        ON CONFLICT DO NOTHING""")
+        ON CONFLICT DO NOTHING""", (DEFAULT_DERIVATION, DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
     # conflicts expected when a character decomposes into multiple copies of a code point,
     # minimal enough that this is probably the better query option than advance filtering
 
     # add derivations from case mapping, assuming lowercase to be derived from uppercase
-    cursor.execute(f"""
+    cursor.execute("""
         INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-        SELECT id, simple_uppercase_mapping_id, {DEFAULT_DERIVATION}, {Certainty.AUTOMATED.value}, 'Unicode Character Database case mapping data'
+        SELECT id, simple_uppercase_mapping_id, ?, ?, 'Unicode Character Database case mapping data'
         FROM code_point
-        WHERE simple_uppercase_mapping_id IS NOT NULL""")
+        WHERE simple_uppercase_mapping_id IS NOT NULL""",
+        (DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
     # casing isn't 100% 1:1 so need to do mappings in both directions
-    cursor.execute(f"""
+    cursor.execute("""
         INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-        SELECT simple_lowercase_mapping_id, id, {DEFAULT_DERIVATION}, {Certainty.AUTOMATED.value}, 'Unicode Character Database case mapping data'
+        SELECT simple_lowercase_mapping_id, id, ?, ?, 'Unicode Character Database case mapping data'
         FROM code_point cp1
-        WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""")
+        WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
+        (DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
 
     with open(os.path.join(UNICODE_PATH, 'Unihan_Variants.txt'), 'r') as file:
         for line in file:
@@ -365,7 +374,7 @@ def load_derivations(cursor, verify_script):
                             raise ValueError("Attempted to add a 2-cycle with " + child + " and " + parent)
 
                     # File-specified data overrides the automatically generated data
-                    cursor.execute(f"DELETE FROM code_point_derivation WHERE parent_id = ? AND child_id = ? AND certainty_type_id = {Certainty.AUTOMATED.value}", (ord(parent), ord(child)))
+                    cursor.execute("DELETE FROM code_point_derivation WHERE parent_id = ? AND child_id = ? AND certainty_type_id = ?", (ord(parent), ord(child), Certainty.AUTOMATED.value))
 
                     for derivation_type in derivation_types.split('/'):
                         cursor.execute("""
@@ -496,7 +505,7 @@ def generate_data(code_to_script_dict, verify=False):
                                     elif verify: print(f'Data generation error: No code point found for parent of script {script_code} character {character}')
                                 else:
                                     deriv_data[script_code].append((character, ''))
-
+                            # temporary warning pending manual review
                             elif verify: print(f'Data generation warning: Multiple possible parents for script {script_code} character {character}')
                         elif verify: print(f'Data generation error: Parent of script {script_code} is not specified')
                     elif verify: print(f'Data generation error: Character not found for script {script_code}, generic indic letter {letter}')
@@ -524,7 +533,7 @@ def generate_data(code_to_script_dict, verify=False):
             file.write('Child,Parent,Derivation Type,Certainty Type,Source,Notes\n')
             for deriv in script_deriv_data[script]:
                 if deriv[1]:
-                    file.write(f'{deriv[0]},{deriv[1]},1,4,Wikipedia Indic letter cognate charts,Not necessarily graphical derivation but likely\n')
+                    file.write(f'{deriv[0]},{deriv[1]},{DEFAULT_DERIVATION},{Certainty.AUTOMATED.value},Wikipedia Indic letter cognate charts,Not necessarily graphical derivation but likely\n')
 
 def verify_script_coverage(cursor):
     def verify_script(script):
@@ -592,7 +601,7 @@ def load_database(con, dev_mode=False):
 
 if __name__ == '__main__':
     con = sqlite3.connect('scripts.db')
-    cursor = load_database(con, dev_mode=False)
+    cursor = load_database(con, dev_mode=DEV_MODE)
 
     # do stuff here if you want
 
