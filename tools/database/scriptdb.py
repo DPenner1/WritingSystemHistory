@@ -209,8 +209,8 @@ class ScriptDatabase:
         pattern = re.compile(r'^([0-9A-F]+)(?:\.\.([0-9A-F]+))?\s*; ([_a-zA-Z]+) #')
 
         cursor.execute(
-            "INSERT INTO code_point (id, text, name, bidi_class_code) VALUES (?, ?, 'NO PARENT CHARACTER', 'Bn') ON CONFLICT DO NOTHING",
-            (ord(NO_PARENT_CHARACTER), NO_PARENT_CHARACTER))
+            "INSERT INTO code_point (id, name, bidi_class_code) VALUES (?, 'NO PARENT CHARACTER', 'Bn') ON CONFLICT DO NOTHING",
+            (ord(NO_PARENT_CHARACTER),))
 
         with open(os.path.join(self._unicode_path, 'Scripts.txt'), 'r') as file:
             for line in file:
