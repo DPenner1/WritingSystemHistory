@@ -4,6 +4,7 @@
 # Python environment folders
 *.idea
 *.venv
+__pycache__
 
 # the database
 scripts.db
