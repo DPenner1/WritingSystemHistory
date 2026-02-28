@@ -1,0 +1,1 @@
+{{Infobox Semitic letter|letname=Zayin|previouslink=Waw (letter)|previousletter=Waw|nextlink=Heth|nextletter=Heth|archar=ز|sychar=ܙ|hechar=ז|smchar=ࠆ|amchar=𐡆|nbchar=𐢉‎|gechar=ዘ|ugchar=𐎇|phchar=𐤆|nachar=𐪘|sachar=𐩸|grchar=[[Ζ]]|lachar=[[Z]], [[ẞ]]|cychar=[[З]], [[Ж]]|ipa={{IPA link|z}}|num=7|gem=7}}

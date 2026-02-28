@@ -1,0 +1,1 @@
+{{Infobox Semitic letter|letname=Resh|previouslink=Qoph|previousletter=Qoph|nextlink=Shin (letter)|nextletter=Shin|archar=ر|sychar=ܪ|hechar=ר|smchar=ࠓ|amchar=𐡓|nbchar=𐢛‎|gechar=ረ|ugchar=𐎗|phchar=𐤓|nachar=𐪇‎‎|sachar=𐩧|grchar=[[Ρ]]|lachar=[[R]]|cychar=[[Р]]|ipa={{IPA link|r}} ({{IPA link|ɾ}}, {{IPA link|ʁ}}, {{IPA link|ʀ}})|num=20|gem=200}}

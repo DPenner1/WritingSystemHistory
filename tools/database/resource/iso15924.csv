@@ -153,9 +153,13 @@ Phnx,115,Phoenician,5,0
 Plrd,282,Miao,6,1
 Piqd,293,,,
 Prti,130,Inscriptional_Parthian,5,2
-Psin,103,,,
-Qaaa,900,,,
-Qabx,949,,,
+Psin,103,Proto_Sinaitic,,
+Qabd,929,Gaudi,,
+Qabg,932,Gupta,,
+Qabk,936,Kadamba,,
+Qabl,937,Landa,,
+Qabn,939,Nagari,,
+Qabp,941,Pallava,,
 Ranj,303,,,
 Rjng,363,Rejang,5,1
 Rohg,167,Hanifi_Rohingya,11,0

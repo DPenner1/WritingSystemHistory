@@ -4,11 +4,11 @@ Wikipedia text is licensed under CC BY-SA 4.0: https://creativecommons.org/licen
 
 Further information: https://en.wikipedia.org/wiki/Wikipedia:Copyrights#Reusers'_rights_and_obligations
 
-In compliance with the above, the following is a record of which URLs had text copied from, on 2026-02-22:
+In compliance with the above, the following is a record of which URLs had text copied from:
 
 ------
 
-./indic-letters
+./indic-letters on 2026-02-22
 
 https://en.wikipedia.org/wiki/Ka_(Indic)
 https://en.wikipedia.org/wiki/Kha_(Indic)
@@ -57,3 +57,30 @@ https://en.wikipedia.org/wiki/E_(Indic)
 https://en.wikipedia.org/wiki/Ai_(Indic)
 https://en.wikipedia.org/wiki/O_(Indic)
 https://en.wikipedia.org/wiki/Au_(Indic)
+
+./semitic-letters on 2026-02-25
+
+https://en.wikipedia.org/wiki/Aleph
+https://en.wikipedia.org/wiki/Bet_(letter)
+https://en.wikipedia.org/wiki/Gimel
+https://en.wikipedia.org/wiki/Dalet
+https://en.wikipedia.org/wiki/He_(letter)
+https://en.wikipedia.org/wiki/Waw_(letter)
+https://en.wikipedia.org/wiki/Zayin
+https://en.wikipedia.org/wiki/Heth
+https://en.wikipedia.org/wiki/Teth
+https://en.wikipedia.org/wiki/Yodh
+https://en.wikipedia.org/wiki/Kaph
+https://en.wikipedia.org/wiki/Lamedh
+https://en.wikipedia.org/wiki/Mem
+https://en.wikipedia.org/wiki/Nun_(letter)
+https://en.wikipedia.org/wiki/Samekh
+https://en.wikipedia.org/wiki/Ayin
+https://en.wikipedia.org/wiki/Pe_(Semitic_letter)
+https://en.wikipedia.org/wiki/Tsade
+https://en.wikipedia.org/wiki/Qoph
+https://en.wikipedia.org/wiki/Resh
+https://en.wikipedia.org/wiki/Shin_(letter)
+https://en.wikipedia.org/wiki/Taw
+
+

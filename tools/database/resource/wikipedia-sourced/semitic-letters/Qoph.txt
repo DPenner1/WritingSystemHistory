@@ -1,0 +1,2 @@
+{{Infobox Semitic letter|letname=Qoph|previouslink=Tsade|previousletter=Tsade|nextlink=Resh|nextletter=Resh|archar=ق|sychar=ܩ|hechar=ק|smchar=ࠒ|amchar=𐡒|nbchar=𐢚‎|gechar=ቀ|ugchar=𐎖|phchar=𐤒|nachar=𐪄|sachar=𐩤|grchar=[[Ϙ]], [[Φ]]|lachar=[[Q]], [[Ƣ]]|cychar=[[Ҁ]], [[Ф]], [[Ԛ]]|ipa={{IPA link|q}}, {{IPA link|g}}, {{IPA link|ʔ}}, {{IPA link|k}}|num=19|gem=100}}
+{{SpecialChars}}

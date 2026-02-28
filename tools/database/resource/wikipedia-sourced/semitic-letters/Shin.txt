@@ -1,0 +1,1 @@
+{{Phoenician glyph|letname=Shin|previouslink=Resh|previousletter=Resh|nextlink=Taw|nextletter=Taw|archar=س/ش|sychar=ܫ|hechar=ש|smchar=ࠔ|amchar=𐡔|nbchar=𐢝𐢜|gechar=ሠ/ሰ|ugchar=𐎌|phchar=𐤔|nachar=𐪆‎/𐪊|sachar=𐩪/𐩦|grchar=[[Σ]]|lachar=[[S]], [[ß]]|cychar=[[С]], [[Ш]], [[Щ]]|ipa={{IPA link|ʃ}}, {{IPA link|s}}{{sfn|Kogan|2011|p= 54}}|num=21|gem=300}}

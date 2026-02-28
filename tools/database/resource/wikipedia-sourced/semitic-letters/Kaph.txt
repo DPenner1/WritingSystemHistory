@@ -1,0 +1,24 @@
+{{Infobox Semitic letter
+|letname       = Kaph
+|previouslink  = Yodh
+|previousletter= Yodh
+|nextlink      = Lamedh
+|nextletter    = Lamedh
+|archar        = ك
+|sychar        = ܟ
+|hechar        = כך
+|smchar        = ࠊ
+|amchar        = 𐡊
+|nbchar        = 𐢏𐢎
+|gechar        = ከ
+|ugchar        = 𐎋
+|phchar        = 𐤊
+|nachar        = 𐪋
+|sachar        = 𐩫
+|grchar        = [[Κ]]
+|lachar        = [[K]]
+|cychar        = [[К]]
+|ipa           = [[k (IPA)|k]] ([[x (IPA)|x]])
+|num = 11
+|gem = 20
+}}

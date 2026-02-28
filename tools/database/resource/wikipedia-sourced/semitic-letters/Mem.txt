@@ -1,0 +1,1 @@
+{{Infobox Semitic letter|letname=Mem|previouslink=Lamedh|previousletter=Lamedh|nextlink=Nun (letter)|nextletter=Nun|archar=م|sychar=ܡ|hechar=מם|smchar=ࠌ|amchar=𐡌|nbchar=𐢓𐢒|gechar=መ|ugchar=𐎎|phchar=𐤌|nachar=𐪃|sachar=𐩣|grchar=[[Μ]]|lachar=[[M]]|cychar=[[М]]|maltchar=m|ipa={{IPA link|m}}|num=13|gem=40}}

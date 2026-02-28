@@ -1,0 +1,1 @@
+{{Infobox Semitic letter|letname=Pe|previouslink=Ayin|previousletter=Ayin|nextlink=Tsade|nextletter=Tsade|archar=ف|sychar=ܦ|hechar=פף|smchar=ࠐ|amchar=𐡐|nbchar=𐢘|gechar=ፈ|ugchar=𐎔|phchar=𐤐|nachar=𐪐|sachar=𐩰|grchar=[[Pi (letter)|Π]]|lachar=[[P]]|cychar=[[П]]|ipa=[[p (IPA)|p]], [[f (IPA)|f]] (originally [[ɸ]]), [[w (IPA)|w]]|num=17|gem=80}}

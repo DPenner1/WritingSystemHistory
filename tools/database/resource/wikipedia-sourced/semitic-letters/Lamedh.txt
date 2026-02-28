@@ -1,0 +1,1 @@
+{{Phoenician glyph|letname=Lamedh|previouslink=Kaph|previousletter=Kaph|nextlink=Mem|nextletter=Mem|archar=ل|sychar=ܠ|hechar=ל|smchar=ࠋ|amchar=𐡋|nbchar=𐢑𐢐|gechar=ለ|ugchar=𐎍|phchar=𐤋|nachar=𐪁|sachar=𐩡|grchar=[[Λ]]|lachar=[[L]]|cychar=[[Л]]|ipa={{IPAlink|l}}, ({{IPAlink|ɫ}})|num=12|gem=30}}

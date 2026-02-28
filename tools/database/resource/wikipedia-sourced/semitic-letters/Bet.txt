@@ -1,0 +1,1 @@
+{{Infobox Semitic letter|letname=Bet|previouslink=Aleph|previousletter=Aleph|nextlink=Gimel|nextletter=Gimel|archar=ب|sychar=ܒ|hechar=ב|smchar=ࠁ|amchar=𐡁|nbchar=𐢃𐢂|nachar=𐪈‎|sachar=𐩨|gechar=በ|ugchar=𐎁|phchar=𐤁|grchar=[[Β]]|lachar=[[B]]|cychar=[[В]], [[Б]]|ipa={{IPA link|b}}, ({{IPA link|v}})|num=2|gem=2}}

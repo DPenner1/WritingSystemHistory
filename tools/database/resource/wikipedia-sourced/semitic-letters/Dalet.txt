@@ -1,0 +1,1 @@
+{{Phoenician glyph|letname=Dalet|previouslink=Gimel|previousletter=Gimel|nextlink=He (letter)|nextletter=He|archar=د|sychar=ܕ|hechar=ד|smchar=ࠃ|amchar=𐡃|nbchar=𐢅|gechar=ደ|ugchar=𐎄|phchar=𐤃|nachar=𐪕|sachar=𐩵|grchar=[[Δ]]|lachar=[[D]]|cychar=[[Д]]|ipa={{IPA link|d}}, {{IPA link|ð}}|num=4|gem=4}}

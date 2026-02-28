@@ -1,0 +1,1 @@
+{{Infobox Semitic letter |letname=Heth |previouslink=Zayin |previousletter=Zayin |nextlink=Teth |nextletter=Teth |archar=ح|sychar=ܚ|hechar=ח|smchar=ࠇ|amchar=𐡇|nbchar=𐢊|gechar=ሐ|ugchar=𐎈|phchar=𐤇|nachar=𐪂|sachar=𐩢|grchar=[[Η]], [[Ͱ]]|lachar=[[H]]|cychar=[[И]], [[Й]], [[Һ]]|ipa=[[ħ (IPA)|ħ]], ([[χ (IPA)|χ]], [[x (IPA)|x]]) |num=8 |gem=8}}

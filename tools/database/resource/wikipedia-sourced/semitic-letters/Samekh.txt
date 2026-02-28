@@ -1,0 +1,22 @@
+{{Phoenician glyph
+|letname=Samekh
+|previouslink=Nun (letter)
+|previousletter=Nun
+|nextlink=Ayin
+|nextletter=Ayin
+|sychar=ܣ
+|hechar=ס
+|smchar=ࠎ
+|amchar=𐡎
+|nbchar=𐢖
+|phchar=𐤎
+|nachar=𐪏
+|sachar=𐩯
+|ugchar=𐎒
+|grchar=[[Ξ]],[[Χ]]
+|lachar= [[X]]
+|cychar=[[Ѯ]],[[Х]]
+|ipa={{IPAlink|s}}
+|num=15
+|gem=60
+}}

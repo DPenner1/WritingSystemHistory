@@ -1,0 +1,19 @@
+{{Infobox Semitic letter
+|letname=Ayin
+|previouslink=Samekh
+|previousletter=Samekh
+|nextlink=Pe (Semitic letter)
+|nextletter=Pe
+|archar=ع
+|sychar=ܥ
+|hechar=ע
+|smchar=ࠏ
+|amchar=𐡏
+|nbchar=𐢗
+|nachar=𐪒
+|sachar=𐩲
+|gechar=ዐ|ugchar=𐎓|phchar=𐤏|grchar=[[Ο]], [[Ω]]|lachar=[[O]], [[Ƹ]], [[Ꞷ]], [[ʘ]]|cychar=[[О]], [[Ѡ]]|ipa=[[ʕ]], ([[ʔ]])
+|num=16
+|gem=70
+|maltchar=għ
+}}

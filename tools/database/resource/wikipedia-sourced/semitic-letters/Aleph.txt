@@ -1,0 +1,1 @@
+{{Infobox Semitic letter|letname=Aleph|nextlink=Bet (letter)|nextletter=Bet|arrowleft=&nbsp;|archar=ا|sychar=ܐ|hechar=א|smchar=ࠀ|amchar=𐡀|nbchar=𐢁𐢀|nachar=𐪑|sachar=𐩱|gechar=አ|ugchar=𐎀|phchar=𐤀|grchar=[[Α]]|lachar=[[A]], [[Latin alpha|Ɑ]]|cychar=[[А]], [[Ѧ]], [[Ѫ]], [[Ӏ]]|ipa={{IPA link|ʔ}}, {{IPA link|a}}|num=1|gem=1}}

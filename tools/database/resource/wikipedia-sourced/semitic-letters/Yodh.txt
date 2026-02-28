@@ -1,0 +1,24 @@
+{{Infobox Semitic letter
+ | letname = Yodh
+ | previouslink = Teth
+ | previousletter = Teth
+ | nextlink = Kaph
+ | nextletter = Kaph
+ | archar = ي
+ | sychar = ܝ
+ | hechar = י
+ | smchar = ࠉ
+ | amchar = 𐡉
+ | nbchar = 𐢍
+ | gechar = የ
+ | ugchar = 𐎊
+ | phchar = 𐤉
+ | nachar = 𐪚
+ | sachar = 𐩺
+ | grchar = [[Ι]]
+ | lachar = [[I]], [[J]], [[İ]], [[J̇]]
+ | cychar = [[І]], [[Ј]]
+ | ipa = {{IPA link|j}}, {{IPA link|i}}, {{IPA link|e}}
+ | num = 10
+ | gem = 10
+}}

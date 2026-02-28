@@ -25,7 +25,9 @@ The `./queries` folder contains some queries, including finding a character's an
 
 ## Schema/data documentation
 
-  - `code_point`: Generally what you would expect from Unicode. Non-character U+FFFF is used as a signal value for when a character has been evaluated to have no known ancestor (to distinguish it from the case where data is simply missing). *(planned)* Private use characters are used for historical scripts not yet in Unicode proper.
+  - `code_point`: Generally what you would expect from Unicode.
+     - Non-character U+FFFF is used as a signal value for when a character has been evaluated to have no known ancestor (to distinguish it from the case where data is simply missing).
+     - Private use characters are used for historical scripts not yet in Unicode proper. For the Brahmi-based scripts, they've been been automatically generated and assumed to exist if 50%+1 of their descendents have the corresponding letter. It should not be assumed the particular code points used are stable.
   - `code_point_derivation`: This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. These automatic derivations are:
      - An assumption that lowercase characters derive from their uppercase counterparts.
      - The Brahmi-derived scripts have a decently documented history, it is assumed that cognate letters derive from their known ancestor script.
@@ -35,13 +37,23 @@ The `./queries` folder contains some queries, including finding a character's an
      - *(planned)* Hangul syllables deriving from their constituent jamo.
      - *(to investigate data sources)* Han ideograph and radical relations.
   - `decomposition_mapping`: Unicode decompositions, in this project this was just an interim table from which to create automatic derivations.
-  - `script`: Based on ISO 15924, but I'm likely to re-organize it later to deal with differences between what ISO supports, what Unicode supports, and the historical scripts neither has yet.
+  - `script`: ISO 15924. A bit of a mish-mash, but works so far. Table based on list found [here](https://www.unicode.org/iso15924/iso15924-codes.html). To my understanding, rows without a Unicode Alias yet having a Unicode version date are scripts which Unicode considers a font variant of another. Then it is augmented with private use scripts with a `u_name` specified. These are:
+     - Proto-Sinaitic
+     - Pallava
+     - Kadamba
+     - Landa
+     - Nagari
+     - Gaudi
+     - Gupta
+     - *(to investigate subsets of)* Demotic, Hieratic, Pitman Shorthand
   - The `*_type` tables are lookup tables that should be self-explanatory based on their data.
 
 ## Statistics
 
-  - (2026-02-24) There are 141,295 distinct letters in the database (for this project, defined as Unicode general category L* and having no Unicode decomposition). Of those, 27,064 have a historical ancestor specified (19.2%, including no known ancestor), of which 556 are manually reviewed (0.4%).
-  - (2026-02-24) The database is about 20 MB.
+  - (2026-02-27) There are ⁨141,582 distinct letters* in the database. Of those, 27,623 have a historical ancestor specified (19.5%, including no known ancestor), of which 615 are manually reviewed (0.4%).
+  - (2026-02-27) The database is about 20 MB.
+
+*Including 287 Private Use characters, and distinct letter being defined for this project as Unicode general category L_ and having no Unicode decomposition.
 
 ## Random Notes
 

@@ -1,0 +1,1 @@
+{{Infobox Semitic letter|letname=Nun|previouslink=Mem|previousletter=Mem|nextlink=Samekh|nextletter=Samekh|archar=ن|sychar=ܢ|hechar=נן|smchar=ࠍ|amchar=𐡍|nbchar=𐢕𐢔|gechar=ነ|ugchar=𐎐|phchar=𐤍|nachar=𐪌‎‎|sachar=𐩬|grchar=[[Ν]]|lachar=[[N]]|cychar=[[Н]]|ipa={{IPA link|n}}|num=14|gem=50}}

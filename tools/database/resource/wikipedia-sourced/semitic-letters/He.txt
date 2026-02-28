@@ -1,0 +1,1 @@
+{{Infobox Semitic letter|letname=He|previouslink=Dalet|previousletter=Dalet|nextlink=Waw (letter)|nextletter=Waw|archar=ه|sychar=ܗ|hechar=ה|smchar=ࠄ|amchar=𐡄|nbchar=𐢇𐢆|gechar=ሀ|ugchar=𐎅|phchar=𐤄|nachar=𐪀|sachar=𐩠|grchar=[[Ε]]|lachar=[[E]]|cychar=[[Е]], [[Є]], [[Э]], [[Ҩ]]|ipa={{IPA link|h}}, ([[ʔ]])|num=5|gem=5}}

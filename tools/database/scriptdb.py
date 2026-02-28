@@ -10,6 +10,102 @@ NO_PARENT_CHARACTER = '\uFFFF'  # a Unicode non-character
 class ScriptDatabase:
 
     _GENERATED_DIR_NAME = 'generated'
+    _INDIC_ORDER = ['A', 'Ā', 'I', 'Ī', 'U', 'Ū', 'Ṛ', 'Ṝ', 'Ḷ', 'Ḹ', 'E', 'Ai', 'O', 'Au',
+                    'Ka', 'Kha', 'Ga', 'Gha', 'Ṅa', 'Ca', 'Cha', 'Ja', 'Jha', 'Ña', 'Ṭa', 'Ṭha', 'Ḍa', 'Ḍha', 'Ṇa', 'Ta',
+                   'Tha', 'Da', 'Dha', 'Na', 'Pa', 'Pha', 'Ba', 'Bha', 'Ma', 'Ya', 'Ra', 'La', 'Va', 'Śa', 'Ṣa', 'Sa','Ha']
+    _SEMITIC_ORDER = ['Aleph', 'Bet', 'Gimel', 'Dalet', 'He', 'Waw', 'Zayin', 'Heth', 'Teth', 'Yodh', 'Kaph', 'Lamedh',
+                     'Mem', 'Nun', 'Samekh', 'Ayin', 'Pe', 'Tsade', 'Qoph', 'Resh', 'Shin', 'Taw']
+    _PROTO_SINAITIC_ORDER = ['ALP', 'BAYT', 'GAML', 'DALT', 'DAG', 'HAW', 'WAW', 'ZAYN', 'HASIR', 'HAYT', 'TAB', 'YAD', 'KAP',
+                              'LAMD', 'MAYM', 'NAHS', 'SAMK', 'AYN', 'PAY', 'PIT', 'SAD', 'QUP', 'QAW', 'RAS', 'SAMS', 'TAD', 'TAW']
+    _CODE_POINT_STARTS = {'kawi': 0x11F04, 'qabp': 0xE104, 'qabk': 0xE204, 'qabl': 0xE304, 'qabn': 0xE404, 'qabd': 0xE504, 'qabg': 0xE604, 'psin': 0xF000}
+
+    # Brahmi, Kharoshti, Arabic, Phoenician which will be manually specified and the Aramaic code point not generally being included in Indic source
+    # Can abo, Hangul, Kayah Li, Masaram Gondi, Sorang Sompeng, Pau cin hau will be manually specified due to higher independence or contribution from other scripts
+    # Soyombo excluded due to elevated probability of script relationships being modified
+    # Non-unicode scripts Gupta, Ranjana, Pallava, Tocharian, 'asho', 'kush' excluded
+    _EXCLUDED_GEN_CODES = ['brah', 'khar', 'hang', 'cans', 'kali', 'soyo', 'gonm', 'sora', 'pauc', 'gupt', 'plav',
+                           'ranj', 'asho', 'kush', 'toch', 'grek', 'latn', 'cyrl', 'arab', 'phnx', 'psin', 'armi']
+
+    # i really wish i properly title-cased these, it's hurt a few times already. I'll get around to it at some point...
+    _SCRIPT_PARENTS = {
+        'kawi': 'qabp',
+        'tibt': 'qabg',
+        'bhks': 'qabg',
+        'sidd': 'qabg',
+        'shrd': 'qabg',
+        'deva': 'qabn',
+        'beng': 'qabd',
+        'telu': 'qabk',
+        'orya': 'qabd',
+        'knda': 'qabk',
+        'mlym': 'gran',
+        'gujr': 'qabn',
+        'gran': 'qabp',
+        'phag': 'tibt',
+        'zanb': 'phag',
+        'newa': 'qabd',
+        'mymr': 'qabp',
+        'khmr': 'qabp',
+        'laoo': 'thai',
+        'thai': 'khmr',
+        'ahom': 'mymr',
+        'modi': 'qabn',
+        'nand': 'qabn',
+        'sylo': 'kthi',
+        'kthi': 'qabn',
+        'tirh': 'qabd',
+        'lepc': 'tibt',
+        'limb': 'lepc',
+        'mtei': 'tibt',
+        'marc': 'tibt',
+        'takr': 'shrd',
+        'dogr': 'takr',
+        'khoj': 'qabl',
+        'sind': 'qabl',
+        'mahj': 'qabl',
+        'mult': 'qabl',
+        'bali': 'kawi',
+        'batk': 'kawi',
+        'bugi': 'kawi',
+        'java': 'kawi',
+        'rjng': 'kawi',
+        'sund': 'kawi',
+        'tglg': 'kawi',
+        'tagb': 'tglg',
+        'hano': 'tglg',
+        'buhd': 'tglg',
+        'guru': 'qabl',
+        'lana': 'mymr',
+        'talu': 'lana',
+        'tavt': 'thai',
+        'sinh': 'gran',
+        'cakm': 'mymr',
+        'gong': 'qabn',
+        'maka': 'kawi',
+        'taml': 'qabp',
+        'tale': 'mymr',
+        'saur': 'gran',
+        'cham': 'qabp',
+        'diak': 'gran',
+        'qabp': 'brah',
+        'qabk': 'brah',
+        'qabl': 'shrd',
+        'qabn': 'sidd',
+        'qabd': 'sidd',
+        'qabg': 'brah',
+         # semitic
+        'arab': 'nbat',
+        'syrc': 'armi',
+        'hebr': 'armi',
+        'nbat': 'armi',
+        'armi': 'phnx',
+        'ethi': 'sarb',
+        'ugar': 'psin',
+        'narb': 'psin',
+        'sarb': 'psin',
+        'samr': 'phnx',
+        'phnx': 'psin'
+    }
 
     def __init__(self, name='scripts.db', path='.'):
         self._db_name = name
@@ -58,7 +154,7 @@ class ScriptDatabase:
 
         results = cursor.execute(query, parameters).fetchall() if parameters else cursor.execute(query).fetchall()
         header = [x[0].replace('_', ' ').title() for x in cursor.description]
-        results = [[str(field) for field in row] for row in results]
+        results = [['' if field is None else str(field) for field in row] for row in results]
         pads = []
         for i in range(len(header)):
             # TODO - this is going to fail miserably in this project with string length != grapheme apparent length
@@ -103,7 +199,7 @@ class ScriptDatabase:
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS code_point (
                 id INTEGER PRIMARY KEY,
-                text TEXT UNIQUE,
+                text TEXT UNIQUE GENERATED ALWAYS AS (CASE WHEN general_category_code IN ('Cn', 'Cs') THEN NULL ELSE CHAR(id) END),
                 name TEXT,
                 script_code TEXT NOT NULL DEFAULT 'Zzzz' REFERENCES script (code),
                 general_category_code TEXT NOT NULL DEFAULT 'Cn',
@@ -219,15 +315,14 @@ class ScriptDatabase:
                     start = int(match.group(1), 16)
                     end = int(match.group(2), 16) if match.group(2) else start
                     script_name = match.group(3)
-                    script_code = cursor.execute("SELECT code FROM script WHERE u_name = ?", (match.group(3),)).fetchone()[
-                        0]
+                    script_code = cursor.execute("SELECT code FROM script WHERE u_name = ?", (match.group(3),)).fetchone()[0]
 
                     for i in range(start, end + 1):
                         cursor.execute("""
-                            INSERT INTO code_point (id, text, script_code) 
-                            VALUES (?, ?, ?)
+                            INSERT INTO code_point (id, script_code) 
+                            VALUES (?, ?)
                             ON CONFLICT (id) DO NOTHING""",
-                                       (i, chr(i), script_code))  # TODO: double check stability policy
+                                       (i, script_code))  # TODO: double check stability policy
 
         with open(os.path.join(self._unicode_path, 'UnicodeData.txt'), 'r') as csvfile:
             special_name_pattern = re.compile('^<(.+)>$')
@@ -264,17 +359,23 @@ class ScriptDatabase:
                     self._update_code_point(cursor, code_point, name + '-' + line[0] if in_range else name, general_category,
                                       bidi_class, upper_mapping, lower_mapping, decom_str)
 
-        cursor.execute("UPDATE code_point SET std_order_num = NULL")
-        with open(os.path.join(self._resource_path, 'standard_alphabets.csv'), 'r') as file:
+        with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'private_use.csv'), 'r') as file:
             for row in csv.DictReader(file):
-                for i, c in enumerate(row['Alphabet']):
-                    cursor.execute("UPDATE code_point SET std_order_num = ? WHERE text = ?",
-                                   (i + 1, c))  # 1-index for readability
+                cursor.execute("""
+                    INSERT INTO code_point (id, script_code, name, general_category_code)
+                    VALUES (?, ?, ?, ?)
+                    ON CONFLICT (id) DO UPDATE SET script_code = ?, name = ?, general_category_code = ?""",
+                    (int(row['Id']), row['Script Code'], row['Name'], row['General Category'], row['Script Code'], row['Name'], row['General Category']))
+
+        cursor.execute("UPDATE code_point SET std_order_num = NULL")
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'r') as file:
             for row in csv.DictReader(file):
                 for i, c in enumerate(row['Alphabet']):
-                    cursor.execute("UPDATE code_point SET std_order_num = ? WHERE text = ?",
-                                   (i + 1, c))  # 1-index for readability
+                    cursor.execute("UPDATE code_point SET std_order_num = ? WHERE text = ?", (i + 1, c))  # 1-index for readability
+        with open(os.path.join(self._resource_path, 'standard_alphabets.csv'), 'r') as file:
+            for row in csv.DictReader(file):
+                for i, c in enumerate(row['Alphabet']):
+                    cursor.execute("UPDATE code_point SET std_order_num = ? WHERE text = ?", (i + 1, c))  # 1-index for readability
 
 
     def _load_lookups(self, cursor):
@@ -313,9 +414,7 @@ class ScriptDatabase:
         load_lookup(cursor, 'certainty_type', data)
 
 
-    def _load_derivations(self, cursor, verify_script):
-        copy_decompositions = {'noBreak', 'small', 'sub', 'super'}
-
+    def _load_derivations(self, cursor, indic_letter_data, semitic_letter_data, verify_script):
         def resolve_default(defaults_dict, script, data_row, field, overriding_default=None, override_condition=False,
                             last_resort=None):
             if field in data_row and data_row[field] and not data_row[field].isspace():
@@ -328,15 +427,17 @@ class ScriptDatabase:
 
         # Mende Kikakui is a bit of an exception here: Unicode Encoding Proposal suggests Vai-derived characters are a small minority
         # Not including Chinese here: ideally will eventually do so for Oracle bone
-        independent_scripts = {'Mend', 'Egyp', 'Lina', 'Hluw', 'Xsux', 'Xpeo', 'Ogam', 'Elba', 'Dupl', 'Sgnw', 'Shaw',
-                               'Vith', 'Vaii', 'Bamu', 'Berf', 'Nkoo', 'Wara', 'Gonm', 'Toto'
-                                                                                       'Osma', 'Adlm', 'Gara', 'Medf',
-                               'Bass', 'Yezi', 'Tnsa', 'Olck', 'Thaa', 'Tols', 'Nagm', 'Sora', 'Wcho', 'Mroo', 'Onao',
-                               'Sunu', 'Yiii', 'Tang'}
+        independent_scripts = {'Mend', 'Egyp', 'Lina', 'Hluw', 'Xsux', 'Xpeo', 'Ogam', 'Elba', 'Dupl', 'Sgnw', 'Shaw', 'Vith',
+                               'Vaii', 'Bamu', 'Berf', 'Nkoo', 'Wara', 'Gonm', 'Toto', 'Osma', 'Adlm', 'Gara', 'Medf', 'Bass',
+                               'Yezi', 'Tnsa', 'Olck', 'Thaa', 'Tols', 'Nagm', 'Sora', 'Wcho', 'Mroo', 'Onao', 'Sunu', 'Yiii', 'Tang'}
+        copy_decompositions = {'noBreak', 'small', 'sub', 'super'}
 
         pattern = re.compile(r'^U\+([0-9A-F]+)\tkTraditionalVariant\tU\+([0-9A-F]+)')
 
         cursor.execute("DELETE FROM code_point_derivation")  # updates generally expected on this table, just clear
+
+        self._load_letter_derivation_data(cursor, indic_letter_data, ScriptDatabase._INDIC_ORDER, False, options.verify_data_sources)
+        self._load_letter_derivation_data(cursor, semitic_letter_data, ScriptDatabase._SEMITIC_ORDER, True, options.verify_data_sources)
 
         # Identify all the independently-derived characters
         cursor.execute(f"""
@@ -413,227 +514,228 @@ class ScriptDatabase:
                     'Certainty Type': row['Certainty Type'].strip()
                 }
 
-        script_files = (  # generated files first allows manual overrides (untested)
-                [os.path.join(self._generated_derivation_path, f) for f in os.listdir(self._generated_derivation_path)]
-                + [os.path.join(self._derivations_path, f) for f in os.listdir(self._derivations_path) if
-                   f not in ('defaults.csv', ScriptDatabase._GENERATED_DIR_NAME)])
+        for s in os.listdir(self._derivations_path):
+            if s != 'defaults.csv':
+                script_file = os.path.join(self._derivations_path, s)
+                script = script_file.split(os.path.sep)[-1].split('.')[0]
+                with open(script_file, 'r') as file:
+                    for row in csv.DictReader(file):
+                        child = row['Child'].strip()
+                        parents = row['Parent'].strip() if row[
+                            'Parent'] else NO_PARENT_CHARACTER  # This won't be in the defaults dictionary
 
-        for script_file in script_files:
-            script = script_file.split(os.path.sep)[-1].split('.')[0]
-            with open(script_file, 'r') as file:
-                for row in csv.DictReader(file):
-                    child = row['Child'].strip()
-                    parents = row['Parent'].strip() if row[
-                        'Parent'] else NO_PARENT_CHARACTER  # This won't be in the defaults dictionary
+                        # Logic for defaulting to Uncertain on no parent: For historical scripts, this is usually more a function of a lack of records
+                        # For modern scripts, the inventor is generally aware of existing writing systems, and may have been inspired
+                        certainty = int(resolve_default(defaults, script, row, 'Certainty Type',
+                                                        overriding_default=str(Certainty.UNCERTAIN.value),
+                                                        override_condition=(parents == NO_PARENT_CHARACTER),
+                                                        last_resort=str(Certainty.UNSPECIFIED.value)))
 
-                    # Logic for defaulting to Uncertain on no parent: For historical scripts, this is usually more a function of a lack of records
-                    # For modern scripts, the inventor is generally aware of existing writing systems, and may have been inspired
-                    certainty = int(resolve_default(defaults, script, row, 'Certainty Type',
-                                                    overriding_default=str(Certainty.UNCERTAIN.value),
-                                                    override_condition=(parents == NO_PARENT_CHARACTER),
-                                                    last_resort=str(Certainty.UNSPECIFIED.value)))
+                        # Overriding default here is for convenience: An Assumed certainty means there is no source, so allows us to specify a source in defaults for all else.
+                        source = resolve_default(defaults, script, row, 'Source', overriding_default=None,
+                                                 override_condition=(certainty == Certainty.ASSUMED.value))
 
-                    # Overriding default here is for convenience: An Assumed certainty means there is no source, so allows us to specify a source in defaults for all else.
-                    source = resolve_default(defaults, script, row, 'Source', overriding_default=None,
-                                             override_condition=(certainty == Certainty.ASSUMED.value))
+                        notes = resolve_default(defaults, script, row, 'Notes')
+                        derivation_types = resolve_default(defaults, script, row, 'Derivation Type',
+                                                           last_resort=str(DEFAULT_DERIVATION))
 
-                    notes = resolve_default(defaults, script, row, 'Notes')
-                    derivation_types = resolve_default(defaults, script, row, 'Derivation Type',
-                                                       last_resort=str(DEFAULT_DERIVATION))
-
-                    # ensure that child character is always the expected script
-                    if verify_script:
-                        script_in_file = cursor.execute(
-                            "SELECT u_name FROM code_point cp INNER JOIN script s ON s.code = cp.script_code WHERE text = ?",
-                            child).fetchone()[0]
-                        if script != script_in_file:
-                            raise ValueError(
-                                f"resource file error in {script}.csv with child character {child} detected to be {script_in_file} instead")
-
-                    for parent in parents.split('/'):
+                        # ensure that child character is always the expected script
                         if verify_script:
-                            if child == parent:
-                                raise ValueError("Attempted to add self-derivation of " + child)
-                            if cursor.execute("SELECT * FROM code_point_derivation WHERE parent_id = ? AND child_id = ?",
-                                              (ord(child), ord(parent))).fetchall():
-                                raise ValueError("Attempted to add a 2-cycle with " + child + " and " + parent)
+                            script_in_file = cursor.execute(
+                                "SELECT u_name FROM code_point cp INNER JOIN script s ON s.code = cp.script_code WHERE text = ?", child).fetchone()[0]
+                            if script != script_in_file:
+                                raise ValueError(
+                                    f"resource file error in {script}.csv with child character {child} detected to be {script_in_file} instead")
 
-                        # File-specified data overrides the automatically generated data
-                        cursor.execute(
-                            "DELETE FROM code_point_derivation WHERE parent_id = ? AND child_id = ? AND certainty_type_id = ?",
-                            (ord(parent), ord(child), Certainty.AUTOMATED.value))
+                        for parent in parents.split('/'):
+                            if verify_script:
+                                if child == parent:
+                                    raise ValueError("Attempted to add self-derivation of " + child)
+                                if cursor.execute("SELECT * FROM code_point_derivation WHERE parent_id = ? AND child_id = ?",
+                                                  (ord(child), ord(parent))).fetchall():
+                                    raise ValueError("Attempted to add a 2-cycle with " + child + " and " + parent)
 
-                        for derivation_type in derivation_types.split('/'):
-                            cursor.execute("""
-                                INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
-                                VALUES (?, ?, ?, ?, ?, ?)""",
-                                           (ord(child), ord(parent), int(derivation_type), certainty, source, notes))
+                            # File-specified data overrides the automatically generated data
+                            cursor.execute(
+                                "DELETE FROM code_point_derivation WHERE parent_id = ? AND child_id = ? AND certainty_type_id = ?",
+                                (ord(parent), ord(child), Certainty.AUTOMATED.value))
+
+                            for derivation_type in derivation_types.split('/'):
+                                cursor.execute("""
+                                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
+                                    VALUES (?, ?, ?, ?, ?, ?)""",
+                                               (ord(child), ord(parent), int(derivation_type), certainty, source, notes))
 
 
-    def get_code_to_script_dict(self, cursor):
+    def get_code_to_script_dict(self):
         retval = {}
+        cursor = self._cxn.cursor()
         results = cursor.execute("SELECT code, u_name FROM script WHERE u_name IS NOT NULL").fetchall()
         for row in results:
             retval[row[0]] = row[1]
+        cursor.close()
         return retval
 
 
-    def _generate_data(self, code_to_script_dict, verify=False):
-        indic_order = ['Ka', 'Kha', 'Ga', 'Gha', 'Ṅa', 'Ca', 'Cha', 'Ja', 'Jha', 'Ña', 'Ṭa', 'Ṭha', 'Ḍa', 'Ḍha', 'Ṇa', 'Ta',
-                       'Tha', 'Da', 'Dha', 'Na', 'Pa', 'Pha', 'Ba', 'Bha', 'Ma', 'Ya', 'Ra', 'La', 'Va', 'Śa', 'Ṣa', 'Sa',
-                       'Ha', 'A', 'Ā', 'I', 'Ī', 'U', 'Ū', 'Ṛ', 'Ṝ', 'Ḷ', 'Ḹ', 'E', 'Ai', 'O', 'Au']
+    def _generate_private_use_data(self, indic_letter_data):
+        def get_private_use_indic_name(script_code, wiki_letter_name):
+            script_name = self.get_code_to_script_dict()[script_code.title()]
+            replacements = {'Ā': 'AA', 'Ī': 'II', 'Ū': 'UU', 'Ṛ': 'vocalic R', 'Ṝ': 'vocalic RR', 'Ḷ': 'vocalic L', 'Ḹ': 'vocalic LL',
+                            'Ṅa': 'Nga', 'Ña': 'Nya', 'Ṭa': 'Tta', 'Ṭha': 'Ttha', 'Ḍa': 'Dda', 'Ḍha': 'Ddha', 'Ṇa': 'Nna', 'Va': 'Wa', 'Śa': 'Sha', 'Ṣa': 'Ssa'}
+            if wiki_letter_name in replacements:
+                wiki_letter_name = replacements[wiki_letter_name]
+            return (script_name + ' letter ' + wiki_letter_name).upper()
 
-        # kawi is one of the newer scripts added to Unicode, so explains why wikipedia generally did not list the code point
-        equivalents = {
-            # kawi vowels were not included in any of the charts, may fill in manually later
-            'kawi': ['𑼒', '𑼓', '𑼔', '𑼕', '𑼖', '𑼗', '𑼘', '𑼙', '𑼚', '𑼛', '𑼜', '𑼝', '𑼞', '𑼟', '𑼠', '𑼡', '𑼢', '𑼣', '𑼤', '𑼥',
-                     '𑼦', '𑼧', '𑼨', '𑼩', '𑼪', '𑼫', '𑼬', '𑼭', '𑼮', '𑼯', '𑼰', '𑼱', '𑼲', '', '', '', '', '', '', '', '', '',
-                     '', '', '', '', '']
-        }
+        with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'private_use.csv'), 'w') as file:
+            file.write('Id,Script Code,Name,General Category')
 
-        def generate_indic_letter_data(letter, deriv_data):
-            # Aramaic, Brahmi and Kharoshti which will be manually specified due to additional sources available and the Aramaic code point not generally being included
-            # Can abo, Hangul, Kayah Li, Masaram Gondi, Sorang Sompeng, Pau cin hau will be manually specified due to higher independence or contribution from other scripts
-            # Soyombo excluded due to elevated probability of script relationships being modified
-            # Non-unicode scripts Gupta, Ranjana, Pallava, Tocharian, 'asho', 'kush' excluded
-            excluded_codes = ['brah', 'khar', 'hang', 'cans', 'kali', 'soyo', 'gonm', 'sora', 'pauc', 'gupt', 'plav',
-                              'ranj', 'armi', 'asho', 'kush', 'toch']
-            script_parents = {
-                'kawi': 'brah',
-                'tibt': 'brah',
-                'bhks': 'brah',
-                'sidd': 'brah',
-                'shrd': 'brah',
-                'deva': 'sidd',
-                'beng': 'sidd',
-                'telu': 'brah',
-                'orya': 'sidd',
-                'knda': 'brah',
-                'mlym': 'gran',
-                'gujr': 'sidd',
-                'gran': 'brah',
-                'phag': 'tibt',
-                'zanb': 'phag',
-                'newa': 'sidd',
-                'mymr': 'brah',
-                'khmr': 'brah',
-                'laoo': 'khmr',
-                'thai': 'khmr',
-                'ahom': 'mymr',
-                'modi': 'sidd',
-                'nand': 'sidd',
-                'sylo': 'kthi',
-                'kthi': 'sidd',
-                'tirh': 'sidd',
-                'lepc': 'tibt',
-                'limb': 'lepc',
-                'mtei': 'tibt',
-                'marc': 'tibt',
-                'takr': 'shrd',
-                'dogr': 'takr',
-                'khoj': 'shrd',
-                'sind': 'shrd',
-                'mahj': 'shrd',
-                'mult': 'shrd',
-                'bali': 'kawi',
-                'batk': 'kawi',
-                'bugi': 'kawi',
-                'java': 'kawi',
-                'rjng': 'kawi',
-                'sund': 'kawi',
-                'tglg': 'kawi',
-                'tagb': 'tglg',
-                'hano': 'tglg',
-                'buhd': 'tglg',
-                'guru': 'shrd',
-                'lana': 'mymr',
-                'talu': 'lana',
-                'tavt': 'khmr',
-                'sinh': 'gran',
-                'cakm': 'mymr',
-                'gong': 'sidd',
-                'maka': 'kawi',
-                'taml': 'brah',
-                'tale': 'mymr',
-                'saur': 'gran',
-                'cham': 'brah',
-                'diak': 'gran',
-            }
-            hex_pattern = re.compile('^[0-9A-F]+$')
+            for script_code in indic_letter_data:
+                if script_code.startswith('q'):
+                    for letter_class in indic_letter_data[script_code]:
+                        letter = indic_letter_data[script_code][letter_class][0] # generated only has one
+                        file.write(f'\n{ord(letter)},{script_code.title()},{get_private_use_indic_name(script_code, letter_class)},Lo') # TODO: Assuming Lo for now
 
+            for i, letter in enumerate(ScriptDatabase._PROTO_SINAITIC_ORDER):
+                file.write(f'\n{i + ScriptDatabase._CODE_POINT_STARTS['psin']},Psin,PROTO-SINAITIC LETTER {letter},Lo')
+
+    # format: { script_code (lowercase): { Generic Indic Letter: [letters] } }
+    def _get_indic_letter_dict(self, verify):
+        wdata = {}
+        hex_pattern = re.compile('^[0-9A-F]+$')
+        replacements = {'gupt': 'qabg', 'kdmb': 'qabk', 'plav': 'qabp'}
+        for letter in ScriptDatabase._INDIC_ORDER:
             with open(os.path.join(self._wikipedia_path, 'indic-letters', letter + '.txt'), 'r') as file:
-                wdata = {}
                 for match in re.findall(r'\|\s*([a-z0-9]+)(cp|img)\s*=([^\|]+)', file.read()):
-                    if match[0] not in wdata or match[1] == 'cp':  # code point overrides image
+                    script_code = match[0][0:4]  # a few have multiple codepoints indicated by appended numbers
+                    if script_code in replacements:
+                        script_code = replacements[script_code]
+
+                    if script_code not in wdata:
+                        wdata[script_code] = {}
+                    if letter not in wdata[script_code]:
+                        wdata[script_code][letter] = []
+                    if match[1] == 'cp':  # code point exists for the script
                         value = match[2].strip()
                         if '&#x' in value:
                             value = value[value.index('x') + 1:]
-                        wdata[match[0]] = value
+                        if hex_pattern.match(value):  # there's one entry in Tibetan that has three codepoints and I don't understand the intention
+                            letter_to_add = chr(int(value, 16))
+                            if letter_to_add == 'ᜢ' and letter == 'O':
+                                if verify:
+                                    print("Data generation error: Hanunoo letter ᜢ in two Indic letter files")  # a likely error in the source files
+                            elif letter_to_add not in wdata[script_code][letter]:
+                                wdata[script_code][letter].append(letter_to_add)
 
-                for id in wdata:
-                    script_code = id[0:4]  # a few have multiple copies indicated by appended numbers
-                    value = wdata[id]
-                    if script_code not in excluded_codes:
-                        character = None
-                        if hex_pattern.match(value):
-                            character = chr(int(value, 16))
-                        elif script_code in equivalents:
-                            character = equivalents[script_code][indic_order.index(letter)]
+        # kawi a bit of a special case in that it exists in Unicode, but probably because its one of the newer ones, Wikipedia source files didn't have code points yet
+        # in unicode, currently all indic letters exist in Kawi except for vowel Au, so just manually made sure that one wasn't added by the code
+        fill_in_scripts = ['kawi', 'qabp', 'qabk', 'qabl', 'qabn', 'qabd', 'qabg']
 
-                        if character:
-                            if script_code in script_parents:
-                                parent_script = script_parents[script_code]
-                                if not parent_script + '2' in wdata:  # likely at least one is incorrect, don't attempt automatic derivation
-                                    if script_code not in script_deriv_data:
-                                        deriv_data[script_code] = list()
+        # if it existed as an image in Wikipedia (it would have got created as an empty list) OR 50% + 1 have the Indic letter, we assume it exists
+        for fill_in_script in fill_in_scripts:
+            if fill_in_script not in wdata:
+                wdata[fill_in_script] = {}
+            for letter in ScriptDatabase._INDIC_ORDER:
+                fill_in_letter = False
+                if letter in wdata[fill_in_script] and wdata[fill_in_script][letter] is not None:
+                    fill_in_letter = (len(wdata[fill_in_script][letter]) == 0) # in theory letter could already have be there, so don't touch it
+                else:
+                    descendant_scripts = [x for x in self._SCRIPT_PARENTS if self._SCRIPT_PARENTS[x] == fill_in_script]
+                    count = 0
+                    for descendant_script in descendant_scripts:
+                        if letter in wdata[descendant_script] and wdata[descendant_script][letter]:
+                            count += 1
+                    if count >= len(descendant_scripts)/2 + 1:
+                        fill_in_letter = True
 
-                                    if parent_script in wdata:
-                                        if hex_pattern.match(wdata[parent_script]):
-                                            deriv_data[script_code].append((character, chr(int(wdata[parent_script], 16))))
-                                        elif parent_script in equivalents:
-                                            equiv = equivalents[parent_script][indic_order.index(letter)]
-                                            if equiv:
-                                                deriv_data[script_code].append((character, equiv))
-                                        elif verify:
-                                            print(
-                                                f'Data generation error: No code point found for parent of script {script_code} character {character}')
-                                    else:
-                                        deriv_data[script_code].append((character, ''))
-                                # temporary warning pending manual review
-                                elif verify:
-                                    print(
-                                        f'Data generation warning: Multiple possible parents for script {script_code} character {character}')
-                            elif verify:
-                                print(f'Data generation error: Parent of script {script_code} is not specified')
-                        elif verify:
-                            print(
-                                f'Data generation error: Character not found for script {script_code}, generic indic letter {letter}')
+                if fill_in_letter:
+                    id = ScriptDatabase._CODE_POINT_STARTS[fill_in_script] + self._INDIC_ORDER.index(letter)
+                    wdata[fill_in_script][letter] = [chr(id)]
 
-        # Clear existing data first
-        for file in os.listdir(self._generated_derivation_path):
-            os.remove(os.path.join(self._generated_derivation_path, file))
+        return wdata
 
-        script_deriv_data = {}
 
-        for l in indic_order:
-            generate_indic_letter_data(l, script_deriv_data)
+    def _generate_std_alphabets(self, indic_letter_dict, semitic_letter_dict):
+        # aramaic a bit of a hack because I want it generated in the Semitic list and not Indic
+        def generate_std_alphabet(letter_dict, letter_order):
+            script_dict = self.get_code_to_script_dict()
+            with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'a') as alpha_file:
+                for script_code in letter_dict:
+                    if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
+                        script_name = script_dict[script_code.title()]
+                        alpha_file.write('\n' + script_name + ',')
+                        for letter_class in letter_order:
+                            if letter_class in letter_dict[script_code]:
+                                for letter in letter_dict[script_code][letter_class]:
+                                    alpha_file.write(letter)
 
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'w') as file:
             file.write('Script,Alphabet')
 
-        for script in script_deriv_data:
-            script_name = code_to_script_dict[script.title()]
-            with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'a') as file:
-                file.write('\n' + script_name + ',')
-                for deriv in script_deriv_data[script]:
-                    file.write(deriv[0])
+        generate_std_alphabet(indic_letter_dict, ScriptDatabase._INDIC_ORDER)
+        generate_std_alphabet(semitic_letter_dict, ScriptDatabase._SEMITIC_ORDER)
 
-            with open(os.path.join(self._generated_derivation_path, script_name + '.csv'), 'w') as file:
-                file.write('Child,Parent,Derivation Type,Certainty Type,Source,Notes\n')
-                for deriv in script_deriv_data[script]:
-                    if deriv[1]:
-                        file.write(
-                            f'{deriv[0]},{deriv[1]},{DEFAULT_DERIVATION},{Certainty.AUTOMATED.value},Wikipedia Indic letter cognate charts,Not necessarily graphical derivation but likely\n')
+    # exclude aramaic a bit of a hack because I want it generated in the Semitic list and not Indic
+    def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, include_aramaic, verify):
+        script_dict = self.get_code_to_script_dict()
+        for script_code in letter_dict:
+            if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES or (script_code == 'armi' and include_aramaic):
+                script_name = script_dict[script_code.title()]
+
+                #with open(os.path.join(self._generated_derivation_path, script_name + '.csv'), 'w') as script_file:
+                 #   script_file.write('Child,Parent,Derivation Type,Certainty Type,Source,Notes\n')
+
+                parent_code = ScriptDatabase._SCRIPT_PARENTS[script_code]
+                for letter_class in letter_order:
+                    if letter_class in letter_dict[script_code]:
+                        if letter_class in letter_dict[parent_code]:
+                            parent_letters = letter_dict[parent_code][letter_class]  # final parent scripts should be in excluded codes
+                            if (len(parent_letters) == 1):
+                                for letter in letter_dict[script_code][letter_class]:
+                                    cursor.execute("""
+                                        INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
+                                        VALUES (?,?,?,?,?,?)""",
+                                        (ord(letter), ord(parent_letters[0]), DEFAULT_DERIVATION, Certainty.AUTOMATED.value,'Wikipedia letter cognate charts','Not necessarily graphical derivation but likely'))
+                            elif verify:  # temporary, for later manual work
+                                print(f"Data generation warning: {len(parent_letters)} parent letters found for {letter_class} in {script_code}")
+
+    # format: { script_code (lowercase): { Generic Semitic Letter: [letters] } }
+    def _get_semitic_letter_dict(self):
+        code_map = {
+            'ar': 'arab',
+            'sy': 'syrc',
+            'he': 'hebr',
+            'sm': 'samr',
+            'am': 'armi',
+            'nb': 'nbat',
+            'ge': 'ethi',
+            'ug': 'ugar',
+            'ph': 'phnx',
+            'na': 'narb',
+            'sa': 'sarb',
+            'gr': 'grek',
+            'la': 'latn',
+            'cy': 'cyrl',
+        }
+        wdata = {}
+        for letter in ScriptDatabase._SEMITIC_ORDER:
+            with open(os.path.join(self._wikipedia_path, 'semitic-letters', letter + '.txt'), 'r') as file:
+                for match in re.findall(r'\|\s*([a-z]{2})char\s*=([^\|]+)', file.read()):
+                    script_code = code_map[match[0]]
+                    if script_code not in wdata:
+                        wdata[script_code] = {}
+                    # there's a few ways these data files format multiple characters, this should cover it
+                    wdata[script_code][letter] = list(match[1].strip().replace('\u200E', '').replace('/', ''))
+
+        # manually curated Semitic general->proto-Sinaitic list.
+        # Basically going to allow only the ones that have an unambiguous Phoenician descendant to be automatically generated
+        letter_map = {'Aleph': 'ALP', 'Bet': 'BAYT', 'Gimel': 'GAML', 'He': 'HAW', 'Waw': 'WAW', 'Zayin': 'ZAYN', 'Yodh': 'YAD',
+                      'Kaph': 'KAP', 'Lamedh': 'LAMD', 'Mem': 'MAYM', 'Nun': 'NAHS', 'Ayin': 'AYN', 'Tsade': 'SAD', 'Resh': 'RAS', 'Taw': 'TAW'}
+
+        wdata['psin'] = {}
+        for letter in letter_map:
+            wdata['psin'][letter] = [chr(ScriptDatabase._PROTO_SINAITIC_ORDER.index(letter_map[letter]) + ScriptDatabase._CODE_POINT_STARTS['psin'])]
+
+        return wdata
 
 
     def _verify_script_coverage(self, cursor):
@@ -668,13 +770,15 @@ class ScriptDatabase:
             for row in csv.DictReader(csvfile):
                 verify_script(row['Script'])
 
-
     # dev mode runs additional checks and outputs some data to console
     def load_database(self, load_options=None):
         options = load_options if load_options else LoadOptions()
 
         if options.force_overwrite:
-            os.remove(os.path.join(self._db_path, self._db_name))
+            if os.path.isfile(os.path.join(self._db_path, self._db_name)):
+                os.remove(os.path.join(self._db_path, self._db_name))
+            if os.path.isfile(os.path.join(self._db_path, self._db_name + '-journal')):
+                os.remove(os.path.join(self._db_path, self._db_name + '-journal'))
             self._set_connection()
         if options.resource_path:
             self._set_resource_paths()
@@ -695,12 +799,16 @@ class ScriptDatabase:
         self._load_scripts(cur)
         self._cxn.commit()
 
-        self._generate_data(self.get_code_to_script_dict(cur), options.verify_data_sources)  # this requires script data already being loaded
+        indic_letter_data = self._get_indic_letter_dict(options.verify_data_sources)
+        semitic_letter_data = self._get_semitic_letter_dict()
+
+        self._generate_private_use_data(indic_letter_data)
+        self._generate_std_alphabets(indic_letter_data, semitic_letter_data)
 
         self._load_code_point_data(cur)
         self._cxn.commit()
 
-        self._load_derivations(cur, options.verify_data_sources)
+        self._load_derivations(cur, indic_letter_data, semitic_letter_data, options.verify_data_sources)
         self._cxn.commit()
 
         if options.output_debug_info:

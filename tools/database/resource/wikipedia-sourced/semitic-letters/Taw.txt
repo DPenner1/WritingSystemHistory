@@ -1,0 +1,1 @@
+{{Infobox Semitic letter|letname=Taw|previouslink=Shin (letter)|previousletter=Shin|archar=ت|sychar=ܬ|hechar=ת|smchar=ࠕ|amchar=𐡕‎|nbchar=𐢞‎|gechar=ተ|ugchar=𐎚|phchar=𐤕|nachar=𐪉‎‎‎|sachar=𐩩|grchar=[[Τ]]|lachar=[[T]]|cychar=[[Т]]|ipa={{IPA link|t}} (also {{IPA link|θ}}, {{IPA link|s}})|num=22|gem=400}}
