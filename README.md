@@ -27,6 +27,7 @@ And a section of the comprehensive diagram (as the full thing is excessive for a
   - Sometimes scripts incorporate letters from other scripts. In order to count as a derivation, the amount of borrowed letters should be at least 20%. This percentage was derived from the Coptic borrowing of Demotic letters and hence ultimately Egyptian Hieroglyphic characters. I wanted this on the diagram as it appears to constitute the only *current* use of Egyptian Hieroglyph derived characters outside of the Proto-Sinaitic branch. For partial independent creation, the same percentage provisionally applies, but I find that less interesting so I might change that in the future.
   - There was effort to place independent scripts near related scripts. For the Modern diagram, this is linguistic similarity, for the All Scripts diagram this is more geographic.
   - The script groups in the legend are ordered by a rough estimate of total population using them.
+  - The source files are sometimes ahead of the PDF/PNG/HTML exports, this will only occur with minor updates.
 
 ## All Scripts Diagram Notes
 
