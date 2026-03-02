@@ -48,7 +48,6 @@ The `./queries` folder contains some queries, including finding a character's an
      - Unicode decompositions (eg. accented characters, duplicate/legacy code points, etc.).
      - *(planned)* Hangul syllables deriving from their constituent jamo.
      - *(to investigate data sources)* Han ideograph and radical relations.
-  - `decomposition_mapping`: Unicode decompositions, in this project this was just an interim table from which to create automatic derivations.
   - `script`: ISO 15924. A bit of a mish-mash, but works so far. Table based on list found [here](https://www.unicode.org/iso15924/iso15924-codes.html). To my understanding, rows without a Unicode Alias yet having a Unicode version date are scripts which Unicode considers a font variant of another. Then it is augmented with private use scripts with a `u_name` specified. These are:
      - Proto-Sinaitic
      - Pallava
