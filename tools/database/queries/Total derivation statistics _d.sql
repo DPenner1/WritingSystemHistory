@@ -1,6 +1,6 @@
 WITH letter AS (
     SELECT id FROM code_point 
-    WHERE general_category_code LIKE 'L_' AND decomposition_type IS NULL)
+    WHERE general_category_code LIKE 'L_' AND decomposition_id IS NULL)
 SELECT
     'Distinct letters ...' AS statistic,
 	COUNT(*) AS quantity,

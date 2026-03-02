@@ -3,16 +3,24 @@ import sqlite3
 import re
 import csv
 from enum import Enum
+from zipfile import ZipFile
+
 
 DEFAULT_DERIVATION = 1
 NO_PARENT_CHARACTER = '\uFFFF'  # a Unicode non-character
+LETTER_SEQ_TYPE = 19
+ALPHABET_SEQ_TYPE = 20
 
 class ScriptDatabase:
+
+    INHERITED_SCRIPT = 'Zinh'
+    COMMON_SCRIPT = 'Zyyy'
+    UNICODE_MAX = 0x10FFFF
 
     _GENERATED_DIR_NAME = 'generated'
     _INDIC_ORDER = ['A', 'Ā', 'I', 'Ī', 'U', 'Ū', 'Ṛ', 'Ṝ', 'Ḷ', 'Ḹ', 'E', 'Ai', 'O', 'Au',
                     'Ka', 'Kha', 'Ga', 'Gha', 'Ṅa', 'Ca', 'Cha', 'Ja', 'Jha', 'Ña', 'Ṭa', 'Ṭha', 'Ḍa', 'Ḍha', 'Ṇa', 'Ta',
-                   'Tha', 'Da', 'Dha', 'Na', 'Pa', 'Pha', 'Ba', 'Bha', 'Ma', 'Ya', 'Ra', 'La', 'Va', 'Śa', 'Ṣa', 'Sa','Ha']
+                    'Tha', 'Da', 'Dha', 'Na', 'Pa', 'Pha', 'Ba', 'Bha', 'Ma', 'Ya', 'Ra', 'La', 'Va', 'Śa', 'Ṣa', 'Sa','Ha']
     _SEMITIC_ORDER = ['Aleph', 'Bet', 'Gimel', 'Dalet', 'He', 'Waw', 'Zayin', 'Heth', 'Teth', 'Yodh', 'Kaph', 'Lamedh',
                      'Mem', 'Nun', 'Samekh', 'Ayin', 'Pe', 'Tsade', 'Qoph', 'Resh', 'Shin', 'Taw']
     _PROTO_SINAITIC_ORDER = ['ALP', 'BAYT', 'GAML', 'DALT', 'DAG', 'HAW', 'WAW', 'ZAYN', 'HASIR', 'HAYT', 'TAB', 'YAD', 'KAP',
@@ -113,6 +121,7 @@ class ScriptDatabase:
         self._set_connection()
         self._set_resource_paths()
         self._query_path = os.path.join(self._db_path, 'queries')
+        self._next_sequence_id = ScriptDatabase.UNICODE_MAX
 
 
     def _set_connection(self):
@@ -183,72 +192,46 @@ class ScriptDatabase:
 
 
     def _setup_schema(self, cursor):
-        # Note: This schema frequently favours use of text codes over integers - this is simply more readable and more in line with the purposes of this project
-        #       This can change in the future field-by-field as deemed necessary (eg. if a lookup gets created for them; they are of a similar format with an integer id)
+        with open(self._get_unique_saved_query('Setup schema')) as file:
+            cursor.executescript(file.read())
 
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS script (
-                code TEXT PRIMARY KEY,
-                iso_id INT UNIQUE NOT NULL,
-                u_name TEXT UNIQUE,
-                u_version_added INTEGER,
-                u_subversion_added INTEGER
-            ) STRICT""")
 
-        # TODO - separate out std_order_num
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS code_point (
-                id INTEGER PRIMARY KEY,
-                text TEXT UNIQUE GENERATED ALWAYS AS (CASE WHEN general_category_code IN ('Cn', 'Cs') THEN NULL ELSE CHAR(id) END),
-                name TEXT,
-                script_code TEXT NOT NULL DEFAULT 'Zzzz' REFERENCES script (code),
-                general_category_code TEXT NOT NULL DEFAULT 'Cn',
-                bidi_class_code TEXT NOT NULL DEFAULT 'L',
-                simple_uppercase_mapping_id INTEGER REFERENCES code_point(id),
-                simple_lowercase_mapping_id INTEGER REFERENCES code_point(id),
-                decomposition_type TEXT,
-                std_order_num INTEGER
-            ) STRICT""")
-        cursor.execute("CREATE INDEX IF NOT EXISTS idx_fk_script_code ON code_point(script_code)")
-        cursor.execute("CREATE INDEX IF NOT EXISTS idx_general_category_code ON code_point(general_category_code)")
+    def _try_unzip_sources(self, zip_dir_path, output_debug=False):
+        def unzip_file(zip_file, file_wanted, destination_file):
+            try:
+                with ZipFile(zip_file, 'r') as zf:
+                    content = zf.read(file_wanted)
+                    with open(destination_file, 'w') as dest_file:
+                        dest_file.write(content.decode())
+            except FileNotFoundError:
+                if output_debug:
+                    print(f'Warning: Unable to unzip {file_wanted} from {zip_file.split(os.path.sep)[-1]}, relying on source file being in {self._resource_path}')
+                return False
+            return True
 
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS decomposition_mapping (
-                code_point_id INTEGER REFERENCES code_point (id),
-                decomposition_id INTEGER REFERENCES code_point (id),
-                order_num INTEGER,
-                PRIMARY KEY (code_point_id, decomposition_id, order_num)
-            ) STRICT""")
+        unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'UnicodeData.txt', os.path.join(self._unicode_path, 'UnicodeData.txt'))
+        unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Scripts.txt', os.path.join(self._unicode_path, 'Scripts.txt'))
+        unzip_file(os.path.join(zip_dir_path, 'Unihan.zip'), 'Unihan_Variants.txt', os.path.join(self._unicode_path, 'Unihan_Variants.txt'))
 
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS derivation_type (
-                id INTEGER PRIMARY KEY,
-                name TEXT UNIQUE,
-                description TEXT
-            ) STRICT""")
+        cldr_pattern = re.compile('cldr-common.+zip')
+        cldr_zip_file = [os.path.join(zip_dir_path, f) for f in os.listdir(zip_dir_path) if cldr_pattern.match(f)]
+        if not len(cldr_zip_file) == 1:
+            if output_debug:
+                print(f'Found {len(cldr_zip_file)} cldr common zip files to unzip')
+        else:
+            # I don't know if path separators within zip files are os-dependent?? so I'm working around that
+            cldr_file_pattern = re.compile(r"main.([a-z]{2,3}(?:_[A-Z][a-z]{3})?\.xml)$")
+            cldr_file_pattern2 = re.compile(r"[a-z]{2,3}(?:_[A-Z][a-z]{3})?\.xml")
+            with ZipFile(cldr_zip_file[0], 'r') as zip_file:
+                for zipped_file in zip_file.namelist():
+                    match = cldr_file_pattern.search(zipped_file)
+                    if match:
+                        unzip_file(cldr_zip_file[0], zipped_file, os.path.join(self._unicode_path, 'cldr', match[1]))
 
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS certainty_type (
-                id INTEGER PRIMARY KEY,
-                name TEXT UNIQUE,
-                description TEXT
-            ) STRICT""")
 
-        # The established derivations should be a multi-DAG (directed acyclic graph, multiple edges permitted)
-        # Code point != character/grapheme, but close enough for the purposes of this project
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS code_point_derivation (
-                child_id INTEGER REFERENCES code_point (id),
-                parent_id INTEGER REFERENCES code_point (id),
-                derivation_type_id INTEGER NOT NULL DEFAULT 1 REFERENCES derivation_type (id),
-                certainty_type_id INTEGER NOT NULL DEFAULT 6 REFERENCES certainty_type (id),
-                source TEXT,
-                notes TEXT,
-                PRIMARY KEY (child_id, parent_id, derivation_type_id)
-            ) STRICT""")
-        # This is a table likely to be looked up in either direction child<->parent
-        cursor.execute(
-            "CREATE INDEX IF NOT EXISTS idx_pk_inverse ON code_point_derivation(parent_id, child_id, derivation_type_id)")
+    def get_next_sequence_id(self):
+        self._next_sequence_id += 1
+        return self._next_sequence_id
 
 
     def _load_scripts(self, cursor):
@@ -269,16 +252,29 @@ class ScriptDatabase:
                         u_subversion_added = ?""",
                         (code, name, id, version, subversion, name, version, subversion))  # TODO: check stability policy
 
+        with open(os.path.join(self._resource_path, 'script_variants.csv'), 'r') as file:
+            for row in csv.DictReader(file):
+                cursor.execute("UPDATE script SET canonical_script_code = ? WHERE code = ?", (row['Main'], row['Variant']))
+
 
     def _update_code_point(self, cursor, id, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str):
         decom_pattern = re.compile(r'^(?:<([a-zA-Z]+)> )?([\s0-9A-F]+)$')
         decom_type = None
         decom_ids = []
 
+        seq_id = None
         if decom_str:
             match = decom_pattern.match(decom_str)
             decom_ids = [int(id, 16) for id in match.group(2).split(' ')]
             decom_type = match.group(1) if match.group(1) else 'canonical'
+            seq_id = self.get_next_sequence_id()
+            cursor.execute("""
+                INSERT INTO sequence (id, sequence_type_id) 
+                VALUES (?, (SELECT id FROM sequence_type WHERE name LIKE ?))""",
+                (seq_id, decom_type.title() + '%'))
+            for i, decom_id in enumerate(decom_ids):
+                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, decom_id, i + 1))
+
 
         cursor.execute("""
             UPDATE code_point
@@ -288,21 +284,18 @@ class ScriptDatabase:
                 bidi_class_code = ?,
                 simple_uppercase_mapping_id = ?,
                 simple_lowercase_mapping_id = ?,
-                decomposition_type = ?
+                decomposition_id = ?
             WHERE id = ?""",
-                       (name, general_category, bidi_class, upper_mapping, lower_mapping, decom_type, id))
-
-        for i, decom_id in enumerate(decom_ids):
-            cursor.execute("""
-                INSERT INTO decomposition_mapping (code_point_id, decomposition_id, order_num)
-                VALUES (?, ?, ?)
-                ON CONFLICT DO NOTHING""",  # stability policy, these won't change
-                           (id, decom_id,
-                            i + 1))  # 1-index order number (I don't foresee a particular use for it in this project anyway)
+                       (name, general_category, bidi_class, upper_mapping, lower_mapping, seq_id, id))
 
 
     def _load_code_point_data(self, cursor):
         pattern = re.compile(r'^([0-9A-F]+)(?:\.\.([0-9A-F]+))?\s*; ([_a-zA-Z]+) #')
+
+        # Reset since sequence ids not stable -> TODO in principle we could be smarter about this
+        cursor.execute("DELETE FROM sequence_item")
+        cursor.execute("DELETE FROM alphabet")
+        cursor.execute("DELETE FROM sequence WHERE id > ?", (ScriptDatabase.UNICODE_MAX,))
 
         cursor.execute(
             "INSERT INTO code_point (id, name, bidi_class_code) VALUES (?, 'NO PARENT CHARACTER', 'Bn') ON CONFLICT DO NOTHING",
@@ -322,7 +315,7 @@ class ScriptDatabase:
                             INSERT INTO code_point (id, script_code) 
                             VALUES (?, ?)
                             ON CONFLICT (id) DO NOTHING""",
-                                       (i, script_code))  # TODO: double check stability policy
+                            (i, script_code))  # TODO: double check stability policy
 
         with open(os.path.join(self._unicode_path, 'UnicodeData.txt'), 'r') as csvfile:
             special_name_pattern = re.compile('^<(.+)>$')
@@ -367,7 +360,7 @@ class ScriptDatabase:
                     ON CONFLICT (id) DO UPDATE SET script_code = ?, name = ?, general_category_code = ?""",
                     (int(row['Id']), row['Script Code'], row['Name'], row['General Category'], row['Script Code'], row['Name'], row['General Category']))
 
-        cursor.execute("UPDATE code_point SET std_order_num = NULL")
+    """  TODO: reintegrate standard_alphabets to new alphabet architecture (historic scripts only now)
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'r') as file:
             for row in csv.DictReader(file):
                 for i, c in enumerate(row['Alphabet']):
@@ -375,17 +368,15 @@ class ScriptDatabase:
         with open(os.path.join(self._resource_path, 'standard_alphabets.csv'), 'r') as file:
             for row in csv.DictReader(file):
                 for i, c in enumerate(row['Alphabet']):
-                    cursor.execute("UPDATE code_point SET std_order_num = ? WHERE text = ?", (i + 1, c))  # 1-index for readability
-
+                    cursor.execute("UPDATE code_point SET std_order_num = ? WHERE text = ?", (i + 1, c))  # 1-index for readability"""
 
     def _load_lookups(self, cursor):
         def load_lookup(cursor, table_name, lookup_data):
-            for lu in lookup_data:
-                cursor.execute(
-                    f"INSERT INTO {table_name} (id, name, description)" + """
-                    VALUES (?, ?, ?)
-                    ON CONFLICT (id) DO UPDATE SET name = ?, description = ?""",
-                    (lu[0], lu[1], lu[2], lu[1], lu[2]))
+            cursor.executemany(
+                f"INSERT INTO {table_name} (id, name, description)" + """
+                VALUES (?, ?, ?)
+                ON CONFLICT (id) DO UPDATE SET name = ?, description = ?""",
+                [(lu[0], lu[1], lu[2], lu[1], lu[2]) for lu in lookup_data])
 
         data = [
             (DEFAULT_DERIVATION, "Derivation", "Standard/default/non-specific"),
@@ -393,8 +384,7 @@ class ScriptDatabase:
              "Child is a copy of a portion of the parent, allowing for stretch-distortion due to size change"),
             (3, "Simplification", "Child is a simplification of parent"),
             (4, "From cursive", "Child is derived from cursive form of the parent (who is typically non-cursive)"),
-            (5, "Copy", "Child is a copy of the parent"),
-            # Generally either child script copying or lowercase just a small version of uppercase
+            (5, "Copy", "Child is a copy of the parent"), # Generally either child script copying or lowercase just a small version of uppercase
             (6, "Duplicate", "Child is a duplicate of the parent"),  # Unicode duplicate code points
             (7, "Portion derivation", "Child is a derivation from a portion of the parent"),
             (8, "Rotation", "Child is a rotation of the parent"),
@@ -413,6 +403,30 @@ class ScriptDatabase:
             (Certainty.UNSPECIFIED.value, "Unspecified", "Not specified in data files - this is a missing data error")]
         load_lookup(cursor, 'certainty_type', data)
 
+        data = [
+            (1, 'Base', 'Unitary "sequence" representing a single code point'),
+            (2, 'Canonical Decomposition', 'Unicode decomposition type'),
+            (3, 'Compat Decomposition', 'Unicode decomposition type'),
+            (4, 'NoBreak Decomposition', 'Unicode decomposition type'),
+            (5, 'Super Decomposition', 'Unicode decomposition type'),
+            (6, 'Fraction Decomposition', 'Unicode decomposition type'),
+            (7, 'Sub Decomposition', 'Unicode decomposition type'),
+            (8, 'Font Decomposition', 'Unicode decomposition type'),
+            (9, 'Circle Decomposition', 'Unicode decomposition type'),
+            (10, 'Wide Decomposition', 'Unicode decomposition type'),
+            (11, 'Vertical Decomposition', 'Unicode decomposition type'),
+            (12, 'Square Decomposition', 'Unicode decomposition type'),
+            (13, 'Isolated Decomposition', 'Unicode decomposition type'),
+            (14, 'Final Decomposition', 'Unicode decomposition type'),
+            (15, 'Initial Decomposition', 'Unicode decomposition type'),
+            (16, 'Medial Decomposition', 'Unicode decomposition type'),
+            (17, 'Small Decomposition', 'Unicode decomposition type'),
+            (18, 'Narrow Decomposition', 'Unicode decomposition type'),
+            (LETTER_SEQ_TYPE, 'Letter', 'A sequence representing a letter'),
+            (ALPHABET_SEQ_TYPE, 'Alphabet', 'A sequence representing an alphabet')
+        ]
+        load_lookup(cursor, 'sequence_type', data)
+
 
     def _load_derivations(self, cursor, indic_letter_data, semitic_letter_data, verify_script):
         def resolve_default(defaults_dict, script, data_row, field, overriding_default=None, override_condition=False,
@@ -430,14 +444,13 @@ class ScriptDatabase:
         independent_scripts = {'Mend', 'Egyp', 'Lina', 'Hluw', 'Xsux', 'Xpeo', 'Ogam', 'Elba', 'Dupl', 'Sgnw', 'Shaw', 'Vith',
                                'Vaii', 'Bamu', 'Berf', 'Nkoo', 'Wara', 'Gonm', 'Toto', 'Osma', 'Adlm', 'Gara', 'Medf', 'Bass',
                                'Yezi', 'Tnsa', 'Olck', 'Thaa', 'Tols', 'Nagm', 'Sora', 'Wcho', 'Mroo', 'Onao', 'Sunu', 'Yiii', 'Tang'}
-        copy_decompositions = {'noBreak', 'small', 'sub', 'super'}
 
         pattern = re.compile(r'^U\+([0-9A-F]+)\tkTraditionalVariant\tU\+([0-9A-F]+)')
 
         cursor.execute("DELETE FROM code_point_derivation")  # updates generally expected on this table, just clear
 
-        self._load_letter_derivation_data(cursor, indic_letter_data, ScriptDatabase._INDIC_ORDER, False, options.verify_data_sources)
-        self._load_letter_derivation_data(cursor, semitic_letter_data, ScriptDatabase._SEMITIC_ORDER, True, options.verify_data_sources)
+        self._load_letter_derivation_data(cursor, indic_letter_data, ScriptDatabase._INDIC_ORDER, False, verify_script)
+        self._load_letter_derivation_data(cursor, semitic_letter_data, ScriptDatabase._SEMITIC_ORDER, True, verify_script)
 
         # Identify all the independently-derived characters
         cursor.execute(f"""
@@ -448,15 +461,16 @@ class ScriptDatabase:
                        (ord(NO_PARENT_CHARACTER), DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
 
         # add derivations from decomposition mappings, assuming the decomposed characters are the base building blocks (the parent)
-        # Formatting/control/space characters are not eligible
-        cursor.execute(f"""
+        # Formatting/control/space characters are not eligible (they aren't graphical, though this could get philosophical)
+        # TODO so many magic numbers
+        cursor.execute("""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
             SELECT
-                code_point_id,
-                decomposition_id,
-                CASE WHEN COUNT(decomposition_id) OVER (PARTITION BY code_point_id) = 1
-                    THEN CASE WHEN cp1.decomposition_type = 'canonical' THEN 6
-                              WHEN cp1.decomposition_type IN {self._get_sql_in_str_list(copy_decompositions)} THEN 5
+                cp1.id,
+                cp2.id,
+                CASE WHEN COUNT(item_id) OVER (PARTITION BY decomp.sequence_id) = 1
+                    THEN CASE WHEN sequence_type_id = 2 THEN 6
+                              WHEN sequence_type_id IN (4, 5, 7, 17) THEN 5
                               ELSE ?
                          END
                     ELSE ?
@@ -464,15 +478,17 @@ class ScriptDatabase:
                 ?,
                 'Unicode Character Database decomposition data'
             FROM
-                decomposition_mapping dm
-                INNER JOIN code_point cp1 ON cp1.id = dm.code_point_id
-                INNER JOIN code_point cp2 ON cp2.id = dm.decomposition_id
+                sequence_item decomp
+                INNER JOIN sequence seq ON seq.id = decomp.sequence_id
+                INNER JOIN code_point cp1 ON cp1.decomposition_id = seq.id
+                INNER JOIN code_point cp2 ON cp2.id = decomp.item_id
             WHERE 
                 cp1.general_category_code NOT LIKE 'Z_'
                 AND cp1.general_category_code NOT LIKE 'C_'
                 AND cp2.general_category_code NOT LIKE 'Z_'
                 AND cp2.general_category_code NOT LIKE 'C_'
             ON CONFLICT DO NOTHING""", (DEFAULT_DERIVATION, DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
+
         # conflicts expected when a character decomposes into multiple copies of a code point,
         # minimal enough that this is probably the better query option than advance filtering
 
@@ -738,6 +754,7 @@ class ScriptDatabase:
         return wdata
 
 
+    # TODO: this no longer works with the current alphabet architecture
     def _verify_script_coverage(self, cursor):
         def verify_script(script):
             missing_chars = cursor.execute("""
@@ -749,7 +766,7 @@ class ScriptDatabase:
                     INNER JOIN code_point cp ON cpd.child_id = cp.id
                     INNER JOIN script s ON s.code = cp.script_code
                 WHERE s.u_name = ?""",
-                                           (script, script)).fetchall()
+                (script, script)).fetchall()
 
             # Incomplete data not necessarily an error, we just output to audit it
             num_missing = len(missing_chars)
@@ -770,6 +787,208 @@ class ScriptDatabase:
             for row in csv.DictReader(csvfile):
                 verify_script(row['Script'])
 
+    # The derived parameters are for saving time: if they've been determined by other means, this method has less to compute
+    def _load_alphabet(self, cursor, script_exemplars, unicase_languages, alphabet_str, lang_code, script_code, derived_script_code, derived_case, verify):
+        def insert_seq_char(cursor, cp_list, seq_id, char, order_num):
+            cp_list.append(char)
+            cursor.execute("""
+                INSERT INTO sequence_item (sequence_id, item_id, order_num)
+                VALUES (?, ?, ?)""",
+                (seq_id, ord(c), order_num))
+
+        alphabet_id = self.get_next_sequence_id()
+        alphabet_order_num = 0
+        letter_id = 0
+        letter_order_num = 0
+        unicode_escape = None
+        escape = False
+        code_points = []
+        alphabet_letters = []
+        has_dotted_I = False
+        is_unicase = lang_code in unicase_languages
+
+        # The unicase clause is academic: I don't think any language is both unicase and has capital dotted I
+        if 'İ' in alphabet_str and not is_unicase:
+            has_dotted_I = True
+            alphabet_str = alphabet_str.replace('İ', '')
+
+        cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (alphabet_id, ALPHABET_SEQ_TYPE))
+        for c in alphabet_str:
+            if escape:
+                escape = False
+                if c == 'u':
+                    unicode_escape = ''
+                elif letter_order_num == 0:
+                    insert_seq_char(cursor, code_points, alphabet_id, c, alphabet_order_num)
+                    alphabet_letters.append(c)
+                else:
+                    insert_seq_char(cursor, code_points, letter_id, c, letter_order_num)
+                    alphabet_letters[-1] = alphabet_letters[-1] + c
+            elif c == '{':
+                alphabet_order_num += 1
+                letter_order_num += 1
+                letter_id = self.get_next_sequence_id()
+                alphabet_letters.append('')
+                cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (letter_id, LETTER_SEQ_TYPE))
+                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (alphabet_id, letter_id, alphabet_order_num))
+            elif c == '}':
+                letter_order_num = 0
+            elif c == '\\':
+                alphabet_order_num += 1
+                escape = True
+            elif c == ' ':
+                continue
+            elif unicode_escape is not None:
+                if len(unicode_escape) == 4:
+                    char = chr(int(unicode_escape, 16))
+                    unicode_escape = None
+                    if letter_order_num == 0:
+                        insert_seq_char(cursor, code_points, alphabet_id, char, alphabet_order_num)
+                        alphabet_letters.append(c)
+                    else:
+                        insert_seq_char(cursor, code_points, letter_id, char, letter_order_num)
+                        alphabet_letters[-1] = alphabet_letters[-1] + c
+                else:
+                    unicode_escape += c
+            elif letter_order_num == 0:  # stand-alone codepoint
+                alphabet_order_num += 1
+                insert_seq_char(cursor, code_points, alphabet_id, c, alphabet_order_num)
+                alphabet_letters.append(c)
+            else:  # code-point constituting part of a letter
+                insert_seq_char(cursor, code_points, letter_id, c, letter_order_num)
+                alphabet_letters[-1] = alphabet_letters[-1] + c
+                letter_order_num += 1
+
+        # finalizing the alphabet
+
+        if verify and len(alphabet_letters) != len(set(alphabet_letters)):
+            print(f"Detected duplicate letters in alphabet for {lang_code}, {script_code}: {alphabet_letters}")
+
+
+        if derived_script_code is None and script_code:
+            derived_script_code = script_code
+
+        candidate_script_codes = []
+        if derived_script_code is None or verify:  # no script specified, must find it in data
+            candidate_script_codes = cursor.execute(f"""
+                SELECT DISTINCT script_code FROM code_point
+                WHERE text IN {self._get_sql_in_str_list(code_points)}
+                AND script_code NOT IN ('{ScriptDatabase.INHERITED_SCRIPT}', '{ScriptDatabase.COMMON_SCRIPT}')""").fetchall()
+
+        if derived_script_code is None and len(candidate_script_codes) == 1:
+            derived_script_code = candidate_script_codes[0][0]
+        elif verify and len(candidate_script_codes) != 1:  # TODO also check variant data
+            print(f"Unable to determine unique script for {lang_code}: {candidate_script_codes}")
+
+        # TODO - implement other lowercase/uppercase Unicode prop
+        if lang_code == 'de':
+            None
+        alphabet_case = derived_case if derived_case else 'Lo'
+
+        if not derived_case or verify:
+            letter_cases = cursor.execute(f"""
+                SELECT DISTINCT general_category_code FROM code_point
+                WHERE text IN {self._get_sql_in_str_list(code_points)}
+                AND general_category_code IN ('Lu', 'Ll', 'Lo')""").fetchall()
+            letter_cases = [l[0] for l in letter_cases]
+
+            if 'Ll' in letter_cases: # cldr data is generally lower case or uncased
+                if verify and 'Lu' in letter_cases and not is_unicase:
+                    print(f'Detected both upper and lower case characters in alphabet for {lang_code}, {derived_script_code}')
+
+                alphabet_case = 'Ll'
+                if not is_unicase: # languages using a single case of a cased script
+                    # We also want to add upper-case alphabet, but first run through a few of special cases of upper-casing cause language is hard
+                    if has_dotted_I:
+                        alphabet_str = alphabet_str.replace('i', 'İ')
+                    if lang_code == 'kaa' and derived_script_code == 'Latn':
+                        alphabet_str = alphabet_str.replace('ı', 'Í')  # why?
+
+                    # Per Wikipedia, capital esszett is officially preferred in Standard German as of 2024
+                    #  Mimicking that here because having more distinct characters is more in line with this project anyways
+                    #  (though later may need to tailor to German varieties - Swiss is fine as it doesn't use esszett to being with)
+                    # Greek final sigma will result in duplicate capital sigma, and then a couple that didn't map correctly
+                    alphabet_str = alphabet_str.replace('ß', 'ẞ').replace('ς', '').replace('ΐ', '{Ϊ́}').replace('ΰ', '{Ϋ́}')
+
+                    self._load_alphabet(cursor, script_exemplars, unicase_languages, alphabet_str.upper(), lang_code, script_code, derived_script_code, 'Lu', verify)
+            elif 'Lu' in letter_cases:
+                if verify and 'Ll' in letter_cases and not is_unicase:
+                    print(f'Detected both upper and lower case characters in alphabet for {lang_code}, {derived_script_code}')
+                alphabet_case = 'Lu'
+
+        is_script_exemplar = None
+        if derived_script_code in script_exemplars:
+            is_script_exemplar = (script_exemplars[derived_script_code] == lang_code) and (is_unicase or alphabet_case in ('Lo', 'Lu'))
+        elif verify:
+            print(f"Missing canonical language for script {derived_script_code}")
+
+        cursor.execute("""
+            INSERT INTO alphabet (id, lang_code, script_code, letter_case, is_language_exemplar, is_script_exemplar)
+            VALUES (?, ?, ?, ?, ?, ?)""",
+            (alphabet_id, lang_code, derived_script_code, alphabet_case, script_code is None and (is_unicase or alphabet_case in ('Lo', 'Lu')), is_script_exemplar))
+
+    def _load_alphabet_data(self, cursor, verify):
+
+        script_exemplars = {}
+        with open(os.path.join(self._resource_path, 'script_exemplars.csv'), 'r') as csvfile:
+            for row in csv.DictReader(csvfile):
+                script_exemplars[row['Script']] = row['Language']
+
+        unicase_languages = []
+        with open(os.path.join(self._resource_path, 'unicase_languages.txt'), 'r') as file:
+            for line in file:
+                unicase_languages.append(line.strip())
+
+        # yes an xml parser would be more appropriate, but this is a simple task (and lxml seemed to choke and I don't feel like learning another module...)
+        exemplar_pattern = re.compile(r'<exemplarCharacters(?:\s(?:draft|reference)[^>]+)?>\[(.+)]</exemplarCharacters>')
+        for file_name in os.listdir(os.path.join(self._unicode_path, 'cldr')):
+            with open(os.path.join(self._unicode_path, 'cldr', file_name), 'r') as file:
+                exemplar_found = False
+                line_number = 0
+                for line in file:
+                    line_number += 1
+                    match = exemplar_pattern.search(line)
+                    if match:
+                        lang_str = file_name.split('.')[0].split('_')
+                        if file_name == 'ja.xml': # special case hack-y handling
+                            hiragana = ''
+                            katakana = ''
+                            kanji = ''
+                            for c in match.group(1):
+                                if c == 'ー':  # shared character
+                                    katakana += c
+                                    hiragana += c
+                                elif c != ' ':
+                                    script_code = cursor.execute("SELECT script_code FROM code_point WHERE text = ?", (c,)).fetchone()[0]
+                                    if script_code == 'Kana':
+                                        katakana += c
+                                    elif script_code == 'Hira':
+                                        hiragana += c
+                                    elif script_code == 'Hani':
+                                        kanji += c
+                                    elif verify:
+                                        print(f"Error parsing Japanese CLDR data. Unexpected script {script_code} for letter {c}")
+                            self._load_alphabet(cursor, script_exemplars, unicase_languages, katakana, 'ja', 'Kana', 'Kana', 'Lo', verify)
+                            self._load_alphabet(cursor, script_exemplars, unicase_languages, hiragana, 'ja', 'Hira', 'Hira', 'Lo', verify)
+                            self._load_alphabet(cursor, script_exemplars, unicase_languages, kanji, 'ja', None, 'Hani', 'Lo', verify) # none script code for exemplar
+                        else:
+                            self._load_alphabet(cursor,
+                                                script_exemplars,
+                                                unicase_languages,
+                                                match.group(1),
+                                                lang_str[0],
+                                                lang_str[1] if len(lang_str) > 1 else None,
+                                                None,
+                                                None,
+                                                verify)
+                        exemplar_found = True
+                    if exemplar_found:
+                        continue  # next file
+                if not exemplar_found and verify and line_number > 15:
+                    # line number is a blunt tool to avoid excessive reporting on the "stub" entries
+                    print(f'Could not find exemplar characters in {file_name}')
+
+
     # dev mode runs additional checks and outputs some data to console
     def load_database(self, load_options=None):
         options = load_options if load_options else LoadOptions()
@@ -784,6 +1003,8 @@ class ScriptDatabase:
             self._set_resource_paths()
         if options.saved_query_path:
             self._query_path = options.saved_query_path
+
+        self._try_unzip_sources(os.path.join(self._resource_path, 'cr-exclusion'))
 
         cur = self._cxn.cursor()
         if options.verify_data_sources:
@@ -811,8 +1032,11 @@ class ScriptDatabase:
         self._load_derivations(cur, indic_letter_data, semitic_letter_data, options.verify_data_sources)
         self._cxn.commit()
 
+        self._load_alphabet_data(cur, options.verify_data_sources)
+        self._cxn.commit()
+
         if options.output_debug_info:
-            self._verify_script_coverage(cur)
+            # self._verify_script_coverage(cur) -> TODO this no longer works with new alphabet architecture
             self.pretty_print_saved_query(cur, 'Total derivation statistics')
 
         cur.execute("PRAGMA foreign_keys = ON")

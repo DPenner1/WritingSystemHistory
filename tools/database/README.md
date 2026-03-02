@@ -6,10 +6,12 @@
 
 This is a `sqlite3` database with script and character information, whose main purpose is to document historical development of writing on the individual character level. This started out as an exploration on updating the All Scripts chart with script samples that could show character development over time (objective not yet complete or even known to be feasible).
 
-There are a few neat queries that could be answered with the database:
+There are a three queries that I wanted to answer with the database:
 
-  - Given a script, what are its ancestor scripts, and in what proportions? *(not yet implemented)*
-  - Given a character, what are its descendents and ancestors?
+  - What are a given character's ancestors? *(done!)*
+  - What are a given character's descendants? *(done, but need to add filters: eg. searching a latin letter will typically result in an overwhelming number of descendants consisting mainly of varied accents)*
+  - Given a script, what are its immediate parent scripts, and in what proportions? This is to help with the chart derivations. *(in principle the data now exists to answer this query for scripts in current use, but it is not written yet)*
+  - A fourth query could be a script's immediate children, but I'm not sure how much this adds on top of the other queries.
 
 Though there are no current plans, the functionality of the database could be extended beyond historical character relationships in the future (if you have any interesting ideas, ideally either not done elsewhere and/or fits neatly with current DB schema, ping me either here on GitHub or [on Reddit](https://www.reddit.com/user/DPenner1/).
 
@@ -25,10 +27,20 @@ The `./queries` folder contains some queries, including finding a character's an
 
 ## Schema/data documentation
 
+  - `alphabet`: Data on alphabets used by various languages, with the specific letters being stored in the referenced `sequence` table. Modern languages are sourced from [CLDR data](https://cldr.unicode.org/). Historic will be manually specified. While it might seem like overkill (and probably still is), this table and the `exemplar` fields in particular are to help determine the "canonical" letters for a script.
+     - Languages with a case distinction have entries for both lower case and upper case.
+     - Alphabets are represented as a sequence of letters and code points, with letters themselves being sequences of code points. Currently, single code point letters are not boxed into a single-item letter sequence (this feels like too much unnecessary data bloat as this is the majority case), but this may change if the structure ends up being too difficult to work with.
+     - The `is_language_exemplar` field is to determine which alphabet is the main one for a given language. This is mechanically determined based on CLDR leaving off a script in the filename and is the upper case one for cased scripts.
+        - For Japanese I've set it to Kanji (Han characters) as it felt weird favouring a kana alphabet.
+     - The `is_script_exemplar` field determines which language the script is primarily used for. Generally, the language with the most speakers using that script and this was dead simple to determine for all but a few cases.
+        - I have yet to decide what precisely to do with the Chinese language(s). CLDR has separately specified Traditional and Simplified characters, but in the Unicode character database they are under a single script code.
+        - Canadian Aboriginal syllabics was the main judgment call: It could have been Ojibwe, Cree, or Inuktitut. Ojibwe syllabics was not in the CLDR data leaving Cree and Inuktitut. In CLDR, only Swampy Cree specifically was in the files, which would be much fewer speakers than Inuktitut. However, between considering Cree more widely and that Inuktitut discarded the Pitman Shorthand derived letters (and this project is for finding interesting graphical developments) I've associated it to Swampy Cree.
+     - The particular data pulled from CLDR has a bit of a quirk with ordering: It does generally tend to follow the language's alphabet order except that it groups accented characters together. The order should thus not be taken at face value (perhaps in the future this may change, but alphabet order is not needed for this project's current scope).
+     - At present there's no functionality for sub-languages. Eg. It could be useful to have a search for code `cr` (Cree) return results for `csw` (Swampy Cree) since `cr` isn't in the data files, but this feels like too much effort for too little gain on this project's goals.
   - `code_point`: Generally what you would expect from Unicode.
      - Non-character U+FFFF is used as a signal value for when a character has been evaluated to have no known ancestor (to distinguish it from the case where data is simply missing).
-     - Private use characters are used for historical scripts not yet in Unicode proper. For the Brahmi-based scripts, they've been been automatically generated and assumed to exist if 50%+1 of their descendents have the corresponding letter. It should not be assumed the particular code points used are stable.
-  - `code_point_derivation`: This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. These automatic derivations are:
+     - Private use characters are used for historical scripts not yet in Unicode proper. For the Brahmi-based scripts, they've been automatically generated and assumed to exist if 50%+1 of their descendents have the corresponding letter. It should not be assumed the particular code points used are stable.
+  - `code_point_derivation`: This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. This table is also liable to renaming to `code_point_relation` if project scope expands. The automatic derivations are:
      - An assumption that lowercase characters derive from their uppercase counterparts.
      - The Brahmi-derived scripts have a decently documented history, it is assumed that cognate letters derive from their known ancestor script.
      - Independently originated scripts have all their letters set to have no historical ancestor (this isn't necessarily always true as there can be script-internal derivation!)
@@ -46,20 +58,22 @@ The `./queries` folder contains some queries, including finding a character's an
      - Gaudi
      - Gupta
      - *(to investigate subsets of)* Demotic, Hieratic, Pitman Shorthand
+  - `sequence`: A sequence of sequences (recursive tree). Each code point also has an entry as a unitary sequence in the table, with a matching ID.
+  - `sequence_item`: An item in a sequence. The code points sequences do *not* have an entry in this table, they are the leaf items in the tree.
   - The `*_type` tables are lookup tables that should be self-explanatory based on their data.
 
 ## Statistics
 
-  - (2026-02-27) There are ⁨141,582 distinct letters* in the database. Of those, 27,623 have a historical ancestor specified (19.5%, including no known ancestor), of which 615 are manually reviewed (0.4%).
-  - (2026-02-27) The database is about 20 MB.
+*As of 2026-03-01*
+
+  - There are ⁨141,582 distinct letters* in the database. Of those, 27,623 have a historical ancestor specified (19.5%, including no known ancestor), of which 615 are manually reviewed (0.4%).
+  - The database is about 25 MB.
 
 *Including 287 Private Use characters, and distinct letter being defined for this project as Unicode general category L_ and having no Unicode decomposition.
 
 ## Random Notes
 
-  - There are some significant gaps in the data at the moment.
-  - Character is a fuzzy term and does not necessarily equate to a code point. For simplicity, this project has started out as code points. In principle, a character could be multiple codepoints. In that case, historical derivations are still quite supported as you would just combine the derivations of the constituent code points. Less well supported would be the case when such a sequence of code points constituting a character is an ancestor character to another. This is anticipated to be rare (maybe non-existant?).
-  - While the database as a whole is in beta, the implementation of standard alphabets is especially questionable. At present, it is mostly there for feedback purposes: running the script in dev mode lets me check for important data gaps with it. I'll be looking at integrating CLDR data for this at some point
+  - Character is a fuzzy term and does not necessarily equate to a code point. For simplicity, this project has started out as code points. In principle, a character could be multiple codepoints. In that case, historical derivations are still quite supported as you would just combine the derivations of the constituent code points. It's a bit imprecise, but so far I'm not bothered by it. In the future, derivations could be associated to sequences if deemed necessary.
   - There are a decent number of defaults and fallbacks in the source to avoid repetitively specifying stuff in source files.
   - I have in general been lazy with csv quoting and avoided commas in the data. I'm using python csv reader, so this is pure laziness as quotes would be no issue.
 
