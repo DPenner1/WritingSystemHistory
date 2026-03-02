@@ -256,6 +256,30 @@ class ScriptDatabase:
             for row in csv.DictReader(file):
                 cursor.execute("UPDATE script SET canonical_script_code = ? WHERE code = ?", (row['Main'], row['Variant']))
 
+    @staticmethod
+    def is_private_use(id):
+        return (0xE000 <= id <= 0xF8FF) or (0x100000 <= id <= 0x10FFFD)
+
+
+    def _insert_code_point(self, cursor, id, name, script_code, general_category_code, bidi_class_code):
+        if script_code is None: script_code = 'Zzzz'
+        if general_category_code is None: general_category_code = 'Cn'
+        if bidi_class_code is None: bidi_class_code = 'L'
+
+        cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?) ON CONFLICT DO NOTHING", (id, SequenceType.BASE.value))
+        if self.is_private_use(id):
+            cursor.execute("""
+                INSERT INTO code_point (id, name, script_code, general_category_code, bidi_class_code)
+                VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT DO UPDATE SET name = ?, script_code = ?, general_category_code = ?, bidi_class_code = ?""",
+                (id, name, script_code, general_category_code, bidi_class_code, name, script_code, general_category_code, bidi_class_code))
+        else:
+            cursor.execute("""
+                INSERT INTO code_point (id, name, script_code, general_category_code, bidi_class_code)
+                VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT DO NOTHING""",
+                (id, name, script_code, general_category_code, bidi_class_code))
+                # TODO double check stability policy
 
     def _update_code_point(self, cursor, id, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str):
         decom_pattern = re.compile(r'^(?:<([a-zA-Z]+)> )?([\s0-9A-F]+)$')
@@ -286,7 +310,7 @@ class ScriptDatabase:
                 simple_lowercase_mapping_id = ?,
                 decomposition_id = ?
             WHERE id = ?""",
-                       (name, general_category, bidi_class, upper_mapping, lower_mapping, seq_id, id))
+            (name, general_category, bidi_class, upper_mapping, lower_mapping, seq_id, id))
 
 
     def _load_code_point_data(self, cursor):
@@ -297,9 +321,7 @@ class ScriptDatabase:
         cursor.execute("DELETE FROM alphabet")
         cursor.execute("DELETE FROM sequence WHERE id > ?", (ScriptDatabase.UNICODE_MAX,))
 
-        cursor.execute(
-            "INSERT INTO code_point (id, name, bidi_class_code) VALUES (?, 'NO PARENT CHARACTER', 'Bn') ON CONFLICT DO NOTHING",
-            (ord(NO_PARENT_CHARACTER),))
+        self._insert_code_point(cursor, ord(NO_PARENT_CHARACTER), name='NO PARENT CHARACTER', bidi_class_code='Bn', script_code=None, general_category_code=None)
 
         with open(os.path.join(self._unicode_path, 'Scripts.txt'), 'r') as file:
             for line in file:
@@ -311,11 +333,8 @@ class ScriptDatabase:
                     script_code = cursor.execute("SELECT code FROM script WHERE u_name = ?", (match.group(3),)).fetchone()[0]
 
                     for i in range(start, end + 1):
-                        cursor.execute("""
-                            INSERT INTO code_point (id, script_code) 
-                            VALUES (?, ?)
-                            ON CONFLICT (id) DO NOTHING""",
-                            (i, script_code))  # TODO: double check stability policy
+                        self._insert_code_point(cursor, i, name=None, script_code=script_code, bidi_class_code=None, general_category_code=None)
+
 
         with open(os.path.join(self._unicode_path, 'UnicodeData.txt'), 'r') as csvfile:
             special_name_pattern = re.compile('^<(.+)>$')
@@ -354,11 +373,13 @@ class ScriptDatabase:
 
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'private_use.csv'), 'r') as file:
             for row in csv.DictReader(file):
-                cursor.execute("""
-                    INSERT INTO code_point (id, script_code, name, general_category_code)
-                    VALUES (?, ?, ?, ?)
-                    ON CONFLICT (id) DO UPDATE SET script_code = ?, name = ?, general_category_code = ?""",
-                    (int(row['Id']), row['Script Code'], row['Name'], row['General Category'], row['Script Code'], row['Name'], row['General Category']))
+                self._insert_code_point(cursor,
+                                        int(row['Id']),
+                                        script_code=row['Script Code'],
+                                        name=row['Name'],
+                                        general_category_code=row['General Category'],
+                                        bidi_class_code=None)  # mostly a hack, all current PU are the default L
+
 
     """  TODO: reintegrate standard_alphabets to new alphabet architecture (historic scripts only now)
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'r') as file:
@@ -404,7 +425,7 @@ class ScriptDatabase:
         load_lookup(cursor, 'certainty_type', data)
 
         data = [
-            (1, 'Base', 'Unitary "sequence" representing a single code point'),
+            (SequenceType.BASE.value, 'Base', 'Unitary "sequence" representing a single code point'),
             (2, 'Canonical Decomposition', 'Unicode decomposition type'),
             (3, 'Compat Decomposition', 'Unicode decomposition type'),
             (4, 'NoBreak Decomposition', 'Unicode decomposition type'),
@@ -710,7 +731,12 @@ class ScriptDatabase:
                                     cursor.execute("""
                                         INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
                                         VALUES (?,?,?,?,?,?)""",
-                                        (ord(letter), ord(parent_letters[0]), DEFAULT_DERIVATION, Certainty.AUTOMATED.value,'Wikipedia letter cognate charts','Not necessarily graphical derivation but likely'))
+                                        (ord(letter),
+                                         ord(parent_letters[0]),
+                                         DEFAULT_DERIVATION,
+                                         Certainty.AUTOMATED.value,
+                                         'Wikipedia letter cognate charts',
+                                         'Not necessarily graphical derivation but likely'))
                             elif verify:  # temporary, for later manual work
                                 print(f"Data generation warning: {len(parent_letters)} parent letters found for {letter_class} in {script_code}")
 
@@ -1053,6 +1079,10 @@ class Certainty(Enum):
     UNSPECIFIED = 6
 
 
+class SequenceType(Enum):
+    BASE = 1
+
+
 class LoadOptions:
     def __init__(self):
         self.force_overwrite = False
@@ -1070,7 +1100,7 @@ if __name__ == '__main__':
     options.verify_data_sources = True
     options.output_debug_info = True
 
-    cursor = db.load_database(None)  # replace with options for development run
+    cursor = db.load_database(options)  # replace with options for development run
 
     # do stuff here if you want, for example:
     # db.pretty_print_saved_query(cursor, 'Get Character Ancestors', 'a')

@@ -35,14 +35,6 @@ CREATE INDEX IF NOT EXISTS idx_fk_cp_script_code ON code_point(script_code);
 CREATE INDEX IF NOT EXISTS idx_cp_general_category_code ON code_point(general_category_code);
 CREATE INDEX IF NOT EXISTS idx_cp_decomposition_id ON code_point(decomposition_id);
 
-CREATE TRIGGER IF NOT EXISTS trgr_insert_base_sequence 
-BEFORE INSERT ON code_point
-FOR EACH ROW BEGIN
-    INSERT INTO sequence (id, sequence_type_id)
-    VALUES (NEW.id, 1)
-    ON CONFLICT (id) DO UPDATE SET sequence_type_id = 1;
-END;
-
 -- it's a tree structure
 CREATE TABLE IF NOT EXISTS sequence_item (
     sequence_id INTEGER REFERENCES sequence(id),
