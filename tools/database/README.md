@@ -27,7 +27,7 @@ The `./queries` folder contains some queries, including finding a character's an
 
 ## Schema/data documentation
 
-  - `alphabet`: Data on alphabets used by various languages, with the specific letters being stored in the referenced `sequence` table. Modern languages are sourced from [CLDR data](https://cldr.unicode.org/). Historic will be manually specified. While it might seem like overkill (and probably still is), this table and the `exemplar` fields in particular are to help determine the "canonical" letters for a script.
+  - `alphabet`: *(schema probably sufficient, code/data generation not yet)* Data on alphabets used by various languages, with the specific letters being stored in the referenced `sequence` table. Modern languages are sourced from [CLDR data](https://cldr.unicode.org/). Historic will be manually specified. While it might seem like overkill (and probably still is), this table and the `exemplar` fields in particular are to help determine the "canonical" letters for a script.
      - Languages with a case distinction have entries for both lower case and upper case.
      - Alphabets are represented as a sequence of letters and code points, with letters themselves being sequences of code points. Currently, single code point letters are not boxed into a single-item letter sequence (this feels like too much unnecessary data bloat as this is the majority case), but this may change if the structure ends up being too difficult to work with.
      - The `is_language_exemplar` field is to determine which alphabet is the main one for a given language. This is mechanically determined based on CLDR leaving off a script in the filename and is the upper case one for cased scripts.
@@ -37,9 +37,10 @@ The `./queries` folder contains some queries, including finding a character's an
         - Canadian Aboriginal syllabics was the main judgment call: It could have been Ojibwe, Cree, or Inuktitut. Ojibwe syllabics was not in the CLDR data leaving Cree and Inuktitut. In CLDR, only Swampy Cree specifically was in the files, which would be much fewer speakers than Inuktitut. However, between considering Cree more widely and that Inuktitut discarded the Pitman Shorthand derived letters (and this project is for finding interesting graphical developments) I've associated it to Swampy Cree.
      - The particular data pulled from CLDR has a bit of a quirk with ordering: It does generally tend to follow the language's alphabet order except that it groups accented characters together. The order should thus not be taken at face value (perhaps in the future this may change, but alphabet order is not needed for this project's current scope).
      - At present there's no functionality for sub-languages. Eg. It could be useful to have a search for code `cr` (Cree) return results for `csw` (Swampy Cree) since `cr` isn't in the data files, but this feels like too much effort for too little gain on this project's goals.
-  - `code_point`: Generally what you would expect from Unicode.
+  - `code_point`: Mostly what you would expect from Unicode.
      - Non-character U+FFFF is used as a signal value for when a character has been evaluated to have no known ancestor (to distinguish it from the case where data is simply missing).
      - Private use characters are used for historical scripts not yet in Unicode proper. For the Brahmi-based scripts, they've been automatically generated and assumed to exist if 50%+1 of their descendents have the corresponding letter. It should not be assumed the particular code points used are stable.
+     - Field `equivalent_sequence_id` combines various Unicode sources for "equivalent" code points. May have to change later, but as it stands these sources do not overlap. These are decomposition, z-variants (the lowest code point in a set has been taken to be the original), Hieroglyph alternate sequences (kEH_AltSeq).
   - `code_point_derivation`: This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. This table is also liable to renaming to `code_point_relation` if project scope expands. The automatic derivations are:
      - An assumption that lowercase characters derive from their uppercase counterparts.
      - The Brahmi-derived scripts have a decently documented history, it is assumed that cognate letters derive from their known ancestor script.
@@ -63,12 +64,15 @@ The `./queries` folder contains some queries, including finding a character's an
 
 ## Statistics
 
-*As of 2026-03-01*
+*As of 2026-03-02*
 
-  - There are ⁨141,582 distinct letters* in the database. Of those, 27,623 have a historical ancestor specified (19.5%, including no known ancestor), of which 615 are manually reviewed (0.4%).
+  - There are ⁨141,407 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 27,880 have a historical ancestor specified (19.7%, including no known ancestor), of which 615 are manually reviewed (0.4%).
   - The database is about 25 MB.
 
-*Including 287 Private Use characters, and distinct letter being defined for this project as Unicode general category L_ and having no Unicode decomposition.
+--------
+
+  1. Distinct being defined for this project has having no other equivalent representation in Unicode. See schema documentation on `code_point.equivalent_sequence_id`
+  2. Letters for this project being defined as Unicode general category L_ plus the Private Use characters which currently stands at 287.
 
 ## Random Notes
 

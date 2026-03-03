@@ -208,6 +208,7 @@ class ScriptDatabase:
 
         unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'UnicodeData.txt', os.path.join(self._unicode_path, 'UnicodeData.txt'))
         unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Scripts.txt', os.path.join(self._unicode_path, 'Scripts.txt'))
+        unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Unikemet.txt', os.path.join(self._unicode_path, 'Unikemet.txt'))
         unzip_file(os.path.join(zip_dir_path, 'Unihan.zip'), 'Unihan_Variants.txt', os.path.join(self._unicode_path, 'Unihan_Variants.txt'))
 
         cldr_pattern = re.compile('cldr-common.+zip')
@@ -444,7 +445,8 @@ class ScriptDatabase:
             (SequenceType.SMALL_DECOMPOSITION.value, 'Small Decomposition', 'Unicode decomposition type'),
             (SequenceType.NARROW_DECOMPOSITION.value, 'Narrow Decomposition', 'Unicode decomposition type'),
 
-            (SequenceType.Z_VARIANT.value, 'Z-Variant', 'Unit sequence representing an equivalent or typographical Chinese character variant')
+            (SequenceType.Z_VARIANT.value, 'Z-Variant', 'Unit sequence representing an equivalent or typographical Chinese character variant'),
+            (SequenceType.HIEROGLYPHIC_ALTERNATIVE.value, 'Hieroglyphic Alternative', 'Equivalent Hieroglyph sequence')
         ]
         load_lookup(cursor, 'sequence_type', data)
 
@@ -466,8 +468,6 @@ class ScriptDatabase:
                                'Vaii', 'Bamu', 'Berf', 'Nkoo', 'Wara', 'Gonm', 'Toto', 'Osma', 'Adlm', 'Gara', 'Medf', 'Bass',
                                'Yezi', 'Tnsa', 'Olck', 'Thaa', 'Tols', 'Nagm', 'Sora', 'Wcho', 'Mroo', 'Onao', 'Sunu', 'Yiii', 'Tang'}
 
-
-
         cursor.execute("DELETE FROM code_point_derivation")  # updates generally expected on this table, just clear
 
         self._load_letter_derivation_data(cursor, indic_letter_data, ScriptDatabase._INDIC_ORDER, False, verify_script)
@@ -475,12 +475,30 @@ class ScriptDatabase:
 
         # Identify all the independently-derived characters
         cursor.execute(f"""
-                INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
-                SELECT id, ?, ?, ?, 'Independent script: Assume independent character'
-                FROM code_point 
-                WHERE script_code IN {self._get_sql_in_str_list(independent_scripts)}""",
-                       (ord(self.NO_PARENT_CHARACTER), DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
+            SELECT id, ?, ?, ?, 'Independent script: Assume independent character'
+            FROM code_point 
+            WHERE script_code IN {self._get_sql_in_str_list(independent_scripts)}""",
+            (ord(self.NO_PARENT_CHARACTER), DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
 
+        with open(os.path.join(self._unicode_path, 'Unikemet.txt'), 'r') as file:
+            for line in file:
+                if not line.isspace() and not line.startswith('#'):
+                    parts = line.split('\t')
+
+                    if parts[1] == 'kEH_AltSeq':
+                        seq_id = self.get_next_sequence_id()
+                        child_id = int(parts[0][2:], 16)
+                        cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (seq_id, SequenceType.HIEROGLYPHIC_ALTERNATIVE.value))
+                        cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, child_id))
+                        # since hieroglyphs were default set to NO_PARENT, remove that:
+                        cursor.execute("DELETE FROM code_point_derivation WHERE child_id = ? AND parent_id = ?", (child_id, ord(self.NO_PARENT_CHARACTER)))
+                        offset = 1
+                        for i, code_point in enumerate(parts[2].split(' ')):
+                            if code_point.isspace():
+                                offset -= 1  # out of caution, but this seems to be an end-of-line issue
+                            else:
+                                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, int(code_point, 16), i + offset))
 
         with open(os.path.join(self._unicode_path, 'Unihan_Variants.txt'), 'r') as file:
             for line in file:
@@ -499,24 +517,23 @@ class ScriptDatabase:
                     # This is a self-mirror property. if X zVariant Y then Y zVariant X.
                     # There's no real indication which should be canonical that I can find, so I'm arbitrarily making it the lowest code point
                     elif parts[1] == 'kZVariant':
-                        child_id = int(parts[0][2:], 16)
+                        principal_id = int(parts[0][2:], 16)
                         for sub_parts in parts[2].split(' '):
-                            parent_id = int(sub_parts[2:].split('<')[0], 16)
-                            if parent_id < child_id:
+                            other_id = int(sub_parts[2:].split('<')[0], 16)
+                            if principal_id > other_id:
                                 seq_id = self.get_next_sequence_id()
                                 cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (seq_id, SequenceType.Z_VARIANT.value))
-                                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, parent_id, 1))
-                                cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, child_id))
+                                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, other_id, 1))
+                                cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, principal_id))
 
-
-        # add derivations from equivalent sequence, assuming the equivalent characters are the base building blocks (the parent)
+        # add derivations from equivalent sequences, assuming the equivalent characters are the base building blocks (the parent)
         # Formatting/control/space characters are not eligible (they aren't graphical, right? ... right???)
         cursor.execute(f"""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
             SELECT
                 cp1.id,
                 cp2.id,
-                CASE WHEN COUNT(item_id) OVER (PARTITION BY decomp.sequence_id) = 1
+                CASE WHEN COUNT(item_id) OVER (PARTITION BY equiv.sequence_id) = 1
                     THEN CASE WHEN sequence_type_id = {SequenceType.CANONICAL_DECOMPOSITION.value} THEN {DerivationType.DUPLICATE.value}
                               WHEN sequence_type_id IN ({SequenceType.NO_BREAK_DECOMPOSITION.value},
                                                         {SequenceType.SUPER_DECOMPOSITION.value}, 
@@ -527,18 +544,21 @@ class ScriptDatabase:
                     ELSE {DerivationType.DEFAULT.value}
                 END,
                 {Certainty.AUTOMATED.value},
-                'Unicode Character Database decomposition data'
+                CASE WHEN sequence_type_id = {SequenceType.Z_VARIANT.value} THEN 'Unihan database, zVariant'
+                     WHEN sequence_type_id = {SequenceType.HIEROGLYPHIC_ALTERNATIVE.value} THEN 'Unicode Character Database Unikemet.txt'
+                     ELSE 'Unicode Character Database decomposition data'
+                END
             FROM
-                sequence_item decomp
-                INNER JOIN sequence seq ON seq.id = decomp.sequence_id
+                sequence_item equiv
+                INNER JOIN sequence seq ON seq.id = equiv.sequence_id
                 INNER JOIN code_point cp1 ON cp1.equivalent_sequence_id = seq.id
-                INNER JOIN code_point cp2 ON cp2.id = decomp.item_id
-            WHERE 
-                cp1.general_category_code NOT LIKE 'Z_'
+                INNER JOIN code_point cp2 ON cp2.id = equiv.item_id
+            WHERE
+                sequence_type_id >= 100
+                AND cp1.general_category_code NOT LIKE 'Z_'
                 AND cp1.general_category_code NOT LIKE 'C_'
                 AND cp2.general_category_code NOT LIKE 'Z_'
                 AND cp2.general_category_code NOT LIKE 'C_'
-            AND sequence_type_id >= 100
             ON CONFLICT DO NOTHING""")
         # sequence_type_id >= 100 is a bit hacky for now, I've basically put the equivalency sequence types at IDs 100+
         # A more "proper" solution would be to have a category associated to a sequence_type, but that feels like over-engineering for the moment
@@ -559,8 +579,6 @@ class ScriptDatabase:
             FROM code_point cp1
             WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
                        (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
-
-
 
         defaults = {}
         with open(os.path.join(self._derivations_path, 'defaults.csv'), 'r') as file:
@@ -655,6 +673,7 @@ class ScriptDatabase:
             for i, letter in enumerate(ScriptDatabase._PROTO_SINAITIC_ORDER):
                 file.write(f'\n{i + ScriptDatabase._CODE_POINT_STARTS['psin']},Psin,PROTO-SINAITIC LETTER {letter},Lo')
 
+
     # format: { script_code (lowercase): { Generic Indic Letter: [letters] } }
     def _get_indic_letter_dict(self, verify):
         wdata = {}
@@ -731,6 +750,7 @@ class ScriptDatabase:
         generate_std_alphabet(indic_letter_dict, ScriptDatabase._INDIC_ORDER)
         generate_std_alphabet(semitic_letter_dict, ScriptDatabase._SEMITIC_ORDER)
 
+
     # exclude aramaic a bit of a hack because I want it generated in the Semitic list and not Indic
     def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, include_aramaic, verify):
         script_dict = self.get_code_to_script_dict()
@@ -756,6 +776,7 @@ class ScriptDatabase:
                                          'Not necessarily graphical derivation but likely'))
                             elif verify:  # temporary, for later manual work
                                 print(f"Data generation warning: {len(parent_letters)} parent letters found for {letter_class} in {script_code}")
+
 
     # format: { script_code (lowercase): { Generic Semitic Letter: [letters] } }
     def _get_semitic_letter_dict(self):
@@ -971,6 +992,7 @@ class ScriptDatabase:
             VALUES (?, ?, ?, ?, ?, ?)""",
             (alphabet_id, lang_code, derived_script_code, alphabet_case, script_code is None and (is_unicase or alphabet_case in ('Lo', 'Lu')), is_script_exemplar))
 
+
     def _load_alphabet_data(self, cursor, verify):
 
         script_exemplars = {}
@@ -1121,7 +1143,7 @@ class SequenceType(Enum):
     NARROW_DECOMPOSITION = 116
 
     Z_VARIANT = 200
-
+    HIEROGLYPHIC_ALTERNATIVE = 201
 
 
 class DerivationType(Enum):
@@ -1153,7 +1175,7 @@ if __name__ == '__main__':
     options.verify_data_sources = True
     options.output_debug_info = True
 
-    cursor = db.load_database(options)  # replace with options for development run
+    cursor = db.load_database(None)  # replace with options for development run
 
     # do stuff here if you want, for example:
     # db.pretty_print_saved_query(cursor, 'Get Character Ancestors', 'a')
