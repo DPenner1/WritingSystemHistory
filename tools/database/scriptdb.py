@@ -6,16 +6,14 @@ from enum import Enum
 from zipfile import ZipFile
 
 
-DEFAULT_DERIVATION = 1
-NO_PARENT_CHARACTER = '\uFFFF'  # a Unicode non-character
-LETTER_SEQ_TYPE = 19
-ALPHABET_SEQ_TYPE = 20
+
 
 class ScriptDatabase:
 
     INHERITED_SCRIPT = 'Zinh'
     COMMON_SCRIPT = 'Zyyy'
     UNICODE_MAX = 0x10FFFF
+    NO_PARENT_CHARACTER = '\uFFFF'  # a Unicode non-character
 
     _GENERATED_DIR_NAME = 'generated'
     _INDIC_ORDER = ['A', 'Ā', 'I', 'Ī', 'U', 'Ū', 'Ṛ', 'Ṝ', 'Ḷ', 'Ḹ', 'E', 'Ai', 'O', 'Au',
@@ -115,7 +113,7 @@ class ScriptDatabase:
         'phnx': 'psin'
     }
 
-    def __init__(self, name='scripts.db', path='.'):
+    def __init__(self, path='.', name='scripts.db'):
         self._db_name = name
         self._db_path = path
         self._set_connection()
@@ -133,11 +131,10 @@ class ScriptDatabase:
         self._derivations_path = os.path.join(self._resource_path, 'derivations')
         self._wikipedia_path = os.path.join(self._resource_path, 'wikipedia-sourced')
         self._unicode_path = os.path.join(self._resource_path, 'unicode-data')
-        self._generated_derivation_path = os.path.join(self._derivations_path, ScriptDatabase._GENERATED_DIR_NAME)
 
 
     def _get_sql_in_str_list(self, enumerable):
-        return "('" + "','".join(enumerable) + "')"
+        return "('" + "','".join([x.replace("'", "''") for x in enumerable]) + "')"
 
 
     def _get_unique_saved_query(self, name_prefix):
@@ -256,6 +253,7 @@ class ScriptDatabase:
             for row in csv.DictReader(file):
                 cursor.execute("UPDATE script SET canonical_script_code = ? WHERE code = ?", (row['Main'], row['Variant']))
 
+
     @staticmethod
     def is_private_use(id):
         return (0xE000 <= id <= 0xF8FF) or (0x100000 <= id <= 0x10FFFD)
@@ -321,7 +319,7 @@ class ScriptDatabase:
         cursor.execute("DELETE FROM alphabet")
         cursor.execute("DELETE FROM sequence WHERE id > ?", (ScriptDatabase.UNICODE_MAX,))
 
-        self._insert_code_point(cursor, ord(NO_PARENT_CHARACTER), name='NO PARENT CHARACTER', bidi_class_code='Bn', script_code=None, general_category_code=None)
+        self._insert_code_point(cursor, ord(self.NO_PARENT_CHARACTER), name='NO PARENT CHARACTER', bidi_class_code='Bn', script_code=None, general_category_code=None)
 
         with open(os.path.join(self._unicode_path, 'Scripts.txt'), 'r') as file:
             for line in file:
@@ -400,16 +398,15 @@ class ScriptDatabase:
                 [(lu[0], lu[1], lu[2], lu[1], lu[2]) for lu in lookup_data])
 
         data = [
-            (DEFAULT_DERIVATION, "Derivation", "Standard/default/non-specific"),
-            (2, "Portion copy",
-             "Child is a copy of a portion of the parent, allowing for stretch-distortion due to size change"),
-            (3, "Simplification", "Child is a simplification of parent"),
-            (4, "From cursive", "Child is derived from cursive form of the parent (who is typically non-cursive)"),
-            (5, "Copy", "Child is a copy of the parent"), # Generally either child script copying or lowercase just a small version of uppercase
-            (6, "Duplicate", "Child is a duplicate of the parent"),  # Unicode duplicate code points
-            (7, "Portion derivation", "Child is a derivation from a portion of the parent"),
-            (8, "Rotation", "Child is a rotation of the parent"),
-            (9, "Reflection", "Child is a reflection of the parent")]
+            (DerivationType.DEFAULT.value, "Derivation", "Standard/default/non-specific"),
+            (DerivationType.PORTION_COPY.value, "Portion copy", "Child is a copy of a portion of the parent, allowing for stretch-distortion due to size change"),
+            (DerivationType.SIMPLIFICATION.value, "Simplification", "Child is a simplification of parent"),
+            (DerivationType.FROM_CURSIVE.value, "From cursive", "Child is derived from cursive form of the parent (who is typically non-cursive)"),
+            (DerivationType.COPY.value, "Copy", "Child is a copy of the parent"), # Generally either child script copying or lowercase just a small version of uppercase
+            (DerivationType.DUPLICATE.value, "Duplicate", "Child is a duplicate of the parent"),  # Unicode duplicate code points
+            (DerivationType.PORTION.value, "Portion derivation", "Child is a derivation from a portion of the parent"),
+            (DerivationType.ROTATION.value, "Rotation", "Child is a rotation of the parent"),
+            (DerivationType.REFLECTION.value, "Reflection", "Child is a reflection of the parent")]
         load_lookup(cursor, 'derivation_type', data)
 
         # For this project, sourcing is generally just for the derivation fact, not necessarily for derivation type
@@ -426,25 +423,26 @@ class ScriptDatabase:
 
         data = [
             (SequenceType.BASE.value, 'Base', 'Unitary "sequence" representing a single code point'),
-            (2, 'Canonical Decomposition', 'Unicode decomposition type'),
-            (3, 'Compat Decomposition', 'Unicode decomposition type'),
-            (4, 'NoBreak Decomposition', 'Unicode decomposition type'),
-            (5, 'Super Decomposition', 'Unicode decomposition type'),
-            (6, 'Fraction Decomposition', 'Unicode decomposition type'),
-            (7, 'Sub Decomposition', 'Unicode decomposition type'),
-            (8, 'Font Decomposition', 'Unicode decomposition type'),
-            (9, 'Circle Decomposition', 'Unicode decomposition type'),
-            (10, 'Wide Decomposition', 'Unicode decomposition type'),
-            (11, 'Vertical Decomposition', 'Unicode decomposition type'),
-            (12, 'Square Decomposition', 'Unicode decomposition type'),
-            (13, 'Isolated Decomposition', 'Unicode decomposition type'),
-            (14, 'Final Decomposition', 'Unicode decomposition type'),
-            (15, 'Initial Decomposition', 'Unicode decomposition type'),
-            (16, 'Medial Decomposition', 'Unicode decomposition type'),
-            (17, 'Small Decomposition', 'Unicode decomposition type'),
-            (18, 'Narrow Decomposition', 'Unicode decomposition type'),
-            (LETTER_SEQ_TYPE, 'Letter', 'A sequence representing a letter'),
-            (ALPHABET_SEQ_TYPE, 'Alphabet', 'A sequence representing an alphabet')
+            (SequenceType.LETTER.value, 'Letter', 'A sequence representing a letter'),
+            (SequenceType.ALPHABET.value, 'Alphabet', 'A sequence representing an alphabet'),
+
+            (SequenceType.CANONICAL_DECOMPOSITION.value, 'Canonical Decomposition', 'Unicode decomposition type'),
+            (SequenceType.COMPATIBILITY_DECOMPOSITION.value, 'Compat Decomposition', 'Unicode decomposition type'),
+            (SequenceType.NO_BREAK_DECOMPOSITION.value, 'NoBreak Decomposition', 'Unicode decomposition type'),
+            (SequenceType.SUPER_DECOMPOSITION.value, 'Super Decomposition', 'Unicode decomposition type'),
+            (SequenceType.FRACTION_DECOMPOSITION.value, 'Fraction Decomposition', 'Unicode decomposition type'),
+            (SequenceType.SUB_DECOMPOSITION.value, 'Sub Decomposition', 'Unicode decomposition type'),
+            (SequenceType.FONT_DECOMPOSITION.value, 'Font Decomposition', 'Unicode decomposition type'),
+            (SequenceType.CIRCLE_DECOMPOSITION.value, 'Circle Decomposition', 'Unicode decomposition type'),
+            (SequenceType.WIDE_DECOMPOSITION.value, 'Wide Decomposition', 'Unicode decomposition type'),
+            (SequenceType.VERTICAL_DECOMPOSITION.value, 'Vertical Decomposition', 'Unicode decomposition type'),
+            (SequenceType.SQUARE_DECOMPOSITION.value, 'Square Decomposition', 'Unicode decomposition type'),
+            (SequenceType.ISOLATED_DECOMPOSITION.value, 'Isolated Decomposition', 'Unicode decomposition type'),
+            (SequenceType.FINAL_DECOMPOSITION.value, 'Final Decomposition', 'Unicode decomposition type'),
+            (SequenceType.INITIAL_DECOMPOSITION.value, 'Initial Decomposition', 'Unicode decomposition type'),
+            (SequenceType.MEDIAL_DECOMPOSITION.value, 'Medial Decomposition', 'Unicode decomposition type'),
+            (SequenceType.SMALL_DECOMPOSITION.value, 'Small Decomposition', 'Unicode decomposition type'),
+            (SequenceType.NARROW_DECOMPOSITION.value, 'Narrow Decomposition', 'Unicode decomposition type')
         ]
         load_lookup(cursor, 'sequence_type', data)
 
@@ -479,24 +477,26 @@ class ScriptDatabase:
                 SELECT id, ?, ?, ?, 'Independent script: Assume independent character'
                 FROM code_point 
                 WHERE script_code IN {self._get_sql_in_str_list(independent_scripts)}""",
-                       (ord(NO_PARENT_CHARACTER), DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
+                       (ord(self.NO_PARENT_CHARACTER), DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
 
         # add derivations from decomposition mappings, assuming the decomposed characters are the base building blocks (the parent)
-        # Formatting/control/space characters are not eligible (they aren't graphical, though this could get philosophical)
-        # TODO so many magic numbers
-        cursor.execute("""
+        # Formatting/control/space characters are not eligible (they aren't graphical, right? ... right???)
+        cursor.execute(f"""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
             SELECT
                 cp1.id,
                 cp2.id,
                 CASE WHEN COUNT(item_id) OVER (PARTITION BY decomp.sequence_id) = 1
-                    THEN CASE WHEN sequence_type_id = 2 THEN 6
-                              WHEN sequence_type_id IN (4, 5, 7, 17) THEN 5
-                              ELSE ?
+                    THEN CASE WHEN sequence_type_id = {SequenceType.CANONICAL_DECOMPOSITION.value} THEN {DerivationType.DUPLICATE.value}
+                              WHEN sequence_type_id IN ({SequenceType.NO_BREAK_DECOMPOSITION.value},
+                                                        {SequenceType.SUPER_DECOMPOSITION.value}, 
+                                                        {SequenceType.SUB_DECOMPOSITION.value}, 
+                                                        {SequenceType.SMALL_DECOMPOSITION.value}) THEN {DerivationType.COPY.value}
+                              ELSE {DerivationType.DEFAULT.value}
                          END
-                    ELSE ?
+                    ELSE {DerivationType.DEFAULT.value}
                 END,
-                ?,
+                {Certainty.AUTOMATED.value},
                 'Unicode Character Database decomposition data'
             FROM
                 sequence_item decomp
@@ -508,7 +508,7 @@ class ScriptDatabase:
                 AND cp1.general_category_code NOT LIKE 'C_'
                 AND cp2.general_category_code NOT LIKE 'Z_'
                 AND cp2.general_category_code NOT LIKE 'C_'
-            ON CONFLICT DO NOTHING""", (DEFAULT_DERIVATION, DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
+            ON CONFLICT DO NOTHING""")
 
         # conflicts expected when a character decomposes into multiple copies of a code point,
         # minimal enough that this is probably the better query option than advance filtering
@@ -519,14 +519,14 @@ class ScriptDatabase:
             SELECT id, simple_uppercase_mapping_id, ?, ?, 'Unicode Character Database case mapping data'
             FROM code_point
             WHERE simple_uppercase_mapping_id IS NOT NULL""",
-                       (DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
+                       (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
         # casing isn't 100% 1:1 so need to do mappings in both directions
         cursor.execute("""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
             SELECT simple_lowercase_mapping_id, id, ?, ?, 'Unicode Character Database case mapping data'
             FROM code_point cp1
             WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
-                       (DEFAULT_DERIVATION, Certainty.AUTOMATED.value))
+                       (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
 
         with open(os.path.join(self._unicode_path, 'Unihan_Variants.txt'), 'r') as file:
             for line in file:
@@ -540,7 +540,7 @@ class ScriptDatabase:
                             cursor.execute("""
                                 INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
                                 VALUES (?, ?, ?, ?, ?)""",
-                                           (child, parent, 3, Certainty.AUTOMATED.value, 'Unihan Database'))
+                                           (child, parent, DerivationType.SIMPLIFICATION.value, Certainty.AUTOMATED.value, 'Unihan Database'))
 
         defaults = {}
         with open(os.path.join(self._derivations_path, 'defaults.csv'), 'r') as file:
@@ -559,13 +559,13 @@ class ScriptDatabase:
                     for row in csv.DictReader(file):
                         child = row['Child'].strip()
                         parents = row['Parent'].strip() if row[
-                            'Parent'] else NO_PARENT_CHARACTER  # This won't be in the defaults dictionary
+                            'Parent'] else self.NO_PARENT_CHARACTER  # This won't be in the defaults dictionary
 
                         # Logic for defaulting to Uncertain on no parent: For historical scripts, this is usually more a function of a lack of records
                         # For modern scripts, the inventor is generally aware of existing writing systems, and may have been inspired
                         certainty = int(resolve_default(defaults, script, row, 'Certainty Type',
                                                         overriding_default=str(Certainty.UNCERTAIN.value),
-                                                        override_condition=(parents == NO_PARENT_CHARACTER),
+                                                        override_condition=(parents == self.NO_PARENT_CHARACTER),
                                                         last_resort=str(Certainty.UNSPECIFIED.value)))
 
                         # Overriding default here is for convenience: An Assumed certainty means there is no source, so allows us to specify a source in defaults for all else.
@@ -574,7 +574,7 @@ class ScriptDatabase:
 
                         notes = resolve_default(defaults, script, row, 'Notes')
                         derivation_types = resolve_default(defaults, script, row, 'Derivation Type',
-                                                           last_resort=str(DEFAULT_DERIVATION))
+                                                           last_resort=str(DerivationType.DEFAULT.value))
 
                         # ensure that child character is always the expected script
                         if verify_script:
@@ -718,9 +718,6 @@ class ScriptDatabase:
             if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES or (script_code == 'armi' and include_aramaic):
                 script_name = script_dict[script_code.title()]
 
-                #with open(os.path.join(self._generated_derivation_path, script_name + '.csv'), 'w') as script_file:
-                 #   script_file.write('Child,Parent,Derivation Type,Certainty Type,Source,Notes\n')
-
                 parent_code = ScriptDatabase._SCRIPT_PARENTS[script_code]
                 for letter_class in letter_order:
                     if letter_class in letter_dict[script_code]:
@@ -733,7 +730,7 @@ class ScriptDatabase:
                                         VALUES (?,?,?,?,?,?)""",
                                         (ord(letter),
                                          ord(parent_letters[0]),
-                                         DEFAULT_DERIVATION,
+                                         DerivationType.DEFAULT.value,
                                          Certainty.AUTOMATED.value,
                                          'Wikipedia letter cognate charts',
                                          'Not necessarily graphical derivation but likely'))
@@ -838,7 +835,7 @@ class ScriptDatabase:
             has_dotted_I = True
             alphabet_str = alphabet_str.replace('İ', '')
 
-        cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (alphabet_id, ALPHABET_SEQ_TYPE))
+        cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (alphabet_id, SequenceType.ALPHABET.value))
         for c in alphabet_str:
             if escape:
                 escape = False
@@ -855,7 +852,7 @@ class ScriptDatabase:
                 letter_order_num += 1
                 letter_id = self.get_next_sequence_id()
                 alphabet_letters.append('')
-                cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (letter_id, LETTER_SEQ_TYPE))
+                cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (letter_id, SequenceType.LETTER.value))
                 cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (alphabet_id, letter_id, alphabet_order_num))
             elif c == '}':
                 letter_order_num = 0
@@ -1081,6 +1078,38 @@ class Certainty(Enum):
 
 class SequenceType(Enum):
     BASE = 1
+    LETTER = 2
+    ALPHABET = 3
+
+    CANONICAL_DECOMPOSITION = 100
+    COMPATIBILITY_DECOMPOSITION = 101
+    NO_BREAK_DECOMPOSITION = 102
+    SUPER_DECOMPOSITION = 103
+    FRACTION_DECOMPOSITION = 104
+    SUB_DECOMPOSITION = 105
+    FONT_DECOMPOSITION = 106
+    CIRCLE_DECOMPOSITION = 107
+    WIDE_DECOMPOSITION = 108
+    VERTICAL_DECOMPOSITION = 109
+    SQUARE_DECOMPOSITION = 110
+    ISOLATED_DECOMPOSITION = 111
+    FINAL_DECOMPOSITION = 112
+    INITIAL_DECOMPOSITION = 113
+    MEDIAL_DECOMPOSITION = 114
+    SMALL_DECOMPOSITION = 115
+    NARROW_DECOMPOSITION = 116
+
+
+class DerivationType(Enum):
+    DEFAULT = 1
+    PORTION_COPY = 2
+    SIMPLIFICATION = 3
+    FROM_CURSIVE = 4
+    COPY = 5
+    DUPLICATE = 6
+    PORTION = 7
+    ROTATION = 8
+    REFLECTION = 9
 
 
 class LoadOptions:
@@ -1100,7 +1129,7 @@ if __name__ == '__main__':
     options.verify_data_sources = True
     options.output_debug_info = True
 
-    cursor = db.load_database(options)  # replace with options for development run
+    cursor = db.load_database(None)  # replace with options for development run
 
     # do stuff here if you want, for example:
     # db.pretty_print_saved_query(cursor, 'Get Character Ancestors', 'a')
