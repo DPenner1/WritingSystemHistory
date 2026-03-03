@@ -29,11 +29,11 @@ CREATE TABLE IF NOT EXISTS code_point (
     bidi_class_code TEXT NOT NULL DEFAULT 'L',
     simple_uppercase_mapping_id INTEGER REFERENCES code_point(id),
     simple_lowercase_mapping_id INTEGER REFERENCES code_point(id),
-    decomposition_id INTEGER REFERENCES sequence(id)
+    equivalent_sequence_id INTEGER REFERENCES sequence(id)
 ) STRICT;
 CREATE INDEX IF NOT EXISTS idx_fk_cp_script_code ON code_point(script_code);
 CREATE INDEX IF NOT EXISTS idx_cp_general_category_code ON code_point(general_category_code);
-CREATE INDEX IF NOT EXISTS idx_cp_decomposition_id ON code_point(decomposition_id);
+CREATE INDEX IF NOT EXISTS idx_cp_equivalent_sequence_id ON code_point(equivalent_sequence_id);
 
 -- it's a tree structure
 CREATE TABLE IF NOT EXISTS sequence_item (

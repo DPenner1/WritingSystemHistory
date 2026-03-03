@@ -306,7 +306,7 @@ class ScriptDatabase:
                 bidi_class_code = ?,
                 simple_uppercase_mapping_id = ?,
                 simple_lowercase_mapping_id = ?,
-                decomposition_id = ?
+                equivalent_sequence_id = ?
             WHERE id = ?""",
             (name, general_category, bidi_class, upper_mapping, lower_mapping, seq_id, id))
 
@@ -422,11 +422,11 @@ class ScriptDatabase:
         load_lookup(cursor, 'certainty_type', data)
 
         data = [
-            (SequenceType.BASE.value, 'Base', 'Unitary "sequence" representing a single code point'),
+            (SequenceType.BASE.value, 'Base', '"Sequence" representing a single code point. Does not contain items.'),
             (SequenceType.LETTER.value, 'Letter', 'A sequence representing a letter'),
             (SequenceType.ALPHABET.value, 'Alphabet', 'A sequence representing an alphabet'),
 
-            (SequenceType.CANONICAL_DECOMPOSITION.value, 'Canonical Decomposition', 'Unicode decomposition type'),
+            (SequenceType.CANONICAL_DECOMPOSITION.value, 'Canonical Decomposition', 'Unicode decomposition type representing full equivalency in all contexts'),
             (SequenceType.COMPATIBILITY_DECOMPOSITION.value, 'Compat Decomposition', 'Unicode decomposition type'),
             (SequenceType.NO_BREAK_DECOMPOSITION.value, 'NoBreak Decomposition', 'Unicode decomposition type'),
             (SequenceType.SUPER_DECOMPOSITION.value, 'Super Decomposition', 'Unicode decomposition type'),
@@ -442,7 +442,9 @@ class ScriptDatabase:
             (SequenceType.INITIAL_DECOMPOSITION.value, 'Initial Decomposition', 'Unicode decomposition type'),
             (SequenceType.MEDIAL_DECOMPOSITION.value, 'Medial Decomposition', 'Unicode decomposition type'),
             (SequenceType.SMALL_DECOMPOSITION.value, 'Small Decomposition', 'Unicode decomposition type'),
-            (SequenceType.NARROW_DECOMPOSITION.value, 'Narrow Decomposition', 'Unicode decomposition type')
+            (SequenceType.NARROW_DECOMPOSITION.value, 'Narrow Decomposition', 'Unicode decomposition type'),
+
+            (SequenceType.Z_VARIANT.value, 'Z-Variant', 'Unit sequence representing an equivalent or typographical Chinese character variant')
         ]
         load_lookup(cursor, 'sequence_type', data)
 
@@ -464,7 +466,7 @@ class ScriptDatabase:
                                'Vaii', 'Bamu', 'Berf', 'Nkoo', 'Wara', 'Gonm', 'Toto', 'Osma', 'Adlm', 'Gara', 'Medf', 'Bass',
                                'Yezi', 'Tnsa', 'Olck', 'Thaa', 'Tols', 'Nagm', 'Sora', 'Wcho', 'Mroo', 'Onao', 'Sunu', 'Yiii', 'Tang'}
 
-        pattern = re.compile(r'^U\+([0-9A-F]+)\tkTraditionalVariant\tU\+([0-9A-F]+)')
+
 
         cursor.execute("DELETE FROM code_point_derivation")  # updates generally expected on this table, just clear
 
@@ -479,7 +481,35 @@ class ScriptDatabase:
                 WHERE script_code IN {self._get_sql_in_str_list(independent_scripts)}""",
                        (ord(self.NO_PARENT_CHARACTER), DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
 
-        # add derivations from decomposition mappings, assuming the decomposed characters are the base building blocks (the parent)
+
+        with open(os.path.join(self._unicode_path, 'Unihan_Variants.txt'), 'r') as file:
+            for line in file:
+                if not line.isspace() and not line.startswith('#'):
+                    parts = line.split('\t')
+
+                    if parts[1] == 'kTraditionalVariant':  # mirror property is kSimplifiedVariant - should only need to check one
+                        for parent_code in parts[2].split(' '):
+                            if parts[0] != parent_code:  # it's possible for a simplified character to map to itself
+                                cursor.execute("""
+                                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
+                                    VALUES (?, ?, ?, ?, ?)""",
+                                    (int(parts[0][2:], 16), int(parent_code[2:], 16), DerivationType.SIMPLIFICATION.value, Certainty.AUTOMATED.value, 'Unihan Database'))
+                                    # the [2:] slices off the U+
+
+                    # This is a self-mirror property. if X zVariant Y then Y zVariant X.
+                    # There's no real indication which should be canonical that I can find, so I'm arbitrarily making it the lowest code point
+                    elif parts[1] == 'kZVariant':
+                        child_id = int(parts[0][2:], 16)
+                        for sub_parts in parts[2].split(' '):
+                            parent_id = int(sub_parts[2:].split('<')[0], 16)
+                            if parent_id < child_id:
+                                seq_id = self.get_next_sequence_id()
+                                cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (seq_id, SequenceType.Z_VARIANT.value))
+                                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, parent_id, 1))
+                                cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, child_id))
+
+
+        # add derivations from equivalent sequence, assuming the equivalent characters are the base building blocks (the parent)
         # Formatting/control/space characters are not eligible (they aren't graphical, right? ... right???)
         cursor.execute(f"""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
@@ -501,17 +531,19 @@ class ScriptDatabase:
             FROM
                 sequence_item decomp
                 INNER JOIN sequence seq ON seq.id = decomp.sequence_id
-                INNER JOIN code_point cp1 ON cp1.decomposition_id = seq.id
+                INNER JOIN code_point cp1 ON cp1.equivalent_sequence_id = seq.id
                 INNER JOIN code_point cp2 ON cp2.id = decomp.item_id
             WHERE 
                 cp1.general_category_code NOT LIKE 'Z_'
                 AND cp1.general_category_code NOT LIKE 'C_'
                 AND cp2.general_category_code NOT LIKE 'Z_'
                 AND cp2.general_category_code NOT LIKE 'C_'
+            AND sequence_type_id >= 100
             ON CONFLICT DO NOTHING""")
-
-        # conflicts expected when a character decomposes into multiple copies of a code point,
-        # minimal enough that this is probably the better query option than advance filtering
+        # sequence_type_id >= 100 is a bit hacky for now, I've basically put the equivalency sequence types at IDs 100+
+        # A more "proper" solution would be to have a category associated to a sequence_type, but that feels like over-engineering for the moment
+        # conflicts are expected when a character decomposes into multiple copies of a code point,
+        # minimal enough that ON CONFLICT DO NOTHING is probably the better query option than advance filtering
 
         # add derivations from case mapping, assuming lowercase to be derived from uppercase
         cursor.execute("""
@@ -528,19 +560,7 @@ class ScriptDatabase:
             WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
                        (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
 
-        with open(os.path.join(self._unicode_path, 'Unihan_Variants.txt'), 'r') as file:
-            for line in file:
-                if not line.isspace() and not line.startswith('#'):
-                    match = pattern.match(line)
-                    if match:
-                        child = int(match.group(1), 16)
-                        parent = int(match.group(2), 16)
 
-                        if child != parent:  # it's possible for a simplified character to map to itself
-                            cursor.execute("""
-                                INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-                                VALUES (?, ?, ?, ?, ?)""",
-                                           (child, parent, DerivationType.SIMPLIFICATION.value, Certainty.AUTOMATED.value, 'Unihan Database'))
 
         defaults = {}
         with open(os.path.join(self._derivations_path, 'defaults.csv'), 'r') as file:
@@ -809,6 +829,7 @@ class ScriptDatabase:
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'r') as csvfile:
             for row in csv.DictReader(csvfile):
                 verify_script(row['Script'])
+
 
     # The derived parameters are for saving time: if they've been determined by other means, this method has less to compute
     def _load_alphabet(self, cursor, script_exemplars, unicase_languages, alphabet_str, lang_code, script_code, derived_script_code, derived_case, verify):
@@ -1099,6 +1120,9 @@ class SequenceType(Enum):
     SMALL_DECOMPOSITION = 115
     NARROW_DECOMPOSITION = 116
 
+    Z_VARIANT = 200
+
+
 
 class DerivationType(Enum):
     DEFAULT = 1
@@ -1129,7 +1153,7 @@ if __name__ == '__main__':
     options.verify_data_sources = True
     options.output_debug_info = True
 
-    cursor = db.load_database(None)  # replace with options for development run
+    cursor = db.load_database(options)  # replace with options for development run
 
     # do stuff here if you want, for example:
     # db.pretty_print_saved_query(cursor, 'Get Character Ancestors', 'a')
