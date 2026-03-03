@@ -28,9 +28,9 @@ class ScriptDatabase:
     # Brahmi, Kharoshti, Arabic, Phoenician which will be manually specified and the Aramaic code point not generally being included in Indic source
     # Can abo, Hangul, Kayah Li, Masaram Gondi, Sorang Sompeng, Pau cin hau will be manually specified due to higher independence or contribution from other scripts
     # Soyombo excluded due to elevated probability of script relationships being modified
-    # Non-unicode scripts Gupta, Ranjana, Pallava, Tocharian, 'asho', 'kush' excluded
+    # Non-unicode scripts Ranjana, Tocharian, Brahmic variants 'asho', 'kush' excluded
     _EXCLUDED_GEN_CODES = ['brah', 'khar', 'hang', 'cans', 'kali', 'soyo', 'gonm', 'sora', 'pauc', 'gupt', 'plav',
-                           'ranj', 'asho', 'kush', 'toch', 'grek', 'latn', 'cyrl', 'arab', 'phnx', 'psin', 'armi']
+                           'ranj', 'asho', 'kush', 'toch', 'grek', 'latn', 'cyrl', 'arab', 'phnx', 'psin']
 
     # i really wish i properly title-cased these, it's hurt a few times already. I'll get around to it at some point...
     _SCRIPT_PARENTS = {
@@ -147,8 +147,8 @@ class ScriptDatabase:
 
         return os.path.join(self._query_path, queries[0])
 
-
-    def pretty_print_query(self, cursor, query, parameters=None):
+    @staticmethod
+    def print_table(data, has_header=True):
         def print_data_row(row, pads):
             BIDI_STRONG_ISOLATOR = '\u2068'
             BIDI_ISOLATOR_POP = '\u2069'
@@ -158,34 +158,39 @@ class ScriptDatabase:
         def print_separator_row(bookend_char, pads):
             print(bookend_char + '--' + '--+--'.join(['-' * p for p in pads]) + '--' + bookend_char)
 
-        results = cursor.execute(query, parameters).fetchall() if parameters else cursor.execute(query).fetchall()
-        header = [x[0].replace('_', ' ').title() for x in cursor.description]
-        results = [['' if field is None else str(field) for field in row] for row in results]
+        table_header = None
+        table_data = [['' if field is None else str(field) for field in row] for row in data]
+        if has_header:
+            table_header = table_data[0]
+            table_data = table_data[1:]
+
         pads = []
-        for i in range(len(header)):
+        for i in range(len(table_header)):
             # TODO - this is going to fail miserably in this project with string length != grapheme apparent length
-            pads.append(max([len(x[i]) for x in results + [header]]))
+            pads.append(max([len(x[i]) for x in table_data + [table_header]]))
 
         print_separator_row('+', pads)
-        print_data_row(header, pads)
-        print_separator_row('|', pads)
-        for r in results:
+        if has_header:
+            print_data_row(table_header, pads)
+            print_separator_row('|', pads)
+        for r in table_data:
             print_data_row(r, pads)
         print_separator_row('+', pads)
 
 
-    def pretty_print_saved_query(self, cursor, query_name, parameters=None):
+    def execute_query(self, query, parameters=None, return_headers=True):
+        cursor = self._cxn.cursor()
+        results = cursor.execute(query, parameters).fetchall() if parameters else cursor.execute(query).fetchall()
+        header = [x[0].replace('_', ' ').title() for x in cursor.description]
+        cursor.close()
+        if return_headers:
+            return [header] + results
+        return results
+
+
+    def execute_saved_query(self, query_name, parameters=None, return_headers=True):
         with open(self._get_unique_saved_query(query_name)) as file:
-            self.pretty_print_query(cursor, file.read(), parameters)
-
-
-    def execute_query(self, cursor, query, parameters=None):
-        return cursor.execute(query, parameters).fetchall() if parameters else cursor.execute(query).fetchall()
-
-
-    def execute_saved_query(self, cursor, query_name, parameters=None):
-        with open(self._get_unique_saved_query(query_name)) as file:
-            return self.execute_query(cursor, file.read(), parameters)
+            return self.execute_query(file.read(), parameters, return_headers)
 
 
     def _setup_schema(self, cursor):
@@ -254,7 +259,6 @@ class ScriptDatabase:
             for row in csv.DictReader(file):
                 cursor.execute("UPDATE script SET canonical_script_code = ? WHERE code = ?", (row['Main'], row['Variant']))
 
-
     @staticmethod
     def is_private_use(id):
         return (0xE000 <= id <= 0xF8FF) or (0x100000 <= id <= 0x10FFFD)
@@ -280,6 +284,7 @@ class ScriptDatabase:
                 (id, name, script_code, general_category_code, bidi_class_code))
                 # TODO double check stability policy
 
+
     def _update_code_point(self, cursor, id, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str):
         decom_pattern = re.compile(r'^(?:<([a-zA-Z]+)> )?([\s0-9A-F]+)$')
         decom_type = None
@@ -297,7 +302,6 @@ class ScriptDatabase:
                 (seq_id, decom_type.title() + '%'))
             for i, decom_id in enumerate(decom_ids):
                 cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, decom_id, i + 1))
-
 
         cursor.execute("""
             UPDATE code_point
@@ -445,15 +449,14 @@ class ScriptDatabase:
             (SequenceType.SMALL_DECOMPOSITION.value, 'Small Decomposition', 'Unicode decomposition type'),
             (SequenceType.NARROW_DECOMPOSITION.value, 'Narrow Decomposition', 'Unicode decomposition type'),
 
-            (SequenceType.Z_VARIANT.value, 'Z-Variant', 'Unit sequence representing an equivalent or typographical Chinese character variant'),
+            (SequenceType.Z_VARIANT.value, 'Z-Variant', 'Unit sequence representing an equivalent or typographical variant Chinese character'),
             (SequenceType.HIEROGLYPHIC_ALTERNATIVE.value, 'Hieroglyphic Alternative', 'Equivalent Hieroglyph sequence')
         ]
         load_lookup(cursor, 'sequence_type', data)
 
 
     def _load_derivations(self, cursor, indic_letter_data, semitic_letter_data, verify_script):
-        def resolve_default(defaults_dict, script, data_row, field, overriding_default=None, override_condition=False,
-                            last_resort=None):
+        def resolve_default(defaults_dict, script, data_row, field, overriding_default=None, override_condition=False, last_resort=None):
             if field in data_row and data_row[field] and not data_row[field].isspace():
                 return data_row[field].strip()
             if override_condition:
@@ -470,8 +473,8 @@ class ScriptDatabase:
 
         cursor.execute("DELETE FROM code_point_derivation")  # updates generally expected on this table, just clear
 
-        self._load_letter_derivation_data(cursor, indic_letter_data, ScriptDatabase._INDIC_ORDER, False, verify_script)
-        self._load_letter_derivation_data(cursor, semitic_letter_data, ScriptDatabase._SEMITIC_ORDER, True, verify_script)
+        self._load_letter_derivation_data(cursor, indic_letter_data, ScriptDatabase._INDIC_ORDER, verify_script)
+        self._load_letter_derivation_data(cursor, semitic_letter_data, ScriptDatabase._SEMITIC_ORDER, verify_script)
 
         # Identify all the independently-derived characters
         cursor.execute(f"""
@@ -673,7 +676,6 @@ class ScriptDatabase:
             for i, letter in enumerate(ScriptDatabase._PROTO_SINAITIC_ORDER):
                 file.write(f'\n{i + ScriptDatabase._CODE_POINT_STARTS['psin']},Psin,PROTO-SINAITIC LETTER {letter},Lo')
 
-
     # format: { script_code (lowercase): { Generic Indic Letter: [letters] } }
     def _get_indic_letter_dict(self, verify):
         wdata = {}
@@ -727,56 +729,9 @@ class ScriptDatabase:
                     id = ScriptDatabase._CODE_POINT_STARTS[fill_in_script] + self._INDIC_ORDER.index(letter)
                     wdata[fill_in_script][letter] = [chr(id)]
 
+        del wdata['armi']  # Remove aramaic, it's better in Semitic dictionary
+
         return wdata
-
-
-    def _generate_std_alphabets(self, indic_letter_dict, semitic_letter_dict):
-        # aramaic a bit of a hack because I want it generated in the Semitic list and not Indic
-        def generate_std_alphabet(letter_dict, letter_order):
-            script_dict = self.get_code_to_script_dict()
-            with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'a') as alpha_file:
-                for script_code in letter_dict:
-                    if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
-                        script_name = script_dict[script_code.title()]
-                        alpha_file.write('\n' + script_name + ',')
-                        for letter_class in letter_order:
-                            if letter_class in letter_dict[script_code]:
-                                for letter in letter_dict[script_code][letter_class]:
-                                    alpha_file.write(letter)
-
-        with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'w') as file:
-            file.write('Script,Alphabet')
-
-        generate_std_alphabet(indic_letter_dict, ScriptDatabase._INDIC_ORDER)
-        generate_std_alphabet(semitic_letter_dict, ScriptDatabase._SEMITIC_ORDER)
-
-
-    # exclude aramaic a bit of a hack because I want it generated in the Semitic list and not Indic
-    def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, include_aramaic, verify):
-        script_dict = self.get_code_to_script_dict()
-        for script_code in letter_dict:
-            if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES or (script_code == 'armi' and include_aramaic):
-                script_name = script_dict[script_code.title()]
-
-                parent_code = ScriptDatabase._SCRIPT_PARENTS[script_code]
-                for letter_class in letter_order:
-                    if letter_class in letter_dict[script_code]:
-                        if letter_class in letter_dict[parent_code]:
-                            parent_letters = letter_dict[parent_code][letter_class]  # final parent scripts should be in excluded codes
-                            if (len(parent_letters) == 1):
-                                for letter in letter_dict[script_code][letter_class]:
-                                    cursor.execute("""
-                                        INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
-                                        VALUES (?,?,?,?,?,?)""",
-                                        (ord(letter),
-                                         ord(parent_letters[0]),
-                                         DerivationType.DEFAULT.value,
-                                         Certainty.AUTOMATED.value,
-                                         'Wikipedia letter cognate charts',
-                                         'Not necessarily graphical derivation but likely'))
-                            elif verify:  # temporary, for later manual work
-                                print(f"Data generation warning: {len(parent_letters)} parent letters found for {letter_class} in {script_code}")
-
 
     # format: { script_code (lowercase): { Generic Semitic Letter: [letters] } }
     def _get_semitic_letter_dict(self):
@@ -818,6 +773,51 @@ class ScriptDatabase:
         return wdata
 
 
+    def _generate_std_alphabets(self, indic_letter_dict, semitic_letter_dict):
+        def generate_std_alphabet(letter_dict, letter_order):
+            script_dict = self.get_code_to_script_dict()
+            with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'a') as alpha_file:
+                for script_code in letter_dict:
+                    if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
+                        script_name = script_dict[script_code.title()]
+                        alpha_file.write('\n' + script_name + ',')
+                        for letter_class in letter_order:
+                            if letter_class in letter_dict[script_code]:
+                                for letter in letter_dict[script_code][letter_class]:
+                                    alpha_file.write(letter)
+
+        with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'w') as file:
+            file.write('Script,Alphabet')
+
+        generate_std_alphabet(indic_letter_dict, ScriptDatabase._INDIC_ORDER)
+        generate_std_alphabet(semitic_letter_dict, ScriptDatabase._SEMITIC_ORDER)
+
+
+    def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, verify):
+        script_dict = self.get_code_to_script_dict()
+        for script_code in letter_dict:
+            if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
+                script_name = script_dict[script_code.title()]
+
+                parent_code = ScriptDatabase._SCRIPT_PARENTS[script_code]
+                for letter_class in letter_order:
+                    if letter_class in letter_dict[script_code]:
+                        if letter_class in letter_dict[parent_code]:
+                            parent_letters = letter_dict[parent_code][letter_class]  # final parent scripts should be in excluded codes
+                            if (len(parent_letters) == 1):
+                                for letter in letter_dict[script_code][letter_class]:
+                                    cursor.execute("""
+                                        INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
+                                        VALUES (?,?,?,?,?,?)""",
+                                        (ord(letter),
+                                         ord(parent_letters[0]),
+                                         DerivationType.DEFAULT.value,
+                                         Certainty.AUTOMATED.value,
+                                         'Wikipedia letter cognate charts',
+                                         'Not necessarily graphical derivation but likely'))
+                            elif verify:  # temporary, for later manual work
+                                print(f"Data generation warning: {len(parent_letters)} parent letters found for {letter_class} in {script_code}")
+
     # TODO: this no longer works with the current alphabet architecture
     def _verify_script_coverage(self, cursor):
         def verify_script(script):
@@ -850,7 +850,6 @@ class ScriptDatabase:
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'r') as csvfile:
             for row in csv.DictReader(csvfile):
                 verify_script(row['Script'])
-
 
     # The derived parameters are for saving time: if they've been determined by other means, this method has less to compute
     def _load_alphabet(self, cursor, script_exemplars, unicase_languages, alphabet_str, lang_code, script_code, derived_script_code, derived_case, verify):
@@ -928,7 +927,6 @@ class ScriptDatabase:
 
         if verify and len(alphabet_letters) != len(set(alphabet_letters)):
             print(f"Detected duplicate letters in alphabet for {lang_code}, {script_code}: {alphabet_letters}")
-
 
         if derived_script_code is None and script_code:
             derived_script_code = script_code
@@ -1055,9 +1053,9 @@ class ScriptDatabase:
                     print(f'Could not find exemplar characters in {file_name}')
 
 
-    # dev mode runs additional checks and outputs some data to console
     def load_database(self, load_options=None):
         options = load_options if load_options else LoadOptions()
+        output = options.output_debug_info
 
         if options.force_overwrite:
             if os.path.isfile(os.path.join(self._db_path, self._db_name)):
@@ -1070,7 +1068,10 @@ class ScriptDatabase:
         if options.saved_query_path:
             self._query_path = options.saved_query_path
 
-        self._try_unzip_sources(os.path.join(self._resource_path, 'cr-exclusion'))
+        path = os.path.join(self._resource_path, 'cr-exclusion')
+        if self._try_unzip_sources(os.path.join(self._resource_path, 'cr-exclusion')):
+            if output: print(f'Source files unzipped to {self._resource_path}')
+        elif output: print(f'At least one zip file not present in {path}, relying on existing files in {self._resource_path}')
 
         cur = self._cxn.cursor()
         if options.verify_data_sources:
@@ -1078,32 +1079,38 @@ class ScriptDatabase:
         else:
             cur.execute("PRAGMA foreign_keys = OFF")
 
+        if output: print('Setting up schema...')
         self._setup_schema(cur)
 
+        if output: print('Loading lookups and script data...')
         self._load_lookups(cur)
         self._cxn.commit()
-
         self._load_scripts(cur)
         self._cxn.commit()
 
+        if output: print('Generating letter data...')
         indic_letter_data = self._get_indic_letter_dict(options.verify_data_sources)
         semitic_letter_data = self._get_semitic_letter_dict()
 
         self._generate_private_use_data(indic_letter_data)
         self._generate_std_alphabets(indic_letter_data, semitic_letter_data)
 
+        if output: print('Loading code point data...')
         self._load_code_point_data(cur)
         self._cxn.commit()
 
+        if output: print('Loading derivation data...')
         self._load_derivations(cur, indic_letter_data, semitic_letter_data, options.verify_data_sources)
         self._cxn.commit()
 
+        if output: print('Loading alphabet data...')
         self._load_alphabet_data(cur, options.verify_data_sources)
         self._cxn.commit()
 
-        if options.output_debug_info:
+        if output:
+            print('Database loaded.')
             # self._verify_script_coverage(cur) -> TODO this no longer works with new alphabet architecture
-            self.pretty_print_saved_query(cur, 'Total derivation statistics')
+            self.print_table(self.execute_saved_query('Total derivation statistics'))
 
         cur.execute("PRAGMA foreign_keys = ON")
 
@@ -1178,6 +1185,7 @@ if __name__ == '__main__':
     cursor = db.load_database(None)  # replace with options for development run
 
     # do stuff here if you want, for example:
-    # db.pretty_print_saved_query(cursor, 'Get Character Ancestors', 'a')
+    #results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
+    #db.print_table(results)
 
     cursor.close()
