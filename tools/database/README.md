@@ -15,6 +15,16 @@ There are three queries that I wanted to answer with the database:
 
 Though there are no current plans, the functionality of the database could be extended beyond historical character relationships in the future (if you have any interesting ideas, ideally either not done elsewhere and/or fits neatly with current DB schema, ping me either here on GitHub or [on Reddit](https://www.reddit.com/user/DPenner1/)).
 
+## Statistics
+
+*As of 2026-03-03*
+
+  - There are ⁨130,235 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 27,949 have a historical ancestor specified (21.5%, including no known ancestor), of which 684 are manually reviewed (0.5%).
+  - The database is about 33 MB.
+
+  1. Distinct being defined for this project has having no other equivalent representation in Unicode. See schema documentation on `code_point.equivalent_sequence_id`.
+  2. Letters for this project being defined as Unicode general category `L_` plus the Private Use characters which currently stands at 287.
+
 ## Getting Started
 
 The database must be generated. For all purposes, the `./tools/database` folder is the working directory (while I am Linux-based, this should also work on Windows, but I have not tested this).
@@ -62,16 +72,6 @@ The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/too
   - `sequence`: A sequence of sequences (recursive tree). Each code point also has an "dummy" base entry sequence in the table, with a matching ID. Use the `sequence_type_id` field to determine what kind of sequence you are looking at.
   - `sequence_item`: An item in a sequence. The code points sequences do *not* have an entry in this table, they are the leaf items in the tree.
   - The `*_type` tables are lookup tables that should be self-explanatory based on their data.
-
-## Statistics
-
-*As of 2026-03-03*
-
-  - There are ⁨130,235 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 27,949 have a historical ancestor specified (21.5%, including no known ancestor), of which 684 are manually reviewed (0.5%).
-  - The database is about 33 MB.
-
-  1. Distinct being defined for this project has having no other equivalent representation in Unicode. See schema documentation on `code_point.equivalent_sequence_id`
-  2. Letters for this project being defined as Unicode general category `L_` plus the Private Use characters which currently stands at 287.
 
 ## Random Notes
 
