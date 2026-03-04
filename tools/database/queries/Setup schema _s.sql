@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS sequence (
     id INTEGER PRIMARY KEY,
     sequence_type_id INTEGER NOT NULL REFERENCES sequence_type(id)
 ) STRICT;
+CREATE INDEX IF NOT EXISTS idx_fk_s_sequence_type ON sequence(sequence_type_id);
 
 CREATE TABLE IF NOT EXISTS code_point (
     id INTEGER PRIMARY KEY REFERENCES sequence(id),
@@ -31,9 +32,11 @@ CREATE TABLE IF NOT EXISTS code_point (
     simple_lowercase_mapping_id INTEGER REFERENCES code_point(id),
     equivalent_sequence_id INTEGER REFERENCES sequence(id)
 ) STRICT;
-CREATE INDEX IF NOT EXISTS idx_fk_cp_script_code ON code_point(script_code);
-CREATE INDEX IF NOT EXISTS idx_cp_general_category_code ON code_point(general_category_code);
-CREATE INDEX IF NOT EXISTS idx_cp_equivalent_sequence_id ON code_point(equivalent_sequence_id);
+CREATE INDEX IF NOT EXISTS idx_fk_cp_script ON code_point(script_code);
+CREATE INDEX IF NOT EXISTS idx_cp_general_category ON code_point(general_category_code);
+CREATE INDEX IF NOT EXISTS idx_fk_cp_equivalent_sequence ON code_point(equivalent_sequence_id);
+CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_lowercase_mapping ON code_point(simple_lowercase_mapping_id);
+CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_uppercase_mapping ON code_point(simple_uppercase_mapping_id);
 
 -- it's a tree structure
 CREATE TABLE IF NOT EXISTS sequence_item (
@@ -41,20 +44,19 @@ CREATE TABLE IF NOT EXISTS sequence_item (
     item_id INTEGER REFERENCES sequence(id),
     order_num INTEGER,
     PRIMARY KEY (sequence_id, item_id, order_num)
-);
+) STRICT;
 
 CREATE TABLE IF NOT EXISTS alphabet (
-    id PRIMARY KEY REFERENCES sequence(id),
+    id INTEGER PRIMARY KEY REFERENCES sequence(id),
     lang_code TEXT,
     script_code TEXT REFERENCES script (code),
     letter_case TEXT,
     is_language_exemplar INTEGER,
     is_script_exemplar INTEGER
-);
+) STRICT;
 -- Currently The "standard-issue" database loads this as unique from the CLDR, but in principle alternate/extended alphabets could be added, so non-unique index
-CREATE INDEX IF NOT EXISTS idx_lang_script ON alphabet(lang_code, script_code);
-CREATE INDEX IF NOT EXISTS idx_script ON alphabet(script_code, is_script_exemplar);
-
+CREATE INDEX IF NOT EXISTS idx_a_lang_script ON alphabet(lang_code, script_code);
+CREATE INDEX IF NOT EXISTS idx_a_script ON alphabet(script_code, is_script_exemplar);
 
 CREATE TABLE IF NOT EXISTS derivation_type (
     id INTEGER PRIMARY KEY,
@@ -80,4 +82,4 @@ CREATE TABLE IF NOT EXISTS code_point_derivation (
     PRIMARY KEY (child_id, parent_id, derivation_type_id)
 ) STRICT;
 -- This is a table likely to be looked up in either direction child<->parent
-CREATE INDEX IF NOT EXISTS idx_pk_inverse ON code_point_derivation(parent_id, child_id, derivation_type_id);
+CREATE INDEX IF NOT EXISTS idx_cpd_parent_derivation_type ON code_point_derivation(parent_id, derivation_type_id);

@@ -6,7 +6,7 @@
 
 This is a `sqlite3` database with script and character information, whose main purpose is to document historical development of writing on the individual character level. This started out as an exploration on updating the All Scripts chart with script samples that could show character development over time (objective not yet complete or even known to be feasible).
 
-There are a three queries that I wanted to answer with the database:
+There are three queries that I wanted to answer with the database:
 
   - What are a given character's ancestors? *(done!)*
   - What are a given character's descendants? *(done, but need to add filters: eg. searching a latin letter will typically result in an overwhelming number of descendants consisting mainly of varied accents)*
@@ -67,7 +67,7 @@ The `./queries` folder contains some queries, including finding a character's an
 *As of 2026-03-03*
 
   - There are ⁨130,235 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 27,949 have a historical ancestor specified (21.5%, including no known ancestor), of which 684 are manually reviewed (0.5%).
-  - The database is about 29 MB.
+  - The database is about 33 MB.
 
 --------
 

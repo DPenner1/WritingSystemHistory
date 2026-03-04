@@ -2,6 +2,7 @@ import os
 import sqlite3
 import re
 import csv
+import time
 from enum import Enum
 from zipfile import ZipFile
 
@@ -1101,6 +1102,11 @@ class ScriptDatabase:
 
 
     def load_database(self, load_options=None):
+        def output_info(message, start_time, lap_time):
+            current_time = time.time()
+            print(message + f" Elapsed: {current_time - start_time:.2f} s (+{current_time - lap_time:.2f} s)")
+            return current_time
+
         options = load_options if load_options else LoadOptions()
         output = options.output_debug_info
 
@@ -1111,7 +1117,7 @@ class ScriptDatabase:
                 os.remove(os.path.join(self._db_path, self._db_name + '-journal'))
             self._set_connection()
         if options.resource_path:
-            self._set_resource_paths()
+            self._set_resource_paths(options.resource_path)
         if options.saved_query_path:
             self._query_path = options.saved_query_path
 
@@ -1126,36 +1132,38 @@ class ScriptDatabase:
         else:
             cur.execute("PRAGMA foreign_keys = OFF")
 
-        if output: print('Setting up schema...')
+        start_time = time.time()
+        lap_time = start_time
+        if output: print('Setting up schema (starting timer)...')
         self._setup_schema(cur)
 
-        if output: print('Loading lookups and script data...')
         self._load_lookups(cur)
         self._cxn.commit()
         self._load_scripts(cur)
         self._cxn.commit()
+        if output: lap_time = output_info("Done loading lookups and script data.", start_time, lap_time)
 
-        if output: print('Generating letter data...')
         indic_letter_data = self._get_indic_letter_dict(options.verify_data_sources)
         semitic_letter_data = self._get_semitic_letter_dict()
 
         self._generate_private_use_data(indic_letter_data)
         self._generate_std_alphabets(indic_letter_data, semitic_letter_data)
+        if output: lap_time = output_info("Done generating letter data.", start_time, lap_time)
 
-        if output: print('Loading code point data...')
         self._load_code_point_data(cur)
         self._cxn.commit()
+        if output: lap_time = output_info("Done loading code point data.", start_time, lap_time)
 
-        if output: print('Loading derivation data...')
         self._load_derivations(cur, indic_letter_data, semitic_letter_data, options.verify_data_sources)
         self._cxn.commit()
+        if output: lap_time = output_info("Done loading derivation data.", start_time, lap_time)
 
-        if output: print('Loading alphabet data...')
         self._load_alphabet_data(cur, options.verify_data_sources)
         self._cxn.commit()
+        if output: lap_time = output_info("Done loading alphabet data.", start_time, lap_time)
 
         if output:
-            print('Database loaded.')
+            print(f'Database loaded. Total time: {time.time() - start_time:.2f} s. Total size: {os.path.getsize(os.path.join(self._db_path, self._db_name)) // 1000000} MB')
             # self._verify_script_coverage(cur) -> TODO this no longer works with new alphabet architecture
             self.print_table(self.execute_saved_query('Total derivation statistics'))
 
@@ -1231,7 +1239,7 @@ if __name__ == '__main__':
     options.verify_data_sources = True
     options.output_debug_info = True
 
-    cursor = db.load_database(options)  # replace with options for development run
+    cursor = db.load_database(None)  # replace with options for development run
 
     # do stuff here if you want, for example:
     #results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
