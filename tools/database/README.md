@@ -40,15 +40,15 @@ The `./queries` folder contains some queries, including finding a character's an
   - `code_point`: Mostly what you would expect from Unicode.
      - Non-character U+FFFF is used as a signal value for when a character has been evaluated to have no known ancestor (to distinguish it from the case where data is simply missing).
      - Private use characters are used for historical scripts not yet in Unicode proper. For the Brahmi-based scripts, they've been automatically generated and assumed to exist if 50%+1 of their descendents have the corresponding letter. It should not be assumed the particular code points used are stable.
-     - Field `equivalent_sequence_id` combines various Unicode sources for "equivalent" code points. May have to change later, but as it stands these sources do not overlap. These are decomposition, z-variants (the lowest code point in a set has been taken to be the original), Hieroglyph alternate sequences (kEH_AltSeq).
+     - Field `equivalent_sequence_id` combines various Unicode sources for "equivalent" code points. May have to change later, but as it stands these sources do not overlap. These are decomposition (including Hangul Syllable/Jamo), z-variants (the lowest code point in a set has been taken to be the original), Hieroglyph alternate sequences (kEH_AltSeq).
   - `code_point_derivation`: This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. This table is also liable to renaming to `code_point_relation` if project scope expands. The automatic derivations are:
      - An assumption that lowercase characters derive from their uppercase counterparts.
-     - The Brahmi-derived scripts have a decently documented history, it is assumed that cognate letters derive from their known ancestor script.
-     - Independently originated scripts have all their letters set to have no historical ancestor (this isn't necessarily always true as there can be script-internal derivation!)
+     - For the Brahmi-derived and Semitic scripts, it is assumed that cognate letters derive from their known ancestor script.
+     - Independently originated scripts have all their letters set to have no historical ancestor (this isn't necessarily always true as there can be script-internal derivation!).
      - Simplified Chinese characters deriving from their Traditional counterpart.
      - Unicode decompositions (eg. accented characters, duplicate/legacy code points, etc.).
-     - *(planned)* Hangul syllables deriving from their constituent jamo.
-     - *(to investigate data sources)* Han ideograph and radical relations.
+     - Hangul syllables deriving from their constituent jamo.
+     - *(to investigate data sources and history)* Han ideograph and radical relations.
   - `script`: ISO 15924. A bit of a mish-mash, but works so far. Table based on list found [here](https://www.unicode.org/iso15924/iso15924-codes.html). To my understanding, rows without a Unicode Alias yet having a Unicode version date are scripts which Unicode considers a font variant of another. Then it is augmented with private use scripts with a `u_name` specified. These are:
      - Proto-Sinaitic
      - Pallava
@@ -64,10 +64,10 @@ The `./queries` folder contains some queries, including finding a character's an
 
 ## Statistics
 
-*As of 2026-03-02*
+*As of 2026-03-03*
 
-  - There are ⁨141,407 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 27,880 have a historical ancestor specified (19.7%, including no known ancestor), of which 615 are manually reviewed (0.4%).
-  - The database is about 25 MB.
+  - There are ⁨130,235 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 27,949 have a historical ancestor specified (21.5%, including no known ancestor), of which 684 are manually reviewed (0.5%).
+  - The database is about 29 MB.
 
 --------
 

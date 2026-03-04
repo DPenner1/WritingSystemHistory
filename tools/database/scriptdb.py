@@ -132,8 +132,8 @@ class ScriptDatabase:
         self._wikipedia_path = os.path.join(self._resource_path, 'wikipedia-sourced')
         self._unicode_path = os.path.join(self._resource_path, 'unicode-data')
 
-
-    def _get_sql_in_str_list(self, enumerable):
+    @staticmethod
+    def _get_sql_in_str_list(enumerable):
         return "('" + "','".join([x.replace("'", "''") for x in enumerable]) + "')"
 
 
@@ -211,14 +211,18 @@ class ScriptDatabase:
                 return False
             return True
 
-        unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'UnicodeData.txt', os.path.join(self._unicode_path, 'UnicodeData.txt'))
-        unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Scripts.txt', os.path.join(self._unicode_path, 'Scripts.txt'))
-        unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Unikemet.txt', os.path.join(self._unicode_path, 'Unikemet.txt'))
-        unzip_file(os.path.join(zip_dir_path, 'Unihan.zip'), 'Unihan_Variants.txt', os.path.join(self._unicode_path, 'Unihan_Variants.txt'))
+        unzip_results = [
+            unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'UnicodeData.txt', os.path.join(self._unicode_path, 'UnicodeData.txt')),
+            unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Scripts.txt', os.path.join(self._unicode_path, 'Scripts.txt')),
+            unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Unikemet.txt', os.path.join(self._unicode_path, 'Unikemet.txt')),
+            unzip_file(os.path.join(zip_dir_path, 'Unihan.zip'), 'Unihan_Variants.txt', os.path.join(self._unicode_path, 'Unihan_Variants.txt')),
+        ]
 
         cldr_pattern = re.compile('cldr-common.+zip')
         cldr_zip_file = [os.path.join(zip_dir_path, f) for f in os.listdir(zip_dir_path) if cldr_pattern.match(f)]
+        cldr_success = True
         if not len(cldr_zip_file) == 1:
+            cldr_success = False
             if output_debug:
                 print(f'Found {len(cldr_zip_file)} cldr common zip files to unzip')
         else:
@@ -230,6 +234,8 @@ class ScriptDatabase:
                     match = cldr_file_pattern.search(zipped_file)
                     if match:
                         unzip_file(cldr_zip_file[0], zipped_file, os.path.join(self._unicode_path, 'cldr', match[1]))
+
+        return (not (False in unzip_results)) and cldr_success
 
 
     def get_next_sequence_id(self):
@@ -303,6 +309,7 @@ class ScriptDatabase:
             for i, decom_id in enumerate(decom_ids):
                 cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, decom_id, i + 1))
 
+
         cursor.execute("""
             UPDATE code_point
             SET 
@@ -317,6 +324,27 @@ class ScriptDatabase:
 
 
     def _load_code_point_data(self, cursor):
+        # Hangul constants named similarly to Unicode Standard algorithm
+        S_BASE = 0xAC00
+        L_BASE = 0x1100
+        V_BASE = 0x1161
+        T_BASE = 0x11A7
+        L_COUNT = 19
+        V_COUNT = 21
+        T_COUNT = 28
+        N_COUNT = V_COUNT * T_COUNT
+        S_COUNT = L_COUNT * N_COUNT
+
+        S_END = S_BASE + S_COUNT
+        # This is parsable from UCD, but it's short and not likely to change (it would break the Hangul algo), so hard coding is fine and probably a bit more efficient
+        JAMO_SHORT_NAME = { 0x1100: 'G', 0x1101: 'GG', 0x1102: 'N', 0x1103: 'D', 0x1104: 'DD', 0x1105: 'R', 0x1106: 'M', 0x1107: 'B', 0x1108: 'BB', 0x1109: 'S',
+                            0x110A: 'SS', 0x110B: '', 0x110C: 'J', 0x110D: 'JJ', 0x110E: 'C', 0x110F: 'K', 0x1110: 'T', 0x1111: 'P', 0x1112: 'H', 0x1161: 'A',
+                            0x1162: 'AE', 0x1163: 'YA', 0x1164: 'YAE', 0x1165: 'EO', 0x1166: 'E', 0x1167: 'YEO', 0x1168: 'YE', 0x1169: '0', 0x116A: 'WA', 0x116B: 'WAE',
+                            0x116C: 'OE', 0x116D: 'YO', 0x116E: 'U', 0x116F: 'WEO', 0x1170: 'WE', 0x1171: 'WI', 0x1172: 'YU', 0x1173: 'EU', 0x1174: 'YI', 0x1175: 'I',
+                            0x11A8: 'G', 0x11A9: 'GG', 0x11AA: 'GS', 0x11AB: 'N', 0x11AC: 'NJ', 0x11AD: 'NH', 0x11AE: 'D', 0x11AF: 'L', 0x11B0: 'LG', 0x11B1: 'LM',
+                            0x11B2: 'LB', 0x11B3: 'LS', 0x11B4: 'LT', 0x11B5: 'LP', 0x11B6: 'LH', 0x11B7: 'M', 0x11B8: 'B', 0x11B9: 'BS', 0x11BA: 'S', 0x11BB: 'SS',
+                            0x11BC: 'NG', 0x11BD: 'J', 0x11BE: 'C', 0x11BF: 'K', 0x11C0: 'T', 0x11C1: 'P', 0x11C2: 'H', }
+
         pattern = re.compile(r'^([0-9A-F]+)(?:\.\.([0-9A-F]+))?\s*; ([_a-zA-Z]+) #')
 
         # Reset since sequence ids not stable -> TODO in principle we could be smarter about this
@@ -346,13 +374,39 @@ class ScriptDatabase:
             for line in csv.reader(csvfile, delimiter=';'):
 
                 if in_range:
-                    for i in range(code_point + 1, int(line[0], 16) + 1):
-                        # TODO: this is not strictly conforming for Hangul
-                        self._update_code_point(cursor, i, name + '-' + hex(i)[2:].upper(), general_category, bidi_class,
-                                          upper_mapping, lower_mapping, decom_str)
+                    for i in range(code_point, int(line[0], 16) + 1):
+                        if S_BASE <= i < S_END:  # follow along Hangul decomposition algorithm Unicode Standard 3.12.2
+                            s_index = i - S_BASE
+                            if (i % 28) == (S_BASE % 28): # LV syllable
+                                l_index, temp = divmod(s_index, N_COUNT)
+                                v_index = temp // T_COUNT
+                                l_part = L_BASE + l_index
+                                v_part = V_BASE + v_index
+                                decom_str = f"<jamo> {hex(l_part)[2:].upper()} {hex(v_part)[2:].upper()}"
+                                suffix = " " + JAMO_SHORT_NAME[l_part] + JAMO_SHORT_NAME[v_part]
+                            else:
+                                temp, t_index = divmod(s_index, T_COUNT)
+                                lv_index = temp * T_COUNT
+                                lv_part = S_BASE + lv_index
+                                t_part = T_BASE + t_index
+                                decom_str = f"<jamo> {hex(lv_part)[2:].upper()} {hex(t_part)[2:].upper()}"
+                                lv_name = cursor.execute("SELECT name FROM code_point WHERE id = ?", (lv_part,)).fetchone()[0]
+                                suffix = " " + lv_name.split(' ')[-1] + JAMO_SHORT_NAME[t_part]
+                        else:
+                            suffix = '-' + hex(i)[2:].upper()
+
+                        self._update_code_point(cursor, i, name + suffix, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
+
                     in_range = False
                 else:
                     name = None
+                    code_point = int(line[0], 16)
+                    decom_str = line[5]
+                    general_category = line[2] if line[2] else None
+                    bidi_class = line[4] if line[4] else None
+                    upper_mapping = int(line[12], 16) if line[12] else None
+                    lower_mapping = int(line[13], 16) if line[13] else None
+
                     match = special_name_pattern.match(line[1])
                     if match:
                         parts = match.group(1).split(',')
@@ -363,16 +417,7 @@ class ScriptDatabase:
                             in_range = True
                     else:
                         name = line[1]
-
-                    code_point = int(line[0], 16)
-                    decom_str = line[5]
-                    general_category = line[2] if line[2] else None
-                    bidi_class = line[4] if line[4] else None
-                    upper_mapping = int(line[12], 16) if line[12] else None
-                    lower_mapping = int(line[13], 16) if line[13] else None
-
-                    self._update_code_point(cursor, code_point, name + '-' + line[0] if in_range else name, general_category,
-                                      bidi_class, upper_mapping, lower_mapping, decom_str)
+                        self._update_code_point(cursor, code_point, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
 
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'private_use.csv'), 'r') as file:
             for row in csv.DictReader(file):
@@ -407,7 +452,7 @@ class ScriptDatabase:
             (DerivationType.PORTION_COPY.value, "Portion copy", "Child is a copy of a portion of the parent, allowing for stretch-distortion due to size change"),
             (DerivationType.SIMPLIFICATION.value, "Simplification", "Child is a simplification of parent"),
             (DerivationType.FROM_CURSIVE.value, "From cursive", "Child is derived from cursive form of the parent (who is typically non-cursive)"),
-            (DerivationType.COPY.value, "Copy", "Child is a copy of the parent"), # Generally either child script copying or lowercase just a small version of uppercase
+            (DerivationType.COPY.value, "Copy", "Child is a copy (or multiple) of the parent"), # Usually child script copying or lowercase just a small version of uppercase
             (DerivationType.DUPLICATE.value, "Duplicate", "Child is a duplicate of the parent"),  # Unicode duplicate code points
             (DerivationType.PORTION.value, "Portion derivation", "Child is a derivation from a portion of the parent"),
             (DerivationType.ROTATION.value, "Rotation", "Child is a rotation of the parent"),
@@ -432,7 +477,9 @@ class ScriptDatabase:
             (SequenceType.ALPHABET.value, 'Alphabet', 'A sequence representing an alphabet'),
 
             (SequenceType.CANONICAL_DECOMPOSITION.value, 'Canonical Decomposition', 'Unicode decomposition type representing full equivalency in all contexts'),
-            (SequenceType.COMPATIBILITY_DECOMPOSITION.value, 'Compat Decomposition', 'Unicode decomposition type'),
+            (SequenceType.JAMO_CANONICAL_DECOMPOSITION.value, 'Jamo Canonical Decomposition', 'Unicode decomposition type for Hangul syllables'),
+            (SequenceType.COMPATIBILITY_DECOMPOSITION.value, 'Compat Decomposition',
+                'Unicode decomposition type (all non-canonical decompositions are compatibility decompositions, this is a "other" value)'),
             (SequenceType.NO_BREAK_DECOMPOSITION.value, 'NoBreak Decomposition', 'Unicode decomposition type'),
             (SequenceType.SUPER_DECOMPOSITION.value, 'Super Decomposition', 'Unicode decomposition type'),
             (SequenceType.FRACTION_DECOMPOSITION.value, 'Fraction Decomposition', 'Unicode decomposition type'),
@@ -1131,23 +1178,25 @@ class SequenceType(Enum):
     LETTER = 2
     ALPHABET = 3
 
+
     CANONICAL_DECOMPOSITION = 100
-    COMPATIBILITY_DECOMPOSITION = 101
-    NO_BREAK_DECOMPOSITION = 102
-    SUPER_DECOMPOSITION = 103
-    FRACTION_DECOMPOSITION = 104
-    SUB_DECOMPOSITION = 105
-    FONT_DECOMPOSITION = 106
-    CIRCLE_DECOMPOSITION = 107
-    WIDE_DECOMPOSITION = 108
-    VERTICAL_DECOMPOSITION = 109
-    SQUARE_DECOMPOSITION = 110
-    ISOLATED_DECOMPOSITION = 111
-    FINAL_DECOMPOSITION = 112
-    INITIAL_DECOMPOSITION = 113
-    MEDIAL_DECOMPOSITION = 114
-    SMALL_DECOMPOSITION = 115
-    NARROW_DECOMPOSITION = 116
+    JAMO_CANONICAL_DECOMPOSITION = 101  # per standard 3.12.2 Hangul syllable decomposition is equivalent to regular decomposition
+    COMPATIBILITY_DECOMPOSITION = 102
+    NO_BREAK_DECOMPOSITION = 103
+    SUPER_DECOMPOSITION = 104
+    FRACTION_DECOMPOSITION = 105
+    SUB_DECOMPOSITION = 106
+    FONT_DECOMPOSITION = 107
+    CIRCLE_DECOMPOSITION = 108
+    WIDE_DECOMPOSITION = 109
+    VERTICAL_DECOMPOSITION = 110
+    SQUARE_DECOMPOSITION = 111
+    ISOLATED_DECOMPOSITION = 112
+    FINAL_DECOMPOSITION = 113
+    INITIAL_DECOMPOSITION = 114
+    MEDIAL_DECOMPOSITION = 115
+    SMALL_DECOMPOSITION = 116
+    NARROW_DECOMPOSITION = 117
 
     Z_VARIANT = 200
     HIEROGLYPHIC_ALTERNATIVE = 201
@@ -1182,7 +1231,7 @@ if __name__ == '__main__':
     options.verify_data_sources = True
     options.output_debug_info = True
 
-    cursor = db.load_database(None)  # replace with options for development run
+    cursor = db.load_database(options)  # replace with options for development run
 
     # do stuff here if you want, for example:
     #results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
