@@ -9,8 +9,7 @@ The various Indic scripts are generally related to each other through adaptation
  |kndacp = 0C9D 
  |mlymcp = 0D1D 
  |gujrcp = 0A9D 
- |gurucp = 0A1D 
- |zanbcp = 2D3B
+ |gurucp = 0A1D
  |brahcp = 1101B |ashokaimg = Brahmi jh.svg
  |kushanaimg = Gupta ashoka jh.svg
  |siddcp = 11596 |siddimg = Siddham jh.svg

@@ -10,7 +10,7 @@ There are three queries that I wanted to answer with the database:
 
   - What are a given character's ancestors? *(done!)*
   - What are a given character's descendants? *(done, but need to add filters: eg. searching a latin letter will typically result in an overwhelming number of descendants consisting mainly of varied accents)*
-  - Given a script, what are its immediate parent scripts, and in what proportions? This is to help with the chart derivations. *(in principle the data now exists to answer this query for scripts in current use, but it is not written yet)*
+  - Given a script, what are its immediate parent scripts, and in what proportions? This is to help with the chart derivations. *(in principle the data now exists to answer this query for scripts in current use and minimal historic scripts, but it is not written yet)*
   - A fourth query could be a script's immediate children, but I'm not sure how much this adds on top of the other queries.
 
 Though there are no current plans, the functionality of the database could be extended beyond historical character relationships in the future (if you have any interesting ideas, ideally either not done elsewhere and/or fits neatly with current DB schema, ping me either here on GitHub or [on Reddit](https://www.reddit.com/user/DPenner1/)).
@@ -37,15 +37,17 @@ The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/too
 
 ## Schema/data documentation
 
-  - `alphabet`: *(schema probably sufficient, code/data generation not yet)* Data on alphabets used by various languages, with the specific letters being stored in the referenced `sequence` table. While it might seem like overkill (and probably still is), this table and the `exemplar` fields in particular are to help determine the "canonical" letters for a script.
+  - `alphabet`: *(schema relatively stable, but data/codegen is not)* Data on alphabets used by various languages, with the specific letters being stored in the referenced `sequence` table. While it might seem like overkill (and probably still is), this table is to help determine the "canonical" letters for a script.
      - Languages with a case distinction have entries for both lower case and upper case.
+     - The design was based on considering an alphabet to be "a meaningful collection of characters associated to a language" to not be too restrictive.
      - Alphabets are represented as a sequence of letters and code points, with letters themselves being sequences of code points. Currently, single code point letters are not boxed into a single-item letter sequence (this feels like too much unnecessary data bloat as this is the majority case), but this may change if the structure ends up being too difficult to work with.
-     - *(future)* Use the `source` field to determine where the alphabet comes from. The code loads alphabets with the following priority: Manually specified > [CLDR data](https://cldr.unicode.org/) > Automatically generated.
-       - Note that CLDR data only covers modern languages. Also note that the CLDR data pulled has two quirks: (1) It generally includes the typical accented characters in a language even if the language typically considers them non-distinct letters. (2) It does generally tend to follow the language's alphabet order except that the accented characters are grouped together (which may or may not be how a language typically orders letters). I may change all this in the future, but it's sufficient for the project's current scope.
-     - The `is_language_exemplar` field is to determine which alphabet is the main one for a given language. This is mechanically determined based on CLDR leaving off a script in the filename and is the upper case one for cased scripts.
+     - Use the `source` field to determine where the alphabet comes from. The code loads alphabets from three sources: Manually specified, [CLDR data](https://cldr.unicode.org/) and automatically generated (from the same process that does Brahmi and Semitic letters).
+         - Note that CLDR data only covers modern languages. Also note that the CLDR data isn't necessarily a "canonical" alphabet: (1) It generally includes the typical accented characters in a language even if the language typically considers them non-distinct letters. (2) It does generally tend to follow the language's alphabet order except that the accented characters are grouped together (which may or may not be how a language typically orders letters).
+         - Manually specified and CLDR data can co-exist, but the code will not load a generated alphabet if one of these two exist.
+     - The `is_language_exemplar` field is to determine which alphabet is the main one for a given language. For CLDR, this is mechanically determined based on CLDR leaving off a script in the filename and is the upper case one for cased scripts.
         - For Japanese I've set it to Kanji (Han characters) as it felt weird favouring a kana alphabet.
-     - The `is_script_exemplar` field determines which language the script is primarily used for. Generally, the language with the most speakers using that script and this was dead simple to determine for all but a few cases.
         - I have yet to decide what precisely to do with the Chinese language(s). CLDR has separately specified Traditional and Simplified characters, but in the Unicode character database they are under a single script code.
+        - The equivalent script exemplar field is on the `script` table. There is no language table, otherwise the language exemplar would be there. A slight distinction is made that the script exemplar is associated to a sequence rather than the alphabet. This allows it to be associated language-independently in the future (eg. could be useful for Cyrillic where there isn't a universally agreed set of canonical letters).
         - Canadian Aboriginal syllabics was the main judgment call: It could have been Ojibwe, Cree, or Inuktitut. Ojibwe syllabics was not in the CLDR data leaving Cree and Inuktitut. In CLDR, only Swampy Cree specifically was in the files, which would be much fewer speakers than Inuktitut. However, between considering Cree more widely and that Inuktitut discarded the Pitman Shorthand derived letters (and this project is for finding interesting graphical developments) I've associated it to Swampy Cree.
      - At present there's no functionality for sub-languages. Eg. It could be useful to have a search for code `cr` (Cree) return results for `csw` (Swampy Cree) since `cr` isn't in the data files, but this feels like too much effort for too little gain on this project's goals.
   - `code_point`: Mostly what you would expect from Unicode.
@@ -60,16 +62,18 @@ The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/too
      - Unicode decompositions (eg. accented characters, duplicate/legacy code points, etc.).
      - Hangul syllables deriving from their constituent jamo.
      - *(to investigate data sources and history)* Han ideograph and radical relations.
-  - `script`: ISO 15924. A bit of a mish-mash, but works so far. Table based on list found [here](https://www.unicode.org/iso15924/iso15924-codes.html). To my understanding, rows without a Unicode Alias yet having a Unicode version date are scripts which Unicode considers a font variant of another. Then it is augmented with private use scripts with a `u_name` specified. These are:
-     - Proto-Sinaitic
-     - Pallava
-     - Kadamba
-     - Landa
-     - Nagari
-     - Gaudi
-     - Gupta
-     - *(to investigate subsets of)* Demotic, Hieratic, Pitman Shorthand
-  - `sequence`: A sequence of sequences (recursive tree). Each code point also has an "dummy" base entry sequence in the table, with a matching ID. Use the `sequence_type_id` field to determine what kind of sequence you are looking at.
+  - `script`: ISO 15924. A bit of a mish-mash, but works so far. Table based on list found [here](https://www.unicode.org/iso15924/iso15924-codes.html). To my understanding, rows without a Unicode Alias yet having a Unicode version date are scripts which Unicode considers a font variant of another. This was marked with the `canonical_script_code` field.
+     - The `exemplar_sequence_id` field references a canonical set of letters.
+     - The table is then augmented with private use scripts with a `u_name` specified. These are:
+        - Proto-Sinaitic
+        - Pallava
+        - Kadamba
+        - Landa
+        - Nagari
+        - Gaudi
+        - Gupta
+        - *(to investigate subsets of)* Demotic, Hieratic, Pitman Shorthand
+  - `sequence`: A sequence of sequences (recursive tree). Each code point also has an "dummy" base entry sequence in the table, with a matching ID. Use the `type_id` field to determine what kind of sequence you are looking at.
   - `sequence_item`: An item in a sequence. The code points sequences do *not* have an entry in this table, they are the leaf items in the tree.
   - The `*_type` tables are lookup tables that should be self-explanatory based on their data.
 

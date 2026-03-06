@@ -8,7 +8,7 @@ In compliance with the above, the following is a record of which URLs had text c
 
 ------
 
-./indic-letters on 2026-02-22
+./indic-letters on 2026-02-22 except as otherwise indicated
 
 https://en.wikipedia.org/wiki/Ka_(Indic)
 https://en.wikipedia.org/wiki/Kha_(Indic)
@@ -18,7 +18,7 @@ https://en.wikipedia.org/wiki/%E1%B9%84a
 https://en.wikipedia.org/wiki/Ca_(Indic)
 https://en.wikipedia.org/wiki/Cha_(Indic)
 https://en.wikipedia.org/wiki/Ja_(Indic)
-https://en.wikipedia.org/wiki/Jha_(Indic)
+https://en.wikipedia.org/wiki/Jha_(Indic)   2026-03-05
 https://en.wikipedia.org/wiki/%C3%91a
 https://en.wikipedia.org/wiki/%E1%B9%ACa
 https://en.wikipedia.org/wiki/%E1%B9%ACha

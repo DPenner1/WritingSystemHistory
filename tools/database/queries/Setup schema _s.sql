@@ -1,14 +1,5 @@
 -- Note: This schema favours use of script code over the id - this is simply more readable and more in line with the purposes of this project
 
-CREATE TABLE IF NOT EXISTS script (
-    code TEXT PRIMARY KEY,
-    iso_id INT UNIQUE NOT NULL,
-    u_name TEXT UNIQUE,
-    u_version_added INTEGER,
-    u_subversion_added INTEGER,
-    canonical_script_code TEXT REFERENCES script(code)
-) STRICT;
-
 CREATE TABLE IF NOT EXISTS sequence_type (
     id INTEGER PRIMARY KEY,
     name TEXT UNIQUE,
@@ -17,9 +8,31 @@ CREATE TABLE IF NOT EXISTS sequence_type (
 
 CREATE TABLE IF NOT EXISTS sequence (
     id INTEGER PRIMARY KEY,
-    sequence_type_id INTEGER NOT NULL REFERENCES sequence_type(id)
+    type_id INTEGER NOT NULL REFERENCES sequence_type(id)
 ) STRICT;
-CREATE INDEX IF NOT EXISTS idx_fk_s_sequence_type ON sequence(sequence_type_id);
+CREATE INDEX IF NOT EXISTS idx_fk_s_type ON sequence(type_id);
+
+CREATE TABLE IF NOT EXISTS script (
+    code TEXT PRIMARY KEY,
+    iso_id INT UNIQUE NOT NULL,
+    u_name TEXT UNIQUE,
+    u_version_added INTEGER,
+    u_subversion_added INTEGER,
+    canonical_script_code TEXT REFERENCES script(code),
+    exemplar_sequence_id INTEGER UNIQUE REFERENCES sequence(id)    
+) STRICT;
+CREATE INDEX IF NOT EXISTS idx_fk_s_exemplar_sequence ON script(exemplar_sequence_id);
+
+CREATE TABLE IF NOT EXISTS alphabet (
+    id INTEGER PRIMARY KEY REFERENCES sequence(id),
+    source TEXT,
+    lang_code TEXT,
+    is_language_exemplar INTEGER, -- would make sense to move if there was a language table, similar to script
+    script_code TEXT REFERENCES script(code),
+    letter_case TEXT
+) STRICT;
+CREATE INDEX IF NOT EXISTS idx_a_lang ON alphabet(lang_code, is_language_exemplar);
+CREATE INDEX IF NOT EXISTS idx_fk_a_script ON alphabet(script_code);
 
 CREATE TABLE IF NOT EXISTS code_point (
     id INTEGER PRIMARY KEY REFERENCES sequence(id),
@@ -45,18 +58,6 @@ CREATE TABLE IF NOT EXISTS sequence_item (
     order_num INTEGER,
     PRIMARY KEY (sequence_id, item_id, order_num)
 ) STRICT;
-
-CREATE TABLE IF NOT EXISTS alphabet (
-    id INTEGER PRIMARY KEY REFERENCES sequence(id),
-    lang_code TEXT,
-    script_code TEXT REFERENCES script (code),
-    letter_case TEXT,
-    is_language_exemplar INTEGER,
-    is_script_exemplar INTEGER
-) STRICT;
--- Currently The "standard-issue" database loads this as unique from the CLDR, but in principle alternate/extended alphabets could be added, so non-unique index
-CREATE INDEX IF NOT EXISTS idx_a_lang_script ON alphabet(lang_code, script_code);
-CREATE INDEX IF NOT EXISTS idx_a_script ON alphabet(script_code, is_script_exemplar);
 
 CREATE TABLE IF NOT EXISTS derivation_type (
     id INTEGER PRIMARY KEY,

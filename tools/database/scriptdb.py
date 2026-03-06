@@ -276,7 +276,7 @@ class ScriptDatabase:
         if general_category_code is None: general_category_code = 'Cn'
         if bidi_class_code is None: bidi_class_code = 'L'
 
-        cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?) ON CONFLICT DO NOTHING", (id, SequenceType.BASE.value))
+        cursor.execute("INSERT INTO sequence (id, type_id) VALUES (?, ?) ON CONFLICT DO NOTHING", (id, SequenceType.BASE.value))
         if self.is_private_use(id):
             cursor.execute("""
                 INSERT INTO code_point (id, name, script_code, general_category_code, bidi_class_code)
@@ -304,7 +304,7 @@ class ScriptDatabase:
             decom_type = match.group(1) if match.group(1) else 'canonical'
             seq_id = self.get_next_sequence_id()
             cursor.execute("""
-                INSERT INTO sequence (id, sequence_type_id) 
+                INSERT INTO sequence (id, type_id) 
                 VALUES (?, (SELECT id FROM sequence_type WHERE name LIKE ?))""",
                 (seq_id, decom_type.title() + '%'))
             for i, decom_id in enumerate(decom_ids):
@@ -430,16 +430,6 @@ class ScriptDatabase:
                                         bidi_class_code=None)  # mostly a hack, all current PU are the default L
 
 
-    """  TODO: reintegrate standard_alphabets to new alphabet architecture (historic scripts only now)
-        with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'r') as file:
-            for row in csv.DictReader(file):
-                for i, c in enumerate(row['Alphabet']):
-                    cursor.execute("UPDATE code_point SET std_order_num = ? WHERE text = ?", (i + 1, c))  # 1-index for readability
-        with open(os.path.join(self._resource_path, 'standard_alphabets.csv'), 'r') as file:
-            for row in csv.DictReader(file):
-                for i, c in enumerate(row['Alphabet']):
-                    cursor.execute("UPDATE code_point SET std_order_num = ? WHERE text = ?", (i + 1, c))  # 1-index for readability"""
-
     def _load_lookups(self, cursor):
         def load_lookup(cursor, table_name, lookup_data):
             cursor.executemany(
@@ -475,7 +465,7 @@ class ScriptDatabase:
         data = [
             (SequenceType.BASE.value, 'Base', '"Sequence" representing a single code point. Does not contain items.'),
             (SequenceType.LETTER.value, 'Letter', 'A sequence representing a letter'),
-            (SequenceType.ALPHABET.value, 'Alphabet', 'A sequence representing an alphabet'),
+            (SequenceType.LETTER_COLLECTION.value, 'Letter Collection', 'A sequence of letters and base code points frequently representing an alphabet'),
 
             (SequenceType.CANONICAL_DECOMPOSITION.value, 'Canonical Decomposition', 'Unicode decomposition type representing full equivalency in all contexts'),
             (SequenceType.JAMO_CANONICAL_DECOMPOSITION.value, 'Jamo Canonical Decomposition', 'Unicode decomposition type for Hangul syllables'),
@@ -538,9 +528,8 @@ class ScriptDatabase:
                     parts = line.split('\t')
 
                     if parts[1] == 'kEH_AltSeq':
-                        seq_id = self.get_next_sequence_id()
+                        seq_id = self._create_sequence(cursor, SequenceType.HIEROGLYPHIC_ALTERNATIVE)
                         child_id = int(parts[0][2:], 16)
-                        cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (seq_id, SequenceType.HIEROGLYPHIC_ALTERNATIVE.value))
                         cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, child_id))
                         # since hieroglyphs were default set to NO_PARENT, remove that:
                         cursor.execute("DELETE FROM code_point_derivation WHERE child_id = ? AND parent_id = ?", (child_id, ord(self.NO_PARENT_CHARACTER)))
@@ -572,8 +561,7 @@ class ScriptDatabase:
                         for sub_parts in parts[2].split(' '):
                             other_id = int(sub_parts[2:].split('<')[0], 16)
                             if principal_id > other_id:
-                                seq_id = self.get_next_sequence_id()
-                                cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (seq_id, SequenceType.Z_VARIANT.value))
+                                seq_id = self._create_sequence(cursor, SequenceType.Z_VARIANT)
                                 cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, other_id, 1))
                                 cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, principal_id))
 
@@ -585,8 +573,8 @@ class ScriptDatabase:
                 cp1.id,
                 cp2.id,
                 CASE WHEN COUNT(item_id) OVER (PARTITION BY equiv.sequence_id) = 1
-                    THEN CASE WHEN sequence_type_id = {SequenceType.CANONICAL_DECOMPOSITION.value} THEN {DerivationType.DUPLICATE.value}
-                              WHEN sequence_type_id IN ({SequenceType.NO_BREAK_DECOMPOSITION.value},
+                    THEN CASE WHEN seq.type_id = {SequenceType.CANONICAL_DECOMPOSITION.value} THEN {DerivationType.DUPLICATE.value}
+                              WHEN seq.type_id IN ({SequenceType.NO_BREAK_DECOMPOSITION.value},
                                                         {SequenceType.SUPER_DECOMPOSITION.value}, 
                                                         {SequenceType.SUB_DECOMPOSITION.value}, 
                                                         {SequenceType.SMALL_DECOMPOSITION.value}) THEN {DerivationType.COPY.value}
@@ -595,8 +583,8 @@ class ScriptDatabase:
                     ELSE {DerivationType.DEFAULT.value}
                 END,
                 {Certainty.AUTOMATED.value},
-                CASE WHEN sequence_type_id = {SequenceType.Z_VARIANT.value} THEN 'Unihan database, zVariant'
-                     WHEN sequence_type_id = {SequenceType.HIEROGLYPHIC_ALTERNATIVE.value} THEN 'Unicode Character Database Unikemet.txt'
+                CASE WHEN seq.type_id = {SequenceType.Z_VARIANT.value} THEN 'Unihan database, zVariant'
+                     WHEN seq.type_id = {SequenceType.HIEROGLYPHIC_ALTERNATIVE.value} THEN 'Unicode Character Database Unikemet.txt'
                      ELSE 'Unicode Character Database decomposition data'
                 END
             FROM
@@ -605,13 +593,13 @@ class ScriptDatabase:
                 INNER JOIN code_point cp1 ON cp1.equivalent_sequence_id = seq.id
                 INNER JOIN code_point cp2 ON cp2.id = equiv.item_id
             WHERE
-                sequence_type_id >= 100
+                seq.type_id >= 100
                 AND cp1.general_category_code NOT LIKE 'Z_'
                 AND cp1.general_category_code NOT LIKE 'C_'
                 AND cp2.general_category_code NOT LIKE 'Z_'
                 AND cp2.general_category_code NOT LIKE 'C_'
             ON CONFLICT DO NOTHING""")
-        # sequence_type_id >= 100 is a bit hacky for now, I've basically put the equivalency sequence types at IDs 100+
+        # seq.type_id >= 100 is a bit hacky for now, I've basically put the equivalency sequence types at IDs 100+
         # A more "proper" solution would be to have a category associated to a sequence_type, but that feels like over-engineering for the moment
         # conflicts are expected when a character decomposes into multiple copies of a code point,
         # minimal enough that ON CONFLICT DO NOTHING is probably the better query option than advance filtering
@@ -827,8 +815,7 @@ class ScriptDatabase:
             with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'a') as alpha_file:
                 for script_code in letter_dict:
                     if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
-                        script_name = script_dict[script_code.title()]
-                        alpha_file.write('\n' + script_name + ',')
+                        alpha_file.write('\n' + script_code.title() + ',')
                         for letter_class in letter_order:
                             if letter_class in letter_dict[script_code]:
                                 for letter in letter_dict[script_code][letter_class]:
@@ -899,213 +886,262 @@ class ScriptDatabase:
             for row in csv.DictReader(csvfile):
                 verify_script(row['Script'])
 
-    # The derived parameters are for saving time: if they've been determined by other means, this method has less to compute
-    def _load_alphabet(self, cursor, script_exemplars, unicase_languages, alphabet_str, lang_code, script_code, derived_script_code, derived_case, verify):
-        def insert_seq_char(cursor, cp_list, seq_id, char, order_num):
-            cp_list.append(char)
-            cursor.execute("""
-                INSERT INTO sequence_item (sequence_id, item_id, order_num)
-                VALUES (?, ?, ?)""",
-                (seq_id, ord(c), order_num))
 
-        alphabet_id = self.get_next_sequence_id()
-        alphabet_order_num = 0
-        letter_id = 0
-        letter_order_num = 0
-        unicode_escape = None
+    def _parse_cldr_exemplar_set(self, cursor, cldr_str, parse_data, verify):
+        def add_char(p_data, char, in_multi_code_point, verify):
+            # First, get info from DB about char if needed
+            if verify or p_data.script_code is None or p_data.letter_case is None:
+                cp_data = cursor.execute("SELECT general_category_code, script_code FROM code_point WHERE id = ?", (ord(char),)).fetchone()
+                if verify:
+                    if (cp_data[1] not in (self.COMMON_SCRIPT, self.INHERITED_SCRIPT)
+                            and p_data.script_code is not None
+                            and p_data.script_code not in (cp_data[1], 'Hans', 'Hant')):
+                        print(f"Multiple script codes detected in alphabet. Expected script: {p_data.script_code}, encountered script: {cp_data[1]}")
+                    if p_data.letter_case is not None and cp_data[0] in ('Ll', 'Lu') and cp_data[0] != p_data.letter_case:
+                        print(f"Multiple cases detected in alphabet. Expected case: {p_data.letter_case}, encountered case: {cp_data[0]}")
+                if p_data.letter_case is None and cp_data[0] in ('Ll', 'Lu'):
+                    p_data.letter_case = cp_data[0]
+                if p_data.script_code is None and cp_data[1] not in (self.COMMON_SCRIPT, self.INHERITED_SCRIPT):
+                    p_data.script_code = cp_data[1]
+
+            if in_multi_code_point:
+                p_data.letters[-1] += char
+                if p_data.letter_case is None or p_data.letter_case == 'Ll':
+                    p_data.alternate_letters[-1] += char.upper()
+            else:
+                p_data.letters.append(char)
+                if p_data.letter_case is None or p_data.letter_case == 'Ll':
+                    p_data.alternate_letters.append(char.upper())
+
         escape = False
-        code_points = []
-        alphabet_letters = []
-        has_dotted_I = False
-        is_unicase = lang_code in unicase_languages
-
-        # The unicase clause is academic: I don't think any language is both unicase and has capital dotted I
-        if 'İ' in alphabet_str and not is_unicase:
-            has_dotted_I = True
-            alphabet_str = alphabet_str.replace('İ', '')
-
-        cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (alphabet_id, SequenceType.ALPHABET.value))
-        for c in alphabet_str:
+        in_letter = False
+        unicode_escape = None
+        for c in cldr_str:
             if escape:
                 escape = False
                 if c == 'u':
                     unicode_escape = ''
-                elif letter_order_num == 0:
-                    insert_seq_char(cursor, code_points, alphabet_id, c, alphabet_order_num)
-                    alphabet_letters.append(c)
                 else:
-                    insert_seq_char(cursor, code_points, letter_id, c, letter_order_num)
-                    alphabet_letters[-1] = alphabet_letters[-1] + c
+                    add_char(parse_data, c, in_letter, verify)
             elif c == '{':
-                alphabet_order_num += 1
-                letter_order_num += 1
-                letter_id = self.get_next_sequence_id()
-                alphabet_letters.append('')
-                cursor.execute("INSERT INTO sequence (id, sequence_type_id) VALUES (?, ?)", (letter_id, SequenceType.LETTER.value))
-                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (alphabet_id, letter_id, alphabet_order_num))
+                in_letter = True
+                parse_data.letters.append('')
+                parse_data.alternate_letters.append('') # might be superfluous
             elif c == '}':
-                letter_order_num = 0
+                in_letter = False
             elif c == '\\':
-                alphabet_order_num += 1
                 escape = True
             elif c == ' ':
                 continue
+            elif c == 'İ':  # this character is hard to deal with outside the loop, so we check all the time
+                if verify:
+                    if in_letter:
+                        print("Dotted I in multi-codepoint letter not supported cause it's hard")
+                    if parse_data.letters[-1] != 'i' or parse_data.alternate_letters[-1] != 'I':
+                        print("unexpected preceding letter for dotted I")
+                parse_data.alternate_letters[-1] = c  # fix what would have been an incorrect upper-casing on the preceding i
             elif unicode_escape is not None:
                 if len(unicode_escape) == 4:
-                    char = chr(int(unicode_escape, 16))
+                    add_char(parse_data, chr(int(unicode_escape, 16)), in_letter, verify)
                     unicode_escape = None
-                    if letter_order_num == 0:
-                        insert_seq_char(cursor, code_points, alphabet_id, char, alphabet_order_num)
-                        alphabet_letters.append(c)
-                    else:
-                        insert_seq_char(cursor, code_points, letter_id, char, letter_order_num)
-                        alphabet_letters[-1] = alphabet_letters[-1] + c
                 else:
                     unicode_escape += c
-            elif letter_order_num == 0:  # stand-alone codepoint
-                alphabet_order_num += 1
-                insert_seq_char(cursor, code_points, alphabet_id, c, alphabet_order_num)
-                alphabet_letters.append(c)
-            else:  # code-point constituting part of a letter
-                insert_seq_char(cursor, code_points, letter_id, c, letter_order_num)
-                alphabet_letters[-1] = alphabet_letters[-1] + c
-                letter_order_num += 1
+            else:
+                add_char(parse_data, c, in_letter, verify)
 
-        # finalizing the alphabet
+        if parse_data.letter_case is None:
+            parse_data.letter_case = 'Lo'
 
-        if verify and len(alphabet_letters) != len(set(alphabet_letters)):
-            print(f"Detected duplicate letters in alphabet for {lang_code}, {script_code}: {alphabet_letters}")
 
-        if derived_script_code is None and script_code:
-            derived_script_code = script_code
+    def _load_alphabet_letters(self, cursor, alphabet_id, alphabet_letters):
+        for i, letter in enumerate(alphabet_letters):
+            num_codepoints = len(letter)
+            if num_codepoints == 1:
+                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (alphabet_id, ord(letter), i + 1)) # 1-index
+            else:
+                # try to see if letter already exists (I feel like there's a better way than how I did it, but can't quite get the SQL to work)
+                query = f"SELECT id FROM sequence seq WHERE (SELECT COUNT(*) FROM sequence_item si WHERE seq.id = si.sequence_id) = ? AND seq.type_id = ?"
+                letter_codepoints = []
+                for j, code_point in enumerate(letter):
+                    code_point_id = ord(code_point)
+                    query += f" AND EXISTS (SELECT * FROM sequence_item si WHERE seq.id = si.sequence_id AND item_id = {code_point_id} AND order_num = {j + 1})"
+                    letter_codepoints.append((code_point_id, j + 1))
+                results = self.execute_query(query, return_headers=False, parameters=(num_codepoints, SequenceType.LETTER.value))
 
-        candidate_script_codes = []
-        if derived_script_code is None or verify:  # no script specified, must find it in data
-            candidate_script_codes = cursor.execute(f"""
-                SELECT DISTINCT script_code FROM code_point
-                WHERE text IN {self._get_sql_in_str_list(code_points)}
-                AND script_code NOT IN ('{ScriptDatabase.INHERITED_SCRIPT}', '{ScriptDatabase.COMMON_SCRIPT}')""").fetchall()
+                if results: # existing letter found!
+                    letter_seq_id = results[0][0]
+                else:
+                    letter_seq_id = self._create_sequence(cursor, SequenceType.LETTER)
+                    cursor.executemany(f"INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES ({letter_seq_id}, ?, ?)", letter_codepoints)
+                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (alphabet_id, letter_seq_id, i + 1))  # 1-index
 
-        if derived_script_code is None and len(candidate_script_codes) == 1:
-            derived_script_code = candidate_script_codes[0][0]
-        elif verify and len(candidate_script_codes) != 1:  # TODO also check variant data
-            print(f"Unable to determine unique script for {lang_code}: {candidate_script_codes}")
 
-        # TODO - implement other lowercase/uppercase Unicode prop
-        if lang_code == 'de':
-            None
-        alphabet_case = derived_case if derived_case else 'Lo'
+    def _create_sequence(self, cursor, sequence_type):
+        seq_id = self.get_next_sequence_id()
+        cursor.execute("INSERT INTO sequence (id, type_id) VALUES (?, ?)", (seq_id, sequence_type.value))
+        return seq_id
 
-        if not derived_case or verify:
-            letter_cases = cursor.execute(f"""
-                SELECT DISTINCT general_category_code FROM code_point
-                WHERE text IN {self._get_sql_in_str_list(code_points)}
-                AND general_category_code IN ('Lu', 'Ll', 'Lo')""").fetchall()
-            letter_cases = [l[0] for l in letter_cases]
 
-            if 'Ll' in letter_cases: # cldr data is generally lower case or uncased
-                if verify and 'Lu' in letter_cases and not is_unicase:
-                    print(f'Detected both upper and lower case characters in alphabet for {lang_code}, {derived_script_code}')
+    def _load_japanese_cldr_alphabets(self, cursor, cldr_str):
+        hiragana = []
+        katakana = []
+        kanji = []
+        for c in cldr_str:
+            if c == 'ー':  # shared character
+                katakana.append(c)
+                hiragana.append(c)
+            elif c != ' ':
+                ja_script_code = cursor.execute("SELECT script_code FROM code_point WHERE text = ?", (c,)).fetchone()[0]
+                if ja_script_code == 'Kana':
+                    katakana.append(c)
+                elif ja_script_code == 'Hira':
+                    hiragana.append(c)
+                elif ja_script_code == 'Hani':
+                    kanji.append(c)
+                elif verify:
+                    print(f"Error parsing Japanese CLDR data. Unexpected script {ja_script_code} for letter {c}")
 
-                alphabet_case = 'Ll'
-                if not is_unicase: # languages using a single case of a cased script
-                    # We also want to add upper-case alphabet, but first run through a few of special cases of upper-casing cause language is hard
-                    if has_dotted_I:
-                        alphabet_str = alphabet_str.replace('i', 'İ')
-                    if lang_code == 'kaa' and derived_script_code == 'Latn':
-                        alphabet_str = alphabet_str.replace('ı', 'Í')  # why?
+        # not dealing with script exemplars as the kana will be manually specified for that
+        self._load_alphabet(cursor, katakana, 'ja', 'Kana', 'Lo', False, 'CLDR main exemplar set')
+        self._load_alphabet(cursor, hiragana, 'ja', 'Hira', 'Lo', False, 'CLDR main exemplar set')
+        self._load_alphabet(cursor, kanji, 'ja', 'Hani', 'Lo', True, 'CLDR main exemplar set')
 
-                    # Per Wikipedia, capital esszett is officially preferred in Standard German as of 2024
-                    #  Mimicking that here because having more distinct characters is more in line with this project anyways
-                    #  (though later may need to tailor to German varieties - Swiss is fine as it doesn't use esszett to being with)
-                    # Greek final sigma will result in duplicate capital sigma, and then a couple that didn't map correctly
-                    alphabet_str = alphabet_str.replace('ß', 'ẞ').replace('ς', '').replace('ΐ', '{Ϊ́}').replace('ΰ', '{Ϋ́}')
-
-                    self._load_alphabet(cursor, script_exemplars, unicase_languages, alphabet_str.upper(), lang_code, script_code, derived_script_code, 'Lu', verify)
-            elif 'Lu' in letter_cases:
-                if verify and 'Ll' in letter_cases and not is_unicase:
-                    print(f'Detected both upper and lower case characters in alphabet for {lang_code}, {derived_script_code}')
-                alphabet_case = 'Lu'
-
-        is_script_exemplar = None
-        if derived_script_code in script_exemplars:
-            is_script_exemplar = (script_exemplars[derived_script_code] == lang_code) and (is_unicase or alphabet_case in ('Lo', 'Lu'))
-        elif verify:
-            print(f"Missing canonical language for script {derived_script_code}")
-
+    def _load_alphabet(self, cursor, letters, lang_code, script_code, letter_case, is_language_exemplar, source):
+        id = self._create_sequence(cursor, SequenceType.LETTER_COLLECTION)
         cursor.execute("""
-            INSERT INTO alphabet (id, lang_code, script_code, letter_case, is_language_exemplar, is_script_exemplar)
-            VALUES (?, ?, ?, ?, ?, ?)""",
-            (alphabet_id, lang_code, derived_script_code, alphabet_case, script_code is None and (is_unicase or alphabet_case in ('Lo', 'Lu')), is_script_exemplar))
+            INSERT INTO alphabet (id, lang_code, script_code, letter_case, is_language_exemplar, source)
+            VALUES (?,?,?,?,?,?)""", (id, lang_code, script_code, letter_case, is_language_exemplar, source))
+        self._load_alphabet_letters(cursor, id, letters)
+        return id
 
-
+    # TODO: should probably be a bit smarter about transactions for the alphabet stuff
     def _load_alphabet_data(self, cursor, verify):
-
         script_exemplars = {}
         with open(os.path.join(self._resource_path, 'script_exemplars.csv'), 'r') as csvfile:
             for row in csv.DictReader(csvfile):
                 script_exemplars[row['Script']] = row['Language']
 
+        # languages which use only one case of a cased script.
+        # It has since occurred to me this can be per language-script combo, but given I've only found one language (code: oka) so far, I won't code for that yet
+        # I was hoping this could be programmatically inferred from the index set, but alas the data file doesn't have an index set for oka
         unicase_languages = []
         with open(os.path.join(self._resource_path, 'unicase_languages.txt'), 'r') as file:
             for line in file:
                 unicase_languages.append(line.strip())
 
+        added_scripts = set()
         # yes an xml parser would be more appropriate, but this is a simple task (and lxml seemed to choke and I don't feel like learning another module...)
         exemplar_pattern = re.compile(r'<exemplarCharacters(?:\s(?:draft|reference)[^>]+)?>\[(.+)]</exemplarCharacters>')
         for file_name in os.listdir(os.path.join(self._unicode_path, 'cldr')):
             with open(os.path.join(self._unicode_path, 'cldr', file_name), 'r') as file:
-                exemplar_found = False
-                line_number = 0
+                line_number = 0  # purely for debug
                 for line in file:
                     line_number += 1
                     match = exemplar_pattern.search(line)
                     if match:
-                        lang_str = file_name.split('.')[0].split('_')
                         if file_name == 'ja.xml': # special case hack-y handling
-                            hiragana = ''
-                            katakana = ''
-                            kanji = ''
-                            for c in match.group(1):
-                                if c == 'ー':  # shared character
-                                    katakana += c
-                                    hiragana += c
-                                elif c != ' ':
-                                    script_code = cursor.execute("SELECT script_code FROM code_point WHERE text = ?", (c,)).fetchone()[0]
-                                    if script_code == 'Kana':
-                                        katakana += c
-                                    elif script_code == 'Hira':
-                                        hiragana += c
-                                    elif script_code == 'Hani':
-                                        kanji += c
-                                    elif verify:
-                                        print(f"Error parsing Japanese CLDR data. Unexpected script {script_code} for letter {c}")
-                            self._load_alphabet(cursor, script_exemplars, unicase_languages, katakana, 'ja', 'Kana', 'Kana', 'Lo', verify)
-                            self._load_alphabet(cursor, script_exemplars, unicase_languages, hiragana, 'ja', 'Hira', 'Hira', 'Lo', verify)
-                            self._load_alphabet(cursor, script_exemplars, unicase_languages, kanji, 'ja', None, 'Hani', 'Lo', verify) # none script code for exemplar
+                            self._load_japanese_cldr_alphabets(cursor, match.group(1))
                         else:
-                            self._load_alphabet(cursor,
-                                                script_exemplars,
-                                                unicase_languages,
-                                                match.group(1),
-                                                lang_str[0],
-                                                lang_str[1] if len(lang_str) > 1 else None,
-                                                None,
-                                                None,
-                                                verify)
-                        exemplar_found = True
-                    if exemplar_found:
-                        continue  # next file
-                if not exemplar_found and verify and line_number > 15:
+                            lang_str = file_name.split('.')[0].split('_')
+                            lang_code = lang_str[0]
+                            parse_data = self._CLDRParseData()
+                            if lang_code in unicase_languages:
+                                parse_data.letter_case = 'Lo'  # hard set languages which use only a single case of a cased alphabet to uncased
+                            if len(lang_str) > 1:
+                                parse_data.script_code = lang_str[1]
+                            self._parse_cldr_exemplar_set(cursor, match.group(1), parse_data, verify)
+
+                            # Correcting some special cases of upper casing (dotted I dealt with in the parsing)
+                            # These are dealt with here as we can use language/script codes rather than checking every character for efficiency
+                            # (at loss of a bit of generalisation)
+                            if lang_code == 'de':
+                                # Per Wikipedia, capital eszett is officially preferred in Standard German as of 2024
+                                #  Mimicking that here because having more distinct characters is more in line with this project anyways
+                                #  (may need to expand to German varieties - Swiss is fine as it doesn't use eszett to being wit
+                                parse_data.alternate_letters[parse_data.alternate_letters.index('SS')] = 'ẞ'
+                            elif parse_data.script_code == 'Grek':
+                                parse_data.alternate_letters.remove('Σ') # duplicate caused by two lowercase sigma forms
+                            elif lang_code == 'kaa' and parse_data.script_code == 'Latn': # I don't want to talk about this one
+                                parse_data.alternate_letters[parse_data.alternate_letters.index('I')] = 'Í'
+
+                            if verify and len(parse_data.letters) != len(set(parse_data.letters)):
+                                print(f"Detected duplicate letters in alphabet for {lang_code}, {parse_data.script_code}: {parse_data.letters}")
+
+                            id = self._load_alphabet(cursor,
+                                                     parse_data.letters,
+                                                     lang_code,
+                                                     parse_data.script_code,
+                                                     parse_data.letter_case,
+                                                     len(lang_str) == 1 and not parse_data.letter_case == 'Ll',
+                                                     'CLDR main exemplar set')
+                            if parse_data.letter_case == 'Ll':
+                                if verify and len(parse_data.alternate_letters) != len(set(parse_data.alternate_letters)):
+                                    print(f"Detected duplicate letters in alphabet for {lang_code}, {parse_data.script_code}: {parse_data.alternate_letters}")
+                                id = self._load_alphabet(cursor,
+                                                         parse_data.alternate_letters,
+                                                         lang_code,
+                                                         parse_data.script_code,
+                                                         'Lu',
+                                                         len(lang_str) == 1,
+                                                         'CLDR main exemplar set')
+
+                            if script_exemplars[parse_data.script_code] == lang_code:
+                                cursor.execute("UPDATE script SET exemplar_sequence_id = ? WHERE code = ?", (id, parse_data.script_code))
+                                added_scripts.add(parse_data.script_code)
+                        break  # found match, stop parsing this file go to next
+                if not match and verify and line_number > 15:
                     # line number is a blunt tool to avoid excessive reporting on the "stub" entries
                     print(f'Could not find exemplar characters in {file_name}')
 
+        with open(os.path.join(self._resource_path, 'standard_alphabets.csv')) as csvfile:
+            for row in csv.DictReader(csvfile):
+                parse_data = self._CLDRParseData()
+                parse_data.script_code = row['Script']
+                parse_data.letter_case = row['Case']
+                lang_code = row['Language']
+                is_language_exemplar = False if row['Lang Exemplar'] in ('', '0') else True
+
+                self._parse_cldr_exemplar_set(cursor, row['Alphabet'], parse_data, verify)
+                if lang_code:
+                    id = self._load_alphabet(cursor, parse_data.letters, lang_code, parse_data.script_code, parse_data.letter_case, is_language_exemplar, row['Source'])
+                else:
+                    id = self._create_sequence(cursor, SequenceType.LETTER_COLLECTION)
+                    self._load_alphabet_letters(cursor, id, parse_data.letters)
+                cursor.execute("UPDATE script SET exemplar_sequence_id = ? WHERE code = ?", (id, parse_data.script_code))
+                added_scripts.add(parse_data.script_code)
+
+        # generated ones are just for script exemplars, and only if not already set
+        with open(os.path.join(self._resource_path, self._GENERATED_DIR_NAME, 'standard_alphabets.csv')) as csvfile:
+            for row in csv.DictReader(csvfile):
+                parse_data = self._CLDRParseData()
+                parse_data.script_code = row['Script']
+
+                # Repurposing - for other data sources we used this for determining if a language had the script exemplar
+                # For generated stuff we're using it to determine the language for a script
+                lang_code = script_exemplars[parse_data.script_code] if parse_data.script_code in script_exemplars else None
+
+                if not parse_data.script_code in added_scripts:
+                    self._parse_cldr_exemplar_set(cursor, row['Alphabet'], parse_data, verify)
+                    if lang_code:
+                        id = self._load_alphabet(cursor,
+                                                 parse_data.letters,
+                                                 lang_code,
+                                                 parse_data.script_code,
+                                                 parse_data.letter_case,
+                                                 True, # as the script exemplar hasnt been added, neither has the language (I think, the alphabet stuff is complicated)
+                                                 'Automatically generated from Wikipedia Indic and Semitic letter pages')
+                    else:
+                        id = self._create_sequence(cursor, SequenceType.LETTER_COLLECTION)
+                        self._load_alphabet_letters(cursor, id, parse_data.letters)
+                    cursor.execute("UPDATE script SET exemplar_sequence_id = ? WHERE code = ?", (id, parse_data.script_code))
+
 
     def load_database(self, load_options=None):
-        def output_info(message, start_time, lap_time):
+        def output_info(message, start_time, lap_time, lap_mb):
             current_time = time.time()
-            print(message + f" Elapsed: {current_time - start_time:.2f} s (+{current_time - lap_time:.2f} s)")
-            return current_time
+            current_mb = os.path.getsize(os.path.join(self._db_path, self._db_name)) / 1000000
+            print(message + f" Elapsed: {current_time - start_time:.2f} s (+{current_time - lap_time:.2f} s). Size: {current_mb:.1f} MB (+{current_mb - lap_mb:.1f} MB)")
+            return current_time, current_mb
 
         options = load_options if load_options else LoadOptions()
         output = options.output_debug_info
@@ -1134,6 +1170,7 @@ class ScriptDatabase:
 
         start_time = time.time()
         lap_time = start_time
+        lap_mb = 0
         if output: print('Setting up schema (starting timer)...')
         self._setup_schema(cur)
 
@@ -1141,35 +1178,44 @@ class ScriptDatabase:
         self._cxn.commit()
         self._load_scripts(cur)
         self._cxn.commit()
-        if output: lap_time = output_info("Done loading lookups and script data.", start_time, lap_time)
+        if output: lap_time, lap_mb = output_info("Done loading lookups and script data.", start_time, lap_time, lap_mb)
 
         indic_letter_data = self._get_indic_letter_dict(options.verify_data_sources)
         semitic_letter_data = self._get_semitic_letter_dict()
 
         self._generate_private_use_data(indic_letter_data)
         self._generate_std_alphabets(indic_letter_data, semitic_letter_data)
-        if output: lap_time = output_info("Done generating letter data.", start_time, lap_time)
+        if output: lap_time, lap_mb = output_info("Done generating letter data.", start_time, lap_time, lap_mb)
 
         self._load_code_point_data(cur)
         self._cxn.commit()
-        if output: lap_time = output_info("Done loading code point data.", start_time, lap_time)
+        if output: lap_time, lap_mb = output_info("Done loading code point data.", start_time, lap_time, lap_mb)
 
         self._load_derivations(cur, indic_letter_data, semitic_letter_data, options.verify_data_sources)
         self._cxn.commit()
-        if output: lap_time = output_info("Done loading derivation data.", start_time, lap_time)
+        if output: lap_time, lap_mb = output_info("Done loading derivation data.", start_time, lap_time, lap_mb)
 
         self._load_alphabet_data(cur, options.verify_data_sources)
         self._cxn.commit()
-        if output: lap_time = output_info("Done loading alphabet data.", start_time, lap_time)
+        if output: lap_time, lap_mb = output_info("Done loading alphabet data.", start_time, lap_time, lap_mb)
 
         if output:
-            print(f'Database loaded. Total time: {time.time() - start_time:.2f} s. Total size: {os.path.getsize(os.path.join(self._db_path, self._db_name)) // 1000000} MB')
+            print(f'Database loaded. Total time: {time.time() - start_time:.2f} s. Total size: {lap_mb:.1f} MB')
             # self._verify_script_coverage(cur) -> TODO this no longer works with new alphabet architecture
             self.print_table(self.execute_saved_query('Total derivation statistics'))
 
         cur.execute("PRAGMA foreign_keys = ON")
 
         return cur
+
+
+    class _CLDRParseData:
+        def __init__(self):
+            self.letters = []
+            self.alternate_letters = []  # generally uppercase, but also want to leave open the possibility for a uni-cased uppercase language
+            # fields can be supplied to speed up parsing, or they will be determined by algorithm
+            self.script_code = None
+            self.letter_case = None
 
 
 class Certainty(Enum):
@@ -1180,12 +1226,12 @@ class Certainty(Enum):
     ASSUMED = 5
     UNSPECIFIED = 6
 
-
+# at the moment I'm isolating ranges of things I think could be expanded on.
 class SequenceType(Enum):
     BASE = 1
     LETTER = 2
-    ALPHABET = 3
 
+    LETTER_COLLECTION = 50
 
     CANONICAL_DECOMPOSITION = 100
     JAMO_CANONICAL_DECOMPOSITION = 101  # per standard 3.12.2 Hangul syllable decomposition is equivalent to regular decomposition
