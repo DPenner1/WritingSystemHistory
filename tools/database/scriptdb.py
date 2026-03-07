@@ -507,10 +507,10 @@ class ScriptDatabase:
             return last_resort
 
         # Mende Kikakui is a bit of an exception here: Unicode Encoding Proposal suggests Vai-derived characters are a small minority
-        # Not including Chinese here: ideally will eventually do so for Oracle bone
+        # Not including Chinese here: ideally will eventually do so for Oracle bone. Similar for modern Yi vs classical Yi
         independent_scripts = {'Mend', 'Egyp', 'Lina', 'Hluw', 'Xsux', 'Xpeo', 'Ogam', 'Elba', 'Dupl', 'Sgnw', 'Shaw', 'Vith',
                                'Vaii', 'Bamu', 'Berf', 'Nkoo', 'Wara', 'Gonm', 'Toto', 'Osma', 'Adlm', 'Gara', 'Medf', 'Bass',
-                               'Yezi', 'Tnsa', 'Olck', 'Thaa', 'Tols', 'Nagm', 'Sora', 'Wcho', 'Mroo', 'Onao', 'Sunu', 'Yiii', 'Tang'}
+                               'Yezi', 'Tnsa', 'Olck', 'Thaa', 'Tols', 'Nagm', 'Sora', 'Wcho', 'Mroo', 'Onao', 'Sunu', 'Tang'}
 
         cursor.execute("DELETE FROM code_point_derivation")  # updates generally expected on this table, just clear
 
@@ -622,6 +622,7 @@ class ScriptDatabase:
             WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
                        (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
 
+        # Manually specified begins here
         defaults = {}
         with open(os.path.join(self._resource_path, 'derivation_defaults.csv'), 'r') as file:
             for row in csv.DictReader(file):
@@ -680,6 +681,22 @@ class ScriptDatabase:
                             cursor.execute("""
                                 INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
                                 VALUES (?, ?, ?, ?, ?, ?)""", (ord(child), ord(parent), int(derivation_type), certainty, source, notes))
+
+        # stuff that's confusing or might break csv format
+        awkward_data = [
+            (ord('/'), ord(self.NO_PARENT_CHARACTER), 1, Certainty.LIKELY.value,
+             'https://archive.org/details/the-oxford-english-dictionary-1933-all-volumes/The%20Oxford%20English%20Dictionary%20Volume%2012%20-%20Variant/page/n238/mode/1up',
+             'Derived from medieval virgule, essentially the same graphical symbol but used as a comma'),
+            (ord('⸗'), ord('/'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Slash', 'From two slashes'),
+            (ord('\\'), ord(self.NO_PARENT_CHARACTER), 1, Certainty.UNCERTAIN.value, 'Wikipedia: Backslash', None),
+            (ord("'"), ord("’"), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe', None),
+            (ord('"'), ord('“'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe and Quotation Marks', None),
+            (ord('"'), ord('”'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe and Quotation Marks', None),
+            (ord(','), ord('/'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Comma', None),
+        ]
+        cursor.executemany("""
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
+            VALUES (?, ?, ?, ?, ?, ?)""", awkward_data)
 
 
     def get_code_to_script_dict(self):
@@ -825,7 +842,6 @@ class ScriptDatabase:
 
     def _generate_std_alphabets(self, indic_letter_dict, semitic_letter_dict):
         def generate_std_alphabet(letter_dict, letter_order):
-            script_dict = self.get_code_to_script_dict()
             with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'a') as alpha_file:
                 for script_code in letter_dict:
                     if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
@@ -843,11 +859,8 @@ class ScriptDatabase:
 
 
     def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, verify):
-        script_dict = self.get_code_to_script_dict()
         for script_code in letter_dict:
             if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
-                script_name = script_dict[script_code]
-
                 parent_code = ScriptDatabase._SCRIPT_PARENTS[script_code]
                 for letter_class in letter_order:
                     if letter_class in letter_dict[script_code]:
@@ -1301,14 +1314,7 @@ if __name__ == '__main__':
     options.verify_data_sources = True
     options.output_debug_info = True
 
-    i = 0
-    with open('temp.txt' , 'w') as file:
-        for dem in ScriptDatabase._DEMOTIC_SUBSET:
-            file.write(chr(0xF200 + i))
-            file.write('\n')
-            i += 1
-
-    cursor = db.load_database(options)  # replace with options for development run
+    cursor = db.load_database(None)  # replace with options for development run
 
     # do stuff here if you want, for example:
     #results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))

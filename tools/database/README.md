@@ -19,7 +19,7 @@ Though there are no current plans, the functionality of the database could be ex
 
 *As of 2026-03-06*
 
-  - There are ⁨130,255 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 28,003 have a historical ancestor specified (21.5%, including no known ancestor), of which 684 are manually reviewed (0.6%).
+  - There are ⁨130,255 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 26,838 have a historical ancestor specified (20.6%, including no known ancestor), of which 752 are manually reviewed (0.6%).
   - The database is about 33 MB.
 
   1. Distinct being defined for this project has having no other equivalent representation in Unicode. See schema documentation on `code_point.equivalent_sequence_id`.
