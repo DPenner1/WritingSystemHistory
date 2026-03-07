@@ -24,7 +24,11 @@ class ScriptDatabase:
                      'Mem', 'Nun', 'Samekh', 'Ayin', 'Pe', 'Tsade', 'Qoph', 'Resh', 'Shin', 'Taw']
     _PROTO_SINAITIC_ORDER = ['ALP', 'BAYT', 'GAML', 'DALT', 'DAG', 'HAW', 'WAW', 'ZAYN', 'HASIR', 'HAYT', 'TAB', 'YAD', 'KAP',
                               'LAMD', 'MAYM', 'NAHS', 'SAMK', 'AYN', 'PAY', 'PIT', 'SAD', 'QUP', 'QAW', 'RAS', 'SAMS', 'TAD', 'TAW']
-    _CODE_POINT_STARTS = {'Kawi': 0x11F04, 'Qabp': 0xE104, 'Qabk': 0xE204, 'Qabl': 0xE304, 'Qabn': 0xE404, 'Qabd': 0xE504, 'Qabg': 0xE604, 'Psin': 0xF000}
+    # Difficult to find a standard catalog, so I've put them as the translit at https://en.wikipedia.org/wiki/Demotic_Egyptian_script + ancestor hieroglyph
+    _DEMOTIC_SUBSET = ['š M8', 'f I9', 'ẖ M12', 'ḥ F18Y1', 'ḏ U29', 'k V31', 't D37X1',  # current Coptic ancestors
+                       'ı͗ M17', 'ꜥ O29Y1D36', 'n N35', 'h O4', 'ḥ2 V28', 'ḫ Aa1', 'š2 n37', 'q N29', 'g W11', 'ḏ2 G1U28',  # old coptic ancestors
+                       'y Z7M17', 'p Q3', 'm G17']  # a few matched from Meroitic
+    _CODE_POINT_STARTS = {'Kawi': 0x11F04, 'Qabp': 0xE104, 'Qabk': 0xE204, 'Qabl': 0xE304, 'Qabn': 0xE404, 'Qabd': 0xE504, 'Qabg': 0xE604, 'Psin': 0xF000, 'Egyd': 0xF200}
 
     # Brahmi, Kharoshti, Arabic, Phoenician which will be manually specified and the Aramaic code point not generally being included in Indic source
     # Can abo, Hangul, Kayah Li, Masaram Gondi, Sorang Sompeng, Pau cin hau will be manually specified due to higher independence or contribution from other scripts
@@ -693,10 +697,16 @@ class ScriptDatabase:
             script_name = self.get_code_to_script_dict()[script_code]
             replacements = {'Ā': 'AA', 'Ī': 'II', 'Ū': 'UU', 'Ṛ': 'vocalic R', 'Ṝ': 'vocalic RR', 'Ḷ': 'vocalic L', 'Ḹ': 'vocalic LL',
                             'Ṅa': 'Nga', 'Ña': 'Nya', 'Ṭa': 'Tta', 'Ṭha': 'Ttha', 'Ḍa': 'Dda', 'Ḍha': 'Ddha', 'Ṇa': 'Nna', 'Va': 'Wa', 'Śa': 'Sha', 'Ṣa': 'Ssa'}
+
+            ['š M8', 'f I9', 'ẖ M12', 'ḥ F18Y1', 'ḏ U29', 'k V31', 't D37X1',  # current Coptic ancestors
+             'ı͗ M17', 'ꜥ O29Y1D36', 'n N35', 'h O4', 'ḥ2 V28', 'ḫ Aa1', 'š2 n37', 'q N29', 'g W11', 'ḏ2 G1U28',  # old coptic ancestors
+             'y Z7M17', 'w G43', 'p Q3', 'm G17']
             if wiki_letter_name in replacements:
                 wiki_letter_name = replacements[wiki_letter_name]
             return (script_name + ' letter ' + wiki_letter_name).upper()
 
+        dem_replacements = {'š': 'sh', 'ẖ': 'x', 'ḥ': 'h-dot', 'ḥ2': 'h2-dot', 'ḏ': 'd-underbar', 'ḏ2': 'd2-underbar',
+                            'ı͗': 'i-halfring', 'ꜥ': 'ain', 'ḫ': 'h-underbar', 'š2': 'sh2'}
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'private_use.csv'), 'w') as file:
             file.write('Id,Script Code,Name,General Category')
 
@@ -708,6 +718,13 @@ class ScriptDatabase:
 
             for i, letter in enumerate(ScriptDatabase._PROTO_SINAITIC_ORDER):
                 file.write(f'\n{i + ScriptDatabase._CODE_POINT_STARTS['Psin']},Psin,PROTO-SINAITIC LETTER {letter},Lo')
+
+            for i, letter in enumerate(ScriptDatabase._DEMOTIC_SUBSET):
+                temp = letter.split(' ')[0]
+                l = dem_replacements[temp] if temp in dem_replacements else temp
+                file.write(f'\n{i + ScriptDatabase._CODE_POINT_STARTS['Egyd']},Egyd,EGYPTIAN DEMOTIC LETTER {l.upper()},Lo')
+
+
 
     # format: { script_code (lowercase): { Generic Indic Letter: [letters] } }
     def _get_indic_letter_dict(self, verify):
@@ -1198,6 +1215,8 @@ class ScriptDatabase:
 
         if output:
             print(f'Database loaded. Total time: {time.time() - start_time:.2f} s. Total size: {lap_mb:.1f} MB')
+            priv_use_count = cur.execute("select count(*) from code_point where script_code like 'Q%' or script_code in ('Psin', 'Egyd')").fetchone()[0]
+            print(f"Number of private use characters: {priv_use_count}")
             # self._verify_script_coverage(cur) -> TODO this no longer works with new alphabet architecture
             self.print_table(self.execute_saved_query('Total derivation statistics'))
 
@@ -1281,6 +1300,13 @@ if __name__ == '__main__':
     options.force_overwrite = True
     options.verify_data_sources = True
     options.output_debug_info = True
+
+    i = 0
+    with open('temp.txt' , 'w') as file:
+        for dem in ScriptDatabase._DEMOTIC_SUBSET:
+            file.write(chr(0xF200 + i))
+            file.write('\n')
+            i += 1
 
     cursor = db.load_database(options)  # replace with options for development run
 

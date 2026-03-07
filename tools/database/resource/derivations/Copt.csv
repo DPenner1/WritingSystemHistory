@@ -1,4 +1,4 @@
-Child,Parent,Certainty Type,Notes
+Child,Parent,Certainty Type,Source,Notes
 Ⲁ,Α,,
 Ⲃ,Β,,
 Ⲅ,Γ,,
@@ -17,21 +17,22 @@ Child,Parent,Certainty Type,Notes
 Ⲟ,Ο,,
 Ⲡ,Π,,
 Ⲣ,Ρ,,
-Ⲥ,Ϲ,,Presuming specifically lunate sigma
+Ⲥ,Ϲ,,,Presuming specifically lunate sigma
 Ⲧ,Τ,,
 Ⲩ,Υ,,
 Ⲫ,Φ,,
 Ⲭ,Χ,,
 Ⲯ,Ψ,,
 Ⲱ,Ω,,
-Ϣ,𓆷,,
-Ϥ,𓆑,,
-Ϧ,𓆼,,
-Ϩ,𓄑/𓏛,3,
-Ϫ,𓍒,
-Ϭ,𓎡,
-Ϯ,𓂞/𓏏,3,
+Ϣ,,,
+Ϥ,,,
+Ϧ,,,
+Ϩ,,,
+Ϫ,,,
+Ϭ,,,
+Ϯ,/ⲧ/ⲓ,3,Wikipedia: Demotic Egyptian script
 Ⳁ,Ϡ,2,
+
 ⲁ,Ⲁ,,
 ⲃ,Ⲃ,,
 ⲅ,Ⲅ,,
@@ -68,3 +69,20 @@ Child,Parent,Certainty Type,Notes
 
 Ⳉ,Ϩ,5,
 ⳉ,Ⳉ,,
+
+ⲳ,,,Wikipedia: Demotic Egyptian script
+ⲵ,,,Wikipedia: Demotic Egyptian script
+ⲻ,,,Wikipedia: Demotic Egyptian script
+ⳏ,,,Wikipedia: Demotic Egyptian script
+ⳕ,,,Wikipedia: Demotic Egyptian script
+ⳍ,,,Wikipedia: Demotic Egyptian script
+ⳓ,,,Wikipedia: Demotic Egyptian script
+ⳋ,,,Wikipedia: Demotic Egyptian script
+ⳅ,,,Wikipedia: Demotic Egyptian script
+ⳇ,,,Wikipedia: Demotic Egyptian script
+ⲹ,,,Wikipedia: Demotic Egyptian script
+ⳛ,,,Wikipedia: Demotic Egyptian script
+ⳙ,,,Wikipedia: Demotic Egyptian script
+ⳗ,,,Wikipedia: Demotic Egyptian script
+
+
