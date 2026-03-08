@@ -17,9 +17,9 @@ Though there are no current plans, the functionality of the database could be ex
 
 ## Statistics
 
-*As of 2026-03-06*
+*As of 2026-03-07*
 
-  - There are ⁨130,255 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 26,838 have a historical ancestor specified (20.6%, including no known ancestor), of which 752 are manually reviewed (0.6%).
+  - *(Just over 100,000 letters in the Unicode Standard are Chinese characters. These stats are notated "All / non-Chinese")*. There are ⁨130,255 / 28,322 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 27,252 / 20,711 have a historical ancestor specified (20.6% / 73.3%, including no known ancestor), of which 808 / 788 are manually reviewed (0.6% / 2.8%).
   - The database is about 33 MB.
 
   1. Distinct being defined for this project has having no other equivalent representation in Unicode. See schema documentation on `code_point.equivalent_sequence_id`.
@@ -72,7 +72,7 @@ The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/too
         - Nagari
         - Gaudi
         - Gupta
-        - Demotic
+        - Demotic (subset)
         - *(future possible subset of)* Pitman Shorthand
   - `sequence`: A sequence of sequences (recursive tree). Each code point also has an "dummy" base entry sequence in the table, with a matching ID. Use the `type_id` field to determine what kind of sequence you are looking at.
   - `sequence_item`: An item in a sequence. The code points sequences do *not* have an entry in this table, they are the leaf items in the tree.

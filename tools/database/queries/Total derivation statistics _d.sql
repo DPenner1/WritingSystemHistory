@@ -1,21 +1,49 @@
-WITH letter AS (
-    SELECT id FROM code_point 
-    WHERE general_category_code LIKE 'L_' AND equivalent_sequence_id IS NULL)
-SELECT
-    'Distinct letters ...' AS statistic,
-	COUNT(*) AS quantity,
-	100.0 AS percentage
-FROM letter
+SELECT 
+    'All scripts' AS included,
+	letters,
+    derivations,	
+	ROUND(100.0 * derivations / letters, 1) AS coverage,
+    manual_derivations,	
+	ROUND(100.0 * manual_derivations / letters, 1) AS manual_coverage
+FROM (
+	SELECT
+		COUNT(DISTINCT cp.id) AS letters,
+		COUNT(DISTINCT deriv.child_id) AS derivations,
+		COUNT(DISTINCT CASE WHEN deriv.certainty_type_id = 4 THEN NULL ELSE deriv.child_id END) AS manual_derivations
+	FROM code_point cp LEFT JOIN code_point_derivation deriv ON cp.id = deriv.child_id
+	WHERE cp.equivalent_sequence_id IS NULL AND cp.general_category_code LIKE 'L_'
+)
 UNION ALL
-SELECT
-    '... with derivations ...' AS statistic,
-    COUNT(DISTINCT cpd.child_id) AS quantity,
-    ROUND(100.0 * COUNT(DISTINCT cpd.child_id)/COUNT(DISTINCT letter.id), 1) AS percentage
-FROM letter LEFT JOIN code_point_derivation cpd ON letter.id = cpd.child_id
+SELECT 
+    'Non-Han (Chinese)' AS included,
+	letters,
+    derivations,	
+	ROUND(100.0 * derivations / letters, 1) AS coverage,
+    manual_derivations,	
+	ROUND(100.0 * manual_derivations / letters, 1) AS manual_coverage
+FROM (
+	SELECT
+		COUNT(DISTINCT cp.id) AS letters,
+		COUNT(DISTINCT deriv.child_id) AS derivations,
+		COUNT(DISTINCT CASE WHEN deriv.certainty_type_id = 4 THEN NULL ELSE deriv.child_id END) AS manual_derivations
+	FROM code_point cp LEFT JOIN code_point_derivation deriv ON cp.id = deriv.child_id
+	WHERE cp.equivalent_sequence_id IS NULL AND cp.general_category_code LIKE 'L_' AND script_code <> 'Hani'
+)
 UNION ALL
-SELECT
-    '... that are manually specified' AS statistic,
-    COUNT(DISTINCT cpd.child_id) AS quantity,
-    ROUND(100.0 * COUNT(DISTINCT cpd.child_id)/COUNT(DISTINCT letter.id), 1) AS percentage
-FROM letter LEFT JOIN code_point_derivation cpd ON letter.id = cpd.child_id AND cpd.certainty_type_id <> 4
-ORDER BY quantity DESC
+SELECT 
+    'Han (Chinese)' AS included,
+	letters,
+    derivations,	
+	ROUND(100.0 * derivations / letters, 1) AS coverage,
+    manual_derivations,	
+	ROUND(100.0 * manual_derivations / letters, 1) AS manual_coverage
+FROM (
+	SELECT
+		COUNT(DISTINCT cp.id) AS letters,
+		COUNT(DISTINCT deriv.child_id) AS derivations,
+		COUNT(DISTINCT CASE WHEN deriv.certainty_type_id = 4 THEN NULL ELSE deriv.child_id END) AS manual_derivations
+	FROM code_point cp LEFT JOIN code_point_derivation deriv ON cp.id = deriv.child_id
+	WHERE cp.equivalent_sequence_id IS NULL AND cp.general_category_code LIKE 'L_' AND script_code = 'Hani'
+)
+ORDER BY letters DESC
+

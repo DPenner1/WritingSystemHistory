@@ -141,15 +141,19 @@ class ScriptDatabase:
         return "('" + "','".join([x.replace("'", "''") for x in enumerable]) + "')"
 
 
-    def _get_unique_saved_query(self, name_prefix):
-        queries = [f for f in os.listdir(self._query_path) if f.startswith(name_prefix)]
+    def _get_unique_saved_query(self, query_name):
+        query = ''
+        for f in os.listdir(self._query_path):
+            fileparts = f.split('.')
+            if fileparts[1] == 'sql' and len(fileparts) == 2:
+                parts = fileparts[0].split(' _')
+                if len(parts) <= 2 and parts[0] == query_name:
+                    return os.path.join(self._query_path, f)
+            else:
+                raise ValueError(f'Found non sql file in {self._query_path}')
 
-        if len(queries) == 0:
-            raise ValueError(f"No query named {name_prefix} found in {self._query_path}")
-        elif len(queries) > 1:
-            raise ValueError("Multiple matching queries found: " + str(queries))
+        raise ValueError(f"No query named {query_name} found in {self._query_path}")
 
-        return os.path.join(self._query_path, queries[0])
 
     @staticmethod
     def print_table(data, has_header=True):
@@ -622,6 +626,22 @@ class ScriptDatabase:
             WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
                        (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
 
+        # add derivations based on name
+        base_pattern = re.compile('^(ETHIOPIC SYLLABLE (?:[A-Z]+ )?[^ AEIOU]*)([AEIOU]+)$')
+        derived_pattern = re.compile
+        ethiopic = cursor.execute("SELECT id, name FROM code_point WHERE script_code = 'Ethi' AND name LIKE 'ETHIOPIC SYLLABLE%'").fetchall()
+        base_ethiopic_names = {}
+        for x in ethiopic:
+            match = base_pattern.match(x[1])
+            if match.group(2) == 'A':
+                base_ethiopic_names[match.group(1)] = x[0]
+        for x in ethiopic:
+            match = base_pattern.match(x[1])
+            if match.group(2) != 'A' and match.group(1) in base_ethiopic_names:
+                cursor.execute("""
+                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
+                    VALUES (?,?,?,?,?)""", (x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Inherent vowel parent'))
+
         # Manually specified begins here
         defaults = {}
         with open(os.path.join(self._resource_path, 'derivation_defaults.csv'), 'r') as file:
@@ -638,8 +658,7 @@ class ScriptDatabase:
             with open(script_file, 'r') as file:
                 for row in csv.DictReader(file):
                     child = row['Child'].strip()
-                    parents = row['Parent'].strip() if row[
-                        'Parent'] else self.NO_PARENT_CHARACTER  # This won't be in the defaults dictionary
+                    parents = row['Parent'].strip()
 
                     # Logic for defaulting to Uncertain on no parent: For historical scripts, this is usually more a function of a lack of records
                     # For modern scripts, the inventor is generally aware of existing writing systems, and may have been inspired
@@ -665,6 +684,7 @@ class ScriptDatabase:
                                 f"resource file error in {script}.csv with child character {child} detected to be {script_in_db} instead")
 
                     for parent in parents.split('/'):
+                        if not parent: parent = self.NO_PARENT_CHARACTER
                         if verify_script:
                             if child == parent:
                                 raise ValueError("Attempted to add self-derivation of " + child)
@@ -693,6 +713,8 @@ class ScriptDatabase:
             (ord('"'), ord('“'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe and Quotation Marks', None),
             (ord('"'), ord('”'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe and Quotation Marks', None),
             (ord(','), ord('/'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Comma', None),
+            (ord(';'), ord(','), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Semicolon', None),
+            (ord(';'), ord(':'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Semicolon', None),
         ]
         cursor.executemany("""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
@@ -715,9 +737,6 @@ class ScriptDatabase:
             replacements = {'Ā': 'AA', 'Ī': 'II', 'Ū': 'UU', 'Ṛ': 'vocalic R', 'Ṝ': 'vocalic RR', 'Ḷ': 'vocalic L', 'Ḹ': 'vocalic LL',
                             'Ṅa': 'Nga', 'Ña': 'Nya', 'Ṭa': 'Tta', 'Ṭha': 'Ttha', 'Ḍa': 'Dda', 'Ḍha': 'Ddha', 'Ṇa': 'Nna', 'Va': 'Wa', 'Śa': 'Sha', 'Ṣa': 'Ssa'}
 
-            ['š M8', 'f I9', 'ẖ M12', 'ḥ F18Y1', 'ḏ U29', 'k V31', 't D37X1',  # current Coptic ancestors
-             'ı͗ M17', 'ꜥ O29Y1D36', 'n N35', 'h O4', 'ḥ2 V28', 'ḫ Aa1', 'š2 n37', 'q N29', 'g W11', 'ḏ2 G1U28',  # old coptic ancestors
-             'y Z7M17', 'w G43', 'p Q3', 'm G17']
             if wiki_letter_name in replacements:
                 wiki_letter_name = replacements[wiki_letter_name]
             return (script_name + ' letter ' + wiki_letter_name).upper()
@@ -740,7 +759,6 @@ class ScriptDatabase:
                 temp = letter.split(' ')[0]
                 l = dem_replacements[temp] if temp in dem_replacements else temp
                 file.write(f'\n{i + ScriptDatabase._CODE_POINT_STARTS['Egyd']},Egyd,EGYPTIAN DEMOTIC LETTER {l.upper()},Lo')
-
 
 
     # format: { script_code (lowercase): { Generic Indic Letter: [letters] } }
