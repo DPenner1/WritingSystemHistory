@@ -9,7 +9,7 @@ This is a `sqlite3` database with script and character information, whose main p
 There are three queries that I wanted to answer with the database:
 
   - What are a given character's ancestors? *(done!)*
-  - What are a given character's descendants? *(done, but need to add filters: eg. searching a latin letter will typically result in an overwhelming number of descendants consisting mainly of varied accents)*
+  - What are a given character's descendants? *(done!)*
   - Given a script, what are its immediate parent scripts, and in what proportions? This is to help with the chart derivations. *(in principle the data now exists to answer this query for scripts in current use and minimal historic scripts, but it is not written yet)*
   - A fourth query could be a script's immediate children, but I'm not sure how much this adds on top of the other queries.
 
@@ -20,8 +20,7 @@ Though there are no current plans, the functionality of the database could be ex
 *As of 2026-03-08*
 
   - *(Just over 100,000 letters in the Unicode Standard are Chinese characters. These stats are notated "All / non-Chinese")*. There are ⁨130,185 / 28,262 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 27,228 / 20,747 have a historical ancestor specified (20.9% / 73.4%, including no known ancestor), of which 784 / 764 are manually reviewed (0.6% / 2.8%).
-  - The database is about 40 MB.
-      -  Some indexes could reasonably be dropped in most deployments (eg. the name index which speeds up loading).
+  - The database is about 34 MB.
 
   1. Distinct being defined for this project has having no other equivalent representation in Unicode. See schema documentation on `code_point.equivalent_sequence_id`.
   2. Letters for this project being defined as Unicode general category `L_` plus the Private Use characters which currently stands at 307.

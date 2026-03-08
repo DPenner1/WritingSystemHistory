@@ -129,7 +129,7 @@ class ScriptDatabase:
             cursor = self._cxn.cursor()
             self._next_sequence_id = cursor.execute("SELECT MAX(id) FROM sequence").fetchone()[0]
             cursor.close()
-            if self._next_sequence_id < ScriptDatabase.UNICODE_MAX:
+            if not self._next_sequence_id or self._next_sequence_id < ScriptDatabase.UNICODE_MAX:
                 self._next_sequence_id = ScriptDatabase.UNICODE_MAX
 
 
@@ -462,7 +462,10 @@ class ScriptDatabase:
             (DerivationType.PORTION.value, "Portion derivation", "Child is a derivation from a portion of the parent"),
             (DerivationType.ROTATION.value, "Rotation", "Child is a rotation of the parent"),
             (DerivationType.REFLECTION.value, "Reflection", "Child is a reflection of the parent"),
-            (DerivationType.GRAPHICAL_DUPLICATE.value, "Graphical Duplicate", "Child is graphically a duplicate of the parent, but has technical distinctions")]
+            (DerivationType.DUPLICATE_TECHNICAL_DISTINCTION.value, "Duplicate with technical distinction",
+                "Child is graphically a duplicate of the parent, but has technical distinctions"),
+            (DerivationType.DUPLICATE_GRAPHICAL_DISTINCTION.value, "Duplicate with graphical distinction",
+                "Child is a duplicate of the parent, but with non-consequential graphical distinction (size/location)")]
         load_lookup(cursor, 'derivation_type', data)
 
         # For this project, sourcing is generally just for the derivation fact, not necessarily for derivation type
@@ -482,7 +485,7 @@ class ScriptDatabase:
             (SequenceType.LETTER.value, 'Letter', 'A sequence representing a letter'),
             (SequenceType.LETTER_COLLECTION.value, 'Letter Collection', 'A sequence of letters and base code points frequently representing an alphabet'),
 
-            (SequenceType.GRAPHICAL_DUPLICATE.value, "Graphical Duplicate", "Sequence representing graphical equivalency, but technical distinction (eg. combining marks)"),
+            (SequenceType.TECHNICAL_DISTINCTION.value, "Technical distinction", "Sequence representing graphical equivalency, but technical distinction (eg. combining marks)"),
 
             (SequenceType.CANONICAL_DECOMPOSITION.value, 'Canonical Decomposition', 'Unicode decomposition type representing full equivalency in all contexts'),
             (SequenceType.JAMO_CANONICAL_DECOMPOSITION.value, 'Jamo Canonical Decomposition', 'Unicode decomposition type for Hangul syllables'),
@@ -510,7 +513,7 @@ class ScriptDatabase:
         load_lookup(cursor, 'sequence_type', data)
 
 
-    def _load_derivations(self, cursor, indic_letter_data, semitic_letter_data, verify_script):
+    def _load_derivations(self, cursor, indic_letter_data, semitic_letter_data, drop_name_index, verify_script):
         def resolve_default(defaults_dict, script, data_row, field, overriding_default=None, override_condition=False, last_resort=None):
             if field in data_row and data_row[field] and not data_row[field].isspace():
                 return data_row[field].strip()
@@ -527,6 +530,57 @@ class ScriptDatabase:
                                'Yezi', 'Tnsa', 'Olck', 'Thaa', 'Tols', 'Nagm', 'Sora', 'Wcho', 'Mroo', 'Onao', 'Sunu', 'Tang'}
 
         cursor.execute("DELETE FROM code_point_derivation")  # updates generally expected on this table, just clear
+
+        # a few graphical equivalents
+        equivalent_ids = cursor.execute("""
+                    SELECT sym.id, mark.id AS equivalent_id 
+                    FROM code_point sym INNER JOIN code_point mark ON substr(mark.name, 11) = sym.name
+                    WHERE
+                        mark.general_category_code = 'Mn' 
+                        AND sym.general_category_code = 'Sc' 
+                        AND mark.name LIKE 'COMBINING%'
+                        AND sym.equivalent_sequence_id IS NULL
+                    """).fetchall()
+        # most of the rest seem to be combining letters / digits where that would be the canonical character
+        equivalent_ids.extend(cursor.execute("""
+                    SELECT mark.id, other.id AS equivalent_id 
+                    FROM code_point other INNER JOIN code_point mark ON substr(mark.name, 11) = other.name
+                    WHERE
+                        mark.general_category_code = 'Mn' 
+                        AND other.general_category_code <> 'Sc' 
+                        AND mark.name LIKE 'COMBINING%'
+                        AND other.equivalent_sequence_id IS NULL
+                    """).fetchall())
+        equivalent_ids.extend(cursor.execute("""
+                    SELECT finals.id, initials.id AS equivalent_id
+                    FROM code_point finals INNER JOIN code_point initials ON substr(finals.name, 18) = substr(initials.name, 17)
+                    WHERE 
+                        finals.script_code = 'Hang'
+                        AND initials.script_code = 'Hang'
+                        AND finals.name LIKE 'HANGUL JONGSEONG%'
+                        AND initials.name LIKE 'HANGUL CHOSEONG%'
+                        AND finals.equivalent_sequence_id IS NULL
+                    """).fetchall())
+
+        # add derivations based on name
+        base_pattern = re.compile('^(ETHIOPIC SYLLABLE (?:[A-Z]+ )?[^ AEIOU]*)([AEIOU]+)$')
+        derived_pattern = re.compile
+        ethiopic = cursor.execute("SELECT id, name FROM code_point WHERE script_code = 'Ethi' AND name LIKE 'ETHIOPIC SYLLABLE%'").fetchall()
+        base_ethiopic_names = {}
+        for x in ethiopic:
+            match = base_pattern.match(x[1])
+            if match.group(2) == 'A':
+                base_ethiopic_names[match.group(1)] = x[0]
+        for x in ethiopic:
+            match = base_pattern.match(x[1])
+            if match.group(2) != 'A' and match.group(1) in base_ethiopic_names:
+                cursor.execute("""
+                            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
+                            VALUES (?,?,?,?,?)""",
+                               (x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Inherent vowel parent'))
+
+        if drop_name_index:
+            cursor.execute("DROP INDEX idx_cp_name")
 
         self._load_letter_derivation_data(cursor, indic_letter_data, ScriptDatabase._INDIC_ORDER, verify_script)
         self._load_letter_derivation_data(cursor, semitic_letter_data, ScriptDatabase._SEMITIC_ORDER, verify_script)
@@ -582,39 +636,9 @@ class ScriptDatabase:
                                 cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, other_id, 1))
                                 cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, principal_id))
 
-        # a few graphical equivalents
-        equivalent_ids = cursor.execute("""
-            SELECT sym.id, mark.id AS equivalent_id 
-            FROM code_point sym INNER JOIN code_point mark ON substr(mark.name, 11) = sym.name
-            WHERE
-                mark.general_category_code = 'Mn' 
-                AND sym.general_category_code = 'Sc' 
-                AND mark.name LIKE 'COMBINING%'
-                AND sym.equivalent_sequence_id IS NULL
-            """).fetchall()
-        # most of the rest seem to be combining letters / digits where that would be the canonical character
-        equivalent_ids.extend(cursor.execute("""
-            SELECT mark.id, other.id AS equivalent_id 
-            FROM code_point other INNER JOIN code_point mark ON substr(mark.name, 11) = other.name
-            WHERE
-                mark.general_category_code = 'Mn' 
-                AND other.general_category_code <> 'Sc' 
-                AND mark.name LIKE 'COMBINING%'
-                AND other.equivalent_sequence_id IS NULL
-            """).fetchall())
-        equivalent_ids.extend(cursor.execute("""
-            SELECT finals.id, initials.id AS equivalent_id
-            FROM code_point finals INNER JOIN code_point initials ON substr(finals.name, 18) = substr(initials.name, 17)
-            WHERE 
-                finals.script_code = 'Hang'
-                AND initials.script_code = 'Hang'
-                AND finals.name LIKE 'HANGUL JONGSEONG%'
-                AND initials.name LIKE 'HANGUL CHOSEONG%'
-                AND finals.equivalent_sequence_id IS NULL
-            """).fetchall())
         for equivalency in equivalent_ids:
             seq_id = self.get_next_sequence_id()
-            cursor.execute("INSERT INTO sequence (id, type_id) VALUES (?, ?)", (seq_id, SequenceType.GRAPHICAL_DUPLICATE.value))
+            cursor.execute("INSERT INTO sequence (id, type_id) VALUES (?, ?)", (seq_id, SequenceType.TECHNICAL_DISTINCTION.value))
             cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, 1)", (seq_id, equivalency[1]))
             cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, equivalency[0]))
 
@@ -627,10 +651,11 @@ class ScriptDatabase:
                 cp2.id,
                 CASE WHEN COUNT(item_id) OVER (PARTITION BY equiv.sequence_id) = 1
                     THEN CASE WHEN seq.type_id = {SequenceType.CANONICAL_DECOMPOSITION.value} THEN {DerivationType.DUPLICATE.value}
-                              WHEN seq.type_id IN ({SequenceType.NO_BREAK_DECOMPOSITION.value},
-                                                        {SequenceType.SUPER_DECOMPOSITION.value}, 
-                                                        {SequenceType.SUB_DECOMPOSITION.value}, 
-                                                        {SequenceType.SMALL_DECOMPOSITION.value}) THEN {DerivationType.COPY.value}
+                              WHEN seq.type_id IN ({SequenceType.TECHNICAL_DISTINCTION.value},
+                                                   {SequenceType.NO_BREAK_DECOMPOSITION.value}) THEN {DerivationType.DUPLICATE_TECHNICAL_DISTINCTION.value}
+                              WHEN seq.type_id IN ({SequenceType.SUPER_DECOMPOSITION.value}, 
+                                                   {SequenceType.SUB_DECOMPOSITION.value}, 
+                                                   {SequenceType.SMALL_DECOMPOSITION.value}) THEN {DerivationType.DUPLICATE_GRAPHICAL_DISTINCTION.value}
                               ELSE {DerivationType.DEFAULT.value}
                          END
                     ELSE {DerivationType.DEFAULT.value}
@@ -671,22 +696,6 @@ class ScriptDatabase:
             FROM code_point cp1
             WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
                        (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
-
-        # add derivations based on name
-        base_pattern = re.compile('^(ETHIOPIC SYLLABLE (?:[A-Z]+ )?[^ AEIOU]*)([AEIOU]+)$')
-        derived_pattern = re.compile
-        ethiopic = cursor.execute("SELECT id, name FROM code_point WHERE script_code = 'Ethi' AND name LIKE 'ETHIOPIC SYLLABLE%'").fetchall()
-        base_ethiopic_names = {}
-        for x in ethiopic:
-            match = base_pattern.match(x[1])
-            if match.group(2) == 'A':
-                base_ethiopic_names[match.group(1)] = x[0]
-        for x in ethiopic:
-            match = base_pattern.match(x[1])
-            if match.group(2) != 'A' and match.group(1) in base_ethiopic_names:
-                cursor.execute("""
-                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
-                    VALUES (?,?,?,?,?)""", (x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Inherent vowel parent'))
 
         # Manually specified begins here
         defaults = {}
@@ -1283,7 +1292,7 @@ class ScriptDatabase:
         self._cxn.commit()
         if output: lap_time, lap_mb = output_info("Done loading code point data.", start_time, lap_time, lap_mb)
 
-        self._load_derivations(cur, indic_letter_data, semitic_letter_data, options.verify_data_sources)
+        self._load_derivations(cur, indic_letter_data, semitic_letter_data, options.drop_code_point_name_index, options.verify_data_sources)
         self._cxn.commit()
         if output: lap_time, lap_mb = output_info("Done loading derivation data.", start_time, lap_time, lap_mb)
 
@@ -1293,7 +1302,7 @@ class ScriptDatabase:
 
         if output:
             print(f'Database loaded. Total time: {time.time() - start_time:.2f} s. Total size: {lap_mb:.1f} MB')
-            priv_use_count = cur.execute("select count(*) from code_point where script_code like 'Q%' or script_code in ('Psin', 'Egyd')").fetchone()[0]
+            priv_use_count = cur.execute("SELECT COUNT(*) FROM code_point WHERE script_code LIKE 'Q%' OR script_code IN ('Psin', 'Egyd')").fetchone()[0]
             print(f"Number of private use characters: {priv_use_count}")
             # self._verify_script_coverage(cur) -> TODO this no longer works with new alphabet architecture
             self.print_table(self.execute_saved_query('Total derivation statistics'))
@@ -1327,7 +1336,7 @@ class SequenceType(Enum):
 
     LETTER_COLLECTION = 50
 
-    GRAPHICAL_DUPLICATE = 80
+    TECHNICAL_DISTINCTION = 80
 
     CANONICAL_DECOMPOSITION = 100
     JAMO_CANONICAL_DECOMPOSITION = 101  # per standard 3.12.2 Hangul syllable decomposition is equivalent to regular decomposition
@@ -1362,7 +1371,8 @@ class DerivationType(Enum):
     PORTION = 7
     ROTATION = 8
     REFLECTION = 9
-    GRAPHICAL_DUPLICATE = 10
+    DUPLICATE_TECHNICAL_DISTINCTION = 10
+    DUPLICATE_GRAPHICAL_DISTINCTION = 11
 
 
 class LoadOptions:
@@ -1370,6 +1380,8 @@ class LoadOptions:
         self.force_overwrite = False
         self.verify_data_sources = False
         self.output_debug_info = False
+        # an index that speeds up loading, but that is unlikely to be that helpful (a non-trivial size increase of the DB otherwise)
+        self.drop_code_point_name_index = True
         # path None = Default to leaving previous path alone, DB working subdirectories if not previously specified
         self.resource_path = None
         self.saved_query_path = None
