@@ -1387,6 +1387,7 @@ if __name__ == '__main__':
     # do stuff here if you want, for example:
     #results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
     #db.print_table(results)
+    # or your own custom query: db.execute_query('YOUR QUERY HERE', parameters=None)
 
 
     cursor.close()
