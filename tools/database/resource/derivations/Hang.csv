@@ -21,14 +21,14 @@ Child,Parent,Derivation Type,Certainty Type,Source,Notes
 ᄊ,ᄉ,5,1,Wikipedia: Origin of Hangul,
 ᄍ,ᄌ,5,1,Wikipedia: Origin of Hangul,
 
-ᆨ,ᄀ,5,1,,Graphical duplicate of initial/final consonant
-ᆩ,ᄁ,5,1,,Graphical duplicate of initial/final consonant
+ᆨ,ᄀ,10,1,,Graphical duplicate of initial/final consonant
+ᆩ,ᄁ,10,1,,Graphical duplicate of initial/final consonant
 ᆪ,ᆨ/ᆺ,5,1,,
-ᆫ,ᄂ,5,1,,Graphical duplicate of initial/final consonant
+ᆫ,ᄂ,10,1,,Graphical duplicate of initial/final consonant
 ᆬ,ᆫ/ᆽ,5,1,,
 ᆭ,ᆫ/ᇂ,5,1,,
-ᆮ,ᄃ,5,1,,Graphical duplicate of initial/final consonant
-ᆯ,ᄅ,5,1,,Graphical duplicate of initial/final consonant
+ᆮ,ᄃ,10,1,,Graphical duplicate of initial/final consonant
+ᆯ,ᄅ,10,1,,Graphical duplicate of initial/final consonant
 ᆰ,ᆯ/ᆨ,5,1,,
 ᆱ,ᆯ/ᆷ,5,1,,
 ᆲ,ᆯ/ᆸ,5,1,,
@@ -36,18 +36,18 @@ Child,Parent,Derivation Type,Certainty Type,Source,Notes
 ᆴ,ᆯ/ᇀ,5,1,,
 ᆵ,ᆯ/ᇁ,5,1,,
 ᆶ,ᆯ/ᇂ,5,1,,
-ᆷ,ᄆ,5,1,,Graphical duplicate of initial/final consonant
-ᆸ,ᄇ,5,1,,Graphical duplicate of initial/final consonant
+ᆷ,ᄆ,10,1,,Graphical duplicate of initial/final consonant
+ᆸ,ᄇ,10,1,,Graphical duplicate of initial/final consonant
 ᆹ,ᆸ/ᆺ,5,1,,
-ᆺ,ᄉ,5,1,,Graphical duplicate of initial/final consonant
-ᆻ,ᄊ,5,1,,Graphical duplicate of initial/final consonant
-ᆼ,ᄋ,5,1,,Graphical duplicate of initial/final consonant
-ᆽ,ᄌ,5,1,,Graphical duplicate of initial/final consonant
-ᆾ,ᄎ,5,1,,Graphical duplicate of initial/final consonant
-ᆿ,ᄏ,5,1,,Graphical duplicate of initial/final consonant
-ᇀ,ᄐ,5,1,,Graphical duplicate of initial/final consonant
-ᇁ,ᄑ,5,1,,Graphical duplicate of initial/final consonant
-ᇂ,ᄒ,5,1,,Graphical duplicate of initial/final consonant
+ᆺ,ᄉ,10,1,,Graphical duplicate of initial/final consonant
+ᆻ,ᄊ,10,1,,Graphical duplicate of initial/final consonant
+ᆼ,ᄋ,10,1,,Graphical duplicate of initial/final consonant
+ᆽ,ᄌ,10,1,,Graphical duplicate of initial/final consonant
+ᆾ,ᄎ,10,1,,Graphical duplicate of initial/final consonant
+ᆿ,ᄏ,10,1,,Graphical duplicate of initial/final consonant
+ᇀ,ᄐ,10,1,,Graphical duplicate of initial/final consonant
+ᇁ,ᄑ,10,1,,Graphical duplicate of initial/final consonant
+ᇂ,ᄒ,10,1,,Graphical duplicate of initial/final consonant
 
 ᅡ,ᅵ/ᆞ,1,1,Wikipedia: Origin of Hangul,
 ᅢ,ᅵ/ᅡ,1,1,Wikipedia: Origin of Hangul,
@@ -56,7 +56,6 @@ Child,Parent,Derivation Type,Certainty Type,Source,Notes
 ᅥ,ᅵ/ᆞ,1,1,Wikipedia: Origin of Hangul,
 ᅦ,ᅵ/ᅥ,1,1,Wikipedia: Origin of Hangul,
 ᅨ,ᅵ/ᆞ,1,1,Wikipedia: Origin of Hangul,
-ㅖ,ᅵ/ᅨ,1,1,Wikipedia: Origin of Hangul,
 ᅩ,ᅳ/ᆞ,1,1,Wikipedia: Origin of Hangul,
 ᅪ,ᅩ/ᅡ,1,1,Wikipedia: Origin of Hangul,
 ᅫ,ᅩ/ᅢ,1,1,Wikipedia: Origin of Hangul,

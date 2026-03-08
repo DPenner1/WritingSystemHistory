@@ -17,10 +17,11 @@ Though there are no current plans, the functionality of the database could be ex
 
 ## Statistics
 
-*As of 2026-03-07*
+*As of 2026-03-08*
 
-  - *(Just over 100,000 letters in the Unicode Standard are Chinese characters. These stats are notated "All / non-Chinese")*. There are ⁨130,255 / 28,322 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 27,252 / 20,711 have a historical ancestor specified (20.6% / 73.3%, including no known ancestor), of which 808 / 788 are manually reviewed (0.6% / 2.8%).
-  - The database is about 33 MB.
+  - *(Just over 100,000 letters in the Unicode Standard are Chinese characters. These stats are notated "All / non-Chinese")*. There are ⁨130,185 / 28,262 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 27,228 / 20,747 have a historical ancestor specified (20.9% / 73.4%, including no known ancestor), of which 784 / 764 are manually reviewed (0.6% / 2.8%).
+  - The database is about 40 MB.
+      -  Some indexes could reasonably be dropped in most deployments (eg. the name index which speeds up loading).
 
   1. Distinct being defined for this project has having no other equivalent representation in Unicode. See schema documentation on `code_point.equivalent_sequence_id`.
   2. Letters for this project being defined as Unicode general category `L_` plus the Private Use characters which currently stands at 307.
@@ -53,7 +54,7 @@ The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/too
   - `code_point`: Mostly what you would expect from Unicode.
      - Non-character U+FFFF is used as a signal value for when a character has been evaluated to have no known ancestor (to distinguish it from the case where data is simply missing).
      - Private use characters are used for historical scripts not yet in Unicode proper. For the Brahmi-based scripts, they've been automatically generated and assumed to exist if 50%+1 of their descendents have the corresponding letter. It should not be assumed the particular code points used are stable.
-     - Field `equivalent_sequence_id` combines various Unicode sources for "equivalent" code points. May have to change later, but as it stands these sources do not overlap. These are decomposition (including Hangul Syllable/Jamo), z-variants (the lowest code point in a set has been taken to be the original) and Hieroglyph alternate sequences (kEH_AltSeq).
+     - Field `equivalent_sequence_id` combines various Unicode sources for "equivalent" code points. May have to change later, but as it stands these sources do not overlap. These are decomposition (including Hangul Syllable/Jamo), z-variants (the lowest code point in a set has been taken to be the original) and Hieroglyph alternate sequences (kEH_AltSeq). One further custom equivalency is added for this project: graphical equivalence, for when a Unicode characters is the same graphical character but has technical distinction (so far two categories: combining marks existing as stand-alone and Hangul initial/final consonants).
   - `code_point_derivation`: This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. This table is also liable to renaming to `code_point_relation` if project scope expands. The automatic derivations are:
      - An assumption that lowercase characters derive from their uppercase counterparts.
      - For the Brahmi-derived and Semitic scripts, it is assumed that cognate letters derive from their known ancestor script.

@@ -120,10 +120,17 @@ class ScriptDatabase:
     def __init__(self, path='.', name='scripts.db'):
         self._db_name = name
         self._db_path = path
+        is_existing_db = os.path.isfile(os.path.join(self._db_path, self._db_name))
         self._set_connection()
         self._set_resource_paths()
         self._query_path = os.path.join(self._db_path, 'queries')
         self._next_sequence_id = ScriptDatabase.UNICODE_MAX
+        if is_existing_db:
+            cursor = self._cxn.cursor()
+            self._next_sequence_id = cursor.execute("SELECT MAX(id) FROM sequence").fetchone()[0]
+            cursor.close()
+            if self._next_sequence_id < ScriptDatabase.UNICODE_MAX:
+                self._next_sequence_id = ScriptDatabase.UNICODE_MAX
 
 
     def _set_connection(self):
@@ -451,10 +458,11 @@ class ScriptDatabase:
             (DerivationType.SIMPLIFICATION.value, "Simplification", "Child is a simplification of parent"),
             (DerivationType.FROM_CURSIVE.value, "From cursive", "Child is derived from cursive form of the parent (who is typically non-cursive)"),
             (DerivationType.COPY.value, "Copy", "Child is a copy (or multiple) of the parent"), # Usually child script copying or lowercase just a small version of uppercase
-            (DerivationType.DUPLICATE.value, "Duplicate", "Child is a duplicate of the parent"),  # Unicode duplicate code points
+            (DerivationType.DUPLICATE.value, "Duplicate", "Child is a duplicate of the parent - Unicode canonical singleton"),  # Unicode duplicate code points
             (DerivationType.PORTION.value, "Portion derivation", "Child is a derivation from a portion of the parent"),
             (DerivationType.ROTATION.value, "Rotation", "Child is a rotation of the parent"),
-            (DerivationType.REFLECTION.value, "Reflection", "Child is a reflection of the parent")]
+            (DerivationType.REFLECTION.value, "Reflection", "Child is a reflection of the parent"),
+            (DerivationType.GRAPHICAL_DUPLICATE.value, "Graphical Duplicate", "Child is graphically a duplicate of the parent, but has technical distinctions")]
         load_lookup(cursor, 'derivation_type', data)
 
         # For this project, sourcing is generally just for the derivation fact, not necessarily for derivation type
@@ -473,6 +481,8 @@ class ScriptDatabase:
             (SequenceType.BASE.value, 'Base', '"Sequence" representing a single code point. Does not contain items.'),
             (SequenceType.LETTER.value, 'Letter', 'A sequence representing a letter'),
             (SequenceType.LETTER_COLLECTION.value, 'Letter Collection', 'A sequence of letters and base code points frequently representing an alphabet'),
+
+            (SequenceType.GRAPHICAL_DUPLICATE.value, "Graphical Duplicate", "Sequence representing graphical equivalency, but technical distinction (eg. combining marks)"),
 
             (SequenceType.CANONICAL_DECOMPOSITION.value, 'Canonical Decomposition', 'Unicode decomposition type representing full equivalency in all contexts'),
             (SequenceType.JAMO_CANONICAL_DECOMPOSITION.value, 'Jamo Canonical Decomposition', 'Unicode decomposition type for Hangul syllables'),
@@ -571,6 +581,42 @@ class ScriptDatabase:
                                 seq_id = self._create_sequence(cursor, SequenceType.Z_VARIANT)
                                 cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, other_id, 1))
                                 cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, principal_id))
+
+        # a few graphical equivalents
+        equivalent_ids = cursor.execute("""
+            SELECT sym.id, mark.id AS equivalent_id 
+            FROM code_point sym INNER JOIN code_point mark ON substr(mark.name, 11) = sym.name
+            WHERE
+                mark.general_category_code = 'Mn' 
+                AND sym.general_category_code = 'Sc' 
+                AND mark.name LIKE 'COMBINING%'
+                AND sym.equivalent_sequence_id IS NULL
+            """).fetchall()
+        # most of the rest seem to be combining letters / digits where that would be the canonical character
+        equivalent_ids.extend(cursor.execute("""
+            SELECT mark.id, other.id AS equivalent_id 
+            FROM code_point other INNER JOIN code_point mark ON substr(mark.name, 11) = other.name
+            WHERE
+                mark.general_category_code = 'Mn' 
+                AND other.general_category_code <> 'Sc' 
+                AND mark.name LIKE 'COMBINING%'
+                AND other.equivalent_sequence_id IS NULL
+            """).fetchall())
+        equivalent_ids.extend(cursor.execute("""
+            SELECT finals.id, initials.id AS equivalent_id
+            FROM code_point finals INNER JOIN code_point initials ON substr(finals.name, 18) = substr(initials.name, 17)
+            WHERE 
+                finals.script_code = 'Hang'
+                AND initials.script_code = 'Hang'
+                AND finals.name LIKE 'HANGUL JONGSEONG%'
+                AND initials.name LIKE 'HANGUL CHOSEONG%'
+                AND finals.equivalent_sequence_id IS NULL
+            """).fetchall())
+        for equivalency in equivalent_ids:
+            seq_id = self.get_next_sequence_id()
+            cursor.execute("INSERT INTO sequence (id, type_id) VALUES (?, ?)", (seq_id, SequenceType.GRAPHICAL_DUPLICATE.value))
+            cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, 1)", (seq_id, equivalency[1]))
+            cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, equivalency[0]))
 
         # add derivations from equivalent sequences, assuming the equivalent characters are the base building blocks (the parent)
         # Formatting/control/space characters are not eligible (they aren't graphical, right? ... right???)
@@ -759,7 +805,6 @@ class ScriptDatabase:
                 temp = letter.split(' ')[0]
                 l = dem_replacements[temp] if temp in dem_replacements else temp
                 file.write(f'\n{i + ScriptDatabase._CODE_POINT_STARTS['Egyd']},Egyd,EGYPTIAN DEMOTIC LETTER {l.upper()},Lo')
-
 
     # format: { script_code (lowercase): { Generic Indic Letter: [letters] } }
     def _get_indic_letter_dict(self, verify):
@@ -1051,6 +1096,7 @@ class ScriptDatabase:
         self._load_alphabet(cursor, hiragana, 'ja', 'Hira', 'Lo', False, 'CLDR main exemplar set')
         self._load_alphabet(cursor, kanji, 'ja', 'Hani', 'Lo', True, 'CLDR main exemplar set')
 
+
     def _load_alphabet(self, cursor, letters, lang_code, script_code, letter_case, is_language_exemplar, source):
         id = self._create_sequence(cursor, SequenceType.LETTER_COLLECTION)
         cursor.execute("""
@@ -1197,6 +1243,7 @@ class ScriptDatabase:
             if os.path.isfile(os.path.join(self._db_path, self._db_name + '-journal')):
                 os.remove(os.path.join(self._db_path, self._db_name + '-journal'))
             self._set_connection()
+            self._next_sequence_id = ScriptDatabase.UNICODE_MAX
         if options.resource_path:
             self._set_resource_paths(options.resource_path)
         if options.saved_query_path:
@@ -1280,6 +1327,8 @@ class SequenceType(Enum):
 
     LETTER_COLLECTION = 50
 
+    GRAPHICAL_DUPLICATE = 80
+
     CANONICAL_DECOMPOSITION = 100
     JAMO_CANONICAL_DECOMPOSITION = 101  # per standard 3.12.2 Hangul syllable decomposition is equivalent to regular decomposition
     COMPATIBILITY_DECOMPOSITION = 102
@@ -1313,6 +1362,7 @@ class DerivationType(Enum):
     PORTION = 7
     ROTATION = 8
     REFLECTION = 9
+    GRAPHICAL_DUPLICATE = 10
 
 
 class LoadOptions:
