@@ -510,55 +510,44 @@ class ScriptDatabase:
         ]
         load_lookup(cursor, 'sequence_type', data)
 
-
-    def _load_derivations(self, cursor, indic_letter_data, semitic_letter_data, drop_name_index, verify_script):
-        def resolve_default(defaults_dict, script, data_row, field, overriding_default=None, override_condition=False, last_resort=None):
-            if field in data_row and data_row[field] and not data_row[field].isspace():
-                return data_row[field].strip()
-            if override_condition:
-                return overriding_default
-            if script in defaults_dict and field in defaults_dict[script] and defaults_dict[script][field]:
-                return defaults_dict[script][field]
-            return last_resort
-
+    # This one's a mess of interdependent stuff that needs to be done in a certain order for performance reasons
+    def _load_equivalents_names_and_independents(self, cursor, drop_name_index):
         # Mende Kikakui is a bit of an exception here: Unicode Encoding Proposal suggests Vai-derived characters are a small minority
         # Not including Chinese here: ideally will eventually do so for Oracle bone. Similar for modern Yi vs classical Yi
         independent_scripts = {'Mend', 'Egyp', 'Lina', 'Hluw', 'Xsux', 'Xpeo', 'Ogam', 'Elba', 'Dupl', 'Sgnw', 'Shaw', 'Vith',
                                'Vaii', 'Bamu', 'Berf', 'Nkoo', 'Wara', 'Gonm', 'Toto', 'Osma', 'Adlm', 'Gara', 'Medf', 'Bass',
                                'Yezi', 'Tnsa', 'Olck', 'Thaa', 'Tols', 'Nagm', 'Sora', 'Wcho', 'Mroo', 'Onao', 'Sunu', 'Tang'}
 
-        cursor.execute("DELETE FROM code_point_derivation")  # updates generally expected on this table, just clear
-
         # a few graphical equivalents
         equivalent_ids = cursor.execute("""
-                    SELECT sym.id, mark.id AS equivalent_id 
-                    FROM code_point sym INNER JOIN code_point mark ON substr(mark.name, 11) = sym.name
-                    WHERE
-                        mark.general_category_code = 'Mn' 
-                        AND sym.general_category_code LIKE 'S_' 
-                        AND mark.name LIKE 'COMBINING%'
-                        AND sym.equivalent_sequence_id IS NULL
-                    """).fetchall()
+                            SELECT sym.id, mark.id AS equivalent_id 
+                            FROM code_point sym INNER JOIN code_point mark ON substr(mark.name, 11) = sym.name
+                            WHERE
+                                mark.general_category_code = 'Mn' 
+                                AND sym.general_category_code LIKE 'S_' 
+                                AND mark.name LIKE 'COMBINING%'
+                                AND sym.equivalent_sequence_id IS NULL
+                            """).fetchall()
         # most of the rest seem to be combining letters / digits where that would be the canonical character
         equivalent_ids.extend(cursor.execute("""
-                    SELECT mark.id, other.id AS equivalent_id 
-                    FROM code_point other INNER JOIN code_point mark ON substr(mark.name, 11) = other.name
-                    WHERE
-                        mark.general_category_code = 'Mn' 
-                        AND other.general_category_code NOT LIKE 'S_' 
-                        AND mark.name LIKE 'COMBINING%'
-                        AND other.equivalent_sequence_id IS NULL
-                    """).fetchall())
+                            SELECT mark.id, other.id AS equivalent_id 
+                            FROM code_point other INNER JOIN code_point mark ON substr(mark.name, 11) = other.name
+                            WHERE
+                                mark.general_category_code = 'Mn' 
+                                AND other.general_category_code NOT LIKE 'S_' 
+                                AND mark.name LIKE 'COMBINING%'
+                                AND other.equivalent_sequence_id IS NULL
+                            """).fetchall())
         equivalent_ids.extend(cursor.execute("""
-                    SELECT finals.id, initials.id AS equivalent_id
-                    FROM code_point finals INNER JOIN code_point initials ON substr(finals.name, 18) = substr(initials.name, 17)
-                    WHERE 
-                        finals.script_code = 'Hang'
-                        AND initials.script_code = 'Hang'
-                        AND finals.name LIKE 'HANGUL JONGSEONG%'
-                        AND initials.name LIKE 'HANGUL CHOSEONG%'
-                        AND finals.equivalent_sequence_id IS NULL
-                    """).fetchall())
+                            SELECT finals.id, initials.id AS equivalent_id
+                            FROM code_point finals INNER JOIN code_point initials ON substr(finals.name, 18) = substr(initials.name, 17)
+                            WHERE 
+                                finals.script_code = 'Hang'
+                                AND initials.script_code = 'Hang'
+                                AND finals.name LIKE 'HANGUL JONGSEONG%'
+                                AND initials.name LIKE 'HANGUL CHOSEONG%'
+                                AND finals.equivalent_sequence_id IS NULL
+                            """).fetchall())
 
         # add derivations based on name
         base_pattern = re.compile('^(ETHIOPIC SYLLABLE (?:[A-Z]+ )?[^ AEIOU]*)([AEIOU]+)$')
@@ -573,15 +562,13 @@ class ScriptDatabase:
             match = base_pattern.match(x[1])
             if match.group(2) != 'A' and match.group(1) in base_ethiopic_names:
                 cursor.execute("""
-                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
-                    VALUES (?,?,?,?,?)""",
-                       (x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Inherent vowel parent'))
+                            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
+                            VALUES (?,?,?,?,?)""",
+                               (x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Inherent vowel parent'))
 
+        # we want to drop this as soon as possible so that the freed space can be used
         if drop_name_index:
             cursor.execute("DROP INDEX idx_cp_name")
-
-        self._load_letter_derivation_data(cursor, indic_letter_data, ScriptDatabase._INDIC_ORDER, verify_script)
-        self._load_letter_derivation_data(cursor, semitic_letter_data, ScriptDatabase._SEMITIC_ORDER, verify_script)
 
         # Identify all the independently-derived characters
         cursor.execute(f"""
@@ -589,7 +576,7 @@ class ScriptDatabase:
             SELECT id, ?, ?, ?, 'Independent script: Assume independent character'
             FROM code_point 
             WHERE script_code IN {self._get_sql_in_str_list(independent_scripts)}""",
-            (ord(self.NO_PARENT_CHARACTER), DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
+               (ord(self.NO_PARENT_CHARACTER), DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
 
         with open(os.path.join(self._unicode_path, 'Unikemet.txt'), 'r') as file:
             for line in file:
@@ -640,6 +627,8 @@ class ScriptDatabase:
             cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, 1)", (seq_id, equivalency[1]))
             cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, equivalency[0]))
 
+
+    def _load_derivations_from_equivalencies(self, cursor):
         # add derivations from equivalent sequences, assuming the equivalent characters are the base building blocks (the parent)
         # Formatting/control/space characters are not eligible (they aren't graphical, right? ... right???)
         cursor.execute(f"""
@@ -680,22 +669,34 @@ class ScriptDatabase:
         # conflicts are expected when a character decomposes into multiple copies of a code point,
         # minimal enough that ON CONFLICT DO NOTHING is probably the better query option than advance filtering
 
+
+    def _load_derivations_from_case_data(self, cursor):
         # add derivations from case mapping, assuming lowercase to be derived from uppercase
         cursor.execute("""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-            SELECT id, simple_uppercase_mapping_id, ?, ?, 'Unicode Character Database case mapping data'
-            FROM code_point
-            WHERE simple_uppercase_mapping_id IS NOT NULL""",
+                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
+                    SELECT id, simple_uppercase_mapping_id, ?, ?, 'Unicode Character Database case mapping data'
+                    FROM code_point
+                    WHERE simple_uppercase_mapping_id IS NOT NULL""",
                        (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
         # casing isn't 100% 1:1 so need to do mappings in both directions
         cursor.execute("""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-            SELECT simple_lowercase_mapping_id, id, ?, ?, 'Unicode Character Database case mapping data'
-            FROM code_point cp1
-            WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
+                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
+                    SELECT simple_lowercase_mapping_id, id, ?, ?, 'Unicode Character Database case mapping data'
+                    FROM code_point cp1
+                    WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
                        (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
 
-        # Manually specified begins here
+
+    def _load_manually_specified_derivations(self, cursor, verify_script):
+        def resolve_default(defaults_dict, script, data_row, field, overriding_default=None, override_condition=False, last_resort=None):
+            if field in data_row and data_row[field] and not data_row[field].isspace():
+                return data_row[field].strip()
+            if override_condition:
+                return overriding_default
+            if script in defaults_dict and field in defaults_dict[script] and defaults_dict[script][field]:
+                return defaults_dict[script][field]
+            return last_resort
+
         defaults = {}
         with open(os.path.join(self._resource_path, 'derivation_defaults.csv'), 'r') as file:
             for row in csv.DictReader(file):
@@ -752,8 +753,8 @@ class ScriptDatabase:
 
                         for derivation_type in derivation_types.split('/'):
                             cursor.execute("""
-                                INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
-                                VALUES (?, ?, ?, ?, ?, ?)""", (ord(child), ord(parent), int(derivation_type), certainty, source, notes))
+                                        INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
+                                        VALUES (?, ?, ?, ?, ?, ?)""", (ord(child), ord(parent), int(derivation_type), certainty, source, notes))
 
         # stuff that's confusing or might break csv format
         awkward_data = [
@@ -770,8 +771,22 @@ class ScriptDatabase:
             (ord(';'), ord(':'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Semicolon', None),
         ]
         cursor.executemany("""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
-            VALUES (?, ?, ?, ?, ?, ?)""", awkward_data)
+                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
+                    VALUES (?, ?, ?, ?, ?, ?)""", awkward_data)
+
+
+    def _load_derivations(self, cursor, indic_letter_data, semitic_letter_data, drop_name_index, verify_script):
+        cursor.execute("DELETE FROM code_point_derivation")  # updates generally expected on this table, just clear
+
+        self._load_equivalents_names_and_independents(cursor, drop_name_index)
+
+        self._load_letter_derivation_data(cursor, indic_letter_data, ScriptDatabase._INDIC_ORDER, verify_script)
+        self._load_letter_derivation_data(cursor, semitic_letter_data, ScriptDatabase._SEMITIC_ORDER, verify_script)
+
+        self._load_derivations_from_equivalencies(cursor)
+        self._load_derivations_from_case_data(cursor)
+
+        self._load_manually_specified_derivations(cursor, verify_script)
 
 
     def get_code_to_script_dict(self):
