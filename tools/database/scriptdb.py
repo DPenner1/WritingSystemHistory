@@ -7,8 +7,6 @@ from enum import Enum
 from zipfile import ZipFile
 
 
-
-
 class ScriptDatabase:
 
     INHERITED_SCRIPT = 'Zinh'
@@ -160,7 +158,6 @@ class ScriptDatabase:
                 raise ValueError(f'Found non sql file in {self._query_path}')
 
         raise ValueError(f"No query named {query_name} found in {self._query_path}")
-
 
     @staticmethod
     def print_table(data, has_header=True):
@@ -485,8 +482,6 @@ class ScriptDatabase:
             (SequenceType.LETTER.value, 'Letter', 'A sequence representing a letter'),
             (SequenceType.LETTER_COLLECTION.value, 'Letter Collection', 'A sequence of letters and base code points frequently representing an alphabet'),
 
-            (SequenceType.TECHNICAL_DISTINCTION.value, "Technical distinction", "Sequence representing graphical equivalency, but technical distinction (eg. combining marks)"),
-
             (SequenceType.CANONICAL_DECOMPOSITION.value, 'Canonical Decomposition', 'Unicode decomposition type representing full equivalency in all contexts'),
             (SequenceType.JAMO_CANONICAL_DECOMPOSITION.value, 'Jamo Canonical Decomposition', 'Unicode decomposition type for Hangul syllables'),
             (SequenceType.COMPATIBILITY_DECOMPOSITION.value, 'Compat Decomposition',
@@ -506,6 +501,9 @@ class ScriptDatabase:
             (SequenceType.MEDIAL_DECOMPOSITION.value, 'Medial Decomposition', 'Unicode decomposition type'),
             (SequenceType.SMALL_DECOMPOSITION.value, 'Small Decomposition', 'Unicode decomposition type'),
             (SequenceType.NARROW_DECOMPOSITION.value, 'Narrow Decomposition', 'Unicode decomposition type'),
+
+            (SequenceType.TECHNICAL_DISTINCTION.value, "Technical distinction",
+             "Sequence representing graphical equivalency, but technical distinction (eg. combining marks)"),
 
             (SequenceType.Z_VARIANT.value, 'Z-Variant', 'Unit sequence representing an equivalent or typographical variant Chinese character'),
             (SequenceType.HIEROGLYPHIC_ALTERNATIVE.value, 'Hieroglyphic Alternative', 'Equivalent Hieroglyph sequence')
@@ -537,7 +535,7 @@ class ScriptDatabase:
                     FROM code_point sym INNER JOIN code_point mark ON substr(mark.name, 11) = sym.name
                     WHERE
                         mark.general_category_code = 'Mn' 
-                        AND sym.general_category_code = 'Sc' 
+                        AND sym.general_category_code LIKE 'S_' 
                         AND mark.name LIKE 'COMBINING%'
                         AND sym.equivalent_sequence_id IS NULL
                     """).fetchall()
@@ -547,7 +545,7 @@ class ScriptDatabase:
                     FROM code_point other INNER JOIN code_point mark ON substr(mark.name, 11) = other.name
                     WHERE
                         mark.general_category_code = 'Mn' 
-                        AND other.general_category_code <> 'Sc' 
+                        AND other.general_category_code NOT LIKE 'S_' 
                         AND mark.name LIKE 'COMBINING%'
                         AND other.equivalent_sequence_id IS NULL
                     """).fetchall())
@@ -575,9 +573,9 @@ class ScriptDatabase:
             match = base_pattern.match(x[1])
             if match.group(2) != 'A' and match.group(1) in base_ethiopic_names:
                 cursor.execute("""
-                            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
-                            VALUES (?,?,?,?,?)""",
-                               (x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Inherent vowel parent'))
+                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
+                    VALUES (?,?,?,?,?)""",
+                       (x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Inherent vowel parent'))
 
         if drop_name_index:
             cursor.execute("DROP INDEX idx_cp_name")
@@ -719,7 +717,7 @@ class ScriptDatabase:
                     # For modern scripts, the inventor is generally aware of existing writing systems, and may have been inspired
                     certainty = int(resolve_default(defaults, script, row, 'Certainty Type',
                                                     overriding_default=str(Certainty.UNCERTAIN.value),
-                                                    override_condition=(parents == self.NO_PARENT_CHARACTER),
+                                                    override_condition=(parents.isspace()),
                                                     last_resort=str(Certainty.UNSPECIFIED.value)))
 
                     # Overriding default here is for convenience: An Assumed certainty means there is no source, so allows us to specify a source in defaults for all else.
@@ -1336,8 +1334,6 @@ class SequenceType(Enum):
 
     LETTER_COLLECTION = 50
 
-    TECHNICAL_DISTINCTION = 80
-
     CANONICAL_DECOMPOSITION = 100
     JAMO_CANONICAL_DECOMPOSITION = 101  # per standard 3.12.2 Hangul syllable decomposition is equivalent to regular decomposition
     COMPATIBILITY_DECOMPOSITION = 102
@@ -1356,6 +1352,8 @@ class SequenceType(Enum):
     MEDIAL_DECOMPOSITION = 115
     SMALL_DECOMPOSITION = 116
     NARROW_DECOMPOSITION = 117
+
+    TECHNICAL_DISTINCTION = 180
 
     Z_VARIANT = 200
     HIEROGLYPHIC_ALTERNATIVE = 201
@@ -1394,7 +1392,7 @@ if __name__ == '__main__':
     options.verify_data_sources = True
     options.output_debug_info = True
 
-    cursor = db.load_database(None)  # replace with options for development run
+    cursor = db.load_database(options)  # replace with options for development run
 
     # do stuff here if you want, for example:
     #results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))

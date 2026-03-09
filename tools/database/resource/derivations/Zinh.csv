@@ -1,0 +1,6 @@
+Child,Parent,Derivation Type,Certainty Type,Source
+̀,,1,2,Wikipedia: Grave accent
+́,,1,2,Wikipedia: Acute accent
+̂,́/̀,1,1,Wikipedia: Circumflex
+̃,̂,1,1,Wikipedia: Circumflex
+̈,,1,2,Wikipedia: Diaeresis (diacritic)
