@@ -562,9 +562,18 @@ class ScriptDatabase:
             match = base_pattern.match(x[1])
             if match.group(2) != 'A' and match.group(1) in base_ethiopic_names:
                 cursor.execute("""
-                            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
-                            VALUES (?,?,?,?,?)""",
-                               (x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Inherent vowel parent'))
+                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
+                    VALUES (?,?,?,?,?)""",
+                       (x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Inherent vowel parent'))
+
+        cursor.execute("""
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
+            SELECT newsog.id, oldsog.id, ?, ?, ?
+            FROM 
+                code_point newsog 
+                INNER JOIN code_point oldsog ON newsog.name = substr(oldsog.name, 5)
+                WHERE newsog.script_code = 'Sogd' AND oldsog.script_code = 'Sogo'""",
+                       (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Old Sogdian / Sogdian same letter'))
 
         # we want to drop this as soon as possible so that the freed space can be used
         if drop_name_index:
