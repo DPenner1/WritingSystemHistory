@@ -15,7 +15,8 @@ CREATE INDEX IF NOT EXISTS idx_fk_s_type ON sequence(type_id);
 CREATE TABLE IF NOT EXISTS script (
     code TEXT PRIMARY KEY,
     iso_id INT UNIQUE NOT NULL,
-    u_name TEXT UNIQUE,
+    name TEXT,
+    u_alias TEXT UNIQUE,
     u_version_added INTEGER,
     u_subversion_added INTEGER,
     canonical_script_code TEXT REFERENCES script(code),

@@ -7,6 +7,12 @@ from enum import Enum
 from zipfile import ZipFile
 
 
+class SearchOption(Enum):
+    ALLOW_SAME_SCRIPT_PARENT = 0
+    IGNORE_SAME_SCRIPT_PARENT = 1
+    PASS_THROUGH_SAME_SCRIPT_PARENT = 2
+
+
 class ScriptDatabase:
 
     INHERITED_SCRIPT = 'Zinh'
@@ -261,17 +267,19 @@ class ScriptDatabase:
             for row in csv.DictReader(file):
                 code = row['Code']
                 id = int(row['ISO ID'])
-                name = row['Unicode Alias'] if row['Unicode Alias'] else None
+                name = row['Name'] if row['Name'] else None
+                alias = row['Unicode Alias'] if row['Unicode Alias'] else None
                 version = row['Unicode Version'] if row['Unicode Version'] else None
                 subversion = row['Unicode Subversion'] if row['Unicode Subversion'] else None
                 cursor.execute("""
-                    INSERT INTO script (code, u_name, iso_id, u_version_added, u_subversion_added) 
-                    VALUES (?, ?, ?, ?, ?)
+                    INSERT INTO script (code, name, u_alias, iso_id, u_version_added, u_subversion_added) 
+                    VALUES (?, ?, ?, ?, ?, ?)
                     ON CONFLICT (code) DO UPDATE SET
-                        u_name = ?,
+                        name = ?,
+                        u_alias = ?,
                         u_version_added = ?,
                         u_subversion_added = ?""",
-                        (code, name, id, version, subversion, name, version, subversion))  # TODO: check stability policy
+                        (code, name, alias, id, version, subversion, name, alias, version, subversion))  # TODO: check stability policy
 
         with open(os.path.join(self._resource_path, 'script_variants.csv'), 'r') as file:
             for row in csv.DictReader(file):
@@ -280,6 +288,14 @@ class ScriptDatabase:
     @staticmethod
     def is_private_use(id):
         return (0xE000 <= id <= 0xF8FF) or (0xF0000 <= id <= 0xFFFFD) or (0x100000 <= id <= 0x10FFFD)
+
+
+    @staticmethod
+    def _add_or_increment_dict_entry(dictionary, key, value):
+        if key in dictionary:
+            dictionary[key] += value
+        else:
+            dictionary[key] = value
 
 
     def _insert_code_point(self, cursor, id, name, script_code, general_category_code, bidi_class_code):
@@ -373,7 +389,7 @@ class ScriptDatabase:
                     start = int(match.group(1), 16)
                     end = int(match.group(2), 16) if match.group(2) else start
                     script_name = match.group(3)
-                    script_code = cursor.execute("SELECT code FROM script WHERE u_name = ?", (match.group(3),)).fetchone()[0]
+                    script_code = cursor.execute("SELECT code FROM script WHERE u_alias = ?", (match.group(3),)).fetchone()[0]
 
                     for i in range(start, end + 1):
                         self._insert_code_point(cursor, i, name=None, script_code=script_code, bidi_class_code=None, general_category_code=None)
@@ -479,8 +495,8 @@ class ScriptDatabase:
 
         data = [
             (SequenceType.BASE.value, 'Base', '"Sequence" representing a single code point. Does not contain items.'),
+            (SequenceType.GENERAL.value, 'General', 'A general sequence'),
             (SequenceType.LETTER.value, 'Letter', 'A sequence representing a letter'),
-            (SequenceType.LETTER_COLLECTION.value, 'Letter Collection', 'A sequence of letters and base code points frequently representing an alphabet'),
 
             (SequenceType.CANONICAL_DECOMPOSITION.value, 'Canonical Decomposition', 'Unicode decomposition type representing full equivalency in all contexts'),
             (SequenceType.JAMO_CANONICAL_DECOMPOSITION.value, 'Jamo Canonical Decomposition', 'Unicode decomposition type for Hangul syllables'),
@@ -801,7 +817,7 @@ class ScriptDatabase:
     def get_code_to_script_dict(self):
         retval = {}
         cursor = self._cxn.cursor()
-        results = cursor.execute("SELECT code, u_name FROM script WHERE u_name IS NOT NULL").fetchall()
+        results = cursor.execute("SELECT code, name FROM script WHERE name IS NOT NULL").fetchall()
         for row in results:
             retval[row[0]] = row[1]
         cursor.close()
@@ -1129,7 +1145,7 @@ class ScriptDatabase:
 
 
     def _load_alphabet(self, cursor, letters, lang_code, script_code, letter_case, is_language_exemplar, source):
-        id = self._create_sequence(cursor, SequenceType.LETTER_COLLECTION)
+        id = self._create_sequence(cursor, SequenceType.GENERAL)
         cursor.execute("""
             INSERT INTO alphabet (id, lang_code, script_code, letter_case, is_language_exemplar, source)
             VALUES (?,?,?,?,?,?)""", (id, lang_code, script_code, letter_case, is_language_exemplar, source))
@@ -1227,7 +1243,7 @@ class ScriptDatabase:
                 if lang_code:
                     id = self._load_alphabet(cursor, parse_data.letters, lang_code, parse_data.script_code, parse_data.letter_case, is_language_exemplar, row['Source'])
                 else:
-                    id = self._create_sequence(cursor, SequenceType.LETTER_COLLECTION)
+                    id = self._create_sequence(cursor, SequenceType.GENERAL)
                     self._load_alphabet_letters(cursor, id, parse_data.letters)
                 cursor.execute("UPDATE script SET exemplar_sequence_id = ? WHERE code = ?", (id, parse_data.script_code))
                 added_scripts.add(parse_data.script_code)
@@ -1253,9 +1269,96 @@ class ScriptDatabase:
                                                  True, # as the script exemplar hasnt been added, neither has the language (I think, the alphabet stuff is complicated)
                                                  'Automatically generated from Wikipedia Indic and Semitic letter pages')
                     else:
-                        id = self._create_sequence(cursor, SequenceType.LETTER_COLLECTION)
+                        id = self._create_sequence(cursor, SequenceType.GENERAL)
                         self._load_alphabet_letters(cursor, id, parse_data.letters)
                     cursor.execute("UPDATE script SET exemplar_sequence_id = ? WHERE code = ?", (id, parse_data.script_code))
+
+
+    def get_code_point_script_parents(self, id, scripts_to_skip=None):
+        return self._get_code_point_script_parents(self._cxn.cursor(), id, option, 1)
+
+
+    def _get_code_point_script_parents(self, cursor, id, scripts_to_skip=None, weight=1):
+        retval = {}
+        temp = cursor.execute("""
+            SELECT script_code FROM code_point
+            WHERE id = ? AND general_category_code NOT LIKE 'C_' AND general_category_code NOT LIKE 'Z_'""", (id,)).fetchall()
+        if not temp:
+            raise ValueError("Tried to find parent script of non-graphical character")
+        script_code = temp[0][0]
+
+        # TODO favour more certain derivations
+        parent_code_points = cursor.execute("""
+            SELECT cp.id, cp.script_code  
+            FROM code_point cp INNER JOIN code_point_derivation cpd ON cp.id = cpd.parent_id 
+            WHERE cpd.child_id = ?""", (id,)).fetchall()
+        num_parents = len(parent_code_points)
+
+        if num_parents == 0:  # missing data, use empty string as a missing code
+            retval[''] = weight
+        else:
+            for parent in parent_code_points:
+                if scripts_to_skip and parent[1] in scripts_to_skip:
+                    grand_parents = self._get_code_point_script_parents(cursor, parent[0], scripts_to_skip, weight / num_parents)
+                    for grand_parent in grand_parents:
+                        self._add_or_increment_dict_entry(retval, grand_parent, grand_parents[grand_parent])
+                else: # different parent script
+                    self._add_or_increment_dict_entry(retval, parent[1], weight / num_parents)
+
+        return retval
+
+    # This isn't simple recursion due to weights
+    # (base case) A single code point will have its parent scripts equally weighted
+    # A letter will have its constituent code points equally weighted
+    # A general sequence will have its constituent letters and code points equally weighted
+    # A general sequence of general sequences will have a pass-through effect, with letters and code points being equally weighted, not higher-order sequences
+    # While a little academic for now, this is designing for an "alphabet of alphabets" eg. having an English alphabet that is two sub-alphabets distinguished by case
+    def _get_sequence_script_parents(self, cursor, sequence_id, scripts_to_skip=None):
+        seq_type = cursor.execute("SELECT type_id FROM sequence WHERE id = ?", (sequence_id,)).fetchone()[0]
+        if seq_type == SequenceType.BASE.value:
+            return self._get_code_point_script_parents(cursor, sequence_id, scripts_to_skip, 1)
+
+        retval = {}
+        if seq_type == SequenceType.LETTER.value:
+            code_points = cursor.execute("""
+                SELECT cp.id FROM sequence_item si INNER JOIN code_point cp ON si.item_id = cp.id
+                WHERE si.sequence_id = ? AND cp.general_category_code NOT LIKE 'C_' AND cp.general_category_code NOT LIKE 'Z_'""", (sequence_id,)).fetchall()
+            for code_point in code_points:
+                results = self._get_code_point_script_parents(cursor, code_point[0], scripts_to_skip, 1 / len(code_points))
+                for result in results:
+                    self._add_or_increment_dict_entry(retval, result, results[result])
+        else:
+            sub_sequences = cursor.execute("SELECT item_id FROM sequence_item WHERE sequence_id = ?", (sequence_id,)).fetchall()
+            for sub_sequence in sub_sequences:
+                results = self._get_sequence_script_parents(cursor, sub_sequence[0], scripts_to_skip)
+                for result in results:
+                    self._add_or_increment_dict_entry(retval, result, results[result])
+
+        return retval
+
+
+    def get_script_parents(self, script_code, scripts_to_skip=None):
+        cursor = self._cxn.cursor()
+        sequence_id = cursor.execute("SELECT exemplar_sequence_id FROM script WHERE code = ?", (script_code,)).fetchall()
+        if not sequence_id:
+            raise ValueError("Script does not yet have an identified canonical set of letters")
+
+        results = [('Parent Script', 'Number of Letters')]
+        raw_results = self._get_sequence_script_parents(cursor, sequence_id[0][0], scripts_to_skip)
+        for script, value in sorted(raw_results.items(), key=lambda item: item[1], reverse=True):
+            if script == 'Zinh':
+                script_name = '(accent)' # probably
+            elif script == 'Zyyy':
+                script_name = '(symbol)' # probably
+            elif script == 'Zzzz':
+                script_name = '(original/unknown)'
+            elif script == '':
+                script_name = '(missing data)'
+            else:
+                script_name = cursor.execute("SELECT name FROM script WHERE code = ?", (script,)).fetchone()[0]
+            results.append((script_name, f"{value:.2f}"))
+
+        return results
 
 
     def load_database(self, load_options=None):
@@ -1354,9 +1457,8 @@ class Certainty(Enum):
 # at the moment I'm isolating ranges of things I think could be expanded on.
 class SequenceType(Enum):
     BASE = 1
-    LETTER = 2
-
-    LETTER_COLLECTION = 50
+    GENERAL = 2
+    LETTER = 3
 
     CANONICAL_DECOMPOSITION = 100
     JAMO_CANONICAL_DECOMPOSITION = 101  # per standard 3.12.2 Hangul syllable decomposition is equivalent to regular decomposition
@@ -1419,9 +1521,10 @@ if __name__ == '__main__':
     cursor = db.load_database(None)  # replace with options for development run
 
     # do stuff here if you want, for example:
-    #results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
-    #db.print_table(results)
+    # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
+    # db.print_table(results)
+    # Get a breakdown of a script's parent scripts:
+    # db.print_table(db.get_script_parents('Glag', ['Glag']))
     # or your own custom query: db.execute_query('YOUR QUERY HERE', parameters=None)
-
 
     cursor.close()

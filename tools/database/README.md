@@ -10,7 +10,7 @@ There are three queries that I wanted to answer with the database:
 
   - What are a given character's ancestors? *(done!)*
   - What are a given character's descendants? *(done!)*
-  - Given a script, what are its immediate parent scripts, and in what proportions? This is to help with the chart derivations. *(in principle the data now exists to answer this query for scripts in current use and minimal historic scripts, but it is not written yet)*
+  - Given a script, what are its immediate parent scripts, and in what proportions? This is to help with the chart derivations. *(query done, but the data is a bit rough - see alphabet in the schema documentation below)*
   - A fourth query could be a script's immediate children, but I'm not sure how much this adds on top of the other queries.
 
 Though there are no current plans, the functionality of the database could be extended beyond historical character relationships in the future (if you have any interesting ideas, ideally either not done elsewhere and/or fits neatly with current DB schema, ping me either here on GitHub or [on Reddit](https://www.reddit.com/user/DPenner1/)).
@@ -30,7 +30,7 @@ Though there are no current plans, the functionality of the database could be ex
 The database must be generated. For all purposes, the `./tools/database` folder is the working directory (while I am Linux-based, this should also work on Windows, but I have not tested this).
 
   1. The database is generated using Python 3, with only standard modules plus `sqlite3` (which is an optional module possibly already included in a given installation).
-  4. Generate the database by running the `./scriptdb.py` script. There is some logic for the script to try and work with an existing database, but there is no guarantee and you may have to delete the existing first. If the schema does not change though, it should just run a data update without issue.
+  4. Generate the database by running the `./scriptdb.py` script. There is some logic for the script to try and work with an existing database, but there is no guarantee and you may have to delete the existing first (for simplicity, this is recommended). If the schema does not change though, it should just run a data update without issue.
   5. The database `./scripts.db` appears (or is updated)! You can now run queries as you like from `sqlite3`. Alternatively, include some code at the end of `./scriptdb.py` or `import scriptdb` into your own Python code. But I guess that should've been done before step 2. Oops.
 
 The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/tools/database/queries) folder contains some queries, including finding a character's ancestors and descendants. Queries suffixed with `p` are parameterized, either replace the `?`(s) or call from code with parameters. Queries suffixed with `s` or `d` are called internally by the database setup code, the latter only with certain debug flags.
