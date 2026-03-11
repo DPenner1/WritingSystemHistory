@@ -596,6 +596,37 @@ class ScriptDatabase:
                 WHERE newsog.script_code = 'Sogd' AND oldsog.script_code = 'Sogo'""",
                        (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Old Sogdian / Sogdian same letter'))
 
+        latin_pattern = re.compile(r'([A-Z]{2,} )?([A-Z])( [A-Z]{2,}[ A-Z]*)?')
+        capitals = cursor.execute("""
+            SELECT id, substr(name, 22) FROM code_point 
+            WHERE 
+                script_code = 'Latn' 
+                AND general_category_code = 'Lu' 
+                AND name LIKE 'LATIN CAPITAL LETTER%'
+                AND equivalent_sequence_id IS NULL""").fetchall()
+        for capital in capitals:
+            match = latin_pattern.match(capital[1])
+            if match and (match.group(1) or match.group(3)): # needs to match one of these groups or it's the base letter itself
+                cursor.execute("""
+                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
+                    VALUES (?,?,?,?,?)""",
+                    (capital[0], ord(match.group(2)), DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Unicode Latin capital letter name'))
+        lowercases = cursor.execute("""
+            SELECT id, substr(name, 20) FROM code_point 
+            WHERE 
+                script_code = 'Latn' 
+                AND general_category_code = 'Ll' 
+                AND name LIKE 'LATIN SMALL LETTER%'
+                AND simple_uppercase_mapping_id IS NULL
+                AND equivalent_sequence_id IS NULL""").fetchall()
+        for lowercase in lowercases:
+            match = latin_pattern.match(lowercase[1])
+            if match and (match.group(1) or match.group(3)): # needs to match one of these groups or it's the base letter itself
+                cursor.execute("""
+                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
+                    VALUES (?,?,?,?,?)""",
+                    (lowercase[0], ord(match.group(2).lower()), DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Unicode Latin small letter name'))
+
         # we want to drop this as soon as possible so that the freed space can be used
         if drop_name_index:
             cursor.execute("DROP INDEX idx_cp_name")
@@ -712,18 +743,18 @@ class ScriptDatabase:
     def _load_derivations_from_case_data(self, cursor):
         # add derivations from case mapping, assuming lowercase to be derived from uppercase
         cursor.execute("""
-                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-                    SELECT id, simple_uppercase_mapping_id, ?, ?, 'Unicode Character Database case mapping data'
-                    FROM code_point
-                    WHERE simple_uppercase_mapping_id IS NOT NULL""",
-                       (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
+            SELECT id, simple_uppercase_mapping_id, ?, ?, 'Unicode Character Database case mapping data'
+            FROM code_point
+            WHERE simple_uppercase_mapping_id IS NOT NULL""",
+               (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
         # casing isn't 100% 1:1 so need to do mappings in both directions
         cursor.execute("""
-                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-                    SELECT simple_lowercase_mapping_id, id, ?, ?, 'Unicode Character Database case mapping data'
-                    FROM code_point cp1
-                    WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
-                       (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
+            SELECT simple_lowercase_mapping_id, id, ?, ?, 'Unicode Character Database case mapping data'
+            FROM code_point cp1
+            WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
+               (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
 
 
     def _load_manually_specified_derivations(self, cursor, verify_script):
@@ -778,6 +809,12 @@ class ScriptDatabase:
 
                     for parent in parents.split('/'):
                         if not parent: parent = self.NO_PARENT_CHARACTER
+
+                        # File-specified data overrides the automatically generated data
+                        cursor.execute(
+                            "DELETE FROM code_point_derivation WHERE child_id = ? AND certainty_type_id = ?",
+                            (ord(child), Certainty.AUTOMATED.value))
+
                         if verify_script:
                             if child == parent:
                                 raise ValueError("Attempted to add self-derivation of " + child)
@@ -785,17 +822,12 @@ class ScriptDatabase:
                                               (ord(child), ord(parent))).fetchall():
                                 raise ValueError("Attempted to add a 2-cycle with " + child + " and " + parent)
 
-                        # File-specified data overrides the automatically generated data
-                        cursor.execute(
-                            "DELETE FROM code_point_derivation WHERE parent_id = ? AND child_id = ? AND certainty_type_id = ?",
-                            (ord(parent), ord(child), Certainty.AUTOMATED.value))
-
                         for derivation_type in derivation_types.split('/'):
                             cursor.execute("""
-                                        INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
-                                        VALUES (?, ?, ?, ?, ?, ?)""", (ord(child), ord(parent), int(derivation_type), certainty, source, notes))
+                                INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
+                                VALUES (?, ?, ?, ?, ?, ?)""", (ord(child), ord(parent), int(derivation_type), certainty, source, notes))
 
-        # stuff that's confusing or might break csv format
+        # stuff that's confusing or might break csv format (commas, quotes, backslash)
         awkward_data = [
             (ord('/'), ord(self.NO_PARENT_CHARACTER), 1, Certainty.LIKELY.value,
              'https://archive.org/details/the-oxford-english-dictionary-1933-all-volumes/The%20Oxford%20English%20Dictionary%20Volume%2012%20-%20Variant/page/n238/mode/1up',

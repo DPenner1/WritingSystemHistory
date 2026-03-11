@@ -1,4 +1,4 @@
-Child,Parent,Derivation Type,Notes
+Child,Parent,Derivation Type,Certainty Type,Notes
 A,𐌀,1,
 a,A,4,
 B,𐌁,1,
@@ -8,47 +8,47 @@ c,C,5,
 D,𐌃,1,
 d,D,1,
 E,𐌄,1,
-e,E,1,Presumably - Wikipedia did not mention it
+e,E,1,5
 F,𐌅,1,
-f,F,1,Presumably - Wikipedia did not mention it
+f,F,1,5
 G,C,1,
 g,G,4,
 H,𐌇,1,
-h,H,1,Presumably - Wikipedia did not mention it
+h,H,1,5
 I,𐌉,1,
-i,I,1,Presumably - Wikipedia did not mention it
+i,I,1,5
 J,I,1,
-j,i,1,Based on Wikipedia i page specifically using lower case
+j,i,1,,Based on Wikipedia i page specifically using lower case
 K,𐌊,1,
-k,K,1,Presumably - Wikipedia did not mention it
+k,K,1,5
 L,𐌋,1,
-l,L,1,Presumably - Wikipedia did not mention it
+l,L,1,5
 M,𐌌,1,
-m,M,1,Presumably - Wikipedia did not mention it
+m,M,1,5
 N,𐌍,1,
-n,N,1,Presumably - Wikipedia did not mention it
+n,N,1,5
 O,𐌏,1,
 o,O,5,
 P,𐌐,1,
 p,P,1,
 Q,𐌒,1,
-q,Q,1,Presumably - Wikipedia did not mention it
+q,Q,1,5
 R,𐌓,1,
 r,R,4,
 S,𐌔,1,
 s,S,5,
 T,𐌕,1,
-t,T,1,Presumably - Wikipedia did not mention it
+t,T,1,5
 U,V,1,
 u,U,5,
 V,𐌖,1,
 v,V,1,
 W,V,1,
-w,W,5,Presumably - Wikipedia did not mention it
+w,W,5,5
 X,𐌗,5,
 x,X,5,
-Y,Υ,1,Seemingly a later introduction from Greek and not Etruscan Old Italic
-y,Y,1,Presumably - Wikipedia did not mention it
+Y,Υ,1,2,Seemingly a later introduction from Greek and not Etruscan Old Italic
+y,Y,1,5
 Z,𐌆,1,
 z,Z,5,
 
@@ -56,29 +56,113 @@ z,Z,5,
 Ɑ,a,1,
 ɑ,Ɑ,1,
 Ɐ,A,1,
-ɐ,a,1,Presumably
-æ,Æ/a/e,1,Presumably
-Ç,Ꝣ,1,Surprisingly not originally from C - though probably some convergent evolution
-ç,Ç,5,Presumably
+ɐ,a,1,5
+æ,Æ/a/e,1,5
 
+
+Ɓ,B,,5,
+Ƃ,B,,5
+Ƅ,6,1,1,
+
+Ç,Ꝣ,1,,Surprisingly not originally from C - though probably some convergent evolution
+ç,Ç,5,5
 Ȼ,C,1,
-ȼ,Ȼ,5,Presumably
+ȼ,Ȼ,5,5
+Ƈ,C,,5
+ʗ,C,,5
+
 Đ,D,1,
-đ,Đ/d,1,Presumably
+đ,Đ/d,1,5
+Ꝺ,D,1,1
+ꝺ,d/Ꝺ,5
+Ð,Ꝺ,1,5
+ð,ꝺ,1,5
+Ɖ,D,,5
+Ɗ,D,,5
+
+
 Ə,e,8,
-ə,Ə,1,Presumably
+ə,Ə,1,5
 Ǝ,E,9,
 ǝ,e,8,
+
 ꟻ,F,9,
+Ⅎ,F,8,5
+
 Ᵹ,g,1,
-ᵹ,Ᵹ,1,Presumably
+ᵹ,Ᵹ,1,5
+ɣ,γ,1,
+Ɣ,γ,1
 Ȝ,Ᵹ,1,
-ȝ,Ȝ,5,Presumably
+ȝ,Ȝ,5,5
 
+Ħ,H,
+Ⱶ,H,
+Ƕ,h,,5
 
+ꟾ,I,
+Ɩ,ι,
+
+ʞ,k,8
+ĸ,K,1,5
+
+Ł,L,1,5
+ɮ,l/Ʒ,,5
+
+Ɯ,m,8
+
+Ƞ,n,1
+ŋ,n,1
+Ŋ,ŋ/N,1,,Font variation - sometimes based on the lowercase and sometimes based on corresponding N
+
+Ơ,O,
 Œ,O/E,1,
-œ,Œ/o/e,1,Presumably
+œ,Œ/o/e,1,5
+Ø,O
+Ɔ,O/C,1,3
+ƣ,q,
+Ƣ,ƣ,
+Ȣ,ο/υ
+
+ʀ,R,,5
+Ʀ,ʀ,,2
+
+Ʃ,Σ,5,
+ʃ,ſ,1,2
+ƪ,ʃ,
+ſ,s
+ß,ſ/ʒ
+ẞ,ß
+
+Ŧ,T,,5
+Þ,ᚦ
+
+ʊ,ᴜ,,2
+Ʊ,ʊ,,5
+
+Ỽ,V
+
+Ƿ,ᚹ
+
+Ꭓ,χ,,5
 
 Ꝣ,Z,1,
-ꝣ,Ꝣ,5,Presumably
+ꝣ,Ꝣ,5,5
+Ʒ,z,4,
+
+ƻ,2,,5
+
+ʕ,ʔ,9,5
+ʖ,ʔ,9,5
+ƾ,ʡ/ʖ,,5
+ʡ,ʔ,,5
+ʢ,ʡ/ʕ,,5
+Ɂ,ʔ
+
+ǀ,|,,3
+ǁ,ǀ,,5
+ǂ,ǀ,,5
+ǃ,|/̣,,1
+ʘ,,,3
+
 
