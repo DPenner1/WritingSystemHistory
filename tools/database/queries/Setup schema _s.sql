@@ -48,9 +48,9 @@ CREATE TABLE IF NOT EXISTS code_point (
 ) STRICT;
 CREATE INDEX IF NOT EXISTS idx_fk_cp_script ON code_point(script_code);
 CREATE INDEX IF NOT EXISTS idx_cp_general_category ON code_point(general_category_code);
-CREATE INDEX IF NOT EXISTS idx_fk_cp_equivalent_sequence ON code_point(equivalent_sequence_id);
-CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_lowercase_mapping ON code_point(simple_lowercase_mapping_id);
-CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_uppercase_mapping ON code_point(simple_uppercase_mapping_id);
+CREATE INDEX IF NOT EXISTS idx_fk_cp_equivalent_sequence ON code_point(equivalent_sequence_id) WHERE equivalent_sequence_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_lowercase_mapping ON code_point(simple_lowercase_mapping_id) WHERE simple_lowercase_mapping_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_uppercase_mapping ON code_point(simple_uppercase_mapping_id) WHERE simple_uppercase_mapping_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_cp_name ON code_point(name);
 
 -- it's a tree structure
