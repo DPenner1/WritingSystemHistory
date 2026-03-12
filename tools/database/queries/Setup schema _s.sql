@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS script (
     canonical_script_code TEXT REFERENCES script(code),
     exemplar_sequence_id INTEGER UNIQUE REFERENCES sequence(id)    
 ) STRICT;
-CREATE INDEX IF NOT EXISTS idx_fk_s_exemplar_sequence ON script(exemplar_sequence_id);
+CREATE INDEX IF NOT EXISTS idx_fk_s_exemplar_sequence ON script(exemplar_sequence_id) WHERE exemplar_sequence_id IS NOT NULL;
 
 CREATE TABLE IF NOT EXISTS alphabet (
     id INTEGER PRIMARY KEY REFERENCES sequence(id),

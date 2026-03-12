@@ -827,7 +827,7 @@ class ScriptDatabase:
                                 INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
                                 VALUES (?, ?, ?, ?, ?, ?)""", (ord(child), ord(parent), int(derivation_type), certainty, source, notes))
 
-        # stuff that's confusing or might break csv format (commas, quotes, backslash)
+        # stuff that's confusing or might break csv format (commas, quotes, slashes)
         awkward_data = [
             (ord('/'), ord(self.NO_PARENT_CHARACTER), 1, Certainty.LIKELY.value,
              'https://archive.org/details/the-oxford-english-dictionary-1933-all-volumes/The%20Oxford%20English%20Dictionary%20Volume%2012%20-%20Variant/page/n238/mode/1up',
@@ -840,6 +840,9 @@ class ScriptDatabase:
             (ord(','), ord('/'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Comma', None),
             (ord(';'), ord(','), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Semicolon', None),
             (ord(';'), ord(':'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Semicolon', None),
+            (ord('⅍'), ord('A'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Aktieselskab', None),
+            (ord('⅍'), ord('/'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Aktieselskab', None),
+            (ord('⅍'), ord('S'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Aktieselskab', None),
         ]
         cursor.executemany("""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
@@ -1564,7 +1567,7 @@ if __name__ == '__main__':
     options.verify_data_sources = True
     options.output_debug_info = True
 
-    cursor = db.load_database(options)  # replace with options for development run
+    cursor = db.load_database(None)  # replace with options for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
