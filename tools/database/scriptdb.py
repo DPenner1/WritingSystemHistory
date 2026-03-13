@@ -306,13 +306,13 @@ class ScriptDatabase:
         cursor.execute("INSERT INTO sequence (id, type_id) VALUES (?, ?) ON CONFLICT DO NOTHING", (id, SequenceType.BASE.value))
         if self.is_private_use(id):
             cursor.execute("""
-                INSERT INTO code_point (id, name, script_code, general_category_code, bidi_class_code)
+                INSERT INTO code_point (id, raw_name, script_code, general_category_code, bidi_class_code)
                 VALUES (?, ?, ?, ?, ?)
-                ON CONFLICT DO UPDATE SET name = ?, script_code = ?, general_category_code = ?, bidi_class_code = ?""",
+                ON CONFLICT DO UPDATE SET raw_name = ?, script_code = ?, general_category_code = ?, bidi_class_code = ?""",
                 (id, name, script_code, general_category_code, bidi_class_code, name, script_code, general_category_code, bidi_class_code))
         else:
             cursor.execute("""
-                INSERT INTO code_point (id, name, script_code, general_category_code, bidi_class_code)
+                INSERT INTO code_point (id, raw_name, script_code, general_category_code, bidi_class_code)
                 VALUES (?, ?, ?, ?, ?)
                 ON CONFLICT DO NOTHING""",
                 (id, name, script_code, general_category_code, bidi_class_code))
@@ -341,7 +341,7 @@ class ScriptDatabase:
         cursor.execute("""
             UPDATE code_point
             SET 
-                name = ?,
+                raw_name = ?,
                 general_category_code = ?,
                 bidi_class_code = ?,
                 simple_uppercase_mapping_id = ?,
@@ -411,19 +411,17 @@ class ScriptDatabase:
                                 l_part = L_BASE + l_index
                                 v_part = V_BASE + v_index
                                 decom_str = f"<jamo> {hex(l_part)[2:].upper()} {hex(v_part)[2:].upper()}"
-                                suffix = " " + JAMO_SHORT_NAME[l_part] + JAMO_SHORT_NAME[v_part]
+                                name = JAMO_SHORT_NAME[l_part] + JAMO_SHORT_NAME[v_part]
                             else:
                                 temp, t_index = divmod(s_index, T_COUNT)
                                 lv_index = temp * T_COUNT
                                 lv_part = S_BASE + lv_index
                                 t_part = T_BASE + t_index
                                 decom_str = f"<jamo> {hex(lv_part)[2:].upper()} {hex(t_part)[2:].upper()}"
-                                lv_name = cursor.execute("SELECT name FROM code_point WHERE id = ?", (lv_part,)).fetchone()[0]
-                                suffix = " " + lv_name.split(' ')[-1] + JAMO_SHORT_NAME[t_part]
-                        else:
-                            suffix = '-' + hex(i)[2:].upper()
+                                lv_name = cursor.execute("SELECT raw_name FROM code_point WHERE id = ?", (lv_part,)).fetchone()[0]
+                                name = lv_name + JAMO_SHORT_NAME[t_part]
 
-                        self._update_code_point(cursor, i, name + suffix, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
+                        self._update_code_point(cursor, i, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
 
                     in_range = False
                 else:
@@ -438,13 +436,14 @@ class ScriptDatabase:
                     match = special_name_pattern.match(line[1])
                     if match:
                         parts = match.group(1).split(',')
-                        if len(parts) > 1:
-                            name = parts[0].strip().upper()
-                            if 'SURROGATE' in name or 'PRIVATE' in name:
-                                continue  # we aren't cataloguing these ranges
+                        if len(parts) > 1 and not 'Surrogate' in parts[0] and not 'Private' in parts[0]: # we aren't cataloguing these ranges
                             in_range = True
-                    else:
-                        name = line[1]
+                    else:  # Unicode standard 4.8 with some shortcuts taken
+                        if ((0x13460 <= code_point <= 0x143FA) or (0x18B00 <= code_point <= 0x18CD5) or (0x1B170 <= code_point <= 0x1B2FB) or
+                            (0xF900 <= code_point <= 0xFA6D) or (0xFA70 <= code_point <= 0XFAD9) or (0x2F800 <= code_point <= 0x2FA1D)):
+                            name = None
+                        else:
+                            name = line[1]
                         self._update_code_point(cursor, code_point, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
 
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'private_use.csv'), 'r') as file:
@@ -541,7 +540,7 @@ class ScriptDatabase:
             WHERE
                 mark.general_category_code = 'Mn' 
                 AND sym.general_category_code LIKE 'S_' 
-                AND mark.name LIKE 'COMBINING%'
+                AND mark.raw_name LIKE 'COMBINING%'
                 AND sym.equivalent_sequence_id IS NULL
             """).fetchall()
         # most of the rest seem to be combining letters / digits where that would be the canonical character
@@ -551,7 +550,7 @@ class ScriptDatabase:
             WHERE
                 mark.general_category_code = 'Mn' 
                 AND other.general_category_code NOT LIKE 'S_' 
-                AND mark.name LIKE 'COMBINING%'
+                AND mark.raw_name LIKE 'COMBINING%'
                 AND mark.equivalent_sequence_id IS NULL
             """).fetchall())
         # Hangul final->initial technical distinction
@@ -561,8 +560,8 @@ class ScriptDatabase:
             WHERE 
                 finals.script_code = 'Hang'
                 AND initials.script_code = 'Hang'
-                AND finals.name LIKE 'HANGUL JONGSEONG%'
-                AND initials.name LIKE 'HANGUL CHOSEONG%'
+                AND finals.raw_name LIKE 'HANGUL JONGSEONG%'
+                AND initials.raw_name LIKE 'HANGUL CHOSEONG%'
                 AND finals.equivalent_sequence_id IS NULL
             """).fetchall())
 
@@ -572,7 +571,7 @@ class ScriptDatabase:
         # add derivations based on name
         base_pattern = re.compile('^(ETHIOPIC SYLLABLE (?:[A-Z]+ )?[^ AEIOU]*)([AEIOU]+)$')
         derived_pattern = re.compile
-        ethiopic = cursor.execute("SELECT id, name FROM code_point WHERE script_code = 'Ethi' AND name LIKE 'ETHIOPIC SYLLABLE%'").fetchall()
+        ethiopic = cursor.execute("SELECT id, raw_name FROM code_point WHERE script_code = 'Ethi' AND raw_name LIKE 'ETHIOPIC SYLLABLE%'").fetchall()
         base_ethiopic_names = {}
         for x in ethiopic:
             match = base_pattern.match(x[1])
@@ -592,17 +591,17 @@ class ScriptDatabase:
             SELECT newsog.id, oldsog.id, ?, ?, ?
             FROM 
                 code_point newsog 
-                INNER JOIN code_point oldsog ON newsog.name = substr(oldsog.name, 5)
+                INNER JOIN code_point oldsog ON newsog.raw_name = substr(oldsog.raw_name, 5)
                 WHERE newsog.script_code = 'Sogd' AND oldsog.script_code = 'Sogo'""",
                        (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Old Sogdian / Sogdian same letter'))
 
         latin_pattern = re.compile(r'([A-Z]{2,} )?([A-Z])( [A-Z]{2,}[ A-Z]*)?')
         capitals = cursor.execute("""
-            SELECT id, substr(name, 22) FROM code_point 
+            SELECT id, substr(raw_name, 22) FROM code_point 
             WHERE 
                 script_code = 'Latn' 
                 AND general_category_code = 'Lu' 
-                AND name LIKE 'LATIN CAPITAL LETTER%'
+                AND raw_name LIKE 'LATIN CAPITAL LETTER%'
                 AND equivalent_sequence_id IS NULL""").fetchall()
         for capital in capitals:
             match = latin_pattern.match(capital[1])
@@ -616,7 +615,7 @@ class ScriptDatabase:
             WHERE 
                 script_code = 'Latn' 
                 AND general_category_code = 'Ll' 
-                AND name LIKE 'LATIN SMALL LETTER%'
+                AND raw_name LIKE 'LATIN SMALL LETTER%'
                 AND simple_uppercase_mapping_id IS NULL
                 AND equivalent_sequence_id IS NULL""").fetchall()
         for lowercase in lowercases:
@@ -629,7 +628,7 @@ class ScriptDatabase:
 
         # we want to drop this as soon as possible so that the freed space can be used
         if drop_name_index:
-            cursor.execute("DROP INDEX idx_cp_name")
+            cursor.execute("DROP INDEX idx_cp_raw_name")
 
         # Identify all the independently-derived characters
         cursor.execute(f"""
@@ -1567,7 +1566,7 @@ if __name__ == '__main__':
     options.verify_data_sources = True
     options.output_debug_info = True
 
-    cursor = db.load_database(options)  # replace with options for development run
+    cursor = db.load_database(None)  # replace with options for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))

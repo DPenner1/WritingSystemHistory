@@ -38,20 +38,36 @@ CREATE INDEX IF NOT EXISTS idx_fk_a_script ON alphabet(script_code);
 CREATE TABLE IF NOT EXISTS code_point (
     id INTEGER PRIMARY KEY REFERENCES sequence(id),
     text TEXT UNIQUE GENERATED ALWAYS AS (CASE WHEN general_category_code IN ('Cn', 'Cs') THEN NULL ELSE CHAR(id) END) STORED,
-    name TEXT,
+    raw_name TEXT,
     script_code TEXT NOT NULL DEFAULT 'Zzzz' REFERENCES script (code),
     general_category_code TEXT NOT NULL DEFAULT 'Cn',
     bidi_class_code TEXT NOT NULL DEFAULT 'L',
     simple_uppercase_mapping_id INTEGER REFERENCES code_point(id),
     simple_lowercase_mapping_id INTEGER REFERENCES code_point(id),
-    equivalent_sequence_id INTEGER REFERENCES sequence(id)
+    equivalent_sequence_id INTEGER REFERENCES sequence(id),
+    name TEXT GENERATED ALWAYS AS (CASE  -- space saving measure (see Unicode Standard 4.8)
+        WHEN general_category_code IN ('Cc', 'Cs') THEN NULL  -- The non-parent character is not conforming right now...
+        WHEN id BETWEEN 0xAC00 AND 0xD7A3 THEN CONCAT('HANGUL SYLLABLE ', raw_name)
+        WHEN id BETWEEN 0x13460 AND 0x143FA THEN CONCAT('EGYPTIAN HIEROGLYPH-', printf('%X', id))
+        WHEN id BETWEEN 0x17000 AND 0x187F7 OR 
+             id BETWEEN 0x18D00 AND 0x18D1E THEN CONCAT('TANGUT IDEOGRAPH-', printf('%X', id))
+        WHEN id BETWEEN 0x18B00 AND 0x18CD5 THEN CONCAT('KHITAN SMALL SCRIPT CHARACTER-', printf('%X', id))
+        WHEN id BETWEEN 0x1B170 AND 0x1B2FB THEN CONCAT('NUSHU CHARACTER-', printf('%X', id))
+        WHEN id BETWEEN 0xF900 AND 0xFA6D OR
+             id BETWEEN 0xFA70 AND 0XFAD9 OR
+             id BETWEEN 0x2F800 AND 0x2FA1D THEN CONCAT('CJK COMPATIBILITY IDEOGRAPH-', printf('%X', id))
+        WHEN id BETWEEN 0x3400 AND 0x4DBF OR
+             id BETWEEN 0x4E00 AND 0x9FFF OR  -- range a bit of a shortcut, since we don't have unassigned in this DB
+             id BETWEEN 0x20000 AND 0x33FFF THEN CONCAT('CJK UNIFIED IDEOGRAPH-', printf('%X', id))
+        WHEN id BETWEEN 0x3D000 AND 0x3FFFD THEN CONCAT('SEAL CHARACTER-', printf('%X', id)) --anticipatory
+        ELSE raw_name END) VIRTUAL
 ) STRICT;
-CREATE INDEX IF NOT EXISTS idx_fk_cp_script ON code_point(script_code);
-CREATE INDEX IF NOT EXISTS idx_cp_general_category ON code_point(general_category_code);
+CREATE INDEX IF NOT EXISTS idx_fk_cp_script ON code_point(script_code) WHERE script_code <> 'Hani'; -- no point indexing ~2/3 of the database;
+CREATE INDEX IF NOT EXISTS idx_cp_general_category ON code_point(general_category_code) WHERE general_category_code <> 'Lo';  -- even more of the DB 
 CREATE INDEX IF NOT EXISTS idx_fk_cp_equivalent_sequence ON code_point(equivalent_sequence_id) WHERE equivalent_sequence_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_lowercase_mapping ON code_point(simple_lowercase_mapping_id) WHERE simple_lowercase_mapping_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_uppercase_mapping ON code_point(simple_uppercase_mapping_id) WHERE simple_uppercase_mapping_id IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_cp_name ON code_point(name);
+CREATE INDEX IF NOT EXISTS idx_cp_raw_name ON code_point(raw_name) WHERE raw_name IS NOT NULL;
 
 -- it's a tree structure
 CREATE TABLE IF NOT EXISTS sequence_item (
