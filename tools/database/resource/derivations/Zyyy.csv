@@ -1,4 +1,4 @@
-Child,Parent,Derivation Type,Certainty Type,Source
+Child,Parent,Derivation Type,Certainty Type,Source,Notes
 !,I/O,1,3,Wikipedia: Exclamation Mark
 #,℔,1,2,Wikipedia: Number sign
 $,p/s,1,2,Wikipedia: Dollar sign
@@ -9,6 +9,18 @@ $,P/S/T/I/J,1,3,Wikipedia: Dollar sign
 −,m/̄,1,3,Wikipedia: Plus sign and minus signs
 -,−/‐,5,1,Wikipedia: Hyphen
 .,˙,1,1,Wikipedia: Full stop
+
+0,𑁦,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+1,𑁧,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+2,𑁨,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+3,𑁩,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+4,𑁪,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+5,𑁫,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+6,𑁬,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+7,𑁭,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+8,𑁮,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+9,𑁯,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+
 <,,1,2,Wikipedia: Greater-than sign
 =,,1,2,Wikipedia: Equals sign
 >,,1,2,Wikipedia: Greater-than sign
