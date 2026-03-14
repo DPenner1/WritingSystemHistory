@@ -34,6 +34,25 @@ Child,Parent,Certainty Type
 ض,ص
 ؋,ا/ف
 
+ك,ک
+ک,گ
+
+ځ,ح/ٔ,5
+ڂ,ح,5
+ڃ,ح,5
+ڄ,ح,5
+څ,ح,5
+چ,ح,5
+ڇ,ح,5
+
+ٮ,ݐ,5
+ٮ,ݑ,5
+ٮ,ݒ,5
+ٮ,ݓ,5
+ٮ,ݔ,5
+ٮ,ݕ,5
+ٮ,ݖ,5
+
 ٠,𑁦,1,3,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
 ١,𑁧,1,3,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
 ٢,𑁨,1,3,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
