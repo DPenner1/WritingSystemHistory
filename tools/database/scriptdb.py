@@ -1038,36 +1038,29 @@ class ScriptDatabase:
 
     # TODO: this no longer works with the current alphabet architecture
     def _verify_script_coverage(self, cursor):
-        def verify_script(script):
-            missing_chars = cursor.execute("""
-                SELECT cp.text FROM code_point cp INNER JOIN script s ON s.code = cp.script_code WHERE s.u_name = ? AND cp.std_order_num IS NOT NULL
-                EXCEPT
-                SELECT cp.text
-                FROM 
-                    code_point_derivation cpd
-                    INNER JOIN code_point cp ON cpd.child_id = cp.id
-                    INNER JOIN script s ON s.code = cp.script_code
-                WHERE s.u_name = ?""",
-                (script, script)).fetchall()
+        results = [('Script', 'Coverage')]
+
+        def verify_seq(seq_id):
+            missing_chars = self.execute_saved_query("Missing code points in sequence", parameters=(seq_id,), return_headers=False)
+            if not missing_chars:
+                return None # all characters have a derivation
+            num_missing = len(missing_chars)
+            if num_missing >= 12:
+                return f"{num_missing} missing characters"
+            return ", ".join([i[1] for i in missing_chars])
+
+        scripts = cursor.execute('SELECT name, exemplar_sequence_id FROM script WHERE name IS NOT NULL AND code NOT IN (?, ?) ORDER BY name',
+                                 (self.COMMON_SCRIPT, self.INHERITED_SCRIPT))
+        for script in scripts:
+            if script[1]:
+                script_result = verify_seq(script[1])
+                if script_result:
+                    results.append((script[0], verify_seq(script[1])))
+            else:
+                results.append((script[0], 'No standard characters specified'))
 
             # Incomplete data not necessarily an error, we just output to audit it
-            num_missing = len(missing_chars)
-            if (num_missing > 0):
-                message = f"{script.ljust(pad)}|  {f'{num_missing} characters' if num_missing >= 12 else ", ".join([i[0] for i in missing_chars])}"
-                print(message)
-
-        pad = 22
-        table_header = 'Script'.ljust(pad) + '|  Missing derivations from standard alphabet'
-        print('-' * pad + '+' + '-' * (len(table_header) - pad))
-        print(table_header)
-        print('-' * pad + '+' + '-' * (len(table_header) - pad))
-
-        with open(os.path.join(self._resource_path, 'standard_alphabets.csv'), 'r') as csvfile:
-            for row in csv.DictReader(csvfile):
-                verify_script(row['Script'])
-        with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'r') as csvfile:
-            for row in csv.DictReader(csvfile):
-                verify_script(row['Script'])
+        self.print_table(results)
 
 
     def _parse_cldr_exemplar_set(self, cursor, cldr_str, parse_data, verify):
@@ -1479,6 +1472,8 @@ class ScriptDatabase:
             print(f"Number of private use characters: {priv_use_count}")
             # self._verify_script_coverage(cur) -> TODO this no longer works with new alphabet architecture
             self.print_table(self.execute_saved_query('Total derivation statistics'))
+        if options.verify_data_sources:
+            self._verify_script_coverage(cur)
 
         cur.execute("PRAGMA foreign_keys = ON")
 
@@ -1566,7 +1561,7 @@ if __name__ == '__main__':
     options.verify_data_sources = True
     options.output_debug_info = True
 
-    cursor = db.load_database(options)  # replace with options for development run
+    cursor = db.load_database(None)  # replace with options for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
