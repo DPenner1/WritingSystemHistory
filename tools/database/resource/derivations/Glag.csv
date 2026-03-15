@@ -1,4 +1,4 @@
-Child,Parent,Derivation Type,Certainty Type,Notes
+Child,Parent,Derivation Type,Certainty Type,Source,Notes
 Ⰰ,𐤀
 Ⰱ,ב/ܒ/ࠌ
 Ⰲ,V
@@ -26,7 +26,7 @@ Child,Parent,Derivation Type,Certainty Type,Notes
 Ⱇ,φ,,1
 Ⱈ,,
 Ⱒ,Ⴉ
-Ⱉ,Ο,1,,Potentially derived from two Ⱁ's but avoiding cycles for now
+Ⱉ,Ο,1,,,Potentially derived from two Ⱁ's but avoiding cycles for now
 Ⱋ,Ⱎ/Ⱅ,,1
 Ⱌ,ץ,,2
 Ⱍ,𐍁/צ
@@ -43,3 +43,5 @@ Child,Parent,Derivation Type,Certainty Type,Notes
 Ⱙ,Ⱔ/
 Ⱚ,θ,,1
 Ⱛ,,
+Ⱊ,,,3,Wikitionary letter page
+Ⱕ,Ⱔ,,5

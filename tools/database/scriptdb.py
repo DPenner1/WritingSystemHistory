@@ -798,6 +798,11 @@ class ScriptDatabase:
                     derivation_types = resolve_default(defaults, script, row, 'Derivation Type',
                                                        last_resort=str(DerivationType.DEFAULT.value))
 
+                    # File-specified data overrides the automatically generated data
+                    cursor.execute(
+                        "DELETE FROM code_point_derivation WHERE child_id = ? AND certainty_type_id = ?",
+                        (ord(child), Certainty.AUTOMATED.value))
+
                     # ensure that child character is always the expected script
                     if verify_script:
                         script_in_db = cursor.execute(
@@ -808,11 +813,6 @@ class ScriptDatabase:
 
                     for parent in parents.split('/'):
                         if not parent: parent = self.NO_PARENT_CHARACTER
-
-                        # File-specified data overrides the automatically generated data
-                        cursor.execute(
-                            "DELETE FROM code_point_derivation WHERE child_id = ? AND certainty_type_id = ?",
-                            (ord(child), Certainty.AUTOMATED.value))
 
                         if verify_script:
                             if child == parent:
@@ -1467,6 +1467,7 @@ class ScriptDatabase:
         if output: lap_time, lap_mb = output_info("Done loading alphabet data.", start_time, lap_time, lap_mb)
 
         if output:
+            print("=" * 40)
             print(f'Database loaded. Total time: {time.time() - start_time:.2f} s. Total size: {lap_mb:.1f} MB')
             priv_use_count = cur.execute("SELECT COUNT(*) FROM code_point WHERE script_code LIKE 'Q%' OR script_code IN ('Psin', 'Egyd')").fetchone()[0]
             print(f"Number of private use characters: {priv_use_count}")
