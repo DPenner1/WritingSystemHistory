@@ -26,6 +26,7 @@ class ScriptDatabase:
                     'Tha', 'Da', 'Dha', 'Na', 'Pa', 'Pha', 'Ba', 'Bha', 'Ma', 'Ya', 'Ra', 'La', 'Va', 'Śa', 'Ṣa', 'Sa','Ha']
     _SEMITIC_ORDER = ['Aleph', 'Bet', 'Gimel', 'Dalet', 'He', 'Waw', 'Zayin', 'Heth', 'Teth', 'Yodh', 'Kaph', 'Lamedh',
                      'Mem', 'Nun', 'Samekh', 'Ayin', 'Pe', 'Tsade', 'Qoph', 'Resh', 'Shin', 'Taw']
+    _DIGIT_ORDER = ['ZERO', 'ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE']
     _PROTO_SINAITIC_ORDER = ['ALP', 'BAYT', 'GAML', 'DALT', 'DAG', 'HAW', 'WAW', 'ZAYN', 'HASIR', 'HAYT', 'TAB', 'YAD', 'KAP',
                               'LAMD', 'MAYM', 'NAHS', 'SAMK', 'AYN', 'PAY', 'PIT', 'SAD', 'QUP', 'QAW', 'RAS', 'SAMS', 'TAD', 'TAW']
     # Difficult to find a standard catalog, so I've put them as the translit at https://en.wikipedia.org/wiki/Demotic_Egyptian_script + ancestor hieroglyph
@@ -394,7 +395,6 @@ class ScriptDatabase:
                     for i in range(start, end + 1):
                         self._insert_code_point(cursor, i, name=None, script_code=script_code, bidi_class_code=None, general_category_code=None)
 
-
         with open(os.path.join(self._unicode_path, 'UnicodeData.txt'), 'r') as csvfile:
             special_name_pattern = re.compile('^<(.+)>$')
             in_range = False
@@ -445,15 +445,6 @@ class ScriptDatabase:
                         else:
                             name = line[1]
                         self._update_code_point(cursor, code_point, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
-
-        with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'private_use.csv'), 'r') as file:
-            for row in csv.DictReader(file):
-                self._insert_code_point(cursor,
-                                        int(row['Id']),
-                                        script_code=row['Script Code'],
-                                        name=row['Name'],
-                                        general_category_code=row['General Category'],
-                                        bidi_class_code=None)  # mostly a hack, all current PU are the default L
 
 
     def _load_lookups(self, cursor):
@@ -848,11 +839,12 @@ class ScriptDatabase:
             VALUES (?, ?, ?, ?, ?, ?)""", awkward_data)
 
 
-    def _load_derivations(self, cursor, indic_letter_data, semitic_letter_data, drop_name_index, verify_script):
+    def _load_derivations(self, cursor, digit_data, indic_letter_data, semitic_letter_data, drop_name_index, verify_script):
         self._load_equivalents_names_and_independents(cursor, drop_name_index)
 
-        self._load_letter_derivation_data(cursor, indic_letter_data, ScriptDatabase._INDIC_ORDER, verify_script)
-        self._load_letter_derivation_data(cursor, semitic_letter_data, ScriptDatabase._SEMITIC_ORDER, verify_script)
+        self._load_letter_derivation_data(cursor, digit_data, self._DIGIT_ORDER, "Assumed indic number derivations", verify_script)
+        self._load_letter_derivation_data(cursor, indic_letter_data, self._INDIC_ORDER, "Wikipedia indic letter pages", verify_script)
+        self._load_letter_derivation_data(cursor, semitic_letter_data, self._SEMITIC_ORDER, "Wikipedia semitic letter pages", verify_script)
 
         self._load_derivations_from_equivalencies(cursor)
         self._load_derivations_from_case_data(cursor)
@@ -870,7 +862,7 @@ class ScriptDatabase:
         return retval
 
 
-    def _generate_private_use_data(self, indic_letter_data):
+    def _load_private_use_data(self, cursor, indic_letter_data):
         def get_private_use_indic_name(script_code, wiki_letter_name):
             script_name = self.get_code_to_script_dict()[script_code]
             replacements = {'Ā': 'AA', 'Ī': 'II', 'Ū': 'UU', 'Ṛ': 'vocalic R', 'Ṝ': 'vocalic RR', 'Ḷ': 'vocalic L', 'Ḹ': 'vocalic LL',
@@ -882,24 +874,46 @@ class ScriptDatabase:
 
         dem_replacements = {'š': 'sh', 'ẖ': 'x', 'ḥ': 'h-dot', 'ḥ2': 'h2-dot', 'ḏ': 'd-underbar', 'ḏ2': 'd2-underbar',
                             'ı͗': 'i-halfring', 'ꜥ': 'ain', 'ḫ': 'h-underbar', 'š2': 'sh2'}
-        with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'private_use.csv'), 'w') as file:
-            file.write('Id,Script Code,Name,General Category')
 
-            for script_code in indic_letter_data:
-                if script_code.startswith('Q'):
-                    for letter_class in indic_letter_data[script_code]:
-                        letter = indic_letter_data[script_code][letter_class][0] # generated only has one
-                        file.write(f'\n{ord(letter)},{script_code},{get_private_use_indic_name(script_code, letter_class)},Lo') # TODO: Assuming Lo for now
+        digit_data = {}
+        script_names = self.get_code_to_script_dict()
+        offset = len(self._INDIC_ORDER)
+        for script_code in indic_letter_data:
+            if script_code.startswith('Q'):
+                for letter_class in indic_letter_data[script_code]:
+                    letter = indic_letter_data[script_code][letter_class][0] # generated only has one
+                    self._insert_code_point(cursor, ord(letter), get_private_use_indic_name(script_code, letter_class), script_code, 'Lo', bidi_class_code = None)
 
-            for i, letter in enumerate(ScriptDatabase._PROTO_SINAITIC_ORDER):
-                file.write(f'\n{i + ScriptDatabase._CODE_POINT_STARTS['Psin']},Psin,PROTO-SINAITIC LETTER {letter},Lo')
+                # we assume numerals exists (this might actually be debatable for the early scripts)
+                for i, digit_name in enumerate(self._DIGIT_ORDER):
+                    temp = len(indic_letter_data[script_code])
+                    self._insert_code_point(cursor,
+                                            self._CODE_POINT_STARTS[script_code] + offset + i,
+                                            f"{script_names[script_code].upper().replace("'", "")} DIGIT {digit_name}",
+                                            script_code,
+                                            'Nd',
+                                            bidi_class_code = None)
 
-            for i, letter in enumerate(ScriptDatabase._DEMOTIC_SUBSET):
-                temp = letter.split(' ')[0]
-                l = dem_replacements[temp] if temp in dem_replacements else temp
-                file.write(f'\n{i + ScriptDatabase._CODE_POINT_STARTS['Egyd']},Egyd,EGYPTIAN DEMOTIC LETTER {l.upper()},Lo')
+            digit_data[script_code] = {}
+            for digit_name in self._DIGIT_ORDER:
+                digit_code_point = cursor.execute("SELECT text FROM code_point WHERE script_code = ? AND name LIKE ?",
+                                                  (script_code, f"%DIGIT {digit_name}%")).fetchall()
+                if len(digit_code_point) == 1:
+                    digit_data[script_code][digit_name] = [digit_code_point[0][0]]
 
-    # format: { script_code (lowercase): { Generic Indic Letter: [letters] } }
+        for i, letter in enumerate(ScriptDatabase._PROTO_SINAITIC_ORDER):
+            self._insert_code_point(cursor, i + ScriptDatabase._CODE_POINT_STARTS['Psin'], f"PROTO-SINAITIC LETTER {letter}", "Psin", 'Lo', bidi_class_code=None)
+            # TODO double check bidi class code
+
+        for i, letter in enumerate(ScriptDatabase._DEMOTIC_SUBSET):
+            temp = letter.split(' ')[0]
+            l = dem_replacements[temp] if temp in dem_replacements else temp
+            self._insert_code_point(cursor, i + ScriptDatabase._CODE_POINT_STARTS['Egyd'], f"EGYPTIAN DEMOTIC LETTER {l.upper()}", "Egyd", 'Lo', bidi_class_code=None)
+            # TODO bidi class code is rtl
+
+        return digit_data
+
+    # format: { script_code: { Generic Indic Letter: [letters] } }
     def _get_indic_letter_dict(self, verify):
         wdata = {}
         hex_pattern = re.compile('^[0-9A-F]+$')
@@ -935,7 +949,7 @@ class ScriptDatabase:
         for fill_in_script in fill_in_scripts:
             if fill_in_script not in wdata:
                 wdata[fill_in_script] = {}
-            for letter in ScriptDatabase._INDIC_ORDER:
+            for letter in self._INDIC_ORDER:
                 fill_in_letter = False
                 if letter in wdata[fill_in_script] and wdata[fill_in_script][letter] is not None:
                     fill_in_letter = (len(wdata[fill_in_script][letter]) == 0) # in theory letter could already have be there, so don't touch it
@@ -1014,7 +1028,7 @@ class ScriptDatabase:
         generate_std_alphabet(semitic_letter_dict, ScriptDatabase._SEMITIC_ORDER)
 
 
-    def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, verify):
+    def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, source, verify):
         for script_code in letter_dict:
             if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
                 parent_code = ScriptDatabase._SCRIPT_PARENTS[script_code]
@@ -1031,12 +1045,12 @@ class ScriptDatabase:
                                          ord(parent_letters[0]),
                                          DerivationType.DEFAULT.value,
                                          Certainty.AUTOMATED.value,
-                                         'Wikipedia letter cognate charts',
+                                         source,
                                          'Not necessarily graphical derivation but likely'))
                             elif verify:  # temporary, for later manual work
                                 print(f"Data generation warning: {len(parent_letters)} parent letters found for {letter_class} in {script_code}")
 
-    # TODO: this no longer works with the current alphabet architecture
+
     def _verify_script_coverage(self, cursor):
         results = [('Script', 'Coverage')]
 
@@ -1404,7 +1418,7 @@ class ScriptDatabase:
         def output_info(message, start_time, lap_time, lap_mb):
             current_time = time.time()
             current_mb = os.path.getsize(os.path.join(self._db_path, self._db_name)) / 1000000
-            print(message + f" Elapsed: {current_time - start_time:.2f} s (+{current_time - lap_time:.2f} s). Size: {current_mb:.1f} MB (+{current_mb - lap_mb:.1f} MB)")
+            print(f"{message} Elapsed: {current_time - start_time:.2f} s (+{current_time - lap_time:.2f} s). Size: {current_mb:.1f} MB (+{current_mb - lap_mb:.1f} MB)")
             return current_time, current_mb
 
         options = load_options if load_options else LoadOptions()
@@ -1443,22 +1457,21 @@ class ScriptDatabase:
         self._cxn.commit()
         self._load_scripts(cur)
         self._cxn.commit()
-        if output: lap_time, lap_mb = output_info("Done loading lookups and script data.", start_time, lap_time, lap_mb)
 
         indic_letter_data = self._get_indic_letter_dict(options.verify_data_sources)
         semitic_letter_data = self._get_semitic_letter_dict()
-
-        self._generate_private_use_data(indic_letter_data)
         self._generate_std_alphabets(indic_letter_data, semitic_letter_data)
-        if output: lap_time, lap_mb = output_info("Done generating letter data.", start_time, lap_time, lap_mb)
+        if output: lap_time, lap_mb = output_info("Done basics: loading lookups and scripts; generating letter data.", start_time, lap_time, lap_mb)
 
         # updates generally expected on this table, just clear (and before loading code points so cleared space can be used)
         cur.execute("DELETE FROM code_point_derivation")
         self._load_code_point_data(cur)
         self._cxn.commit()
+        digit_data = self._load_private_use_data(cur, indic_letter_data)  # spaghetti
+        self._cxn.commit()
         if output: lap_time, lap_mb = output_info("Done loading code point data.", start_time, lap_time, lap_mb)
 
-        self._load_derivations(cur, indic_letter_data, semitic_letter_data, options.drop_code_point_name_index, options.verify_data_sources)
+        self._load_derivations(cur, digit_data, indic_letter_data, semitic_letter_data, options.drop_code_point_name_index, options.verify_data_sources)
         self._cxn.commit()
         if output: lap_time, lap_mb = output_info("Done loading derivation data.", start_time, lap_time, lap_mb)
 
@@ -1467,7 +1480,7 @@ class ScriptDatabase:
         if output: lap_time, lap_mb = output_info("Done loading alphabet data.", start_time, lap_time, lap_mb)
 
         if output:
-            print("=" * 40)
+            print("=" * 80)
             print(f'Database loaded. Total time: {time.time() - start_time:.2f} s. Total size: {lap_mb:.1f} MB')
             priv_use_count = cur.execute("SELECT COUNT(*) FROM code_point WHERE script_code LIKE 'Q%' OR script_code IN ('Psin', 'Egyd')").fetchone()[0]
             print(f"Number of private use characters: {priv_use_count}")
