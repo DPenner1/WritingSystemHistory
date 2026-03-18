@@ -235,6 +235,7 @@ class ScriptDatabase:
             unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'UnicodeData.txt', os.path.join(self._unicode_path, 'UnicodeData.txt')),
             unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Scripts.txt', os.path.join(self._unicode_path, 'Scripts.txt')),
             unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Unikemet.txt', os.path.join(self._unicode_path, 'Unikemet.txt')),
+            unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'NameAliases.txt', os.path.join(self._unicode_path, 'NameAliases.txt')),
             unzip_file(os.path.join(zip_dir_path, 'Unihan.zip'), 'Unihan_Variants.txt', os.path.join(self._unicode_path, 'Unihan_Variants.txt')),
         ]
 
@@ -338,7 +339,6 @@ class ScriptDatabase:
             for i, decom_id in enumerate(decom_ids):
                 cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, decom_id, i + 1))
 
-
         cursor.execute("""
             UPDATE code_point
             SET 
@@ -436,7 +436,9 @@ class ScriptDatabase:
                     match = special_name_pattern.match(line[1])
                     if match:
                         parts = match.group(1).split(',')
-                        if len(parts) > 1 and not 'Surrogate' in parts[0] and not 'Private' in parts[0]: # we aren't cataloguing these ranges
+                        if len(parts) > 1:
+                            if 'Surrogate' in parts[0] or 'Private' in parts[0]: # we aren't cataloguing these ranges
+                                continue
                             in_range = True
                     else:  # Unicode standard 4.8 with some shortcuts taken
                         if ((0x13460 <= code_point <= 0x143FA) or (0x18B00 <= code_point <= 0x18CD5) or (0x1B170 <= code_point <= 0x1B2FB) or
@@ -444,7 +446,16 @@ class ScriptDatabase:
                             name = None
                         else:
                             name = line[1]
+                    if not in_range:
                         self._update_code_point(cursor, code_point, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
+
+        with open(os.path.join(self._unicode_path, 'NameAliases.txt'), 'r') as file:
+            for line in file:
+                if not line.isspace() and not line.startswith('#'):
+                    parts = line.split(';')
+                    if parts[2].strip() in ['correction', 'figment', 'control']:
+                        cursor.execute("UPDATE code_point SET alt_name = CONCAT(alt_name, ' / ', ?) WHERE id = ? AND alt_name IS NOT NULL", (parts[1], int(parts[0], 16)))
+                        cursor.execute("UPDATE code_point SET alt_name = ? WHERE id = ? AND alt_name IS NULL", (parts[1], int(parts[0], 16)))
 
 
     def _load_lookups(self, cursor):
@@ -526,7 +537,7 @@ class ScriptDatabase:
 
     # This one's a mess of interdependent stuff that needs to be done in a certain order for performance reasons
     # (a lot of the equivalency could be factored out, but it's also nice to have all that in one place)
-    def _load_equivalents_names_and_independents(self, cursor, drop_name_index):
+    def _load_equivalents_names_and_independents(self, cursor, drop_name_index=True):
         # Mende Kikakui is a bit of an exception here: Unicode Encoding Proposal suggests Vai-derived characters are a small minority
         # Not including Chinese here: ideally will eventually do so for Oracle bone. Similar for modern Yi vs classical Yi
         independent_scripts = {'Mend', 'Egyp', 'Lina', 'Hluw', 'Xsux', 'Xpeo', 'Ogam', 'Elba', 'Dupl', 'Sgnw', 'Shaw', 'Vith',
@@ -749,7 +760,7 @@ class ScriptDatabase:
                                              Certainty.ASSUMED, None, "Based in part on Unicode name")
 
 
-    def _load_derivations_from_case_data(self, cursor):
+    def _load_derivations_from_case_data(self, cursor, drop_case_columns=False):
         # add derivations from case mapping, assuming lowercase to be derived from uppercase
         cursor.execute("""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
@@ -764,6 +775,12 @@ class ScriptDatabase:
             FROM code_point cp1
             WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
                (DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
+
+        if drop_case_columns:
+            cursor.execute("DROP INDEX idx_fk_cp_simple_uppercase_mapping")
+            cursor.execute("ALTER TABLE code_point DROP COLUMN simple_uppercase_mapping_id")
+            cursor.execute("DROP INDEX idx_fk_cp_simple_lowercase_mapping")
+            cursor.execute("ALTER TABLE code_point DROP COLUMN simple_lowercase_mapping_id")
 
 
     def _load_manually_specified_derivations(self, cursor, verify_script):
@@ -856,15 +873,14 @@ class ScriptDatabase:
             VALUES (?, ?, ?, ?, ?, ?)""", awkward_data)
 
 
-    def _load_derivations(self, cursor, digit_data, indic_letter_data, semitic_letter_data, drop_name_index, verify_script):
+    def _load_derivations(self, cursor, digit_data, indic_letter_data, semitic_letter_data, drop_case_columns, drop_name_index, verify_script):
         self._load_equivalents_names_and_independents(cursor, drop_name_index)
+        self._load_derivations_from_case_data(cursor, drop_case_columns)
+        self._load_derivations_from_equivalencies(cursor)
 
         self._load_letter_derivation_data(cursor, digit_data, self._DIGIT_ORDER, "Assumed indic number derivations", verify_script)
         self._load_letter_derivation_data(cursor, indic_letter_data, self._INDIC_ORDER, "Wikipedia indic letter pages", verify_script)
         self._load_letter_derivation_data(cursor, semitic_letter_data, self._SEMITIC_ORDER, "Wikipedia semitic letter pages", verify_script)
-
-        self._load_derivations_from_equivalencies(cursor)
-        self._load_derivations_from_case_data(cursor)
 
         self._load_manually_specified_derivations(cursor, verify_script)
 
@@ -1477,10 +1493,13 @@ class ScriptDatabase:
         self._load_code_point_data(cur)
         self._cxn.commit()
         digit_data = self._load_private_use_data(cur, indic_letter_data)  # spaghetti
+        if options.drop_bidi_class_column:  # TODO: is it possible to not even load this column to start?
+            cur.execute("ALTER TABLE code_point DROP COLUMN bidi_class_code")
         self._cxn.commit()
         if output: lap_time, lap_mb = output_info("Done loading code point data.", start_time, lap_time, lap_mb)
 
-        self._load_derivations(cur, digit_data, indic_letter_data, semitic_letter_data, options.drop_code_point_name_index, options.verify_data_sources)
+        self._load_derivations(cur, digit_data, indic_letter_data, semitic_letter_data, options.drop_case_columns,
+                               options.drop_code_point_name_index, options.verify_data_sources)
         self._cxn.commit()
         if output: lap_time, lap_mb = output_info("Done loading derivation data.", start_time, lap_time, lap_mb)
 
@@ -1574,6 +1593,9 @@ class LoadOptions:
         # path None = Default to leaving previous path alone, DB working subdirectories if not previously specified
         self.resource_path = None
         self.saved_query_path = None
+        # columns that are less likely to be relevant
+        self.drop_bidi_class_column = False
+        self.drop_case_columns = False
 
 
 if __name__ == '__main__':
@@ -1582,6 +1604,8 @@ if __name__ == '__main__':
     options.force_overwrite = True
     options.verify_data_sources = True
     options.output_debug_info = True
+    options.drop_case_columns = True
+    options.drop_bidi_class_column = True
 
     cursor = db.load_database(options)  # replace with options for development run
 
