@@ -1,41 +1,42 @@
-Child,Parent,Derivation Type,Source
-包,勹,1,Wikipedia: Bopomofo - 2026-02-17
-攵,攴,1,Wikipedia: Bopomofo - 2026-02-17
-万,萬,3,Wikipedia: Bopomofo - 2026-02-17
-刀,𠚣,1,Wikipedia: Bopomofo - 2026-02-17
-育,𠫓,1,Wikipedia: Bopomofo - 2026-02-17
-𠫓,子,8,Wikipedia: Bopomofo - 2026-02-17
-乃,𠄎,1,Wikipedia: Bopomofo - 2026-02-17
-力,𠠲,1,Wikipedia: Bopomofo - 2026-02-17
-川,巛,1,Wikipedia: Bopomofo - 2026-02-17
-巛,𡿨,1,Wikipedia: Bopomofo - 2026-02-17
-下,丅,1,Wikipedia: Bopomofo - 2026-02-17
-之,𡳿,1,Wikipedia: Bopomofo - 2026-02-17
-尸,𡰣,1,Wikipedia: Bopomofo - 2026-02-17
-七,𠀁,1,Wikipedia: Bopomofo - 2026-02-17
-私,厶,1,Wikipedia: Bopomofo - 2026-02-17
-亥,𠀅,1,Wikipedia: Bopomofo - 2026-02-17
-肱,𠃋,1,Wikipedia: Bopomofo - 2026-02-17
-儿,兒,3,Wikipedia: Bopomofo - 2026-02-17
-𠄡,㐅,1,Wikipedia: Bopomofo - 2026-02-17
-五,𠄡,1,Wikipedia: Bopomofo - 2026-02-17
+Child,Parent,Derivation Type,Multiplicity,Source
+包,勹,1,,Wikipedia: Bopomofo - 2026-02-17
+攵,攴,1,,Wikipedia: Bopomofo - 2026-02-17
+万,萬,3,,Wikipedia: Bopomofo - 2026-02-17
+刀,𠚣,1,,Wikipedia: Bopomofo - 2026-02-17
+育,𠫓,1,,Wikipedia: Bopomofo - 2026-02-17
+𠫓,子,8,,Wikipedia: Bopomofo - 2026-02-17
+乃,𠄎,1,,Wikipedia: Bopomofo - 2026-02-17
+力,𠠲,1,,Wikipedia: Bopomofo - 2026-02-17
+川,巛,1,,Wikipedia: Bopomofo - 2026-02-17
+巛,𡿨,1,3,Wikipedia: Bopomofo - 2026-02-17
+下,丅,1,,Wikipedia: Bopomofo - 2026-02-17
+之,𡳿,1,,Wikipedia: Bopomofo - 2026-02-17
+尸,𡰣,1,,Wikipedia: Bopomofo - 2026-02-17
+七,𠀁,1,,Wikipedia: Bopomofo - 2026-02-17
+私,厶,1,,Wikipedia: Bopomofo - 2026-02-17
+亥,𠀅,1,,Wikipedia: Bopomofo - 2026-02-17
+肱,𠃋,1,,Wikipedia: Bopomofo - 2026-02-17
+儿,兒,3,,Wikipedia: Bopomofo - 2026-02-17
+𠄡,㐅,1,,Wikipedia: Bopomofo - 2026-02-17
+五,𠄡,1,,Wikipedia: Bopomofo - 2026-02-17
 
-𭑨,安,,Wiktionary
-扵,於,,Wiktionary
-𬻎,嘉,,Wiktionary
-欤,歟,3,Wiktionary
-㐂,喜/七,,Wiktionary
-湏,沬,,Wiktionary
-須,湏,,Wiktionary
-潣,湏,,Wiktionary
-㔺,世,,Wiktionary
-世,丗,,Wiktionary
-报,報,3,Wiktionary
-夲,本,,Wiktionary
-逰,遊,,Wiktionary
-畄,留,3,Wiktionary
-䴡,麗,,Wiktionary
-娄,婁,3,Wiktionary
-楼,樓,3,Wiktionary
-爲,為,,Wiktionary
-恵,惠,,Wiktionary
+𭑨,安,,,Wiktionary
+扵,於,,,Wiktionary
+𬻎,嘉,,,Wiktionary
+欤,歟,3,,Wiktionary
+㐂,七,,3,Wiktionary
+㐂,喜,,,Wiktionary
+湏,沬,,,Wiktionary
+須,湏,,,Wiktionary
+潣,湏,,,Wiktionary
+㔺,世,,,Wiktionary
+世,丗,,,Wiktionary
+报,報,3,,Wiktionary
+夲,本,,,Wiktionary
+逰,遊,,,Wiktionary
+畄,留,3,,Wiktionary
+䴡,麗,,,Wiktionary
+娄,婁,3,,Wiktionary
+楼,樓,3,,Wiktionary
+爲,為,,,Wiktionary
+恵,惠,,,Wiktionary

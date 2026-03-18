@@ -12,6 +12,14 @@ CREATE TABLE IF NOT EXISTS sequence (
 ) STRICT;
 CREATE INDEX IF NOT EXISTS idx_fk_s_type ON sequence(type_id);
 
+-- it's a tree structure
+CREATE TABLE IF NOT EXISTS sequence_item (
+    sequence_id INTEGER REFERENCES sequence(id),
+    item_id INTEGER REFERENCES sequence(id),
+    order_num INTEGER,
+    PRIMARY KEY (sequence_id, item_id, order_num)
+) STRICT;
+
 CREATE TABLE IF NOT EXISTS script (
     code TEXT PRIMARY KEY,
     iso_id INT UNIQUE NOT NULL,
@@ -90,6 +98,7 @@ CREATE TABLE IF NOT EXISTS code_point_derivation (
     parent_id INTEGER REFERENCES code_point (id),
     derivation_type_id INTEGER NOT NULL DEFAULT 1 REFERENCES derivation_type (id),
     certainty_type_id INTEGER NOT NULL DEFAULT 6 REFERENCES certainty_type (id),
+    multiplicity INTEGER DEFAULT 1,
     source TEXT,
     notes TEXT,
     PRIMARY KEY (child_id, parent_id, derivation_type_id)

@@ -1,76 +1,76 @@
-Child,Parent,Derivation Type,Certainty Type,Source,Notes
-ᄀ,ꡂ,1,3,Ledyard 1997,
-ᄃ,ꡊ,1,3,Ledyard 1997,
-ᄅ,ꡙ,1,3,Ledyard 1997,
-ᄇ,ꡎ,1,3,Ledyard 1997,
-ᄌ,ꡛ,1,3,Ledyard 1997,
+Child,Parent,Derivation Type,Certainty Type,Multiplicity,Source,Notes
+ᄀ,ꡂ,1,3,,Ledyard 1997,
+ᄃ,ꡊ,1,3,,Ledyard 1997,
+ᄅ,ꡙ,1,3,,Ledyard 1997,
+ᄇ,ꡎ,1,3,,Ledyard 1997,
+ᄌ,ꡛ,1,3,,Ledyard 1997,
 
-ᄋ,,1,3,,
-ᄂ,,1,3,,
+ᄋ,,1,3,,,
+ᄂ,,1,3,,,
 
-ᄆ,ᄇ,1,3,Wikipedia: Origin of Hangul,Traditionally the other way around but avoiding cyclic references for now
-ᄉ,ᄌ,1,3,Wikipedia: Origin of Hangul,Traditionally the other way around but avoiding cyclic references for now
-ᄎ,ᄌ,1,2,Wikipedia: Origin of Hangul,
-ᄏ,ᄀ,1,2,Wikipedia: Origin of Hangul,
-ᄐ,ᄃ,1,2,Wikipedia: Origin of Hangul,
-ᄑ,ᄇ,1,2,Wikipedia: Origin of Hangul,
-ᄒ,ᅙ,1,2,Wikipedia: Origin of Hangul,
-ᄁ,ᄀ,5,1,Wikipedia: Origin of Hangul,
-ᄄ,ᄃ,5,1,Wikipedia: Origin of Hangul,
-ᄈ,ᄇ,5,1,Wikipedia: Origin of Hangul,
-ᄊ,ᄉ,5,1,Wikipedia: Origin of Hangul,
-ᄍ,ᄌ,5,1,Wikipedia: Origin of Hangul,
+ᄆ,ᄇ,1,3,,Wikipedia: Origin of Hangul,Traditionally the other way around but avoiding cyclic references for now
+ᄉ,ᄌ,1,3,,Wikipedia: Origin of Hangul,Traditionally the other way around but avoiding cyclic references for now
+ᄎ,ᄌ,1,2,,Wikipedia: Origin of Hangul,
+ᄏ,ᄀ,1,2,,Wikipedia: Origin of Hangul,
+ᄐ,ᄃ,1,2,,Wikipedia: Origin of Hangul,
+ᄑ,ᄇ,1,2,,Wikipedia: Origin of Hangul,
+ᄒ,ᅙ,1,2,,Wikipedia: Origin of Hangul,
+ᄁ,ᄀ,5,1,2,Wikipedia: Origin of Hangul,
+ᄄ,ᄃ,5,1,2,Wikipedia: Origin of Hangul,
+ᄈ,ᄇ,5,1,2,Wikipedia: Origin of Hangul,
+ᄊ,ᄉ,5,1,2,Wikipedia: Origin of Hangul,
+ᄍ,ᄌ,5,1,2,Wikipedia: Origin of Hangul,
 
-ᆨ,ᄀ,10,1,,Graphical duplicate of initial/final consonant
-ᆩ,ᄁ,10,1,,Graphical duplicate of initial/final consonant
-ᆪ,ᆨ/ᆺ,5,1,,
-ᆫ,ᄂ,10,1,,Graphical duplicate of initial/final consonant
-ᆬ,ᆫ/ᆽ,5,1,,
-ᆭ,ᆫ/ᇂ,5,1,,
-ᆮ,ᄃ,10,1,,Graphical duplicate of initial/final consonant
-ᆯ,ᄅ,10,1,,Graphical duplicate of initial/final consonant
-ᆰ,ᆯ/ᆨ,5,1,,
-ᆱ,ᆯ/ᆷ,5,1,,
-ᆲ,ᆯ/ᆸ,5,1,,
-ᆳ,ᆯ/ᆺ,5,1,,
-ᆴ,ᆯ/ᇀ,5,1,,
-ᆵ,ᆯ/ᇁ,5,1,,
-ᆶ,ᆯ/ᇂ,5,1,,
-ᆷ,ᄆ,10,1,,Graphical duplicate of initial/final consonant
-ᆸ,ᄇ,10,1,,Graphical duplicate of initial/final consonant
-ᆹ,ᆸ/ᆺ,5,1,,
-ᆺ,ᄉ,10,1,,Graphical duplicate of initial/final consonant
-ᆻ,ᄊ,10,1,,Graphical duplicate of initial/final consonant
-ᆼ,ᄋ,10,1,,Graphical duplicate of initial/final consonant
-ᆽ,ᄌ,10,1,,Graphical duplicate of initial/final consonant
-ᆾ,ᄎ,10,1,,Graphical duplicate of initial/final consonant
-ᆿ,ᄏ,10,1,,Graphical duplicate of initial/final consonant
-ᇀ,ᄐ,10,1,,Graphical duplicate of initial/final consonant
-ᇁ,ᄑ,10,1,,Graphical duplicate of initial/final consonant
-ᇂ,ᄒ,10,1,,Graphical duplicate of initial/final consonant
+ᆨ,ᄀ,10,1,,,Graphical duplicate of initial/final consonant
+ᆩ,ᄁ,10,1,2,,Graphical duplicate of initial/final consonant
+ᆪ,ᆨ/ᆺ,5,1,,,
+ᆫ,ᄂ,10,1,,,Graphical duplicate of initial/final consonant
+ᆬ,ᆫ/ᆽ,5,1,,,
+ᆭ,ᆫ/ᇂ,5,1,,,
+ᆮ,ᄃ,10,1,,,Graphical duplicate of initial/final consonant
+ᆯ,ᄅ,10,1,,,Graphical duplicate of initial/final consonant
+ᆰ,ᆯ/ᆨ,5,1,,,
+ᆱ,ᆯ/ᆷ,5,1,,,
+ᆲ,ᆯ/ᆸ,5,1,,,
+ᆳ,ᆯ/ᆺ,5,1,,,
+ᆴ,ᆯ/ᇀ,5,1,,,
+ᆵ,ᆯ/ᇁ,5,1,,,
+ᆶ,ᆯ/ᇂ,5,1,,,
+ᆷ,ᄆ,10,1,,,Graphical duplicate of initial/final consonant
+ᆸ,ᄇ,10,1,,,Graphical duplicate of initial/final consonant
+ᆹ,ᆸ/ᆺ,5,1,,,
+ᆺ,ᄉ,10,1,,,Graphical duplicate of initial/final consonant
+ᆻ,ᄊ,10,1,2,,Graphical duplicate of initial/final consonant
+ᆼ,ᄋ,10,1,,,Graphical duplicate of initial/final consonant
+ᆽ,ᄌ,10,1,,,Graphical duplicate of initial/final consonant
+ᆾ,ᄎ,10,1,,,Graphical duplicate of initial/final consonant
+ᆿ,ᄏ,10,1,,,Graphical duplicate of initial/final consonant
+ᇀ,ᄐ,10,1,,,Graphical duplicate of initial/final consonant
+ᇁ,ᄑ,10,1,,,Graphical duplicate of initial/final consonant
+ᇂ,ᄒ,10,1,,,Graphical duplicate of initial/final consonant
 
-ᅡ,ᅵ/ᆞ,1,1,Wikipedia: Origin of Hangul,
-ᅢ,ᅵ/ᅡ,1,1,Wikipedia: Origin of Hangul,
-ᅣ,ᅵ/ᆞ,1,1,Wikipedia: Origin of Hangul,
-ᅤ,ᅵ/ᅣ,1,1,Wikipedia: Origin of Hangul,
-ᅥ,ᅵ/ᆞ,1,1,Wikipedia: Origin of Hangul,
-ᅦ,ᅵ/ᅥ,1,1,Wikipedia: Origin of Hangul,
-ᅨ,ᅵ/ᆞ,1,1,Wikipedia: Origin of Hangul,
-ᅩ,ᅳ/ᆞ,1,1,Wikipedia: Origin of Hangul,
-ᅪ,ᅩ/ᅡ,1,1,Wikipedia: Origin of Hangul,
-ᅫ,ᅩ/ᅢ,1,1,Wikipedia: Origin of Hangul,
-ᅬ,ᅩ/ᅵ,1,1,Wikipedia: Origin of Hangul,
-ᅭ,ᅳ/ᆞ,1,1,Wikipedia: Origin of Hangul,
-ᅮ,ᅳ/ᆞ,1,1,Wikipedia: Origin of Hangul,
-ᅯ,ᅮ/ᅥ,1,1,Wikipedia: Origin of Hangul,
-ᅰ,ᅮ/ᅦ,1,1,Wikipedia: Origin of Hangul,
-ᅱ,ᅮ/ᅵ,1,1,Wikipedia: Origin of Hangul,
-ᅲ,ᅳ/ᆞ,1,1,Wikipedia: Origin of Hangul,
-ᅴ,ᅳ/ᅵ,1,1,Wikipedia: Origin of Hangul,
+ᅡ,ᅵ/ᆞ,1,1,,Wikipedia: Origin of Hangul,
+ᅢ,ᅵ/ᅡ,1,1,,Wikipedia: Origin of Hangul,
+ᅣ,ᅵ/ᆞ,1,1,,Wikipedia: Origin of Hangul,
+ᅤ,ᅵ/ᅣ,1,1,,Wikipedia: Origin of Hangul,
+ᅥ,ᅵ/ᆞ,1,1,,Wikipedia: Origin of Hangul,
+ᅦ,ᅵ/ᅥ,1,1,,Wikipedia: Origin of Hangul,
+ᅨ,ᅵ/ᆞ,1,1,,Wikipedia: Origin of Hangul,
+ᅩ,ᅳ/ᆞ,1,1,,Wikipedia: Origin of Hangul,
+ᅪ,ᅩ/ᅡ,1,1,,Wikipedia: Origin of Hangul,
+ᅫ,ᅩ/ᅢ,1,1,,Wikipedia: Origin of Hangul,
+ᅬ,ᅩ/ᅵ,1,1,,Wikipedia: Origin of Hangul,
+ᅭ,ᅳ/ᆞ,1,1,,Wikipedia: Origin of Hangul,
+ᅮ,ᅳ/ᆞ,1,1,,Wikipedia: Origin of Hangul,
+ᅯ,ᅮ/ᅥ,1,1,,Wikipedia: Origin of Hangul,
+ᅰ,ᅮ/ᅦ,1,1,,Wikipedia: Origin of Hangul,
+ᅱ,ᅮ/ᅵ,1,1,,Wikipedia: Origin of Hangul,
+ᅲ,ᅳ/ᆞ,1,1,,Wikipedia: Origin of Hangul,
+ᅴ,ᅳ/ᅵ,1,1,,Wikipedia: Origin of Hangul,
 
 
-ᄾ,ᄼ,9,2,Osterkamp 2012,
-ᄿ,ᄽ,9,2,Osterkamp 2012,
-ᅐ,ᅎ,9,2,Osterkamp 2012,
-ᅑ,ᅏ,9,2,Osterkamp 2012,
-ᅕ,ᅔ,9,2,Osterkamp 2012,
+ᄾ,ᄼ,9,2,,Osterkamp 2012,
+ᄿ,ᄽ,9,2,,Osterkamp 2012,
+ᅐ,ᅎ,9,2,,Osterkamp 2012,
+ᅑ,ᅏ,9,2,,Osterkamp 2012,
+ᅕ,ᅔ,9,2,,Osterkamp 2012,

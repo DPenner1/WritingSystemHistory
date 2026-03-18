@@ -1,135 +1,141 @@
-Child,Parent,Derivation Type,Certainty Type,Source,Notes
-!,I/O,1,3,Wikipedia: Exclamation Mark
-#,℔,1,2,Wikipedia: Number sign
-$,p/s,1,2,Wikipedia: Dollar sign
-$,P/S/T/I/J,1,3,Wikipedia: Dollar sign
-&,e/t,1,1,Wikipedia:Ampersand
-*,𒀭,1,3,Wikipedia:Asterisk
-+,e/t,1,1,Wikipedia: Plus sign and minus signs
-−,m/̄,1,3,Wikipedia: Plus sign and minus signs
--,−/‐,5,1,Wikipedia: Hyphen
-.,˙,1,1,Wikipedia: Full stop
+Child,Parent,Derivation Type,Certainty Type,Multiplicity,Source,Notes
+!,I/O,1,3,,Wikipedia: Exclamation Mark
+#,℔,1,2,,Wikipedia: Number sign
+$,p/s,1,2,,Wikipedia: Dollar sign
+$,P/S/T/I/J,1,3,,Wikipedia: Dollar sign
+&,e/t,1,1,,Wikipedia:Ampersand
+*,𒀭,1,3,,Wikipedia:Asterisk
++,e/t,1,1,,Wikipedia: Plus sign and minus signs
+−,m/̄,1,3,,Wikipedia: Plus sign and minus signs
+-,−/‐,5,1,,Wikipedia: Hyphen
+.,˙,1,1,,Wikipedia: Full stop
 
-0,𑁦,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-1,𑁧,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-2,𑁨,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-3,𑁩,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-4,𑁪,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-5,𑁫,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-6,𑁬,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-7,𑁭,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-8,𑁮,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-9,𑁯,1,3,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+0,𑁦,1,3,,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+1,𑁧,1,3,,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+2,𑁨,1,3,,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+3,𑁩,1,3,,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+4,𑁪,1,3,,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+5,𑁫,1,3,,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+6,𑁬,1,3,,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+7,𑁭,1,3,,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+8,𑁮,1,3,,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+9,𑁯,1,3,,https://en.wikipedia.org/wiki/Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
 
-<,,1,2,Wikipedia: Greater-than sign
-=,,1,2,Wikipedia: Equals sign
->,,1,2,Wikipedia: Greater-than sign
-?,̃/҃,1,3,Wikipedia: Question Mark
-@,,1,3,Wikipedia: At sign
+<,,1,2,,Wikipedia: Greater-than sign
+=,,1,2,,Wikipedia: Equals sign
+>,,1,2,,Wikipedia: Greater-than sign
+?,̃/҃,1,3,,Wikipedia: Question Mark
+@,,1,3,,Wikipedia: At sign
 
-¡,!,8,1,Wikipedia: Upside-down question and exclamation marks
-£,L,1,1,Wikipedia: Pound sign
-¥,Y,1,1,Wikipedia: Yen and yuan sign
-§,S/⸏,1,3,Wikipedia: Section sign
-©,C/⃝,1,1,Wikipedia: Copyright symbol
-®,R/⃝,1,5,
-±,+/−,1,5,
-¶,⸿,1,2,Wikipedia: Pilcrow
-¿,?,8,1,Wikipedia: Upside-down question and exclamation marks
+¡,!,8,1,,Wikipedia: Upside-down question and exclamation marks
+£,L,1,1,,Wikipedia: Pound sign
+¥,Y,1,1,,Wikipedia: Yen and yuan sign
+§,S/⸏,1,3,,Wikipedia: Section sign
+©,C/⃝,1,1,,Wikipedia: Copyright symbol
+®,R/⃝,1,5,,
+±,+/−,1,5,,
+¶,⸿,1,2,,Wikipedia: Pilcrow
+¿,?,8,1,,Wikipedia: Upside-down question and exclamation marks
 
-‐,͜,1,1,Wikipedia: Hyphen
-‵,′,1,5,
-※,米,1,2,https://en.wiktionary.org/wiki/%E2%80%BB
-‽,?/!,1,1,https://en.wiktionary.org/wiki/%E2%80%BD
-⁊,e/t,1,1,https://en.wiktionary.org/wiki/%E2%81%8A
-⁋,¶,9,5,
-⁏,;,9,5,
-⁑,*,1,5,
-₠,C/E,1,1,https://en.wikipedia.org/wiki/European_Currency_Unit
-₡,C/̸,1,1,https://en.wikipedia.org/wiki/Col%C3%B3n_(currency)
-₢,C/r,1,1,https://en.wikipedia.org/wiki/Cruzeiro_sign
-₣,F,1,5,
-₥,m/̸,1,1,https://en.wiktionary.org/wiki/%E2%82%A5
-₦,N/̶,1,5,
-₧,P/t/s,1,5,
-₩,W/̶,1,1,https://en.wikipedia.org/wiki/Won_sign
-₪,ש/ח,1,1,https://en.wikipedia.org/wiki/Shekel_sign
-₫,đ/̲,1,5,
-€,ε,1,1,https://en.wikipedia.org/wiki/Euro_sign
-₭,K/̶,1,1,https://en.wiktionary.org/wiki/%E2%82%AD
-₮,T/̷,1,5,
-₯,Δ/ρ,1,1,https://en.wiktionary.org/wiki/%E2%82%AF
-₰,d,1,1,https://en.wiktionary.org/wiki/%E2%82%B0
-₱,P/̶,1,1,https://en.wikipedia.org/wiki/Philippine_peso_sign
-₲,G/⃒,1,5,
-₳,A/̶,1,1,https://en.wikipedia.org/wiki/Argentine_austral
-₴,г/̶,4,2,https://en.wikipedia.org/wiki/Hryvnia_sign
-₵,C/⃒,1,5,
-₶,l/t,1,1,https://en.wiktionary.org/wiki/%E2%82%B6
-₷,S/m,1,1,https://en.wikipedia.org/wiki/Spesmilo
-₸,T/̅,1,5,
-₹,र/R,1,1,https://en.wiktionary.org/wiki/%E2%82%B9
-₺,L/̷,1,1,https://en.wiktionary.org/wiki/%E2%82%BA
-₻,m,1,5,
-₼,m,1,1,https://en.wikipedia.org/wiki/Azerbaijani_manat_sign
-₽,Р/̵,1,1,https://en.wikipedia.org/wiki/Ruble_sign
-₾,ლ,1,1,https://en.wiktionary.org/wiki/%E2%82%BE
-₿,B,1,1,https://en.wiktionary.org/wiki/%E2%82%BF
-⃀,С/̲,1,1,https://en.wikipedia.org/wiki/Kyrgyz_som
-⃁,ر/ي/ا/ل,1,1,https://en.wikipedia.org/wiki/Saudi_riyal_sign
+‐,͜,1,1,,Wikipedia: Hyphen
+‵,′,1,5,,
+※,米,1,2,,https://en.wiktionary.org/wiki/%E2%80%BB
+‽,?/!,1,1,,https://en.wiktionary.org/wiki/%E2%80%BD
+⁊,e/t,1,1,,https://en.wiktionary.org/wiki/%E2%81%8A
+⁋,¶,9,5,,
+⁏,;,9,5,,
+⁑,*,1,5,2,
+₠,C/E,1,1,,https://en.wikipedia.org/wiki/European_Currency_Unit
+₡,C,1,1,,https://en.wikipedia.org/wiki/Col%C3%B3n_(currency)
+₡,̸,1,5,2,https://en.wikipedia.org/wiki/Col%C3%B3n_(currency)
+₢,C/r,1,1,,https://en.wikipedia.org/wiki/Cruzeiro_sign
+₣,F/̵,1,5,,
+₥,m/̸,1,1,,https://en.wiktionary.org/wiki/%E2%82%A5
+₦,N,1,5,,
+₦,̶,1,5,2,
+₧,P/t/s,1,5,,
+₩,W,1,1,,https://en.wikipedia.org/wiki/Won_sign
+₩,̶,1,5,2,https://en.wikipedia.org/wiki/Won_sign
+₪,ש/ח,1,1,,https://en.wikipedia.org/wiki/Shekel_sign
+₫,đ/̲,1,5,,
+€,ε,1,1,,https://en.wikipedia.org/wiki/Euro_sign
+₭,K/̶,1,1,,https://en.wiktionary.org/wiki/%E2%82%AD
+₮,T/̷,1,5,,
+₯,Δ/ρ,1,1,,https://en.wiktionary.org/wiki/%E2%82%AF
+₰,d,1,1,,https://en.wiktionary.org/wiki/%E2%82%B0
+₱,P,1,1,,https://en.wikipedia.org/wiki/Philippine_peso_sign
+₱,̶,1,5,2,
+₲,G/⃒,1,5,,
+₳,A/̶,1,1,,https://en.wikipedia.org/wiki/Argentine_austral
+₴,г,4,2,,https://en.wikipedia.org/wiki/Hryvnia_sign
+₴,̶,1,5,2,
+₵,C/⃒,1,5,,
+₶,l/t,1,1,,https://en.wiktionary.org/wiki/%E2%82%B6
+₷,S/m,1,1,,https://en.wikipedia.org/wiki/Spesmilo
+₸,T/̅,1,5,,
+₹,र/R,1,1,,https://en.wiktionary.org/wiki/%E2%82%B9
+₺,L,1,1,,https://en.wiktionary.org/wiki/%E2%82%BA
+₺,̷,1,5,2,
+₻,m,1,5,,
+₼,m,1,1,,https://en.wikipedia.org/wiki/Azerbaijani_manat_sign
+₽,Р/̵,1,1,,https://en.wikipedia.org/wiki/Ruble_sign
+₾,ლ,1,1,,https://en.wiktionary.org/wiki/%E2%82%BE
+₿,B,1,1,,https://en.wiktionary.org/wiki/%E2%82%BF
+⃀,С/̲,1,1,,https://en.wikipedia.org/wiki/Kyrgyz_som
+⃁,ر/ي/ا/ل,,1,1,https://en.wikipedia.org/wiki/Saudi_riyal_sign
 
-℄,L/C,,5
-℔,l/b,1,1,Wikipedia: Number sign
-℗,P/⃝,1,5,
-℘,p,1,1,https://en.wikipedia.org/wiki/Weierstrass_elliptic_function
-℞,R,1,1,Wikipedia: Medical Prescription
-℟,R,1,1,Wikipedia: Preces
-℣,V,1,1,Wikipedia: Preces
-℧,Ω,9,1,Wikipedia: Siemens (unit)
-℩,ι,8,5,
-℮,e,,5
-℺,Q,8,5,
-⅁,G,8,5,
-⅂,L,8,5,
-⅃,L,9,5,
-⅄,Y,9,5,
-⅊,P/L,,5
-⅋,&,8,5,
-⅌,p,,2,https://unicode.org/L2/L2003/03194-math-letterlike.pdf
-↊,2,8,5,
-↋,3,8,5,
-↔,←/→,,5,
+℄,L/C,,5,
+℔,l/b,1,1,,Wikipedia: Number sign
+℗,P/⃝,1,5,,
+℘,p,1,1,,https://en.wikipedia.org/wiki/Weierstrass_elliptic_function
+℞,R,1,1,,Wikipedia: Medical Prescription
+℟,R,1,1,,Wikipedia: Preces
+℣,V,1,1,,Wikipedia: Preces
+℧,Ω,9,1,,Wikipedia: Siemens (unit)
+℩,ι,8,5,,
+℮,e,,5,
+℺,Q,8,5,,
+⅁,G,8,5,,
+⅂,L,8,5,,
+⅃,L,9,5,,
+⅄,Y,9,5,,
+⅊,P/L,,5,
+⅋,&,8,5,,
+⅌,p,,2,,https://unicode.org/L2/L2003/03194-math-letterlike.pdf
+↊,2,8,5,,
+↋,3,8,5,,
+↔,←/→,,5,,
 
-∀,A,9,1,https://en.wiktionary.org/wiki/%E2%88%80
-∁,C,1,5,
-∂,d,1,1,https://en.wiktionary.org/wiki/%E2%88%82
-∃,E,9,1,https://en.wiktionary.org/wiki/%E2%88%83
-∅,Ø,1,1,Wikipedia: Empty set
+∀,A,9,1,,https://en.wiktionary.org/wiki/%E2%88%80
+∁,C,1,5,,
+∂,d,1,1,,https://en.wiktionary.org/wiki/%E2%88%82
+∃,E,9,1,,https://en.wiktionary.org/wiki/%E2%88%83
+∅,Ø,1,1,,Wikipedia: Empty set
 
-☿,☤,3,1,https://en.wikipedia.org/wiki/Planetary_symbols
-♀,,1,1,https://en.wikipedia.org/wiki/Planetary_symbols
-♁,,1,1,https://en.wikipedia.org/wiki/Planetary_symbols
-♂,,1,1,https://en.wikipedia.org/wiki/Planetary_symbols
-♃,Ζ,1,1,https://en.wikipedia.org/wiki/Planetary_symbols
-♄,Κ/ρ,1,1,https://en.wikipedia.org/wiki/Planetary_symbols
-⛢,♂/☉,1,1,https://en.wikipedia.org/wiki/Planetary_symbols
-♆,,1,1,https://en.wikipedia.org/wiki/Planetary_symbols
-♇,P/L,1,1,https://en.wikipedia.org/wiki/Planetary_symbols
+☿,☤,3,1,,https://en.wikipedia.org/wiki/Planetary_symbols
+♀,,1,1,,https://en.wikipedia.org/wiki/Planetary_symbols
+♁,,1,1,,https://en.wikipedia.org/wiki/Planetary_symbols
+♂,,1,1,,https://en.wikipedia.org/wiki/Planetary_symbols
+♃,Ζ,1,1,,https://en.wikipedia.org/wiki/Planetary_symbols
+♄,Κ/ρ,1,1,,https://en.wikipedia.org/wiki/Planetary_symbols
+⛢,♂/☉,1,1,,https://en.wikipedia.org/wiki/Planetary_symbols
+♆,,1,1,,https://en.wikipedia.org/wiki/Planetary_symbols
+♇,P/L,1,1,,https://en.wikipedia.org/wiki/Planetary_symbols
 
-⸿,C,1,2,Wikipedia: Pilcrow
-⹀,⸗,1,1,Wikipedia: Double hyphen
+⸿,C,1,2,,kkWikipedia: Pilcrow
+⹀,⸗,1,1,,Wikipedia: Double hyphen
 
-𝄉,D/S/.,,5
-𝄊,D/C/.,,5
-𝄑,𝄐,9,5
-𝄟,𝄞/8,,5
-𝄠,𝄞/8,,5
-𝄣,𝄢/8,,5
-𝄤,𝄢/8,,5
-𝄶,8/v/a,,5
-𝄷,8/v/b,,5
-𝄸,1/5/m/a,,5
-𝄹,1/5/m/b,,5
-𝆏,p,,5
-𝆐,m,,5
-𝆑,f,,5
+𝄉,D/S/.,,5,
+𝄊,D/C/.,,5,
+𝄑,𝄐,9,5,
+𝄟,𝄞/8,,5,
+𝄠,𝄞/8,,5,
+𝄣,𝄢/8,,5,
+𝄤,𝄢/8,,5,
+𝄶,8/v/a,,5,
+𝄷,8/v/b,,5,
+𝄸,1/5/m/a,,5,
+𝄹,1/5/m/b,,5,
+𝆏,p,,5,
+𝆐,m,,5,
+𝆑,f,,5,

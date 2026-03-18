@@ -531,9 +531,9 @@ class ScriptDatabase:
         cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, equivalent_id))
 
 
-    def _load_single_derivation(self, cursor, child_id, parent_id, derivation_type, certainty_type, source, notes):
-        cursor.execute("INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes) VALUES (?,?,?,?,?,?)",
-                       (child_id, parent_id, derivation_type.value, certainty_type.value, source, notes))
+    def _load_single_derivation(self, cursor, child_id, parent_id, derivation_type, certainty_type, source, notes, multiplicity=1):
+        cursor.execute("INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes, multiplicity) VALUES (?,?,?,?,?,?,?)",
+                       (child_id, parent_id, derivation_type.value, certainty_type.value, source, notes, multiplicity))
 
     # This one's a mess of interdependent stuff that needs to be done in a certain order for performance reasons
     # (a lot of the equivalency could be factored out, but it's also nice to have all that in one place)
@@ -665,6 +665,7 @@ class ScriptDatabase:
                         self._load_single_derivation(cursor, child_id, 1631, DerivationType.DEFAULT, Certainty.AUTOMATED, None, arabic_note_text)
                     hamza_id = 1621 if "HAMZA BELOW" in with_text else 1620
                     self._load_single_derivation(cursor, child_id, hamza_id, DerivationType.DEFAULT, Certainty.AUTOMATED, None, arabic_note_text)
+
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "KASRA", with_text) or found_other
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "FATHA", with_text) or found_other
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "MEEM", with_text) or found_other
@@ -673,8 +674,12 @@ class ScriptDatabase:
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "EXTENDED ARABIC-INDIC DIGIT TWO", with_text) or found_other
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "EXTENDED ARABIC-INDIC DIGIT THREE", with_text) or found_other
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "EXTENDED ARABIC-INDIC DIGIT FOUR", with_text) or found_other
-                if match.group(1) != "TEH": # in theory this kind of clause should also apply to the others, but the data doesn't have it so don't want to overcomplicate
+                # in theory this kind of clause should also apply to the others, but the data doesn't have it so don't want to overcomplicate
+                if match.group(1) == "TEH" and "TEH" in with_text:
+                    cursor.execute("UPDATE code_point_derivation SET multiplicity = ? WHERE child_id = ? AND parent_id = ?", (2, child_id, arabic_map["TEH"]))
+                else:
                     found_other = try_arabic_text_load_deriv(cursor, child_id, "TEH", with_text) or found_other
+
                 if "DOT" in with_text or "STROKE" in with_text or "BAR" in with_text or "RING" in with_text:
                     # TODO skip these for now, but maybe some could be derived from diacritics?
                     found_other = True
@@ -847,13 +852,14 @@ class ScriptDatabase:
                                                     override_condition=(parents.isspace()),
                                                     last_resort=str(Certainty.UNSPECIFIED.value)))
 
+                    multiplicity = int(resolve_default(defaults, script, row, 'Multiplicity', last_resort=1))
+
                     # Overriding default here is for convenience: An Assumed certainty means there is no source, so allows us to specify a source in defaults for all else.
                     source = resolve_default(defaults, script, row, 'Source', overriding_default=None,
                                              override_condition=(certainty == Certainty.ASSUMED.value))
 
                     notes = resolve_default(defaults, script, row, 'Notes')
-                    derivation_types = resolve_default(defaults, script, row, 'Derivation Type',
-                                                       last_resort=str(DerivationType.DEFAULT.value))
+                    derivation_types = resolve_default(defaults, script, row, 'Derivation Type', last_resort=str(DerivationType.DEFAULT.value))
 
                     # File-specified data overrides the automatically generated data
                     cursor.execute(
@@ -879,28 +885,29 @@ class ScriptDatabase:
                                 raise ValueError("Attempted to add a 2-cycle with " + child + " and " + parent)
 
                         for derivation_type in derivation_types.split('/'):
-                            self._load_single_derivation(cursor, ord(child), ord(parent), DerivationType(int(derivation_type)), Certainty(certainty), source, notes)
+                            self._load_single_derivation(cursor, ord(child), ord(parent), DerivationType(int(derivation_type)),
+                                                         Certainty(certainty), source, notes, multiplicity)
 
         # stuff that's confusing or might break csv format (commas, quotes, slashes)
         awkward_data = [
             (ord('/'), ord(self.NO_PARENT_CHARACTER), 1, Certainty.LIKELY.value,
              'https://archive.org/details/the-oxford-english-dictionary-1933-all-volumes/The%20Oxford%20English%20Dictionary%20Volume%2012%20-%20Variant/page/n238/mode/1up',
-             'Derived from medieval virgule, essentially the same graphical symbol but used as a comma'),
-            (ord('⸗'), ord('/'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Slash', 'From two slashes'),
-            (ord('\\'), ord(self.NO_PARENT_CHARACTER), 1, Certainty.UNCERTAIN.value, 'Wikipedia: Backslash', None),
-            (ord("'"), ord("’"), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe', None),
-            (ord('"'), ord('“'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe and Quotation Marks', None),
-            (ord('"'), ord('”'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe and Quotation Marks', None),
-            (ord(','), ord('/'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Comma', None),
-            (ord(';'), ord(','), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Semicolon', None),
-            (ord(';'), ord(':'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Semicolon', None),
-            (ord('⅍'), ord('A'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Aktieselskab', None),
-            (ord('⅍'), ord('/'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Aktieselskab', None),
-            (ord('⅍'), ord('S'), 1, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Aktieselskab', None),
+             'Derived from medieval virgule, essentially the same graphical symbol but used as a comma', 1),
+            (ord('⸗'), ord('/'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Slash', None, 2),
+            (ord('\\'), ord(self.NO_PARENT_CHARACTER), DerivationType.DEFAULT.value, Certainty.UNCERTAIN.value, 'Wikipedia: Backslash', None, 1),
+            (ord("'"), ord("’"), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe', None, 1),
+            (ord('"'), ord('“'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe and Quotation Marks', None, 1),
+            (ord('"'), ord('”'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe and Quotation Marks', None, 1),
+            (ord(','), ord('/'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Comma', None, 1),
+            (ord(';'), ord(','), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Semicolon', None, 1),
+            (ord(';'), ord(':'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Semicolon', None, 1),
+            (ord('⅍'), ord('A'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Aktieselskab', None, 1),
+            (ord('⅍'), ord('/'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Aktieselskab', None, 1),
+            (ord('⅍'), ord('S'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Aktieselskab', None, 1),
         ]
         cursor.executemany("""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
-            VALUES (?, ?, ?, ?, ?, ?)""", awkward_data)
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes, multiplicity)
+            VALUES (?, ?, ?, ?, ?, ?, ?)""", awkward_data)
 
 
     def _load_derivations(self, cursor, digit_data, indic_letter_data, semitic_letter_data, drop_case_columns, drop_name_index, verify_script):
