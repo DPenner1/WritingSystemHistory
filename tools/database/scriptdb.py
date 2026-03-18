@@ -537,7 +537,19 @@ class ScriptDatabase:
 
     # This one's a mess of interdependent stuff that needs to be done in a certain order for performance reasons
     # (a lot of the equivalency could be factored out, but it's also nice to have all that in one place)
-    def _load_equivalents_names_and_independents(self, cursor, drop_name_index=True):
+    def _load_equivalents_names_and_independents(self, cursor, drop_name_index=True, verify=False):
+        arabic_map = {'ALEF': 1575, 'BEH': 1576, 'TEH': 1578, 'JEEM': 1580, 'HAH': 1581, 'DAL': 1583, 'REH': 1585, 'ZAIN': 1586,
+                      'SEEN': 1587, 'SHEEN': 1588, 'SAD': 1589, 'DAD': 1590, 'TAH': 1591, 'AIN': 1593, 'GHAIN': 1594, 'FEH': 1601,
+                      'QAF': 1602, 'KAF': 1603, 'LAM': 1604, 'MEEM': 1605, 'NOON': 1606, 'HEH': 1607, 'WAW': 1608, 'YEH': 1610, 'FATHA': 1614, 'KASRA': 1616,
+                      'TTEH': 1657, 'PEH': 1662, 'TCHEH': 1670, 'KEHEH': 1705, 'GAF': 1711, 'FARSI YEH': 1740, 'YEH BARREE': 1746, 'AFRICAN QAF': 2236,
+                      'EXTENDED ARABIC-INDIC DIGIT TWO': 1778, 'EXTENDED ARABIC-INDIC DIGIT THREE': 1779, 'EXTENDED ARABIC-INDIC DIGIT FOUR': 1780}
+        arabic_note_text = "Based on Unicode name"
+        def try_arabic_text_load_deriv(cursor, child_id, search_name, text):
+            if " " + search_name in text:
+                self._load_single_derivation(cursor, child_id, arabic_map[search_name], DerivationType.DEFAULT, Certainty.AUTOMATED, None, arabic_note_text)
+                return True
+            return False
+
         # Mende Kikakui is a bit of an exception here: Unicode Encoding Proposal suggests Vai-derived characters are a small minority
         # Not including Chinese here: ideally will eventually do so for Oracle bone. Similar for modern Yi vs classical Yi
         independent_scripts = {'Mend', 'Egyp', 'Lina', 'Hluw', 'Xsux', 'Xpeo', 'Ogam', 'Elba', 'Dupl', 'Sgnw', 'Shaw', 'Vith',
@@ -631,11 +643,8 @@ class ScriptDatabase:
                 self._load_single_derivation(cursor, lowercase[0], ord(match.group(2).lower()), DerivationType.DEFAULT,
                                              Certainty.AUTOMATED, None, 'Unicode Latin small letter name')
 
-        arabic_pattern = re.compile("ARABIC LETTER ([ A-Z]+?) WITH ([ A-Z]+)")
-        letter_map = { 'ALEF': 1575, 'BEH': 1576, 'TEH': 1578, 'JEEM': 1580, 'HAH': 1581, 'DAL': 1583, 'REH': 1585, 'ZAIN': 1586,
-                       'SEEN': 1587, 'SHEEN': 1588, 'SAD': 1589, 'DAD': 1590, 'TAH': 1591, 'AIN': 1593, 'GHAIN': 1594, 'FEH': 1601,
-                       'QAF': 1602, 'KAF': 1603, 'LAM': 1604, 'MEEM': 1605, 'NOON': 1606, 'HEH': 1607, 'WAW': 1608, 'YEH': 1610, 'TTEH': 1657, 'PEH': 1662,
-                       'TCHEH': 1670, 'KEHEH': 1705, 'GAF': 1711, 'FARSI YEH': 1740, 'YEH BARREE': 1746, 'AFRICAN QAF': 2236 }
+        arabic_pattern = re.compile("ARABIC LETTER ([- A-Z]+?) WITH([- A-Z]+)")
+
         arabic_letters = cursor.execute("""
             SELECT id, raw_name FROM code_point 
             WHERE script_code = 'Arab' AND general_category_code = 'Lo' AND equivalent_sequence_id IS NULL""").fetchall()
@@ -644,16 +653,37 @@ class ScriptDatabase:
             match = arabic_pattern.match(arabic_letter[1])
             if match:
                 child_id = int(arabic_letter[0])
-                self._load_single_derivation(cursor, child_id, letter_map[match.group(1)],
-                                             DerivationType.DEFAULT, Certainty.AUTOMATED, None, "Based on Unicode name")
-                if "HAMZA" in arabic_letter[1] and "WAVY" not in arabic_letter[1]:
-                    found_something = True
-                    hamza_id = 1621 if "HAMZA BELOW" in arabic_letter[1] else 1620
-                    self._load_single_derivation(cursor, child_id, hamza_id, DerivationType.DEFAULT, Certainty.AUTOMATED, None, "Based on Unicode name")
-                if "KASRA" in arabic_letters[1]:
-                    self._load_single_derivation(cursor, child_id, 1616, DerivationType.DEFAULT, Certainty.AUTOMATED, None, "Based on Unicode name")
-                if "FATHA" in arabic_letters[1]:
-                    self._load_single_derivation(cursor, child_id, 1614, DerivationType.DEFAULT, Certainty.AUTOMATED, None, "Based on Unicode name")
+                self._load_single_derivation(cursor, child_id, arabic_map[match.group(1)],
+                                             DerivationType.DEFAULT, Certainty.AUTOMATED, None, arabic_note_text)
+
+                with_text = match.group(2)
+                found_other = False
+                if "HAMZA" in with_text:
+                    found_other = True
+                    if "WAVY" in with_text:
+                        # This ID is for wavy hamza below - there doesn't appear to be an above or standalone
+                        self._load_single_derivation(cursor, child_id, 1631, DerivationType.DEFAULT, Certainty.AUTOMATED, None, arabic_note_text)
+                    hamza_id = 1621 if "HAMZA BELOW" in with_text else 1620
+                    self._load_single_derivation(cursor, child_id, hamza_id, DerivationType.DEFAULT, Certainty.AUTOMATED, None, arabic_note_text)
+                found_other = try_arabic_text_load_deriv(cursor, child_id, "KASRA", with_text) or found_other
+                found_other = try_arabic_text_load_deriv(cursor, child_id, "FATHA", with_text) or found_other
+                found_other = try_arabic_text_load_deriv(cursor, child_id, "MEEM", with_text) or found_other
+                found_other = try_arabic_text_load_deriv(cursor, child_id, "NOON", with_text) or found_other
+                found_other = try_arabic_text_load_deriv(cursor, child_id, "TAH", with_text) or found_other
+                found_other = try_arabic_text_load_deriv(cursor, child_id, "EXTENDED ARABIC-INDIC DIGIT TWO", with_text) or found_other
+                found_other = try_arabic_text_load_deriv(cursor, child_id, "EXTENDED ARABIC-INDIC DIGIT THREE", with_text) or found_other
+                found_other = try_arabic_text_load_deriv(cursor, child_id, "EXTENDED ARABIC-INDIC DIGIT FOUR", with_text) or found_other
+                if match.group(1) != "TEH": # in theory this kind of clause should also apply to the others, but the data doesn't have it so don't want to overcomplicate
+                    found_other = try_arabic_text_load_deriv(cursor, child_id, "TEH", with_text) or found_other
+                if "DOT" in with_text or "STROKE" in with_text or "BAR" in with_text or "RING" in with_text:
+                    # TODO skip these for now, but maybe some could be derived from diacritics?
+                    found_other = True
+                if "SMALL V" in with_text or "INVERTED V" in with_text or "LOOP" in with_text or "TAIL" in with_text or "TEH" in with_text:
+                    # These ones don't really have a code point to target (or in TEH's case is already targeted)
+                    found_other = True
+
+                if not found_other and verify:
+                    print("Did not fully derive Arabic letter: " + arabic_letter[1])
 
         # we want to drop this as soon as possible so that the freed space can be used
         if drop_name_index:
@@ -874,7 +904,7 @@ class ScriptDatabase:
 
 
     def _load_derivations(self, cursor, digit_data, indic_letter_data, semitic_letter_data, drop_case_columns, drop_name_index, verify_script):
-        self._load_equivalents_names_and_independents(cursor, drop_name_index)
+        self._load_equivalents_names_and_independents(cursor, drop_name_index, verify_script)
         self._load_derivations_from_case_data(cursor, drop_case_columns)
         self._load_derivations_from_equivalencies(cursor)
 
@@ -1604,8 +1634,9 @@ if __name__ == '__main__':
     options.force_overwrite = True
     options.verify_data_sources = True
     options.output_debug_info = True
-    options.drop_case_columns = True
-    options.drop_bidi_class_column = True
+    # dropping these columns doesn't seem to get much space back (not expected to be much, but could also be free'd but unused?)
+    options.drop_case_columns = False
+    options.drop_bidi_class_column = False
 
     cursor = db.load_database(options)  # replace with options for development run
 

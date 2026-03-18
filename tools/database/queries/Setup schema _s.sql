@@ -71,14 +71,6 @@ CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_lowercase_mapping ON code_point(simp
 CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_uppercase_mapping ON code_point(simple_uppercase_mapping_id) WHERE simple_uppercase_mapping_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_cp_raw_name ON code_point(raw_name) WHERE raw_name IS NOT NULL;
 
--- it's a tree structure
-CREATE TABLE IF NOT EXISTS sequence_item (
-    sequence_id INTEGER REFERENCES sequence(id),
-    item_id INTEGER REFERENCES sequence(id),
-    order_num INTEGER,
-    PRIMARY KEY (sequence_id, item_id, order_num)
-) STRICT;
-
 CREATE TABLE IF NOT EXISTS derivation_type (
     id INTEGER PRIMARY KEY,
     name TEXT UNIQUE,
