@@ -4,6 +4,7 @@ import re
 import csv
 import time
 from enum import Enum
+from typing import Sequence
 from zipfile import ZipFile
 
 
@@ -290,7 +291,6 @@ class ScriptDatabase:
     def is_private_use(id):
         return (0xE000 <= id <= 0xF8FF) or (0xF0000 <= id <= 0xFFFFD) or (0x100000 <= id <= 0x10FFFD)
 
-
     @staticmethod
     def _add_or_increment_dict_entry(dictionary, key, value):
         if key in dictionary:
@@ -465,10 +465,7 @@ class ScriptDatabase:
             (DerivationType.PORTION.value, "Portion derivation", "Child is a derivation from a portion of the parent"),
             (DerivationType.ROTATION.value, "Rotation", "Child is a rotation of the parent"),
             (DerivationType.REFLECTION.value, "Reflection", "Child is a reflection of the parent"),
-            (DerivationType.DUPLICATE_TECHNICAL_DISTINCTION.value, "Duplicate with technical distinction",
-                "Child is graphically a duplicate of the parent, but has technical distinctions"),
-            (DerivationType.DUPLICATE_GRAPHICAL_DISTINCTION.value, "Duplicate with graphical distinction",
-                "Child is a duplicate of the parent, but with non-consequential graphical distinction (size/location)")]
+            (DerivationType.TRANSLATION.value, "Translation", "Child is translation (position change) of the parent")]
         load_lookup(cursor, 'derivation_type', data)
 
         # For this project, sourcing is generally just for the derivation fact, not necessarily for derivation type
@@ -508,15 +505,27 @@ class ScriptDatabase:
             (SequenceType.SMALL_DECOMPOSITION.value, 'Small Decomposition', 'Unicode decomposition type'),
             (SequenceType.NARROW_DECOMPOSITION.value, 'Narrow Decomposition', 'Unicode decomposition type'),
 
-            (SequenceType.TECHNICAL_DISTINCTION.value, "Technical distinction",
-             "Sequence representing graphical equivalency, but technical distinction (eg. combining marks)"),
+            (SequenceType.POSITION_DISTINCTION.value, "Positional Distinction",
+             "Unit sequence representing the same glyph, but in a differing position and not already a Unicode decomposition"),
 
             (SequenceType.Z_VARIANT.value, 'Z-Variant', 'Unit sequence representing an equivalent or typographical variant Chinese character'),
             (SequenceType.HIEROGLYPHIC_ALTERNATIVE.value, 'Hieroglyphic Alternative', 'Equivalent Hieroglyph sequence')
         ]
         load_lookup(cursor, 'sequence_type', data)
 
+
+    def _load_equivalent_unit_sequence(self, cursor, seq_type, principal_id, equivalent_id):
+        seq_id = self._create_sequence(cursor, seq_type)
+        cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, principal_id, 1))
+        cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, equivalent_id))
+
+
+    def _load_single_derivation(self, cursor, child_id, parent_id, derivation_type, certainty_type, source, notes):
+        cursor.execute("INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes) VALUES (?,?,?,?,?,?)",
+                       (child_id, parent_id, derivation_type.value, certainty_type.value, source, notes))
+
     # This one's a mess of interdependent stuff that needs to be done in a certain order for performance reasons
+    # (a lot of the equivalency could be factored out, but it's also nice to have all that in one place)
     def _load_equivalents_names_and_independents(self, cursor, drop_name_index):
         # Mende Kikakui is a bit of an exception here: Unicode Encoding Proposal suggests Vai-derived characters are a small minority
         # Not including Chinese here: ideally will eventually do so for Oracle bone. Similar for modern Yi vs classical Yi
@@ -544,7 +553,7 @@ class ScriptDatabase:
                 AND mark.raw_name LIKE 'COMBINING%'
                 AND mark.equivalent_sequence_id IS NULL
             """).fetchall())
-        # Hangul final->initial technical distinction
+        # Hangul final->initial positional distinction
         equivalent_ids.extend(cursor.execute("""
             SELECT finals.id, initials.id AS equivalent_id
             FROM code_point finals INNER JOIN code_point initials ON substr(finals.name, 18) = substr(initials.name, 17)
@@ -555,7 +564,6 @@ class ScriptDatabase:
                 AND initials.raw_name LIKE 'HANGUL CHOSEONG%'
                 AND finals.equivalent_sequence_id IS NULL
             """).fetchall())
-
         # modifier letters which are different from combining characters... (Unicode Standard 7.8)
         # Could be added here, but seems not worth it based on quantity and difficulty in doing so in performant manner, just manually specify
 
@@ -571,10 +579,8 @@ class ScriptDatabase:
         for x in ethiopic:
             match = base_pattern.match(x[1])
             if match.group(2) != 'A' and match.group(1) in base_ethiopic_names:
-                cursor.execute("""
-                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
-                    VALUES (?,?,?,?,?)""",
-                       (x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Inherent vowel parent'))
+                self._load_single_derivation(cursor, x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT,
+                                             Certainty.AUTOMATED, None, 'Inherent vowel parent')
 
         # This ones ~20 characters, should just manually specify at some point
         cursor.execute("""
@@ -597,10 +603,9 @@ class ScriptDatabase:
         for capital in capitals:
             match = latin_pattern.match(capital[1])
             if match and (match.group(1) or match.group(3)): # needs to match one of these groups or it's the base letter itself
-                cursor.execute("""
-                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
-                    VALUES (?,?,?,?,?)""",
-                    (capital[0], ord(match.group(2)), DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Unicode Latin capital letter name'))
+                self._load_single_derivation(cursor, capital[0], ord(match.group(2)), DerivationType.DEFAULT,
+                                             Certainty.AUTOMATED, None, 'Unicode Latin capital letter name')
+
         lowercases = cursor.execute("""
             SELECT id, substr(name, 20) FROM code_point 
             WHERE 
@@ -612,10 +617,32 @@ class ScriptDatabase:
         for lowercase in lowercases:
             match = latin_pattern.match(lowercase[1])
             if match and (match.group(1) or match.group(3)): # needs to match one of these groups or it's the base letter itself
-                cursor.execute("""
-                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
-                    VALUES (?,?,?,?,?)""",
-                    (lowercase[0], ord(match.group(2).lower()), DerivationType.DEFAULT.value, Certainty.AUTOMATED.value, 'Unicode Latin small letter name'))
+                self._load_single_derivation(cursor, lowercase[0], ord(match.group(2).lower()), DerivationType.DEFAULT,
+                                             Certainty.AUTOMATED, None, 'Unicode Latin small letter name')
+
+        arabic_pattern = re.compile("ARABIC LETTER ([ A-Z]+?) WITH ([ A-Z]+)")
+        letter_map = { 'ALEF': 1575, 'BEH': 1576, 'TEH': 1578, 'JEEM': 1580, 'HAH': 1581, 'DAL': 1583, 'REH': 1585, 'ZAIN': 1586,
+                       'SEEN': 1587, 'SHEEN': 1588, 'SAD': 1589, 'DAD': 1590, 'TAH': 1591, 'AIN': 1593, 'GHAIN': 1594, 'FEH': 1601,
+                       'QAF': 1602, 'KAF': 1603, 'LAM': 1604, 'MEEM': 1605, 'NOON': 1606, 'HEH': 1607, 'WAW': 1608, 'YEH': 1610, 'TTEH': 1657, 'PEH': 1662,
+                       'TCHEH': 1670, 'KEHEH': 1705, 'GAF': 1711, 'FARSI YEH': 1740, 'YEH BARREE': 1746, 'AFRICAN QAF': 2236 }
+        arabic_letters = cursor.execute("""
+            SELECT id, raw_name FROM code_point 
+            WHERE script_code = 'Arab' AND general_category_code = 'Lo' AND equivalent_sequence_id IS NULL""").fetchall()
+
+        for arabic_letter in arabic_letters:
+            match = arabic_pattern.match(arabic_letter[1])
+            if match:
+                child_id = int(arabic_letter[0])
+                self._load_single_derivation(cursor, child_id, letter_map[match.group(1)],
+                                             DerivationType.DEFAULT, Certainty.AUTOMATED, None, "Based on Unicode name")
+                if "HAMZA" in arabic_letter[1] and "WAVY" not in arabic_letter[1]:
+                    found_something = True
+                    hamza_id = 1621 if "HAMZA BELOW" in arabic_letter[1] else 1620
+                    self._load_single_derivation(cursor, child_id, hamza_id, DerivationType.DEFAULT, Certainty.AUTOMATED, None, "Based on Unicode name")
+                if "KASRA" in arabic_letters[1]:
+                    self._load_single_derivation(cursor, child_id, 1616, DerivationType.DEFAULT, Certainty.AUTOMATED, None, "Based on Unicode name")
+                if "FATHA" in arabic_letters[1]:
+                    self._load_single_derivation(cursor, child_id, 1614, DerivationType.DEFAULT, Certainty.AUTOMATED, None, "Based on Unicode name")
 
         # we want to drop this as soon as possible so that the freed space can be used
         if drop_name_index:
@@ -655,10 +682,8 @@ class ScriptDatabase:
                     if parts[1] == 'kTraditionalVariant':  # mirror property is kSimplifiedVariant - should only need to check one
                         for parent_code in parts[2].split(' '):
                             if parts[0] != parent_code:  # it's possible for a simplified character to map to itself
-                                cursor.execute("""
-                                    INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-                                    VALUES (?, ?, ?, ?, ?)""",
-                                    (int(parts[0][2:], 16), int(parent_code[2:], 16), DerivationType.SIMPLIFICATION.value, Certainty.AUTOMATED.value, 'Unihan Database'))
+                                self._load_single_derivation(cursor, int(parts[0][2:], 16), int(parent_code[2:], 16),
+                                                             DerivationType.SIMPLIFICATION, Certainty.AUTOMATED, 'Unihan Database', None)
                                     # the [2:] slices off the U+
 
                     # This is a self-mirror property. if X zVariant Y then Y zVariant X.
@@ -667,25 +692,11 @@ class ScriptDatabase:
                         principal_id = int(parts[0][2:], 16)
                         for sub_parts in parts[2].split(' '):
                             other_id = int(sub_parts[2:].split('<')[0], 16)
-                            if principal_id > other_id:
-                                seq_id = self._create_sequence(cursor, SequenceType.Z_VARIANT)
-                                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, other_id, 1))
-                                cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, principal_id))
-
-        # TODO - this is inaccurate, as it will get technical distinct value and automated certainty, but I'm tired so good enough for now
-        with open(os.path.join(self._resource_path, 'graphical_distinction.csv')) as csvfile:
-            for row in csv.DictReader(csvfile):
-                equivalent_ids.append((ord(row['Char']), ord(row['Equiv'])))
-
-        with open(os.path.join(self._resource_path, 'technical_distinction.csv')) as csvfile:
-            for row in csv.DictReader(csvfile):
-                equivalent_ids.append((ord(row['Char']), ord(row['Equiv'])))
+                            if principal_id > other_id:  #TODO i definitely mixed up the naming here, but this one makes my brain hurt trying to fix it
+                                self._load_equivalent_unit_sequence(cursor, SequenceType.Z_VARIANT, other_id, principal_id)
 
         for equivalency in equivalent_ids:
-            seq_id = self.get_next_sequence_id()
-            cursor.execute("INSERT INTO sequence (id, type_id) VALUES (?, ?)", (seq_id, SequenceType.TECHNICAL_DISTINCTION.value))
-            cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, 1)", (seq_id, equivalency[1]))
-            cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, equivalency[0]))
+            self._load_equivalent_unit_sequence(cursor, SequenceType.POSITION_DISTINCTION, equivalency[1], equivalency[0])
 
 
     def _load_derivations_from_equivalencies(self, cursor):
@@ -698,11 +709,11 @@ class ScriptDatabase:
                 cp2.id,
                 CASE WHEN COUNT(item_id) OVER (PARTITION BY equiv.sequence_id) = 1
                     THEN CASE WHEN seq.type_id = {SequenceType.CANONICAL_DECOMPOSITION.value} THEN {DerivationType.DUPLICATE.value}
-                              WHEN seq.type_id IN ({SequenceType.TECHNICAL_DISTINCTION.value},
-                                                   {SequenceType.NO_BREAK_DECOMPOSITION.value}) THEN {DerivationType.DUPLICATE_TECHNICAL_DISTINCTION.value}
-                              WHEN seq.type_id IN ({SequenceType.SUPER_DECOMPOSITION.value}, 
+                              WHEN seq.type_id IN ({SequenceType.POSITION_DISTINCTION.value},
+                                                   {SequenceType.NO_BREAK_DECOMPOSITION.value},
+                                                   {SequenceType.SUPER_DECOMPOSITION.value}, 
                                                    {SequenceType.SUB_DECOMPOSITION.value}, 
-                                                   {SequenceType.SMALL_DECOMPOSITION.value}) THEN {DerivationType.DUPLICATE_GRAPHICAL_DISTINCTION.value}
+                                                   {SequenceType.SMALL_DECOMPOSITION.value}) THEN {DerivationType.TRANSLATION.value}
                               ELSE {DerivationType.DEFAULT.value}
                          END
                     ELSE {DerivationType.DEFAULT.value}
@@ -710,6 +721,7 @@ class ScriptDatabase:
                 {Certainty.AUTOMATED.value},
                 CASE WHEN seq.type_id = {SequenceType.Z_VARIANT.value} THEN 'Unihan database, zVariant'
                      WHEN seq.type_id = {SequenceType.HIEROGLYPHIC_ALTERNATIVE.value} THEN 'Unicode Character Database Unikemet.txt'
+                     WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN 'Determination based on Unicode name'
                      ELSE 'Unicode Character Database decomposition data'
                 END
             FROM
@@ -728,6 +740,13 @@ class ScriptDatabase:
         # A more "proper" solution would be to have a category associated to a sequence_type, but that feels like over-engineering for the moment
         # conflicts are expected when a character decomposes into multiple copies of a code point,
         # minimal enough that ON CONFLICT DO NOTHING is probably the better query option than advance filtering
+
+        # manual equivalency
+        with open(os.path.join(self._resource_path, 'position_distinction.csv')) as csvfile:
+            for row in csv.DictReader(csvfile):
+                self._load_equivalent_unit_sequence(cursor, SequenceType.POSITION_DISTINCTION, ord(row["Equiv"]), ord(row["Char"]))
+                self._load_single_derivation(cursor, ord(row["Char"]), ord(row["Equiv"]), DerivationType.TRANSLATION,
+                                             Certainty.ASSUMED, None, "Based in part on Unicode name")
 
 
     def _load_derivations_from_case_data(self, cursor):
@@ -813,9 +832,7 @@ class ScriptDatabase:
                                 raise ValueError("Attempted to add a 2-cycle with " + child + " and " + parent)
 
                         for derivation_type in derivation_types.split('/'):
-                            cursor.execute("""
-                                INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
-                                VALUES (?, ?, ?, ?, ?, ?)""", (ord(child), ord(parent), int(derivation_type), certainty, source, notes))
+                            self._load_single_derivation(cursor, ord(child), ord(parent), DerivationType(int(derivation_type)), Certainty(certainty), source, notes)
 
         # stuff that's confusing or might break csv format (commas, quotes, slashes)
         awkward_data = [
@@ -970,7 +987,7 @@ class ScriptDatabase:
 
         return wdata
 
-    # format: { script_code (lowercase): { Generic Semitic Letter: [letters] } }
+    # format: { script_code: { Generic Semitic Letter: [letters] } }
     def _get_semitic_letter_dict(self):
         code_map = {
             'ar': 'Arab',
@@ -1033,22 +1050,14 @@ class ScriptDatabase:
             if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
                 parent_code = ScriptDatabase._SCRIPT_PARENTS[script_code]
                 for letter_class in letter_order:
-                    if letter_class in letter_dict[script_code]:
-                        if letter_class in letter_dict[parent_code]:
-                            parent_letters = letter_dict[parent_code][letter_class]  # final parent scripts should be in excluded codes
-                            if (len(parent_letters) == 1):
-                                for letter in letter_dict[script_code][letter_class]:
-                                    cursor.execute("""
-                                        INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes)
-                                        VALUES (?,?,?,?,?,?)""",
-                                        (ord(letter),
-                                         ord(parent_letters[0]),
-                                         DerivationType.DEFAULT.value,
-                                         Certainty.AUTOMATED.value,
-                                         source,
-                                         'Not necessarily graphical derivation but likely'))
-                            elif verify:  # temporary, for later manual work
-                                print(f"Data generation warning: {len(parent_letters)} parent letters found for {letter_class} in {script_code}")
+                    if letter_class in letter_dict[script_code] and letter_class in letter_dict[parent_code]:
+                        parent_letters = letter_dict[parent_code][letter_class]  # final parent scripts should be in excluded codes
+                        if (len(parent_letters) == 1):
+                            for letter in letter_dict[script_code][letter_class]:
+                                self._load_single_derivation(cursor, ord(letter), ord(parent_letters[0]), DerivationType.DEFAULT,
+                                                             Certainty.AUTOMATED, source, 'Not necessarily graphical derivation but likely')
+                        elif verify:  # temporary, for later manual work
+                            print(f"Data generation warning: {len(parent_letters)} parent letters found for {letter_class} in {script_code}")
 
 
     def _verify_script_coverage(self, cursor):
@@ -1389,7 +1398,7 @@ class ScriptDatabase:
 
         return retval
 
-
+    # Script skipping has two main uses: Can avoid self-derivation, and avoid a parent script you think isn't that distinct
     def get_script_parents(self, script_code, scripts_to_skip=None):
         cursor = self._cxn.cursor()
         sequence_id = cursor.execute("SELECT exemplar_sequence_id FROM script WHERE code = ?", (script_code,)).fetchall()
@@ -1536,7 +1545,7 @@ class SequenceType(Enum):
     SMALL_DECOMPOSITION = 116
     NARROW_DECOMPOSITION = 117
 
-    TECHNICAL_DISTINCTION = 180
+    POSITION_DISTINCTION = 180
 
     Z_VARIANT = 200
     HIEROGLYPHIC_ALTERNATIVE = 201
@@ -1552,8 +1561,7 @@ class DerivationType(Enum):
     PORTION = 7
     ROTATION = 8
     REFLECTION = 9
-    DUPLICATE_TECHNICAL_DISTINCTION = 10
-    DUPLICATE_GRAPHICAL_DISTINCTION = 11
+    TRANSLATION = 10
 
 
 class LoadOptions:
@@ -1581,7 +1589,7 @@ if __name__ == '__main__':
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
     # db.print_table(results)
     # Get a breakdown of a script's parent scripts:
-    # db.print_table(db.get_script_parents('Glag', ['Glag']))
+    # db.print_table(db.get_script_parents('Glag', None))
     # or your own custom query: db.execute_query('YOUR QUERY HERE', parameters=None)
 
     cursor.close()

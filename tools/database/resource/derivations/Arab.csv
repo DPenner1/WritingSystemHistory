@@ -1,4 +1,4 @@
-Child,Parent,Certainty Type
+Child,Parent,Certainty Type,Source,Notes
 ت,ٮ
 ٮ,𐢞/𐢂/𐢃,3
 ش,س,3
@@ -35,9 +35,10 @@ Child,Parent,Certainty Type
 ؋,ا/ف
 
 ك,ک
-ک,گ
+گ,ک
 
-ځ,ح/ٔ,5
+ځ,ح/ٴ,5
+
 ڂ,ح,5
 ڃ,ح,5
 ڄ,ح,5
