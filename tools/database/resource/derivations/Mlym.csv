@@ -1,0 +1,10 @@
+Child,Parent,Certainty Type,Source,Notes
+എ,𑌏,1,https://en.wikipedia.org/wiki/E_(Indic)#Malayalam_E
+ഏ,എ,1,https://en.wikipedia.org/wiki/E_(Indic)#Malayalam_E
+ഒ,𑌓,1,https://en.wikipedia.org/wiki/O_(Indic)#Malayalam_O,
+ഓ,ഒ/ാ,5,https://en.wikipedia.org/wiki/O_(Indic)#Malayalam_O,Since Grantha doesn't have long/short O distinction the assumption is that dependent vowel long A was used to get long O
+റ,ര,5,,Assumption due to similar glyph shape and sound and considering Grantha does not have the distinction
+ല,𑌲,1,https://en.wikipedia.org/wiki/La_(Indic)#Malayalam_La
+
+ഃ,𑌃,5,,Similar glyph/sound
+ം,𑌂,5,,Similar glyph/sound

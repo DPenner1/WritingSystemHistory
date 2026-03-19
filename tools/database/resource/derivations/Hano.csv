@@ -1,4 +1,4 @@
-Child,Parent,Certainty Type,Notes
+Child,Parent,Certainty Type,Notes,Source
 ᜲ,ᜒ,5,Sound/glyph similarity
 ᜳ,ᜓ,5,Sound/glyph similarity
-᜴,᜕,5,Glyph similarity
+᜴,,2,More modern symbol,Unicode Standard 17.1

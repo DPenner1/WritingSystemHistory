@@ -1,4 +1,4 @@
-Child,Parent,Certainty Type,Source,Notes
+Child,Parent,Certainty Type,Multiplicity,Source,Notes
 ت,ٮ
 ٮ,𐢞/𐢂/𐢃,3
 ش,س,3
@@ -34,14 +34,16 @@ Child,Parent,Certainty Type,Source,Notes
 ض,ص
 ؋,ا/ف
 
+ء,ع,1,,https://en.wikipedia.org/wiki/Hamza
+ة,ه/ت
+
 ك,ک
 گ,ک
 
-
-٠,𑁦,1,3,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-١,𑁧,1,3,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-٢,𑁨,1,3,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-٣,𑁩,1,3,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-٤,𑁪,1,3,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-٥,𑁫,1,3,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
-٩,𑁯,1,3,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+٠,𑁦,3,,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+١,𑁧,3,,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+٢,𑁨,3,,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+٣,𑁩,3,,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+٤,𑁪,3,,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+٥,𑁫,3,,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit
+٩,𑁯,3,,https://en.wikipedia.org/wiki/Arabic_numerals and https://en.wikipedia.org/wiki/Eastern_Arabic_numerals,Comparing timelines and Wikipedia article, this is late-Brahmi or Gupta digit

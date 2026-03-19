@@ -788,6 +788,7 @@ class ScriptDatabase:
         # minimal enough that ON CONFLICT DO NOTHING is probably the better query option than advance filtering
 
         # manual equivalency
+        # TODO - ensure we dont override decomposition
         with open(os.path.join(self._resource_path, 'position_distinction.csv')) as csvfile:
             for row in csv.DictReader(csvfile):
                 self._load_equivalent_unit_sequence(cursor, SequenceType.POSITION_DISTINCTION, ord(row["Equiv"]), ord(row["Char"]))
@@ -984,7 +985,12 @@ class ScriptDatabase:
         return digit_data
 
     # format: { script_code: { Generic Indic Letter: [letters] } }
+    # TODO add script verification
     def _get_indic_letter_dict(self, verify):
+        def add_private_use_char(data, script_code, indic_letter):
+            id = self._CODE_POINT_STARTS[script_code] + self._INDIC_ORDER.index(indic_letter)
+            data[script_code][indic_letter] = [chr(id)]
+
         wdata = {}
         hex_pattern = re.compile('^[0-9A-F]+$')
         replacements = {'Gupt': 'Qabg', 'Kdmb': 'Qabk', 'Plav': 'Qabp'}
@@ -1031,10 +1037,14 @@ class ScriptDatabase:
                             count += 1
                     if count >= len(descendant_scripts)/2 + 1:
                         fill_in_letter = True
-
                 if fill_in_letter:
-                    id = ScriptDatabase._CODE_POINT_STARTS[fill_in_script] + self._INDIC_ORDER.index(letter)
-                    wdata[fill_in_script][letter] = [chr(id)]
+                    add_private_use_char(wdata, fill_in_script, letter)
+
+        # Add ones that probably existed, but didn't meet the conservative automatic threshold
+
+        # research from Sharada indicates straight development from Gupta, and maybe Siddham as well
+        # https://www.scribd.com/document/443095526/%C5%9A%C4%81rad%C4%81-Primer (While Ai is blank in this source, similar shape E shows the development)
+        add_private_use_char(wdata, 'Qabg', 'Ai')
 
         del wdata['Armi']  # Remove aramaic, it's better in Semitic dictionary
 
