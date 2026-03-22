@@ -69,6 +69,9 @@ CREATE TABLE IF NOT EXISTS code_point (
     simple_uppercase_mapping_id INTEGER REFERENCES code_point(id),
     simple_lowercase_mapping_id INTEGER REFERENCES code_point(id),
     equivalent_sequence_id INTEGER REFERENCES sequence(id),
+    is_alphabetic INTEGER NOT NULL DEFAULT 0,
+    is_lowercase INTEGER NOT NULL DEFAULT 0,
+    is_uppercase INTEGER NOT NULL DEFAULT 0,
     raw_name TEXT,
     alt_name TEXT
 ) STRICT;
@@ -101,7 +104,7 @@ CREATE TABLE IF NOT EXISTS code_point_derivation (
     multiplicity INTEGER DEFAULT 1,
     source TEXT,
     notes TEXT,
-    PRIMARY KEY (child_id, parent_id, derivation_type_id)
+    PRIMARY KEY (child_id, parent_id)
 ) STRICT;
 -- This is a table likely to be looked up in either direction child<->parent
-CREATE INDEX IF NOT EXISTS idx_cpd_parent_derivation_type ON code_point_derivation(parent_id, derivation_type_id);
+CREATE INDEX IF NOT EXISTS idx_cpd_parent_derivation_type ON code_point_derivation(parent_id);

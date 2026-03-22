@@ -1,4 +1,4 @@
-Child,Parent,Derivation type,Certainty Type
+Child,Parent,Derivation Type,Certainty Type
 ᐁ,ए,1,
 ᐸ,प,1,
 ᑕ,ट,1,
@@ -56,10 +56,10 @@ Child,Parent,Derivation type,Certainty Type
 ᖌ,ᖍ,9,5
 ᕓ,ᕙ,8,5
 ᕗ,ᕙ,9,5
-ᕕ,ᕙ,8/9,5
+ᕕ,ᕗ,8,5
 ᕞ,ᕦ,8,5
 ᕤ,ᕦ,9,5
-ᕠ,ᕦ,8/9,5
+ᕠ,ᕤ,8,5
 ᖬ,ᖪ,9,5
 ᖨ,ᖪ,8,5
 ᖧ,ᖪ,9,5
@@ -191,6 +191,10 @@ Child,Parent,Derivation type,Certainty Type
 ᒒ,ᒉ,,5
 ᒓ,ᒉ,,5
 
+ᓖ,ᓕ,,5
+ᓘ,ᓗ,,5
+ᓛ,ᓚ,,5
+
 ᒤ,ᒥ,,5
 ᒦ,ᒥ,,5
 ᒮ,ᒥ,,5
@@ -287,4 +291,7 @@ Child,Parent,Derivation type,Certainty Type
 ᣯ,ᗴ,,5
 ᣰ,ᗴ,,5
 
+ᕉ,ᕈ,,5
+ᕌ,ᕋ,,5
+ᕇ,ᕆ,,5
 

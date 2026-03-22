@@ -11,7 +11,7 @@ FROM (
 		COUNT(DISTINCT deriv.child_id) AS derivations,
 		COUNT(DISTINCT CASE WHEN deriv.certainty_type_id = 4 THEN NULL ELSE deriv.child_id END) AS manual_derivations
 	FROM code_point cp LEFT JOIN code_point_derivation deriv ON cp.id = deriv.child_id
-	WHERE cp.equivalent_sequence_id IS NULL AND cp.general_category_code LIKE 'L_'
+	WHERE cp.equivalent_sequence_id IS NULL AND cp.is_alphabetic = 1
 )
 UNION ALL
 SELECT 
@@ -27,7 +27,7 @@ FROM (
 		COUNT(DISTINCT deriv.child_id) AS derivations,
 		COUNT(DISTINCT CASE WHEN deriv.certainty_type_id = 4 THEN NULL ELSE deriv.child_id END) AS manual_derivations
 	FROM code_point cp LEFT JOIN code_point_derivation deriv ON cp.id = deriv.child_id
-	WHERE cp.equivalent_sequence_id IS NULL AND cp.general_category_code LIKE 'L_' AND script_code <> 'Hani'
+	WHERE script_code <> 'Hani' AND cp.equivalent_sequence_id IS NULL AND cp.is_alphabetic = 1
 )
 UNION ALL
 SELECT 
@@ -43,7 +43,7 @@ FROM (
 		COUNT(DISTINCT deriv.child_id) AS derivations,
 		COUNT(DISTINCT CASE WHEN deriv.certainty_type_id = 4 THEN NULL ELSE deriv.child_id END) AS manual_derivations
 	FROM code_point cp LEFT JOIN code_point_derivation deriv ON cp.id = deriv.child_id
-	WHERE cp.equivalent_sequence_id IS NULL AND cp.general_category_code LIKE 'L_' AND script_code = 'Hani'
+	WHERE script_code = 'Hani' AND cp.equivalent_sequence_id IS NULL AND cp.is_alphabetic = 1
 )
 ORDER BY letters DESC
 

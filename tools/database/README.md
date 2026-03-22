@@ -19,18 +19,18 @@ Though there are no current plans, the functionality of the database could be ex
 
 *As of 2026-03-15*
 
-  - *(Just over 100,000 letters in the Unicode Standard are Chinese characters. These stats are notated "All / non-Chinese")*. There are ⁨130,179 / 28,256 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 28,353 / 21,857 have a historical ancestor specified (21.8% / 77.4%, including no known ancestor), of which 1656 / 1617 are manually reviewed (1.3% / 5.7%).
-  - The database is about 22 MB.
+  - *(Just over 100,000 letters in the Unicode Standard are Chinese characters. These stats are notated "All / non-Chinese")*. There are ⁨130,709 / 29,771 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 29,197 / 22,701 have a historical ancestor specified (22.2% / 76.3%, including no known ancestor), of which 1771 / 1732 are manually reviewed (1.3% / 5.8%).
+  - The database is about 20 MB with minimalistic settings (configurable to keep more data/indexes).
 
   1. Distinct being defined for this project has having no other equivalent representation in Unicode. See schema documentation on `code_point.equivalent_sequence_id`.
-  2. Letters for this project being defined as Unicode general category `L_` plus the Private Use characters which currently stands at 307 (+60 non-letter digits).
+  2. Letters for this project being defined as Unicode "Alphabetic" property plus the Private Use characters which currently stands at 314 (+161 non-letter characters).
 
 ## Getting Started
 
 The database must be generated. For all purposes, the `./tools/database` folder is the working directory (while I am Linux-based, this should also work on Windows, but I have not tested this).
 
   1. The database is generated using Python 3, with only standard modules plus `sqlite3` (which is an optional module possibly already included in a given installation).
-  4. Generate the database by running the `./scriptdb.py` script. There is some logic for the script to try and work with an existing database, but there is no guarantee and you may have to delete the existing first (for simplicity, this is recommended). If the schema does not change though, it should just run a data update without issue.
+  4. Generate the database by running the `./scriptdb.py` script. There was some logic for the script to try and work with an existing database, but at present this is unlikely to work. This may be revisted.
   5. The database `./scripts.db` appears (or is updated)! You can now run queries as you like from `sqlite3`. Alternatively, include some code at the end of `./scriptdb.py` or `import scriptdb` into your own Python code. But I guess that should've been done before step 2. Oops.
 
 The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/tools/database/queries) folder contains some queries, including finding a character's ancestors and descendants. Queries suffixed with `p` are parameterized, either replace the `?`(s) or call from code with parameters. Queries suffixed with `s` or `d` are called internally by the database setup code, the latter only with certain debug flags.
@@ -53,7 +53,7 @@ The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/too
   - `code_point`: Mostly what you would expect from Unicode.
      - Non-character U+FFFF is used as a signal value for when a character has been evaluated to have no known ancestor (to distinguish it from the case where data is simply missing).
      - Private use characters are used for historical scripts not yet in Unicode proper. For the Brahmi-based scripts, they've been automatically generated and assumed to exist if 50%+1 of their descendents have the corresponding letter. It should not be assumed the particular code points used are stable.
-     - Field `equivalent_sequence_id` combines various Unicode sources for "equivalent" code points. May have to change later, but as it stands these sources do not overlap. These are decomposition (including Hangul Syllable/Jamo), z-variants (the lowest code point in a set has been taken to be the original) and Hieroglyph alternate sequences (kEH_AltSeq). One further custom equivalency is added for this project: graphical equivalence, for when a Unicode characters is the same graphical character but has technical distinction (so far two categories: combining marks existing as stand-alone and Hangul initial/final consonants).
+     - Field `equivalent_sequence_id` combines various Unicode sources for "equivalent" code points. May have to change later, but as it stands these sources do not overlap. These are decomposition (including Hangul Syllable/Jamo), z-variants (the lowest code point in a set has been taken to be the original) and Hieroglyph alternate sequences (kEH_AltSeq). One further custom equivalency is added for this project: positional equivalence, for when a Unicode characters is the same graphical character but has technical or positional distinction (so far two categories: combining marks existing as stand-alone/modifiers and Hangul initial/final consonants).
   - `code_point_derivation`: This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. This table is also liable to renaming to `code_point_relation` if project scope expands. The automatic derivations are:
      - An assumption that lowercase characters derive from their uppercase counterparts.
      - For the Brahmi-derived and Semitic scripts, it is assumed that cognate letters derive from their known ancestor script.
@@ -82,7 +82,7 @@ The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/too
 
   - Character is a fuzzy term and does not necessarily equate to a code point. For simplicity, this project has started out as code points. In principle, a character could be multiple codepoints. In that case, historical derivations are still quite supported as you would just combine the derivations of the constituent code points. It's a bit imprecise, but so far I'm not bothered by it. In the future, derivations could be associated to sequences if deemed necessary.
   - There are a decent number of defaults and fallbacks in the source to avoid repetitively specifying stuff in source files.
-  - I have in general been lazy with csv quoting and avoided commas in the data. I'm using python csv reader, so this is pure laziness as quotes would be no issue.
+  - I have in usually been lazy with csv quoting and avoided commas in the data. I'm using python csv reader, so this is pure laziness as quotes would be no issue.
 
 ## Licence info
 

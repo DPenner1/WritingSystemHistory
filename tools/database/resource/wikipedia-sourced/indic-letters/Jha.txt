@@ -34,6 +34,7 @@ The various Indic scripts are generally related to each other through adaptation
  |mahjcp = 1115C 
  |balicp = 1B1B 
  |javacp = A999 
+ |nandcp = 119B6
  |tochimg = Tocharian letter jha.gif 
  |kawiimg = Aksara Kawi jha.svg
  | armiimg = Zayin.svg

@@ -1,0 +1,4 @@
+Child,Parent,Certainty Type,Notes
+ன,𑌣,5,Sound/glyph similarity
+ழ,𑀵,5,"Big assumptiion here: Old Tamil was written in Vatteluttu/Tamil-Brahmi derived while modern Tamil is written in Grantha-derived. There is no LLLA consonant in Grantha, so it may have retained the Vatteluttu consonant. Compare glyph with Malayalam LLLA (ഴ) of probable same origin."
+

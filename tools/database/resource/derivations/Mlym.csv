@@ -1,10 +1,14 @@
 Child,Parent,Certainty Type,Source,Notes
 എ,𑌏,1,https://en.wikipedia.org/wiki/E_(Indic)#Malayalam_E
-ഏ,എ,1,https://en.wikipedia.org/wiki/E_(Indic)#Malayalam_E
-ഒ,𑌓,1,https://en.wikipedia.org/wiki/O_(Indic)#Malayalam_O,
+ഏ,എ,1,https://en.wikipedia.org/wiki/E_(Indic)#Malayalam_E and https://en.wikipedia.org/wiki/Malayalam_script#History,A 19th century distinction
+ഒ,𑌓,1,https://en.wikipedia.org/wiki/O_(Indic)#Malayalam_O and https://en.wikipedia.org/wiki/Malayalam_script#History,A 19th century distinction
 ഓ,ഒ/ാ,5,https://en.wikipedia.org/wiki/O_(Indic)#Malayalam_O,Since Grantha doesn't have long/short O distinction the assumption is that dependent vowel long A was used to get long O
-റ,ര,5,,Assumption due to similar glyph shape and sound and considering Grantha does not have the distinction
 ല,𑌲,1,https://en.wikipedia.org/wiki/La_(Indic)#Malayalam_La
+ഞ,𑌞,5,,"Similar sound. The glyph doesn't look similar at all, but the ligatures of Grantha nya show a more plausible looking glyph. See ñca and ñja in https://en.wikipedia.org/wiki/Grantha_script"
+
+ള,𑁵,3,https://en.wikipedia.org/wiki/Malayalam_script#History,Taken from Vatteluttu (a script not in this database) which in turn derives from Tamil variant of Brahmi
+ഴ,𑀵,3,https://en.wikipedia.org/wiki/Malayalam_script#History,Taken from Vatteluttu (a script not in this database) which in turn derives from Tamil variant of Brahmi
+റ,𑀶,3,https://en.wikipedia.org/wiki/Malayalam_script#History,Taken from Vatteluttu (a script not in this database) which in turn derives from Tamil variant of Brahmi
 
 ഃ,𑌃,5,,Similar glyph/sound
 ം,𑌂,5,,Similar glyph/sound

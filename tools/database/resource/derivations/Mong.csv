@@ -1,4 +1,4 @@
-Child,Parent
+Child,Parent,Certainty Type,Source
 ᠠ,𐽰
 ᠡ,𐽰
 ᠢ,𐽰/𐽶
@@ -25,3 +25,13 @@ Child,Parent
 ᠷ,𐽾
 ᠸ,𐽱/𐽳
 
+᠐,༠,1,https://en.wikipedia.org/wiki/Mongolian_numerals
+᠑,༡,1,https://en.wikipedia.org/wiki/Mongolian_numerals
+᠒,༢,1,https://en.wikipedia.org/wiki/Mongolian_numerals
+᠓,༣,1,https://en.wikipedia.org/wiki/Mongolian_numerals
+᠔,༤,1,https://en.wikipedia.org/wiki/Mongolian_numerals
+᠕,༥,1,https://en.wikipedia.org/wiki/Mongolian_numerals
+᠖,༦,1,https://en.wikipedia.org/wiki/Mongolian_numerals
+᠗,༧,1,https://en.wikipedia.org/wiki/Mongolian_numerals
+᠘,༨,1,https://en.wikipedia.org/wiki/Mongolian_numerals
+᠙,༩,1,https://en.wikipedia.org/wiki/Mongolian_numerals

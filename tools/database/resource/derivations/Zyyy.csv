@@ -37,6 +37,9 @@ $,P/S/T/I/J,1,3,,Wikipedia: Dollar sign
 ¶,⸿,1,2,,Wikipedia: Pilcrow
 ¿,?,8,1,,Wikipedia: Upside-down question and exclamation marks
 
+।,𑁇,,5,,https://www.unicode.org/L2/L2020/20183-gurmukhi-chg.pdf and https://panjabilab.com/faq/,"While the code point has Devanagari in its name, the intent appears to initially have been to treat this as a generic punctuation mark for use in multiple scripts"
+॥,𑁈,,5,,https://www.unicode.org/L2/L2020/20183-gurmukhi-chg.pdf and https://panjabilab.com/faq/,"While the code point has Devanagari in its name, the intent appears to initially have been to treat this as a generic punctuation mark for use in multiple scripts"
+
 ‐,͜,1,1,,Wikipedia: Hyphen
 ‵,′,1,5,,
 ※,米,1,2,,https://en.wiktionary.org/wiki/%E2%80%BB

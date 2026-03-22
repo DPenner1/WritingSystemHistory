@@ -5,13 +5,26 @@ import csv
 import time
 from enum import Enum
 from typing import Sequence
+from unicodedata import category
 from zipfile import ZipFile
 
 
-class SearchOption(Enum):
-    ALLOW_SAME_SCRIPT_PARENT = 0
-    IGNORE_SAME_SCRIPT_PARENT = 1
-    PASS_THROUGH_SAME_SCRIPT_PARENT = 2
+class LoadOptions:
+    def __init__(self):
+        self.force_overwrite = True  # at the moment a data-update mode is not well supported, this may default back to False when it is
+        self.verify_data_sources = False
+        self.output_debug_info = False
+        self.vacuum_db = False
+        # an index that speeds up loading, but that is unlikely to be that helpful (a non-trivial size increase of the DB otherwise)
+        self.drop_code_point_name_index = True
+        # path None = Default to leaving previous path alone, DB working subdirectories if not previously specified
+        self.resource_path = None
+        self.saved_query_path = None
+        # columns that are less likely to be relevant
+        self.drop_bidi_class_column = False
+        self.drop_case_columns = False
+        # Column and table
+        self.drop_derivation_type = False
 
 
 class ScriptDatabase:
@@ -21,10 +34,41 @@ class ScriptDatabase:
     UNICODE_MAX = 0x10FFFF
     NO_PARENT_CHARACTER = '\uFFFF'  # a Unicode non-character
 
+    DEFAULT_LOAD = LoadOptions()
+
+    DEBUG_LOAD = LoadOptions()
+    DEBUG_LOAD.verify_data_sources = True
+    DEBUG_LOAD.output_debug_info = True
+
+    OPTIMIZED_LOAD = LoadOptions()
+    OPTIMIZED_LOAD.drop_bidi_class_column = True
+    OPTIMIZED_LOAD.drop_case_columns = True
+    OPTIMIZED_LOAD.drop_derivation_type = True
+    OPTIMIZED_LOAD.vacuum_db = True
+
+    OPTIMIZED_DEBUG_LOAD = LoadOptions()
+    OPTIMIZED_DEBUG_LOAD.drop_bidi_class_column = True
+    OPTIMIZED_DEBUG_LOAD.drop_case_columns = True
+    OPTIMIZED_DEBUG_LOAD.drop_derivation_type = True
+    OPTIMIZED_DEBUG_LOAD.verify_data_sources = True
+    OPTIMIZED_DEBUG_LOAD.output_debug_info = True
+    OPTIMIZED_DEBUG_LOAD.vacuum_db = True
+
     _GENERATED_DIR_NAME = 'generated'
     _INDIC_ORDER = ['A', 'Ā', 'I', 'Ī', 'U', 'Ū', 'Ṛ', 'Ṝ', 'Ḷ', 'Ḹ', 'E', 'Ai', 'O', 'Au',
                     'Ka', 'Kha', 'Ga', 'Gha', 'Ṅa', 'Ca', 'Cha', 'Ja', 'Jha', 'Ña', 'Ṭa', 'Ṭha', 'Ḍa', 'Ḍha', 'Ṇa', 'Ta',
                     'Tha', 'Da', 'Dha', 'Na', 'Pa', 'Pha', 'Ba', 'Bha', 'Ma', 'Ya', 'Ra', 'La', 'Va', 'Śa', 'Ṣa', 'Sa','Ha']
+    # diacritics, punctuation and dependent vowels
+    _INDIC_SUPPLEMENT = ['DIGIT ZERO', 'DIGIT ONE', 'DIGIT TWO', 'DIGIT THREE', 'DIGIT FOUR', 'DIGIT FIVE', 'DIGIT SIX', 'DIGIT SEVEN', 'DIGIT EIGHT', 'DIGIT NINE',
+                         'CANDRABINDU', 'ANUSVARA', 'VISARGA', 'VIRAMA', 'NUKTA', 'AVAGRAHA', 'DANDA', 'DOUBLE DANDA',
+                         'PLACEHOLDER 1', 'PLACEHOLDER 2', 'PLACEHOLDER 3', 'PLACEHOLDER 4', 'PLACEHOLDER 5', 'PLACEHOLDER 6', 'PLACEHOLDER 7', 'PLACEHOLDER 8',
+                         'VOWEL SIGN AA', 'VOWEL SIGN I', 'VOWEL SIGN II', 'VOWEL SIGN U', 'VOWEL SIGN UU', 'VOWEL SIGN VOCALIC R', 'VOWEL SIGN VOCALIC RR',
+                         'VOWEL SIGN VOCALIC L', 'VOWEL SIGN VOCALIC LL', 'VOWEL SIGN E', 'VOWEL SIGN AI', 'VOWEL SIGN O', 'VOWEL SIGN AU']
+    # not part of general Indic letters or automated, but list here is for consistent order of "extras"
+    _INDIC_MANUAL = ['LETTER EE', 'LETTER OO', 'LETTER RRA', 'VOWEL SIGN EE', 'VOWEL SIGN OO', 'LENGTH MARK', 'AI LENGTH MARK', 'SIGN SIDDHAM']
+    # sign siddham (not to be confused with the script) is a weird one. Attested in Gupta and Pallava (and presumably Kadamba with Telugu and Kannada having it),
+    # yet there's no Brahmi code point for it seemingly. And among the child scripts there's actually not that many named that way to automate it.
+    # reference: https://www.unicode.org/L2/L2012/12123r2-devanagari-siddham.pdf
     _SEMITIC_ORDER = ['Aleph', 'Bet', 'Gimel', 'Dalet', 'He', 'Waw', 'Zayin', 'Heth', 'Teth', 'Yodh', 'Kaph', 'Lamedh',
                      'Mem', 'Nun', 'Samekh', 'Ayin', 'Pe', 'Tsade', 'Qoph', 'Resh', 'Shin', 'Taw']
     _DIGIT_ORDER = ['ZERO', 'ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE']
@@ -56,9 +100,9 @@ class ScriptDatabase:
         'Deva': 'Qabn',
         'Diak': 'Gran',
         'Dogr': 'Takr',
-        'Gong': 'Qabn',
+        'Gong': 'Deva',
         'Gran': 'Qabp',
-        'Gujr': 'Qabn',
+        'Gujr': 'Deva',
         'Guru': 'Qabl',
         'Hano': 'Tglg',
         'Java': 'Kawi',
@@ -66,7 +110,7 @@ class ScriptDatabase:
         'Khmr': 'Qabp',
         'Khoj': 'Qabl',
         'Knda': 'Qabk',
-        'Kthi': 'Qabn',
+        'Kthi': 'Deva',
         'Lana': 'Mymr',
         'Laoo': 'Thai',
         'Lepc': 'Tibt',
@@ -75,7 +119,7 @@ class ScriptDatabase:
         'Maka': 'Kawi',
         'Marc': 'Tibt',
         'Mlym': 'Gran',
-        'Modi': 'Qabn',
+        'Modi': 'Deva',
         'Mtei': 'Tibt',
         'Mult': 'Qabl',
         'Mymr': 'Qabp',
@@ -236,6 +280,7 @@ class ScriptDatabase:
             unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Scripts.txt', os.path.join(self._unicode_path, 'Scripts.txt')),
             unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Unikemet.txt', os.path.join(self._unicode_path, 'Unikemet.txt')),
             unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'NameAliases.txt', os.path.join(self._unicode_path, 'NameAliases.txt')),
+            unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'PropList.txt', os.path.join(self._unicode_path, 'PropList.txt')),
             unzip_file(os.path.join(zip_dir_path, 'Unihan.zip'), 'Unihan_Variants.txt', os.path.join(self._unicode_path, 'Unihan_Variants.txt')),
         ]
 
@@ -305,54 +350,56 @@ class ScriptDatabase:
         if general_category_code is None: general_category_code = 'Cn'
         if bidi_class_code is None: bidi_class_code = 'L'
 
+        is_alphabetic = general_category_code[0] == 'L' or general_category_code == 'Nl'
         cursor.execute("INSERT INTO sequence (id, type_id) VALUES (?, ?) ON CONFLICT DO NOTHING", (id, SequenceType.BASE.value))
         if self.is_private_use(id):
             cursor.execute("""
-                INSERT INTO code_point (id, raw_name, script_code, general_category_code, bidi_class_code)
-                VALUES (?, ?, ?, ?, ?)
-                ON CONFLICT DO UPDATE SET raw_name = ?, script_code = ?, general_category_code = ?, bidi_class_code = ?""",
-                (id, name, script_code, general_category_code, bidi_class_code, name, script_code, general_category_code, bidi_class_code))
+                INSERT INTO code_point (id, raw_name, script_code, general_category_code, bidi_class_code, is_alphabetic)
+                VALUES (?, ?, ?, ?, ?, ?)
+                ON CONFLICT DO UPDATE SET raw_name = ?, script_code = ?, general_category_code = ?, bidi_class_code = ?, is_alphabetic = ?""",
+                (id, name, script_code, general_category_code, bidi_class_code, is_alphabetic, name, script_code, general_category_code, bidi_class_code, is_alphabetic))
         else:
             cursor.execute("""
-                INSERT INTO code_point (id, raw_name, script_code, general_category_code, bidi_class_code)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO code_point (id, raw_name, script_code, general_category_code, bidi_class_code, is_alphabetic)
+                VALUES (?, ?, ?, ?, ?, ?)
                 ON CONFLICT DO NOTHING""",
-                (id, name, script_code, general_category_code, bidi_class_code))
+                (id, name, script_code, general_category_code, bidi_class_code, is_alphabetic))
                 # TODO double check stability policy
 
 
-    def _update_code_point(self, cursor, id, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str):
-        decom_pattern = re.compile(r'^(?:<([a-zA-Z]+)> )?([\s0-9A-F]+)$')
-        decom_type = None
-        decom_ids = []
-
-        seq_id = None
-        if decom_str:
-            match = decom_pattern.match(decom_str)
-            decom_ids = [int(id, 16) for id in match.group(2).split(' ')]
-            decom_type = match.group(1) if match.group(1) else 'canonical'
-            seq_id = self.get_next_sequence_id()
-            cursor.execute("""
-                INSERT INTO sequence (id, type_id) 
-                VALUES (?, (SELECT id FROM sequence_type WHERE name LIKE ?))""",
-                (seq_id, decom_type.title() + '%'))
-            for i, decom_id in enumerate(decom_ids):
-                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, decom_id, i + 1))
-
-        cursor.execute("""
-            UPDATE code_point
-            SET 
-                raw_name = ?,
-                general_category_code = ?,
-                bidi_class_code = ?,
-                simple_uppercase_mapping_id = ?,
-                simple_lowercase_mapping_id = ?,
-                equivalent_sequence_id = ?
-            WHERE id = ?""",
-            (name, general_category, bidi_class, upper_mapping, lower_mapping, seq_id, id))
-
-
     def _load_code_point_data(self, cursor):
+        # can't reliably call this outside the outer function (derived prop)
+        def update_code_point(cursor, id, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str):
+            decom_pattern = re.compile(r'^(?:<([a-zA-Z]+)> )?([\s0-9A-F]+)$')
+            decom_type = None
+            decom_ids = []
+
+            seq_id = None
+            if decom_str:
+                match = decom_pattern.match(decom_str)
+                decom_ids = [int(id, 16) for id in match.group(2).split(' ')]
+                decom_type = match.group(1) if match.group(1) else 'canonical'
+                seq_id = self.get_next_sequence_id()
+                cursor.execute("""
+                    INSERT INTO sequence (id, type_id) 
+                    VALUES (?, (SELECT id FROM sequence_type WHERE name LIKE ?))""",
+                               (seq_id, decom_type.title() + '%'))
+                for i, decom_id in enumerate(decom_ids):
+                    cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, decom_id, i + 1))
+
+            cursor.execute("""
+                UPDATE code_point
+                SET 
+                    raw_name = ?,
+                    general_category_code = ?,
+                    bidi_class_code = ?,
+                    simple_uppercase_mapping_id = ?,
+                    simple_lowercase_mapping_id = ?,
+                    equivalent_sequence_id = ?,
+                    is_alphabetic = ?
+                WHERE id = ?""",
+                           (name, general_category, bidi_class, upper_mapping, lower_mapping, seq_id, general_category[0] == 'L' or general_category == 'Nl', id))
+
         # Hangul constants named similarly to Unicode Standard algorithm
         S_BASE = 0xAC00
         L_BASE = 0x1100
@@ -421,7 +468,7 @@ class ScriptDatabase:
                                 lv_name = cursor.execute("SELECT raw_name FROM code_point WHERE id = ?", (lv_part,)).fetchone()[0]
                                 name = lv_name + JAMO_SHORT_NAME[t_part]
 
-                        self._update_code_point(cursor, i, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
+                        update_code_point(cursor, i, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
 
                     in_range = False
                 else:
@@ -447,7 +494,7 @@ class ScriptDatabase:
                         else:
                             name = line[1]
                     if not in_range:
-                        self._update_code_point(cursor, code_point, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
+                        update_code_point(cursor, code_point, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
 
         with open(os.path.join(self._unicode_path, 'NameAliases.txt'), 'r') as file:
             for line in file:
@@ -456,6 +503,27 @@ class ScriptDatabase:
                     if parts[2].strip() in ['correction', 'figment', 'control']:
                         cursor.execute("UPDATE code_point SET alt_name = CONCAT(alt_name, ' / ', ?) WHERE id = ? AND alt_name IS NOT NULL", (parts[1], int(parts[0], 16)))
                         cursor.execute("UPDATE code_point SET alt_name = ? WHERE id = ? AND alt_name IS NULL", (parts[1], int(parts[0], 16)))
+
+        with open(os.path.join(self._unicode_path, 'PropList.txt'), 'r') as file:
+            for line in file:
+                if not line.isspace() and not line.startswith('#'):
+                    match = pattern.match(line)
+                    property = match.group(3)
+                    if property == 'Other_Alphabetic':
+                        for i in range(start, end + 1):
+                            start = int(match.group(1), 16)
+                            end = int(match.group(2), 16) if match.group(2) else start
+                            cursor.execute("UPDATE code_point SET is_alphabetic = 1 WHERE id = ?", (i,))
+                    elif property == 'Other_Lowercase':
+                        for i in range(start, end + 1):
+                            start = int(match.group(1), 16)
+                            end = int(match.group(2), 16) if match.group(2) else start
+                            cursor.execute("UPDATE code_point SET is_alphabetic = 1, is_lowercase = 1 WHERE id = ?", (i,))
+                    elif property == 'Other_Uppercase':
+                        for i in range(start, end + 1):
+                            start = int(match.group(1), 16)
+                            end = int(match.group(2), 16) if match.group(2) else start
+                            cursor.execute("UPDATE code_point SET is_alphabetic = 1, is_uppercase = 1 WHERE id = ?", (i,))
 
 
     def _load_lookups(self, cursor):
@@ -786,6 +854,7 @@ class ScriptDatabase:
         # A more "proper" solution would be to have a category associated to a sequence_type, but that feels like over-engineering for the moment
         # conflicts are expected when a character decomposes into multiple copies of a code point,
         # minimal enough that ON CONFLICT DO NOTHING is probably the better query option than advance filtering
+        # About 10 conflicts are characters simultaneously being Z-variants and trad/simp derivations
 
         # manual equivalency
         # TODO - ensure we dont override decomposition
@@ -817,6 +886,8 @@ class ScriptDatabase:
             cursor.execute("ALTER TABLE code_point DROP COLUMN simple_uppercase_mapping_id")
             cursor.execute("DROP INDEX idx_fk_cp_simple_lowercase_mapping")
             cursor.execute("ALTER TABLE code_point DROP COLUMN simple_lowercase_mapping_id")
+            cursor.execute("ALTER TABLE code_point DROP COLUMN is_lowercase")
+            cursor.execute("ALTER TABLE code_point DROP COLUMN is_uppercase")
 
 
     def _load_manually_specified_derivations(self, cursor, verify_script):
@@ -860,7 +931,7 @@ class ScriptDatabase:
                                              override_condition=(certainty == Certainty.ASSUMED.value))
 
                     notes = resolve_default(defaults, script, row, 'Notes')
-                    derivation_types = resolve_default(defaults, script, row, 'Derivation Type', last_resort=str(DerivationType.DEFAULT.value))
+                    derivation_type = int(resolve_default(defaults, script, row, 'Derivation Type', last_resort=str(DerivationType.DEFAULT.value)))
 
                     # File-specified data overrides the automatically generated data
                     cursor.execute(
@@ -872,8 +943,7 @@ class ScriptDatabase:
                         script_in_db = cursor.execute(
                             "SELECT code FROM code_point cp INNER JOIN script s ON s.code = cp.script_code WHERE text = ?", child).fetchone()[0]
                         if script != script_in_db:
-                            raise ValueError(
-                                f"resource file error in {script}.csv with child character {child} detected to be {script_in_db} instead")
+                            print(f"resource file error in {script}.csv with child character {child} detected to be {script_in_db} instead")
 
                     for parent in parents.split('/'):
                         if not parent: parent = self.NO_PARENT_CHARACTER
@@ -885,9 +955,8 @@ class ScriptDatabase:
                                               (ord(child), ord(parent))).fetchall():
                                 raise ValueError("Attempted to add a 2-cycle with " + child + " and " + parent)
 
-                        for derivation_type in derivation_types.split('/'):
-                            self._load_single_derivation(cursor, ord(child), ord(parent), DerivationType(int(derivation_type)),
-                                                         Certainty(certainty), source, notes, multiplicity)
+                        self._load_single_derivation(cursor, ord(child), ord(parent), DerivationType(derivation_type),
+                                                     Certainty(certainty), source, notes, multiplicity)
 
         # stuff that's confusing or might break csv format (commas, quotes, slashes)
         awkward_data = [
@@ -911,16 +980,20 @@ class ScriptDatabase:
             VALUES (?, ?, ?, ?, ?, ?, ?)""", awkward_data)
 
 
-    def _load_derivations(self, cursor, digit_data, indic_letter_data, semitic_letter_data, drop_case_columns, drop_name_index, verify_script):
-        self._load_equivalents_names_and_independents(cursor, drop_name_index, verify_script)
-        self._load_derivations_from_case_data(cursor, drop_case_columns)
+    def _load_derivations(self, cursor, digit_data, indic_letter_data, semitic_letter_data, load_options):
+        self._load_equivalents_names_and_independents(cursor, load_options.drop_code_point_name_index, load_options.verify_data_sources)
+        self._load_derivations_from_case_data(cursor, load_options.drop_case_columns)
         self._load_derivations_from_equivalencies(cursor)
 
-        self._load_letter_derivation_data(cursor, digit_data, self._DIGIT_ORDER, "Assumed indic number derivations", verify_script)
-        self._load_letter_derivation_data(cursor, indic_letter_data, self._INDIC_ORDER, "Wikipedia indic letter pages", verify_script)
-        self._load_letter_derivation_data(cursor, semitic_letter_data, self._SEMITIC_ORDER, "Wikipedia semitic letter pages", verify_script)
+        self._load_letter_derivation_data(cursor, digit_data, self._INDIC_SUPPLEMENT, "Assumed indic derivations", load_options.verify_data_sources)
+        self._load_letter_derivation_data(cursor, indic_letter_data, self._INDIC_ORDER, "Wikipedia indic letter pages", load_options.verify_data_sources)
+        self._load_letter_derivation_data(cursor, semitic_letter_data, self._SEMITIC_ORDER, "Wikipedia semitic letter pages", load_options.verify_data_sources)
 
-        self._load_manually_specified_derivations(cursor, verify_script)
+        self._load_manually_specified_derivations(cursor, load_options.verify_data_sources)
+
+        if load_options.drop_derivation_type:
+            cursor.execute("ALTER TABLE code_point_derivation DROP COLUMN derivation_type_id")
+            cursor.execute("DROP TABLE derivation_type")
 
 
     def get_code_to_script_dict(self):
@@ -932,61 +1005,158 @@ class ScriptDatabase:
         cursor.close()
         return retval
 
+    # TODO - this performs poorly
+    def _get_indic_supplement_dict(self, cursor, indic_scripts):
+        supp_data = {}
+        for script_code in indic_scripts:
+            supp_data[script_code] = {}
+            for supp_name in self._INDIC_SUPPLEMENT:
+                if 'PLACEHOLDER' not in supp_name:
+                    supp_code_point = cursor.execute(f"SELECT text FROM code_point WHERE script_code = ? AND substr(raw_name, ?) = ?",
+                                                     (script_code, -len(supp_name), supp_name)).fetchall()
+                    if len(supp_code_point) == 1:  # more than one is too risky for automatic derivation based on name
+                        supp_data[script_code][supp_name] = [supp_code_point[0][0]]
+        return supp_data
+
 
     def _load_private_use_data(self, cursor, indic_letter_data):
+        script_names = self.get_code_to_script_dict()
         def get_private_use_indic_name(script_code, wiki_letter_name):
-            script_name = self.get_code_to_script_dict()[script_code]
+            script_name = script_names[script_code]
             replacements = {'Ā': 'AA', 'Ī': 'II', 'Ū': 'UU', 'Ṛ': 'vocalic R', 'Ṝ': 'vocalic RR', 'Ḷ': 'vocalic L', 'Ḹ': 'vocalic LL',
                             'Ṅa': 'Nga', 'Ña': 'Nya', 'Ṭa': 'Tta', 'Ṭha': 'Ttha', 'Ḍa': 'Dda', 'Ḍha': 'Ddha', 'Ṇa': 'Nna', 'Va': 'Wa', 'Śa': 'Sha', 'Ṣa': 'Ssa'}
 
             if wiki_letter_name in replacements:
                 wiki_letter_name = replacements[wiki_letter_name]
             return (script_name + ' letter ' + wiki_letter_name).upper()
+        def load_indic_manual(script_code, char_name):
+            script_name = script_names[script_code]
+            category_code = 'Mn' # rough
+            if char_name == 'SIGN SIDDHAM':
+                category_code = 'Po'
+            elif  char_name.startswith('LETTER'):
+                category_code = 'Lo'
+            self._insert_code_point(cursor,
+                                    self._CODE_POINT_STARTS[script_code] + len(self._INDIC_ORDER) + len(self._INDIC_SUPPLEMENT) + self._INDIC_MANUAL.index(char_name),
+                                    f"{script_names[script_code].upper().replace("'", "")} {char_name}",
+                                    script_code,
+                                    category_code,
+                                    bidi_class_code='NSM' if category_code == 'Mn' else 'L')  # probably
 
         dem_replacements = {'š': 'sh', 'ẖ': 'x', 'ḥ': 'h-dot', 'ḥ2': 'h2-dot', 'ḏ': 'd-underbar', 'ḏ2': 'd2-underbar',
                             'ı͗': 'i-halfring', 'ꜥ': 'ain', 'ḫ': 'h-underbar', 'š2': 'sh2'}
 
-        digit_data = {}
-        script_names = self.get_code_to_script_dict()
         offset = len(self._INDIC_ORDER)
         for script_code in indic_letter_data:
-            if script_code.startswith('Q'):
+            if script_code.startswith('Qab'):
                 for letter_class in indic_letter_data[script_code]:
                     letter = indic_letter_data[script_code][letter_class][0] # generated only has one
                     self._insert_code_point(cursor, ord(letter), get_private_use_indic_name(script_code, letter_class), script_code, 'Lo', bidi_class_code = None)
 
-                # we assume numerals exists (this might actually be debatable for the early scripts)
-                for i, digit_name in enumerate(self._DIGIT_ORDER):
-                    temp = len(indic_letter_data[script_code])
-                    self._insert_code_point(cursor,
-                                            self._CODE_POINT_STARTS[script_code] + offset + i,
-                                            f"{script_names[script_code].upper().replace("'", "")} DIGIT {digit_name}",
-                                            script_code,
-                                            'Nd',
-                                            bidi_class_code = None)
+                # we assume these symbols exist then filter manually later
+                # the opposite approach seemed trickier (see the fill-in script stuff for the indic letters for that...)
+                for i, supp_name in enumerate(self._INDIC_SUPPLEMENT):
+                    if 'PLACEHOLDER' in supp_name:
+                        continue
 
-            digit_data[script_code] = {}
-            for digit_name in self._DIGIT_ORDER:
-                digit_code_point = cursor.execute("SELECT text FROM code_point WHERE script_code = ? AND name LIKE ?",
-                                                  (script_code, f"%DIGIT {digit_name}%")).fetchall()
-                if len(digit_code_point) == 1:
-                    digit_data[script_code][digit_name] = [digit_code_point[0][0]]
+                    insert_code_point = True
+                    category_code = 'Mn'
+                    if supp_name == 'VISARGA':
+                        category_code = 'Mc'
+                    elif supp_name == 'CANDRABINDU' and script_code == 'Qabp':
+                        insert_code_point = False
+                    elif supp_name == 'NUKTA' and script_code == 'Qabp':
+                        insert_code_point = False
+                    elif supp_name == 'AVAGRAHA':
+                        category_code = 'Lo'
+                        if script_code in ('Qabp', 'Qabl'):
+                            insert_code_point = False
+                    elif supp_name in ['DANDA', 'DOUBLE DANDA']:
+                        category_code = 'Po'
+                        if script_code not in ('Qabp', 'Qabg'):
+                            insert_code_point = False
+                    elif supp_name.startswith('DIGIT'):
+                        category_code = 'Nd'
+                    elif supp_name.startswith('VOWEL'):
+                        # turns out this could be a mess going forward
+                        # eyeballing it for Mc vs Mn
+                        if script_code == 'Qabg':
+                            if supp_name == 'VOWEL SIGN UU':
+                                category_code = 'Mc'
+                            elif 'VOCALIC' in supp_name and supp_name != 'VOWEL SIGN VOCALIC R':
+                                insert_code_point = False
+                        elif script_code == 'Qabp':
+                            if 'VOCALIC' in supp_name:
+                                insert_code_point = False
+                            elif 'SIGN I' in supp_name or 'SIGN U' in supp_name:  # intentionally including long vowels
+                                category_code = 'Mc'
+                        elif script_code == 'Qabl':
+                            if 'VOCALIC' in supp_name:
+                                insert_code_point = False
+                            elif 'SIGN I' in supp_name or 'SIGN AA' in supp_name: # intentionally including long II
+                                category_code = 'Mc'
+                        elif script_code == 'Qabd':
+                            if 'VOCALIC L' in supp_name: # intentionally including "long" L
+                                insert_code_point = False
+                            elif 'SIGN U' not in supp_name and 'VOCALIC R' not in supp_name: # intentional again
+                                category_code = 'Mc'
+                        elif script_code == 'Qabn':
+                            if 'VOCALIC L' in supp_name: # intentionally including "long" L
+                                insert_code_point = False
+                            elif 'SIGN I' in supp_name or supp_name in ('VOWEL SIGN AA', 'VOWEL SIGN AI', 'VOWEL SIGN O', 'VOWEL SIGN AU'):
+                                category_code = 'Mc'
+                        elif script_code == 'Qabk':
+                            if 'VOCALIC L' in supp_name: # intentionally including "long" L
+                                insert_code_point = False
+                            elif supp_name not in ('VOWEL SIGN I', 'VOWEL SIGN VOCALIC R', 'VOWEL SIGN E'):
+                                category_code = 'Mc'
 
-        for i, letter in enumerate(ScriptDatabase._PROTO_SINAITIC_ORDER):
-            self._insert_code_point(cursor, i + ScriptDatabase._CODE_POINT_STARTS['Psin'], f"PROTO-SINAITIC LETTER {letter}", "Psin", 'Lo', bidi_class_code=None)
+                    # Nagari removals based on less than 2/3 of Siddham, Devanagari, Nandiningari having it
+                    # Gaudi removals based on less than 2/3 of Siddham, Bengali, Odia having it
+                    # Landa removals based on less than 2/3 of Sharada, Khudabadi and Gurmukhi having it
+                    # Landa Danda: While there are Danda code points for Sharada, they are lacking in Khudabadi and Gurmukhi.
+                    # Intent seems to be to use generic Devanagari Danda: https://www.unicode.org/L2/L2020/20183-gurmukhi-chg.pdf and https://panjabilab.com/faq/
+
+                    # Kadamba removals just based on 0 or 1 of Telugu and Kannada having it -
+                    # The scripts are so closely related and the parent of Kadamba goes all the way back to Brahmi
+
+                    # Good data on what to remove in Pallava: https://www.unicode.org/L2/L2018/18083-pallava.pdf
+
+                    # dependent vowels for Gupta: https://en.wikipedia.org/wiki/Gupta_script - diacritics TODO
+
+                    if insert_code_point:
+                        self._insert_code_point(cursor,
+                                                self._CODE_POINT_STARTS[script_code] + offset + i,
+                                                f"{script_names[script_code].upper().replace("'", "")} {supp_name}",
+                                                script_code,
+                                                category_code,
+                                                bidi_class_code = 'NSM' if category_code == 'Mn' else 'L') # probably
+
+        load_indic_manual('Qabk', 'LETTER EE')
+        load_indic_manual('Qabk', 'LETTER OO')
+        load_indic_manual('Qabk', 'LETTER RRA')
+        load_indic_manual('Qabk', 'VOWEL SIGN EE')
+        load_indic_manual('Qabk', 'VOWEL SIGN OO')
+        load_indic_manual('Qabk', 'LENGTH MARK')
+        load_indic_manual('Qabk', 'AI LENGTH MARK')
+        load_indic_manual('Qabk', 'SIGN SIDDHAM')
+        load_indic_manual('Qabp', 'SIGN SIDDHAM')
+        load_indic_manual('Qabg', 'SIGN SIDDHAM')
+        load_indic_manual('Qabn', 'SIGN SIDDHAM')
+
+        for i, letter in enumerate(self._PROTO_SINAITIC_ORDER):
+            self._insert_code_point(cursor, i + self._CODE_POINT_STARTS['Psin'], f"PROTO-SINAITIC LETTER {letter}", "Psin", 'Lo', bidi_class_code=None)
             # TODO double check bidi class code
 
-        for i, letter in enumerate(ScriptDatabase._DEMOTIC_SUBSET):
+        for i, letter in enumerate(self._DEMOTIC_SUBSET):
             temp = letter.split(' ')[0]
             l = dem_replacements[temp] if temp in dem_replacements else temp
-            self._insert_code_point(cursor, i + ScriptDatabase._CODE_POINT_STARTS['Egyd'], f"EGYPTIAN DEMOTIC LETTER {l.upper()}", "Egyd", 'Lo', bidi_class_code=None)
+            self._insert_code_point(cursor, i + self._CODE_POINT_STARTS['Egyd'], f"EGYPTIAN DEMOTIC LETTER {l.upper()}", "Egyd", 'Lo', bidi_class_code=None)
             # TODO bidi class code is rtl
-
-        return digit_data
 
     # format: { script_code: { Generic Indic Letter: [letters] } }
     # TODO add script verification
-    def _get_indic_letter_dict(self, verify):
+    def _get_indic_letter_dict(self, cursor, verify):
         def add_private_use_char(data, script_code, indic_letter):
             id = self._CODE_POINT_STARTS[script_code] + self._INDIC_ORDER.index(indic_letter)
             data[script_code][indic_letter] = [chr(id)]
@@ -1003,9 +1173,9 @@ class ScriptDatabase:
 
                     if script_code not in wdata:
                         wdata[script_code] = {}
-                    if letter not in wdata[script_code]:
-                        wdata[script_code][letter] = []
-                    if match[1] == 'cp':  # code point exists for the script
+                    if match[1] == 'img' and letter not in wdata[script_code]:
+                        wdata[script_code][letter] = [] #mark the letter exists though we don't know the code point yet
+                    elif match[1] == 'cp':  # code point exists for the script
                         value = match[2].strip()
                         if '&#x' in value:
                             value = value[value.index('x') + 1:]
@@ -1014,14 +1184,23 @@ class ScriptDatabase:
                             if letter_to_add == 'ᜢ' and letter == 'O':
                                 if verify:
                                     print("Data generation error: Hanunoo letter ᜢ in two Indic letter files")  # a likely error in the source files
-                            elif letter_to_add not in wdata[script_code][letter]:
-                                wdata[script_code][letter].append(letter_to_add)
+                            else:
+                                category_code = cursor.execute("SELECT general_category_code FROM code_point WHERE text = ?", (letter_to_add,)).fetchone()[0]
+                                if category_code == 'Lo':  # only looking for independent vowels in this method (was otherwise inconsistent data it seemed)
+                                    if letter not in wdata[script_code]:
+                                        wdata[script_code][letter] = []
+                                    if letter_to_add not in wdata[script_code][letter]:
+                                        wdata[script_code][letter].append(letter_to_add)
 
         # kawi a bit of a special case in that it exists in Unicode, but probably because its one of the newer ones, Wikipedia source files didn't have code points yet
         # in unicode, currently all indic letters exist in Kawi except for vowel Au, so just manually made sure that one wasn't added by the code
-        fill_in_scripts = ['Kawi', 'Qabp', 'Qabk', 'Qabl', 'Qabn', 'Qabd', 'Qabg']
+        for indic_letter in self._INDIC_ORDER:
+            add_private_use_char(wdata, 'Kawi', indic_letter)
+        del wdata['Kawi']['Au']
 
+        fill_in_scripts = ['Qabp', 'Qabk', 'Qabl', 'Qabn', 'Qabd', 'Qabg']
         # if it existed as an image in Wikipedia (it would have got created as an empty list) OR 50% + 1 have the Indic letter, we assume it exists
+        # in hindsight, a simpler (but less accurate) approach would've been to just assumed all the letters existed and then manually remove the ones that don't
         for fill_in_script in fill_in_scripts:
             if fill_in_script not in wdata:
                 wdata[fill_in_script] = {}
@@ -1043,7 +1222,7 @@ class ScriptDatabase:
         # Add ones that probably existed, but didn't meet the conservative automatic threshold
 
         # research from Sharada indicates straight development from Gupta, and maybe Siddham as well
-        # https://www.scribd.com/document/443095526/%C5%9A%C4%81rad%C4%81-Primer (While Ai is blank in this source, similar shape E shows the development)
+        # https://www.scribd.com/document/443095526/%C5%9A%C4%81rad%C4%81-Primer (While Ai is blank in this source, related shape E shows the development)
         add_private_use_char(wdata, 'Qabg', 'Ai')
 
         del wdata['Armi']  # Remove aramaic, it's better in Semitic dictionary
@@ -1090,7 +1269,7 @@ class ScriptDatabase:
         return wdata
 
 
-    def _generate_std_alphabets(self, indic_letter_dict, semitic_letter_dict):
+    def _generate_std_alphabets(self, semitic_letter_dict, indic_letter_dict, indic_supp_dict):
         def generate_std_alphabet(letter_dict, letter_order):
             with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'a') as alpha_file:
                 for script_code in letter_dict:
@@ -1099,13 +1278,20 @@ class ScriptDatabase:
                         for letter_class in letter_order:
                             if letter_class in letter_dict[script_code]:
                                 for letter in letter_dict[script_code][letter_class]:
-                                    alpha_file.write(letter)
+                                    alpha_file.write(letter + ' ')
 
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'w') as file:
             file.write('Script,Alphabet')
 
-        generate_std_alphabet(indic_letter_dict, ScriptDatabase._INDIC_ORDER)
-        generate_std_alphabet(semitic_letter_dict, ScriptDatabase._SEMITIC_ORDER)
+        indic_dict = dict(indic_letter_dict)
+        for script_code in indic_supp_dict:
+            for letter_class in indic_supp_dict[script_code]:
+                indic_dict[script_code][letter_class] = indic_supp_dict[script_code][letter_class]
+
+        indic_order = list(self._INDIC_ORDER)
+        indic_order.extend(self._INDIC_SUPPLEMENT[self._INDIC_SUPPLEMENT.index('VOWEL SIGN AA'):])
+        generate_std_alphabet(indic_dict, indic_order)
+        generate_std_alphabet(semitic_letter_dict, self._SEMITIC_ORDER)
 
 
     def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, source, verify):
@@ -1119,8 +1305,6 @@ class ScriptDatabase:
                             for letter in letter_dict[script_code][letter_class]:
                                 self._load_single_derivation(cursor, ord(letter), ord(parent_letters[0]), DerivationType.DEFAULT,
                                                              Certainty.AUTOMATED, source, 'Not necessarily graphical derivation but likely')
-                        elif verify:  # temporary, for later manual work
-                            print(f"Data generation warning: {len(parent_letters)} parent letters found for {letter_class} in {script_code}")
 
 
     def _verify_script_coverage(self, cursor):
@@ -1131,7 +1315,7 @@ class ScriptDatabase:
             if not missing_chars:
                 return None # all characters have a derivation
             num_missing = len(missing_chars)
-            if num_missing >= 12:
+            if num_missing >= 20:
                 return f"{num_missing} missing characters"
             return ", ".join([i[1] for i in missing_chars])
 
@@ -1463,6 +1647,11 @@ class ScriptDatabase:
 
     # Script skipping has two main uses: Can avoid self-derivation, and avoid a parent script you think isn't that distinct
     def get_script_parents(self, script_code, scripts_to_skip=None):
+        real_skips = set(scripts_to_skip) if scripts_to_skip else set()
+        real_skips.add(self.INHERITED_SCRIPT)
+        # we want to pass through inherited - in Unicode I assume this means a combining mark inheriting the script of the base character
+        # but for graphical purposes we want to get to the combining mark's parent script
+
         cursor = self._cxn.cursor()
         sequence_id = cursor.execute("SELECT exemplar_sequence_id FROM script WHERE code = ?", (script_code,)).fetchall()
         if not sequence_id:
@@ -1471,11 +1660,9 @@ class ScriptDatabase:
         results = [('Parent Script', 'Number of Letters')]
         raw_results = self._get_sequence_script_parents(cursor, sequence_id[0][0], scripts_to_skip)
         for script, value in sorted(raw_results.items(), key=lambda item: item[1], reverse=True):
-            if script == 'Zinh':
-                script_name = '(accent)' # probably
-            elif script == 'Zyyy':
+            if script == self.COMMON_SCRIPT:
                 script_name = '(symbol)' # probably
-            elif script == 'Zzzz':
+            elif script == 'Zzzz':  # only the signal U+FFFF character
                 script_name = '(original/unknown)'
             elif script == '':
                 script_name = '(missing data)'
@@ -1523,30 +1710,31 @@ class ScriptDatabase:
         lap_time = start_time
         lap_mb = 0
         if output: print('Setting up schema (starting timer)...')
-        self._setup_schema(cur)
 
+        self._setup_schema(cur)
         self._load_lookups(cur)
         self._cxn.commit()
         self._load_scripts(cur)
         self._cxn.commit()
-
-        indic_letter_data = self._get_indic_letter_dict(options.verify_data_sources)
-        semitic_letter_data = self._get_semitic_letter_dict()
-        self._generate_std_alphabets(indic_letter_data, semitic_letter_data)
-        if output: lap_time, lap_mb = output_info("Done basics: loading lookups and scripts; generating letter data.", start_time, lap_time, lap_mb)
+        if output: lap_time, lap_mb = output_info("Done basics: loading lookups and scripts.", start_time, lap_time, lap_mb)
 
         # updates generally expected on this table, just clear (and before loading code points so cleared space can be used)
         cur.execute("DELETE FROM code_point_derivation")
         self._load_code_point_data(cur)
         self._cxn.commit()
-        digit_data = self._load_private_use_data(cur, indic_letter_data)  # spaghetti
+        if output: lap_time, lap_mb = output_info("Done loading code point data.", start_time, lap_time, lap_mb)
+
+        indic_letter_data = self._get_indic_letter_dict(cur, options.verify_data_sources)
+        self._load_private_use_data(cur, indic_letter_data)
+        semitic_letter_data = self._get_semitic_letter_dict()
+        indic_supp_data = self._get_indic_supplement_dict(cur, indic_letter_data)
+        self._generate_std_alphabets(semitic_letter_data, indic_letter_data, indic_supp_data)
         if options.drop_bidi_class_column:  # TODO: is it possible to not even load this column to start?
             cur.execute("ALTER TABLE code_point DROP COLUMN bidi_class_code")
         self._cxn.commit()
-        if output: lap_time, lap_mb = output_info("Done loading code point data.", start_time, lap_time, lap_mb)
+        if output: lap_time, lap_mb = output_info("Done generating letter data and loading private use data.", start_time, lap_time, lap_mb)
 
-        self._load_derivations(cur, digit_data, indic_letter_data, semitic_letter_data, options.drop_case_columns,
-                               options.drop_code_point_name_index, options.verify_data_sources)
+        self._load_derivations(cur, indic_supp_data, indic_letter_data, semitic_letter_data, options)
         self._cxn.commit()
         if output: lap_time, lap_mb = output_info("Done loading derivation data.", start_time, lap_time, lap_mb)
 
@@ -1554,18 +1742,24 @@ class ScriptDatabase:
         self._cxn.commit()
         if output: lap_time, lap_mb = output_info("Done loading alphabet data.", start_time, lap_time, lap_mb)
 
+        if options.vacuum_db:
+            cur.execute("VACUUM")
+
         if output:
             print("=" * 80)
-            print(f'Database loaded. Total time: {time.time() - start_time:.2f} s. Total size: {lap_mb:.1f} MB')
-            priv_use_count = cur.execute("SELECT COUNT(*) FROM code_point WHERE script_code LIKE 'Q%' OR script_code IN ('Psin', 'Egyd')").fetchone()[0]
-            print(f"Number of private use characters: {priv_use_count}")
+            print(f'Database loaded. Total time: {time.time() - start_time:.2f} s. Total size: {os.path.getsize(os.path.join(self._db_path, self._db_name)) / 1000000:.1f} MB')
+            priv_use_counts = cur.execute("""
+                SELECT is_alphabetic, COUNT(*) FROM code_point 
+                WHERE script_code LIKE 'Q%' OR script_code IN ('Psin', 'Egyd')
+                GROUP BY is_alphabetic
+                ORDER BY is_alphabetic""").fetchall()
+            print(f"Number of private use letters: {priv_use_counts[1][1]} (+{priv_use_counts[0][1]} non-letter characters)")
             # self._verify_script_coverage(cur) -> TODO this no longer works with new alphabet architecture
             self.print_table(self.execute_saved_query('Total derivation statistics'))
         if options.verify_data_sources:
             self._verify_script_coverage(cur)
 
         cur.execute("PRAGMA foreign_keys = ON")
-
         return cur
 
 
@@ -1630,38 +1824,16 @@ class DerivationType(Enum):
     TRANSLATION = 10
 
 
-class LoadOptions:
-    def __init__(self):
-        self.force_overwrite = False
-        self.verify_data_sources = False
-        self.output_debug_info = False
-        # an index that speeds up loading, but that is unlikely to be that helpful (a non-trivial size increase of the DB otherwise)
-        self.drop_code_point_name_index = True
-        # path None = Default to leaving previous path alone, DB working subdirectories if not previously specified
-        self.resource_path = None
-        self.saved_query_path = None
-        # columns that are less likely to be relevant
-        self.drop_bidi_class_column = False
-        self.drop_case_columns = False
-
-
 if __name__ == '__main__':
     db = ScriptDatabase()
-    options = LoadOptions()
-    options.force_overwrite = True
-    options.verify_data_sources = True
-    options.output_debug_info = True
-    # dropping these columns doesn't seem to get much space back (not expected to be much, but could also be free'd but unused?)
-    options.drop_case_columns = False
-    options.drop_bidi_class_column = False
 
-    cursor = db.load_database(options)  # replace with options for development run
+    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
     # db.print_table(results)
     # Get a breakdown of a script's parent scripts:
-    # db.print_table(db.get_script_parents('Glag', None))
+    # db.print_table(db.get_script_parents('Glag', ['Glag']))
     # or your own custom query: db.execute_query('YOUR QUERY HERE', parameters=None)
 
     cursor.close()

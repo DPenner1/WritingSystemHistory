@@ -1,7 +1,7 @@
-Script,Derivation Type,Certainty Type,Source
+Script,Derivation Type,Certainty Type,Source,Notes
 Arab,1,2,Wikipedia: Semitic Letter pages and Wiktionary
 Bopo,,1,Wikipedia: Bopomofo - 2026-02-17
-Brah,,2,Indian Epigraphy pg. 25 (Salomon 1998) and Wikipedia: Indic letters pages
+Brah,,3,Indian Epigraphy pg. 25 (Salomon 1998) and/or Wikipedia: Indic letters pages
 Cans,,,Wikipedia: Canadian Aboriginal Syllabics
 Copt,,1,Wikipedia: Coptic script - 2026-02-20
 Cyrl,,,Wikipedia: Early Cyrillic alphabet and letter pages
@@ -21,6 +21,4 @@ Phag,,1,https://en.wikipedia.org/wiki/%CA%BCPhags-pa_script
 Phnx,,1,Wikipedia: Phoenician - 2026-02-19 and Proto-Sinaitic - 2026-02-26
 Psin,3,2,Wikipedia: Proto-Sinaitic - 2026-02-26
 Thaa,1,1,Wikipedia: Thaana 2026-03-10
-
-
-
+Zanb,,5,,Sound/glyph similarity

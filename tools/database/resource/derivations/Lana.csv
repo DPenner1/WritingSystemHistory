@@ -1,3 +1,4 @@
-Child,Parent,Certainty Type,Notes
-ᩃ,လ,5,Sound/glyph matching
-ᨬ,ည,5,Sound/glyph matching
+Child,Parent,Certainty Type,Source,Notes
+ᩃ,လ,1,https://en.wikipedia.org/wiki/Tai_Tham_script#Relation_with_other_scripts,Sound/glyph matching
+ᨬ,ည,1,https://en.wikipedia.org/wiki/Tai_Tham_script#Relation_with_other_scripts,Sound/glyph matching
+ᩊ,ဠ,2,https://en.wikipedia.org/wiki/Tai_Tham_script#Relation_with_other_scripts,
