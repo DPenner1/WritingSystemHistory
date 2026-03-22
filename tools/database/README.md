@@ -1,6 +1,6 @@
 *Disclaimer: Software is provided as-is. The author takes no responsibility for ill-effects from use of said software.*
 
-***Note:*** *This database is in beta. Expect breaking changes.*
+***Note:*** *This database is in beta. Expect breaking changes. After a few weeks of development, I finally have an idea for a front-end to this thing and am starting to develop in support of that.*
 
 ## Overview
 
@@ -91,3 +91,5 @@ This project contains resources from some openly licensed sources.
   - The database is generated from some files the [Unicode Consortium](https://home.unicode.org/). Unicode licence is at [`./resource/unicode-data/license.txt`](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/resource/unicode-data/license.txt)
 
   - The database is generated using some text sourced from Wikipedia, which is under CC BY-SA 4.0. For compliance, and further info on that see in this project [`./resource/wikipedia-sourced/licence-info.txt`](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/resource/wikipedia-sourced/licence-info.txt).
+
+I intend to more formally put the database and the Python generation code under an open licence. The planned front-end I'm less sure about.
