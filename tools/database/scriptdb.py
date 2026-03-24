@@ -421,8 +421,6 @@ class ScriptDatabase:
                             0x11B2: 'LB', 0x11B3: 'LS', 0x11B4: 'LT', 0x11B5: 'LP', 0x11B6: 'LH', 0x11B7: 'M', 0x11B8: 'B', 0x11B9: 'BS', 0x11BA: 'S', 0x11BB: 'SS',
                             0x11BC: 'NG', 0x11BD: 'J', 0x11BE: 'C', 0x11BF: 'K', 0x11C0: 'T', 0x11C1: 'P', 0x11C2: 'H', }
 
-        pattern = re.compile(r'^([0-9A-F]+)(?:\.\.([0-9A-F]+))?\s*; ([_a-zA-Z]+) #')
-
         # Reset since sequence ids not stable -> TODO in principle we could be smarter about this
         cursor.execute("DELETE FROM sequence_item")
         cursor.execute("DELETE FROM alphabet")
@@ -431,16 +429,15 @@ class ScriptDatabase:
         self._insert_code_point(cursor, ord(self.NO_PARENT_CHARACTER), name='NO PARENT CHARACTER', bidi_class_code='Bn', script_code=None, general_category_code=None)
 
         with open(os.path.join(self._unicode_path, 'Scripts.txt'), 'r') as file:
-            for line in file:
-                if not line.isspace() and not line.startswith('#'):
-                    match = pattern.match(line)
-                    start = int(match.group(1), 16)
-                    end = int(match.group(2), 16) if match.group(2) else start
-                    script_name = match.group(3)
-                    script_code = cursor.execute("SELECT code FROM script WHERE u_alias = ?", (match.group(3),)).fetchone()[0]
+            for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter = ';'):
+                range_parts = row[0].split('..')
+                start = int(range_parts[0], 16)
+                end = int(range_parts[1], 16) if len(range_parts) == 2 else start
+                script_name = row[1].split('#')[0].strip()
+                script_code = cursor.execute("SELECT code FROM script WHERE u_alias = ?", (script_name,)).fetchone()[0]
 
-                    for i in range(start, end + 1):
-                        self._insert_code_point(cursor, i, name=None, script_code=script_code, bidi_class_code=None, general_category_code=None)
+                for i in range(start, end + 1):
+                    self._insert_code_point(cursor, i, name=None, script_code=script_code, bidi_class_code=None, general_category_code=None)
 
         with open(os.path.join(self._unicode_path, 'UnicodeData.txt'), 'r') as csvfile:
             special_name_pattern = re.compile('^<(.+)>$')
@@ -497,32 +494,25 @@ class ScriptDatabase:
                         update_code_point(cursor, code_point, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
 
         with open(os.path.join(self._unicode_path, 'NameAliases.txt'), 'r') as file:
-            for line in file:
-                if not line.isspace() and not line.startswith('#'):
-                    parts = line.split(';')
-                    if parts[2].strip() in ['correction', 'figment', 'control']:
-                        cursor.execute("UPDATE code_point SET alt_name = CONCAT(alt_name, ' / ', ?) WHERE id = ? AND alt_name IS NOT NULL", (parts[1], int(parts[0], 16)))
-                        cursor.execute("UPDATE code_point SET alt_name = ? WHERE id = ? AND alt_name IS NULL", (parts[1], int(parts[0], 16)))
+            for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter = ';'):
+                if row[2].strip() in ['correction', 'figment', 'control']:
+                    cursor.execute("UPDATE code_point SET alt_name = CONCAT(alt_name, ' / ', ?) WHERE id = ? AND alt_name IS NOT NULL", (row[1], int(row[0], 16)))
+                    cursor.execute("UPDATE code_point SET alt_name = ? WHERE id = ? AND alt_name IS NULL", (row[1], int(row[0], 16)))
 
         with open(os.path.join(self._unicode_path, 'PropList.txt'), 'r') as file:
-            for line in file:
-                if not line.isspace() and not line.startswith('#'):
-                    match = pattern.match(line)
-                    property = match.group(3)
+            for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter = ';'):
+                    range_parts = row[0].split('..')
+                    start = int(range_parts[0], 16)
+                    end = int(range_parts[1], 16) if len(range_parts) == 2 else start
+                    property = row[1].split('#')[0].strip()
                     if property == 'Other_Alphabetic':
                         for i in range(start, end + 1):
-                            start = int(match.group(1), 16)
-                            end = int(match.group(2), 16) if match.group(2) else start
                             cursor.execute("UPDATE code_point SET is_alphabetic = 1 WHERE id = ?", (i,))
                     elif property == 'Other_Lowercase':
                         for i in range(start, end + 1):
-                            start = int(match.group(1), 16)
-                            end = int(match.group(2), 16) if match.group(2) else start
                             cursor.execute("UPDATE code_point SET is_alphabetic = 1, is_lowercase = 1 WHERE id = ?", (i,))
                     elif property == 'Other_Uppercase':
                         for i in range(start, end + 1):
-                            start = int(match.group(1), 16)
-                            end = int(match.group(2), 16) if match.group(2) else start
                             cursor.execute("UPDATE code_point SET is_alphabetic = 1, is_uppercase = 1 WHERE id = ?", (i,))
 
 
@@ -771,43 +761,37 @@ class ScriptDatabase:
                (ord(self.NO_PARENT_CHARACTER), DerivationType.DEFAULT.value, Certainty.AUTOMATED.value))
 
         with open(os.path.join(self._unicode_path, 'Unikemet.txt'), 'r') as file:
-            for line in file:
-                if not line.isspace() and not line.startswith('#'):
-                    parts = line.split('\t')
-
-                    if parts[1] == 'kEH_AltSeq':
-                        seq_id = self._create_sequence(cursor, SequenceType.HIEROGLYPHIC_ALTERNATIVE)
-                        child_id = int(parts[0][2:], 16)
-                        cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, child_id))
-                        # since hieroglyphs were default set to NO_PARENT, remove that:
-                        cursor.execute("DELETE FROM code_point_derivation WHERE child_id = ? AND parent_id = ?", (child_id, ord(self.NO_PARENT_CHARACTER)))
-                        offset = 1
-                        for i, code_point in enumerate(parts[2].split(' ')):
-                            if code_point.isspace():
-                                offset -= 1  # out of caution, but this seems to be an end-of-line issue
-                            else:
-                                cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, int(code_point, 16), i + offset))
+            for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter = '\t'):
+                if row[1] == 'kEH_AltSeq':
+                    seq_id = self._create_sequence(cursor, SequenceType.HIEROGLYPHIC_ALTERNATIVE)
+                    child_id = int(row[0][2:], 16)  # the [2:] slices off the U+
+                    cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, child_id))
+                    # since hieroglyphs were default set to NO_PARENT, remove that:
+                    cursor.execute("DELETE FROM code_point_derivation WHERE child_id = ? AND parent_id = ?", (child_id, ord(self.NO_PARENT_CHARACTER)))
+                    offset = 1
+                    for i, code_point in enumerate(row[2].strip().split(' ')):
+                        if code_point.isspace():
+                            offset -= 1  # out of caution, but this seems to be an end-of-line issue
+                        else:
+                            cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, int(code_point, 16), i + offset))
 
         with open(os.path.join(self._unicode_path, 'Unihan_Variants.txt'), 'r') as file:
-            for line in file:
-                if not line.isspace() and not line.startswith('#'):
-                    parts = line.split('\t')
+            for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter = '\t'):
 
-                    if parts[1] == 'kTraditionalVariant':  # mirror property is kSimplifiedVariant - should only need to check one
-                        for parent_code in parts[2].split(' '):
-                            if parts[0] != parent_code:  # it's possible for a simplified character to map to itself
-                                self._load_single_derivation(cursor, int(parts[0][2:], 16), int(parent_code[2:], 16),
-                                                             DerivationType.SIMPLIFICATION, Certainty.AUTOMATED, 'Unihan Database', None)
-                                    # the [2:] slices off the U+
+                if row[1] == 'kTraditionalVariant':  # mirror property is kSimplifiedVariant - should only need to check one
+                    for parent_code in row[2].strip().split(' '):
+                        if row[0] != parent_code:  # it's possible for a simplified character to map to itself
+                            self._load_single_derivation(cursor, int(row[0][2:], 16), int(parent_code[2:], 16),
+                                                         DerivationType.SIMPLIFICATION, Certainty.AUTOMATED, 'Unihan Database', None)
 
-                    # This is a self-mirror property. if X zVariant Y then Y zVariant X.
-                    # There's no real indication which should be canonical that I can find, so I'm arbitrarily making it the lowest code point
-                    elif parts[1] == 'kZVariant':
-                        principal_id = int(parts[0][2:], 16)
-                        for sub_parts in parts[2].split(' '):
-                            other_id = int(sub_parts[2:].split('<')[0], 16)
-                            if principal_id > other_id:  #TODO i definitely mixed up the naming here, but this one makes my brain hurt trying to fix it
-                                self._load_equivalent_unit_sequence(cursor, SequenceType.Z_VARIANT, other_id, principal_id)
+                # This is a self-mirror property. if X zVariant Y then Y zVariant X.
+                # There's no real indication which should be canonical that I can find, so I'm arbitrarily making it the lowest code point
+                elif row[1] == 'kZVariant':
+                    principal_id = int(row[0][2:], 16)
+                    for parts in row[2].strip().split(' '):
+                        other_id = int(parts[2:].split('<')[0], 16)
+                        if principal_id > other_id:  #TODO i definitely mixed up the naming here, but this one makes my brain hurt trying to fix it
+                            self._load_equivalent_unit_sequence(cursor, SequenceType.Z_VARIANT, other_id, principal_id)
 
         for equivalency in equivalent_ids:
             self._load_equivalent_unit_sequence(cursor, SequenceType.POSITION_DISTINCTION, equivalency[1], equivalency[0])
@@ -1852,7 +1836,7 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
