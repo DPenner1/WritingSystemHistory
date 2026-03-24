@@ -64,8 +64,8 @@ class ScriptDatabase:
                          'PLACEHOLDER 1', 'PLACEHOLDER 2', 'PLACEHOLDER 3', 'PLACEHOLDER 4', 'PLACEHOLDER 5', 'PLACEHOLDER 6', 'PLACEHOLDER 7', 'PLACEHOLDER 8',
                          'VOWEL SIGN AA', 'VOWEL SIGN I', 'VOWEL SIGN II', 'VOWEL SIGN U', 'VOWEL SIGN UU', 'VOWEL SIGN VOCALIC R', 'VOWEL SIGN VOCALIC RR',
                          'VOWEL SIGN VOCALIC L', 'VOWEL SIGN VOCALIC LL', 'VOWEL SIGN E', 'VOWEL SIGN AI', 'VOWEL SIGN O', 'VOWEL SIGN AU']
-    # not part of general Indic letters or automated, but list here is for consistent order of "extras"
-    _INDIC_MANUAL = ['LETTER EE', 'LETTER OO', 'LETTER RRA', 'VOWEL SIGN EE', 'VOWEL SIGN OO', 'LENGTH MARK', 'AI LENGTH MARK', 'SIGN SIDDHAM']
+    # not part of general Indic letters or automated, but list here is for consistent order of "extras" - only add to end to avoid desyncing with manual files
+    _INDIC_MANUAL = ['LETTER EE', 'LETTER OO', 'LETTER RRA', 'VOWEL SIGN EE', 'VOWEL SIGN OO', 'LENGTH MARK', 'AI LENGTH MARK', 'SIGN SIDDHAM', 'LETTER LLA', 'LETTER LLLA']
     # sign siddham (not to be confused with the script) is a weird one. Attested in Gupta and Pallava (and presumably Kadamba with Telugu and Kannada having it),
     # yet there's no Brahmi code point for it seemingly. And among the child scripts there's actually not that many named that way to automate it.
     # reference: https://www.unicode.org/L2/L2012/12123r2-devanagari-siddham.pdf
@@ -345,12 +345,12 @@ class ScriptDatabase:
             dictionary[key] = value
 
 
-    def _insert_code_point(self, cursor, id, name, script_code, general_category_code, bidi_class_code):
+    def _insert_code_point(self, cursor, id, name, script_code, general_category_code, bidi_class_code, is_other_alphabetic=False):
         if script_code is None: script_code = 'Zzzz'
         if general_category_code is None: general_category_code = 'Cn'
         if bidi_class_code is None: bidi_class_code = 'L'
 
-        is_alphabetic = general_category_code[0] == 'L' or general_category_code == 'Nl'
+        is_alphabetic = general_category_code[0] == 'L' or general_category_code == 'Nl' or is_other_alphabetic
         cursor.execute("INSERT INTO sequence (id, type_id) VALUES (?, ?) ON CONFLICT DO NOTHING", (id, SequenceType.BASE.value))
         if self.is_private_use(id):
             cursor.execute("""
@@ -1029,6 +1029,8 @@ class ScriptDatabase:
             if wiki_letter_name in replacements:
                 wiki_letter_name = replacements[wiki_letter_name]
             return (script_name + ' letter ' + wiki_letter_name).upper()
+        def check_other_alphabetic(general_category_code, indic_char_class_name):
+            return general_category_code[0] == 'M' and indic_char_class_name not in ['NUKTA', 'VIRAMA']
         def load_indic_manual(script_code, char_name):
             script_name = script_names[script_code]
             category_code = 'Mn' # rough
@@ -1041,7 +1043,8 @@ class ScriptDatabase:
                                     f"{script_names[script_code].upper().replace("'", "")} {char_name}",
                                     script_code,
                                     category_code,
-                                    bidi_class_code='NSM' if category_code == 'Mn' else 'L')  # probably
+                                    bidi_class_code='NSM' if category_code == 'Mn' else 'L', # probably
+                                    is_other_alphabetic = check_other_alphabetic(category_code, char_name))
 
         dem_replacements = {'š': 'sh', 'ẖ': 'x', 'ḥ': 'h-dot', 'ḥ2': 'h2-dot', 'ḏ': 'd-underbar', 'ḏ2': 'd2-underbar',
                             'ı͗': 'i-halfring', 'ꜥ': 'ain', 'ḫ': 'h-underbar', 'š2': 'sh2'}
@@ -1130,16 +1133,21 @@ class ScriptDatabase:
                                                 f"{script_names[script_code].upper().replace("'", "")} {supp_name}",
                                                 script_code,
                                                 category_code,
-                                                bidi_class_code = 'NSM' if category_code == 'Mn' else 'L') # probably
+                                                bidi_class_code = 'NSM' if category_code == 'Mn' else 'L',  # probably
+                                                is_other_alphabetic = check_other_alphabetic(category_code, supp_name))
 
         load_indic_manual('Qabk', 'LETTER EE')
         load_indic_manual('Qabk', 'LETTER OO')
         load_indic_manual('Qabk', 'LETTER RRA')
+        load_indic_manual('Qabk', 'LETTER LLA')
         load_indic_manual('Qabk', 'VOWEL SIGN EE')
         load_indic_manual('Qabk', 'VOWEL SIGN OO')
         load_indic_manual('Qabk', 'LENGTH MARK')
         load_indic_manual('Qabk', 'AI LENGTH MARK')
         load_indic_manual('Qabk', 'SIGN SIDDHAM')
+
+        load_indic_manual('Qabp', 'LETTER LLA')
+        load_indic_manual('Qabp', 'LETTER LLLA')
         load_indic_manual('Qabp', 'SIGN SIDDHAM')
         load_indic_manual('Qabg', 'SIGN SIDDHAM')
         load_indic_manual('Qabn', 'SIGN SIDDHAM')
@@ -1225,6 +1233,22 @@ class ScriptDatabase:
         # https://www.scribd.com/document/443095526/%C5%9A%C4%81rad%C4%81-Primer (While Ai is blank in this source, related shape E shows the development)
         add_private_use_char(wdata, 'Qabg', 'Ai')
 
+        # Based on https://en.wikipedia.org/wiki/Gupta_script
+        add_private_use_char(wdata, 'Qabg', 'Ḹ')
+        add_private_use_char(wdata, 'Qabg', 'Jha')
+
+        # Based on all three of Sharada, Gurmukhi, Khudabadi having it (clearly Landa was too conservative...)
+        add_private_use_char(wdata, 'Qabl', 'Ā')
+        add_private_use_char(wdata, 'Qabl', 'Ī')
+        add_private_use_char(wdata, 'Qabl', 'Ū')
+        add_private_use_char(wdata, 'Qabl', 'Ai')
+        add_private_use_char(wdata, 'Qabl', 'Au')
+        add_private_use_char(wdata, 'Qabl', 'Jha')
+        add_private_use_char(wdata, 'Qabl', 'Ṅa')
+        add_private_use_char(wdata, 'Qabl', 'Ña')
+        add_private_use_char(wdata, 'Qabl', 'Śa')
+
+
         del wdata['Armi']  # Remove aramaic, it's better in Semitic dictionary
 
         return wdata
@@ -1301,9 +1325,10 @@ class ScriptDatabase:
                 for letter_class in letter_order:
                     if letter_class in letter_dict[script_code] and letter_class in letter_dict[parent_code]:
                         parent_letters = letter_dict[parent_code][letter_class]  # final parent scripts should be in excluded codes
-                        if (len(parent_letters) == 1):
-                            for letter in letter_dict[script_code][letter_class]:
-                                self._load_single_derivation(cursor, ord(letter), ord(parent_letters[0]), DerivationType.DEFAULT,
+                        if len(parent_letters) == 1:
+                            letters = letter_dict[script_code][letter_class]
+                            if len(letters) == 1:  # previously allowed multiple, but this is too inaccurate
+                                self._load_single_derivation(cursor, ord(letters[0]), ord(parent_letters[0]), DerivationType.DEFAULT,
                                                              Certainty.AUTOMATED, source, 'Not necessarily graphical derivation but likely')
 
 

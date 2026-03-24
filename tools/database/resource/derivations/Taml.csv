@@ -1,4 +1,12 @@
-Child,Parent,Certainty Type,Notes
-ன,𑌣,5,Sound/glyph similarity
-ழ,𑀵,5,"Big assumptiion here: Old Tamil was written in Vatteluttu/Tamil-Brahmi derived while modern Tamil is written in Grantha-derived. There is no LLLA consonant in Grantha, so it may have retained the Vatteluttu consonant. Compare glyph with Malayalam LLLA (ഴ) of probable same origin."
+Child,Parent,Certainty Type,Derivation Type,Multiplicity,Notes
+எ,𑌏,5,7,,Sound similarity with right-half glyph similarity 
+ஏ,எ,5
+ஒ,𑌓,5,,,Sound/glyph similarity
+ஓ,ஒ,5
+ல,𑌲
+ள,𑌳
+ன,𑌣,5,,,Sound/glyph similarity
+ற,𑌰,5,,2,"Sound similarity. Complete assumption as Grantha does not have a RRA. Especially comparing modern Tamil RA (ர), it seems phonologically and graphically reasonable for it to have been derived by Grantha RA + subjoined Grantha RA ligature. See https://en.wikipedia.org/wiki/Grantha_script#Consonant_clusters. Alternately a consonant retained from Old Tamil, but see Tamil LLLA (ழ) for a more likely case of that."
+ற,𑀶,5,,,"Potentially a consonant retained from Old Tamil, but see Tamil LLLA (ழ) for a more likely case of that. Alternately, and especially comparing modern Tamil RA (ர), it seems phonologically and graphically reasonable for it to have been derived by Grantha RA + subjoined Grantha RA ligature. See https://en.wikipedia.org/wiki/Grantha_script#Consonant_clusters."
+ழ,𑀵,5,,,"Big assumptiion here: Old Tamil was written in Vatteluttu/Tamil-Brahmi derived while modern Tamil is written in Grantha-derived. There is no LLLA consonant in Grantha, so it may have retained the Vatteluttu consonant. Compare glyph with Malayalam LLLA (ഴ) of probable same origin."
 

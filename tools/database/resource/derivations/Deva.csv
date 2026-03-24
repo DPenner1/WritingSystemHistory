@@ -1,7 +1,15 @@
-Child,Parent,Certainty Type
+Child,Parent,Certainty Type,Notes
 ऐ,,5
 
 ँ,,5
 ऽ,,5
 ्,,5
 ꣼,,5
+
+ॅ,ँ,5,Appears to be a modern innovation for representing some vowels in foreign loanwords
+ॲ,ॅ/अ,5
+ऍ,ॅ/ए,5
+ऑ,ॉ/अ,5
+ॉ,ॅ/ो,5
+
+

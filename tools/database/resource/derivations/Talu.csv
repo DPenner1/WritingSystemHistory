@@ -1,14 +1,29 @@
 Child,Parent,Certainty Type,Notes
- ᦅ,ᨣ,5,Glyph/sound similarity
-ᦆ,ᨤ,5,Glyph/sound similarity
-ᦊ,ᩀ,5,Glyph/sound similarity
-ᦌ,ᨪ,5,Glyph/sound similarity
-ᦍ,ᨿ,5,Glyph/sound similarity
- ᦔ,ᨸ,5,Glyph/sound similarity
-ᦕ,ᨹ,5,Glyph/sound similarity
-ᦚ,ᨺ,5,Glyph/sound similarity
-ᦝ,ᨼ,5,Glyph/sound similarity
-ᦟ,ᩃ ,5,Glyph/sound similarity
-ᦠ,ᩉ,5,Glyph/sound similarity
-ᦢ,ᨷ,5,Glyph/sound similarity
+ᦅ,ᨣ,
+ᦃ,ᨡ
+ᦆ,ᨤ,
+ᦇ,ᨦ
+ᦋ,ᨩ
+ᦓ,ᨶ
+ᦙ,ᨾ
+ᦊ,ᩀ,
+ᦌ,ᨪ,
+ᦍ,ᨿ,
+ᦔ,ᨸ,
+ᦕ,ᨹ,
+ᦗ,ᨻ
+ᦗ,ᦔ,5,Appears to have corresponding high-tone consonant as subscript to distinguish from existing ᦂ
+ᦚ,ᨺ,
+ᦝ,ᨼ,
+ᦟ,ᩃ,
+ᦞ,ᩅ
+ᦠ,ᩉ,
+ᦢ,ᨷ,
 ᦶ,ᩯ,5,Glyph/sound similarity
+
+ᦄ,ᦠ/ᦇ,5,Appears to be a pattern where a few high-tone consonants are simply H (ᦠ) + the corresponding low-tone consonant subscripted.
+ᦐ,ᦠ/ᦓ,5,Appears to be a pattern where a few high-tone consonants are simply H (ᦠ) + the corresponding low-tone consonant subscripted.
+ᦖ,ᦠ/ᦙ,5,Appears to be a pattern where a few high-tone consonants are simply H (ᦠ) + the corresponding low-tone consonant subscripted.
+ᦛ,ᦠ/ᦞ,5,Appears to be a pattern where a few high-tone consonants are simply H (ᦠ) + the corresponding low-tone consonant subscripted.
+ᦜ,ᦠ/ᦟ,5,Appears to be a pattern where a few high-tone consonants are simply H (ᦠ) + the corresponding low-tone consonant subscripted.
+
