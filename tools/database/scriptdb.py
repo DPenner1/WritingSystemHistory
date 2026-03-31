@@ -25,7 +25,8 @@ class LoadOptions:
         self.drop_case_columns = False
         # Column and table
         self.drop_derivation_type = False
-
+        # For FK reasons we load the language data first, but a minority are ultimately used (at least until more data is specified)
+        self.drop_unused_languages = True
 
 class ScriptDatabase:
 
@@ -332,6 +333,38 @@ class ScriptDatabase:
         with open(os.path.join(self._resource_path, 'script_variants.csv'), 'r') as file:
             for row in csv.DictReader(file):
                 cursor.execute("UPDATE script SET canonical_script_code = ? WHERE code = ?", (row['Main'], row['Variant']))
+
+
+    def _load_languages(self, cursor):
+        with open(os.path.join(self._resource_path, 'iana_lang_subtag.txt'), 'r') as file:
+            record = dict()
+            macrolanguages = []
+            for line in file:
+                if line.startswith(" "):
+                    continue  # hacky, just assuming that the fields we're interested in aren't the multi-line ones
+                elif line.startswith("%%"): # record separator (technically we'll miss the last one but the file seems somewhat ordered and we don't need the end)
+                    if "File-Date" in record:
+                        None # For now, but could be useful later for update purposes
+                    elif record["Type"] == 'language' and 'Deprecated' not in record:  # we don't need any other type
+                        cursor.execute("INSERT INTO language (code, name, default_script_code) VALUES (?, ?, ?)",
+                            (record['Subtag'], record['Description'][0], record['Suppress-Script'] if 'Suppress-Script' in record else None))
+                        if 'Macrolanguage' in record:
+                             macrolanguages.append((record['Macrolanguage'], record['Subtag']))
+                    record = dict()
+                else:
+                    parts = line.split(":")
+                    if len(parts) < 2:
+                        raise ValueError("unexpected language file format")
+                    key = parts[0].strip()
+                    value = parts[1].strip()
+                    if key == 'Description':  #multiple description possible, capture for now though we aren't really accounting for it yet
+                        if key not in record:
+                            record[key] = []
+                        record[key] = [value]
+                    record[key] = value
+
+            cursor.executemany("UPDATE language SET macrolanguage_code = ? WHERE code = ?", macrolanguages)
+
 
     @staticmethod
     def is_private_use(id):
@@ -1302,6 +1335,15 @@ class ScriptDatabase:
         generate_std_alphabet(semitic_letter_dict, self._SEMITIC_ORDER)
 
 
+    def _drop_unused_languages(self, cursor):
+        cursor.execute("""
+            DELETE FROM language
+            WHERE 
+                code NOT IN (SELECT lang_code FROM alphabet) 
+                AND code NOT IN (  -- language is not a macro to a sublanguage that is used
+                    SELECT macrolanguage_code FROM alphabet a INNER JOIN language lsub ON lsub.code = a.lang_code WHERE macrolanguage_code IS NOT NULL)""")
+
+
     def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, source, verify):
         for script_code in letter_dict:
             if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
@@ -1725,7 +1767,9 @@ class ScriptDatabase:
         self._cxn.commit()
         self._load_scripts(cur)
         self._cxn.commit()
-        if output: lap_time, lap_mb = output_info("Done basics: loading lookups and scripts.", start_time, lap_time, lap_mb)
+        self._load_languages(cur)
+        self._cxn.commit()
+        if output: lap_time, lap_mb = output_info("Done basics: loading lookups, languages and scripts.", start_time, lap_time, lap_mb)
 
         # updates generally expected on this table, just clear (and before loading code points so cleared space can be used)
         cur.execute("DELETE FROM code_point_derivation")
@@ -1751,6 +1795,9 @@ class ScriptDatabase:
         self._cxn.commit()
         if output: lap_time, lap_mb = output_info("Done loading alphabet data.", start_time, lap_time, lap_mb)
 
+        if options.drop_unused_languages:
+            self._drop_unused_languages(cur)
+            self._cxn.commit()
         if options.vacuum_db:
             cur.execute("VACUUM")
 
@@ -1836,7 +1883,7 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.OPTIMIZED_DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))

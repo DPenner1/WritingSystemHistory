@@ -89,7 +89,7 @@ The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/too
 This project contains resources from some openly licensed sources.
 
   - The database is generated from some files the [Unicode Consortium](https://home.unicode.org/). Unicode licence is at [`./resource/unicode-data/license.txt`](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/resource/unicode-data/license.txt)
-
   - The database is generated using some text sourced from Wikipedia, which is under CC BY-SA 4.0. For compliance, and further info on that see in this project [`./resource/wikipedia-sourced/licence-info.txt`](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/resource/wikipedia-sourced/licence-info.txt).
+  - The database makes use of the [IANA/IETF Subtag Language Registry](https://www.iana.org/assignments/language-subtags-tags-extensions/language-subtags-tags-extensions.xhtml#language-subtags), which is [essentially public domain](https://www.iana.org/help/licensing-terms):
 
 I intend to more formally put the database and the Python generation code under an open licence. The planned front-end I'm less sure about.

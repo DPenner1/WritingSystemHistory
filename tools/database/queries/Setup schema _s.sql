@@ -32,11 +32,20 @@ CREATE TABLE IF NOT EXISTS script (
 ) STRICT;
 CREATE INDEX IF NOT EXISTS idx_fk_s_exemplar_sequence ON script(exemplar_sequence_id) WHERE exemplar_sequence_id IS NOT NULL;
 
+CREATE TABLE IF NOT EXISTS language (
+    code TEXT PRIMARY KEY,
+    name TEXT,
+    default_script_code TEXT REFERENCES script(code),
+    macrolanguage_code TEXT REFERENCES language(code)
+) STRICT;
+CREATE INDEX IF NOT EXISTS idx_fk_l_macrolanguage ON language(macrolanguage_code) WHERE macrolanguage_code IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_fk_l_default_script ON language(default_script_code) WHERE default_script_code IS NOT NULL;
+
 CREATE TABLE IF NOT EXISTS alphabet (
     id INTEGER PRIMARY KEY REFERENCES sequence(id),
     source TEXT,
-    lang_code TEXT,
-    is_language_exemplar INTEGER, -- would make sense to move if there was a language table, similar to script
+    lang_code TEXT REFERENCES language(code),
+    is_language_exemplar INTEGER, -- This could be on the language table, but then there's some mutually referencing stuff I need to work out the impact for
     script_code TEXT REFERENCES script(code),
     letter_case TEXT
 ) STRICT;
