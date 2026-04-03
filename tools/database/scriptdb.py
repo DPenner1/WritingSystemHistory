@@ -66,7 +66,8 @@ class ScriptDatabase:
                          'VOWEL SIGN AA', 'VOWEL SIGN I', 'VOWEL SIGN II', 'VOWEL SIGN U', 'VOWEL SIGN UU', 'VOWEL SIGN VOCALIC R', 'VOWEL SIGN VOCALIC RR',
                          'VOWEL SIGN VOCALIC L', 'VOWEL SIGN VOCALIC LL', 'VOWEL SIGN E', 'VOWEL SIGN AI', 'VOWEL SIGN O', 'VOWEL SIGN AU']
     # not part of general Indic letters or automated, but list here is for consistent order of "extras" - only add to end to avoid desyncing with manual files
-    _INDIC_MANUAL = ['LETTER EE', 'LETTER OO', 'LETTER RRA', 'VOWEL SIGN EE', 'VOWEL SIGN OO', 'LENGTH MARK', 'AI LENGTH MARK', 'SIGN SIDDHAM', 'LETTER LLA', 'LETTER LLLA']
+    _INDIC_MANUAL = ['LETTER EE', 'LETTER OO', 'LETTER RRA', 'VOWEL SIGN EE', 'VOWEL SIGN OO', 'LENGTH MARK', 'AI LENGTH MARK', 'SIGN SIDDHAM',
+                     'LETTER LLA', 'LETTER LLLA', 'LETTER VOCALIC LL']
     # sign siddham (not to be confused with the script) is a weird one. Attested in Gupta and Pallava (and presumably Kadamba with Telugu and Kannada having it),
     # yet there's no Brahmi code point for it seemingly. And among the child scripts there's actually not that many named that way to automate it.
     # reference: https://www.unicode.org/L2/L2012/12123r2-devanagari-siddham.pdf
@@ -1117,6 +1118,7 @@ class ScriptDatabase:
                                                 bidi_class_code = 'NSM' if category_code == 'Mn' else 'L',  # probably
                                                 is_other_alphabetic = check_other_alphabetic(category_code, supp_name))
 
+        load_indic_manual('Qabk', 'LETTER VOCALIC LL')
         load_indic_manual('Qabk', 'LETTER EE')
         load_indic_manual('Qabk', 'LETTER OO')
         load_indic_manual('Qabk', 'LETTER RRA')
