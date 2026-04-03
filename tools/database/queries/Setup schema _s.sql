@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS code_point_derivation (
     child_id INTEGER REFERENCES code_point (id),
     parent_id INTEGER REFERENCES code_point (id),
     derivation_type_id INTEGER NOT NULL DEFAULT 1 REFERENCES derivation_type (id),
-    certainty_type_id INTEGER NOT NULL DEFAULT 6 REFERENCES certainty_type (id),
+    certainty_type_id INTEGER NOT NULL DEFAULT 9 REFERENCES certainty_type (id),
     multiplicity INTEGER DEFAULT 1,
     source TEXT,
     notes TEXT,
