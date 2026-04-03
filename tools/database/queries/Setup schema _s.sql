@@ -6,15 +6,27 @@ CREATE TABLE IF NOT EXISTS sequence_type (
     description TEXT
 ) STRICT;
 
+CREATE TABLE IF NOT EXISTS alphabet_type (
+    id INTEGER PRIMARY KEY,
+    name TEXT UNIQUE,
+    description TEXT
+) STRICT;
+
+CREATE TABLE IF NOT EXISTS script_type (
+    id INTEGER PRIMARY KEY,
+    name TEXT UNIQUE,
+    description TEXT
+) STRICT;
+
 CREATE TABLE IF NOT EXISTS sequence (
     id INTEGER PRIMARY KEY,
     type_id INTEGER NOT NULL REFERENCES sequence_type(id)
 ) STRICT;
-CREATE INDEX IF NOT EXISTS idx_fk_s_type ON sequence(type_id);
+CREATE INDEX IF NOT EXISTS idx_fk_seq_type ON sequence(type_id);
 
 -- it's a tree structure
 CREATE TABLE IF NOT EXISTS sequence_item (
-    sequence_id INTEGER REFERENCES sequence(id),
+    sequence_id INTEGER REFERENCES sequence(id) ON DELETE CASCADE,
     item_id INTEGER REFERENCES sequence(id),
     order_num INTEGER,
     PRIMARY KEY (sequence_id, item_id, order_num)
@@ -24,13 +36,16 @@ CREATE TABLE IF NOT EXISTS script (
     code TEXT PRIMARY KEY,
     iso_id INT UNIQUE NOT NULL,
     name TEXT,
+    type_id INTEGER NOT NULL REFERENCES script_type(id),
     u_alias TEXT UNIQUE,
     u_version_added INTEGER,
     u_subversion_added INTEGER,
     canonical_script_code TEXT REFERENCES script(code),
+    parent_code TEXT REFERENCES script(code),
     exemplar_sequence_id INTEGER UNIQUE REFERENCES sequence(id)    
 ) STRICT;
-CREATE INDEX IF NOT EXISTS idx_fk_s_exemplar_sequence ON script(exemplar_sequence_id) WHERE exemplar_sequence_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_fk_scr_type ON script(type_id);
+CREATE INDEX IF NOT EXISTS idx_fk_parent_script ON script(parent_code) WHERE parent_code IS NOT NULL; 
 
 CREATE TABLE IF NOT EXISTS language (
     code TEXT PRIMARY KEY,
@@ -38,19 +53,20 @@ CREATE TABLE IF NOT EXISTS language (
     default_script_code TEXT REFERENCES script(code),
     macrolanguage_code TEXT REFERENCES language(code)
 ) STRICT;
-CREATE INDEX IF NOT EXISTS idx_fk_l_macrolanguage ON language(macrolanguage_code) WHERE macrolanguage_code IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_fk_l_default_script ON language(default_script_code) WHERE default_script_code IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_fk_lang_macrolanguage ON language(macrolanguage_code) WHERE macrolanguage_code IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_fk_lang_default_script ON language(default_script_code) WHERE default_script_code;  -- most would have a default script, so indexing null might not be a bad idea
 
 CREATE TABLE IF NOT EXISTS alphabet (
-    id INTEGER PRIMARY KEY REFERENCES sequence(id),
-    source TEXT,
+    sequence_id INTEGER REFERENCES sequence(id),
     lang_code TEXT REFERENCES language(code),
-    is_language_exemplar INTEGER, -- This could be on the language table, but then there's some mutually referencing stuff I need to work out the impact for
-    script_code TEXT REFERENCES script(code),
-    letter_case TEXT
+    type_id INTEGER REFERENCES alphabet_type(id),
+    source TEXT,
+    -- These can't be NULL - use an applicable special code if needed
+    script_code TEXT NOT NULL REFERENCES script(code),
+    letter_case TEXT NOT NULL,
+    PRIMARY KEY(sequence_id, lang_code, type_id)
 ) STRICT;
-CREATE INDEX IF NOT EXISTS idx_a_lang ON alphabet(lang_code, is_language_exemplar);
-CREATE INDEX IF NOT EXISTS idx_fk_a_script ON alphabet(script_code);
+CREATE UNIQUE INDEX IF NOT EXISTS idxu_alpha_determiners ON alphabet(script_code, letter_case, type_id, lang_code);
 
 CREATE TABLE IF NOT EXISTS code_point (
     id INTEGER PRIMARY KEY REFERENCES sequence(id),
@@ -68,7 +84,7 @@ CREATE TABLE IF NOT EXISTS code_point (
              id BETWEEN 0xFA70 AND 0XFAD9 OR
              id BETWEEN 0x2F800 AND 0x2FA1D THEN CONCAT('CJK COMPATIBILITY IDEOGRAPH-', printf('%X', id))
         WHEN id BETWEEN 0x3400 AND 0x4DBF OR
-             id BETWEEN 0x4E00 AND 0x9FFF OR  -- range a bit of a shortcut, since we don't have unassigned in this DB
+             id BETWEEN 0x4E00 AND 0x9FFF OR  -- range a bit of a shortcut for these last 2, since we don't have unassigned in this DB
              id BETWEEN 0x20000 AND 0x33FFF THEN CONCAT('CJK UNIFIED IDEOGRAPH-', printf('%X', id))
         WHEN id BETWEEN 0x3D000 AND 0x3FFFD THEN CONCAT('SEAL CHARACTER-', printf('%X', id)) --anticipatory
         ELSE raw_name END) VIRTUAL,
@@ -84,8 +100,8 @@ CREATE TABLE IF NOT EXISTS code_point (
     raw_name TEXT,
     alt_name TEXT
 ) STRICT;
-CREATE INDEX IF NOT EXISTS idx_fk_cp_script ON code_point(script_code) WHERE script_code <> 'Hani'; -- no point indexing ~2/3 of the database;
-CREATE INDEX IF NOT EXISTS idx_cp_general_category ON code_point(general_category_code) WHERE general_category_code <> 'Lo';  -- even more of the DB 
+CREATE INDEX IF NOT EXISTS idx_fk_cp_script ON code_point(script_code) WHERE script_code <> 'Hani'; -- no point indexing ~2/3 of the table;
+CREATE INDEX IF NOT EXISTS idx_cp_general_category ON code_point(general_category_code) WHERE general_category_code <> 'Lo';  -- even more of the table 
 CREATE INDEX IF NOT EXISTS idx_fk_cp_equivalent_sequence ON code_point(equivalent_sequence_id) WHERE equivalent_sequence_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_lowercase_mapping ON code_point(simple_lowercase_mapping_id) WHERE simple_lowercase_mapping_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_uppercase_mapping ON code_point(simple_uppercase_mapping_id) WHERE simple_uppercase_mapping_id IS NOT NULL;
@@ -116,4 +132,4 @@ CREATE TABLE IF NOT EXISTS code_point_derivation (
     PRIMARY KEY (child_id, parent_id)
 ) STRICT;
 -- This is a table likely to be looked up in either direction child<->parent
-CREATE INDEX IF NOT EXISTS idx_cpd_parent_derivation_type ON code_point_derivation(parent_id);
+CREATE INDEX IF NOT EXISTS idx_cpd_parent ON code_point_derivation(parent_id);
