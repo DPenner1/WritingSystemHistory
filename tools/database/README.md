@@ -19,11 +19,11 @@ Though there are no current plans, the functionality of the database could be ex
 
 *As of 2026-03-15*
 
-  - *(Just over 100,000 letters in the Unicode Standard are Chinese characters. These stats are notated "All / non-Chinese")*. There are ⁨130,804 / 29,866 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 29,282 / 22,786 have a historical ancestor specified (22.2% / 76.3%, including no known ancestor), of which 1871 / 1832 are manually reviewed (1.4% / 6.1%).
-  - The database is about 20 MB with minimalistic settings (configurable to keep more data/indexes).
+  - *(Just over 100,000 letters in the Unicode Standard are Chinese characters. These stats are notated "All / non-Chinese")*. There are ⁨130,811 / 29,873 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 29,282 / 22,799 have a historical ancestor specified (22.2% / 76.3%, including no known ancestor), of which 1879 / 1840 are manually reviewed (1.4% / 6.2%).
+  - The database is about 21 MB with minimalistic settings (configurable to keep more data/indexes).
 
   1. Distinct being defined for this project has having no other equivalent representation in Unicode. See schema documentation on `code_point.equivalent_sequence_id`.
-  2. Letters for this project being defined as Unicode "Alphabetic" property plus the Private Use letters which currently stands at 410 (+79 non-letter characters).
+  2. Letters for this project being defined as Unicode "Alphabetic" property plus the Private Use letters which currently stands at 417 (+79 non-letter characters).
 
 ## Getting Started
 
@@ -35,48 +35,7 @@ The database must be generated. For all purposes, the `./tools/database` folder 
 
 The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/tools/database/queries) folder contains some queries, including finding a character's ancestors and descendants. Queries suffixed with `p` are parameterized, either replace the `?`(s) or call from code with parameters. Queries suffixed with `s` or `d` are called internally by the database setup code, the latter only with certain debug flags.
 
-## Schema/data documentation
-
-  - `alphabet`: Data on alphabets used by various languages, with the specific letters being stored in the referenced `sequence` table. While it might seem like overkill (and probably still is), this table is to help determine the "canonical" letters for a language and is probably a more user-friendly concept than script.
-     - Languages can have multiple alphabet entries, distinguishing on case, script and type (see `alphabet_type` lookup).
-     - Alphabets are represented as a sequence of letters and code points, with letters themselves being sequences of code points. Single code point letters are not boxed into a single-item letter sequence (this feels like too much unnecessary data bloat as this is the majority case). The data structure supports alphabets of alphabets (eg. could combine cases, or separate out Indic consonants and dependent/independent vowels), but the generation code does not do this.
-     - Use the `source` field to determine where the alphabet comes from. The code loads alphabets from three sources: Manually specified, [CLDR data](https://cldr.unicode.org/) and automatically generated (from the same process that does Brahmi and Semitic letters).
-        - Note that CLDR data only covers modern languages. The data are loaded as "extended" alphabet types. Note that CLDR does tend to follow the language's alphabet order except that the accented characters are grouped together (which may or may not be how a language typically orders letters).
-        - I have yet to decide what precisely to do with the Chinese language(s). CLDR has separately specified Traditional and Simplified characters, but in the Unicode character database they are under a single script code.
-     - **Design condiderations.** This table was simultaneously the most subjective and least important for this project. I'm considering an alphabet to be "a meaningful collection of characters associated to a language" to not be too restrictive. The codegen loads only "letters", but symbols could in principle be supported by the data structure.
-        - This definition leads to the PK `(lang_code, sequence_id)`. However, to keep things simple, this table has been de-normalized (again this is not an important part of the DB and is subjective and can change so avoiding possibly over-engineering in the wrong direction). The PK is extended with `type_id` which in a normalized context should be specified in a separate 1:many table against the proper PK (I figure the `source` field would also go in that table, leaving remaining fields with the original table).
-        - The `script_code` and `letter_case` may at first glance seem inferable from the referenced sequence id, but consider potential alphabets with mixed case or mixed script. It needs to be possible to make a manual determination for the overall case/script even if the sequence contains exceptions.
-        - There is no current support for designating historical versions of alphabets. For historical languages/scripts, any included alphabet is interpreted as the most recent possible.
-        - The design intends for `(lang_code, type_id, script_code, letter_case)` to be able to specify a singular sequence assuming such a sequence exists (the real world is messier with uncertainty, but the design calls for making a choice). In many cases this will be overspecifying (uncased languages, languages only ever written in a singular script, etc.), but a unique key has been added to represent this.
-  - `code_point`: Mostly what you would expect from Unicode.
-     - Non-character U+FFFF is used as a signal value for when a character has been evaluated to have no known ancestor (to distinguish it from the case where data is simply missing).
-     - Private use characters are used for historical scripts not yet in Unicode proper. For the Brahmi-based scripts, adding these characters is a partially automated process which may not be 100% accurate.
-     - Field `equivalent_sequence_id` combines various Unicode sources for "equivalent" code points and some custom equivalency. May have to change later, but as it stands these sources do not overlap. These are decomposition (including Hangul Syllable/Jamo), z-variants (the lowest code point in a set has been taken to be the original) and Hieroglyph alternate sequences (kEH_AltSeq). The custom equivalency is positional equivalence, for when a Unicode characters is the same graphical character but has technical or positional distinction (so far two sub-categories: combining marks existing as stand-alone/modifiers and Hangul initial/final consonants).
-  - `code_point_derivation`: This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. This table is also liable to renaming to `code_point_relation` if project scope expands. The automatic derivations are:
-     - An assumption that lowercase characters derive from their uppercase counterparts.
-     - For the Brahmi-derived and Semitic scripts, it is assumed that cognate letters derive from their known ancestor script.
-     - Independently originated scripts have all their letters set to have no historical ancestor (this isn't necessarily always true as there can be script-internal derivation!).
-     - Simplified Chinese characters deriving from their Traditional counterpart.
-     - Unicode decompositions (eg. accented characters, duplicate/legacy code points, etc.).
-     - Hangul syllables deriving from their constituent jamo.
-     - *(to investigate data sources and history)* Han ideograph and radical relations.
-  - `language`: Loaded mainly from the IANA language subtag registry (see licence info). This source was preferred over ISO 639 due to friendlier licensing and closer alignment with CLDR. The default script code may be supplemented by CLDR data if missing from IANA.
-  - `script`: ISO 15924. A bit of a mish-mash, but works so far. Table based on list found [here](https://www.unicode.org/iso15924/iso15924-codes.html). To my understanding, rows without a Unicode Alias yet having a Unicode version date are scripts which Unicode considers a font variant of another. This was marked with the `canonical_script_code` field.
-     - The `exemplar_sequence_id` field references a canonical set of letters. This allows it to be associated language-independently (eg. could be useful for Cyrillic where there isn't a universally agreed set of canonical letters). A sequence has been manually specified for a few scripts. The more "automated" process was specifying the main language for a script, which then pulled in the sequence generated from CLDR (see `alphabet`).
-         - For the most part, determining the main language was not difficult. Canadian Aboriginal syllabics was the main judgment call: It could have been Ojibwe, Cree, or Inuktitut. Ojibwe syllabics was not in the CLDR data leaving Cree and Inuktitut. In CLDR, only Swampy Cree specifically was in the files, which would be much fewer speakers than Inuktitut. However, between considering Cree more widely and that Inuktitut discarded the distinct final consonants (and this project is for finding interesting graphical developments), I've associated it to Swampy Cree.
-     - The table is then augmented with private use scripts. These are:
-        - Proto-Sinaitic (exists in ISO but not Unicode proper)
-        - Pallava
-        - Kadamba
-        - Landa
-        - Nagari
-        - Gaudi
-        - Gupta
-        - Demotic (subset, exists in ISO but not Unicode proper)
-        - *(future possible subset of)* Pitman Shorthand
-  - `sequence`: A sequence of sequences (recursive tree). Each code point also has an "dummy" base entry sequence in the table, with a matching ID. Use the `type_id` field to determine what kind of sequence you are looking at.
-  - `sequence_item`: An item in a sequence. The code points sequences do *not* have an entry in this table, they are the leaf items in the tree.
-  - The `*_type` tables are lookup tables that should be self-explanatory based on their data.
+For details, see the Schema documentation file.
 
 ## Random Notes
 
@@ -92,4 +51,4 @@ This project contains resources from some openly licensed sources.
   - The database is generated using some text sourced from Wikipedia, which is under CC BY-SA 4.0. For compliance, and further info on that see in this project [`./resource/wikipedia-sourced/licence-info.txt`](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/resource/wikipedia-sourced/licence-info.txt).
   - The database makes use of the [IANA/IETF Subtag Language Registry](https://www.iana.org/assignments/language-subtags-tags-extensions/language-subtags-tags-extensions.xhtml#language-subtags), which is [essentially public domain](https://www.iana.org/help/licensing-terms):
 
-I intend to more formally put the database and the Python generation code under an open licence. The planned front-end I'm less sure about.
+I intend to more formally put the database and the Python generation code under an open licence. The planned front-end will also likely be assuming I stick with current plans to use open source.
