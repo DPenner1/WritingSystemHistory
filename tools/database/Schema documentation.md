@@ -5,22 +5,21 @@
 
 The `*_type` tables are lookup tables that should mostly be self-explanatory based on their data. They are only described here as necessary for the purposes of understanding the main tables.
 
-Many of the tables have a name field. For `code_point`, this is mostly the name as specified by Unicode, but is overriden when an alternate name is available, specifically when it's a correction or it's a control character (which officially has no name per the standard). The `language` and `script` table simply makes a singular choice as to a name.
+Many of the tables have a name field. For `code_point`, this is mostly the name as specified by Unicode, but is overriden when an alternate name is available, specifically when it's a correction or it's a control character (which officially has no name per the standard). The `language` and `script` tables simply make a singular choice as to a name.
 
 ### `alphabet`
-
-*TODO: a bit more detail on index, script type (ran out of time in current sitting)*
 
 Data on alphabets used by various languages, with the specific letters being stored in the referenced `sequence` table. While it might seem like overkill (and probably still is), this table is to help determine the "canonical" letters for a language and is probably a more user-friendly concept than script. An "alphabet" in this schema is intended to be a bit broader than a dictionary definition, in order to account for fuzzy boundaries. The conceptual understanding should be "a meaningful collection of characters associated to a language."
 
  - Languages can have multiple alphabet entries, distinguishing on case, script and type.
- - The `type_id` is the current attempt at a rough categorization. The author frankly does not currently understand enough about different languages and cultures for this to be broadly applicable and this is susceptible to change in the future. The main types are "basic", "full" and "extended." The current distinction being made is that "basic" is the canonical set of letters, "full" includes accepted letter variants or secondary letters (eg. German 
- - Alphabets are represented as a sequence of letters and code points, with letters themselves being sequences of code points. Single code point letters are not boxed into a single-item letter sequence (this feels like too much unnecessary data bloat as this is the majority case). The data structure supports alphabets of alphabets (eg. could combine cases, or separate out Indic consonants and dependent/independent vowels), but the generation code does not do this.
+ - The `type_id` is the current attempt at a rough categorization. The author frankly does not currently understand enough about different languages and cultures for this to be broadly applicable and this is susceptible to change in the future. The main types are "basic", "full" and "extended." The current distinction being made is that "basic" is the canonical set of letters, "full" includes accepted letter variants or secondary letters (eg. German äöüß) while "extended" includes all letter glyphs required to write a language (eg. such an extended letter glyph in Greek is ΐ - iota with diaeresis and tonos accent - my understanding is the diacritics are viewed as separate from the letter itself). These are language-specific determinations, eg. ä generally being viewed as a variant of "a" in German, but a fully independent letter in Swedish (to my understanding).
+    - Logographic scripts already challenge this categorization. At present, these different types will simply return a smaller/larger set of characters.
+ - Alphabets are represented as a sequence of letters and code points, with letters themselves being sequences of code points. Single code point letters are not boxed into a single-item letter sequence (this feels like too much unnecessary data bloat as this is the majority case). The data structure supports alphabets of alphabets (eg. could combine cases, or separate out Indic consonants and dependent/independent vowels), but current codegen does not do this.
  - Use the `source` field to determine where the alphabet comes from. The code loads alphabets from three sources: Manually specified, [CLDR data](https://cldr.unicode.org/) and automatically generated (from the same process that does Brahmi and Semitic letters).
-    - Note that CLDR data only covers modern languages. The data are loaded as "extended" alphabet types. Alphabets and Abjads further have "basic" types loaded. Note that CLDR does tend to follow the language's alphabet order, but sometimes the accented characters are grouped together (which may or may not be how a language typically orders letters).
+    - Note that CLDR data only covers modern languages. The data are loaded as "extended" alphabet types from CLDR's main exemplar set. Abjad and Alphabet type scripts further have "basic" types loaded from the index set (these tend to be underspecified for logographs, syllabaries and probably abugidas too - dependent vowels usually being missing). Note that CLDR does tend to follow the language's alphabet order, but sometimes the accented characters are grouped together (which may or may not be how a language typically orders letters).
     - I have yet to decide what precisely to do with the Chinese language(s). CLDR has separately specified Traditional and Simplified characters, but in the Unicode character database they are under a single script code.
  - **Design condiderations.** This table was simultaneously the most subjective and least important for this project. The codegen loads only "letters", but symbols could in principle be supported by the data structure.
-    - This definition leads to the PK `(lang_code, sequence_id)`. However, to keep things simple, this table has been de-normalized (again this is not an important part of the DB and is subjective and can change so avoiding possibly over-engineering in the wrong direction). The PK is extended with `type_id` which in a normalized context should be specified in a separate 1:many table against the proper PK (I figure the `source` field would also go in that table, leaving remaining fields with the original table).
+    - The definition leads to the PK `(lang_code, sequence_id)`. However, to keep things simple, this table has been de-normalized (again this is not an important part of the DB and is subjective and can change so avoiding possibly over-engineering in the wrong direction). The PK is extended with `type_id` which in a normalized context should be specified in a separate many:1 table against the proper PK (I figure the `source` field would also go in that table, leaving remaining fields with the original table).
     - The `script_code` and `letter_case` may at first glance seem inferable from the referenced sequence id, but consider potential alphabets with mixed case or mixed script. It needs to be possible to make a manual determination for the overall case/script even if the sequence contains exceptions.
     - There is no current support for designating historical versions of alphabets. For historical languages/scripts, any included alphabet is interpreted as the most recent possible.
     - The design intends for `(lang_code, type_id, script_code, letter_case)` to be able to specify a singular sequence assuming such a sequence exists (the real world is messier with uncertainty, but the design calls for making a choice). In many cases this will be overspecifying (uncased languages, languages only ever written in a singular script, etc.), but a unique key has been added to represent this.
@@ -35,28 +34,29 @@ Mostly what you would expect from Unicode.
 
 ### `code_point_derivation`
 
-*TODO: certainty_type (ran out of time in current sitting)*
+This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. This table is also liable to renaming to `code_point_relation` if project scope expands.
 
-This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. This table is also liable to renaming to `code_point_relation` if project scope expands. The automatic derivations are:
-
- - An assumption that lowercase characters derive from their uppercase counterparts.
- - For the Brahmi-derived and Semitic scripts, it is assumed that cognate letters derive from their known ancestor script.
- - Independently originated scripts have all their letters set to have no historical ancestor (this isn't necessarily always true as there can be script-internal derivation!).
- - Simplified Chinese characters deriving from their Traditional counterpart.
- - Unicode decompositions (eg. accented characters, duplicate/legacy code points, etc.).
- - Hangul syllables deriving from their constituent jamo.
- - *(to investigate data sources and history)* Han ideograph and radical relations.
+  - The `derivation_type_id` borders on legacy. However, there's not really any reason to drop it formally and new data can just specify the default value without breaking anything.
+  - The `certainty_type_id` field represents a rough evaluation of the strength of the evidence. IDs 1-3 are straightforward. IDs 4-5 are the "assumed" certainty values where there is no specific source, but has been derived by the database author for one reason or another. If a source is provided anyways for these derivations, it is informative or tangential, but not direct. IDs 6-8 represent an automated derivation from a data source. Technically this is a bit de-normalized as it applies to an entire source (set of code points) rather than the specific code points on the record. ID 9 is "unspecified" and is considered a missing data error. It is a data error for IDs other than 4, 5 & 9 to have a null `source`. Null `notes` for ID 4 "strong assumption" implies a default reasoning of "strongly matching sound/glyph of parent script." It is also considered a data error for ID 5 "weak assumption" to not have a justification in the `notes` field.
+  - The automatic derivations are:
+     - An assumption that lowercase characters derive from their uppercase counterparts.
+     - For the Brahmi-derived and Semitic scripts, it is assumed that cognate letters derive from their known ancestor script.
+     - Independently originated scripts have all their letters set to have no historical ancestor (this isn't necessarily always true as there can be script-internal derivation!).
+     - Simplified Chinese characters deriving from their Traditional counterpart.
+     - Unicode decompositions (eg. accented characters, duplicate/legacy code points, etc.).
+     - Hangul syllables deriving from their constituent jamo.
+     - *(to investigate data sources and history)* Han ideograph and radical relations.
 
 ### `language`
 
-Loaded mainly from the IANA language subtag registry (see licence info). This source was preferred over ISO 639 due to friendlier licensing and closer alignment with CLDR. The default script code may be supplemented by CLDR data if missing from IANA.
+Loaded mainly from the IANA language subtag registry (see licence info). This source was preferred over ISO 639 due to friendlier licensing and closer alignment with CLDR (I'm sure the codes mostly match anyways). The default script code is supplemented by CLDR data if missing from IANA.
 
 ### `script`
 
 A manually maintained table. Started out based on the list found [here](https://www.unicode.org/iso15924/iso15924-codes.html).
 
   - To my understanding, the original source table having rows without a Unicode Alias yet having a Unicode version date are scripts which Unicode considers a font variant of another. This was marked with the `canonical_script_code` field, but the usefulness is questionable.
-  - The `exemplar_sequence_id` field references a canonical set of letters. This allows it to be associated language-independently (eg. could be useful for Cyrillic where there isn't a universally agreed set of canonical letters). A sequence has been manually specified for a few scripts. The more "automated" process was specifying the main language for a script, which then pulled in the sequence generated from CLDR (see `alphabet`).
+  - The `exemplar_sequence_id` field references a canonical set of letters. This allows it to be associated language-independently (eg. could be useful for Cyrillic where there isn't a universally agreed set of canonical letters). A sequence has been manually specified for a few scripts. The more "automated" process was specifying the main language for a script, which then pulled in the sequence generated from that language's alphabet (see `alphabet` table).
      - For the most part, determining the main language was not difficult. Canadian Aboriginal syllabics was the main judgment call: It could have been Ojibwe, Cree, or Inuktitut. Ojibwe syllabics was not in the CLDR data leaving Cree and Inuktitut. In CLDR, only Swampy Cree specifically was in the files, which would be much fewer speakers than Inuktitut. However, between considering Cree more widely and that Inuktitut discarded the distinct final consonants (and this project is for finding interesting graphical developments), I've associated it to Swampy Cree.
   - The table includes data for private use scripts. These are:
     - Proto-Sinaitic (exists in ISO but not Unicode proper)

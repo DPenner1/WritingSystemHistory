@@ -1,6 +1,6 @@
 *Disclaimer: Software is provided as-is. The author takes no responsibility for ill-effects from use of said software.*
 
-***Note:*** *This database is in beta. Expect breaking changes. After a few weeks of development, I finally have an idea for a front-end to this thing and am starting to develop in support of that.*
+***Note:*** *This database is in beta. Expect breaking changes. After a few weeks of development, I finally had an idea for a front-end to this thing. Backend additions were made in support of that and focus expected to shift to front end around 2026-04-05. I am not a front end developer, so it might take a bit.*
 
 ## Overview
 
@@ -17,7 +17,7 @@ Though there are no current plans, the functionality of the database could be ex
 
 ## Statistics
 
-*As of 2026-03-15*
+*As of 2026-04-03*
 
   - *(Just over 100,000 letters in the Unicode Standard are Chinese characters. These stats are notated "All / non-Chinese")*. There are ⁨130,811 / 29,873 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 29,282 / 22,799 have a historical ancestor specified (22.2% / 76.3%, including no known ancestor), of which 1879 / 1840 are manually reviewed (1.4% / 6.2%).
   - The database is about 21 MB with minimalistic settings (configurable to keep more data/indexes).
@@ -35,13 +35,14 @@ The database must be generated. For all purposes, the `./tools/database` folder 
 
 The [`./queries`](https://github.com/DPenner1/WritingSystemHistory/tree/main/tools/database/queries) folder contains some queries, including finding a character's ancestors and descendants. Queries suffixed with `p` are parameterized, either replace the `?`(s) or call from code with parameters. Queries suffixed with `s` or `d` are called internally by the database setup code, the latter only with certain debug flags.
 
-For details, see the Schema documentation file.
+For details, see the [Schema documentation file](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/Schema%20documentation.md).
 
 ## Random Notes
 
   - Character is a fuzzy term and does not necessarily equate to a code point. For simplicity, this project has started out as code points. In principle, a character could be multiple codepoints. In that case, historical derivations are still quite supported as you would just combine the derivations of the constituent code points. It's a bit imprecise, but so far I'm not bothered by it. In the future, derivations could be associated to sequences if deemed necessary.
   - There are a decent number of defaults and fallbacks in the source to avoid repetitively specifying stuff in source files.
   - I have in usually been lazy with csv quoting and avoided commas in the data. I'm using python csv reader, so this is pure laziness as quotes would be no issue.
+  - The Python generation code is some of the most spaghetti-like code I've ever written. While I am at fault for some of it, I believe most of it has come down to the density of foreign key relations in the DB and trying to parse everything in a single pass for performance reasons. These restrictions require that files be read and loaded into the DB in a restricted order with dependencies that are sometimes not intuitive, especially when loading some data is dependent on other data already being loaded. I'm aware FK checks could be disabled, but those have saved me a few times already - they are only disabled during loading on a non-debug run. Performance could be compromised on a little - with optimized debug settings it currently runs in 20-25s on my machine and about half of that is a poorly performing query (it's marked with a TODO in the source code if you're curious).
 
 ## Licence info
 
@@ -51,4 +52,4 @@ This project contains resources from some openly licensed sources.
   - The database is generated using some text sourced from Wikipedia, which is under CC BY-SA 4.0. For compliance, and further info on that see in this project [`./resource/wikipedia-sourced/licence-info.txt`](https://github.com/DPenner1/WritingSystemHistory/blob/main/tools/database/resource/wikipedia-sourced/licence-info.txt).
   - The database makes use of the [IANA/IETF Subtag Language Registry](https://www.iana.org/assignments/language-subtags-tags-extensions/language-subtags-tags-extensions.xhtml#language-subtags), which is [essentially public domain](https://www.iana.org/help/licensing-terms):
 
-I intend to more formally put the database and the Python generation code under an open licence. The planned front-end will also likely be assuming I stick with current plans to use open source.
+I intend to eventually put the database and the Python generation code under an open licence. The planned front-end will also likely be assuming I stick with current plans to use open source.
