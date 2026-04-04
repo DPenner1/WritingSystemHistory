@@ -1,11 +1,13 @@
 
-# Schema/data documentation
+# Schema & data documentation
 
 ## Tables
 
-The `*_type` tables are lookup tables that should mostly be self-explanatory based on their data. They are only described here as necessary for the purposes of understanding the main tables.
+The `*_type` tables are lookup tables that should mostly be self-explanatory based on their data (though `certainty_type` is given a much fuller explanation here). They are only described here as necessary for the purposes of understanding the main tables.
 
 Many of the tables have a name field. For `code_point`, this is mostly the name as specified by Unicode, but is overriden when an alternate name is available, specifically when it's a correction or it's a control character (which officially has no name per the standard). The `language` and `script` tables simply make a singular choice as to a name.
+
+The tables are as follows, in alphabetical order.
 
 ### `alphabet`
 
@@ -18,11 +20,16 @@ Data on alphabets used by various languages, with the specific letters being sto
  - Use the `source` field to determine where the alphabet comes from. The code loads alphabets from three sources: Manually specified, [CLDR data](https://cldr.unicode.org/) and automatically generated (from the same process that does Brahmi and Semitic letters).
     - Note that CLDR data only covers modern languages. The data are loaded as "extended" alphabet types from CLDR's main exemplar set. Abjad and Alphabet type scripts further have "basic" types loaded from the index set (these tend to be underspecified for logographs, syllabaries and probably abugidas too - dependent vowels usually being missing). Note that CLDR does tend to follow the language's alphabet order, but sometimes the accented characters are grouped together (which may or may not be how a language typically orders letters).
     - I have yet to decide what precisely to do with the Chinese language(s). CLDR has separately specified Traditional and Simplified characters, but in the Unicode character database they are under a single script code.
- - **Design condiderations.** This table was simultaneously the most subjective and least important for this project. The codegen loads only "letters", but symbols could in principle be supported by the data structure.
+ - At present, the data is largely unverified.
+ - **Design considerations.** This table was simultaneously the most subjective and least important for this project. The codegen loads only "letters", but symbols could in principle be supported by the data structure.
     - The definition leads to the PK `(lang_code, sequence_id)`. However, to keep things simple, this table has been de-normalized (again this is not an important part of the DB and is subjective and can change so avoiding possibly over-engineering in the wrong direction). The PK is extended with `type_id` which in a normalized context should be specified in a separate many:1 table against the proper PK (I figure the `source` field would also go in that table, leaving remaining fields with the original table).
     - The `script_code` and `letter_case` may at first glance seem inferable from the referenced sequence id, but consider potential alphabets with mixed case or mixed script. It needs to be possible to make a manual determination for the overall case/script even if the sequence contains exceptions.
     - There is no current support for designating historical versions of alphabets. For historical languages/scripts, any included alphabet is interpreted as the most recent possible.
     - The design intends for `(lang_code, type_id, script_code, letter_case)` to be able to specify a singular sequence assuming such a sequence exists (the real world is messier with uncertainty, but the design calls for making a choice). In many cases this will be overspecifying (uncased languages, languages only ever written in a singular script, etc.), but a unique key has been added to represent this.
+
+### `certainty_type`
+
+TODO
 
 ### `code_point`
 

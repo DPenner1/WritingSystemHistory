@@ -1483,12 +1483,28 @@ class ScriptDatabase:
                 elif verify:
                     print(f"Error parsing Japanese CLDR data. Unexpected script {ja_script_code} for letter {c}")
 
-        # not dealing with script exemplars as the kana will be manually specified for that
-        self._load_alphabet(cursor, katakana, 'ja', 'Kana', 'Lo', AlphabetType.EXTENDED, 'CLDR main exemplar set')
-        self._load_alphabet(cursor, hiragana, 'ja', 'Hira', 'Lo', AlphabetType.EXTENDED, 'CLDR main exemplar set')
-        self._load_alphabet(cursor, kanji, 'ja', 'Hani', 'Lo', AlphabetType.EXTENDED, 'CLDR main exemplar set')
-        self._load_alphabet(cursor, kanji[0:len(kanji) // 2], 'ja', 'Hani', 'Lo', AlphabetType.FULL, 'CLDR main exemplar set partial')
-        self._load_alphabet(cursor, kanji[0:len(kanji) // 4], 'ja', 'Hani', 'Lo', AlphabetType.BASIC, 'CLDR main exemplar set partial')
+        # Note: not dealing with script exemplars as the kana will be manually specified for that
+
+        parse_data = self._CLDRParseData()
+
+        parse_data.script_code = 'Kana'
+        parse_data.letter_case = 'Lo'
+        parse_data.letters = katakana
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR main exemplar set')
+
+        parse_data.letters = hiragana
+        parse_data.script_code = 'Hira'
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR main exemplar set')
+
+        parse_data.letters = kanji
+        parse_data.script_code = 'Hani'
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR main exemplar set')
+
+        parse_data.letters = kanji[0:len(kanji) // 2]
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.FULL, 'CLDR main exemplar set partial')
+
+        parse_data.letters = kanji[0:len(kanji) // 4]
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.BASIC, 'CLDR main exemplar set partial')
 
     # return as follows:
     # sequences of type letter and base return as a string
@@ -1537,45 +1553,58 @@ class ScriptDatabase:
         return None
 
 
-    def _load_alphabet(self, cursor, letters, lang_code, script_code, letter_case, alphabet_type, source):
+    def _check_load_letter_sequence(self, cursor, letters):
         seq_id = self._get_existing_letter_sequence_id(cursor, letters)
         if not seq_id:
             seq_id = self._create_sequence(cursor, SequenceType.SIMPLE_ALPHABET)  # in future, maybe compound alphabets
             self._load_sequence_letters(cursor, seq_id, letters)
-
-        cursor.execute("""
-            INSERT INTO alphabet (sequence_id, lang_code, script_code, letter_case, type_id, source)
-            VALUES (?,?,?,?,?,?)""", (seq_id, lang_code, script_code, letter_case, alphabet_type.value, source))
-
         return seq_id
 
-    # TODO: should probably be a bit smarter about transactions for the alphabet stuff
-    def _load_alphabet_data(self, cursor, verify):
-        def get_script_type_and_needed_alphabets(lang_code, script_code):
-            # note this glosses over case: manual specified should always ensure both cases will be handled!
-            script_type = cursor.execute("SELECT type_id FROM script WHERE code = ?", (script_code,)).fetchone()[0]
-            return (
-                script_type,
-                len(cursor.execute("SELECT * FROM alphabet WHERE lang_code = ? AND script_code = ? AND type_id = ?",
-                               (lang_code, script_code, AlphabetType.EXTENDED.value)).fetchall()) == 0,
-                script_type in (ScriptType.ALPHABET.value, ScriptType.ABJAD.value) and len(
-                    cursor.execute("SELECT * FROM alphabet WHERE lang_code = ? AND script_code = ? AND type_id = ?",
-                        (lang_code, script_code, AlphabetType.BASIC.value)).fetchall()) == 0
-            )
+    # is_index_load: quite hacky as we're really reaching into the calling context to make decisions here,
+    #   but I've not otherwise figured out how to incorporate it while still maintaining a single reusable _load_alphabet method
+    # Basically if its index, we do two things - override case for the return value and load the FULL alphabet if BASIC (index) and EXTENDED (main) match
+    def _load_alphabet(self, cursor, lang_code, parse_data, alphabet_type, source, load_case_pair=False, is_index_load=False):
+        def insert_alphabet(s_id, lang, script, lcase, alph_type, text):  # just want to avoid potential headaches with variable shadowing on this one
+            cursor.execute("INSERT INTO alphabet (sequence_id, lang_code, script_code, letter_case, type_id, source) VALUES (?,?,?,?,?,?)",
+                           (s_id, lang, script, lcase, alph_type.value, text))
+        def try_index_load(s_id, lang, script, lcase):
+            # The matching query is over-specified, but this is an attempt at allowing the optimizer more options
+            matching_extended = cursor.execute("""
+                SELECT * FROM alphabet 
+                WHERE sequence_id = ? AND lang_code = ? AND script_code = ? AND letter_case = ? AND type_id = ?""",
+                    (s_id, lang, script, lcase, AlphabetType.EXTENDED.value))
+            if matching_extended.fetchall():  # index (BASIC) and Extended are the same, fill-in the middle FULL
+                insert_alphabet(s_id, lang_code, script, lcase, AlphabetType.FULL, 'CLDR index exemplar set')
 
-        script_exemplars = {}
-        with open(os.path.join(self._resource_path, 'script_exemplars.csv'), 'r') as csvfile:
-            for row in csv.DictReader(csvfile):
-                script_exemplars[row['Script']] = row['Language']
+        seq_id = self._check_load_letter_sequence(cursor, parse_data.letters)
+        insert_alphabet(seq_id, lang_code, parse_data.script_code, parse_data.letter_case, alphabet_type, source)
 
-        # languages which use only one case of a cased script.
-        # It has since occurred to me this can be per language-script combo, but given I've only found one language (code: oka) so far, I won't code for that yet
-        # I was hoping this could be programmatically inferred from the index set, but alas the data file doesn't have an index set for oka
-        unicase_languages = []
-        with open(os.path.join(self._resource_path, 'unicase_languages.txt'), 'r') as file:
-            for line in file:
-                unicase_languages.append(line.strip())
+        if is_index_load:
+            try_index_load(seq_id, lang_code, parse_data.script_code, parse_data.letter_case)
 
+        # casing
+        if not load_case_pair:
+            return seq_id
+        if parse_data.letter_case == 'Ll':
+            alternate_case = 'Lu'
+        elif parse_data.letter_case == 'Lu':
+            alternate_case = 'Ll'
+        else:  # not a cased pair
+            return seq_id
+
+        alternate_id = self._check_load_letter_sequence(cursor, parse_data.alternate_letters)
+        insert_alphabet(alternate_id, lang_code, parse_data.script_code, alternate_case, alphabet_type, source)
+
+        if is_index_load:
+            try_index_load(alternate_id, lang_code, parse_data.script_code, alternate_case)
+            return seq_id
+
+        if alternate_case == 'Ll':
+            return seq_id
+        return alternate_id
+
+
+    def _load_manual_alphabet_data(self, cursor, verify):
         added_scripts = set()
 
         with open(os.path.join(self._resource_path, 'standard_alphabets.csv')) as csvfile:
@@ -1591,31 +1620,44 @@ class ScriptDatabase:
                     for lang_code in lang_codes.split('/'):
                         for alphabet_type in alphabet_types.split('/'):
                             exemplar_id = self._load_alphabet(cursor,
-                                                             parse_data.letters,
-                                                             lang_code,
-                                                             parse_data.script_code,
-                                                             parse_data.letter_case,
-                                                             AlphabetType(int(alphabet_type)),
-                                                             row['Source'])
-                            if parse_data.letter_case in ('Ll', 'Lu') and not '!' in row['Case']:
-                                id = self._load_alphabet(cursor,
-                                                         parse_data.alternate_letters,
-                                                         lang_code,
-                                                         parse_data.script_code,
-                                                         'Lu' if parse_data.letter_case == 'Ll' else 'Ll',
-                                                         AlphabetType(int(alphabet_type)),
-                                                         row['Source'])
-                                if parse_data.letter_case == 'Ll': # meaning alternate is Lu
-                                    exemplar_id = id
+                                                              lang_code,
+                                                              parse_data,
+                                                              AlphabetType(int(alphabet_type)),
+                                                              row['Source'],
+                                                              load_case_pair = '!' not in row['Case'])
                 else:  # script-only exemplar
-                    exemplar_id = self._get_existing_letter_sequence_id(cursor, parse_data.letters)
-                    if not exemplar_id:
-                        exemplar_id = self._create_sequence(cursor, SequenceType.SIMPLE_ALPHABET)
-                        self._load_sequence_letters(cursor, exemplar_id, parse_data.letters)
+                    exemplar_id = self._check_load_letter_sequence(cursor, parse_data.letters)
 
                 if str(AlphabetType.BASIC.value) in alphabet_types:  # TODO - a bit hacky, will fail if alphabet type ever gets to double digits
                     cursor.execute("UPDATE script SET exemplar_sequence_id = ? WHERE code = ?", (exemplar_id, parse_data.script_code))
-                    added_scripts.add(parse_data.script_code)
+
+                added_scripts.add(parse_data.script_code)
+
+        return added_scripts
+
+
+    def _load_cldr_alphabet_data(self, cursor, script_exemplars, verify):
+        def get_script_type_and_needed_alphabets(lang_code, script_code):
+            # note this glosses over case: manually specified should always ensure both cases will be handled!
+            script_type = cursor.execute("SELECT type_id FROM script WHERE code = ?", (script_code,)).fetchone()[0]
+            return (
+                script_type,
+                len(cursor.execute("SELECT * FROM alphabet WHERE lang_code = ? AND script_code = ? AND type_id = ?",
+                               (lang_code, script_code, AlphabetType.EXTENDED.value)).fetchall()) == 0,
+                script_type in (ScriptType.ALPHABET.value, ScriptType.ABJAD.value) and len(
+                    cursor.execute("SELECT * FROM alphabet WHERE lang_code = ? AND script_code = ? AND type_id = ?",
+                        (lang_code, script_code, AlphabetType.BASIC.value)).fetchall()) == 0
+            )
+
+        # languages which use only one case of a cased script.
+        # It has since occurred to me this can be per language-script combo, but given I've only found one language (code: oka) so far, I won't code for that yet
+        # I was hoping this could be programmatically inferred from the index set, but alas the data file doesn't have an index set for oka
+        unicase_languages = []
+        with open(os.path.join(self._resource_path, 'unicase_languages.txt'), 'r') as file:
+            for line in file:
+                unicase_languages.append(line.strip())
+
+        added_scripts = set()
 
         # yes an xml parser would be more appropriate, but this is a simple task (and lxml seemed to choke and I don't feel like learning another module...)
         # (also there's a potential performance concern in that the exemplars come relatively early in the long files, in case an xml parser might read the whole file)
@@ -1624,7 +1666,7 @@ class ScriptDatabase:
         # From CLDR, we pull the main exemplar set as an Extended type alphabet
         # For Alphabet and Abjads the index exemplar set should work for the Basic type alphabet (and full can be inferred if its the same as extended)
         for file_name in os.listdir(os.path.join(self._unicode_path, 'cldr')):
-            if file_name == 'license.txt': # really i should just move this at some point
+            if file_name == 'license.txt':  # really i should just move this at some point
                 continue
             lang_str = file_name.split('.')[0].split('_')
             lang_code = lang_str[0]
@@ -1656,7 +1698,7 @@ class ScriptDatabase:
                         elif 'index' in attributes:
                             exemplar_type = 'index'
                         else:
-                            continue # we're only looking for main and possibly index
+                            continue  # we're only looking for main and possibly index
 
                         if not need_basic and exemplar_type == 'index':
                             continue
@@ -1684,12 +1726,12 @@ class ScriptDatabase:
                             self._parse_cldr_exemplar_set(cursor, match.group(2), parse_data, verify and exemplar_type == 'main')
                             # TODO - We have issues dealing with title case in the index sets
 
-                            if not script_code_check: # we will now have inferred script
+                            if not script_code_check:  # we will now have inferred script
                                 script_code_check = parse_data.script_code
                                 script_type, need_extended, need_basic = get_script_type_and_needed_alphabets(lang_code, script_code_check)
                                 if not need_basic and not need_extended:
                                     break
-                                if not need_extended: # we know we're in main cause it's the first one (so the only one where we might not know script yet)
+                                if not need_extended:  # we know we're in main cause it's the first one (so the only one where we might not know script yet)
                                     continue
 
                             if exemplar_type == 'index' and len(parse_data.letters) < 10:
@@ -1702,17 +1744,17 @@ class ScriptDatabase:
                             #  No correction needed here because German has been manually specified (but may need to keep an eye out for German variants using eszett)
                             if parse_data.script_code == 'Grek':
                                 if parse_data.letter_case == 'Ll':
-                                    parse_data.alternate_letters.remove('Σ') # duplicate caused by two lowercase sigma forms
-                                else:
+                                    parse_data.alternate_letters.remove('Σ')  # duplicate caused by two lowercase sigma forms
+                                elif exemplar_type != 'index':  # index is basic alphabet
                                     parse_data.alternate_letters.insert(parse_data.alternate_letters.index('σ') + 1, 'ς')  # opposite problem
-                            elif lang_code == 'kaa' and parse_data.script_code == 'Latn' and parse_data.letter_case == 'Ll': # I don't want to talk about this one
+                            elif lang_code == 'kaa' and parse_data.script_code == 'Latn' and parse_data.letter_case == 'Ll':  # I don't want to talk about this one
                                 parse_data.alternate_letters[parse_data.alternate_letters.index('I')] = 'Í'
 
                             if verify and len(parse_data.letters) != len(set(parse_data.letters)) and lang_code != 'ken':
                                 # ken has mixed case (not title) in index set for some reason. Suppressing for now cause not sure what to do about it
                                 print(f"Detected duplicate letters in alphabet for {lang_code}, {parse_data.script_code}: {parse_data.letters}")
 
-                            if len(lang_str) == 1: # this is taken to be the default script for a language
+                            if len(lang_str) == 1:  # this is taken to be the default script for a language
                                 if verify:
                                     default_script = cursor.execute("SELECT default_script_code FROM language WHERE code = ?", (lang_code,)).fetchone()[0]
                                     if default_script and default_script != parse_data.script_code:
@@ -1720,82 +1762,32 @@ class ScriptDatabase:
                                 cursor.execute("UPDATE language SET default_script_code = ? WHERE code = ?", (parse_data.script_code, lang_code))
 
                             exemplar_id = self._load_alphabet(cursor,
-                                                             parse_data.letters,
-                                                             lang_code,
-                                                             parse_data.script_code,
-                                                             parse_data.letter_case,
-                                                             AlphabetType.EXTENDED if exemplar_type == 'main' else AlphabetType.BASIC,
-                                                             f'CLDR {exemplar_type} exemplar set')
-
-                            if exemplar_type == 'index':
-                                matching_extended = cursor.execute("""
-                                    SELECT * FROM alphabet 
-                                    WHERE sequence_id = ? AND lang_code = ? AND script_code = ? AND letter_case = ? AND type_id = ?""",
-                                        (exemplar_id, lang_code, parse_data.script_code, parse_data.letter_case, AlphabetType.EXTENDED.value))
-                                if matching_extended.fetchall():
-                                    self._load_alphabet(cursor,
-                                                        parse_data.letters,
-                                                        lang_code,
-                                                        parse_data.script_code,
-                                                        parse_data.letter_case,
-                                                        AlphabetType.FULL,
-                                                        f'CLDR {exemplar_type} exemplar set')
-
-                            if parse_data.letter_case in ('Ll', 'Lu'):
-                                if verify and len(parse_data.alternate_letters) != len(set(parse_data.alternate_letters)) and lang_code != 'ken':
-                                    print(f"Detected duplicate letters in alphabet for {lang_code}, {parse_data.script_code}: {parse_data.alternate_letters}")
-                                alternate_case = 'Lu' if parse_data.letter_case == 'Ll' else 'Ll'
-                                id = self._load_alphabet(cursor,
-                                                         parse_data.alternate_letters,
-                                                         lang_code,
-                                                         parse_data.script_code,
-                                                         alternate_case,
-                                                         AlphabetType.EXTENDED if exemplar_type == 'main' else AlphabetType.BASIC,
-                                                         f'CLDR {exemplar_type} exemplar set')
-
-                                if exemplar_type == 'index':
-                                    matching_extended = cursor.execute("""
-                                        SELECT * FROM alphabet 
-                                        WHERE sequence_id = ? AND lang_code = ? AND script_code = ? AND letter_case = ? AND type_id = ?""",
-                                                                       (id, lang_code, parse_data.script_code, alternate_case, AlphabetType.EXTENDED.value))
-                                    if matching_extended.fetchall():
-                                        self._load_alphabet(cursor,
-                                                            parse_data.alternate_letters,
-                                                            lang_code,
-                                                            parse_data.script_code,
-                                                            alternate_case,
-                                                            AlphabetType.FULL,
-                                                            f'CLDR {exemplar_type} exemplar set')
-
-                                if alternate_case == 'Lu' and exemplar_type != 'index':
-                                    # we don't ever override the index on this (since the index would have canonical case)
-                                    exemplar_id = id
+                                                              lang_code,
+                                                              parse_data,
+                                                              AlphabetType.EXTENDED if exemplar_type == 'main' else AlphabetType.BASIC,
+                                                              f'CLDR {exemplar_type} exemplar set',
+                                                              load_case_pair=True,
+                                                              is_index_load= exemplar_type == 'index')
 
                             # Technically if a logograph script had case, then we should add those as well... probably doesn't exist
                             if script_type == ScriptType.LOGOGRAPH:
-                                self._load_alphabet(cursor,
-                                                      parse_data.letters[0:len(parse_data.letters) // 2],
-                                                      lang_code,
-                                                      parse_data.script_code,
-                                                      parse_data.letter_case,
-                                                      AlphabetType.FULL,
-                                                      f'CLDR partial {exemplar_type} exemplar set')
-                                exemplar_id = self._load_alphabet(cursor,
-                                                                  parse_data.letters[0:len(parse_data.letters) // 4],
-                                                                  lang_code,
-                                                                  parse_data.script_code,
-                                                                  parse_data.letter_case,
-                                                                  AlphabetType.BASIC,
-                                                                  f'CLDR partial {exemplar_type} exemplar set')
+                                if verify and parse_data.letter_case in ('Ll', 'Lu'):
+                                    print(f"Unsupported cased logograph language {lang_code}, script {parse_data.script_code}")
+
+                                parse_data.letters = parse_data.letters[0:len(parse_data.letters) // 2]
+                                self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.FULL,  f'CLDR partial {exemplar_type} exemplar set')
+
+                                parse_data.letters = parse_data.letters[0:len(parse_data.letters) // 4]
+                                exemplar_id = self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.BASIC, f'CLDR partial {exemplar_type} exemplar set')
 
                             added_scripts.add(parse_data.script_code)
 
-                            # next two if statements we rely on the main set being the first one in the file (a bit of a hacky assumption)
+                            # can be re-updated if we run index load
                             if script_exemplars[parse_data.script_code] == lang_code:
                                 cursor.execute("UPDATE script SET exemplar_sequence_id = ? WHERE code = ?", (exemplar_id, parse_data.script_code))
 
                             if script_type not in (ScriptType.ALPHABET.value, ScriptType.ABJAD.value):
-                                break # we only pull main for these
+                                break  # we only pull main for these
 
                     elif exemplar_type:
                         break  # done exemplar section, stop parsing this file and go to next
@@ -1803,31 +1795,41 @@ class ScriptDatabase:
                     # line number is a blunt tool to avoid excessive reporting on the "stub" entries
                     print(f'Could not find exemplar characters in {file_name}')
 
+        return added_scripts
+
+
+    def _load_generated_alphabet_data(self, cursor, script_exemplars, existing_scripts, verify):
         with open(os.path.join(self._resource_path, self._GENERATED_DIR_NAME, 'standard_alphabets.csv')) as csvfile:
             for row in csv.DictReader(csvfile):
                 parse_data = self._CLDRParseData()
                 parse_data.script_code = row['Script']
 
-                # Repurposing - for other data sources we used this for determining if a language had the script exemplar
-                # For generated stuff we're using it to determine the language for a script
-                lang_code = script_exemplars[parse_data.script_code] if parse_data.script_code in script_exemplars else None
-
-                if not parse_data.script_code in added_scripts:
+                # generated data is a last-resort
+                if not parse_data.script_code in existing_scripts:
                     self._parse_cldr_exemplar_set(cursor, row['Alphabet'], parse_data, verify)
+
+                    # Repurposing - for cldr data sources we used this for determining if a language had the script exemplar
+                    # For generated stuff we're use it to tag a language for a script if we can
+                    lang_code = script_exemplars[parse_data.script_code] if parse_data.script_code in script_exemplars else None
+
                     if lang_code:
-                        id = self._load_alphabet(cursor,
-                                                 parse_data.letters,
-                                                 lang_code,
-                                                 parse_data.script_code,
-                                                 parse_data.letter_case,
-                                                 AlphabetType.BASIC,
-                                                 'Automatically generated from Wikipedia Indic and Semitic letter pages')
+                        id = self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.BASIC, 'Automatically generated from Wikipedia Indic and Semitic letter pages')
+                        # note for generated we're not bothering with a second addition for case - the indic and semitic alphabets are all uncased
                     else:
-                        id = self._get_existing_letter_sequence_id(cursor, parse_data.letters)
-                        if not id:
-                            id = self._create_sequence(cursor, SequenceType.SIMPLE_ALPHABET)
-                            self._load_sequence_letters(cursor, id, parse_data.letters)
+                        id = self._check_load_letter_sequence(cursor, parse_data.letters)
+
                     cursor.execute("UPDATE script SET exemplar_sequence_id = ? WHERE code = ?", (id, parse_data.script_code))
+
+    # TODO: should probably be a bit smarter about transactions for the alphabet stuff
+    def _load_alphabet_data(self, cursor, verify):
+        script_exemplars = {}
+        with open(os.path.join(self._resource_path, 'script_exemplars.csv'), 'r') as csvfile:
+            for row in csv.DictReader(csvfile):
+                script_exemplars[row['Script']] = row['Language']
+
+        added_scripts = self._load_manual_alphabet_data(cursor, verify)
+        added_scripts |= self._load_cldr_alphabet_data(cursor, script_exemplars, verify)
+        self._load_generated_alphabet_data(cursor, script_exemplars, added_scripts, verify)
 
 
     def get_code_point_script_parents(self, id, scripts_to_skip=None):
@@ -2102,7 +2104,7 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.OPTIMIZED_DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
