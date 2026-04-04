@@ -32,8 +32,8 @@ $,P/S/T/I/J,1,3,,Wikipedia: Dollar sign
 ¥,Y,1,1,,Wikipedia: Yen and yuan sign
 §,S/⸏,1,3,,Wikipedia: Section sign
 ©,C/⃝,1,1,,Wikipedia: Copyright symbol
-®,R/⃝,1,5,,
-±,+/−,1,5,,
+®,R/⃝,1,4,,
+±,+/−,1,4,,
 ¶,⸿,1,2,,Wikipedia: Pilcrow
 ¿,?,8,1,,Wikipedia: Upside-down question and exclamation marks
 
@@ -41,44 +41,44 @@ $,P/S/T/I/J,1,3,,Wikipedia: Dollar sign
 ॥,𑁈,,5,,https://www.unicode.org/L2/L2020/20183-gurmukhi-chg.pdf and https://panjabilab.com/faq/,"While the code point has Devanagari in its name, the intent appears to initially have been to treat this as a generic punctuation mark for use in multiple scripts"
 
 ‐,͜,1,1,,Wikipedia: Hyphen
-‵,′,1,5,,
+‵,′,1,4,,
 ※,米,1,2,,https://en.wiktionary.org/wiki/%E2%80%BB
 ‽,?/!,1,1,,https://en.wiktionary.org/wiki/%E2%80%BD
 ⁊,e/t,1,1,,https://en.wiktionary.org/wiki/%E2%81%8A
-⁋,¶,9,5,,
-⁏,;,9,5,,
-⁑,*,1,5,2,
+⁋,¶,9,4,,
+⁏,;,9,4,,
+⁑,*,1,4,2,
 ₠,C/E,1,1,,https://en.wikipedia.org/wiki/European_Currency_Unit
 ₡,C,1,1,,https://en.wikipedia.org/wiki/Col%C3%B3n_(currency)
-₡,̸,1,5,2,https://en.wikipedia.org/wiki/Col%C3%B3n_(currency)
+₡,̸,1,4,2,https://en.wikipedia.org/wiki/Col%C3%B3n_(currency)
 ₢,C/r,1,1,,https://en.wikipedia.org/wiki/Cruzeiro_sign
-₣,F/̵,1,5,,
+₣,F/̵,1,4,,
 ₥,m/̸,1,1,,https://en.wiktionary.org/wiki/%E2%82%A5
-₦,N,1,5,,
-₦,̶,1,5,2,
-₧,P/t/s,1,5,,
+₦,N,1,4,,
+₦,̶,1,4,2,
+₧,P/t/s,1,4,,
 ₩,W,1,1,,https://en.wikipedia.org/wiki/Won_sign
-₩,̶,1,5,2,https://en.wikipedia.org/wiki/Won_sign
+₩,̶,1,4,2,https://en.wikipedia.org/wiki/Won_sign
 ₪,ש/ח,1,1,,https://en.wikipedia.org/wiki/Shekel_sign
-₫,đ/̲,1,5,,
+₫,đ/̲,1,4,,
 €,ε,1,1,,https://en.wikipedia.org/wiki/Euro_sign
 ₭,K/̶,1,1,,https://en.wiktionary.org/wiki/%E2%82%AD
-₮,T/̷,1,5,,
+₮,T/̷,1,4,,
 ₯,Δ/ρ,1,1,,https://en.wiktionary.org/wiki/%E2%82%AF
 ₰,d,1,1,,https://en.wiktionary.org/wiki/%E2%82%B0
 ₱,P,1,1,,https://en.wikipedia.org/wiki/Philippine_peso_sign
-₱,̶,1,5,2,
-₲,G/⃒,1,5,,
+₱,̶,1,4,2,
+₲,G/⃒,1,4,,
 ₳,A/̶,1,1,,https://en.wikipedia.org/wiki/Argentine_austral
 ₴,г,4,2,,https://en.wikipedia.org/wiki/Hryvnia_sign
-₴,̶,1,5,2,
-₵,C/⃒,1,5,,
+₴,̶,1,4,2,
+₵,C/⃒,1,4,,
 ₶,l/t,1,1,,https://en.wiktionary.org/wiki/%E2%82%B6
 ₷,S/m,1,1,,https://en.wikipedia.org/wiki/Spesmilo
-₸,T/̅,1,5,,
+₸,T/̅,1,4,,
 ₹,र/R,1,1,,https://en.wiktionary.org/wiki/%E2%82%B9
 ₺,L,1,1,,https://en.wiktionary.org/wiki/%E2%82%BA
-₺,̷,1,5,2,
+₺,̷,1,4,2,
 ₻,m,1,5,,
 ₼,m,1,1,,https://en.wikipedia.org/wiki/Azerbaijani_manat_sign
 ₽,Р/̵,1,1,,https://en.wikipedia.org/wiki/Ruble_sign
@@ -87,30 +87,30 @@ $,P/S/T/I/J,1,3,,Wikipedia: Dollar sign
 ⃀,С/̲,1,1,,https://en.wikipedia.org/wiki/Kyrgyz_som
 ⃁,ر/ي/ا/ل,,1,1,https://en.wikipedia.org/wiki/Saudi_riyal_sign
 
-℄,L/C,,5,
+℄,L/C,,4,
 ℔,l/b,1,1,,Wikipedia: Number sign
-℗,P/⃝,1,5,,
+℗,P/⃝,1,4,,
 ℘,p,1,1,,https://en.wikipedia.org/wiki/Weierstrass_elliptic_function
 ℞,R,1,1,,Wikipedia: Medical Prescription
 ℟,R,1,1,,Wikipedia: Preces
 ℣,V,1,1,,Wikipedia: Preces
 ℧,Ω,9,1,,Wikipedia: Siemens (unit)
-℩,ι,8,5,,
-℮,e,,5,
-℺,Q,8,5,,
-⅁,G,8,5,,
-⅂,L,8,5,,
-⅃,L,9,5,,
-⅄,Y,9,5,,
-⅊,P/L,,5,
-⅋,&,8,5,,
+℩,ι,8,4,,
+℮,e,,4,
+℺,Q,8,4,,
+⅁,G,8,4,,
+⅂,L,8,4,,
+⅃,L,9,4,,
+⅄,Y,9,4,,
+⅊,P/L,,4,
+⅋,&,8,4,,
 ⅌,p,,2,,https://unicode.org/L2/L2003/03194-math-letterlike.pdf
-↊,2,8,5,,
-↋,3,8,5,,
-↔,←/→,,5,,
+↊,2,8,4,,
+↋,3,8,4,,
+↔,←/→,,4,,
 
 ∀,A,9,1,,https://en.wiktionary.org/wiki/%E2%88%80
-∁,C,1,5,,
+∁,C,1,4,,
 ∂,d,1,1,,https://en.wiktionary.org/wiki/%E2%88%82
 ∃,E,9,1,,https://en.wiktionary.org/wiki/%E2%88%83
 ∅,Ø,1,1,,Wikipedia: Empty set
@@ -128,17 +128,17 @@ $,P/S/T/I/J,1,3,,Wikipedia: Dollar sign
 ⸿,C,1,2,,kkWikipedia: Pilcrow
 ⹀,⸗,1,1,,Wikipedia: Double hyphen
 
-𝄉,D/S/.,,5,
-𝄊,D/C/.,,5,
-𝄑,𝄐,9,5,
-𝄟,𝄞/8,,5,
-𝄠,𝄞/8,,5,
-𝄣,𝄢/8,,5,
-𝄤,𝄢/8,,5,
-𝄶,8/v/a,,5,
-𝄷,8/v/b,,5,
-𝄸,1/5/m/a,,5,
-𝄹,1/5/m/b,,5,
-𝆏,p,,5,
-𝆐,m,,5,
-𝆑,f,,5,
+𝄉,D/S/.,,4,
+𝄊,D/C/.,,4,
+𝄑,𝄐,9,4,
+𝄟,𝄞/8,,4,
+𝄠,𝄞/8,,4,
+𝄣,𝄢/8,,4,
+𝄤,𝄢/8,,4,
+𝄶,8/v/a,,4,
+𝄷,8/v/b,,4,
+𝄸,1/5/m/a,,4,
+𝄹,1/5/m/b,,4,
+𝆏,p,,4,
+𝆐,m,,4,
+𝆑,f,,4,

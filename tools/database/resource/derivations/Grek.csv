@@ -23,49 +23,49 @@ Child,Parent,Derivation Type,Certainty Type,Notes
 Χ,,,,
 Ψ,,,,
 
-α,Α,1,5,
-β,Β,1,5,
-γ,Γ,1,5,
-δ,Δ,1,5,
-ε,Ε,1,5,
-ζ,Ζ,1,5,
-η,Η,1,5,
-θ,Θ,1,5,
-ι,Ι,1,5,
-κ,Κ,1,5,
-λ,Λ,1,5,
-μ,Μ,1,5,
-ν,Ν,1,5,
-ξ,Ξ,1,5,
-ο,Ο,5,5,
-π,Π,1,5,
-ρ,Ρ,1,5,
-σ,Σ,1,5,
-ς,Σ,1,5,
-τ,Τ,1,5,
-υ,Υ,1,5,
-φ,Φ,1,5,
-χ,Χ,1,5,
-ψ,Ψ,1,5,
-ω,Ω,1,5,
+α,Α,1,5,Assumed lowercase from uppercase
+β,Β,1,4,
+γ,Γ,1,5,Assumed lowercase from uppercase
+δ,Δ,1,5,Assumed lowercase from uppercase
+ε,Ε,1,4,
+ζ,Ζ,1,4,
+η,Η,1,5,Assumed lowercase from uppercase
+θ,Θ,1,4,
+ι,Ι,1,4,
+κ,Κ,1,4,
+λ,Λ,1,4,
+μ,Μ,1,5,Assumed lowercase from uppercase
+ν,Ν,1,5,Assumed lowercase from uppercase
+ξ,Ξ,1,5,Assumed lowercase from uppercase
+ο,Ο,5,4,
+π,Π,1,4,
+ρ,Ρ,1,4,
+σ,Σ,1,5,Assumed lowercase from uppercase
+ς,Σ,1,5,Assumed lowercase from uppercase
+τ,Τ,1,4,
+υ,Υ,1,5,Assumed lowercase from uppercase
+φ,Φ,1,5,Assumed lowercase from uppercase
+χ,Χ,1,4,
+ψ,Ψ,1,4,
+ω,Ω,1,5,Assumed lowercase from uppercase
 
-ᴦ,Γ,,5
-ᴧ,Λ,,5
-ᴨ,Π,,5
-ᴩ,Ρ,,5
-ᴪ,Ψ,,5
-ꭥ,Ω,,5
+ᴦ,Γ,,4
+ᴧ,Λ,,4
+ᴨ,Π,,4
+ᴩ,Ρ,,4
+ᴪ,Ψ,,4
+ꭥ,Ω,,4
 
 Ϝ,𐤅,1,,
 Η,𐤇,1,,
 Ϙ,𐤒,1,,
 Ϻ,𐤑,1,,
 Ϛ,Σ/Τ,1,
-ϛ,Ϛ,1,5
+ϛ,Ϛ,1,4
 Ϲ,Σ,1,,
-Ͻ,Ϲ,9,5
+Ͻ,Ϲ,9,4
 Ͼ,Ϲ,,1
-Ͽ,Ͼ/Ͻ,,5
+Ͽ,Ͼ/Ͻ,,4
 Ϡ,Ͳ,1,,
 Ͳ,Ϻ,1,2,
 Ͱ,Η,1,1,

@@ -29,7 +29,20 @@ Data on alphabets used by various languages, with the specific letters being sto
 
 ### `certainty_type`
 
-TODO
+Certainty is a measure of the strength of evidence for a derivation. As a visualization (and as planned for the front end), a derivation can be envisioned as an arrow from parent to child and that arrow can be a solid, dashed or dotted line in order of decreasing evidence strength. The IDs are:
+
+ - ID -1 *Unspecified (dotted)*: This is considered a missing data error.
+ - IDs 1-3 are the straightforward *Near Certain*/*Likely*/*Uncertain* with corresponding arrows.
+ - IDs 4-5 are the "assumed" types where there is no specific source, but has been derived by the database author for one reason or another (it is considered a data error for all the other IDs to have a null `source` field). If a source is provided anyways for these derivations, it is informative or tangential, but not direct.
+    - ID 4 *Strong Assumption (dashed)*: There are two "default" reasons for a strong assumption (and are permitted to have a null `notes` field). To a large extent, the purpose of this ID existing is to compensate for the fact it's hard to find sources for such obvious derivations.
+        - A child script with strongly matching glyph and sound (or function for unpronounced characters like punctuation).
+        - A glyph that is a transparent combination of one or more same-script glyphs (eg. letter + minor modification such as addition of diacritic, lowercase being small uppercase, ligatures, etc.). In specifying this kind of derivation, care should be taken to ensure that the same transparent combination did not first occur in a parent script (and so the child script inherited this derivation rather than creating it itself).
+        - If there is another reason (eg. a documented sound shift occurred, or follows a general pattern of glyph changes), this must be explained in the `notes` field.
+    - ID 5 *Weak Assumption (dotted)*: It is considered a data error to not have a justification in the `notes` field.
+ - IDs 6+ represent an automated derivation from a data source. Technically this is a bit de-normalized as it applies to an entire source (set of code points) rather than the specific code points on the record.
+    - ID 6 *From Technical Source (solid)* represents a technical derivation source, the prime example being Unicode decomposition. These aren't really separate characters from an epigraphic standpoint, just different ways of encoding characters in Unicode, and so are derived by definition.
+    - ID 7 *From Non-Graphical Source (dashed)* is a derivation from a non-graphical source, but is highly correlated with graphical derivation. Examples are upper/lowercase forms, cognate letters in the Indic & Semitic scripts and various patterns inferred from code point names.
+    - There are currently no other IDs. Notably absent is any automated source that details specifically graphical derivation. The database author has simply not yet found any that was worth automatic parsing (part of the reason for this database; naturally many individual sources exist and are categorized under IDs 1-3). IDs may later be added for this purpose, but ideally such a source could instead be mapped onto IDs 1-3.
 
 ### `code_point`
 
@@ -43,8 +56,8 @@ Mostly what you would expect from Unicode.
 
 This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. This table is also liable to renaming to `code_point_relation` if project scope expands.
 
-  - The `derivation_type_id` borders on legacy. However, there's not really any reason to drop it formally and new data can just specify the default value without breaking anything.
-  - The `certainty_type_id` field represents a rough evaluation of the strength of the evidence. IDs 1-3 are straightforward. IDs 4-5 are the "assumed" certainty values where there is no specific source, but has been derived by the database author for one reason or another. If a source is provided anyways for these derivations, it is informative or tangential, but not direct. IDs 6-8 represent an automated derivation from a data source. Technically this is a bit de-normalized as it applies to an entire source (set of code points) rather than the specific code points on the record. ID 9 is "unspecified" and is considered a missing data error. It is a data error for IDs other than 4, 5 & 9 to have a null `source`. Null `notes` for ID 4 "strong assumption" implies a default reasoning of "strongly matching sound/glyph of parent script." It is also considered a data error for ID 5 "weak assumption" to not have a justification in the `notes` field.
+  - The `derivation_type_id` borders on legacy. However, there's not really any reason to drop it formally, most new data is simply taking the default value without breaking anything.
+  - `certainty_type_id`: see `certainty_type` table. (trivia - the derivation and certainty types essentially swapped places in terms of usefulness and the database author's initial anticipation of their usefulness).
   - The automatic derivations are:
      - An assumption that lowercase characters derive from their uppercase counterparts.
      - For the Brahmi-derived and Semitic scripts, it is assumed that cognate letters derive from their known ancestor script.
@@ -56,14 +69,14 @@ This is the main table for this project, mapping out the historical derivations 
 
 ### `language`
 
-Loaded mainly from the IANA language subtag registry (see licence info). This source was preferred over ISO 639 due to friendlier licensing and closer alignment with CLDR (I'm sure the codes mostly match anyways). The default script code is supplemented by CLDR data if missing from IANA.
+Loaded mainly from the IANA language subtag registry (see licence info in README). This source was preferred over ISO 639 due to friendlier licensing and closer alignment with CLDR (I'm sure the codes mostly match anyways). The `default_script_code` field is supplemented by CLDR data if missing from IANA.
 
 ### `script`
 
 A manually maintained table. Started out based on the list found [here](https://www.unicode.org/iso15924/iso15924-codes.html).
 
   - To my understanding, the original source table having rows without a Unicode Alias yet having a Unicode version date are scripts which Unicode considers a font variant of another. This was marked with the `canonical_script_code` field, but the usefulness is questionable.
-  - The `exemplar_sequence_id` field references a canonical set of letters. This allows it to be associated language-independently (eg. could be useful for Cyrillic where there isn't a universally agreed set of canonical letters). A sequence has been manually specified for a few scripts. The more "automated" process was specifying the main language for a script, which then pulled in the sequence generated from that language's alphabet (see `alphabet` table).
+  - The `exemplar_sequence_id` field references a canonical set of letters. Associating to a sequence and not an alphabet allows for language-independence (eg. could be useful for Cyrillic where there isn't a universally agreed set of canonical letters). A sequence has been manually specified for a few scripts. However, most are specified with a "automated" process of specifying the main language for a script, which then pulls in the sequence generated from that language's alphabet (see `alphabet` table).
      - For the most part, determining the main language was not difficult. Canadian Aboriginal syllabics was the main judgment call: It could have been Ojibwe, Cree, or Inuktitut. Ojibwe syllabics was not in the CLDR data leaving Cree and Inuktitut. In CLDR, only Swampy Cree specifically was in the files, which would be much fewer speakers than Inuktitut. However, between considering Cree more widely and that Inuktitut discarded the distinct final consonants (and this project is for finding interesting graphical developments), I've associated it to Swampy Cree.
   - The table includes data for private use scripts. These are:
     - Proto-Sinaitic (exists in ISO but not Unicode proper)
@@ -82,4 +95,4 @@ A sequence of sequences (recursive tree). Each code point also has an "dummy" ba
 
 ### `sequence_item`
 
-An item in a sequence. The code points sequences do *not* have an entry in this table, they are the leaf items in the tree.
+An item in a sequence. The base code point sequences do *not* have an entry in this table, they are the leaf items in the tree.

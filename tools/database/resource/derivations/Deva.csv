@@ -1,15 +1,15 @@
 Child,Parent,Certainty Type,Notes
 ऐ,,5
 
-ँ,,5
+ँ,,4
 ऽ,,5
 ्,,5
-꣼,,5
+꣼,,4
 
 ॅ,ँ,5,Appears to be a modern innovation for representing some vowels in foreign loanwords
-ॲ,ॅ/अ,5
-ऍ,ॅ/ए,5
-ऑ,ॉ/अ,5
-ॉ,ॅ/ो,5
+ॲ,ॅ/अ,4
+ऍ,ॅ/ए,4
+ऑ,ॉ/अ,4
+ॉ,ॅ/ो,5,Matching glyph/sound value
 
 

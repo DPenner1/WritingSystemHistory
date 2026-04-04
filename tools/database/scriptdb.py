@@ -506,7 +506,7 @@ class ScriptDatabase:
         load_lookup(cursor, 'derivation_type', data)
 
         # For this project, sourcing is generally just for the derivation fact, not necessarily for derivation type
-        # unlike all the other current lookups, this one is anticipated to be complete (no further items to be added). Edit: for real this time.
+        # this lookup mostly expected to be complete. There may be additions if other derivation sources are found.
         data = [
             (Certainty.NEAR_CERTAIN.value, "Near Certain", "Sources almost all agree, or disagreeing sources are suspect"),
             (Certainty.LIKELY.value, "Likely", "Sources mostly agree, or a singular weak source"),
@@ -518,10 +518,7 @@ class ScriptDatabase:
             # to be clearer, this is basically for the equivalencies (decomposition, z-variant, etc.)
             (Certainty.AUTOMATED_TECHNICAL.value, "From Technical Source",
                 "Automatically copied from a source specifying technical derivations, usually from Unicode Consortium data"),
-            # Don't actually have any curated sources currently, but setting this out just in case
-            (Certainty.AUTOMATED_CURATED.value, "From Curated Source",
-                "Automatically copied from existing source specifying derivations, but without sufficient clarity to instead map to Near Certain/Likely/Uncertain values"),
-            (Certainty.AUTOMATED_MISC.value, "From Miscellaneous Source",
+            (Certainty.AUTOMATED_NON_GRAPHICAL.value, "From Non-Graphical Source",
                 "Automatically copied from a source that is not purely graphical derivation, without specific manual review"),
             (Certainty.UNSPECIFIED.value, "Unspecified", "Not specified in data files")]
         load_lookup(cursor, 'certainty_type', data)
@@ -607,7 +604,7 @@ class ScriptDatabase:
         arabic_note_text = "Based on Unicode name"
         def try_arabic_text_load_deriv(cursor, child_id, search_name, text):
             if " " + search_name in text:
-                self._load_single_derivation(cursor, child_id, arabic_map[search_name], DerivationType.DEFAULT, Certainty.AUTOMATED_MISC, None, arabic_note_text)
+                self._load_single_derivation(cursor, child_id, arabic_map[search_name], DerivationType.DEFAULT, Certainty.AUTOMATED_NON_GRAPHICAL, None, arabic_note_text)
                 return True
             return False
 
@@ -663,7 +660,7 @@ class ScriptDatabase:
             match = base_pattern.match(x[1])
             if match.group(2) != 'A' and match.group(1) in base_ethiopic_names:
                 self._load_single_derivation(cursor, x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT,
-                                             Certainty.AUTOMATED_MISC, None, 'Inherent vowel parent')
+                                             Certainty.AUTOMATED_NON_GRAPHICAL, None, 'Inherent vowel parent')
 
         # This ones ~20 characters, should just manually specify at some point
         cursor.execute("""
@@ -673,7 +670,7 @@ class ScriptDatabase:
                 code_point newsog 
                 INNER JOIN code_point oldsog ON newsog.raw_name = substr(oldsog.raw_name, 5)
                 WHERE newsog.script_code = 'Sogd' AND oldsog.script_code = 'Sogo'""",
-                       (DerivationType.DEFAULT.value, Certainty.AUTOMATED_MISC.value, 'Old Sogdian / Sogdian same letter'))
+                       (DerivationType.DEFAULT.value, Certainty.AUTOMATED_NON_GRAPHICAL.value, 'Old Sogdian / Sogdian same letter'))
 
         latin_pattern = re.compile(r'([A-Z]{2,} )?([A-Z])( [A-Z]{2,}[ A-Z]*)?')
         capitals = cursor.execute("""
@@ -687,7 +684,7 @@ class ScriptDatabase:
             match = latin_pattern.match(capital[1])
             if match and (match.group(1) or match.group(3)): # needs to match one of these groups or it's the base letter itself
                 self._load_single_derivation(cursor, capital[0], ord(match.group(2)), DerivationType.DEFAULT,
-                                             Certainty.AUTOMATED_MISC, None, 'Unicode Latin capital letter name')
+                                             Certainty.AUTOMATED_NON_GRAPHICAL, None, 'Unicode Latin capital letter name')
 
         lowercases = cursor.execute("""
             SELECT id, substr(name, 20) FROM code_point 
@@ -701,7 +698,7 @@ class ScriptDatabase:
             match = latin_pattern.match(lowercase[1])
             if match and (match.group(1) or match.group(3)): # needs to match one of these groups or it's the base letter itself
                 self._load_single_derivation(cursor, lowercase[0], ord(match.group(2).lower()), DerivationType.DEFAULT,
-                                             Certainty.AUTOMATED_MISC, None, 'Unicode Latin small letter name')
+                                             Certainty.AUTOMATED_NON_GRAPHICAL, None, 'Unicode Latin small letter name')
 
         arabic_pattern = re.compile("ARABIC LETTER ([- A-Z]+?) WITH([- A-Z]+)")
 
@@ -714,7 +711,7 @@ class ScriptDatabase:
             if match:
                 child_id = int(arabic_letter[0])
                 self._load_single_derivation(cursor, child_id, arabic_map[match.group(1)],
-                                             DerivationType.DEFAULT, Certainty.AUTOMATED_MISC, None, arabic_note_text)
+                                             DerivationType.DEFAULT, Certainty.AUTOMATED_NON_GRAPHICAL, None, arabic_note_text)
 
                 with_text = match.group(2)
                 found_other = False
@@ -722,9 +719,9 @@ class ScriptDatabase:
                     found_other = True
                     if "WAVY" in with_text:
                         # This ID is for wavy hamza below - there doesn't appear to be an above or standalone
-                        self._load_single_derivation(cursor, child_id, 1631, DerivationType.DEFAULT, Certainty.AUTOMATED_MISC, None, arabic_note_text)
+                        self._load_single_derivation(cursor, child_id, 1631, DerivationType.DEFAULT, Certainty.AUTOMATED_NON_GRAPHICAL, None, arabic_note_text)
                     hamza_id = 1621 if "HAMZA BELOW" in with_text else 1620
-                    self._load_single_derivation(cursor, child_id, hamza_id, DerivationType.DEFAULT, Certainty.AUTOMATED_MISC, None, arabic_note_text)
+                    self._load_single_derivation(cursor, child_id, hamza_id, DerivationType.DEFAULT, Certainty.AUTOMATED_NON_GRAPHICAL, None, arabic_note_text)
 
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "KASRA", with_text) or found_other
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "FATHA", with_text) or found_other
@@ -760,7 +757,7 @@ class ScriptDatabase:
             SELECT id, ?, ?, ?, 'Independent script: Assume independent character'
             FROM code_point 
             WHERE script_code IN {self._get_sql_in_str_list(independent_scripts)}""",
-               (ord(self.NO_PARENT_CHARACTER), DerivationType.DEFAULT.value, Certainty.AUTOMATED_MISC.value))
+               (ord(self.NO_PARENT_CHARACTER), DerivationType.DEFAULT.value, Certainty.AUTOMATED_NON_GRAPHICAL.value))
 
         with open(os.path.join(self._unicode_path, 'Unikemet.txt'), 'r') as file:
             for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter = '\t'):
@@ -818,7 +815,9 @@ class ScriptDatabase:
                          END
                     ELSE {DerivationType.DEFAULT.value}
                 END,
-                {Certainty.AUTOMATED_TECHNICAL.value},
+                CASE WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN {Certainty.AUTOMATED_NON_GRAPHICAL.value}
+                     ELSE {Certainty.AUTOMATED_TECHNICAL.value}
+                END,
                 CASE WHEN seq.type_id = {SequenceType.Z_VARIANT.value} THEN 'Unihan database, zVariant'
                      WHEN seq.type_id = {SequenceType.HIEROGLYPHIC_ALTERNATIVE.value} THEN 'Unicode Character Database Unikemet.txt'
                      WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN 'Determination based on Unicode name'
@@ -843,7 +842,7 @@ class ScriptDatabase:
         # About 10 conflicts are characters simultaneously being Z-variants and trad/simp derivations
 
         # manual equivalency
-        # TODO - ensure we dont override decomposition
+        # TODO - add verificaiton for not overriding decomposition
         with open(os.path.join(self._resource_path, 'position_distinction.csv')) as csvfile:
             for row in csv.DictReader(csvfile):
                 self._load_equivalent_unit_sequence(cursor, SequenceType.POSITION_DISTINCTION, ord(row["Equiv"]), ord(row["Char"]))
@@ -858,14 +857,14 @@ class ScriptDatabase:
             SELECT id, simple_uppercase_mapping_id, ?, ?, 'Unicode Character Database case mapping data'
             FROM code_point
             WHERE simple_uppercase_mapping_id IS NOT NULL""",
-               (DerivationType.DEFAULT.value, Certainty.AUTOMATED_MISC.value))
+               (DerivationType.DEFAULT.value, Certainty.AUTOMATED_NON_GRAPHICAL.value))
         # casing isn't 100% 1:1 so need to do mappings in both directions
         cursor.execute("""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
             SELECT simple_lowercase_mapping_id, id, ?, ?, 'Unicode Character Database case mapping data'
             FROM code_point cp1
             WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
-               (DerivationType.DEFAULT.value, Certainty.AUTOMATED_MISC.value))
+               (DerivationType.DEFAULT.value, Certainty.AUTOMATED_NON_GRAPHICAL.value))
 
         if drop_case_columns:
             cursor.execute("DROP INDEX idx_fk_cp_simple_uppercase_mapping")
@@ -923,7 +922,7 @@ class ScriptDatabase:
                     # File-specified data overrides the automatically generated data
                     cursor.execute(
                         "DELETE FROM code_point_derivation WHERE child_id = ? AND certainty_type_id IN (?, ?)",
-                        (ord(child), Certainty.AUTOMATED_TECHNICAL.value, Certainty.AUTOMATED_MISC.value))
+                        (ord(child), Certainty.AUTOMATED_TECHNICAL.value, Certainty.AUTOMATED_NON_GRAPHICAL.value))
                         # academic: Automated Curated not in list as you may want to see the conflicts to manually resolve
 
                     # ensure that child character is always the expected script
@@ -1331,7 +1330,7 @@ class ScriptDatabase:
                             letters = letter_dict[script_code][letter_class]
                             if len(letters) == 1:  # previously allowed multiple, but this is too inaccurate
                                 self._load_single_derivation(cursor, ord(letters[0]), ord(parent_letters[0]), DerivationType.DEFAULT,
-                                                             Certainty.AUTOMATED_MISC, source, 'Not necessarily graphical derivation but likely')
+                                                             Certainty.AUTOMATED_NON_GRAPHICAL, source, 'Not necessarily graphical derivation but likely')
 
 
     def _verify_script_coverage(self, cursor):
@@ -2026,15 +2025,15 @@ class ScriptDatabase:
 
 
 class Certainty(Enum):
+    UNSPECIFIED = -1
     NEAR_CERTAIN = 1
     LIKELY = 2
     UNCERTAIN = 3
     STRONG_ASSUMPTION = 4
     WEAK_ASSUMPTION = 5
     AUTOMATED_TECHNICAL = 6
-    AUTOMATED_CURATED = 7
-    AUTOMATED_MISC = 8
-    UNSPECIFIED = 9
+    AUTOMATED_NON_GRAPHICAL = 7
+
 
 # at the moment I'm isolating ranges of things I think could be expanded on.
 class SequenceType(Enum):
@@ -2104,7 +2103,7 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.OPTIMIZED_DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))

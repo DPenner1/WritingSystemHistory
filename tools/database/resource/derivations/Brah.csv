@@ -41,22 +41,22 @@ Child,Parent,Certainty Type,Multiplicity,Source,Notes
 𑀑,𐡏,,
 𑀴,𑀟,1,,https://www.unicode.org/L2/L2019/19402-brahmi-adds.pdf,Previously unified codepoint: old fonts may not show the correct child glyph
 
-𑀆,𑀅,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
+𑀆,𑀅,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
 𑀈,𑀇,5,,,It appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added, though II is a long stroke presumably due to I being just dots
-𑀊,𑀉,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
-𑀌,𑀋,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
-𑀎,𑀍,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
-𑀐,𑀏,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added. It is in particular true for Ai vs. E as Ai is most likely a later addition
-𑀒,𑀑,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
+𑀊,𑀉,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
+𑀌,𑀋,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
+𑀎,𑀍,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
+𑀐,𑀏,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added. It is in particular true for Ai vs. E as Ai is most likely a later addition
+𑀒,𑀑,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
 𑀻,𑀺,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
-𑀽,𑀼,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
-𑀿,𑀾,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
-𑁁,𑁀,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
-𑁃,𑁂,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
-𑁅,𑁄,5,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
+𑀽,𑀼,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
+𑀿,𑀾,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
+𑁁,𑁀,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
+𑁃,𑁂,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
+𑁅,𑁄,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
 
-𑁈,𑁇,5,2
-𑁊,𑁉,5,2
+𑁈,𑁇,4,2,,Similar function
+𑁊,𑁉,4,2,,Similar function
 
 𑀷,𑀦,5,,,Presumably derived in a similar manner to 𑁵 (BRAHMI LETTER OLD TAMIL LLA)
 𑁵,𑀮,1,,https://www.unicode.org/L2/L2019/19402-brahmi-adds.pdf

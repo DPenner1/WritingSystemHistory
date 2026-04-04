@@ -1,4 +1,4 @@
-Child,Parent,Derivation Type,Certainty Type,Notes
+Child,Parent,Derivation Type,Certainty Type,Multplicity,Notes
 A,𐌀,1,
 a,A,4,
 B,𐌁,1,
@@ -8,109 +8,109 @@ c,C,5,
 D,𐌃,1,
 d,D,1,
 E,𐌄,1,
-e,E,1,5
+e,E,1,5,,Lowercase assumed from uppercase
 F,𐌅,1,
-f,F,1,5
+f,F,1,5,,Lowercase assumed from uppercase
 G,C,1,
 g,G,4,
 H,𐌇,1,
-h,H,1,5
+h,H,1,5,,Lowercase assumed from uppercase
 I,𐌉,1,
-i,I,1,5
+i,I,1,5,,Lowercase assumed from uppercase
 J,I,1,
-j,i,1,,Based on Wikipedia i page specifically using lower case
+j,i,1,,,Based on Wikipedia i page specifically using lower case
 K,𐌊,1,
-k,K,1,5
+k,K,1,4
 L,𐌋,1,
-l,L,1,5
+l,L,1,5,,Lowercase assumed from uppercase
 M,𐌌,1,
-m,M,1,5
+m,M,1,5,,Lowercase assumed from uppercase
 N,𐌍,1,
-n,N,1,5
+n,N,1,5,,Lowercase assumed from uppercase
 O,𐌏,1,
 o,O,5,
 P,𐌐,1,
 p,P,1,
 Q,𐌒,1,
-q,Q,1,5
+q,Q,1,5,,Lowercase assumed from uppercase
 R,𐌓,1,
 r,R,4,
 S,𐌔,1,
 s,S,5,
 T,𐌕,1,
-t,T,1,5
+t,T,1,5,,Lowercase assumed from uppercase
 U,V,1,
 u,U,5,
 V,𐌖,1,
 v,V,1,
 W,V,1,
-w,W,5,5
+w,W,5,4
 X,𐌗,5,
 x,X,5,
-Y,Υ,1,2,Seemingly a later introduction from Greek and not Etruscan Old Italic
-y,Y,1,5
+Y,Υ,1,2,,Seemingly a later introduction from Greek and not Etruscan Old Italic
+y,Y,1,4
 Z,𐌆,1,
 z,Z,5,
 
-ᴀ,A,,5
-Ꜳ,A,,5
+ᴀ,A,,4
+Ꜳ,A,,4,2
 ᴁ,Æ,,5
 Æ,A/E,1,
-Ꜵ,A/O,,5
-Ꜷ,A/U,,5
-Ꜹ,A/V,,5
-Ꜽ,A/Y,,5
+Ꜵ,A/O,,4
+Ꜷ,A/U,,4
+Ꜹ,A/V,,4
+Ꜽ,A/Y,,4
 Ɑ,a,1,
 ɑ,Ɑ,1,
 Ɐ,A,1,
-ɐ,a,1,5
-æ,Æ/a/e,1,5
+ɐ,a,1,4
+æ,Æ/a/e,1,4
 
-ʙ,B,,5
-Ɓ,B,,5,
+ʙ,B,,4
+Ɓ,B,,4,
 Ƃ,B,,5
 Ƅ,6,1,1,
 ꞵ,β,
 Ꞵ,ꞵ,
 
-ᴄ,C,,5
-Ç,Ꝣ,1,,Surprisingly not originally from C - though probably some convergent evolution
-ç,Ç,5,5
+ᴄ,C,,4
+Ç,Ꝣ,1,,,Surprisingly not originally from C - though probably some convergent evolution
+ç,Ç,5,4
 Ȼ,C,1,
-ȼ,Ȼ,5,5
-Ƈ,C,,5
-ʗ,C,,5
+ȼ,Ȼ,5,4
+Ƈ,C,,4
+ʗ,C,,4
 
-ᴅ,D,,5
+ᴅ,D,,4
 Đ,D,1,
-đ,Đ/d,1,5
+đ,Đ/d,1,4
 Ꝺ,D,1,1
 ꝺ,d/Ꝺ,5
 Ð,Ꝺ,1,5
-ð,ꝺ,1,5
-Ɖ,D,,5
-Ɗ,D,,5
+ð,ꝺ,1,4
+Ɖ,D,,4
+Ɗ,D,,4
 
-ᴇ,E,,5
+ᴇ,E,,4
 Ə,e,8,
-ə,Ə,1,5
+ə,Ə,1,4
 Ǝ,E,9,
 ǝ,e,8,
 
-ꜰ,F,,5
+ꜰ,F,,4
 ꟻ,F,9,
-Ⅎ,F,8,5
+Ⅎ,F,8,4
 
 𝼂,ɢ,8,5
-ɢ,G,,5
+ɢ,G,,4
 Ᵹ,g,1,
-ᵹ,Ᵹ,1,5
+ᵹ,Ᵹ,1,4
 ɣ,γ,1,
 Ɣ,γ,1
 Ȝ,Ᵹ,1,
-ȝ,Ȝ,5,5
+ȝ,Ȝ,5,4
 
-ʜ,H,,5
+ʜ,H,,4
 Ħ,H,
 Ⱶ,H,
 Ƕ,h,,5
@@ -118,56 +118,56 @@ z,Z,5,
 ꟾ,I,
 Ɩ,ι,
 
-ᴊ,J,,5
+ᴊ,J,,4
 
-ᴋ,K,,5
+ᴋ,K,,4
 ʞ,k,8
-ĸ,K,1,5
+ĸ,K,1,4
 
-ʟ,L,,5
-Ł,L,1,5
-ɮ,l/Ʒ,,5
+ʟ,L,,4
+Ł,L,1,4
+ɮ,l/Ʒ,,4
 ꟛ,λ,
 Ꟛ,λ,
 
-ᴍ,M,,5
+ᴍ,M,,4
 Ɯ,m,8
-ꟽ,M,9,5
+ꟽ,M,9,4
 
-ᴎ,ɴ,9,5
-ɴ,N,,5
+ᴎ,ɴ,9,4
+ɴ,N,,4
 Ƞ,n,1
 ŋ,n,1
-Ŋ,ŋ/N,1,,Font variation - sometimes based on the lowercase and sometimes based on corresponding N
+Ŋ,ŋ/N,1,,,Font variation - sometimes based on the lowercase and sometimes based on corresponding N
 
-ᴏ,O,,5
+ᴏ,O,,4
 Ơ,O,
-ɶ,Œ,,5
+ɶ,Œ,,4
 Œ,O/E,1,
-œ,Œ/o/e,1,5
-Ꝏ,O,,5
+œ,Œ/o/e,1,4
+Ꝏ,O,,4,2
 Ø,O
 Ɔ,O/C,1,3
-ᴐ,Ɔ,,5
+ᴐ,Ɔ,,4
 ƣ,q,
 Ƣ,ƣ,
 Ꞷ,ω,
 Ȣ,ο/υ
-ᴕ,Ȣ,,5
+ᴕ,Ȣ,,4
 
-ᴘ,P,,5
-ɸ,φ,,5
-ꟼ,P,9,5
+ᴘ,P,,4
+ɸ,φ,,4
+ꟼ,P,9,4
 
-ꞯ,Q,,5
+ꞯ,Q,,4
 
-ʁ,ʀ,9,5
-ᴚ,ʀ,8,5
-ᴙ,ʀ,9,5
-ʀ,R,,5
+ʁ,ʀ,9,4
+ᴚ,ʀ,8,4
+ᴙ,ʀ,9,4
+ʀ,R,,4
 Ʀ,ʀ,,2
 
-ꜱ,S,,5
+ꜱ,S,,4
 Ʃ,Σ,5,
 ʃ,ſ,1,2
 ƪ,ʃ,
@@ -175,47 +175,47 @@ z,Z,5,
 ß,ſ/ʒ
 ẞ,ß
 
-ᴛ,T,,5
-Ŧ,T,,5
+ᴛ,T,,4
+Ŧ,T,,4
 Þ,ᚦ
 
 ᴜ,U,,5
 ʊ,ᴜ,,2
 Ʊ,ʊ,,5
 
-ᴠ,V,,5
+ᴠ,V,,4
 Ỽ,V
 Ꝡ,V/Y,,5
 Ꝩ,Ƿ,,2
 
 ʬ,w,
-ᴡ,W,,5
+ᴡ,W,,4
 Ƿ,ᚹ
 
 Ꭓ,χ,,5
 
-ʏ,Y,,5,
+ʏ,Y,,4,
 
-ᴢ,Z,,5
+ᴢ,Z,,4
 Ꝣ,Z,1,
-ꝣ,Ꝣ,5,5
-ᴣ,Ʒ,,5
+ꝣ,Ꝣ,5,4
+ᴣ,Ʒ,,4
 Ʒ,z,4,
 
-Ƹ,ع,,,While it looks and named like reversed ezh (Ʒ) the historical derivation is separate
+Ƹ,ع,,,,While it looks and named like reversed ezh (Ʒ) the historical derivation is separate
 
-ƻ,2,,5
+ƻ,2,,4
 
-ʕ,ʔ,9,5
-ʖ,ʔ,9,5
-ƾ,ʡ/ʖ,,5
-ʡ,ʔ,,5
-ʢ,ʡ/ʕ,,5
+ʕ,ʔ,9,4
+ʖ,ʔ,9,4
+ƾ,ʡ/ʖ,,4
+ʡ,ʔ,,4
+ʢ,ʡ/ʕ,,4
 Ɂ,ʔ
 
 ǀ,|,,3
-ǁ,ǀ,,5
-ǂ,ǀ,,5
+ǁ,ǀ,,5,2,Similar sound - doubled glyph
+ǂ,ǀ,,5,,Similar sound - modified glyph
 ǃ,|/̣,,1
 ʘ,,,3
 
