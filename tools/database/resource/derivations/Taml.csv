@@ -10,3 +10,4 @@ Child,Parent,Certainty Type,Derivation Type,Multiplicity,Notes
 ற,𑀶,5,,,"Potentially a consonant retained from Old Tamil, but see Tamil LLLA (ழ) for a more likely case of that. Alternately, and especially comparing modern Tamil RA (ர), it seems phonologically and graphically reasonable for it to have been derived by Grantha RA + subjoined Grantha RA ligature. See https://en.wikipedia.org/wiki/Grantha_script#Consonant_clusters."
 ழ,𑀵,5,,,"Big assumptiion here: Old Tamil was written in Vatteluttu/Tamil-Brahmi derived while modern Tamil is written in Grantha-derived. There is no LLLA consonant in Grantha, so it may have retained the Vatteluttu consonant. Compare glyph with Malayalam LLLA (ഴ) of probable same origin."
 
+ே,ெ,5,,,"Grantha did not have long E; modification from Tamil short E graphically and phonetically reasonable"

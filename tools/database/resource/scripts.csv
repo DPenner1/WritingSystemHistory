@@ -125,7 +125,7 @@ Mult,323,5,Multani,Multani,8,0,Qabl
 Mymr,350,5,Myanmar,Myanmar,3,0,Qabp
 Nagm,295,4,Mundari Bani,Nag_Mundari,15,0,Zzzz
 Nand,311,5,Nandinagari,Nandinagari,12,0,Qabn
-Narb,106,6,Old North Arabian,Old_North_Arabian,7,0,Psin
+Narb,106,6,Ancient North Arabian,Old_North_Arabian,7,0,Psin
 Nbat,159,6,Nabataean,Nabataean,7,0,Armi
 Newa,333,5,Prachalit,Newa,9,0,Qabd
 Nkdb,85,8,Naxi Dongba,,,
@@ -167,7 +167,7 @@ Roro,620,1,Rongorongo,,,
 Runr,211,4,Runes,Runic,3,0
 Samr,123,6,Samaritan,Samaritan,5,2,Phnx
 Sara,292,5,Sarati,,,
-Sarb,105,6,Old South Arabian,Old_South_Arabian,5,2,Psin
+Sarb,105,6,Ancient South Arabian,Old_South_Arabian,5,2,Psin
 Saur,344,5,Saurashtra,Saurashtra,5,1,Gran
 Seal,590,8,Small Seal,,,
 Sgnw,95,4,SignWriting,SignWriting,8,0,Zzzz

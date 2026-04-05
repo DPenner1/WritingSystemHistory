@@ -1,24 +1,24 @@
-Script,Case,Language,Alphabet Type,Source,Alphabet
-Armi,Lo,arc,,Wikipedia: Aramaic alphabet,𐡀𐡁𐡂𐡃𐡄𐡅𐡆𐡇𐡈𐡉𐡊𐡋𐡌𐡍𐡎𐡏𐡐𐡑𐡒𐡓𐡔𐡕
-Bopo,Lo,,,Wikipedia: Bopomofo - order as presented,ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦㄧㄨㄩㄪㄫㄬㄭ
-Brah,Lo,,,"Wikipedia: Brahmi script - consonants, then dependent vowels, then independent vowels",𑀓𑀔𑀕𑀖𑀗𑀘𑀙𑀚𑀛𑀜𑀝𑀞𑀟𑀠𑀡𑀢𑀣𑀤𑀥𑀦𑀧𑀨𑀩𑀪𑀫𑀬𑀭𑀮𑀴𑀯𑀰𑀱𑀲𑀳𑀸𑀹𑀺𑀻𑀼𑀽𑀾𑀿𑁀𑁁𑁂𑁃𑁄𑁅𑀅𑀆𑀇𑀈𑀉𑀊𑀋𑀌𑀍𑀎𑀏𑀐𑀑𑀒
-Brai,Lo,,,Wikipedia: Braille,⠁⠃⠉⠙⠑⠋⠛⠓⠊⠚⠅⠇⠍⠝⠕⠏⠟⠗⠎⠞⠥⠧⠭⠽⠵⠺
-Glag,Lu,cu,,Wikipedia: Glagolitic script,ⰀⰁⰂⰃⰄⰅⰆⰇⰈⰉⰊⰋⰌⰍⰎⰏⰐⰑⰒⰓⰔⰕⰖⰗⰘⰙⰚⰛⰜⰝⰞⰟⰠⰡⰢⰣⰤⰥⰦⰧⰨⰩⰪⰫ
-Grek,Lu!,el,3/4,Wikipedia: Greek alphabet,ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ
-Grek,Ll!,el,3,Wikipedia: Greek alphabet,αβγδεζηθικλμνξοπρστυφχψω
-Grek,Ll!,el,4,Wikipedia: Greek alphabet,αβγδεζηθικλμνξοπρσςτυφχψω
-Hira,Lo,ja,,Wikipedia: Kana - gojuon order,あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわゐゑをん
-Kana,Lo,ja,,Wikipedia: Kana - gojuon order,アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰヱヲン
-Latn,Lu,de/en,,,ABCDEFGHIJKLMNOPQRSTUVWXYZ
-Latn,Lu,da/no,3/4/5,Wikipedia: Danish and Norwegian alphabet,ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ
-Latn,Lu,de,4/5,Wikipedia: German Alphabet,ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜẞ
-Latn,Lu,en,4/5,Wikipedia: English Alphabet,ABCDEFGHIJKLMNOPQRSTUVWXYZ
-Latn,Lu,fi,3/4,Wikipedia: Finnish orthography,ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ
-Latn,Lu,fi,5,Wikipedia: Finnish orthography,ABCDEFGHIJKLMNOPQRSŠTUVWXYZŽÅÄÖ
-Latn,Lu,is,3/4/5,Wikipedia: Icelandic language,AÁBCDÐEÉFGHIÍJKLMNOÓPQRSTUÚVWXYÝZÞÆÖ
-Latn,Lu,sv,3/4/5,Wikipedia: Swedish Alphabet,ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ
-Ougr,Lo,,,Wikipedia: Old Uyghur Alphabet,𐽰𐽱𐽲𐽳𐽴𐽶𐽷𐽸𐽹𐽺𐽻𐽼𐽽𐽾𐽿𐾀𐾁
-Phnx,Lo,phn,,Wikipedia: Phoenician alphabet,𐤀𐤁𐤂𐤃𐤄𐤅𐤆𐤇𐤈𐤉𐤊𐤋𐤌𐤍𐤎𐤏𐤐𐤑𐤒𐤓𐤔𐤕
-Psin,Lo,,,Wikipedia: Proto-Sinaitic script,
-Syrc,Lo,syc,,Wikipedia: Syriac alphabet,ܐܒܓܕܗܘܙܚܛܝܟܟܠܡܡܢܢܣܥܦܨܩܪܫܬ
+Script,Case,Language,Alphabet Type,Source,Notes,Alphabet
+Armi,Lo,arc,,Wikipedia: Aramaic alphabet,,𐡀𐡁𐡂𐡃𐡄𐡅𐡆𐡇𐡈𐡉𐡊𐡋𐡌𐡍𐡎𐡏𐡐𐡑𐡒𐡓𐡔𐡕
+Bopo,Lo,,,Wikipedia: Bopomofo,Order as presented,ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦㄧㄨㄩㄪㄫㄬㄭ
+Brah,Lo,,,Wikipedia: Brahmi script,"Consonants, then dependent vowels, then independent vowels",𑀓𑀔𑀕𑀖𑀗𑀘𑀙𑀚𑀛𑀜𑀝𑀞𑀟𑀠𑀡𑀢𑀣𑀤𑀥𑀦𑀧𑀨𑀩𑀪𑀫𑀬𑀭𑀮𑀴𑀯𑀰𑀱𑀲𑀳𑀸𑀹𑀺𑀻𑀼𑀽𑀾𑀿𑁀𑁁𑁂𑁃𑁄𑁅𑀅𑀆𑀇𑀈𑀉𑀊𑀋𑀌𑀍𑀎𑀏𑀐𑀑𑀒
+Brai,Lo,,,Wikipedia: Braille,,⠁⠃⠉⠙⠑⠋⠛⠓⠊⠚⠅⠇⠍⠝⠕⠏⠟⠗⠎⠞⠥⠧⠭⠽⠵⠺
+Glag,Lu,cu,,Wikipedia: Glagolitic script,,ⰀⰁⰂⰃⰄⰅⰆⰇⰈⰉⰊⰋⰌⰍⰎⰏⰐⰑⰒⰓⰔⰕⰖⰗⰘⰙⰚⰛⰜⰝⰞⰟⰠⰡⰢⰣⰤⰥⰦⰧⰨⰩⰪⰫ
+Grek,Lu!,el,3/4,Wikipedia: Greek alphabet,,ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ
+Grek,Ll!,el,3,Wikipedia: Greek alphabet,,αβγδεζηθικλμνξοπρστυφχψω
+Grek,Ll!,el,4,Wikipedia: Greek alphabet,,αβγδεζηθικλμνξοπρσςτυφχψω
+Hira,Lo,ja,,Wikipedia: Kana,Gojuon order,あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわゐゑをん
+Kana,Lo,ja,,Wikipedia: Kana,Gojuon order,アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰヱヲン
+Latn,Lu,de/en,,,,ABCDEFGHIJKLMNOPQRSTUVWXYZ
+Latn,Lu,da/no,3/4/5,Wikipedia: Danish and Norwegian alphabet,,ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ
+Latn,Lu,de,4/5,Wikipedia: German Alphabet,,ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜẞ
+Latn,Lu,en,4/5,Wikipedia: English Alphabet,,ABCDEFGHIJKLMNOPQRSTUVWXYZ
+Latn,Lu,fi,3/4,Wikipedia: Finnish orthography,,ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ
+Latn,Lu,fi,5,Wikipedia: Finnish orthography,,ABCDEFGHIJKLMNOPQRSŠTUVWXYZŽÅÄÖ
+Latn,Lu,is,3/4/5,Wikipedia: Icelandic language,,AÁBCDÐEÉFGHIÍJKLMNOÓPQRSTUÚVWXYÝZÞÆÖ
+Latn,Lu,sv,3/4/5,Wikipedia: Swedish Alphabet,,ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ
+Ougr,Lo,,,Wikipedia: Old Uyghur Alphabet,,𐽰𐽱𐽲𐽳𐽴𐽶𐽷𐽸𐽹𐽺𐽻𐽼𐽽𐽾𐽿𐾀𐾁
+Phnx,Lo,phn,,Wikipedia: Phoenician alphabet,,𐤀𐤁𐤂𐤃𐤄𐤅𐤆𐤇𐤈𐤉𐤊𐤋𐤌𐤍𐤎𐤏𐤐𐤑𐤒𐤓𐤔𐤕
+Psin,Lo,,,Wikipedia: Proto-Sinaitic script,,
+Syrc,Lo,syc,,Wikipedia: Syriac alphabet,,ܐܒܓܕܗܘܙܚܛܝܟܟܠܡܡܢܢܣܥܦܨܩܪܫܬ
 

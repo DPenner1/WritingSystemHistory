@@ -39,7 +39,7 @@ Child,Parent,Certainty Type,Multiplicity,Source,Notes
 𑀋,𐡓,,
 𑀍,𐡋,,
 𑀑,𐡏,,
-𑀴,𑀟,1,,https://www.unicode.org/L2/L2019/19402-brahmi-adds.pdf,Previously unified codepoint: old fonts may not show the correct child glyph
+𑀴,𑀟,1,,UEP: Brahmi additions,Previously unified codepoint: old fonts may not show the correct child glyph
 
 𑀆,𑀅,4,,,This appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added
 𑀈,𑀇,5,,,It appears to be part of a pattern in Brahmi with the longer vowel having a short stroke added, though II is a long stroke presumably due to I being just dots
@@ -59,20 +59,20 @@ Child,Parent,Certainty Type,Multiplicity,Source,Notes
 𑁊,𑁉,4,2,,Similar function
 
 𑀷,𑀦,5,,,Presumably derived in a similar manner to 𑁵 (BRAHMI LETTER OLD TAMIL LLA)
-𑁵,𑀮,1,,https://www.unicode.org/L2/L2019/19402-brahmi-adds.pdf
-𑁱,𑁰/𑀏,1,,4. Tamil-Brahmi section of: https://www.unicode.org/L2/L2007/07342-brahmi.pdf
-𑁲,𑁰/𑀑,1,,4. Tamil-Brahmi section of: https://www.unicode.org/L2/L2007/07342-brahmi.pdf
-𑁳,𑁰/𑁂,1,,4. Tamil-Brahmi section of: https://www.unicode.org/L2/L2007/07342-brahmi.pdf
-𑁴,𑁰/𑁄,1,,4. Tamil-Brahmi section of: https://www.unicode.org/L2/L2007/07342-brahmi.pdf
-𑁰,,3,,4. Tamil-Brahmi section of: https://www.unicode.org/L2/L2007/07342-brahmi.pdf
-𑀹,𑀸,2,,5. Bhattiprolu Brahmi section of: https://www.unicode.org/L2/L2007/07342-brahmi.pdf
+𑁵,𑀮,1,,UEP: Brahmi additions
+𑁱,𑁰/𑀏,1,,UEP: Brahmi additions#4. Tamil-Brahmi
+𑁲,𑁰/𑀑,1,,UEP: Brahmi additions#4. Tamil-Brahmi
+𑁳,𑁰/𑁂,1,,UEP: Brahmi additions#4. Tamil-Brahmi
+𑁴,𑁰/𑁄,1,,UEP: Brahmi additions#4. Tamil-Brahmi
+𑁰,,3,,UEP: Brahmi additions#4. Tamil-Brahmi
+𑀹,𑀸,2,,UEP: Brahmi additions#5. Bhattiprolu Brahmi
 
-𑁧,𑁒,3,,https://en.wikipedia.org/wiki/Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
-𑁨,𑁓,3,,https://en.wikipedia.org/wiki/Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
-𑁩,𑁔,3,,https://en.wikipedia.org/wiki/Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
-𑁪,𑁕,3,,https://en.wikipedia.org/wiki/Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
-𑁫,𑁖,3,,https://en.wikipedia.org/wiki/Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
-𑁬,𑁗,3,,https://en.wikipedia.org/wiki/Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
-𑁭,𑁘,3,,https://en.wikipedia.org/wiki/Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
-𑁮,𑁙,3,,https://en.wikipedia.org/wiki/Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
-𑁯,𑁚,3,,https://en.wikipedia.org/wiki/Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
+𑁧,𑁒,3,,Wikipedia: Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
+𑁨,𑁓,3,,Wikipedia: Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
+𑁩,𑁔,3,,Wikipedia: Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
+𑁪,𑁕,3,,Wikipedia: Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
+𑁫,𑁖,3,,Wikipedia: Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
+𑁬,𑁗,3,,Wikipedia: Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
+𑁭,𑁘,3,,Wikipedia: Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
+𑁮,𑁙,3,,Wikipedia: Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"
+𑁯,𑁚,3,,Wikipedia: Arabic_numerals,"Comparing timelines and Wikipedia article, this is late-Brahmi to early Brahmi"

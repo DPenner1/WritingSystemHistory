@@ -5,7 +5,7 @@ import csv
 import time
 from enum import Enum
 from zipfile import ZipFile
-
+from urllib.parse import quote
 
 class LoadOptions:
     def __init__(self):
@@ -301,6 +301,31 @@ class ScriptDatabase:
             cursor.executemany("UPDATE language SET macrolanguage_code = ? WHERE code = ?", macrolanguages)
 
 
+    def _load_source(self, cursor, citation_key, title, url):
+        cursor.execute("INSERT INTO source (citation_key, title, url) VALUES (?,?,?)", (citation_key, title, url))
+
+
+    def _load_sources(self, cursor):
+        with open(os.path.join(self._resource_path, 'sources.csv'), 'r') as csvfile:
+            for row in csv.DictReader(csvfile):
+                self._load_source(cursor, row["Citation Key"], row["Title"], row["URL"])
+
+
+    def _get_or_create_source_id(self, cursor, citation_key):
+        if citation_key.startswith('Wikipedia: '):
+            # was not consistent in data files with using underscores/spaces
+            citation_key = citation_key.replace('_', ' ').strip()
+        id = cursor.execute("SELECT id FROM source WHERE citation_key = ?", (citation_key, )).fetchall()
+        if not id:
+            if citation_key.startswith('Wikipedia: '):
+                # was not consistent in data files with using underscores/spaces
+                wiki_page = citation_key[len('Wikipedia: '):]
+                self._load_source(cursor, citation_key, wiki_page, f"https://en.wikipedia.org/wiki/{quote(wiki_page.replace(' ', '_'))}")
+            else:
+                raise ValueError("No source found for citation key " + citation_key)
+            id = cursor.execute("SELECT id FROM source WHERE citation_key = ?", (citation_key, )).fetchall()
+        return id[0][0]
+
     @staticmethod
     def is_private_use(id):
         return (0xE000 <= id <= 0xF8FF) or (0xF0000 <= id <= 0xFFFFD) or (0x100000 <= id <= 0x10FFFD)
@@ -589,9 +614,13 @@ class ScriptDatabase:
         cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, equivalent_id))
 
 
-    def _load_single_derivation(self, cursor, child_id, parent_id, derivation_type, certainty_type, source, notes, multiplicity=1):
-        cursor.execute("INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes, multiplicity) VALUES (?,?,?,?,?,?,?)",
-                       (child_id, parent_id, derivation_type.value, certainty_type.value, source, notes, multiplicity))
+    def _load_single_derivation(self, cursor, child_id, parent_id, derivation_type, certainty_type, sources, notes, multiplicity=1):
+        cursor.execute("INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes, multiplicity) VALUES (?,?,?,?,?,?)",
+                       (child_id, parent_id, derivation_type.value, certainty_type.value, notes, multiplicity))
+        if sources:
+            for source in sources:
+                cursor.execute("INSERT INTO derivation_source (child_id, parent_id, source_id, section, access_date) VALUES (?,?,?,?,?)",
+                               (child_id, parent_id, source[0], source[1], source[2]))
 
     # This one's a mess of interdependent stuff that needs to be done in a certain order for performance reasons
     # (a lot of the equivalency could be factored out, but it's also nice to have all that in one place)
@@ -775,13 +804,15 @@ class ScriptDatabase:
                             cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, int(code_point, 16), i + offset))
 
         with open(os.path.join(self._unicode_path, 'Unihan_Variants.txt'), 'r') as file:
+            ucd_source_id = self._get_or_create_source_id(cursor, 'UCD')
             for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter = '\t'):
 
                 if row[1] == 'kTraditionalVariant':  # mirror property is kSimplifiedVariant - should only need to check one
                     for parent_code in row[2].strip().split(' '):
                         if row[0] != parent_code:  # it's possible for a simplified character to map to itself
                             self._load_single_derivation(cursor, int(row[0][2:], 16), int(parent_code[2:], 16),
-                                                         DerivationType.SIMPLIFICATION, Certainty.AUTOMATED_TECHNICAL, 'Unihan Database', None)
+                                                         DerivationType.SIMPLIFICATION, Certainty.AUTOMATED_TECHNICAL,
+                                                         [(ucd_source_id, 'Unihan.zip/Unihan_Variants.txt kTraditionalVariant property', None)], None)
 
                 # This is a self-mirror property. if X zVariant Y then Y zVariant X.
                 # There's no real indication which should be canonical that I can find, so I'm arbitrarily making it the lowest code point
@@ -800,7 +831,7 @@ class ScriptDatabase:
         # add derivations from equivalent sequences, assuming the equivalent characters are the base building blocks (the parent)
         # Formatting/control/space characters are not eligible (they aren't graphical, right? ... right???)
         cursor.execute(f"""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id)
             SELECT
                 cp1.id,
                 cp2.id,
@@ -817,11 +848,6 @@ class ScriptDatabase:
                 END,
                 CASE WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN {Certainty.AUTOMATED_NON_GRAPHICAL.value}
                      ELSE {Certainty.AUTOMATED_TECHNICAL.value}
-                END,
-                CASE WHEN seq.type_id = {SequenceType.Z_VARIANT.value} THEN 'Unihan database, zVariant'
-                     WHEN seq.type_id = {SequenceType.HIEROGLYPHIC_ALTERNATIVE.value} THEN 'Unicode Character Database Unikemet.txt'
-                     WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN 'Determination based on Unicode name'
-                     ELSE 'Unicode Character Database decomposition data'
                 END
             FROM
                 sequence_item equiv
@@ -841,6 +867,33 @@ class ScriptDatabase:
         # minimal enough that ON CONFLICT DO NOTHING is probably the better query option than advance filtering
         # About 10 conflicts are characters simultaneously being Z-variants and trad/simp derivations
 
+        # same insert but for source table
+        # TODO - this one will actually run into a bit of a bug with the conflict - because that conflict wont exist on this table it will add a spurious source
+        # (check if SQLITE allows executing a delete on a different table on the ON CONFLICT clause - seems unlikely)
+        cursor.execute(f"""
+            INSERT INTO derivation_source (child_id, parent_id, source_id, section)
+            SELECT
+                cp1.id,
+                cp2.id,
+                {self._get_or_create_source_id(cursor, 'UCD')},
+                CASE WHEN seq.type_id = {SequenceType.Z_VARIANT.value} THEN 'Unihan.zip/Unihan_Variants.txt zVariant property'
+                     WHEN seq.type_id = {SequenceType.HIEROGLYPHIC_ALTERNATIVE.value} THEN 'Unikemet.txt kEH_AltQeq property'
+                     WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN 'UnicodeData.txt name property'
+                     ELSE 'UnicodeData.txt decomposition property'
+                END
+            FROM
+                sequence_item equiv
+                INNER JOIN sequence seq ON seq.id = equiv.sequence_id
+                INNER JOIN code_point cp1 ON cp1.equivalent_sequence_id = seq.id
+                INNER JOIN code_point cp2 ON cp2.id = equiv.item_id
+            WHERE
+                seq.type_id >= 100
+                AND cp1.general_category_code NOT LIKE 'Z_'
+                AND cp1.general_category_code NOT LIKE 'C_'
+                AND cp2.general_category_code NOT LIKE 'Z_'
+                AND cp2.general_category_code NOT LIKE 'C_'
+            ON CONFLICT DO NOTHING""")
+
         # manual equivalency
         # TODO - add verificaiton for not overriding decomposition
         with open(os.path.join(self._resource_path, 'position_distinction.csv')) as csvfile:
@@ -853,18 +906,33 @@ class ScriptDatabase:
     def _load_derivations_from_case_data(self, cursor, drop_case_columns=False):
         # add derivations from case mapping, assuming lowercase to be derived from uppercase
         cursor.execute("""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-            SELECT id, simple_uppercase_mapping_id, ?, ?, 'Unicode Character Database case mapping data'
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id)
+            SELECT id, simple_uppercase_mapping_id, ?, ?
             FROM code_point
             WHERE simple_uppercase_mapping_id IS NOT NULL""",
                (DerivationType.DEFAULT.value, Certainty.AUTOMATED_NON_GRAPHICAL.value))
+        # same insert for source
+        cursor.execute("""
+            INSERT INTO derivation_source (child_id, parent_id, source_id, section)
+            SELECT id, simple_uppercase_mapping_id, ?, ?
+            FROM code_point
+            WHERE simple_uppercase_mapping_id IS NOT NULL""",
+               (self._get_or_create_source_id(cursor, 'UCD'), 'UnicodeData.txt simple uppercase mapping property'))
+
         # casing isn't 100% 1:1 so need to do mappings in both directions
         cursor.execute("""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source)
-            SELECT simple_lowercase_mapping_id, id, ?, ?, 'Unicode Character Database case mapping data'
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id)
+            SELECT simple_lowercase_mapping_id, id, ?, ?
             FROM code_point cp1
             WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
                (DerivationType.DEFAULT.value, Certainty.AUTOMATED_NON_GRAPHICAL.value))
+        # same insert for source
+        cursor.execute("""
+            INSERT INTO derivation_source (child_id, parent_id, source_id, section)
+            SELECT simple_lowercase_mapping_id, id, ?, ?
+            FROM code_point cp1
+            WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
+               (self._get_or_create_source_id(cursor, 'UCD'), 'UnicodeData.txt simple lowercase mapping property'))
 
         if drop_case_columns:
             cursor.execute("DROP INDEX idx_fk_cp_simple_uppercase_mapping")
@@ -873,6 +941,18 @@ class ScriptDatabase:
             cursor.execute("ALTER TABLE code_point DROP COLUMN simple_lowercase_mapping_id")
             cursor.execute("ALTER TABLE code_point DROP COLUMN is_lowercase")
             cursor.execute("ALTER TABLE code_point DROP COLUMN is_uppercase")
+
+
+    def _parse_raw_source(self, cursor, raw_source_str):
+        # the format wasn't really planned in advance
+        parts = raw_source_str.split(' - ')
+        access_date = int(cursor.execute("SELECT JULIANDAY(?)", (parts[1].strip(),)).fetchone()[0]) if len(parts) > 1 else None
+
+        parts = parts[0].split('#')
+        section = parts[1].strip() if len(parts) > 1 else None
+        id = self._get_or_create_source_id(cursor, parts[0].strip())
+
+        return id, section, access_date
 
 
     def _load_manually_specified_derivations(self, cursor, verify_script):
@@ -913,8 +993,12 @@ class ScriptDatabase:
 
                     # Overriding default here is for convenience:
                     # An Assumed certainty means there is usually no source, so allows us to specify a source in defaults for all else.
-                    source = resolve_default(defaults, script, row, 'Source', overriding_default=None,
+                    raw_sources = resolve_default(defaults, script, row, 'Source', overriding_default=None,
                                              override_condition=(certainty in (Certainty.STRONG_ASSUMPTION.value, Certainty.WEAK_ASSUMPTION.value)))
+                    sources = []
+                    if raw_sources:
+                        for raw_source in raw_sources.split('/'):
+                            sources.append(self._parse_raw_source(cursor, raw_source))
 
                     notes = resolve_default(defaults, script, row, 'Notes')
                     derivation_type = int(resolve_default(defaults, script, row, 'Derivation Type', last_resort=str(DerivationType.DEFAULT.value)))
@@ -943,18 +1027,17 @@ class ScriptDatabase:
                                 raise ValueError("Attempted to add a 2-cycle with " + child + " and " + parent)
 
                         self._load_single_derivation(cursor, ord(child), ord(parent), DerivationType(derivation_type),
-                                                     Certainty(certainty), source, notes, multiplicity)
+                                                     Certainty(certainty), sources, notes, multiplicity)
 
         # stuff that's confusing or might break csv format (commas, quotes, slashes)
         awkward_data = [
-            (ord('/'), ord(self.NO_PARENT_CHARACTER), 1, Certainty.LIKELY.value,
-             'https://archive.org/details/the-oxford-english-dictionary-1933-all-volumes/The%20Oxford%20English%20Dictionary%20Volume%2012%20-%20Variant/page/n238/mode/1up',
+            (ord('/'), ord(self.NO_PARENT_CHARACTER), 1, Certainty.LIKELY.value, 'OED 1933 # Volume 12 p. 235',
              'Derived from medieval virgule, essentially the same graphical symbol but used as a comma', 1),
             (ord('⸗'), ord('/'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Slash', None, 2),
             (ord('\\'), ord(self.NO_PARENT_CHARACTER), DerivationType.DEFAULT.value, Certainty.UNCERTAIN.value, 'Wikipedia: Backslash', None, 1),
             (ord("'"), ord("’"), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe', None, 1),
-            (ord('"'), ord('“'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe and Quotation Marks', None, 1),
-            (ord('"'), ord('”'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe and Quotation Marks', None, 1),
+            (ord('"'), ord('“'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe / Wikipedia: Quotation Mark', None, 1),
+            (ord('"'), ord('”'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Apostrophe / Wikipedia: Quotation Mark', None, 1),
             (ord(','), ord('/'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Comma', None, 1),
             (ord(';'), ord(','), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Semicolon', None, 1),
             (ord(';'), ord(':'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Semicolon', None, 1),
@@ -962,9 +1045,14 @@ class ScriptDatabase:
             (ord('⅍'), ord('/'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Aktieselskab', None, 1),
             (ord('⅍'), ord('S'), DerivationType.DEFAULT.value, Certainty.NEAR_CERTAIN.value, 'Wikipedia: Aktieselskab', None, 1),
         ]
-        cursor.executemany("""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, source, notes, multiplicity)
-            VALUES (?, ?, ?, ?, ?, ?, ?)""", awkward_data)
+
+        for row in awkward_data:
+            cursor.execute("INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes, multiplicity) VALUES (?,?,?,?,?,?)",
+                           (row[0], row[1], row[2], row[3], row[5], row[6]))
+            for raw_source in row[4].split('/'):
+                source = self._parse_raw_source(cursor, raw_source)
+                cursor.execute("INSERT INTO derivation_source (child_id, parent_id, source_id, section) VALUES (?, ?, ?, ?)",
+                               (row[0], row[1], source[0], source[1]))
 
 
     def _load_derivations(self, cursor, digit_data, indic_letter_data, semitic_letter_data, load_options):
@@ -972,9 +1060,12 @@ class ScriptDatabase:
         self._load_derivations_from_case_data(cursor, load_options.drop_case_columns)
         self._load_derivations_from_equivalencies(cursor)
 
-        self._load_letter_derivation_data(cursor, digit_data, self._INDIC_SUPPLEMENT, "Assumed indic derivations", load_options.verify_data_sources)
-        self._load_letter_derivation_data(cursor, indic_letter_data, self._INDIC_ORDER, "Wikipedia indic letter pages", load_options.verify_data_sources)
-        self._load_letter_derivation_data(cursor, semitic_letter_data, self._SEMITIC_ORDER, "Wikipedia semitic letter pages", load_options.verify_data_sources)
+        supplement_source = [(self._get_or_create_source_id(cursor, "UCD"), "UnicodeData.txt name property", None)]
+        self._load_letter_derivation_data(cursor, digit_data, self._INDIC_SUPPLEMENT, supplement_source, load_options.verify_data_sources)
+        indic_source = [(self._get_or_create_source_id(cursor, "Wikipedia: Indic letter pages"), None, None)]
+        self._load_letter_derivation_data(cursor, indic_letter_data, self._INDIC_ORDER, indic_source, load_options.verify_data_sources)
+        semitic_source = [(self._get_or_create_source_id(cursor, "Wikipedia: Semitic letter pages"), None, None)]
+        self._load_letter_derivation_data(cursor, semitic_letter_data, self._SEMITIC_ORDER, semitic_source, load_options.verify_data_sources)
 
         # At this point, this is a field used for internal generation only, don't want it to be taken literally
         cursor.execute("DROP INDEX idx_fk_parent_script")
@@ -1286,18 +1377,18 @@ class ScriptDatabase:
 
 
     def _generate_std_alphabets(self, semitic_letter_dict, indic_letter_dict, indic_supp_dict):
-        def generate_std_alphabet(letter_dict, letter_order):
+        def generate_std_alphabet(letter_dict, source, letter_order):
             with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'a') as alpha_file:
                 for script_code in letter_dict:
                     if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
-                        alpha_file.write('\n' + script_code + ',')
+                        alpha_file.write('\n' + script_code + ',' + source + ',')
                         for letter_class in letter_order:
                             if letter_class in letter_dict[script_code]:
                                 for letter in letter_dict[script_code][letter_class]:
                                     alpha_file.write(letter + ' ')
 
         with open(os.path.join(self._resource_path, ScriptDatabase._GENERATED_DIR_NAME, 'standard_alphabets.csv'), 'w') as file:
-            file.write('Script,Alphabet')
+            file.write('Script,Source,Alphabet')
 
         indic_dict = dict(indic_letter_dict)
         for script_code in indic_supp_dict:
@@ -1306,8 +1397,8 @@ class ScriptDatabase:
 
         indic_order = list(self._INDIC_ORDER)
         indic_order.extend(self._INDIC_SUPPLEMENT[self._INDIC_SUPPLEMENT.index('VOWEL SIGN AA'):])
-        generate_std_alphabet(indic_dict, indic_order)
-        generate_std_alphabet(semitic_letter_dict, self._SEMITIC_ORDER)
+        generate_std_alphabet(indic_dict, 'Wikipedia: Indic letter pages', indic_order)
+        generate_std_alphabet(semitic_letter_dict, 'Wikipedia: Semitic letter pages', self._SEMITIC_ORDER)
 
 
     def _drop_unused_languages(self, cursor):
@@ -1319,7 +1410,7 @@ class ScriptDatabase:
                     SELECT macrolanguage_code FROM alphabet a INNER JOIN language lsub ON lsub.code = a.lang_code WHERE macrolanguage_code IS NOT NULL)""")
 
 
-    def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, source, verify):
+    def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, sources, verify):
         for script_code in letter_dict:
             if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
                 parent_code = cursor.execute("SELECT parent_code FROM script WHERE code = ?", (script_code,)).fetchone()[0]
@@ -1330,7 +1421,7 @@ class ScriptDatabase:
                             letters = letter_dict[script_code][letter_class]
                             if len(letters) == 1:  # previously allowed multiple, but this is too inaccurate
                                 self._load_single_derivation(cursor, ord(letters[0]), ord(parent_letters[0]), DerivationType.DEFAULT,
-                                                             Certainty.AUTOMATED_NON_GRAPHICAL, source, 'Not necessarily graphical derivation but likely')
+                                                             Certainty.AUTOMATED_NON_GRAPHICAL, sources, 'Not necessarily graphical derivation but likely')
 
 
     def _verify_script_coverage(self, cursor):
@@ -1489,21 +1580,21 @@ class ScriptDatabase:
         parse_data.script_code = 'Kana'
         parse_data.letter_case = 'Lo'
         parse_data.letters = katakana
-        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR main exemplar set')
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR')
 
         parse_data.letters = hiragana
         parse_data.script_code = 'Hira'
-        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR main exemplar set')
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR')
 
         parse_data.letters = kanji
         parse_data.script_code = 'Hani'
-        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR main exemplar set')
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR')
 
         parse_data.letters = kanji[0:len(kanji) // 2]
-        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.FULL, 'CLDR main exemplar set partial')
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.FULL, 'CLDR')
 
         parse_data.letters = kanji[0:len(kanji) // 4]
-        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.BASIC, 'CLDR main exemplar set partial')
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.BASIC, 'CLDR')
 
     # return as follows:
     # sequences of type letter and base return as a string
@@ -1562,10 +1653,11 @@ class ScriptDatabase:
     # is_index_load: quite hacky as we're really reaching into the calling context to make decisions here,
     #   but I've not otherwise figured out how to incorporate it while still maintaining a single reusable _load_alphabet method
     # Basically if its index, we do two things - override case for the return value and load the FULL alphabet if BASIC (index) and EXTENDED (main) match
-    def _load_alphabet(self, cursor, lang_code, parse_data, alphabet_type, source, load_case_pair=False, is_index_load=False):
-        def insert_alphabet(s_id, lang, script, lcase, alph_type, text):  # just want to avoid potential headaches with variable shadowing on this one
-            cursor.execute("INSERT INTO alphabet (sequence_id, lang_code, script_code, letter_case, type_id, source) VALUES (?,?,?,?,?,?)",
-                           (s_id, lang, script, lcase, alph_type.value, text))
+    def _load_alphabet(self, cursor, lang_code, parse_data, alphabet_type, citation_key, load_case_pair=False, is_index_load=False):
+        def insert_alphabet(s_id, lang, script, lcase, alph_type, c_key, section=None):  # just want to avoid potential headaches with variable shadowing on this one
+            source_id = self._get_or_create_source_id(cursor, c_key) if c_key else None
+            cursor.execute("INSERT INTO alphabet (sequence_id, lang_code, script_code, letter_case, type_id, source_id) VALUES (?,?,?,?,?,?)",
+                           (s_id, lang, script, lcase, alph_type.value, source_id))
         def try_index_load(s_id, lang, script, lcase):
             # The matching query is over-specified, but this is an attempt at allowing the optimizer more options
             matching_extended = cursor.execute("""
@@ -1573,10 +1665,10 @@ class ScriptDatabase:
                 WHERE sequence_id = ? AND lang_code = ? AND script_code = ? AND letter_case = ? AND type_id = ?""",
                     (s_id, lang, script, lcase, AlphabetType.EXTENDED.value))
             if matching_extended.fetchall():  # index (BASIC) and Extended are the same, fill-in the middle FULL
-                insert_alphabet(s_id, lang_code, script, lcase, AlphabetType.FULL, 'CLDR index exemplar set')
+                insert_alphabet(s_id, lang_code, script, lcase, AlphabetType.FULL, 'CLDR', 'index exemplar')
 
         seq_id = self._check_load_letter_sequence(cursor, parse_data.letters)
-        insert_alphabet(seq_id, lang_code, parse_data.script_code, parse_data.letter_case, alphabet_type, source)
+        insert_alphabet(seq_id, lang_code, parse_data.script_code, parse_data.letter_case, alphabet_type, citation_key)
 
         if is_index_load:
             try_index_load(seq_id, lang_code, parse_data.script_code, parse_data.letter_case)
@@ -1592,7 +1684,7 @@ class ScriptDatabase:
             return seq_id
 
         alternate_id = self._check_load_letter_sequence(cursor, parse_data.alternate_letters)
-        insert_alphabet(alternate_id, lang_code, parse_data.script_code, alternate_case, alphabet_type, source)
+        insert_alphabet(alternate_id, lang_code, parse_data.script_code, alternate_case, alphabet_type, citation_key)
 
         if is_index_load:
             try_index_load(alternate_id, lang_code, parse_data.script_code, alternate_case)
@@ -1764,7 +1856,7 @@ class ScriptDatabase:
                                                               lang_code,
                                                               parse_data,
                                                               AlphabetType.EXTENDED if exemplar_type == 'main' else AlphabetType.BASIC,
-                                                              f'CLDR {exemplar_type} exemplar set',
+                                                              'CLDR',
                                                               load_case_pair=True,
                                                               is_index_load= exemplar_type == 'index')
 
@@ -1774,10 +1866,10 @@ class ScriptDatabase:
                                     print(f"Unsupported cased logograph language {lang_code}, script {parse_data.script_code}")
 
                                 parse_data.letters = parse_data.letters[0:len(parse_data.letters) // 2]
-                                self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.FULL,  f'CLDR partial {exemplar_type} exemplar set')
+                                self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.FULL,  'CLDR')
 
                                 parse_data.letters = parse_data.letters[0:len(parse_data.letters) // 4]
-                                exemplar_id = self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.BASIC, f'CLDR partial {exemplar_type} exemplar set')
+                                exemplar_id = self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.BASIC, 'CLDR')
 
                             added_scripts.add(parse_data.script_code)
 
@@ -1812,7 +1904,7 @@ class ScriptDatabase:
                     lang_code = script_exemplars[parse_data.script_code] if parse_data.script_code in script_exemplars else None
 
                     if lang_code:
-                        id = self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.BASIC, 'Automatically generated from Wikipedia Indic and Semitic letter pages')
+                        id = self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.BASIC, row['Source'])
                         # note for generated we're not bothering with a second addition for case - the indic and semitic alphabets are all uncased
                     else:
                         id = self._check_load_letter_sequence(cursor, parse_data.letters)
@@ -1966,9 +2058,12 @@ class ScriptDatabase:
         self._cxn.commit()
         self._load_languages(cur)
         self._cxn.commit()
-        if output: lap_time, lap_mb = output_info("Done basics: loading lookups, languages and scripts.", start_time, lap_time, lap_mb)
+        self._load_sources(cur)
+        self._cxn.commit()
+        if output: lap_time, lap_mb = output_info("Done basics: loading lookups, languages, scripts and sources.", start_time, lap_time, lap_mb)
 
-        # updates generally expected on this table, just clear (and before loading code points so cleared space can be used)
+        # updates generally expected on these table, just clear (and before loading code points so cleared space can be used)
+        cur.execute("DELETE FROM derivation_source")
         cur.execute("DELETE FROM code_point_derivation")
         self._load_code_point_data(cur)
         self._cxn.commit()
@@ -2103,7 +2198,7 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.OPTIMIZED_DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))

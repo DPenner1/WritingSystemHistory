@@ -32,6 +32,13 @@ CREATE TABLE IF NOT EXISTS sequence_item (
     PRIMARY KEY (sequence_id, item_id, order_num)
 ) STRICT;
 
+CREATE TABLE IF NOT EXISTS source (
+    id INTEGER PRIMARY KEY,
+    citation_key TEXT UNIQUE NOT NULL,
+    title TEXT NOT NULL,
+    url TEXT
+) STRICT; 
+
 CREATE TABLE IF NOT EXISTS script (
     code TEXT PRIMARY KEY,
     iso_id INT UNIQUE NOT NULL,
@@ -60,13 +67,16 @@ CREATE TABLE IF NOT EXISTS alphabet (
     sequence_id INTEGER REFERENCES sequence(id),
     lang_code TEXT REFERENCES language(code),
     type_id INTEGER REFERENCES alphabet_type(id),
-    source TEXT,
-    -- These can't be NULL - use an applicable special code if needed
+    -- These next two can't be NULL - use an applicable special code if needed
     script_code TEXT NOT NULL REFERENCES script(code),
     letter_case TEXT NOT NULL,
-    PRIMARY KEY(sequence_id, lang_code, type_id)
+    source_id INTEGER REFERENCES source(id),
+    source_section TEXT,
+    source_access_date INTEGER,
+    PRIMARY KEY (sequence_id, lang_code, type_id)
 ) STRICT;
 CREATE UNIQUE INDEX IF NOT EXISTS idxu_alpha_determiners ON alphabet(script_code, letter_case, type_id, lang_code);
+CREATE INDEX IF NOT EXISTS idx_fk_alpha_source ON alphabet(source_id);
 
 CREATE TABLE IF NOT EXISTS code_point (
     id INTEGER PRIMARY KEY REFERENCES sequence(id),
@@ -127,9 +137,18 @@ CREATE TABLE IF NOT EXISTS code_point_derivation (
     derivation_type_id INTEGER NOT NULL DEFAULT 1 REFERENCES derivation_type (id),
     certainty_type_id INTEGER NOT NULL DEFAULT 9 REFERENCES certainty_type (id),
     multiplicity INTEGER DEFAULT 1,
-    source TEXT,
     notes TEXT,
     PRIMARY KEY (child_id, parent_id)
 ) STRICT;
 -- This is a table likely to be looked up in either direction child<->parent
 CREATE INDEX IF NOT EXISTS idx_cpd_parent ON code_point_derivation(parent_id);
+
+CREATE TABLE IF NOT EXISTS derivation_source (
+    child_id INTEGER,
+    parent_id INTEGER,
+    source_id INTEGER REFERENCES source (id),
+    section TEXT,
+    access_date INTEGER,
+    FOREIGN KEY (child_id, parent_id) REFERENCES code_point_derivation (child_id, parent_id) ON DELETE CASCADE,
+    PRIMARY KEY (child_id, parent_id, source_id)
+) STRICT;

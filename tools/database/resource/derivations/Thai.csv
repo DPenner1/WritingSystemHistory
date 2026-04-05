@@ -1,0 +1,14 @@
+Child,Parent,Certainty Type,Source,Multiplicity
+ก,ក,1,Ferlus 1997
+ข,ខ,1,Ferlus 1997
+ฃ,ข,1,Ferlus 1997
+ค,គ,1,Ferlus 1997
+ฅ,ค,1,Ferlus 1997
+
+ต,ด,1,Ferlus 1997
+ป,บ,1,Ferlus 1997
+ผ,ផ,1,Ferlus 1997
+ฝ,ผ,1,Ferlus 1997
+พ,บ,3,Ferlus 1997,2
+ฟ,พ,1,Ferlus 1997
+ว,វ,1,Ferlus 1997

@@ -1,4 +1,4 @@
-Child,Parent,Derivation Type,Certainty Type,Source
+Child,Parent,Derivation Type,Certainty Type,Source,Notes
 ̀,,1,2,Wikipedia: Grave accent
 ́,,1,2,Wikipedia: Acute accent
 ̂,́/̀,1,1,Wikipedia: Circumflex
@@ -7,7 +7,7 @@ Child,Parent,Derivation Type,Certainty Type,Source
 
 ̐,𑀀,,4,,Generic Chandrabindu code point - deriving it from the presumed original makes sense
 
-ٍ,ِ,1,2,https://blogs.transparent.com/arabic/tanween-nunation-in-arabic-types/
-ٌ,ُ,1,2,https://blogs.transparent.com/arabic/tanween-nunation-in-arabic-types/
-ً,َ,1,2,https://blogs.transparent.com/arabic/tanween-nunation-in-arabic-types/
-ّ,,3,,https://en.wikipedia.org/wiki/Shaddah
+ٍ,ِ,1,2,Ibnulyemen 2017
+ٌ,ُ,1,2,Ibnulyemen 2017
+ً,َ,1,2,Ibnulyemen 2017
+ّ,,3,,Wikipedia: Shaddah

@@ -17,7 +17,7 @@ Data on alphabets used by various languages, with the specific letters being sto
  - The `type_id` is the current attempt at a rough categorization. The author frankly does not currently understand enough about different languages and cultures for this to be broadly applicable and this is susceptible to change in the future. The main types are "basic", "full" and "extended." The current distinction being made is that "basic" is the canonical set of letters, "full" includes accepted letter variants or secondary letters (eg. German äöüß) while "extended" includes all letter glyphs required to write a language (eg. such an extended letter glyph in Greek is ΐ - iota with diaeresis and tonos accent - my understanding is the diacritics are viewed as separate from the letter itself). These are language-specific determinations, eg. ä generally being viewed as a variant of "a" in German, but a fully independent letter in Swedish (to my understanding).
     - Logographic scripts already challenge this categorization. At present, these different types will simply return a smaller/larger set of characters.
  - Alphabets are represented as a sequence of letters and code points, with letters themselves being sequences of code points. Single code point letters are not boxed into a single-item letter sequence (this feels like too much unnecessary data bloat as this is the majority case). The data structure supports alphabets of alphabets (eg. could combine cases, or separate out Indic consonants and dependent/independent vowels), but current codegen does not do this.
- - Use the `source` field to determine where the alphabet comes from. The code loads alphabets from three sources: Manually specified, [CLDR data](https://cldr.unicode.org/) and automatically generated (from the same process that does Brahmi and Semitic letters).
+ - Use the `source_id` field to determine where the alphabet comes from. The code loads alphabets from three sources: Manually specified, [CLDR data](https://cldr.unicode.org/) and automatically generated (from the same process that does Brahmi and Semitic letters).
     - Note that CLDR data only covers modern languages. The data are loaded as "extended" alphabet types from CLDR's main exemplar set. Abjad and Alphabet type scripts further have "basic" types loaded from the index set (these tend to be underspecified for logographs, syllabaries and probably abugidas too - dependent vowels usually being missing). Note that CLDR does tend to follow the language's alphabet order, but sometimes the accented characters are grouped together (which may or may not be how a language typically orders letters).
     - I have yet to decide what precisely to do with the Chinese language(s). CLDR has separately specified Traditional and Simplified characters, but in the Unicode character database they are under a single script code.
  - At present, the data is largely unverified.
@@ -29,11 +29,11 @@ Data on alphabets used by various languages, with the specific letters being sto
 
 ### `certainty_type`
 
-Certainty is a measure of the strength of evidence for a derivation. As a visualization (and as planned for the front end), a derivation can be envisioned as an arrow from parent to child and that arrow can be a solid, dashed or dotted line in order of decreasing evidence strength. The IDs are:
+Certainty is a measure of the strength of evidence for a derivation used on the `code_point_derivation` table. As a visualization (and as planned for the front end), a derivation can be envisioned as an arrow from parent to child and that arrow can be a solid, dashed or dotted line in order of decreasing evidence strength. The IDs are:
 
  - ID -1 *Unspecified (dotted)*: This is considered a missing data error.
  - IDs 1-3 are the straightforward *Near Certain*/*Likely*/*Uncertain* with corresponding arrows.
- - IDs 4-5 are the "assumed" types where there is no specific source, but has been derived by the database author for one reason or another (it is considered a data error for all the other IDs to have a null `source` field). If a source is provided anyways for these derivations, it is informative or tangential, but not direct.
+ - IDs 4-5 are the "assumed" types where there is no specific source, but has been derived by the database author for one reason or another (it is considered a data error for all the other IDs to not have an entry in `derivation_source`). If a source is provided anyways for these derivations, it is informative or tangential, but not direct.
     - ID 4 *Strong Assumption (dashed)*: There are two "default" reasons for a strong assumption (and are permitted to have a null `notes` field). To a large extent, the purpose of this ID existing is to compensate for the fact it's hard to find sources for such obvious derivations.
         - A child script with strongly matching glyph and sound (or function for unpronounced characters like punctuation).
         - A glyph that is a transparent combination of one or more same-script glyphs (eg. letter + minor modification such as addition of diacritic, lowercase being small uppercase, ligatures, etc.). In specifying this kind of derivation, care should be taken to ensure that the same transparent combination did not first occur in a parent script (and so the child script inherited this derivation rather than creating it itself).
@@ -54,7 +54,7 @@ Mostly what you would expect from Unicode.
 
 ### `code_point_derivation`
 
-This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. This table is also liable to renaming to `code_point_relation` if project scope expands.
+This is the main table for this project, mapping out the historical derivations of characters. In an ideal world, all characters would be manually reviewed. Last I checked, that was not the case. So, a sizable proportion are automatically generated from various data sources. For certainty, manually specified data will always override automatic data source. This table is also liable to rename to `code_point_relation` if project scope expands.
 
   - The `derivation_type_id` borders on legacy. However, there's not really any reason to drop it formally, most new data is simply taking the default value without breaking anything.
   - `certainty_type_id`: see `certainty_type` table. (trivia - the derivation and certainty types essentially swapped places in terms of usefulness and the database author's initial anticipation of their usefulness).
@@ -66,6 +66,10 @@ This is the main table for this project, mapping out the historical derivations 
      - Unicode decompositions (eg. accented characters, duplicate/legacy code points, etc.).
      - Hangul syllables deriving from their constituent jamo.
      - *(to investigate data sources and history)* Han ideograph and radical relations.
+
+### `derivation_source`
+
+Cross-reference table between `code_point_derivation` and `source`. The `section` field is a free-text field intended for referring to a location within the source, not necessarily a literal "section." This table is also liable to rename to `relation_source` if project scope expands.
 
 ### `language`
 
@@ -96,3 +100,7 @@ A sequence of sequences (recursive tree). Each code point also has an "dummy" ba
 ### `sequence_item`
 
 An item in a sequence. The base code point sequences do *not* have an entry in this table, they are the leaf items in the tree.
+
+### `source`
+
+Provides reference sources. Note this is far from the highest academic rigour, it is mainly to provide at least a minimum level of traceability.
