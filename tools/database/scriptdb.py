@@ -237,7 +237,7 @@ class ScriptDatabase:
 
 
     def _load_scripts(self, cursor):
-        script_parents = []
+        script_defers = []
         with open(os.path.join(self._resource_path, 'scripts.csv'), 'r') as file:
             for row in csv.DictReader(file):
                 code = row['Code']
@@ -248,7 +248,8 @@ class ScriptDatabase:
                 version = row['Unicode Version'] if row['Unicode Version'] else None
                 subversion = row['Unicode Subversion'] if row['Unicode Subversion'] else None
                 parent = row['Parent'] if row['Parent'] else None
-                script_parents.append((parent, code))
+                lang = row['Common Lang'] if row['Common Lang'] else None
+                script_defers.append((parent, lang, code))
 
                 cursor.execute("""
                     INSERT INTO script (code, name, type_id, u_alias, iso_id, u_version_added, u_subversion_added) 
@@ -261,12 +262,16 @@ class ScriptDatabase:
                         u_subversion_added = ?""",
                         (code, name, type, alias, id, version, subversion, name, type, alias, version, subversion))  # TODO: check stability policy
 
-        cursor.executemany("UPDATE script SET parent_code = ? WHERE code = ?", script_parents)
-
         # at the moment keeping this a distinct file and not merging it into scripts.csv as I'm uncertain of the usefulness of this field
         with open(os.path.join(self._resource_path, 'script_variants.csv'), 'r') as file:
             for row in csv.DictReader(file):
                 cursor.execute("UPDATE script SET canonical_script_code = ? WHERE code = ?", (row['Main'], row['Variant']))
+
+        return script_defers
+
+
+    def _load_deferred_script_fields(self, cursor, deferred_fields):
+        cursor.executemany("UPDATE script SET parent_code = ?, main_lang_code = ? WHERE code = ?", deferred_fields)
 
 
     def _load_languages(self, cursor):
@@ -1445,13 +1450,14 @@ class ScriptDatabase:
                 return f"{num_missing} missing characters"
             return ", ".join([i[1] for i in missing_chars])
 
-        scripts = cursor.execute("SELECT name, exemplar_sequence_id FROM script WHERE code NOT IN (?, ?) AND (u_alias IS NOT NULL OR code like 'Q%') ORDER BY name",
-                                 (self.COMMON_SCRIPT, self.INHERITED_SCRIPT))
+        scripts = cursor.execute("SELECT name, code FROM script WHERE code NOT IN (?, ?) AND (u_alias IS NOT NULL OR code like 'Q%') ORDER BY name",
+                                 (self.COMMON_SCRIPT, self.INHERITED_SCRIPT)).fetchall()
         for script in scripts:
-            if script[1]:
-                script_result = verify_seq(script[1])
+            sequence_id = self._get_exemplar_sequence_id_with_fallback(cursor, script[1])
+            if sequence_id:
+                script_result = verify_seq(sequence_id)
                 if script_result:
-                    results.append((script[0], verify_seq(script[1])))
+                    results.append((script[0], script_result))
             else:
                 results.append((script[0], 'No standard characters specified'))
 
@@ -1736,7 +1742,7 @@ class ScriptDatabase:
         return added_scripts
 
 
-    def _load_cldr_alphabet_data(self, cursor, script_exemplars, verify):
+    def _load_cldr_alphabet_data(self, cursor, verify):
         def get_script_type_and_needed_alphabets(lang_code, script_code):
             # note this glosses over case: manually specified should always ensure both cases will be handled!
             script_type = cursor.execute("SELECT type_id FROM script WHERE code = ?", (script_code,)).fetchone()[0]
@@ -1861,13 +1867,13 @@ class ScriptDatabase:
                                         print(f"CLDR and IANA data conflict on default script of language {lang_code}: {parse_data.script_code} / {default_script}")
                                 cursor.execute("UPDATE language SET default_script_code = ? WHERE code = ?", (parse_data.script_code, lang_code))
 
-                            exemplar_id = self._load_alphabet(cursor,
-                                                              lang_code,
-                                                              parse_data,
-                                                              AlphabetType.EXTENDED if exemplar_type == 'main' else AlphabetType.BASIC,
-                                                              'CLDR',
-                                                              load_case_pair=True,
-                                                              is_index_load= exemplar_type == 'index')
+                            self._load_alphabet(cursor,
+                                                  lang_code,
+                                                  parse_data,
+                                                  AlphabetType.EXTENDED if exemplar_type == 'main' else AlphabetType.BASIC,
+                                                  'CLDR',
+                                                  load_case_pair=True,
+                                                  is_index_load= exemplar_type == 'index')
 
                             # Technically if a logograph script had case, then we should add those as well... probably doesn't exist
                             if script_type == ScriptType.LOGOGRAPH:
@@ -1878,13 +1884,9 @@ class ScriptDatabase:
                                 self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.FULL,  'CLDR')
 
                                 parse_data.letters = parse_data.letters[0:len(parse_data.letters) // 4]
-                                exemplar_id = self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.BASIC, 'CLDR')
+                                self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.BASIC, 'CLDR')
 
                             added_scripts.add(parse_data.script_code)
-
-                            # can be re-updated if we run index load
-                            if script_exemplars[parse_data.script_code] == lang_code:
-                                cursor.execute("UPDATE script SET exemplar_sequence_id = ? WHERE code = ?", (exemplar_id, parse_data.script_code))
 
                             if script_type not in (ScriptType.ALPHABET.value, ScriptType.ABJAD.value):
                                 break  # we only pull main for these
@@ -1898,8 +1900,8 @@ class ScriptDatabase:
         return added_scripts
 
 
-    def _load_generated_alphabet_data(self, cursor, script_exemplars, existing_scripts, verify):
-        with open(os.path.join(self._resource_path, self._GENERATED_DIR_NAME, 'standard_alphabets.csv')) as csvfile:
+    def _load_generated_alphabet_data(self, cursor, existing_scripts, verify):
+        with (open(os.path.join(self._resource_path, self._GENERATED_DIR_NAME, 'standard_alphabets.csv')) as csvfile):
             for row in csv.DictReader(csvfile):
                 parse_data = self._CLDRParseData()
                 parse_data.script_code = row['Script']
@@ -1908,9 +1910,8 @@ class ScriptDatabase:
                 if not parse_data.script_code in existing_scripts:
                     self._parse_cldr_exemplar_set(cursor, row['Alphabet'], parse_data, verify)
 
-                    # Repurposing - for cldr data sources we used this for determining if a language had the script exemplar
-                    # For generated stuff we're use it to tag a language for a script if we can
-                    lang_code = script_exemplars[parse_data.script_code] if parse_data.script_code in script_exemplars else None
+                    # For generated stuff try to tag a language for a script if we can
+                    lang_code = cursor.execute("SELECT main_lang_code FROM script WHERE code = ?", (parse_data.script_code,)).fetchall()[0][0]
 
                     if lang_code:
                         id = self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.BASIC, row['Source'])
@@ -1922,14 +1923,9 @@ class ScriptDatabase:
 
     # TODO: should probably be a bit smarter about transactions for the alphabet stuff
     def _load_alphabet_data(self, cursor, verify):
-        script_exemplars = {}
-        with open(os.path.join(self._resource_path, 'script_exemplars.csv'), 'r') as csvfile:
-            for row in csv.DictReader(csvfile):
-                script_exemplars[row['Script']] = row['Language']
-
         added_scripts = self._load_manual_alphabet_data(cursor, verify)
-        added_scripts |= self._load_cldr_alphabet_data(cursor, script_exemplars, verify)
-        self._load_generated_alphabet_data(cursor, script_exemplars, added_scripts, verify)
+        added_scripts |= self._load_cldr_alphabet_data(cursor, verify)
+        self._load_generated_alphabet_data(cursor, added_scripts, verify)
 
 
     def get_code_point_script_parents(self, id, scripts_to_skip=None):
@@ -1994,6 +1990,23 @@ class ScriptDatabase:
 
         return retval
 
+
+    def _get_exemplar_sequence_id_with_fallback(self, cursor, script_code):
+        sequence_id = cursor.execute("SELECT exemplar_sequence_id FROM script WHERE code = ?", (script_code,)).fetchall()[0][0]
+        if not sequence_id:
+            seq = cursor.execute("""
+                SELECT a.sequence_id 
+                FROM script s INNER JOIN alphabet a ON a.script_code = s.code
+                WHERE s.code = ? AND a.type_id >= ?
+                ORDER BY 
+                    CASE WHEN s.main_lang_code = a.lang_code THEN 0 ELSE 1 END, -- prefer main language
+                    a.type_id,          -- prefer basic over full over extended
+                    a.letter_case DESC  -- prefer upper case
+                LIMIT 1""", (script_code, AlphabetType.BASIC.value)).fetchall()
+            if seq:
+                sequence_id = seq[0][0]
+        return sequence_id
+
     # Script skipping has two main uses: Can avoid self-derivation, and avoid a parent script you think isn't that distinct
     def get_script_parents(self, script_code, scripts_to_skip=None):
         real_skips = set(scripts_to_skip) if scripts_to_skip else set()
@@ -2050,22 +2063,23 @@ class ScriptDatabase:
         elif output: print(f'At least one zip file not present in {path}, relying on existing files in {self._resource_path}')
 
         cur = self._cxn.cursor()
-        if options.verify_data_sources:
-            cur.execute("PRAGMA foreign_keys = ON")
-        else:
-            cur.execute("PRAGMA foreign_keys = OFF")
-
         start_time = time.time()
         lap_time = start_time
         lap_mb = 0
         if output: print('Setting up schema (starting timer)...')
 
+        cur.execute("PRAGMA foreign_keys = OFF")
         self._setup_schema(cur)
+        if options.verify_data_sources:
+            cur.execute("PRAGMA foreign_keys = ON")
+
         self._load_lookups(cur)
         self._cxn.commit()
-        self._load_scripts(cur)
+        deferred = self._load_scripts(cur)
         self._cxn.commit()
         self._load_languages(cur)
+        self._cxn.commit()
+        self._load_deferred_script_fields(cur, deferred)
         self._cxn.commit()
         self._load_sources(cur)
         self._cxn.commit()

@@ -1,18 +1,18 @@
-Code,ISO ID,Type,Name,Unicode Alias,Unicode Version,Unicode Subversion,Parent
-Adlm,166,4,Adlam,Adlam,9,0,Zzzz
+Code,ISO ID,Type,Name,Unicode Alias,Unicode Version,Unicode Subversion,Parent,Common Lang
+Adlm,166,4,Adlam,Adlam,9,0,Zzzz,ff
 Afak,439,1,Afaka,,,
 Aghb,239,4,Caucasian Albanian,Caucasian_Albanian,7,0,Grek
 Ahom,338,5,Ahom,Ahom,8,0,Mymr
-Arab,160,6,Arabic,Arabic,1,1,Nbat
+Arab,160,6,Arabic,Arabic,1,1,Nbat,ar
 Aran,161,6,Nastaliq,,1,1
-Armi,124,6,Aramaic,Imperial_Aramaic,5,2,Phnx
-Armn,230,4,Armenian,Armenian,1,1,Grek
+Armi,124,6,Aramaic,Imperial_Aramaic,5,2,Phnx,arc
+Armn,230,4,Armenian,Armenian,1,1,Grek,hy
 Avst,134,4,Avestan,Avestan,5,2
 Bali,360,5,Balinese,Balinese,5,0,Kawi
 Bamu,435,5,Bamum,Bamum,5,2,Zzzz
 Bass,259,4,Bassa Vah,Bassa_Vah,7,0,Zzzz
 Batk,365,5,Batak,Batak,6,0,Kawi
-Beng,325,5,Bengali,Bengali,1,1,Qabd
+Beng,325,5,Bengali,Bengali,1,1,Qabd,be
 Berf,258,4,Zaghawa,Beria_Erfe,17,0,Zzzz
 Bhks,334,5,Bhaiksuki,Bhaiksuki,9,0,Qabg
 Blis,550,8,Blissymbols,,,
@@ -21,44 +21,44 @@ Brah,300,5,Brahmi,Brahmi,6,0,Armi
 Brai,570,3,Braille,Braille,3,0
 Bugi,367,5,Lontara,Buginese,4,1,Kawi
 Buhd,372,5,Buhid,Buhid,3,2,Tglg
-Cakm,349,5,Chakma,Chakma,6,1,Mymr
-Cans,440,5,Canadian Aboriginal,Canadian_Aboriginal,3,0
+Cakm,349,5,Chakma,Chakma,6,1,Mymr,ccp
+Cans,440,5,Canadian Aboriginal,Canadian_Aboriginal,3,0,,csw
 Cari,201,4,Carian,Carian,5,1,Grek
 Cham,358,5,Cham,Cham,5,1,Qabp
-Cher,445,7,Cherokee,Cherokee,3,0,Latn
+Cher,445,7,Cherokee,Cherokee,3,0,Latn,chr
 Chis,298,1,Chisoi,,,
 Chrs,109,6,Khwarezmian,Chorasmian,13,0,Armi
 Cirt,291,4,Cirth,,,
-Copt,204,4,Coptic,Coptic,4,1
+Copt,204,4,Coptic,Coptic,4,1,,cop
 Cpmn,402,7,Cypro-Minoan,Cypro_Minoan,14,0,Lina
 Cprt,403,7,Cypriot,Cypriot,4,0,Cpmn
-Cyrl,220,4,Cyrillic,Cyrillic,1,1
+Cyrl,220,4,Cyrillic,Cyrillic,1,1,,ru
 Cyrs,221,4,Early Cyrillic,,1,1
-Deva,315,5,Devanagari,Devanagari,1,1,Qabn
-Diak,342,5,Dhives Akuru,Dives_Akuru,13,0,Gran
+Deva,315,5,Devanagari,Devanagari,1,1,Qabn,hi
+Diak,342,5,Dhives Akuru,Dives_Akuru,13,0,Gran,dv
 Dogr,328,5,Dogri,Dogra,11,0,Takr
-Dsrt,250,4,Deseret,Deseret,3,1,Latn
+Dsrt,250,4,Deseret,Deseret,3,1,Latn,en
 Dupl,755,4,Duployan Shorthand,Duployan,7,0,Zzzz
 Egyd,70,8,Demotic,,,
 Egyh,60,8,Hieratic,,5,2
 Egyp,50,8,Egyptian Hieroglyphs,Egyptian_Hieroglyphs,5,2,Zzzz
 Elba,226,4,Elbasan,Elbasan,7,0,Zzzz
 Elym,128,6,Elymaic,Elymaic,12,0,Armi
-Ethi,430,5,Ge'ez,Ethiopic,3,0,Sarb
+Ethi,430,5,Ge'ez,Ethiopic,3,0,Sarb,am
 Gara,164,4,Garay,Garay,16,0,Zzzz
 Geok,241,4,,,1,1
-Geor,240,4,Georgian,Georgian,1,1
+Geor,240,4,Georgian,Georgian,1,1,,ka
 Glag,225,4,Glagolitic,Glagolitic,4,1
 Gong,312,5,Gunjala Gondi,Gunjala_Gondi,11,0,Deva
 Gonm,313,5,Masaram Gondi,Masaram_Gondi,10,0,Zzzz
 Goth,206,4,Gothic,Gothic,3,1,Grek
 Gran,343,5,Grantha,Grantha,7,0,Qabp
-Grek,200,4,Greek,Greek,1,1,Phnx
-Gujr,320,5,Gujarati,Gujarati,1,1,Deva
+Grek,200,4,Greek,Greek,1,1,Phnx,el
+Gujr,320,5,Gujarati,Gujarati,1,1,Deva,gu
 Gukh,397,5,Khema,Gurung_Khema,16,0,Tibt
-Guru,310,5,Gurmukhi,Gurmukhi,1,1,Qabl
+Guru,310,5,Gurmukhi,Gurmukhi,1,1,Qabl,pa
 Hanb,503,3,Han with Bopomofo,,1,1
-Hang,286,4,Hangul,Hangul,1,1
+Hang,286,4,Hangul,Hangul,1,1,,ko
 Hani,500,8,Han,Han,1,1
 Hano,371,5,Hanuno'o,Hanunoo,3,2,Tglg
 Hans,501,8,Simplified Han,,1,1
@@ -87,15 +87,15 @@ Khoj,322,5,Khojki,Khojki,7,0,Qabl
 Kitl,505,8,Khitan Large,,,
 Kits,288,8,Khitan Small,Khitan_Small_Script,13,0
 Knda,345,5,Kannada,Kannada,1,1,Qabk
-Kore,287,3,Hangul with Han,,1,1
+Kore,287,3,Hangul with Han,,1,1,,ko
 Kpel,436,7,Kpelle,,,
 Krai,396,5,Kirat Rai,Kirat_Rai,16,0,Limb
 Kthi,317,5,Kaithi,Kaithi,5,2,Deva
 Lana,351,5,Tai Tham,Tai_Tham,5,2,Mymr
-Laoo,356,5,Lao,Lao,1,1,Thai
+Laoo,356,5,Lao,Lao,1,1,Thai,lo
 Latf,217,4,Fraktur,,1,1
 Latg,216,4,Gaelic,,1,1
-Latn,215,4,Latin,Latin,1,1
+Latn,215,4,Latin,Latin,1,1,,en
 Leke,364,5,Leke,,,
 Lepc,335,5,Lepcha,Lepcha,5,1,Tibt
 Limb,336,5,Limbu,Limbu,4,0,Lepc
@@ -115,14 +115,14 @@ Medf,265,4,Medefaidrin,Medefaidrin,11,0,Zzzz
 Mend,438,7,Mende Kikakui,Mende_Kikakui,7,0,Zzzz
 Merc,101,1,Meroitic Cursive,Meroitic_Cursive,6,1
 Mero,100,1,Meroitic Hieroglyphs,Meroitic_Hieroglyphs,6,1
-Mlym,347,5,Malayalam,Malayalam,1,1,Gran
+Mlym,347,5,Malayalam,Malayalam,1,1,Gran,ml
 Modi,324,5,Modi,Modi,7,0,Deva
-Mong,145,4,Mongolian,Mongolian,3,0
+Mong,145,4,Mongolian,Mongolian,3,0,,mn
 Moon,218,4,Moon,,,
 Mroo,264,4,Mru,Mro,7,0,Zzzz
-Mtei,337,5,Meitei,Meetei_Mayek,5,2,Tibt
+Mtei,337,5,Meitei,Meetei_Mayek,5,2,Tibt,mni
 Mult,323,5,Multani,Multani,8,0,Qabl
-Mymr,350,5,Myanmar,Myanmar,3,0,Qabp
+Mymr,350,5,Myanmar,Myanmar,3,0,Qabp,my
 Nagm,295,4,Mundari Bani,Nag_Mundari,15,0,Zzzz
 Nand,311,5,Nandinagari,Nandinagari,12,0,Qabn
 Narb,106,6,Ancient North Arabian,Old_North_Arabian,7,0,Psin
@@ -130,14 +130,14 @@ Nbat,159,6,Nabataean,Nabataean,7,0,Armi
 Newa,333,5,Prachalit,Newa,9,0,Qabd
 Nkdb,85,8,Naxi Dongba,,,
 Nkgb,420,7,Naxi Geba,,,
-Nkoo,165,4,N'ko,Nko,5,0,Zzzz
+Nkoo,165,4,N'ko,Nko,5,0,Zzzz,nqo
 Nshu,499,7,Nushu,Nushu,10,0
 Ogam,212,4,Ogham,Ogham,3,0,Zzzz
-Olck,261,4,Ol Chiki,Ol_Chiki,5,1,Zzzz
+Olck,261,4,Ol Chiki,Ol_Chiki,5,1,Zzzz,sat
 Onao,296,4,Ol Onal,Ol_Onal,16,0,Zzzz
 Orkh,175,4,Old Turkic,Old_Turkic,5,2
-Orya,327,5,Odia,Oriya,1,1,Qabd
-Osge,219,4,Osage,Osage,9,0
+Orya,327,5,Odia,Oriya,1,1,Qabd,or
+Osge,219,4,Osage,Osage,9,0,,osa
 Osma,260,4,Osmanya,Osmanya,4,0,Zzzz
 Ougr,143,4,Old Uyghur,Old_Uyghur,14,0
 Palm,126,6,Palmyrene,Palmyrene,7,0
@@ -149,7 +149,7 @@ Phag,331,5,'Phags-Pa,Phags_Pa,5,0,Tibt
 Phli,131,6,Inscriptional Pahlavi,Inscriptional_Pahlavi,5,2
 Phlp,132,6,Psalter Pahlavi,Psalter_Pahlavi,7,0
 Phlv,133,6,Book Pahlavi,,,
-Phnx,115,6,Phoenician,Phoenician,5,0,Psin
+Phnx,115,6,Phoenician,Phoenician,5,0,Psin,phn
 Plrd,282,5,Pollard,Miao,6,1
 Piqd,293,4,Klingon,,,
 Prti,130,6,Inscriptional Parthian,Inscriptional_Parthian,5,2
@@ -162,8 +162,8 @@ Qabl,937,5,Landa,,,,Shrd
 Qabn,939,5,Nagari,,,,Sidd
 Qabp,941,5,Pallava,,,,Brah
 Ranj,303,5,Ranjana,,,
-Rjng,363,5,Rejang,Rejang,5,1,Kawi
-Rohg,167,4,Hanifi Rohingya,Hanifi_Rohingya,11,0
+Rjng,363,5,Rejang,Rejang,5,1,Kawi,
+Rohg,167,4,Hanifi Rohingya,Hanifi_Rohingya,11,0,,rhg
 Roro,620,1,Rongorongo,,,
 Runr,211,4,Runes,Runic,3,0
 Samr,123,6,Samaritan,Samaritan,5,2,Phnx
@@ -172,21 +172,21 @@ Sarb,105,6,Ancient South Arabian,Old_South_Arabian,5,2,Psin
 Saur,344,5,Saurashtra,Saurashtra,5,1,Gran
 Seal,590,8,Small Seal,,,
 Sgnw,95,4,SignWriting,SignWriting,8,0,Zzzz
-Shaw,281,4,Shavian,Shavian,4,0,Zzzz
+Shaw,281,4,Shavian,Shavian,4,0,Zzzz,en
 Shrd,319,5,Sharada,Sharada,6,1,Qabg
 Shui,530,8,Sui,,,
 Sidd,302,5,Siddham,Siddham,7,0,Qabg
 Sidt,180,4,Sidetic,Sidetic,17,0
 Sind,318,5,Khudawadi,Khudawadi,7,0,Qabl
-Sinh,348,5,Sinhala,Sinhala,3,0,Gran
+Sinh,348,5,Sinhala,Sinhala,3,0,Gran,si
 Sogd,141,6,Sogdian,Sogdian,11,0
 Sogo,142,6,Old Sogdian,Old_Sogdian,11,0
 Sora,398,4,Sorang Sompeng,Sora_Sompeng,6,1,Zzzz
 Soyo,329,5,Soyombo,Soyombo,10,0
 Sund,362,5,Sundanese,Sundanese,5,1,Kawi
-Sunu,274,4,Sunuwar,Sunuwar,16,0,Zzzz
+Sunu,274,4,Sunuwar,Sunuwar,16,0,Zzzz,suz
 Sylo,316,5,Sylheti Nagri,Syloti_Nagri,4,1,Kthi
-Syrc,135,6,Syriac,Syriac,3,0,Armi
+Syrc,135,6,Syriac,Syriac,3,0,Armi,syr
 Syre,138,6,Estralangalo Syriac,,3,0
 Syrj,137,6,Western Syriac,,3,0
 Syrn,136,6,Eastern Syriac,,3,0
@@ -194,17 +194,17 @@ Tagb,373,5,Tagbanwa,Tagbanwa,3,2,Tglg
 Takr,321,5,Takri,Takri,6,1,Shrd
 Tale,353,5,Tai Le,Tai_Le,4,0,Mymr
 Talu,354,5,New Tai Lue,New_Tai_Lue,4,1,Lana
-Taml,346,5,Tamil,Tamil,1,1,Qabp
+Taml,346,5,Tamil,Tamil,1,1,Qabp,ta
 Tang,520,8,Tangut,Tangut,9,0,Zzzz
-Tavt,359,5,Tai Viet,Tai_Viet,5,2,Thai
+Tavt,359,5,Tai Viet,Tai_Viet,5,2,Thai,blt
 Tayo,380,5,Tai Yo,Tai_Yo,17,0
-Telu,340,5,Telugu,Telugu,1,1,Qabk
+Telu,340,5,Telugu,Telugu,1,1,Qabk,te
 Teng,290,3,Tengwar,,,
-Tfng,120,4,Tifinagh,Tifinagh,4,1
+Tfng,120,4,Tifinagh,Tifinagh,4,1,,zgh
 Tglg,370,5,Baybayin,Tagalog,3,2,Kawi
-Thaa,170,5,Thaana,Thaana,3,0,Zzzz
-Thai,352,5,Thai,Thai,1,1,Khmr
-Tibt,330,5,Tibetan,Tibetan,2,0,Qabg
+Thaa,170,5,Thaana,Thaana,3,0,Zzzz,dv
+Thai,352,5,Thai,Thai,1,1,Khmr,th
+Tibt,330,5,Tibetan,Tibetan,2,0,Qabg,bo
 Tirh,326,5,Tirhuta,Tirhuta,7,0,Qabd
 Tnsa,275,4,Tangsa,Tangsa,14,0,Zzzz
 Todr,229,4,Todhri,Todhri,16,0
@@ -212,7 +212,7 @@ Tols,299,4,Tolong Siki,Tolong_Siki,17,0,Zzzz
 Toto,294,4,Toto,Toto,14,0,Zzzz
 Tutg,341,5,Tigalari,Tulu_Tigalari,16,0
 Ugar,40,6,Ugaritic,Ugaritic,4,0,Psin
-Vaii,470,7,Vai,Vai,5,1,Zzzz
+Vaii,470,7,Vai,Vai,5,1,Zzzz,vai
 Visp,280,1,Visible Speech,,,
 Vith,228,4,Vithkuqi,Vithkuqi,14,0,Zzzz
 Wara,262,4,Warang Citi,Warang_Citi,7,0,Zzzz
@@ -221,7 +221,7 @@ Wole,480,7,Woleai,,,
 Xpeo,30,7,Old Persian,Old_Persian,4,1,Zzzz
 Xsux,20,8,Sumero-Akkadian Cuneiform,Cuneiform,5,0,Zzzz
 Yezi,192,4,Yezidi,Yezidi,13,0,Zzzz
-Yiii,460,7,Yi,Yi,3,0
+Yiii,460,7,Yi,Yi,3,0,,ii
 Zanb,339,5,Zanabazar Square,Zanabazar_Square,10,0,Phag
 Zinh,994,2,Inherited,Inherited,,
 Zmth,995,2,Math,,3,2
