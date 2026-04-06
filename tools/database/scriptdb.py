@@ -80,7 +80,12 @@ class ScriptDatabase:
     _DEMOTIC_SUBSET = ['š M8', 'f I9', 'ẖ M12', 'ḥ F18Y1', 'ḏ U29', 'k V31', 't D37X1',  # current Coptic ancestors
                        'ı͗ M17', 'ꜥ O29Y1D36', 'n N35', 'h O4', 'ḥ2 V28', 'ḫ Aa1', 'š2 n37', 'q N29', 'g W11', 'ḏ2 G1U28',  # old coptic ancestors
                        'y Z7M17', 'p Q3', 'm G17']  # a few matched from Meroitic
-    _CODE_POINT_STARTS = {'Kawi': 0x11F04, 'Qabp': 0xE104, 'Qabk': 0xE204, 'Qabl': 0xE304, 'Qabn': 0xE404, 'Qabd': 0xE504, 'Qabg': 0xE604, 'Psin': 0xF000, 'Egyd': 0xF200}
+    # short/long vowels based on the follwing order from Wikipedia: /æ/, /ɛ/, /ɪ/, /ɒ/, /ʌ/, /ʊ/ ... /ɑː/, /eɪ/, /iː/, /ɔː/, /oʊ/, /uː .. diphthongs:  /aɪ/, /ɔɪ/, /aʊ/, /juː/
+    _PITMAN_ORDER = ['P', 'B', 'F', 'V', 'T', 'D', 'TH', 'DH', 'CH', 'J', 'S', 'Z' ,'K', 'G', 'SH', 'ZH', 'M', 'N', 'NG', 'H', 'L', 'R1', 'R2', 'W', 'Y',
+                     'SHORT AW', 'SHORT A', 'SHORT E', 'SHORT I', 'SHORT O', 'SHORT U', 'LONG AW', 'LONG A', 'LONG E', 'LONG I', 'LONG O', 'LONG U',
+                     'DIPHTHONG IE', 'DIPHTHONG OI', 'DIPHTHONG OW', 'DIPHTHONG EW']
+    _CODE_POINT_STARTS = {'Kawi': 0x11F04, 'Psin': 0xF000, 'Egyd': 0xF200,
+                          'Qabp': 0xE104, 'Qabk': 0xE204, 'Qabl': 0xE304, 'Qabn': 0xE404, 'Qabd': 0xE504, 'Qabg': 0xE604, 'Qaap': 0xEF00}
 
     # Brahmi, Kharoshti, Arabic, Phoenician which will be manually specified and the Aramaic code point not generally being included in Indic source
     # Can abo, Hangul, Kayah Li, Masaram Gondi, Sorang Sompeng, Pau cin hau will be manually specified due to higher independence or contribution from other scripts
@@ -1245,6 +1250,10 @@ class ScriptDatabase:
             self._insert_code_point(cursor, i + self._CODE_POINT_STARTS['Egyd'], f"EGYPTIAN DEMOTIC LETTER {l.upper()}", "Egyd", 'Lo', bidi_class_code=None)
             # TODO bidi class code is rtl
 
+        for i, letter in enumerate(self._PITMAN_ORDER):
+            self._insert_code_point(cursor, i + self._CODE_POINT_STARTS['Qaap'], f"PITMAN LETTER {letter}", "Qaap", 'Lo', bidi_class_code=None)
+            # TODO - vowels might actually be marks
+
     # format: { script_code: { Generic Indic Letter: [letters] } }
     # TODO add script verification
     def _get_indic_letter_dict(self, cursor, verify):
@@ -1998,7 +2007,7 @@ class ScriptDatabase:
             raise ValueError("Script does not yet have an identified canonical set of letters")
 
         results = [('Parent Script', 'Number of Letters')]
-        raw_results = self._get_sequence_script_parents(cursor, sequence_id[0][0], scripts_to_skip)
+        raw_results = self._get_sequence_script_parents(cursor, sequence_id[0][0], real_skips)
         for script, value in sorted(raw_results.items(), key=lambda item: item[1], reverse=True):
             if script == self.COMMON_SCRIPT:
                 script_name = '(symbol)' # probably
@@ -2129,7 +2138,6 @@ class Certainty(Enum):
     AUTOMATED_TECHNICAL = 6
     AUTOMATED_NON_GRAPHICAL = 7
 
-
 # at the moment I'm isolating ranges of things I think could be expanded on.
 class SequenceType(Enum):
     BASE = 1
@@ -2204,7 +2212,7 @@ if __name__ == '__main__':
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
     # db.print_table(results)
     # Get a breakdown of a script's parent scripts:
-    # db.print_table(db.get_script_parents('Glag', ['Glag']))
+    db.print_table(db.get_script_parents('Plrd', ['Plrd']))
     # or your own custom query: db.execute_query('YOUR QUERY HERE', parameters=None)
 
     cursor.close()

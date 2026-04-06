@@ -91,7 +91,7 @@ A manually maintained table. Started out based on the list found [here](https://
     - Gaudi
     - Gupta
     - Demotic (subset, exists in ISO but not Unicode proper)
-    - *(future possible subset of)* Pitman Shorthand
+    - Pitman Shorthand (non-Logographic characters only)
 
 ### `sequence`
 
