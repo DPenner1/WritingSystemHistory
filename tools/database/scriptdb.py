@@ -311,14 +311,20 @@ class ScriptDatabase:
             cursor.executemany("UPDATE language SET macrolanguage_code = ? WHERE code = ?", macrolanguages)
 
 
-    def _load_source(self, cursor, citation_key, title, url):
-        cursor.execute("INSERT INTO source (citation_key, title, url) VALUES (?,?,?)", (citation_key, title, url))
+    def _load_source(self, cursor, citation_key, author_str, title, url):
+        cursor.execute("INSERT INTO source (citation_key, authors, title, url) VALUES (?,?,?,?)", (citation_key, author_str, title, url))
 
 
     def _load_sources(self, cursor):
+        parents = dict()
         with open(os.path.join(self._resource_path, 'sources.csv'), 'r') as csvfile:
             for row in csv.DictReader(csvfile):
-                self._load_source(cursor, row["Citation Key"], row["Title"], row["URL"])
+                self._load_source(cursor, row["Citation Key"], row['Authors'], row["Title"], row["URL"])
+                if row["Parent"]:
+                    parents[row["Citation Key"]] = row["Parent"]
+        for key in parents:
+            parent_id = cursor.execute("SELECT id FROM source WHERE citation_key = ?", (parents[key], )).fetchone()[0]
+            cursor.execute("UPDATE source SET parent_id = ? WHERE citation_key = ?", (parent_id, key))
 
 
     def _get_or_create_source_id(self, cursor, citation_key):
@@ -330,7 +336,7 @@ class ScriptDatabase:
             if citation_key.startswith('Wikipedia: '):
                 # was not consistent in data files with using underscores/spaces
                 wiki_page = citation_key[len('Wikipedia: '):]
-                self._load_source(cursor, citation_key, wiki_page, f"https://en.wikipedia.org/wiki/{quote(wiki_page.replace(' ', '_'))}")
+                self._load_source(cursor, citation_key, None, wiki_page, f"https://en.wikipedia.org/wiki/{quote(wiki_page.replace(' ', '_'))}")
             else:
                 raise ValueError("No source found for citation key " + citation_key)
             id = cursor.execute("SELECT id FROM source WHERE citation_key = ?", (citation_key, )).fetchall()

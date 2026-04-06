@@ -1,30 +1,34 @@
-Citation Key,Title,URL
-CLDR,Unicode CLDR Project,https://cldr.unicode.org/
-Colless 2008,Cuneiform Alphabet and Picto-Proto-Alphabet,https://web.archive.org/web/20201112003152/https://sites.google.com/site/collesseum/cuneiformalphabet
-Daniels 2012,Script Without Buddhism: Burmese Influence on the Tay (Shan) Script of Mäng2 Maaw2 as Seen in a Chinese Scroll Painting of 1407,https://www.academia.edu/108614678/Script_Without_Buddhism_Burmese_Influence_on_the_Tay_Shan_Script_of_M%C3%84NG2_MAAW2_as_Seen_in_a_Chinese_Scroll_Painting_of_1407
-Enwall 1994,A Myth Become Reality: History and Development of the Miao Written Language,https://openlibrary.org/books/OL564936M/A_myth_become_reality
-Ferlus 1997,The Origin of the Graph <b> in the Thai Script,https://shs.hal.science/halshs-00922729/document
-Ibnulyemen 2017,"Tanween [Nunation] in Arabic: Types, Meanings, and Assignment",https://blogs.transparent.com/arabic/tanween-nunation-in-arabic-types/
-Ledyard 1997,The International Linguistic Background of the Correct Sounds for the Instruction of the People,https://books.google.ca/books?id=nonRl2cerIgC&redir_esc=y
-OED 1933,The Oxford English Dictionary 1933,https://archive.org/details/the-oxford-english-dictionary-1933-all-volumes/
-Osterkamp 2012,Early Adaptations of the Korean Script to Render Foreign Languages,https://brill.com/edcollbook/title/19909
-Panjabi Lab FAQ,Panjabi Lab: Frequently Asked Questions,https://panjabilab.com/faq/
-Rilly 2022,Meroitic Writing,https://escholarship.org/content/qt2ts0n9p0/qt2ts0n9p0.pdf
-Saha 2016,How Did Hiragana and Katakana Originate?,https://www.sakuramani.com/how-did-hiragana-and-katakana-originate/
-Salomon 1998,Indian Epigraphy,https://archive.org/details/IndianEpigraphy/mode/2up
-UCD,Unicode Character Database,https://www.unicode.org/Public/UCD/latest/ucd/
-UCP: Gurmukhi Change,Proposed Changes to Gurmukhi,https://www.unicode.org/L2/L2020/20183-gurmukhi-chg.pdf
-UEP: Additonal Math,Additional Mathematical and Letterlike Characters,https://unicode.org/L2/L2003/03194-math-letterlike.pdf
-UEP: Brahmi,Proposal for the Encoding of Brāhmī in Plane 1 of ISO/IEC 10646,https://www.unicode.org/L2/L2007/07342-brahmi.pdf
-UEP: Brahmi additions,Proposal to Encode 6 Characters in the Brahmi Block,https://www.unicode.org/L2/L2019/19402-brahmi-adds.pdf
-UEP: Devanagari Siddham,Proposal to Encode the Sign SIDDHAM for Devanagari,https://www.unicode.org/L2/L2012/12123r2-devanagari-siddham.pdf
-UEP: Meroitic,Proposal for encoding the Meroitic Hieroglyphic and the Meroitic Cursive scripts in the SMP of the UCS,https://www.unicode.org/L2/L2009/09250-n3665-meroitic.pdf
-UEP: Tigalari,Updated proposal to encode Tulu-Tigalari script in Unicode,https://www.unicode.org/L2/L2021/21210-tulu-tigalari.pdf
-Unicode Standard,The Unicode® Standard,https://www.unicode.org/versions/Unicode17.0.0/core-spec/
-Wiktionary,Wiktionary (see individual letter pages),https://en.wiktionary.org/
-Wikipedia: Cyrillic letter pages,Category:Cyrillic letters,https://en.wikipedia.org/wiki/Category:Cyrillic_letters
-Wikipedia: Indic letter pages,Category:Indic letters,https://en.wikipedia.org/wiki/Category:Indic_letters
-Wikipedia: Kana pages,Category:Specific kana,https://en.wikipedia.org/wiki/Category:Specific_kana
-Wikipedia: Latin letter pages,Category:Latin-script letters,https://en.wikipedia.org/wiki/Category:Latin-script_letters
-Wikipedia: Mongolian letter pages,Category:Mongolic letters,https://en.wikipedia.org/wiki/Category:Mongolic_letters
-Wikipedia: Semetic letter pages,Aleph (and others),https://en.wikipedia.org/wiki/Aleph
+Citation Key,Parent,Authors,Title,URL
+CLDR,,The Unicode Consortium,Unicode CLDR Project,https://cldr.unicode.org/
+Colless 2008,,Brian Colless,Cuneiform Alphabet and Picto-Proto-Alphabet,https://web.archive.org/web/20201112003152/https://sites.google.com/site/collesseum/cuneiformalphabet
+Daniels & Bright 1996,,Peter T. Daniels & William Bright,The World's Writing Systems,https://archive.org/details/isbn_9780195079937/mode/2up
+Daniels 2012,,Christian Daniels,Script Without Buddhism: Burmese Influence on the Tay (Shan) Script of Mäng2 Maaw2 as Seen in a Chinese Scroll Painting of 1407,https://www.academia.edu/108614678/Script_Without_Buddhism_Burmese_Influence_on_the_Tay_Shan_Script_of_M%C3%84NG2_MAAW2_as_Seen_in_a_Chinese_Scroll_Painting_of_1407
+de Voogt & Quack 2012,,Alex de Voogt & Joachim Friedrich Quack,The Idea of Writing,https://brill.com/edcollbook/title/19909
+Enwall 1994,,Joakim Enwall,A Myth Become Reality: History and Development of the Miao Written Language,https://openlibrary.org/books/OL564936M/A_myth_become_reality
+Ferlus 1997,,Michel Ferlus,The Origin of the Graph <b> in the Thai Script,https://shs.hal.science/halshs-00922729/document
+Ibnulyemen 2017,,Ibnulyemen اِبْنُ اليَمَن,"Tanween [Nunation] in Arabic: Types, Meanings, and Assignment",https://blogs.transparent.com/arabic/tanween-nunation-in-arabic-types/
+Kim-Renaud 1997,,The Korean Alphabet: Its History and Structure,Young-Key Kim-Renaud,https://books.google.ca/books?id=nonRl2cerIgC&redir_esc=y
+Ledyard 1997,Kim-Renaud 1997,Gari Ledyard,The International Linguistic Background of the Correct Sounds for the Instruction of the People,
+OED 1933,,,The Oxford English Dictionary 1933,https://archive.org/details/the-oxford-english-dictionary-1933-all-volumes/
+Osterkamp 2012,de Voogt & Quack 2012,Sven Osterkamp,Early Adaptations of the Korean Script to Render Foreign Languages,
+Panjabi Lab FAQ,,Sukhjinder Sidhu,Panjabi Lab: Frequently Asked Questions,https://panjabilab.com/faq/
+Rilly 2022,,Claude Rilly,Meroitic Writing,https://escholarship.org/content/qt2ts0n9p0/qt2ts0n9p0.pdf
+Saha 2016,,Ranita Saha,How Did Hiragana and Katakana Originate?,https://www.sakuramani.com/how-did-hiragana-and-katakana-originate/
+Salomon 1998,,Richard Salomon,Indian Epigraphy,https://archive.org/details/IndianEpigraphy/mode/2up
+UCD,,The Unicode Consortium,Unicode Character Database,https://www.unicode.org/Public/UCD/latest/ucd/
+UCP: Gurmukhi Change,,Manvir Singh & Irvanjit Singh,Proposed Changes to Gurmukhi,https://www.unicode.org/L2/L2020/20183-gurmukhi-chg.pdf
+UEP: Additional Math,,Asmus Freytag,Additional Mathematical and Letterlike Characters,https://unicode.org/L2/L2003/03194-math-letterlike.pdf
+UEP: Brahmi,,Stefan Baums & Andrew Glass,Proposal for the Encoding of Brāhmī in Plane 1 of ISO/IEC 10646,https://www.unicode.org/L2/L2007/07342-brahmi.pdf
+UEP: Brahmi additions,,Vinodh Rajan & Shriramana Sharma,Proposal to Encode 6 Characters in the Brahmi Block,https://www.unicode.org/L2/L2019/19402-brahmi-adds.pdf
+UEP: Devanagari Siddham,,Anshuman Pandey,Proposal to Encode the Sign SIDDHAM for Devanagari,https://www.unicode.org/L2/L2012/12123r2-devanagari-siddham.pdf
+UEP: Meroitic,,Michael Everson,Proposal for encoding the Meroitic Hieroglyphic and the Meroitic Cursive scripts in the SMP of the UCS,https://www.unicode.org/L2/L2009/09250-n3665-meroitic.pdf
+UEP: Tigalari,,Vaishnavi Murthy Yerkadithaya & Vinodh Rajan,Updated proposal to encode Tulu-Tigalari script in Unicode,https://www.unicode.org/L2/L2021/21210-tulu-tigalari.pdf
+Unicode Standard,,The Unicode Consortium,The Unicode® Standard,https://www.unicode.org/versions/Unicode17.0.0/core-spec/
+Wiktionary,,,Wiktionary (see individual letter pages),https://en.wiktionary.org/
+Wikipedia: Cyrillic letter pages,,,Category:Cyrillic letters,https://en.wikipedia.org/wiki/Category:Cyrillic_letters
+Wikipedia: Indic letter pages,,,Category:Indic letters,https://en.wikipedia.org/wiki/Category:Indic_letters
+Wikipedia: Kana pages,,,Category:Specific kana,https://en.wikipedia.org/wiki/Category:Specific_kana
+Wikipedia: Latin letter pages,,,Category:Latin-script letters,https://en.wikipedia.org/wiki/Category:Latin-script_letters
+Wikipedia: Mongolian letter pages,,,Category:Mongolic letters,https://en.wikipedia.org/wiki/Category:Mongolic_letters
+Wikipedia: Semitic letter pages,,,Aleph (and others),https://en.wikipedia.org/wiki/Aleph
+

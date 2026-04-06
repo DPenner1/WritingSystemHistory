@@ -35,9 +35,12 @@ CREATE TABLE IF NOT EXISTS sequence_item (
 CREATE TABLE IF NOT EXISTS source (
     id INTEGER PRIMARY KEY,
     citation_key TEXT UNIQUE NOT NULL,
+    parent_id INTEGER REFERENCES source(id),
+    authors TEXT,
     title TEXT NOT NULL,
     url TEXT
-) STRICT; 
+) STRICT;
+CREATE INDEX IF NOT EXISTS idx_fk_parent_source ON source(parent_id) WHERE parent_id IS NOT NULL;
 
 CREATE TABLE IF NOT EXISTS script (
     code TEXT PRIMARY KEY,
