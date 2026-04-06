@@ -237,7 +237,7 @@ class ScriptDatabase:
 
 
     def _load_scripts(self, cursor):
-        script_defers = []
+        script_defers = []  # some self-referential and mutually referencing table stuff, need base data in first for later FKs
         with open(os.path.join(self._resource_path, 'scripts.csv'), 'r') as file:
             for row in csv.DictReader(file):
                 code = row['Code']
@@ -348,34 +348,67 @@ class ScriptDatabase:
             dictionary[key] = value
 
 
-    def _insert_code_point(self, cursor, id, name, script_code, general_category_code, bidi_class_code, is_other_alphabetic=False):
+    def _insert_code_point(self, cursor, id, name, script_code, general_category_code, bidi_class_code, is_other_alphabetic=False, is_graphical_exception=False):
         if script_code is None: script_code = 'Zzzz'
         if general_category_code is None: general_category_code = 'Cn'
         if bidi_class_code is None: bidi_class_code = 'L'
 
+        is_graphical = is_graphical_exception != (general_category_code[0] not in ('C', 'Z'))
         is_alphabetic = general_category_code[0] == 'L' or general_category_code == 'Nl' or is_other_alphabetic
         cursor.execute("INSERT INTO sequence (id, type_id) VALUES (?, ?) ON CONFLICT DO NOTHING", (id, SequenceType.BASE.value))
         if self.is_private_use(id):
             cursor.execute("""
-                INSERT INTO code_point (id, raw_name, script_code, general_category_code, bidi_class_code, is_alphabetic)
-                VALUES (?, ?, ?, ?, ?, ?)
-                ON CONFLICT DO UPDATE SET raw_name = ?, script_code = ?, general_category_code = ?, bidi_class_code = ?, is_alphabetic = ?""",
-                (id, name, script_code, general_category_code, bidi_class_code, is_alphabetic, name, script_code, general_category_code, bidi_class_code, is_alphabetic))
+                INSERT INTO code_point (id, raw_name, script_code, general_category_code, bidi_class_code, is_alphabetic, is_independently_graphical)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT DO 
+                UPDATE SET raw_name = ?, script_code = ?, general_category_code = ?, bidi_class_code = ?, is_alphabetic = ?, is_independently_graphical = ?""",
+                (id, name, script_code, general_category_code, bidi_class_code, is_alphabetic, is_graphical,
+                     name, script_code, general_category_code, bidi_class_code, is_alphabetic, is_graphical))
         else:
             cursor.execute("""
-                INSERT INTO code_point (id, raw_name, script_code, general_category_code, bidi_class_code, is_alphabetic)
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO code_point (id, raw_name, script_code, general_category_code, bidi_class_code, is_alphabetic, is_independently_graphical)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT DO NOTHING""",
-                (id, name, script_code, general_category_code, bidi_class_code, is_alphabetic))
+                (id, name, script_code, general_category_code, bidi_class_code, is_alphabetic, is_graphical))
                 # TODO double check stability policy
 
+    @staticmethod
+    def _unicode_range(range_str):
+        parts = range_str.split('..')
+        num_parts = len(parts)
+        if num_parts > 2:
+            raise ValueError("Bad programmer")
+        start = int(parts[0], 16)
+        end = start if num_parts == 1 else int(parts[1], 16)
+        return range(start, end + 1)
 
-    def _load_code_point_data(self, cursor):
-        # can't reliably call this outside the outer function (derived prop)
+
+    def _load_code_point_data_basics(self, cursor):
+        # Reset since sequence ids not stable -> TODO in principle we could be smarter about this
+        cursor.execute("DELETE FROM sequence_item")
+        cursor.execute("DELETE FROM alphabet")
+        cursor.execute("DELETE FROM sequence WHERE id > ?", (ScriptDatabase.UNICODE_MAX,))
+
+        self._insert_code_point(cursor, ord(self.NO_PARENT_CHARACTER), name='NO PARENT CHARACTER', bidi_class_code='Bn', script_code=None, general_category_code=None)
+
+        with open(os.path.join(self._unicode_path, 'Scripts.txt'), 'r') as file:
+            for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter=';'):
+                script_name = row[1].split('#')[0].strip()
+                script_code = cursor.execute("SELECT code FROM script WHERE u_alias = ?", (script_name,)).fetchone()[0]
+                for i in self._unicode_range(row[0]):
+                    self._insert_code_point(cursor, i, name=None, script_code=script_code, bidi_class_code=None, general_category_code=None)
+
+
+    def _load_code_point_data_main(self, cursor):
+        # can't reliably call this outside the outer function (derived props), so insulating it here
         def update_code_point(cursor, id, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str):
             decom_pattern = re.compile(r'^(?:<([a-zA-Z]+)> )?([\s0-9A-F]+)$')
             decom_type = None
             decom_ids = []
+
+            # these don't take into account exceptions, must be handled separately after
+            is_alphabetic = general_category[0] == 'L' or general_category == 'Nl'
+            is_graphical = general_category[0] not in ('C', 'Z')
 
             seq_id = None
             if decom_str:
@@ -384,24 +417,25 @@ class ScriptDatabase:
                 decom_type = match.group(1) if match.group(1) else 'canonical'
                 seq_id = self.get_next_sequence_id()
                 cursor.execute("""
-                    INSERT INTO sequence (id, type_id) 
-                    VALUES (?, (SELECT id FROM sequence_type WHERE name LIKE ?))""",
+                            INSERT INTO sequence (id, type_id) 
+                            VALUES (?, (SELECT id FROM sequence_type WHERE name LIKE ?))""",
                                (seq_id, decom_type.title() + '%'))
                 for i, decom_id in enumerate(decom_ids):
                     cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, decom_id, i + 1))
 
             cursor.execute("""
-                UPDATE code_point
-                SET 
-                    raw_name = ?,
-                    general_category_code = ?,
-                    bidi_class_code = ?,
-                    simple_uppercase_mapping_id = ?,
-                    simple_lowercase_mapping_id = ?,
-                    equivalent_sequence_id = ?,
-                    is_alphabetic = ?
-                WHERE id = ?""",
-                           (name, general_category, bidi_class, upper_mapping, lower_mapping, seq_id, general_category[0] == 'L' or general_category == 'Nl', id))
+                        UPDATE code_point
+                        SET 
+                            raw_name = ?,
+                            general_category_code = ?,
+                            bidi_class_code = ?,
+                            simple_uppercase_mapping_id = ?,
+                            simple_lowercase_mapping_id = ?,
+                            equivalent_sequence_id = ?,
+                            is_alphabetic = ?,
+                            is_independently_graphical = ?
+                        WHERE id = ?""",
+                           (name, general_category, bidi_class, upper_mapping, lower_mapping, seq_id, is_alphabetic, is_graphical, id))
 
         # Hangul constants named similarly to Unicode Standard algorithm
         S_BASE = 0xAC00
@@ -416,31 +450,13 @@ class ScriptDatabase:
 
         S_END = S_BASE + S_COUNT
         # This is parsable from UCD, but it's short and not likely to change (it would break the Hangul algo), so hard coding is fine and probably a bit more efficient
-        JAMO_SHORT_NAME = { 0x1100: 'G', 0x1101: 'GG', 0x1102: 'N', 0x1103: 'D', 0x1104: 'DD', 0x1105: 'R', 0x1106: 'M', 0x1107: 'B', 0x1108: 'BB', 0x1109: 'S',
-                            0x110A: 'SS', 0x110B: '', 0x110C: 'J', 0x110D: 'JJ', 0x110E: 'C', 0x110F: 'K', 0x1110: 'T', 0x1111: 'P', 0x1112: 'H', 0x1161: 'A',
-                            0x1162: 'AE', 0x1163: 'YA', 0x1164: 'YAE', 0x1165: 'EO', 0x1166: 'E', 0x1167: 'YEO', 0x1168: 'YE', 0x1169: '0', 0x116A: 'WA', 0x116B: 'WAE',
-                            0x116C: 'OE', 0x116D: 'YO', 0x116E: 'U', 0x116F: 'WEO', 0x1170: 'WE', 0x1171: 'WI', 0x1172: 'YU', 0x1173: 'EU', 0x1174: 'YI', 0x1175: 'I',
-                            0x11A8: 'G', 0x11A9: 'GG', 0x11AA: 'GS', 0x11AB: 'N', 0x11AC: 'NJ', 0x11AD: 'NH', 0x11AE: 'D', 0x11AF: 'L', 0x11B0: 'LG', 0x11B1: 'LM',
-                            0x11B2: 'LB', 0x11B3: 'LS', 0x11B4: 'LT', 0x11B5: 'LP', 0x11B6: 'LH', 0x11B7: 'M', 0x11B8: 'B', 0x11B9: 'BS', 0x11BA: 'S', 0x11BB: 'SS',
-                            0x11BC: 'NG', 0x11BD: 'J', 0x11BE: 'C', 0x11BF: 'K', 0x11C0: 'T', 0x11C1: 'P', 0x11C2: 'H', }
-
-        # Reset since sequence ids not stable -> TODO in principle we could be smarter about this
-        cursor.execute("DELETE FROM sequence_item")
-        cursor.execute("DELETE FROM alphabet")
-        cursor.execute("DELETE FROM sequence WHERE id > ?", (ScriptDatabase.UNICODE_MAX,))
-
-        self._insert_code_point(cursor, ord(self.NO_PARENT_CHARACTER), name='NO PARENT CHARACTER', bidi_class_code='Bn', script_code=None, general_category_code=None)
-
-        with open(os.path.join(self._unicode_path, 'Scripts.txt'), 'r') as file:
-            for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter = ';'):
-                range_parts = row[0].split('..')
-                start = int(range_parts[0], 16)
-                end = int(range_parts[1], 16) if len(range_parts) == 2 else start
-                script_name = row[1].split('#')[0].strip()
-                script_code = cursor.execute("SELECT code FROM script WHERE u_alias = ?", (script_name,)).fetchone()[0]
-
-                for i in range(start, end + 1):
-                    self._insert_code_point(cursor, i, name=None, script_code=script_code, bidi_class_code=None, general_category_code=None)
+        JAMO_SHORT_NAME = {0x1100: 'G', 0x1101: 'GG', 0x1102: 'N', 0x1103: 'D', 0x1104: 'DD', 0x1105: 'R', 0x1106: 'M', 0x1107: 'B', 0x1108: 'BB', 0x1109: 'S',
+                           0x110A: 'SS', 0x110B: '', 0x110C: 'J', 0x110D: 'JJ', 0x110E: 'C', 0x110F: 'K', 0x1110: 'T', 0x1111: 'P', 0x1112: 'H', 0x1161: 'A',
+                           0x1162: 'AE', 0x1163: 'YA', 0x1164: 'YAE', 0x1165: 'EO', 0x1166: 'E', 0x1167: 'YEO', 0x1168: 'YE', 0x1169: '0', 0x116A: 'WA', 0x116B: 'WAE',
+                           0x116C: 'OE', 0x116D: 'YO', 0x116E: 'U', 0x116F: 'WEO', 0x1170: 'WE', 0x1171: 'WI', 0x1172: 'YU', 0x1173: 'EU', 0x1174: 'YI', 0x1175: 'I',
+                           0x11A8: 'G', 0x11A9: 'GG', 0x11AA: 'GS', 0x11AB: 'N', 0x11AC: 'NJ', 0x11AD: 'NH', 0x11AE: 'D', 0x11AF: 'L', 0x11B0: 'LG', 0x11B1: 'LM',
+                           0x11B2: 'LB', 0x11B3: 'LS', 0x11B4: 'LT', 0x11B5: 'LP', 0x11B6: 'LH', 0x11B7: 'M', 0x11B8: 'B', 0x11B9: 'BS', 0x11BA: 'S', 0x11BB: 'SS',
+                           0x11BC: 'NG', 0x11BD: 'J', 0x11BE: 'C', 0x11BF: 'K', 0x11C0: 'T', 0x11C1: 'P', 0x11C2: 'H', }
 
         with open(os.path.join(self._unicode_path, 'UnicodeData.txt'), 'r') as csvfile:
             special_name_pattern = re.compile('^<(.+)>$')
@@ -496,6 +512,8 @@ class ScriptDatabase:
                     if not in_range:
                         update_code_point(cursor, code_point, name, general_category, bidi_class, upper_mapping, lower_mapping, decom_str)
 
+
+    def _load_code_point_data_exceptions(self, cursor):
         with open(os.path.join(self._unicode_path, 'NameAliases.txt'), 'r') as file:
             for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter = ';'):
                 if row[2].strip() in ['correction', 'figment', 'control']:
@@ -504,19 +522,30 @@ class ScriptDatabase:
 
         with open(os.path.join(self._unicode_path, 'PropList.txt'), 'r') as file:
             for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter = ';'):
-                    range_parts = row[0].split('..')
-                    start = int(range_parts[0], 16)
-                    end = int(range_parts[1], 16) if len(range_parts) == 2 else start
-                    property = row[1].split('#')[0].strip()
-                    if property == 'Other_Alphabetic':
-                        for i in range(start, end + 1):
-                            cursor.execute("UPDATE code_point SET is_alphabetic = 1 WHERE id = ?", (i,))
-                    elif property == 'Other_Lowercase':
-                        for i in range(start, end + 1):
-                            cursor.execute("UPDATE code_point SET is_alphabetic = 1, is_lowercase = 1 WHERE id = ?", (i,))
-                    elif property == 'Other_Uppercase':
-                        for i in range(start, end + 1):
-                            cursor.execute("UPDATE code_point SET is_alphabetic = 1, is_uppercase = 1 WHERE id = ?", (i,))
+                property = row[1].split('#')[0].strip()
+                if property == 'Other_Alphabetic':
+                    for i in self._unicode_range(row[0]):
+                        cursor.execute("UPDATE code_point SET is_alphabetic = 1 WHERE id = ?", (i,))
+                elif property == 'Other_Lowercase':
+                    for i in self._unicode_range(row[0]):
+                        cursor.execute("UPDATE code_point SET is_alphabetic = 1, is_lowercase = 1 WHERE id = ?", (i,))
+                elif property == 'Other_Uppercase':
+                    for i in self._unicode_range(row[0]):
+                        cursor.execute("UPDATE code_point SET is_alphabetic = 1, is_uppercase = 1 WHERE id = ?", (i,))
+
+        with open(os.path.join(self._resource_path, 'graphical_exceptions.txt'), 'r') as file:
+            for line in file:
+                for i in self._unicode_range(line):
+                    cursor.execute("""
+                        UPDATE code_point 
+                        SET is_independently_graphical = NOT is_independently_graphical
+                        WHERE id = ?""", (i,))
+
+
+    def _load_code_point_data(self, cursor):
+        self._load_code_point_data_basics(cursor)      # populates code points from the unicode scripts file (so the self-referential FKs will work on main run)
+        self._load_code_point_data_main(cursor)
+        self._load_code_point_data_exceptions(cursor)  # derived properties and the like to override main defaults
 
 
     def _load_lookups(self, cursor):
@@ -866,10 +895,8 @@ class ScriptDatabase:
                 INNER JOIN code_point cp2 ON cp2.id = equiv.item_id
             WHERE
                 seq.type_id >= 100
-                AND cp1.general_category_code NOT LIKE 'Z_'
-                AND cp1.general_category_code NOT LIKE 'C_'
-                AND cp2.general_category_code NOT LIKE 'Z_'
-                AND cp2.general_category_code NOT LIKE 'C_'
+                AND cp1.is_independently_graphical
+                AND cp2.is_independently_graphical
             ON CONFLICT DO NOTHING""")
         # seq.type_id >= 100 is a bit hacky for now, I've basically put the equivalency sequence types at IDs 100+
         # A more "proper" solution would be to have a category associated to a sequence_type, but that feels like over-engineering for the moment
@@ -887,7 +914,7 @@ class ScriptDatabase:
                 cp2.id,
                 {self._get_or_create_source_id(cursor, 'UCD')},
                 CASE WHEN seq.type_id = {SequenceType.Z_VARIANT.value} THEN 'Unihan.zip/Unihan_Variants.txt zVariant property'
-                     WHEN seq.type_id = {SequenceType.HIEROGLYPHIC_ALTERNATIVE.value} THEN 'Unikemet.txt kEH_AltQeq property'
+                     WHEN seq.type_id = {SequenceType.HIEROGLYPHIC_ALTERNATIVE.value} THEN 'Unikemet.txt kEH_AltSeq property'
                      WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN 'UnicodeData.txt name property'
                      ELSE 'UnicodeData.txt decomposition property'
                 END
@@ -898,10 +925,8 @@ class ScriptDatabase:
                 INNER JOIN code_point cp2 ON cp2.id = equiv.item_id
             WHERE
                 seq.type_id >= 100
-                AND cp1.general_category_code NOT LIKE 'Z_'
-                AND cp1.general_category_code NOT LIKE 'C_'
-                AND cp2.general_category_code NOT LIKE 'Z_'
-                AND cp2.general_category_code NOT LIKE 'C_'
+                AND cp1.is_independently_graphical
+                AND cp2.is_independently_graphical
             ON CONFLICT DO NOTHING""")
 
         # manual equivalency
@@ -2220,13 +2245,13 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.OPTIMIZED_DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.DEBUG_LOAD)  # replace with DEBUG_LOAD for development run (DEFAULT LOAD CURRENTLY BROKEN)
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
     # db.print_table(results)
     # Get a breakdown of a script's parent scripts:
-    db.print_table(db.get_script_parents('Plrd', ['Plrd']))
+    # db.print_table(db.get_script_parents('Glag', ['Glag']))
     # or your own custom query: db.execute_query('YOUR QUERY HERE', parameters=None)
 
     cursor.close()

@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS code_point (
     simple_lowercase_mapping_id INTEGER REFERENCES code_point(id),
     equivalent_sequence_id INTEGER REFERENCES sequence(id),
     is_alphabetic INTEGER NOT NULL DEFAULT 0,
+    is_independently_graphical INTEGER NOT NULL DEFAULT 1,
     is_lowercase INTEGER NOT NULL DEFAULT 0,
     is_uppercase INTEGER NOT NULL DEFAULT 0,
     raw_name TEXT,
