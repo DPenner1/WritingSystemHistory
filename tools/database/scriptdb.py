@@ -1042,7 +1042,7 @@ class ScriptDatabase:
                     cursor.execute(
                         "DELETE FROM code_point_derivation WHERE child_id = ? AND certainty_type_id IN (?, ?)",
                         (ord(child), Certainty.AUTOMATED_TECHNICAL.value, Certainty.AUTOMATED_NON_GRAPHICAL.value))
-                        # academic: Automated Curated not in list as you may want to see the conflicts to manually resolve
+
 
                     # ensure that child character is always the expected script
                     if verify_script:
@@ -2127,7 +2127,10 @@ class ScriptDatabase:
         self._cxn.commit()
         if output: lap_time, lap_mb = output_info("Done generating letter data and loading private use data.", start_time, lap_time, lap_mb)
 
+        cur.execute("PRAGMA foreign_keys = ON") # there's a bit of a tricky query in load_derivations that currently relies on ON DELETE CASCADE
         self._load_derivations(cur, indic_supp_data, indic_letter_data, semitic_letter_data, options)
+        if not options.verify_data_sources:
+            cur.execute("PRAGMA foreign_keys = OFF")
         self._cxn.commit()
         if output: lap_time, lap_mb = output_info("Done loading derivation data.", start_time, lap_time, lap_mb)
 
@@ -2245,7 +2248,7 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.DEBUG_LOAD)  # replace with DEBUG_LOAD for development run (DEFAULT LOAD CURRENTLY BROKEN)
+    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
