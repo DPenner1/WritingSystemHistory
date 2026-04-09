@@ -1,6 +1,7 @@
 Citation Key,Parent,Authors,Title,URL
 CLDR,,The Unicode Consortium,Unicode CLDR Project,https://cldr.unicode.org/
 Colless 2008,,Brian Colless,Cuneiform Alphabet and Picto-Proto-Alphabet,https://web.archive.org/web/20201112003152/https://sites.google.com/site/collesseum/cuneiformalphabet
+Cooper 1996,Daniels & Bright 1996,Jerrold S. Cooper,Sumerian and Akkadian
 Daniels & Bright 1996,,Peter T. Daniels & William Bright,The World's Writing Systems,https://archive.org/details/isbn_9780195079937/mode/2up
 Daniels 2012,,Christian Daniels,Script Without Buddhism: Burmese Influence on the Tay (Shan) Script of Mäng2 Maaw2 as Seen in a Chinese Scroll Painting of 1407,https://www.academia.edu/108614678/Script_Without_Buddhism_Burmese_Influence_on_the_Tay_Shan_Script_of_M%C3%84NG2_MAAW2_as_Seen_in_a_Chinese_Scroll_Painting_of_1407
 de Voogt & Quack 2012,,Alex de Voogt & Joachim Friedrich Quack,The Idea of Writing,https://brill.com/edcollbook/title/19909
@@ -24,6 +25,7 @@ UEP: Devanagari Siddham,,Anshuman Pandey,Proposal to Encode the Sign SIDDHAM for
 UEP: Meroitic,,Michael Everson,Proposal for encoding the Meroitic Hieroglyphic and the Meroitic Cursive scripts in the SMP of the UCS,https://www.unicode.org/L2/L2009/09250-n3665-meroitic.pdf
 UEP: Tigalari,,Vaishnavi Murthy Yerkadithaya & Vinodh Rajan,Updated proposal to encode Tulu-Tigalari script in Unicode,https://www.unicode.org/L2/L2021/21210-tulu-tigalari.pdf
 Unicode Standard,,The Unicode Consortium,The Unicode® Standard,https://www.unicode.org/versions/Unicode17.0.0/core-spec/
+UTR 56,,Robin Leroy,Unicode® Cuneiform Sign Lists,https://www.unicode.org/reports/tr56/
 Wiktionary,,,Wiktionary (see individual letter pages),https://en.wiktionary.org/
 Wikipedia: Cyrillic letter pages,,,Category:Cyrillic letters,https://en.wikipedia.org/wiki/Category:Cyrillic_letters
 Wikipedia: Indic letter pages,,,Category:Indic letters,https://en.wikipedia.org/wiki/Category:Indic_letters

@@ -27,10 +27,11 @@ CREATE INDEX IF NOT EXISTS idx_fk_seq_type ON sequence(type_id);
 -- it's a tree structure
 CREATE TABLE IF NOT EXISTS sequence_item (
     sequence_id INTEGER REFERENCES sequence(id) ON DELETE CASCADE,
-    item_id INTEGER REFERENCES sequence(id),
     order_num INTEGER,
-    PRIMARY KEY (sequence_id, item_id, order_num)
+    item_id INTEGER REFERENCES sequence(id),
+    PRIMARY KEY (sequence_id, order_num)
 ) STRICT;
+CREATE INDEX IF NOT EXISTS idx_fk_seq_item ON sequence_item(item_id);
 
 CREATE TABLE IF NOT EXISTS source (
     id INTEGER PRIMARY KEY,
@@ -114,7 +115,8 @@ CREATE TABLE IF NOT EXISTS code_point (
     is_lowercase INTEGER NOT NULL DEFAULT 0,
     is_uppercase INTEGER NOT NULL DEFAULT 0,
     raw_name TEXT,
-    alt_name TEXT
+    alt_name TEXT,
+    word_count TEXT GENERATED ALWAYS AS (LENGTH(name) - LENGTH(REPLACE(name, ' ', '')) + 1) VIRTUAL
 ) STRICT;
 CREATE INDEX IF NOT EXISTS idx_fk_cp_script ON code_point(script_code) WHERE script_code <> 'Hani'; -- no point indexing ~2/3 of the table;
 CREATE INDEX IF NOT EXISTS idx_cp_general_category ON code_point(general_category_code) WHERE general_category_code <> 'Lo';  -- even more of the table 
@@ -122,6 +124,14 @@ CREATE INDEX IF NOT EXISTS idx_fk_cp_equivalent_sequence ON code_point(equivalen
 CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_lowercase_mapping ON code_point(simple_lowercase_mapping_id) WHERE simple_lowercase_mapping_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_fk_cp_simple_uppercase_mapping ON code_point(simple_uppercase_mapping_id) WHERE simple_uppercase_mapping_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_cp_raw_name ON code_point(raw_name) WHERE raw_name IS NOT NULL;
+
+CREATE TABLE IF NOT EXISTS name_indexer (
+    code_point_id INTEGER REFERENCES code_point(id),
+    order_num INTEGER,
+    word TEXT,
+    PRIMARY KEY (code_point_id, order_num)
+) STRICT;
+CREATE INDEX IF NOT EXISTS idx_name_word ON name_indexer(word);
 
 CREATE TABLE IF NOT EXISTS derivation_type (
     id INTEGER PRIMARY KEY,
@@ -141,13 +151,13 @@ CREATE TABLE IF NOT EXISTS code_point_derivation (
     child_id INTEGER REFERENCES code_point (id),
     parent_id INTEGER REFERENCES code_point (id),
     derivation_type_id INTEGER NOT NULL DEFAULT 1 REFERENCES derivation_type (id),
-    certainty_type_id INTEGER NOT NULL DEFAULT 9 REFERENCES certainty_type (id),
+    certainty_type_id INTEGER NOT NULL DEFAULT -1 REFERENCES certainty_type (id),
     multiplicity INTEGER DEFAULT 1,
     notes TEXT,
     PRIMARY KEY (child_id, parent_id)
 ) STRICT;
 -- This is a table likely to be looked up in either direction child<->parent
-CREATE INDEX IF NOT EXISTS idx_cpd_parent ON code_point_derivation(parent_id);
+CREATE INDEX IF NOT EXISTS idx_fk_cpd_parent ON code_point_derivation(parent_id);
 
 CREATE TABLE IF NOT EXISTS derivation_source (
     child_id INTEGER,

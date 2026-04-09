@@ -91,8 +91,9 @@ class ScriptDatabase:
     # Can abo, Hangul, Kayah Li, Masaram Gondi, Sorang Sompeng, Pau cin hau will be manually specified due to higher independence or contribution from other scripts
     # Soyombo excluded due to elevated probability of script relationships being modified
     # Non-unicode scripts Ranjana, Tocharian, Brahmic variants 'asho', 'kush' excluded
+    # Cuneiform has its own automated process
     _EXCLUDED_GEN_CODES = ['Brah', 'Khar', 'Hang', 'Cans', 'Kali', 'Soyo', 'Gonm', 'Sora', 'Pauc', 'Gupt', 'Plav',
-                           'Ranj', 'Asho', 'Kush', 'Toch', 'Grek', 'Latn', 'Cyrl', 'Arab', 'Phnx', 'Psin']
+                           'Ranj', 'Asho', 'Kush', 'Toch', 'Grek', 'Latn', 'Cyrl', 'Arab', 'Phnx', 'Psin', 'Xsux']
 
     def __init__(self, path='.', name='scripts.db'):
         self._db_name = name
@@ -354,6 +355,12 @@ class ScriptDatabase:
             dictionary[key] = value
 
 
+    def _insert_name_indexer(self, cursor, cp_id, name):
+        words = name.split(' ')
+        for i, word in enumerate(words):
+            cursor.execute("INSERT INTO name_indexer (code_point_id, order_num, word) VALUES (?, ?, ?)", (cp_id, i + 1, word))
+
+
     def _insert_code_point(self, cursor, id, name, script_code, general_category_code, bidi_class_code, is_other_alphabetic=False, is_graphical_exception=False):
         if script_code is None: script_code = 'Zzzz'
         if general_category_code is None: general_category_code = 'Cn'
@@ -376,7 +383,10 @@ class ScriptDatabase:
                 VALUES (?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT DO NOTHING""",
                 (id, name, script_code, general_category_code, bidi_class_code, is_alphabetic, is_graphical))
+            cursor.execute("DELETE FROM name_indexer WHERE code_point_id = ?", (id, ))
                 # TODO double check stability policy
+        if name:
+            self._insert_name_indexer(cursor, id, name)
 
     @staticmethod
     def _unicode_range(range_str):
@@ -442,6 +452,9 @@ class ScriptDatabase:
                             is_independently_graphical = ?
                         WHERE id = ?""",
                            (name, general_category, bidi_class, upper_mapping, lower_mapping, seq_id, is_alphabetic, is_graphical, id))
+            cursor.execute("DELETE FROM name_indexer WHERE code_point_id = ?", (id, ))
+            if name:
+                self._insert_name_indexer(cursor, id, name)
 
         # Hangul constants named similarly to Unicode Standard algorithm
         S_BASE = 0xAC00
@@ -586,6 +599,9 @@ class ScriptDatabase:
             (Certainty.STRONG_ASSUMPTION.value, "Strong Assumption", "Derivation assumed, generally by strong glyph and sound value similarity"),
             (Certainty.WEAK_ASSUMPTION.value, "Weak Assumption", "Derivation assumed, usually by sound value and/or glyph similarity"),
             # to be clearer, this is basically for the equivalencies (decomposition, z-variant, etc.)
+            (Certainty.AUTOMATED_CERTAIN.value, "From Near Certain Source", "Automatically copied from a source of near certain derivations"),
+            (Certainty.AUTOMATED_LIKELY.value, "From Likely Source", "Automatically copied from a source of likely derivations"),
+            (Certainty.AUTOMATED_UNCERTAIN.value, "From Uncertain Source", "Automatically copied from a source of uncertain derivations"),
             (Certainty.AUTOMATED_TECHNICAL.value, "From Technical Source",
                 "Automatically copied from a source specifying technical derivations, usually from Unicode Consortium data"),
             (Certainty.AUTOMATED_NON_GRAPHICAL.value, "From Non-Graphical Source",
@@ -685,7 +701,7 @@ class ScriptDatabase:
         # Mende Kikakui is a bit of an exception here: Unicode Encoding Proposal suggests Vai-derived characters are a small minority
         # Not including Chinese here: ideally will eventually do so for Oracle bone. Similar for modern Yi vs classical Yi
         results = cursor.execute("SELECT code FROM script WHERE parent_code = ?", (self.UNKNOWN_SCRIPT,)).fetchall()
-        independent_scripts = [x[0] for x in results]
+        independent_scripts = [x[0] for x in results if x[0] not in self._EXCLUDED_GEN_CODES]
 
         # a few graphical equivalents
         equivalent_ids = cursor.execute("""
@@ -823,7 +839,9 @@ class ScriptDatabase:
 
         # we want to drop this as soon as possible so that the freed space can be used
         if drop_name_index:
+            cursor.execute("DROP TABLE name_indexer")
             cursor.execute("DROP INDEX idx_cp_raw_name")
+            cursor.execute("ALTER TABLE code_point DROP COLUMN word_count")
 
         # Identify all the independently-derived characters
         cursor.execute(f"""
@@ -1096,7 +1114,28 @@ class ScriptDatabase:
                                (row[0], row[1], source[0], source[1]))
 
 
+    def _load_cuneiform_derivations(self, cursor):
+        cursor.execute("""
+            INSERT INTO code_point_derivation (child_id, parent_id, certainty_type_id, notes)
+            SELECT id, ?, ?, ? FROM code_point
+            WHERE script_code = ? AND name LIKE ? AND word_count = ?""",
+            (ord(self.NO_PARENT_CHARACTER),
+             Certainty.AUTOMATED_UNCERTAIN.value,
+             'Atomic sign, no known parent script (Proto-Cuneiform not in DB or Unicode yet)',
+             'Xsux', 'CUNEIFORM SIGN%', 3))
+        source_keys = { 'UTR 56', 'Cooper 1996' }
+        for key in source_keys:
+            source_id = cursor.execute("SELECT id FROM source WHERE citation_key = ?", (key, )).fetchone()[0]
+            cursor.execute("""
+                INSERT INTO derivation_source (child_id, parent_id, source_id)
+                SELECT id, ?, ? FROM code_point
+                WHERE script_code = ? AND name LIKE ? AND word_count = ?""",
+                   (ord(self.NO_PARENT_CHARACTER), source_id, 'Xsux', 'CUNEIFORM SIGN%', 3))
+        # TODO coumpound cuneiform signs - a bit complicated, further research required
+
+
     def _load_derivations(self, cursor, digit_data, indic_letter_data, semitic_letter_data, load_options):
+        self._load_cuneiform_derivations(cursor)
         self._load_equivalents_names_and_independents(cursor, load_options.drop_code_point_name_index, load_options.verify_data_sources)
         self._load_derivations_from_case_data(cursor, load_options.drop_case_columns)
         self._load_derivations_from_equivalencies(cursor)
@@ -1108,7 +1147,7 @@ class ScriptDatabase:
         semitic_source = [(self._get_or_create_source_id(cursor, "Wikipedia: Semitic letter pages"), None, None)]
         self._load_letter_derivation_data(cursor, semitic_letter_data, self._SEMITIC_ORDER, semitic_source, load_options.verify_data_sources)
 
-        # At this point, this is a field used for internal generation only, don't want it to be taken literally
+        # Currently, this is a field used for internal generation only, don't want it to be taken literally
         cursor.execute("DROP INDEX idx_fk_parent_script")
         cursor.execute("ALTER TABLE script DROP COLUMN parent_code")
 
@@ -1128,15 +1167,22 @@ class ScriptDatabase:
         cursor.close()
         return retval
 
-    # TODO - this performs poorly
+
     def _get_indic_supplement_dict(self, cursor, indic_scripts):
         supp_data = {}
         for script_code in indic_scripts:
             supp_data[script_code] = {}
             for supp_name in self._INDIC_SUPPLEMENT:
-                if 'PLACEHOLDER' not in supp_name:
-                    supp_code_point = cursor.execute(f"SELECT text FROM code_point WHERE script_code = ? AND substr(raw_name, ?) = ?",
-                                                     (script_code, -len(supp_name), supp_name)).fetchall()
+                if not supp_name.startswith('PLACEHOLDER'):
+                    query = "SELECT DISTINCT(text) FROM code_point cp "
+                    supp_name_parts = supp_name.split(' ')
+                    supp_name_length = len(supp_name_parts)
+                    for i, supp_word in enumerate(supp_name_parts):
+                        query += f" INNER JOIN name_indexer ni{i} ON ni{i}.code_point_id = cp.id AND ni{i}.word = '{supp_word}'"
+                        query += f" AND ni{i}.order_num = cp.word_count - {supp_name_length - 1 - i}"
+                    query += " WHERE script_code = ?"
+                    supp_code_point = cursor.execute(query, (script_code,)).fetchall()
+
                     if len(supp_code_point) == 1:  # more than one is too risky for automatic derivation based on name
                         supp_data[script_code][supp_name] = [supp_code_point[0][0]]
         return supp_data
@@ -2183,8 +2229,12 @@ class Certainty(Enum):
     UNCERTAIN = 3
     STRONG_ASSUMPTION = 4
     WEAK_ASSUMPTION = 5
-    AUTOMATED_TECHNICAL = 6
-    AUTOMATED_NON_GRAPHICAL = 7
+    AUTOMATED_CERTAIN = 6
+    AUTOMATED_LIKELY = 7
+    AUTOMATED_UNCERTAIN = 8
+    AUTOMATED_TECHNICAL = 9
+    AUTOMATED_NON_GRAPHICAL = 10
+
 
 # at the moment I'm isolating ranges of things I think could be expanded on.
 class SequenceType(Enum):
@@ -2254,7 +2304,7 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.OPTIMIZED_DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
