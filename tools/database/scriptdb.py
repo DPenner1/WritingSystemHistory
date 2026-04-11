@@ -43,6 +43,9 @@ class ScriptDatabase:
     UNICODE_MAX = 0x10FFFF
     NO_PARENT_CHARACTER = '\uFFFF'  # a Unicode non-character
 
+    MANUAL_PROCESS_ID = 1
+    DECOMPOSITION_PROCESS_ID = 2
+
     DEFAULT_LOAD = LoadOptions()
 
     DEBUG_LOAD = LoadOptions()
@@ -321,7 +324,7 @@ class ScriptDatabase:
 
 
     def _load_source(self, cursor, citation_key, author_str, title, url):
-        cursor.execute("INSERT INTO source (citation_key, authors, title, url) VALUES (?,?,?,?)", (citation_key, author_str, title, url))
+        return cursor.execute("INSERT INTO source (citation_key, authors, title, url) VALUES (?,?,?,?) RETURNING id", (citation_key, author_str, title, url)).fetchone()[0]
 
 
     def _load_sources(self, cursor):
@@ -341,14 +344,13 @@ class ScriptDatabase:
             # was not consistent in data files with using underscores/spaces
             citation_key = citation_key.replace('_', ' ').strip()
         id = cursor.execute("SELECT id FROM source WHERE citation_key = ?", (citation_key, )).fetchall()
-        if not id:
-            if citation_key.startswith('Wikipedia: '):
-                wiki_page = citation_key[len('Wikipedia: '):]
-                self._load_source(cursor, citation_key, None, wiki_page, f"https://en.wikipedia.org/wiki/{quote(wiki_page.replace(' ', '_'))}")
-            else:
-                raise ValueError("No source found for citation key " + citation_key)
-            id = cursor.execute("SELECT id FROM source WHERE citation_key = ?", (citation_key, )).fetchall()
-        return id[0][0]
+        if id:
+            return id[0][0]
+        if citation_key.startswith('Wikipedia: '):
+            wiki_page = citation_key[len('Wikipedia: '):]
+            return self._load_source(cursor, citation_key, None, wiki_page, f"https://en.wikipedia.org/wiki/{quote(wiki_page.replace(' ', '_'))}")
+
+        raise ValueError("No source found for citation key " + citation_key)
 
     @staticmethod
     def is_private_use(id):
@@ -584,7 +586,8 @@ class ScriptDatabase:
 
         data = [
             (DerivationType.DEFAULT.value, "Derivation", "Standard/default/non-specific"),
-            (DerivationType.PORTION_COPY.value, "Portion copy", "Child is a copy of a portion of the parent, allowing for stretch-distortion due to size change"),
+            (DerivationType.PORTION_COPY.value,
+                "Portion copy", "DEPRECATED. Use COPY or PORTION. Child is a copy of a portion of the parent, allowing for stretch-distortion due to size change"),
             (DerivationType.SIMPLIFICATION.value, "Simplification", "Child is a simplification of parent"),
             (DerivationType.FROM_CURSIVE.value, "From cursive", "Child is derived from cursive form of the parent (who is typically non-cursive)"),
             (DerivationType.COPY.value, "Copy", "Child is a copy (or multiple) of the parent"), # Usually child script copying or lowercase just a small version of uppercase
@@ -598,6 +601,7 @@ class ScriptDatabase:
         # For this project, sourcing is generally just for the derivation fact, not necessarily for derivation type
         # this lookup mostly expected to be complete. There may be additions if other derivation sources are found.
         data = [
+            (Certainty.UNSPECIFIED.value, "Unspecified", "Not specified in data files"),
             (Certainty.NEAR_CERTAIN.value, "Near Certain", "Sources almost all agree, or disagreeing sources are suspect"),
             (Certainty.LIKELY.value, "Likely", "Sources mostly agree, or a singular weak source"),
             # For the purposes of this project, Wikipedia does not automatically count as a weak: it usually cites other sources
@@ -605,15 +609,8 @@ class ScriptDatabase:
             # TODO - Previous assumption field bifurcated into two, with id conservatively retained for Weak. Review manual files to bump some to strong.
             (Certainty.STRONG_ASSUMPTION.value, "Strong Assumption", "Derivation assumed, generally by strong glyph and sound value similarity"),
             (Certainty.WEAK_ASSUMPTION.value, "Weak Assumption", "Derivation assumed, usually by sound value and/or glyph similarity"),
-            # to be clearer, this is basically for the equivalencies (decomposition, z-variant, etc.)
-            (Certainty.AUTOMATED_CERTAIN.value, "From Near Certain Source", "Automatically copied from a source of near certain derivations"),
-            (Certainty.AUTOMATED_LIKELY.value, "From Likely Source", "Automatically copied from a source of likely derivations"),
-            (Certainty.AUTOMATED_UNCERTAIN.value, "From Uncertain Source", "Automatically copied from a source of uncertain derivations"),
-            (Certainty.AUTOMATED_TECHNICAL.value, "From Technical Source",
-                "Automatically copied from a source specifying technical derivations, usually from Unicode Consortium data"),
-            (Certainty.AUTOMATED_NON_GRAPHICAL.value, "From Non-Graphical Source",
-                "Automatically copied from a source that is not purely graphical derivation, without specific manual review"),
-            (Certainty.UNSPECIFIED.value, "Unspecified", "Not specified in data files")]
+            (Certainty.VARIED.value, "Variable Certainty", "Generally an automated derivation where individual certainty cannot be automatically determined"),
+        ]
         load_lookup(cursor, 'certainty_type', data)
 
         data = [
@@ -675,6 +672,23 @@ class ScriptDatabase:
         ]
         load_lookup(cursor, 'script_type', data)
 
+        data = [
+            (self.MANUAL_PROCESS_ID, "Manually specified", "Manually specified in database source files"),
+            (self.DECOMPOSITION_PROCESS_ID, "Unicode decomposition", "Technical derivation based on Unicode decomposition"),
+        ]
+        load_lookup(cursor, 'process_type', data)
+
+
+    def create_process_type(self, name, description, sources=None, notes=None):
+        cursor = self._cxn.cursor()
+        id = cursor.execute("INSERT INTO process_type (name, description, notes) VALUES (?,?,?) RETURNING id", (name, description, notes)).fetchone()[0]
+        if sources:
+            for source in sources:
+                cursor.execute("INSERT INTO process_source (process_type_id, source_id, section, access_date) VALUES (?,?,?,?)",
+                               (id, self._get_or_create_source_id(cursor, source.citation_key), source.section, source.access_date))
+        cursor.close()
+        return id
+
 
     def _load_equivalent_unit_sequence(self, cursor, seq_type, principal_id, equivalent_id):
         seq_id = self._create_sequence(cursor, seq_type)
@@ -682,16 +696,26 @@ class ScriptDatabase:
         cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, equivalent_id))
 
 
-    def _load_single_derivation(self, cursor, child_id, parent_id, derivation_type, certainty_type, sources, notes, multiplicity=1):
-        cursor.execute("INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes, multiplicity) VALUES (?,?,?,?,?,?)",
-                       (child_id, parent_id, derivation_type.value, certainty_type.value, notes, multiplicity))
+    def _load_single_manual_derivation(self, cursor, child_id, parent_id, derivation_type, certainty_type, sources, notes, multiplicity=1):
+        cursor.execute("""
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, process_type_id, notes, multiplicity) 
+            VALUES (?,?,?,?,?,?,?)""", (child_id, parent_id, derivation_type.value, certainty_type.value, self.MANUAL_PROCESS_ID, notes, multiplicity))
         if sources:
             for source in sources:
                 cursor.execute("INSERT INTO derivation_source (child_id, parent_id, source_id, section, access_date) VALUES (?,?,?,?,?)",
                                (child_id, parent_id, self._get_or_create_source_id(cursor, source.citation_key), source.section, source.access_date))
 
 
-    def _load_arabic_derivations_from_name(self, cursor, verify):
+    def _load_single_derivation(self, cursor, child_id, parent_id, derivation_type, certainty_type, process_type_id, multiplicity=1):
+        cursor.execute("""
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, process_type_id, multiplicity) 
+            VALUES (?,?,?,?,?,?)""",        (child_id, parent_id, derivation_type.value, certainty_type.value, process_type_id, multiplicity))
+
+
+    def _load_arabic_derivations(self, cursor, verify):
+        process_id = self.create_process_type('Arabic Unicode name',
+                                              'Derivation of Arabic code points based on Unicode name',
+                                              [SourceInfo('UCD', 'UnicodeData.txt name property')])
         arabic_map = {'ALEF': 1575, 'BEH': 1576, 'TEH': 1578, 'JEEM': 1580, 'HAH': 1581, 'DAL': 1583, 'REH': 1585, 'ZAIN': 1586,
                       'SEEN': 1587, 'SHEEN': 1588, 'SAD': 1589, 'DAD': 1590, 'TAH': 1591, 'AIN': 1593, 'GHAIN': 1594, 'FEH': 1601,
                       'QAF': 1602, 'KAF': 1603, 'LAM': 1604, 'MEEM': 1605, 'NOON': 1606, 'HEH': 1607, 'WAW': 1608, 'YEH': 1610, 'FATHA': 1614, 'KASRA': 1616,
@@ -701,7 +725,7 @@ class ScriptDatabase:
 
         def try_arabic_text_load_deriv(cursor, child_id, search_name, text):
             if " " + search_name in text:
-                self._load_single_derivation(cursor, child_id, arabic_map[search_name], DerivationType.DEFAULT, Certainty.AUTOMATED_NON_GRAPHICAL, None, arabic_note_text)
+                self._load_single_derivation(cursor, child_id, arabic_map[search_name], DerivationType.DEFAULT, Certainty.VARIED, process_id)
                 return True
             return False
 
@@ -715,8 +739,7 @@ class ScriptDatabase:
             match = arabic_pattern.match(arabic_letter[1])
             if match:
                 child_id = int(arabic_letter[0])
-                self._load_single_derivation(cursor, child_id, arabic_map[match.group(1)],
-                                             DerivationType.DEFAULT, Certainty.AUTOMATED_NON_GRAPHICAL, None, arabic_note_text)
+                self._load_single_derivation(cursor, child_id, arabic_map[match.group(1)], DerivationType.DEFAULT, Certainty.VARIED, process_id)
 
                 with_text = match.group(2)
                 found_other = False
@@ -724,9 +747,10 @@ class ScriptDatabase:
                     found_other = True
                     if "WAVY" in with_text:
                         # This ID is for wavy hamza below - there doesn't appear to be an above or standalone
-                        self._load_single_derivation(cursor, child_id, 1631, DerivationType.DEFAULT, Certainty.AUTOMATED_NON_GRAPHICAL, None, arabic_note_text)
-                    hamza_id = 1621 if "HAMZA BELOW" in with_text else 1620
-                    self._load_single_derivation(cursor, child_id, hamza_id, DerivationType.DEFAULT, Certainty.AUTOMATED_NON_GRAPHICAL, None, arabic_note_text)
+                        self._load_single_derivation(cursor, child_id, 1631, DerivationType.DEFAULT, Certainty.VARIED, process_id)
+                    else:
+                        hamza_id = 1621 if "HAMZA BELOW" in with_text else 1620
+                        self._load_single_derivation(cursor, child_id, hamza_id, DerivationType.DEFAULT, Certainty.VARIED, process_id)
 
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "KASRA", with_text) or found_other
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "FATHA", with_text) or found_other
@@ -754,6 +778,9 @@ class ScriptDatabase:
 
 
     def _load_geez_derivations(self, cursor):
+        process_id = self.create_process_type("Ge'ez Unicode name",
+                                              "Derivation of Ge'ez code points by identifying the inherent vowel parent based on Unicode name",
+                                              [SourceInfo('UCD', 'UnicodeData.txt name property')])
         base_pattern = re.compile('^(ETHIOPIC SYLLABLE (?:[A-Z]+ )?[^ AEIOU]*)([AEIOU]+)$')
         ethiopic = cursor.execute("SELECT id, raw_name FROM code_point WHERE script_code = 'Ethi' AND raw_name LIKE 'ETHIOPIC SYLLABLE%'").fetchall()
         base_ethiopic_names = {}
@@ -764,23 +791,28 @@ class ScriptDatabase:
         for x in ethiopic:
             match = base_pattern.match(x[1])
             if match.group(2) != 'A' and match.group(1) in base_ethiopic_names:
-                self._load_single_derivation(cursor, x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT,
-                                             Certainty.AUTOMATED_NON_GRAPHICAL, None, 'Inherent vowel parent')
+                self._load_single_derivation(cursor, x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT, Certainty.VARIED, process_id)
 
 
     def _load_sogdian_derivations(self, cursor):
+        process_id = self.create_process_type('Sogdian Unicode name',
+                                              'Derivation of Sogdian code points based on matching Old Sogdian Unicode names',
+                                              [SourceInfo('UCD', 'UnicodeData.txt name property')])
         # This ones ~20 characters, should just manually specify at some point
         cursor.execute("""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, notes)
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, process_type_id)
             SELECT newsog.id, oldsog.id, ?, ?, ?
             FROM 
                 code_point newsog 
                 INNER JOIN code_point oldsog ON newsog.raw_name = substr(oldsog.raw_name, 5)
                 WHERE newsog.script_code = 'Sogd' AND oldsog.script_code = 'Sogo'""",
-            (DerivationType.DEFAULT.value, Certainty.AUTOMATED_NON_GRAPHICAL.value, 'Old Sogdian / Sogdian same letter'))
+            (DerivationType.DEFAULT.value, Certainty.VARIED.value, process_id))
 
 
     def _load_latin_derivations(self, cursor):
+        process_id = self.create_process_type('Latin Unicode name',
+                                              'Derivation of Latin code points based on Unicode name',
+                                              [SourceInfo('UCD', 'UnicodeData.txt name property')])
         latin_pattern = re.compile(r'([A-Z]{2,} )?([A-Z])( [A-Z]{2,}[ A-Z]*)?')
         capitals = cursor.execute("""
                     SELECT id, substr(raw_name, 22) FROM code_point 
@@ -792,8 +824,7 @@ class ScriptDatabase:
         for capital in capitals:
             match = latin_pattern.match(capital[1])
             if match and (match.group(1) or match.group(3)):  # needs to match one of these groups or it's the base letter itself
-                self._load_single_derivation(cursor, capital[0], ord(match.group(2)), DerivationType.DEFAULT,
-                                             Certainty.AUTOMATED_NON_GRAPHICAL, None, 'Unicode Latin capital letter name')
+                self._load_single_derivation(cursor, capital[0], ord(match.group(2)), DerivationType.DEFAULT, Certainty.VARIED, process_id)
 
         lowercases = cursor.execute("""
                     SELECT id, substr(name, 20) FROM code_point 
@@ -806,8 +837,7 @@ class ScriptDatabase:
         for lowercase in lowercases:
             match = latin_pattern.match(lowercase[1])
             if match and (match.group(1) or match.group(3)):  # needs to match one of these groups or it's the base letter itself
-                self._load_single_derivation(cursor, lowercase[0], ord(match.group(2).lower()), DerivationType.DEFAULT,
-                                             Certainty.AUTOMATED_NON_GRAPHICAL, None, 'Unicode Latin small letter name')
+                self._load_single_derivation(cursor, lowercase[0], ord(match.group(2).lower()), DerivationType.DEFAULT, Certainty.VARIED, process_id)
 
 
     def _load_equivalents_from_names(self, cursor):
@@ -853,30 +883,40 @@ class ScriptDatabase:
         self._load_equivalents_from_names(cursor)
 
         # add derivations based on name
+        # may later name as *_from_name if necessary to distinguish from other automatic processes
         self._load_geez_derivations(cursor)
         self._load_sogdian_derivations(cursor)
         self._load_latin_derivations(cursor)
-        self._load_arabic_derivations_from_name(cursor, verify)
+        self._load_arabic_derivations(cursor, verify)
         self._load_cuneiform_derivations(cursor)
 
 
     def _load_independent_derivations(self, cursor):
+        process_id = self.create_process_type('Independent scripts - general', 'Assume that characters from independent scripts are independently derived')
+
         # Mende Kikakui is a bit of an exception here: Unicode Encoding Proposal suggests Vai-derived characters are a small minority
         # Not including Chinese here: ideally will eventually do so for Oracle bone. Similar for modern Yi vs classical Yi
         results = cursor.execute("SELECT code FROM script WHERE parent_code = ?", (self.UNKNOWN_SCRIPT,)).fetchall()
         independent_scripts = [x[0] for x in results if x[0] not in self._EXCLUDED_GEN_CODES]
 
         cursor.execute(f"""
-            INSERT INTO code_point_derivation (child_id, parent_id, certainty_type_id, notes)
+            INSERT INTO code_point_derivation (child_id, parent_id, certainty_type_id, process_type_id)
             SELECT id, ?, ?, ?
             FROM code_point 
             WHERE 
                 script_code IN {self._get_sql_in_str_list(independent_scripts)}
                 AND id NOT IN (SELECT child_id FROM code_point_derivation)""",
-               (ord(self.NO_PARENT_CHARACTER), Certainty.AUTOMATED_NON_GRAPHICAL.value, 'Independent script: Assume independent character'))
+               (ord(self.NO_PARENT_CHARACTER), Certainty.VARIED.value, process_id))
 
 
     def _load_from_unikemet(self, cursor, verify):
+        process_note = 'This process reads Hieroglyph references in text descriptions. This can result in derivation chains being inaccurately portrayed if only base'
+        process_note += ' Hieroglyphs are mentioned. Eg. a derivation chain for hieroglyph C such as (A->B; B->C) could render as (A->C; B->C) depending on the description'
+        process_sources = [SourceInfo('Ritner 1996'), SourceInfo('UCD', 'Unikemet.txt kEH_Desc property')]
+        process_id = self.create_process_type('Compound Egyptian Hieroglyphs',
+                                              'Hieroglyph ligatures composed from base hieroglyphs',
+                                              process_sources,
+                                              process_note)
         code_dict = dict()
         code_parents = dict()
         code_pattern = '(?:HJ )?[A-Z][A-Za-z]?[0-9]{1,3}[A-Z]?|US[0-9][0-9A-Z]{4}[A-Z]+'  # not entirely sure where the US format codes come from, rough format guess
@@ -924,14 +964,12 @@ class ScriptDatabase:
         for code in conflict_codes:
             del code_dict[code]
 
-        sources = [SourceInfo('Ritner 1996'),
-                   SourceInfo('UCD', 'Unikemet.txt kEH_Desc property')]
-
         orphaned_ids = set()
         for id in code_parents:
             for parent in code_parents[id]:
                 if parent in code_dict:
-                    self._load_single_derivation(cursor, id, code_dict[parent], DerivationType.DEFAULT, Certainty.AUTOMATED_CERTAIN, sources, None)
+                    self._load_single_derivation(cursor, id, code_dict[parent], DerivationType.DEFAULT, Certainty.LIKELY, process_id)
+                    # likely certainty due to that chain thing: We're at least correctly getting the base hieroglyph
                 else:
                     orphaned_ids.add(id)
                     if verify and parent not in conflict_codes: # no need to double error a code
@@ -941,6 +979,9 @@ class ScriptDatabase:
 
 
     def _load_from_unihan(self, cursor):
+        process_id = self.create_process_type('Simplified Chinese',
+                                              'Derivation of Simplified Chinese code points from their corresponding Traditional Chinese code points',
+                                              [SourceInfo('UCD', 'Unihan.zip/Unihan_Variants.txt kTraditionalVariant property')])
         with open(os.path.join(self._unicode_path, 'Unihan_Variants.txt'), 'r') as file:
             for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter = '\t'):
 
@@ -948,8 +989,8 @@ class ScriptDatabase:
                     for parent_code in row[2].strip().split(' '):
                         if row[0] != parent_code:  # it's possible for a simplified character to map to itself
                             self._load_single_derivation(cursor, int(row[0][2:], 16), int(parent_code[2:], 16),
-                                                         DerivationType.SIMPLIFICATION, Certainty.AUTOMATED_NON_GRAPHICAL, # maybe a graphical source? I'm not expert enough
-                                                         [SourceInfo('UCD', 'Unihan.zip/Unihan_Variants.txt kTraditionalVariant property')], None)
+                                                         DerivationType.SIMPLIFICATION, Certainty.VARIED, # tentative, I'm not expert enough to evaluate this
+                                                         process_id)
 
                 # This is a self-mirror property. if X zVariant Y then Y zVariant X.
                 # There's no real indication which should be canonical that I can find, so I'm arbitrarily making it the lowest code point
@@ -962,10 +1003,18 @@ class ScriptDatabase:
 
 
     def _load_derivations_from_equivalencies(self, cursor):
+        process_note = 'This is a technical derivation rather than a historical one. Rarely, it is possible that the derivation goes in the wrong historical direction.'
+        cursor.execute("UPDATE process_type SET notes = ? WHERE id = ?", (process_note, self.DECOMPOSITION_PROCESS_ID))
+        cursor.execute("INSERT INTO process_source (process_type_id, source_id, section) VALUES (?, ?, ?)",
+                       (self.DECOMPOSITION_PROCESS_ID, self._get_or_create_source_id(cursor, 'UCD'), 'UnicodeData.txt decomposition property'))
+        position_process_id = self.create_process_type("Equivalencies from name",
+                                                       "Derivations based on equivalencies inferred from Unicode name",
+                                                       [SourceInfo('UCD', 'UnicodeData.txt name property')])
+
         # add derivations from equivalent sequences, assuming the equivalent characters are the base building blocks (the parent)
         # Formatting/control/space characters are not eligible (they aren't graphical, right? ... right???)
         cursor.execute(f"""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id)
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, process_type_id)
             SELECT
                 cp1.id,
                 cp2.id,
@@ -980,8 +1029,11 @@ class ScriptDatabase:
                          END
                     ELSE {DerivationType.DEFAULT.value}
                 END,
-                CASE WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN {Certainty.AUTOMATED_NON_GRAPHICAL.value}
-                     ELSE {Certainty.AUTOMATED_TECHNICAL.value}
+                CASE WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN {Certainty.VARIED.value}
+                     ELSE {Certainty.NEAR_CERTAIN.value}
+                END,
+                CASE WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN {position_process_id}
+                     ELSE {self.DECOMPOSITION_PROCESS_ID}
                 END
             FROM
                 sequence_item equiv
@@ -999,70 +1051,34 @@ class ScriptDatabase:
         # minimal enough that ON CONFLICT DO NOTHING is probably the better query option than advance filtering
         # About 10 conflicts are characters simultaneously being Z-variants and trad/simp derivations
 
-        # same insert but for source table
-        # TODO - this one will actually run into a bit of a bug with the conflict - because that conflict wont exist on this table it will add a spurious source
-        # (check if SQLITE allows executing a delete on a different table on the ON CONFLICT clause - seems unlikely)
-        cursor.execute(f"""
-            INSERT INTO derivation_source (child_id, parent_id, source_id, section)
-            SELECT
-                cp1.id,
-                cp2.id,
-                {self._get_or_create_source_id(cursor, 'UCD')},
-                CASE WHEN seq.type_id = {SequenceType.Z_VARIANT.value} THEN 'Unihan.zip/Unihan_Variants.txt zVariant property'
-                     WHEN seq.type_id = {SequenceType.HIEROGLYPHIC_ALTERNATIVE.value} THEN 'Unikemet.txt kEH_AltSeq property'
-                     WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN 'UnicodeData.txt name property'
-                     ELSE 'UnicodeData.txt decomposition property'
-                END
-            FROM
-                sequence_item equiv
-                INNER JOIN sequence seq ON seq.id = equiv.sequence_id
-                INNER JOIN code_point cp1 ON cp1.equivalent_sequence_id = seq.id
-                INNER JOIN code_point cp2 ON cp2.id = equiv.item_id
-            WHERE
-                seq.type_id >= 100
-                AND cp1.is_independently_graphical
-                AND cp2.is_independently_graphical
-            ON CONFLICT DO NOTHING""")
-
         # manual equivalency
-        # TODO - add verificaiton for not overriding decomposition
+        # TODO - add verification for not overriding decomposition and maybe other manuals overriding this
         with open(os.path.join(self._resource_path, 'position_distinction.csv')) as csvfile:
             for row in csv.DictReader(csvfile):
                 self._load_equivalent_unit_sequence(cursor, SequenceType.POSITION_DISTINCTION, ord(row["Equiv"]), ord(row["Char"]))
-                self._load_single_derivation(cursor, ord(row["Char"]), ord(row["Equiv"]), DerivationType.TRANSLATION,
-                                             Certainty.STRONG_ASSUMPTION, None, "Based in part on Unicode name")
+                self._load_single_manual_derivation(cursor, ord(row["Char"]), ord(row["Equiv"]),
+                                                    DerivationType.TRANSLATION, Certainty.STRONG_ASSUMPTION, None, "Based in part on Unicode name")
 
 
     def _load_derivations_from_case_data(self, cursor, drop_case_columns=False):
+        process_id = self.create_process_type('Case',
+                                              'General assumption that the lowercase form derives from the uppercase',
+                                              [SourceInfo('UCD', 'UnicodeData.txt simple upper/lower case mapping property')])
         # add derivations from case mapping, assuming lowercase to be derived from uppercase
         cursor.execute("""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id)
-            SELECT id, simple_uppercase_mapping_id, ?, ?
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, process_type_id)
+            SELECT id, simple_uppercase_mapping_id, ?, ?, ?
             FROM code_point
             WHERE simple_uppercase_mapping_id IS NOT NULL""",
-               (DerivationType.DEFAULT.value, Certainty.AUTOMATED_NON_GRAPHICAL.value))
-        # same insert for source
-        cursor.execute("""
-            INSERT INTO derivation_source (child_id, parent_id, source_id, section)
-            SELECT id, simple_uppercase_mapping_id, ?, ?
-            FROM code_point
-            WHERE simple_uppercase_mapping_id IS NOT NULL""",
-               (self._get_or_create_source_id(cursor, 'UCD'), 'UnicodeData.txt simple uppercase mapping property'))
+               (DerivationType.DEFAULT.value, Certainty.STRONG_ASSUMPTION.value, process_id))
 
         # casing isn't 100% 1:1 so need to do mappings in both directions
         cursor.execute("""
-            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id)
-            SELECT simple_lowercase_mapping_id, id, ?, ?
+            INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, process_type_id)
+            SELECT simple_lowercase_mapping_id, id, ?, ?, ?
             FROM code_point cp1
             WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
-               (DerivationType.DEFAULT.value, Certainty.AUTOMATED_NON_GRAPHICAL.value))
-        # same insert for source
-        cursor.execute("""
-            INSERT INTO derivation_source (child_id, parent_id, source_id, section)
-            SELECT simple_lowercase_mapping_id, id, ?, ?
-            FROM code_point cp1
-            WHERE id <> (SELECT simple_uppercase_mapping_id FROM code_point cp2 WHERE cp2.id = cp1.simple_lowercase_mapping_id)""",
-               (self._get_or_create_source_id(cursor, 'UCD'), 'UnicodeData.txt simple lowercase mapping property'))
+               (DerivationType.DEFAULT.value, Certainty.STRONG_ASSUMPTION.value, process_id))
 
         if drop_case_columns:
             cursor.execute("DROP INDEX idx_fk_cp_simple_uppercase_mapping")
@@ -1133,9 +1149,8 @@ class ScriptDatabase:
                     derivation_type = int(resolve_default(defaults, script, row, 'Derivation Type', last_resort=str(DerivationType.DEFAULT.value)))
 
                     # File-specified data overrides the automatically generated data
-                    cursor.execute(
-                        "DELETE FROM code_point_derivation WHERE child_id = ? AND certainty_type_id >= ?",
-                        (ord(child), Certainty.AUTOMATED_CERTAIN.value))
+                    cursor.execute("DELETE FROM code_point_derivation WHERE child_id = ? AND process_type_id <> ?", (ord(child), self.MANUAL_PROCESS_ID))
+                    # TODO: also reverse deletion for decomposition
 
                     # ensure that child character is always the expected script
                     if verify_script:
@@ -1154,8 +1169,8 @@ class ScriptDatabase:
                                               (ord(child), ord(parent))).fetchall():
                                 raise ValueError("Attempted to add a 2-cycle with " + child + " and " + parent)
 
-                        self._load_single_derivation(cursor, ord(child), ord(parent), DerivationType(derivation_type),
-                                                     Certainty(certainty), sources, notes, multiplicity)
+                        self._load_single_manual_derivation(cursor, ord(child), ord(parent), DerivationType(derivation_type),
+                                                            Certainty(certainty), sources, notes, multiplicity)
 
         # stuff that's confusing or might break csv format (commas, quotes, slashes)
         awkward_data = [
@@ -1176,30 +1191,35 @@ class ScriptDatabase:
 
         for row in awkward_data:
             sources = [self._parse_raw_source(cursor, s) for s in row[4].split('/')]
-            self._load_single_derivation(cursor, row[0], row[1], row[2], row[3], sources, row[5], row[6])
+            self._load_single_manual_derivation(cursor, row[0], row[1], row[2], row[3], sources, row[5], row[6])
 
 
     def _load_cuneiform_derivations(self, cursor):
+        process_id = self.create_process_type('Cuneiform Unicode name',
+                                              'Derivation of Cuneiform code points based on Unicode name',
+                                              [SourceInfo('UCD', 'UnicodeData.txt name property'),
+                                               SourceInfo('UTR 56'),
+                                               SourceInfo('Cooper 1996')],
+                                              'For atomic signs, Cuneiform has no known parent script (Proto-Cuneiform not in DB or Unicode yet)')
+        # TODO - this one is more notes on certain derivations than notes on the process
+
         cursor.execute("""
-            INSERT INTO code_point_derivation (child_id, parent_id, certainty_type_id, notes)
+            INSERT INTO code_point_derivation (child_id, parent_id, certainty_type_id, process_type_id)
             SELECT id, ?, ?, ? FROM code_point
             WHERE script_code = ? AND name LIKE ? AND word_count = ?""",
-            (ord(self.NO_PARENT_CHARACTER),
-             Certainty.AUTOMATED_UNCERTAIN.value,
-             'Atomic sign, no known parent script (Proto-Cuneiform not in DB or Unicode yet)',
-             'Xsux', 'CUNEIFORM SIGN%', 3))
-        source_keys = { 'UTR 56', 'Cooper 1996' }
-        for key in source_keys:
-            source_id = cursor.execute("SELECT id FROM source WHERE citation_key = ?", (key, )).fetchone()[0]
-            cursor.execute("""
-                INSERT INTO derivation_source (child_id, parent_id, source_id)
-                SELECT id, ?, ? FROM code_point
-                WHERE script_code = ? AND name LIKE ? AND word_count = ?""",
-                   (ord(self.NO_PARENT_CHARACTER), source_id, 'Xsux', 'CUNEIFORM SIGN%', 3))
-        # TODO coumpound cuneiform signs - a bit complicated, further research required
+            (ord(self.NO_PARENT_CHARACTER), Certainty.UNCERTAIN.value, process_id, 'Xsux', 'CUNEIFORM SIGN%', 3))
 
 
     def _load_derivations(self, cursor, indic_supp_data, indic_letter_data, semitic_letter_data, load_options):
+        supp_process_id = self.create_process_type('Supplementary Indic',
+                                                   'Indic derivations inferred by Unicode name and known script ancestors',
+                                                   [SourceInfo("UCD", "UnicodeData.txt name property")])
+        indic_process_id = self.create_process_type('Indic letters',
+                                                    'Indic derivations from cognate letters and known script ancestors',
+                                                    [SourceInfo("Wikipedia: Indic letter pages")])
+        semitic_process_id = self.create_process_type('Semitic letters',
+                                                      'Semitic derivations from cognate letters and known script ancestors',
+                                                      [SourceInfo("Wikipedia: Semitic letter pages")])
         self._load_data_from_names(cursor, load_options.verify_data_sources)
         # we want to drop this as soon as possible so that the freed space can be used
         if load_options.drop_code_point_name_index:
@@ -1217,12 +1237,9 @@ class ScriptDatabase:
         for id in orphaned_ids:
             cursor.execute("DELETE FROM code_point_derivation WHERE child_id = ? AND parent_id = ?", (id, ord(self.NO_PARENT_CHARACTER)))
 
-        supplement_source = [SourceInfo("UCD", "UnicodeData.txt name property")]
-        self._load_letter_derivation_data(cursor, indic_supp_data, self._INDIC_SUPPLEMENT, supplement_source, load_options.verify_data_sources)
-        indic_source = [SourceInfo("Wikipedia: Indic letter pages")]
-        self._load_letter_derivation_data(cursor, indic_letter_data, self._INDIC_ORDER, indic_source, load_options.verify_data_sources)
-        semitic_source = [SourceInfo("Wikipedia: Semitic letter pages")]
-        self._load_letter_derivation_data(cursor, semitic_letter_data, self._SEMITIC_ORDER, semitic_source, load_options.verify_data_sources)
+        self._load_letter_derivation_data(cursor, indic_supp_data, self._INDIC_SUPPLEMENT, supp_process_id, load_options.verify_data_sources)
+        self._load_letter_derivation_data(cursor, indic_letter_data, self._INDIC_ORDER, indic_process_id, load_options.verify_data_sources)
+        self._load_letter_derivation_data(cursor, semitic_letter_data, self._SEMITIC_ORDER, semitic_process_id, load_options.verify_data_sources)
 
         # Currently, this is a field used for internal generation only, don't want it to be taken literally
         cursor.execute("DROP INDEX idx_fk_parent_script")
@@ -1578,7 +1595,7 @@ class ScriptDatabase:
                     SELECT macrolanguage_code FROM alphabet a INNER JOIN language lsub ON lsub.code = a.lang_code WHERE macrolanguage_code IS NOT NULL)""")
 
 
-    def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, sources, verify):
+    def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, process_type_id, verify):
         for script_code in letter_dict:
             if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
                 parent_code = cursor.execute("SELECT parent_code FROM script WHERE code = ?", (script_code,)).fetchone()[0]
@@ -1588,8 +1605,7 @@ class ScriptDatabase:
                         if len(parent_letters) == 1:
                             letters = letter_dict[script_code][letter_class]
                             if len(letters) == 1:  # previously allowed multiple, but this is too inaccurate
-                                self._load_single_derivation(cursor, ord(letters[0]), ord(parent_letters[0]), DerivationType.DEFAULT,
-                                                             Certainty.AUTOMATED_NON_GRAPHICAL, sources, None)
+                                self._load_single_derivation(cursor, ord(letters[0]), ord(parent_letters[0]), DerivationType.DEFAULT, Certainty.VARIED, process_type_id)
 
 
     def _verify_script_coverage(self, cursor):
@@ -2308,11 +2324,12 @@ class Certainty(Enum):
     UNCERTAIN = 3
     STRONG_ASSUMPTION = 4
     WEAK_ASSUMPTION = 5
-    AUTOMATED_CERTAIN = 6
-    AUTOMATED_LIKELY = 7
-    AUTOMATED_UNCERTAIN = 8
-    AUTOMATED_TECHNICAL = 9
-    AUTOMATED_NON_GRAPHICAL = 10
+    VARIED = 6
+    #AUTOMATED_CERTAIN = 6
+    #AUTOMATED_LIKELY = 7
+    #AUTOMATED_UNCERTAIN = 8
+    #AUTOMATED_TECHNICAL = 9
+    #VARIED = 10
 
 
 # at the moment I'm isolating ranges of things I think could be expanded on.

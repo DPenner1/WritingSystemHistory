@@ -9,7 +9,7 @@ FROM (
 	SELECT
 		COUNT(DISTINCT cp.id) AS letters,
 		COUNT(DISTINCT deriv.child_id) AS derivations,
-		COUNT(DISTINCT CASE WHEN deriv.certainty_type_id >= 6 THEN NULL ELSE deriv.child_id END) AS manual_derivations
+		COUNT(DISTINCT CASE WHEN deriv.process_type_id <> 1 THEN NULL ELSE deriv.child_id END) AS manual_derivations
 	FROM code_point cp LEFT JOIN code_point_derivation deriv ON cp.id = deriv.child_id
 	WHERE cp.equivalent_sequence_id IS NULL AND cp.is_alphabetic = 1
 )
@@ -25,7 +25,7 @@ FROM (
 	SELECT
 		COUNT(DISTINCT cp.id) AS letters,
 		COUNT(DISTINCT deriv.child_id) AS derivations,
-		COUNT(DISTINCT CASE WHEN deriv.certainty_type_id >= 6 THEN NULL ELSE deriv.child_id END) AS manual_derivations
+		COUNT(DISTINCT CASE WHEN deriv.process_type_id <> 1 THEN NULL ELSE deriv.child_id END) AS manual_derivations
 	FROM code_point cp LEFT JOIN code_point_derivation deriv ON cp.id = deriv.child_id
 	WHERE script_code <> 'Hani' AND cp.equivalent_sequence_id IS NULL AND cp.is_alphabetic = 1
 )
@@ -41,7 +41,7 @@ FROM (
 	SELECT
 		COUNT(DISTINCT cp.id) AS letters,
 		COUNT(DISTINCT deriv.child_id) AS derivations,
-		COUNT(DISTINCT CASE WHEN deriv.certainty_type_id >= 6 THEN NULL ELSE deriv.child_id END) AS manual_derivations
+		COUNT(DISTINCT CASE WHEN deriv.process_type_id <> 1 THEN NULL ELSE deriv.child_id END) AS manual_derivations
 	FROM code_point cp LEFT JOIN code_point_derivation deriv ON cp.id = deriv.child_id
 	WHERE script_code = 'Hani' AND cp.equivalent_sequence_id IS NULL AND cp.is_alphabetic = 1
 )

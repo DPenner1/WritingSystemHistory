@@ -18,6 +18,13 @@ CREATE TABLE IF NOT EXISTS script_type (
     description TEXT
 ) STRICT;
 
+CREATE TABLE IF NOT EXISTS process_type (
+    id INTEGER PRIMARY KEY,
+    name TEXT UNIQUE,
+    description TEXT,
+    notes TEXT
+) STRICT;
+
 CREATE TABLE IF NOT EXISTS sequence (
     id INTEGER PRIMARY KEY,
     type_id INTEGER NOT NULL REFERENCES sequence_type(id)
@@ -42,6 +49,14 @@ CREATE TABLE IF NOT EXISTS source (
     url TEXT
 ) STRICT;
 CREATE INDEX IF NOT EXISTS idx_fk_parent_source ON source(parent_id) WHERE parent_id IS NOT NULL;
+
+CREATE TABLE IF NOT EXISTS process_source (
+    process_type_id INTEGER REFERENCES process_type(id),
+    source_id INTEGER REFERENCES source(id),
+    section TEXT,
+    access_date INTEGER,
+    PRIMARY KEY(process_type_id, source_id)
+) STRICT;
 
 CREATE TABLE IF NOT EXISTS script (
     code TEXT PRIMARY KEY,
@@ -152,12 +167,14 @@ CREATE TABLE IF NOT EXISTS code_point_derivation (
     parent_id INTEGER REFERENCES code_point (id),
     derivation_type_id INTEGER NOT NULL DEFAULT 1 REFERENCES derivation_type (id),
     certainty_type_id INTEGER NOT NULL DEFAULT -1 REFERENCES certainty_type (id),
-    multiplicity INTEGER DEFAULT 1,
+    process_type_id INTEGER NOT NULL REFERENCES process_type (id),
+    multiplicity INTEGER DEFAULT 1 NOT NULL,
     notes TEXT,
     PRIMARY KEY (child_id, parent_id)
 ) STRICT;
--- This is a table likely to be looked up in either direction child<->parent
-CREATE INDEX IF NOT EXISTS idx_fk_cpd_parent ON code_point_derivation(parent_id);
+CREATE INDEX IF NOT EXISTS idx_fk_cpd_parent ON code_point_derivation(parent_id); -- This is a table likely to be looked up in either direction child<->parent
+CREATE INDEX IF NOT EXISTS idx_fk_cpd_certainty ON code_point_derivation(certainty_type_id);
+CREATE INDEX IF NOT EXISTS idx_fk_cpd_process ON code_point_derivation(process_type_id);
 
 CREATE TABLE IF NOT EXISTS derivation_source (
     child_id INTEGER,
