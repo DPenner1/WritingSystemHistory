@@ -1,4 +1,4 @@
--- Note: This schema favours use of script code over the id - this is simply more readable and more in line with the purposes of this project
+-- Note: This schema favours use of script and language codes over the integer ids - this is simply more readable and more in line with the purposes of this project
 
 CREATE TABLE IF NOT EXISTS sequence_type (
     id INTEGER PRIMARY KEY,
@@ -87,17 +87,25 @@ CREATE INDEX IF NOT EXISTS idx_fk_lang_default_script ON language(default_script
 CREATE TABLE IF NOT EXISTS alphabet (
     sequence_id INTEGER REFERENCES sequence(id),
     lang_code TEXT REFERENCES language(code),
-    type_id INTEGER REFERENCES alphabet_type(id),
     -- These next two can't be NULL - use an applicable special code if needed
     script_code TEXT NOT NULL REFERENCES script(code),
     letter_case TEXT NOT NULL,
-    source_id INTEGER REFERENCES source(id),
-    source_section TEXT,
-    source_access_date INTEGER,
-    PRIMARY KEY (sequence_id, lang_code, type_id)
+    notes TEXT,
+    PRIMARY KEY (sequence_id, lang_code)
 ) STRICT;
-CREATE UNIQUE INDEX IF NOT EXISTS idxu_alpha_determiners ON alphabet(script_code, letter_case, type_id, lang_code);
-CREATE INDEX IF NOT EXISTS idx_fk_alpha_source ON alphabet(source_id);
+-- CREATE UNIQUE INDEX IF NOT EXISTS idxu_alpha_determiners ON alphabet(script_code, letter_case, type_id, lang_code);
+-- CREATE INDEX IF NOT EXISTS idx_fk_alpha_source ON alphabet(source_id);
+
+CREATE TABLE IF NOT EXISTS alphabet_source (
+    sequence_id INTEGER,
+    lang_code TEXT,
+    alphabet_type_id INTEGER REFERENCES alphabet_type(id),
+    source_id INTEGER REFERENCES source(id),
+    section TEXT,
+    access_date INTEGER,
+    FOREIGN KEY (sequence_id, lang_code) REFERENCES alphabet(sequence_id, lang_code) ON DELETE CASCADE,
+    PRIMARY KEY (sequence_id, lang_code, alphabet_type_id)
+) STRICT;
 
 CREATE TABLE IF NOT EXISTS code_point (
     id INTEGER PRIMARY KEY REFERENCES sequence(id),
@@ -160,7 +168,7 @@ CREATE TABLE IF NOT EXISTS certainty_type (
     description TEXT
 ) STRICT;
 
--- The established derivations should be a multi-DAG (directed acyclic graph, multiple edges permitted)
+-- The established derivations should be a DAG (directed acyclic graph, multiple edges implied via multiplicity)
 -- Code point != character/grapheme, but close enough for the purposes of this project
 CREATE TABLE IF NOT EXISTS code_point_derivation (
     child_id INTEGER REFERENCES code_point (id),
@@ -176,7 +184,7 @@ CREATE INDEX IF NOT EXISTS idx_fk_cpd_parent ON code_point_derivation(parent_id)
 CREATE INDEX IF NOT EXISTS idx_fk_cpd_certainty ON code_point_derivation(certainty_type_id);
 CREATE INDEX IF NOT EXISTS idx_fk_cpd_process ON code_point_derivation(process_type_id);
 
-CREATE TABLE IF NOT EXISTS derivation_source (
+CREATE TABLE IF NOT EXISTS manual_derivation_source (
     child_id INTEGER,
     parent_id INTEGER,
     source_id INTEGER REFERENCES source (id),

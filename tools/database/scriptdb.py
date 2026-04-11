@@ -411,6 +411,7 @@ class ScriptDatabase:
     def _load_code_point_data_basics(self, cursor):
         # Reset since sequence ids not stable -> TODO in principle we could be smarter about this
         cursor.execute("DELETE FROM sequence_item")
+        cursor.execute("DELETE FROM alphabet_source")
         cursor.execute("DELETE FROM alphabet")
         cursor.execute("DELETE FROM sequence WHERE id > ?", (ScriptDatabase.UNICODE_MAX,))
 
@@ -682,10 +683,7 @@ class ScriptDatabase:
     def create_process_type(self, name, description, sources=None, notes=None):
         cursor = self._cxn.cursor()
         id = cursor.execute("INSERT INTO process_type (name, description, notes) VALUES (?,?,?) RETURNING id", (name, description, notes)).fetchone()[0]
-        if sources:
-            for source in sources:
-                cursor.execute("INSERT INTO process_source (process_type_id, source_id, section, access_date) VALUES (?,?,?,?)",
-                               (id, self._get_or_create_source_id(cursor, source.citation_key), source.section, source.access_date))
+        self._load_table_sources(cursor, sources, 'process', ['process_type_id'], [id])
         cursor.close()
         return id
 
@@ -695,17 +693,26 @@ class ScriptDatabase:
         cursor.execute("INSERT INTO sequence_item (sequence_id, item_id, order_num) VALUES (?, ?, ?)", (seq_id, principal_id, 1))
         cursor.execute("UPDATE code_point SET equivalent_sequence_id = ? WHERE id = ?", (seq_id, equivalent_id))
 
+    # key_names & key_values are parallel lists
+    def _load_table_sources(self, cursor, sources, table_name_prefix, key_names, key_values):
+        if len(key_names) != len(key_values):
+            raise ValueError("Bad programmer")
+        if sources:
+            for source in sources:
+                parameters = [self._get_or_create_source_id(cursor, source.citation_key), source.section, source.access_date]
+                parameters.extend(key_values)
+                cursor.execute(f"INSERT INTO {table_name_prefix}_source (source_id, section, access_date, {','.join(key_names)}) VALUES (?,?,?{',?'*len(key_values)})",
+                               parameters)
+
 
     def _load_single_manual_derivation(self, cursor, child_id, parent_id, derivation_type, certainty_type, sources, notes, multiplicity=1):
         cursor.execute("""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, process_type_id, notes, multiplicity) 
             VALUES (?,?,?,?,?,?,?)""", (child_id, parent_id, derivation_type.value, certainty_type.value, self.MANUAL_PROCESS_ID, notes, multiplicity))
-        if sources:
-            for source in sources:
-                cursor.execute("INSERT INTO derivation_source (child_id, parent_id, source_id, section, access_date) VALUES (?,?,?,?,?)",
-                               (child_id, parent_id, self._get_or_create_source_id(cursor, source.citation_key), source.section, source.access_date))
+        self._load_table_sources(cursor, sources, 'manual_derivation', ['child_id', 'parent_id'], [child_id, parent_id])
 
 
+    # TODO - undecided if processes will ever specify separate notes to separate derivations
     def _load_single_derivation(self, cursor, child_id, parent_id, derivation_type, certainty_type, process_type_id, multiplicity=1):
         cursor.execute("""
             INSERT INTO code_point_derivation (child_id, parent_id, derivation_type_id, certainty_type_id, process_type_id, multiplicity) 
@@ -1149,6 +1156,7 @@ class ScriptDatabase:
                     derivation_type = int(resolve_default(defaults, script, row, 'Derivation Type', last_resort=str(DerivationType.DEFAULT.value)))
 
                     # File-specified data overrides the automatically generated data
+                    # TODO - with the manual split, it should be easier to first delete from manual_derivation_source without relying on CASCADE
                     cursor.execute("DELETE FROM code_point_derivation WHERE child_id = ? AND process_type_id <> ?", (ord(child), self.MANUAL_PROCESS_ID))
                     # TODO: also reverse deletion for decomposition
 
@@ -1836,21 +1844,21 @@ class ScriptDatabase:
         return seq_id
 
 
-    def _insert_alphabet(self, cursor, s_id, lang, script, lcase, alph_type, source):  # TODO variable names
-        source_id = self._get_or_create_source_id(cursor, source.citation_key) if source.citation_key else None
-        cursor.execute("INSERT INTO alphabet (sequence_id, lang_code, script_code, letter_case, type_id, source_id) VALUES (?,?,?,?,?,?)",
-                       (s_id, lang, script, lcase, alph_type.value, source_id))
+    def _insert_alphabet(self, cursor, sequence_id, lang_code, script_code, letter_case, alphabet_type, source, notes=None):
+        # TODO - ON CONFLICT DO NOTHING is a legacy of the hack where PK was (sequence_id, lang_code, type_id) on main table
+        cursor.execute("INSERT INTO alphabet (sequence_id, lang_code, script_code, letter_case, notes) VALUES (?,?,?,?,?) ON CONFLICT DO NOTHING",
+                       (sequence_id, lang_code, script_code, letter_case, notes))
+        self._load_table_sources(cursor, [source], 'alphabet', ['sequence_id', 'lang_code', 'alphabet_type_id'], [sequence_id, lang_code, alphabet_type.value])
 
     # is_index_load: quite hacky as we're really reaching into the calling context to make decisions here,
     #   but I've not otherwise figured out how to incorporate it while still maintaining a single reusable _load_alphabet method
     # Basically if its index, we do two things - override case for the return value and load the FULL alphabet if BASIC (index) and EXTENDED (main) match
-    def _load_alphabet(self, cursor, lang_code, parse_data, alphabet_type, citation_key, load_case_pair=False, is_index_load=False):
+    def _load_alphabet(self, cursor, lang_code, parse_data, alphabet_type, citation_key, load_case_pair=False, is_index_load=False, notes=None):
         def try_index_load(s_id, lang, script, lcase):
-            # The matching query is over-specified, but this is an attempt at allowing the optimizer more options
             matching_extended = cursor.execute("""
-                SELECT * FROM alphabet 
-                WHERE sequence_id = ? AND lang_code = ? AND script_code = ? AND letter_case = ? AND type_id = ?""",
-                    (s_id, lang, script, lcase, AlphabetType.EXTENDED.value))
+                SELECT * FROM alphabet_source
+                WHERE sequence_id = ? AND lang_code = ? AND alphabet_type_id = ?""",
+                    (s_id, lang, AlphabetType.EXTENDED.value))
             if matching_extended.fetchall():  # index (BASIC) and Extended are the same, fill-in the middle FULL
                 self._insert_alphabet(cursor, s_id, lang_code, script, lcase, AlphabetType.FULL, SourceInfo('CLDR', 'index exemplar'))
 
@@ -1892,6 +1900,7 @@ class ScriptDatabase:
                 parse_data.letter_case = row['Case'][0:2]
                 lang_codes = row['Language']
                 alphabet_types = row['Alphabet Type'] if row['Alphabet Type'] else str(AlphabetType.BASIC.value)
+                alph_notes = row['Notes'] if row['Notes'] else None
 
                 self._parse_cldr_exemplar_set(cursor, row['Alphabet'], parse_data, verify)
                 if lang_codes:
@@ -1902,7 +1911,8 @@ class ScriptDatabase:
                                                               parse_data,
                                                               AlphabetType(int(alphabet_type)),
                                                               row['Source'],
-                                                              load_case_pair = '!' not in row['Case'])
+                                                              load_case_pair = '!' not in row['Case'],
+                                                              notes=alph_notes)
                 else:  # script-only exemplar
                     exemplar_id = self._check_load_letter_sequence(cursor, parse_data.letters)
 
@@ -1917,14 +1927,17 @@ class ScriptDatabase:
     def _load_cldr_alphabet_data(self, cursor, verify):
         def get_script_type_and_needed_alphabets(lang_code, script_code):
             # note this glosses over case: manually specified should always ensure both cases will be handled!
+            def has_alphabet_type(lang, script, type): # avoid shadowing headache
+                return len(cursor.execute("""
+                    SELECT * FROM alphabet a INNER JOIN alphabet_source asrc ON a.sequence_id = asrc.sequence_id AND a.lang_code = asrc.lang_code
+                    WHERE a.lang_code = ? AND a.script_code = ? AND asrc.alphabet_type_id = ?""",
+                               (lang, script, type.value)).fetchall()) > 0
+
             script_type = cursor.execute("SELECT type_id FROM script WHERE code = ?", (script_code,)).fetchone()[0]
             return (
                 script_type,
-                len(cursor.execute("SELECT * FROM alphabet WHERE lang_code = ? AND script_code = ? AND type_id = ?",
-                               (lang_code, script_code, AlphabetType.EXTENDED.value)).fetchall()) == 0,
-                script_type in (ScriptType.ALPHABET.value, ScriptType.ABJAD.value) and len(
-                    cursor.execute("SELECT * FROM alphabet WHERE lang_code = ? AND script_code = ? AND type_id = ?",
-                        (lang_code, script_code, AlphabetType.BASIC.value)).fetchall()) == 0
+                not has_alphabet_type(lang_code, script_code, AlphabetType.EXTENDED),
+                script_type in (ScriptType.ALPHABET.value, ScriptType.ABJAD.value) and not has_alphabet_type(lang_code, script_code, AlphabetType.BASIC)
             )
 
         # languages which use only one case of a cased script.
@@ -2168,12 +2181,15 @@ class ScriptDatabase:
         if not sequence_id:
             seq = cursor.execute("""
                 SELECT a.sequence_id 
-                FROM script s INNER JOIN alphabet a ON a.script_code = s.code
-                WHERE s.code = ? AND a.type_id >= ?
+                FROM 
+                    script s 
+                    INNER JOIN alphabet a ON a.script_code = s.code
+                    INNER JOIN alphabet_source asrc ON asrc.sequence_id = a.sequence_id AND a.lang_code = asrc.lang_code
+                WHERE s.code = ? AND asrc.alphabet_type_id >= ?
                 ORDER BY 
-                    CASE WHEN s.main_lang_code = a.lang_code THEN 0 ELSE 1 END, -- prefer main language
-                    a.type_id,          -- prefer basic over full over extended
-                    a.letter_case DESC  -- prefer upper case
+                    asrc.alphabet_type_id,   -- prefer basic over full over extended
+                    CASE WHEN s.main_lang_code = a.lang_code THEN 0 ELSE 1 END, -- prefer main language                  
+                    a.letter_case DESC       -- prefer upper case
                 LIMIT 1""", (script_code, AlphabetType.BASIC.value)).fetchall()
             if seq:
                 sequence_id = seq[0][0]
@@ -2258,7 +2274,7 @@ class ScriptDatabase:
         if output: lap_time, lap_mb = output_info("Done basics: loading lookups, languages, scripts and sources.", start_time, lap_time, lap_mb)
 
         # updates generally expected on these table, just clear (and before loading code points so cleared space can be used)
-        cur.execute("DELETE FROM derivation_source")
+        cur.execute("DELETE FROM manual_derivation_source")
         cur.execute("DELETE FROM code_point_derivation")
         self._load_code_point_data(cur)
         self._cxn.commit()
