@@ -39,9 +39,9 @@ Diak,342,5,Dhives Akuru,Dives_Akuru,13,0,Gran,dv
 Dogr,328,5,Dogri,Dogra,11,0,Takr
 Dsrt,250,4,Deseret,Deseret,3,1,Latn,en
 Dupl,755,4,Duployan Shorthand,Duployan,7,0,Zzzz
-Egyd,70,8,Demotic,,,
-Egyh,60,8,Hieratic,,5,2
-Egyp,50,8,Egyptian Hieroglyphs,Egyptian_Hieroglyphs,5,2,Zzzz
+Egyd,70,8,Demotic,,,,Egyh,egy
+Egyh,60,8,Hieratic,,5,2,Egyp,egy
+Egyp,50,8,Egyptian Hieroglyphs,Egyptian_Hieroglyphs,5,2,Zzzz,egy
 Elba,226,4,Elbasan,Elbasan,7,0,Zzzz
 Elym,128,6,Elymaic,Elymaic,12,0,Armi
 Ethi,430,5,Ge'ez,Ethiopic,3,0,Sarb,am
