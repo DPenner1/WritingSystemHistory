@@ -610,12 +610,12 @@ class ScriptDatabase:
             # TODO - Previous assumption field bifurcated into two, with id conservatively retained for Weak. Review manual files to bump some to strong.
             (Certainty.STRONG_ASSUMPTION.value, "Strong Assumption", "Derivation assumed, generally by strong glyph and sound value similarity"),
             (Certainty.WEAK_ASSUMPTION.value, "Weak Assumption", "Derivation assumed, usually by sound value and/or glyph similarity"),
-            (Certainty.VARIED.value, "Variable Certainty", "Generally an automated derivation where individual certainty cannot be automatically determined"),
+            (Certainty.VARIED.value, "Variable", "Generally an automated derivation where individual certainty cannot be automatically determined"),
         ]
         load_lookup(cursor, 'certainty_type', data)
 
         data = [
-            (SequenceType.BASE.value, 'Base', '"Sequence" representing a single code point. Does not contain items.'),
+            (SequenceType.BASE.value, 'Base', 'A "Sequence" representing a single code point. Does not contain items.'),
             (SequenceType.GENERAL.value, 'General', 'A general sequence'),
             (SequenceType.LETTER.value, 'Letter', 'A sequence of code points representing a letter'),
             (SequenceType.SIMPLE_ALPHABET.value, 'Simple Alphabet', 'A sequence consisting only of letters and code points'),
@@ -732,7 +732,7 @@ class ScriptDatabase:
 
         def try_arabic_text_load_deriv(cursor, child_id, search_name, text):
             if " " + search_name in text:
-                self._load_single_derivation(cursor, child_id, arabic_map[search_name], DerivationType.DEFAULT, Certainty.VARIED, process_id)
+                self._load_single_derivation(cursor, child_id, arabic_map[search_name], DerivationType.DEFAULT, Certainty.STRONG_ASSUMPTION, process_id)
                 return True
             return False
 
@@ -746,7 +746,7 @@ class ScriptDatabase:
             match = arabic_pattern.match(arabic_letter[1])
             if match:
                 child_id = int(arabic_letter[0])
-                self._load_single_derivation(cursor, child_id, arabic_map[match.group(1)], DerivationType.DEFAULT, Certainty.VARIED, process_id)
+                self._load_single_derivation(cursor, child_id, arabic_map[match.group(1)], DerivationType.DEFAULT, Certainty.STRONG_ASSUMPTION, process_id)
 
                 with_text = match.group(2)
                 found_other = False
@@ -754,10 +754,10 @@ class ScriptDatabase:
                     found_other = True
                     if "WAVY" in with_text:
                         # This ID is for wavy hamza below - there doesn't appear to be an above or standalone
-                        self._load_single_derivation(cursor, child_id, 1631, DerivationType.DEFAULT, Certainty.VARIED, process_id)
+                        self._load_single_derivation(cursor, child_id, 1631, DerivationType.DEFAULT, Certainty.STRONG_ASSUMPTION, process_id)
                     else:
                         hamza_id = 1621 if "HAMZA BELOW" in with_text else 1620
-                        self._load_single_derivation(cursor, child_id, hamza_id, DerivationType.DEFAULT, Certainty.VARIED, process_id)
+                        self._load_single_derivation(cursor, child_id, hamza_id, DerivationType.DEFAULT, Certainty.STRONG_ASSUMPTION, process_id)
 
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "KASRA", with_text) or found_other
                 found_other = try_arabic_text_load_deriv(cursor, child_id, "FATHA", with_text) or found_other
@@ -787,7 +787,8 @@ class ScriptDatabase:
     def _load_geez_derivations(self, cursor):
         process_id = self.create_process_type("Ge'ez Unicode name",
                                               "Derivation of Ge'ez code points by identifying the inherent vowel parent based on Unicode name",
-                                              [SourceInfo('UCD', 'UnicodeData.txt name property')])
+                                              [SourceInfo('UCD', 'UnicodeData.txt name property'),
+                                               SourceInfo('Wikipedia: Geʽez script', 'Geʽez_abugida')])
         base_pattern = re.compile('^(ETHIOPIC SYLLABLE (?:[A-Z]+ )?[^ AEIOU]*)([AEIOU]+)$')
         ethiopic = cursor.execute("SELECT id, raw_name FROM code_point WHERE script_code = 'Ethi' AND raw_name LIKE 'ETHIOPIC SYLLABLE%'").fetchall()
         base_ethiopic_names = {}
@@ -798,7 +799,7 @@ class ScriptDatabase:
         for x in ethiopic:
             match = base_pattern.match(x[1])
             if match.group(2) != 'A' and match.group(1) in base_ethiopic_names:
-                self._load_single_derivation(cursor, x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT, Certainty.VARIED, process_id)
+                self._load_single_derivation(cursor, x[0], base_ethiopic_names[match.group(1)], DerivationType.DEFAULT, Certainty.NEAR_CERTAIN, process_id)
 
 
     def _load_sogdian_derivations(self, cursor):
@@ -813,7 +814,7 @@ class ScriptDatabase:
                 code_point newsog 
                 INNER JOIN code_point oldsog ON newsog.raw_name = substr(oldsog.raw_name, 5)
                 WHERE newsog.script_code = 'Sogd' AND oldsog.script_code = 'Sogo'""",
-            (DerivationType.DEFAULT.value, Certainty.VARIED.value, process_id))
+            (DerivationType.DEFAULT.value, Certainty.STRONG_ASSUMPTION.value, process_id))
 
 
     def _load_latin_derivations(self, cursor):
@@ -831,7 +832,7 @@ class ScriptDatabase:
         for capital in capitals:
             match = latin_pattern.match(capital[1])
             if match and (match.group(1) or match.group(3)):  # needs to match one of these groups or it's the base letter itself
-                self._load_single_derivation(cursor, capital[0], ord(match.group(2)), DerivationType.DEFAULT, Certainty.VARIED, process_id)
+                self._load_single_derivation(cursor, capital[0], ord(match.group(2)), DerivationType.DEFAULT, Certainty.STRONG_ASSUMPTION, process_id)
 
         lowercases = cursor.execute("""
                     SELECT id, substr(name, 20) FROM code_point 
@@ -844,7 +845,7 @@ class ScriptDatabase:
         for lowercase in lowercases:
             match = latin_pattern.match(lowercase[1])
             if match and (match.group(1) or match.group(3)):  # needs to match one of these groups or it's the base letter itself
-                self._load_single_derivation(cursor, lowercase[0], ord(match.group(2).lower()), DerivationType.DEFAULT, Certainty.VARIED, process_id)
+                self._load_single_derivation(cursor, lowercase[0], ord(match.group(2).lower()), DerivationType.DEFAULT, Certainty.STRONG_ASSUMPTION, process_id)
 
 
     def _load_equivalents_from_names(self, cursor):
@@ -891,6 +892,7 @@ class ScriptDatabase:
 
         # add derivations based on name
         # may later name as *_from_name if necessary to distinguish from other automatic processes
+        # a lot of these will use the strong assumption certainty due to the names implying straightforward glyph relationships
         self._load_geez_derivations(cursor)
         self._load_sogdian_derivations(cursor)
         self._load_latin_derivations(cursor)
@@ -899,7 +901,9 @@ class ScriptDatabase:
 
 
     def _load_independent_derivations(self, cursor):
-        process_id = self.create_process_type('Independent scripts - general', 'Assume that characters from independent scripts are independently derived')
+        process_notes = 'General assumption for independent scripts, could be incorrect due to script-internal derivations (mitigated for some scripts).'
+        process_notes += 'Additionally by convention, this database treats independent derivations as low certainty unless overwhelming evidence exists otherwise.'
+        process_id = self.create_process_type('Independent scripts - general', 'Set characters from independent scripts to independently derived', notes=process_notes)
 
         # Mende Kikakui is a bit of an exception here: Unicode Encoding Proposal suggests Vai-derived characters are a small minority
         # Not including Chinese here: ideally will eventually do so for Oracle bone. Similar for modern Yi vs classical Yi
@@ -913,12 +917,12 @@ class ScriptDatabase:
             WHERE 
                 script_code IN {self._get_sql_in_str_list(independent_scripts)}
                 AND id NOT IN (SELECT child_id FROM code_point_derivation)""",
-               (ord(self.NO_PARENT_CHARACTER), Certainty.VARIED.value, process_id))
+               (ord(self.NO_PARENT_CHARACTER), Certainty.WEAK_ASSUMPTION.value, process_id))
 
 
     def _load_from_unikemet(self, cursor, verify):
         process_note = 'This process reads Hieroglyph references in text descriptions. This can result in derivation chains being inaccurately portrayed if only base'
-        process_note += ' Hieroglyphs are mentioned. Eg. a derivation chain for hieroglyph C such as (A->B; B->C) could render as (A->C; B->C) depending on the description'
+        process_note += ' Hieroglyphs are mentioned. Eg. a derivation chain for hieroglyph C such as (A->B; B->C) could render as (A->C; B->C) depending on the descriptions.'
         process_sources = [SourceInfo('Ritner 1996'), SourceInfo('UCD', 'Unikemet.txt kEH_Desc property')]
         process_id = self.create_process_type('Compound Egyptian Hieroglyphs',
                                               'Hieroglyph ligatures composed from base hieroglyphs',
@@ -926,7 +930,7 @@ class ScriptDatabase:
                                               process_note)
         code_dict = dict()
         code_parents = dict()
-        code_pattern = '(?:HJ )?[A-Z][A-Za-z]?[0-9]{1,3}[A-Z]?|US[0-9][0-9A-Z]{4}[A-Z]+'  # not entirely sure where the US format codes come from, rough format guess
+        code_pattern = '(?:HJ )?[A-Z][A-Za-z]?[0-9]{1,3}[A-Z]?|US[0-9][0-9A-Z]{4}[A-Z]+'  # not entirely sure where the US format codes come from; empirical format matching
         code_regex = re.compile(code_pattern)
         alph_id = self._create_sequence(cursor, SequenceType.SIMPLE_ALPHABET)
         alph_order = 1
@@ -996,7 +1000,7 @@ class ScriptDatabase:
                     for parent_code in row[2].strip().split(' '):
                         if row[0] != parent_code:  # it's possible for a simplified character to map to itself
                             self._load_single_derivation(cursor, int(row[0][2:], 16), int(parent_code[2:], 16),
-                                                         DerivationType.SIMPLIFICATION, Certainty.VARIED, # tentative, I'm not expert enough to evaluate this
+                                                         DerivationType.SIMPLIFICATION, Certainty.VARIED, # tentative certainty, I'm not expert enough to evaluate this
                                                          process_id)
 
                 # This is a self-mirror property. if X zVariant Y then Y zVariant X.
@@ -1036,7 +1040,7 @@ class ScriptDatabase:
                          END
                     ELSE {DerivationType.DEFAULT.value}
                 END,
-                CASE WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN {Certainty.VARIED.value}
+                CASE WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN {Certainty.STRONG_ASSUMPTION.value}
                      ELSE {Certainty.NEAR_CERTAIN.value}
                 END,
                 CASE WHEN seq.type_id = {SequenceType.POSITION_DISTINCTION.value} THEN {position_process_id}
@@ -2341,11 +2345,6 @@ class Certainty(Enum):
     STRONG_ASSUMPTION = 4
     WEAK_ASSUMPTION = 5
     VARIED = 6
-    #AUTOMATED_CERTAIN = 6
-    #AUTOMATED_LIKELY = 7
-    #AUTOMATED_UNCERTAIN = 8
-    #AUTOMATED_TECHNICAL = 9
-    #VARIED = 10
 
 
 # at the moment I'm isolating ranges of things I think could be expanded on.
