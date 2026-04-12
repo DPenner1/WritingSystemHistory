@@ -899,6 +899,16 @@ class ScriptDatabase:
         self._load_arabic_derivations(cursor, verify)
         self._load_cuneiform_derivations(cursor)
 
+        # set of ids to exclude from the independent derivations
+        exception_ids = set()
+        # Anatolian hieroglyphs tag format is mostly A[0-9]{3}[A-Z]?, so checking for longer than 4 for what turns out to likely be script-internal variants
+        cursor.execute("""
+            SELECT id FROM code_point cp INNER JOIN name_indexer ni ON cp.id = ni.code_point_id 
+            WHERE cp.script_code = ? AND order_num = ? AND LENGTH(word) > ?""", ('Hluw', 3, 4))
+        for id in cursor:
+            exception_ids.add(id[0])
+        return exception_ids
+
 
     def _load_independent_derivations(self, cursor):
         process_notes = 'General assumption for independent scripts, could be incorrect due to script-internal derivations (mitigated for some scripts).'
@@ -975,6 +985,7 @@ class ScriptDatabase:
         for code in conflict_codes:
             del code_dict[code]
 
+        # mark ids where there was a parent, but we just weren't able to find them (very sad)
         orphaned_ids = set()
         for id in code_parents:
             for parent in code_parents[id]:
@@ -1232,7 +1243,7 @@ class ScriptDatabase:
         semitic_process_id = self.create_process_type('Semitic letters',
                                                       'Semitic derivations from cognate letters and known script ancestors',
                                                       [SourceInfo("Wikipedia: Semitic letter pages")])
-        self._load_data_from_names(cursor, load_options.verify_data_sources)
+        exception_ids = self._load_data_from_names(cursor, load_options.verify_data_sources)
         # we want to drop this as soon as possible so that the freed space can be used
         if load_options.drop_code_point_name_index:
             cursor.execute("DROP TABLE name_indexer")
@@ -1241,12 +1252,11 @@ class ScriptDatabase:
 
         self._load_derivations_from_case_data(cursor, load_options.drop_case_columns)
         self._load_from_unihan(cursor)  # derivation and equivalency data
-        orphaned_ids = self._load_from_unikemet(cursor, load_options.verify_data_sources) # derivation, equivalency data and an alphabet
+        exception_ids |= self._load_from_unikemet(cursor, load_options.verify_data_sources) # derivation, equivalency data and an alphabet
         self._load_derivations_from_equivalencies(cursor)
         self._load_independent_derivations(cursor) # after equivalency loading to allow that to take priority
 
-        # remove independent derivations from the ids where there was a parent, but we just weren't able to find them (very sad)
-        for id in orphaned_ids:
+        for id in exception_ids:
             cursor.execute("DELETE FROM code_point_derivation WHERE child_id = ? AND parent_id = ?", (id, ord(self.NO_PARENT_CHARACTER)))
 
         self._load_letter_derivation_data(cursor, indic_supp_data, self._INDIC_SUPPLEMENT, supp_process_id, load_options.verify_data_sources)
