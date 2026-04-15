@@ -17,9 +17,9 @@ Though there are no current plans, the functionality of the database could be ex
 
 ## Statistics
 
-*As of 2026-04-11*
+*As of 2026-04-16*
 
-  - *(Just over 100,000 letters in the Unicode Standard are Chinese characters. These stats are notated "All / non-Chinese")*. There are ⁨130,852 / 29,914 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 28,398 / 21,914 have a historical ancestor specified (21.5% / 73.3%, including no known ancestor), of which 2008 / 1969 are manually reviewed (1.5% / 6.6%).
+  - *(The vast majority of characters in Unicode are from logographic scripts. These stats are notated "All / Non-Logographic")*. There are ⁨131,852 / 15,235 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 22,189 / 8,614 have a historical ancestor specified (16.8% / 56.5%, including no known ancestor), of which 2123 / 1949 are manually reviewed (1.6% / 12.8%).
   - The database is about 20 MB with minimalistic settings (configurable to keep more data/indexes).
 
   1. Distinct being defined for this project has having no other equivalent representation in Unicode. See schema documentation on `code_point.equivalent_sequence_id`.

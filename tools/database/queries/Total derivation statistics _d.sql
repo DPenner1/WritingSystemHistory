@@ -15,7 +15,7 @@ FROM (
 )
 UNION ALL
 SELECT 
-    'Non-Han (Chinese)' AS included,
+    'Non-Logographic' AS included,
 	letters,
     derivations,	
 	ROUND(100.0 * derivations / letters, 1) AS coverage,
@@ -27,11 +27,11 @@ FROM (
 		COUNT(DISTINCT deriv.child_id) AS derivations,
 		COUNT(DISTINCT CASE WHEN deriv.process_type_id <> 1 THEN NULL ELSE deriv.child_id END) AS manual_derivations
 	FROM code_point cp LEFT JOIN code_point_derivation deriv ON cp.id = deriv.child_id
-	WHERE script_code <> 'Hani' AND cp.equivalent_sequence_id IS NULL AND cp.is_alphabetic = 1
+	WHERE cp.equivalent_sequence_id IS NULL AND cp.is_alphabetic = 1 AND (SELECT type_id FROM script WHERE code = cp.script_code) <> 8
 )
 UNION ALL
 SELECT 
-    'Han (Chinese)' AS included,
+    'Logographic' AS included,
 	letters,
     derivations,	
 	ROUND(100.0 * derivations / letters, 1) AS coverage,
@@ -43,7 +43,7 @@ FROM (
 		COUNT(DISTINCT deriv.child_id) AS derivations,
 		COUNT(DISTINCT CASE WHEN deriv.process_type_id <> 1 THEN NULL ELSE deriv.child_id END) AS manual_derivations
 	FROM code_point cp LEFT JOIN code_point_derivation deriv ON cp.id = deriv.child_id
-	WHERE script_code = 'Hani' AND cp.equivalent_sequence_id IS NULL AND cp.is_alphabetic = 1
+	WHERE cp.equivalent_sequence_id IS NULL AND cp.is_alphabetic = 1 AND (SELECT type_id FROM script WHERE code = cp.script_code) = 8
 )
 ORDER BY letters DESC
 

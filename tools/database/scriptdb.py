@@ -102,8 +102,9 @@ class ScriptDatabase:
     # Can abo, Hangul, Kayah Li, Masaram Gondi, Sorang Sompeng, Pau cin hau will be manually specified due to higher independence or contribution from other scripts
     # Soyombo excluded due to elevated probability of script relationships being modified
     # Non-unicode scripts Ranjana, Tocharian, Brahmic variants 'asho', 'kush' excluded
-    # Tangut. Cuneiform have been given their own automated processes
-    _EXCLUDED_GEN_CODES = ['Brah', 'Khar', 'Hang', 'Cans', 'Kali', 'Soyo', 'Gonm', 'Sora', 'Pauc', 'Gupt', 'Plav',
+    # Cuneiform has its own automated processes
+    # Tangut has a strong tendency to compose characters internally
+    _EXCLUDED_GEN_CODES = ['Brah', 'Khar', 'Hang', 'Cans', 'Kali', 'Soyo', 'Gonm', 'Sora', 'Pauc', 'Gupt', 'Plav', 'Tang',
                            'Ranj', 'Asho', 'Kush', 'Toch', 'Grek', 'Latn', 'Cyrl', 'Arab', 'Phnx', 'Psin', 'Xsux']
 
     def __init__(self, path='.', name='scripts.db'):
@@ -1123,7 +1124,8 @@ class ScriptDatabase:
         with open(os.path.join(self._resource_path, 'derivation_defaults.csv'), 'r') as file:
             for row in csv.DictReader(file):
                 defaults[row['Script'].strip()] = {
-                    'Source': row['Source'].strip(),
+                    'Source': row['Source'].strip() if row['Source'] else None,
+                    'Notes': row['Notes'].strip() if row['Notes'] else None,
                     'Derivation Type': row['Derivation Type'].strip(),
                     'Certainty Type': row['Certainty Type'].strip()
                 }
@@ -1205,10 +1207,21 @@ class ScriptDatabase:
 
 
     def _load_tangut_derivations(self, cursor):
+        process_id = self._get_process_id(cursor, 'Tangut radicals')
+        def set_tangut_block(block_start, block_end):
+            cursor.execute("""
+                INSERT INTO code_point_derivation (child_id, parent_id, certainty_type_id, process_type_id)
+                SELECT id, ?, ?, ? FROM code_point WHERE id BETWEEN ? AND ? AND equivalent_sequence_id IS NULL""",
+                (ord(self.NO_PARENT_CHARACTER), Certainty.UNCERTAIN.value, process_id, block_start, block_end))
+
         TANGUT_COMP_START = 0x18800
         TANGUT_COMP_END = 0x18AFF
         TANGUT_COMP_SUPP_START = 0x18D80
         TANGUT_COMP_SUPP_END = 0x18DFF
+        # TODO - may consider putting blocks in DB at some point
+
+        set_tangut_block(TANGUT_COMP_START, TANGUT_COMP_END)
+        set_tangut_block(TANGUT_COMP_SUPP_START, TANGUT_COMP_SUPP_END)
 
 
     def _load_cuneiform_derivations(self, cursor):
@@ -1218,7 +1231,7 @@ class ScriptDatabase:
         cursor.execute("""
             INSERT INTO code_point_derivation (child_id, parent_id, certainty_type_id, process_type_id)
             SELECT id, ?, ?, ? FROM code_point
-            WHERE script_code = ? AND name LIKE ? AND word_count = ?""",
+            WHERE script_code = ? AND name LIKE ? AND word_count = ? AND equivalent_sequence_id IS NULL""",
             (ord(self.NO_PARENT_CHARACTER), Certainty.UNCERTAIN.value, process_id, 'Xsux', 'CUNEIFORM SIGN%', 3))
 
 
@@ -1250,6 +1263,8 @@ class ScriptDatabase:
         # Currently, this is a field used for internal generation only, don't want it to be taken literally
         cursor.execute("DROP INDEX idx_fk_parent_script")
         cursor.execute("ALTER TABLE script DROP COLUMN parent_code")
+
+        self._load_tangut_derivations(cursor)
 
         self._load_manually_specified_derivations(cursor, load_options.verify_data_sources)
 
@@ -2410,7 +2425,7 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.OPTIMIZED_DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
