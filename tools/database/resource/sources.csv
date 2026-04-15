@@ -28,6 +28,7 @@ UEP: Brahmi,,Stefan Baums & Andrew Glass,Proposal for the Encoding of Brāhmī i
 UEP: Brahmi additions,,Vinodh Rajan & Shriramana Sharma,Proposal to Encode 6 Characters in the Brahmi Block,https://www.unicode.org/L2/L2019/19402-brahmi-adds.pdf
 UEP: Devanagari Siddham,,Anshuman Pandey,Proposal to Encode the Sign SIDDHAM for Devanagari,https://www.unicode.org/L2/L2012/12123r2-devanagari-siddham.pdf
 UEP: Meroitic,,Michael Everson,Proposal for encoding the Meroitic Hieroglyphic and the Meroitic Cursive scripts in the SMP of the UCS,https://www.unicode.org/L2/L2009/09250-n3665-meroitic.pdf
+UEP: Tangut Radicals,,Andrew West & Viacheslav Zaytsev & Sun Bojun & Michael Everson,Proposal to encode Tangut radicals in the UCS,https://www.unicode.org/L2/L2014/14228-n4636.pdf
 UEP: Tigalari,,Vaishnavi Murthy Yerkadithaya & Vinodh Rajan,Updated proposal to encode Tulu-Tigalari script in Unicode,https://www.unicode.org/L2/L2021/21210-tulu-tigalari.pdf
 Unicode Standard,,The Unicode Consortium,The Unicode® Standard,https://www.unicode.org/versions/Unicode17.0.0/core-spec/
 UTR 56,,Robin Leroy,Unicode® Cuneiform Sign Lists,https://www.unicode.org/reports/tr56/

@@ -1,0 +1,15 @@
+Name,Description,Source,Notes
+Arabic Unicode name,Derivation of Arabic code points based on Unicode name,UCD # UnicodeData.txt name property
+Case derivation,General assumption that the lowercase form derives from the uppercase,UCD # UnicodeData.txt simple upper & lower case mapping properties
+Compound Egyptian Hieroglyphs,Hieroglyph ligatures composed from base hieroglyphs,Ritner 1996/UCD # Unikemet.txt kEH_Desc property,This process reads Hieroglyph references in text descriptions. This can result in derivation chains being inaccurately portrayed if only base Hieroglyphs are mentioned. Eg. a derivation chain for hieroglyph C such as (A->B; B->C) could render as (A->C; B->C) depending on the descriptions.
+Cuneiform Unicode name,Derivation of Cuneiform code points based on Unicode name,UTR 56/UCD # UnicodeData.txt name property/Cooper 1996,"For atomic signs, Cuneiform has no known parent script (Proto-Cuneiform not in DB or Unicode yet)"
+Equivalencies from name,Derivations based on equivalencies inferred from Unicode name,UCD # UnicodeData.txt name property
+Ge'ez Unicode name,Derivation of Ge'ez code points by identifying the inherent vowel parent based on Unicode name,Wikipedia: Geʽez script#Geʽez_abugida/UCD # UnicodeData.txt name property
+Indic letters,Indic derivations from cognate letters and known script ancestors,Wikipedia: Indic letter pages
+Latin Unicode name,Derivation of Latin code points based on Unicode name,UCD # UnicodeData.txt name property
+Independent scripts - general,Sets characters from independent scripts to independently derived,,General assumption for independent scripts; could be incorrect due to script-internal derivations (mitigated for some scripts)
+Semitic letters,Semitic derivations from cognate letters and known script ancestors,Wikipedia: Semitic letter pages
+Simplified Chinese,Derivation of Simplified Chinese code points from their corresponding Traditional Chinese code points,UCD # Unihan.zip->Unihan_Variants.txt kTraditionalVariant property
+Sogdian Unicode name,Derivation of Sogdian code points based on matching Old Sogdian Unicode names,UCD # UnicodeData.txt name property
+Supplementary Indic,Indic derivations inferred by Unicode name and known script ancestors,UCD # UnicodeData.txt name property
+Tangut radicals,Set Tangut radicals and components to independently derived,,"Bare Tangut radicals/components are largely a modern scholarly invention; the Tanguts are not known to have deconstructed their characters systematically. However, it would be unhelpful to mark them as descending from perhaps hundreds of characters, so this database treats them as having been independently invented by the Tanguts."
