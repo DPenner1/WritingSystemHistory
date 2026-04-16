@@ -1102,6 +1102,7 @@ class ScriptDatabase:
     def _parse_raw_source(self, cursor, raw_source_str):
         # the format wasn't really planned in advance
         parts = raw_source_str.split(' - ')
+        # TODO internally calculate julian day to avoid needing cursor for this
         access_date = int(cursor.execute("SELECT JULIANDAY(?)", (parts[1].strip(),)).fetchone()[0]) if len(parts) > 1 else None
 
         parts = parts[0].split('#')
@@ -1782,25 +1783,26 @@ class ScriptDatabase:
         # Note: not dealing with script exemplars as the kana will be manually specified for that
 
         parse_data = self._CLDRParseData()
+        source = SourceInfo('CLDR', 'main exemplar set')
 
         parse_data.script_code = 'Kana'
         parse_data.letter_case = 'Lo'
         parse_data.letters = katakana
-        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR')
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, source)
 
         parse_data.letters = hiragana
         parse_data.script_code = 'Hira'
-        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR')
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, source)
 
         parse_data.letters = kanji
         parse_data.script_code = 'Hani'
-        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, 'CLDR')
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.EXTENDED, source)
 
         parse_data.letters = kanji[0:len(kanji) // 2]
-        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.FULL, 'CLDR')
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.FULL, source, notes='reduced set')
 
         parse_data.letters = kanji[0:len(kanji) // 4]
-        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.BASIC, 'CLDR')
+        self._load_alphabet(cursor, 'ja', parse_data, AlphabetType.BASIC, source, notes='reduced set')
 
     # return as follows:
     # sequences of type letter and base return as a string
@@ -1866,7 +1868,7 @@ class ScriptDatabase:
     # is_index_load: quite hacky as we're really reaching into the calling context to make decisions here,
     #   but I've not otherwise figured out how to incorporate it while still maintaining a single reusable _load_alphabet method
     # Basically if its index, we do two things - override case for the return value and load the FULL alphabet if BASIC (index) and EXTENDED (main) match
-    def _load_alphabet(self, cursor, lang_code, parse_data, alphabet_type, citation_key, load_case_pair=False, is_index_load=False, notes=None):
+    def _load_alphabet(self, cursor, lang_code, parse_data, alphabet_type, source, load_case_pair=False, is_index_load=False, notes=None):
         def try_index_load(s_id, lang, script, lcase):
             matching_extended = cursor.execute("""
                 SELECT * FROM alphabet_source
@@ -1876,7 +1878,7 @@ class ScriptDatabase:
                 self._insert_alphabet(cursor, s_id, lang_code, script, lcase, AlphabetType.FULL, SourceInfo('CLDR', 'index exemplar'))
 
         seq_id = self._check_load_letter_sequence(cursor, parse_data.letters)
-        self._insert_alphabet(cursor, seq_id, lang_code, parse_data.script_code, parse_data.letter_case, alphabet_type, SourceInfo(citation_key))
+        self._insert_alphabet(cursor, seq_id, lang_code, parse_data.script_code, parse_data.letter_case, alphabet_type, source)
 
         if is_index_load:
             try_index_load(seq_id, lang_code, parse_data.script_code, parse_data.letter_case)
@@ -1892,7 +1894,7 @@ class ScriptDatabase:
             return seq_id
 
         alternate_id = self._check_load_letter_sequence(cursor, parse_data.alternate_letters)
-        self._insert_alphabet(cursor, alternate_id, lang_code, parse_data.script_code, alternate_case, alphabet_type, SourceInfo(citation_key))
+        self._insert_alphabet(cursor, alternate_id, lang_code, parse_data.script_code, alternate_case, alphabet_type, source)
 
         if is_index_load:
             try_index_load(alternate_id, lang_code, parse_data.script_code, alternate_case)
@@ -1923,7 +1925,7 @@ class ScriptDatabase:
                                                               lang_code,
                                                               parse_data,
                                                               AlphabetType(int(alphabet_type)),
-                                                              row['Source'],
+                                                              self._parse_raw_source(cursor, row['Source']),
                                                               load_case_pair = '!' not in row['Case'],
                                                               notes=alph_notes)
                 else:  # script-only exemplar
@@ -2069,7 +2071,7 @@ class ScriptDatabase:
                                                   lang_code,
                                                   parse_data,
                                                   AlphabetType.EXTENDED if exemplar_type == 'main' else AlphabetType.BASIC,
-                                                  'CLDR',
+                                                  SourceInfo('CLDR', f'{exemplar_type} exemplar set'),
                                                   load_case_pair=True,
                                                   is_index_load= exemplar_type == 'index')
 
@@ -2112,7 +2114,7 @@ class ScriptDatabase:
                     lang_code = cursor.execute("SELECT main_lang_code FROM script WHERE code = ?", (parse_data.script_code,)).fetchall()[0][0]
 
                     if lang_code:
-                        id = self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.BASIC, row['Source'])
+                        id = self._load_alphabet(cursor, lang_code, parse_data, AlphabetType.BASIC, self._parse_raw_source(cursor, row['Source']))
                         # note for generated we're not bothering with a second addition for case - the indic and semitic alphabets are all uncased
                     else:
                         id = self._check_load_letter_sequence(cursor, parse_data.letters)
@@ -2425,7 +2427,7 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.OPTIMIZED_DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
