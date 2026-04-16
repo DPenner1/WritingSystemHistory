@@ -70,7 +70,7 @@ Hluw,80,8,Anatolian Hieroglyphs,Anatolian_Hieroglyphs,8,0,Zzzz,hlu
 Hmng,450,5,Pahawh Hmong,Pahawh_Hmong,7,0
 Hmnp,451,5,Nyiakeng Puachue Hmong,Nyiakeng_Puachue_Hmong,12,0,,hnj
 Hntl,504,3,Han with Latin,,,
-Hrkt,412,7,Katakana or Hiragana,Katakana_Or_Hiragana,1,1
+Hrkt,412,7,Katakana or Hiragana,Katakana_Or_Hiragana,1,1,,ja
 Hung,176,4,Old Hungarian,Old_Hungarian,8,0,Orkh,hu
 Inds,610,1,Indus,,,
 Ital,210,4,Old Italic,Old_Italic,3,1,Grek,ett
@@ -111,8 +111,8 @@ Mand,140,4,Mandaic,Mandaic,6,0,Armi,mid
 Mani,139,6,Manichaean,Manichaean,7,0
 Marc,332,5,Marchen,Marchen,9,0,Tibt
 Maya,90,8,Mayan Hieroglyphs,,,
-Medf,265,4,Medefaidrin,Medefaidrin,11,0,Zzzz
-Mend,438,7,Mende Kikakui,Mende_Kikakui,7,0,Zzzz
+Medf,265,4,Medefaidrin,Medefaidrin,11,0,Zzzz,dmf
+Mend,438,7,Mende Kikakui,Mende_Kikakui,7,0,Zzzz,men
 Merc,101,1,Meroitic Cursive,Meroitic_Cursive,6,1,Egyd,xmr
 Mero,100,1,Meroitic Hieroglyphs,Meroitic_Hieroglyphs,6,1,,xmr
 Mlym,347,5,Malayalam,Malayalam,1,1,Gran,ml

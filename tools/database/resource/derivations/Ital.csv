@@ -1,4 +1,4 @@
-Child,Parent,Source
+Child,Parent,Certainty Type,Source,Notes
 𐌀,Α
 𐌁,Β
 𐌂,Γ
@@ -6,6 +6,7 @@ Child,Parent,Source
 𐌄,Ε
 𐌅,Ϝ
 𐌇,Η
+𐌈,Θ
 𐌉,Ι
 𐌊,Κ
 𐌋,Λ
@@ -13,6 +14,7 @@ Child,Parent,Source
 𐌍,Ν
 𐌏,Ο
 𐌐,Π
+𐌛,𐌐,,Wikipedia: Umbrian_language#Alphabet / UCC: Old Italic
 𐌒,Ϙ
 𐌓,Ρ
 𐌔,Σ
@@ -20,4 +22,12 @@ Child,Parent,Source
 𐌖,Υ
 𐌗,Χ
 𐌆,Ζ
-𐌚,𐌁/,McDonald 2015 # p. 66
+𐌘,Φ
+𐌑,Ϻ
+𐌙,Ψ
+𐌚,𐌁/𐌇/,3,Stuart-Smith 2004 # p. 37-39 / McDonald 2015 # p. 66 / UEP: Three Old Italic,Unified codepoint (font-dependent); this derivation is for the "8"-shaped Etruscan/Oscan/Umbrian F
+𐌚,Ϝ/Φ,3,Stuart-Smith 2004 # p. 36-37 / UEP: Three Old Italic,Unified codepoint (font-dependent); this derivation is for the "up arrow"-shaped Faliscan F
+
+𐌭,𐌔,3,UEP: Three Old Italic
+𐌟,𐌊,2,UEP: Additional Old Italic
+

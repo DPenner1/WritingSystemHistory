@@ -24,16 +24,20 @@ Rilly 2022,,Claude Rilly,Meroitic Writing,https://escholarship.org/content/qt2ts
 Ritner 1996,Daniels & Bright 1996,Robert K. Ritner,Egyptian Writing
 Saha 2016,,Ranita Saha,How Did Hiragana and Katakana Originate?,https://www.sakuramani.com/how-did-hiragana-and-katakana-originate/
 Salomon 1998,,Richard Salomon,Indian Epigraphy,https://archive.org/details/IndianEpigraphy/mode/2up
+Stuart-Smith 2004,,Jane Stuart-Smith,Phonetics and Philology: Sound Change in Italic,https://books.google.ca/books?id=TFUTDAAAQBAJ&source=gbs_navlinks_s
 Swiggers & Jenniges 1996,Daniels & Bright 1996,Pierre Swiggers & Wolfgang Jenniges,The Anatolian Alphabets
+UCC: Old Italic,,The Unicode Consortium,Old Italic,https://www.unicode.org/charts/PDF/U10300.pdf
 UCD,,The Unicode Consortium,Unicode Character Database,https://www.unicode.org/Public/UCD/latest/ucd/
 UCP: Gurmukhi Change,,Manvir Singh & Irvanjit Singh,Proposed Changes to Gurmukhi,https://www.unicode.org/L2/L2020/20183-gurmukhi-chg.pdf
 UEP: Additional Math,,Asmus Freytag,Additional Mathematical and Letterlike Characters,https://unicode.org/L2/L2003/03194-math-letterlike.pdf
+UEP: Additional Old Italic,,Christopher C. Little,Revised Proposal to Encode Additional Old Italic Characters,https://www.unicode.org/L2/L2012/12386-old-italic.pdf
 UEP: Anatolian,,Michael Everson & Deborah Anderson,Final proposal to encode Anatolian Hieroglyphs in the SMP of the UCS,https://www.unicode.org/L2/L2012/12213-n4282-anatolian.pdf
 UEP: Brahmi,,Stefan Baums & Andrew Glass,Proposal for the Encoding of Brāhmī in Plane 1 of ISO/IEC 10646,https://www.unicode.org/L2/L2007/07342-brahmi.pdf
 UEP: Brahmi additions,,Vinodh Rajan & Shriramana Sharma,Proposal to Encode 6 Characters in the Brahmi Block,https://www.unicode.org/L2/L2019/19402-brahmi-adds.pdf
 UEP: Devanagari Siddham,,Anshuman Pandey,Proposal to Encode the Sign SIDDHAM for Devanagari,https://www.unicode.org/L2/L2012/12123r2-devanagari-siddham.pdf
 UEP: Meroitic,,Michael Everson,Proposal for encoding the Meroitic Hieroglyphic and the Meroitic Cursive scripts in the SMP of the UCS,https://www.unicode.org/L2/L2009/09250-n3665-meroitic.pdf
 UEP: Tangut Radicals,,Andrew West & Viacheslav Zaytsev & Sun Bojun & Michael Everson,Proposal to encode Tangut radicals in the UCS,https://www.unicode.org/L2/L2014/14228-n4636.pdf
+UEP: Three Old Italic,,Michael Everson,Proposal for the addition of three Old Italic characters,https://www.unicode.org/L2/L2015/15181r-n4669r-olditalic.pdf
 UEP: Tigalari,,Vaishnavi Murthy Yerkadithaya & Vinodh Rajan,Updated proposal to encode Tulu-Tigalari script in Unicode,https://www.unicode.org/L2/L2021/21210-tulu-tigalari.pdf
 Unicode Standard,,The Unicode Consortium,The Unicode® Standard,https://www.unicode.org/versions/Unicode17.0.0/core-spec/
 UTR 56,,Robin Leroy,Unicode® Cuneiform Sign Lists,https://www.unicode.org/reports/tr56/
@@ -44,5 +48,6 @@ Wikipedia: Indic letter pages,,,Category:Indic letters,https://en.wikipedia.org/
 Wikipedia: Kana pages,,,Category:Specific kana,https://en.wikipedia.org/wiki/Category:Specific_kana
 Wikipedia: Latin letter pages,,,Category:Latin-script letters,https://en.wikipedia.org/wiki/Category:Latin-script_letters
 Wikipedia: Mongolian letter pages,,,Category:Mongolic letters,https://en.wikipedia.org/wiki/Category:Mongolic_letters
+Wikipedia: Runic letter pages,,,Category:Runes,https://en.wikipedia.org/wiki/Category:Runes
 Wikipedia: Semitic letter pages,,,Aleph (and others),https://en.wikipedia.org/wiki/Aleph
 
