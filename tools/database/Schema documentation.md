@@ -87,6 +87,7 @@ A manually maintained table. Started out based on the list found [here](https://
 
   - To my understanding, the original source table having rows without a Unicode Alias yet having a Unicode version date are scripts which Unicode considers a font variant of another. This was marked with the `canonical_script_code` field, but the usefulness is questionable.
   - The `exemplar_sequence_id` field references a canonical set of letters. Associating to a sequence and not an alphabet allows for language-independence (eg. could be useful for Cyrillic where there isn't a universally agreed set of canonical letters). A sequence has been manually specified for a few scripts. The process which does Brahmic and Semitic letters will fill this in if as a "last resort" if none is specified either directly or in the `alphabet` table. If there is no exemplar sequence, one can be selected from the `alphabet` table as required.
+  - The `main_parent_code` field designates a script's main parent with `Zzzz` standing in for original scripts. A bit of a chicken-and-egg field, use of this field is discouraged. The point of this database is to go character-by-character so determining a main parent should be inferred that way. However as a practical matter, some of the automated derivation processes rely on this field to make those character derivations in the first place.
   - The `main_lang_code` field designates the main language for a script. For the most part determining this was not difficult. Canadian Aboriginal syllabics was the main judgment call: It could have been Ojibwe, Cree, or Inuktitut. Ojibwe syllabics was not in the CLDR data leaving Cree and Inuktitut. In CLDR, only Swampy Cree specifically was in the files, which would be much fewer speakers than Inuktitut. However, between considering Cree more widely and that Inuktitut discarded the distinct final consonants (and this project is for finding interesting graphical developments), I've associated it to Swampy Cree (in the future it may be feasible to associate to more general Cree as the data exists, but the codegen doesn't yet do anything with macrolanguages).
   - The table includes data for private use scripts. These are:
     - Proto-Sinaitic (exists in ISO but not Unicode proper)
@@ -97,7 +98,7 @@ A manually maintained table. Started out based on the list found [here](https://
     - Gaudi
     - Gupta
     - Demotic (subset, exists in ISO but not Unicode proper)
-    - Pitman Shorthand (non-Logographic characters only)
+    - Pitman Shorthand (non-logographic characters only)
 
 ### `sequence`
 

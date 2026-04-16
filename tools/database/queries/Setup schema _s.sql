@@ -67,12 +67,12 @@ CREATE TABLE IF NOT EXISTS script (
     u_version_added INTEGER,
     u_subversion_added INTEGER,
     canonical_script_code TEXT REFERENCES script(code),
-    parent_code TEXT REFERENCES script(code),
+    main_parent_code TEXT REFERENCES script(code),
     main_lang_code TEXT REFERENCES language(code),
     exemplar_sequence_id INTEGER UNIQUE REFERENCES sequence(id)    
 ) STRICT;
 CREATE INDEX IF NOT EXISTS idx_fk_scr_type ON script(type_id);
-CREATE INDEX IF NOT EXISTS idx_fk_parent_script ON script(parent_code) WHERE parent_code IS NOT NULL; 
+CREATE INDEX IF NOT EXISTS idx_fk_main_parent_script ON script(main_parent_code) WHERE main_parent_code IS NOT NULL; 
 CREATE INDEX IF NOT EXISTS idx_fk_scr_lang ON script(main_lang_code) WHERE main_lang_code IS NOT NULL;
 
 CREATE TABLE IF NOT EXISTS language (

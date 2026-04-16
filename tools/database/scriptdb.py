@@ -284,7 +284,7 @@ class ScriptDatabase:
 
 
     def _load_deferred_script_fields(self, cursor, deferred_fields):
-        cursor.executemany("UPDATE script SET parent_code = ?, main_lang_code = ? WHERE code = ?", deferred_fields)
+        cursor.executemany("UPDATE script SET main_parent_code = ?, main_lang_code = ? WHERE code = ?", deferred_fields)
 
 
     def _load_languages(self, cursor):
@@ -921,7 +921,7 @@ class ScriptDatabase:
 
         # Mende Kikakui is a bit of an exception here: Unicode Encoding Proposal suggests Vai-derived characters are a small minority
         # Not including Chinese here: ideally will eventually do so for Oracle bone. Similar for modern Yi vs classical Yi
-        results = cursor.execute("SELECT code FROM script WHERE parent_code = ?", (self.UNKNOWN_SCRIPT,)).fetchall()
+        results = cursor.execute("SELECT code FROM script WHERE main_parent_code = ?", (self.UNKNOWN_SCRIPT,)).fetchall()
         independent_scripts = [x[0] for x in results if x[0] not in self._EXCLUDED_GEN_CODES]
 
         cursor.execute(f"""
@@ -1261,10 +1261,6 @@ class ScriptDatabase:
         self._load_letter_derivation_data(cursor, indic_letter_data, self._INDIC_ORDER, indic_process_id, load_options.verify_data_sources)
         self._load_letter_derivation_data(cursor, semitic_letter_data, self._SEMITIC_ORDER, semitic_process_id, load_options.verify_data_sources)
 
-        # Currently, this is a field used for internal generation only, don't want it to be taken literally
-        cursor.execute("DROP INDEX idx_fk_parent_script")
-        cursor.execute("ALTER TABLE script DROP COLUMN parent_code")
-
         self._load_tangut_derivations(cursor)
 
         self._load_manually_specified_derivations(cursor, load_options.verify_data_sources)
@@ -1507,7 +1503,7 @@ class ScriptDatabase:
                 if letter in wdata[fill_in_script] and wdata[fill_in_script][letter] is not None:
                     fill_in_letter = (len(wdata[fill_in_script][letter]) == 0) # in theory letter could already have be there, so don't touch it
                 else:
-                    descendant_scripts = cursor.execute(f"SELECT code FROM script WHERE parent_code IN {self._get_sql_in_str_list(fill_in_scripts)}").fetchall()
+                    descendant_scripts = cursor.execute(f"SELECT code FROM script WHERE main_parent_code IN {self._get_sql_in_str_list(fill_in_scripts)}").fetchall()
                     count = 0
                     for descendant_script in descendant_scripts:
                         if letter in wdata[descendant_script[0]] and wdata[descendant_script[0]][letter]:
@@ -1613,6 +1609,7 @@ class ScriptDatabase:
             DELETE FROM language
             WHERE 
                 code NOT IN (SELECT lang_code FROM alphabet) 
+                AND code NOT IN (SELECT main_lang_code FROM script)
                 AND code NOT IN (  -- language is not a macro to a sublanguage that is used
                     SELECT macrolanguage_code FROM alphabet a INNER JOIN language lsub ON lsub.code = a.lang_code WHERE macrolanguage_code IS NOT NULL)""")
 
@@ -1620,7 +1617,7 @@ class ScriptDatabase:
     def _load_letter_derivation_data(self, cursor, letter_dict, letter_order, process_type_id, verify):
         for script_code in letter_dict:
             if script_code not in ScriptDatabase._EXCLUDED_GEN_CODES:
-                parent_code = cursor.execute("SELECT parent_code FROM script WHERE code = ?", (script_code,)).fetchone()[0]
+                parent_code = cursor.execute("SELECT main_parent_code FROM script WHERE code = ?", (script_code,)).fetchone()[0]
                 for letter_class in letter_order:
                     if letter_class in letter_dict[script_code] and letter_class in letter_dict[parent_code]:
                         parent_letters = letter_dict[parent_code][letter_class]  # final parent scripts should be in excluded codes
