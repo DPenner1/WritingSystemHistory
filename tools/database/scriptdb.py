@@ -6,7 +6,7 @@ import time
 from enum import Enum
 from zipfile import ZipFile
 from urllib.parse import quote
-
+from collections.abc import Iterable
 
 class LoadOptions:
     def __init__(self):
@@ -2131,9 +2131,7 @@ class ScriptDatabase:
 
     def _get_code_point_script_parents(self, cursor, id, scripts_to_skip=None, weight=1):
         retval = {}
-        temp = cursor.execute("""
-            SELECT script_code FROM code_point
-            WHERE id = ? AND general_category_code NOT LIKE 'C_' AND general_category_code NOT LIKE 'Z_'""", (id,)).fetchall()
+        temp = cursor.execute("SELECT script_code FROM code_point WHERE id = ? AND is_independently_graphical", (id,)).fetchall()
         if not temp:
             raise ValueError("Tried to find parent script of non-graphical character")
         script_code = temp[0][0]
@@ -2164,7 +2162,7 @@ class ScriptDatabase:
     # A general sequence will have its constituent letters and code points equally weighted
     # A general sequence of general sequences will have a pass-through effect, with letters and code points being equally weighted, not higher-order sequences
     # While a little academic for now, this is designing for an "alphabet of alphabets" eg. having an English alphabet that is two sub-alphabets distinguished by case
-    def _get_sequence_script_parents(self, cursor, sequence_id, scripts_to_skip=None):
+    def _get_sequence_script_parents(self, cursor, sequence_id, scripts_to_skip):
         seq_type = cursor.execute("SELECT type_id FROM sequence WHERE id = ?", (sequence_id,)).fetchone()[0]
         if seq_type == SequenceType.BASE.value:
             return self._get_code_point_script_parents(cursor, sequence_id, scripts_to_skip, 1)
@@ -2173,7 +2171,7 @@ class ScriptDatabase:
         if seq_type == SequenceType.LETTER.value:
             code_points = cursor.execute("""
                 SELECT cp.id FROM sequence_item si INNER JOIN code_point cp ON si.item_id = cp.id
-                WHERE si.sequence_id = ? AND cp.general_category_code NOT LIKE 'C_' AND cp.general_category_code NOT LIKE 'Z_'""", (sequence_id,)).fetchall()
+                WHERE si.sequence_id = ? AND is_independently_graphical""", (sequence_id,)).fetchall()
             for code_point in code_points:
                 results = self._get_code_point_script_parents(cursor, code_point[0], scripts_to_skip, 1 / len(code_points))
                 for result in results:
@@ -2209,29 +2207,43 @@ class ScriptDatabase:
 
     # Script skipping has two main uses: Can avoid self-derivation, and avoid a parent script you think isn't that distinct
     def get_script_parents(self, script_code, scripts_to_skip=None):
-        real_skips = set(scripts_to_skip) if scripts_to_skip else set()
+        real_skips = set()
+        if isinstance(scripts_to_skip, str):
+            real_skips.add(scripts_to_skip)
+        elif isinstance(scripts_to_skip, Iterable):
+            real_skips = set(scripts_to_skip)
+        else:
+            raise ValueError("Unexpected scripts_to_skip input")
+
         real_skips.add(self.INHERITED_SCRIPT)
         # we want to pass through inherited - in Unicode I assume this means a combining mark inheriting the script of the base character
         # but for graphical purposes we want to get to the combining mark's parent script
 
         cursor = self._cxn.cursor()
-        sequence_id = cursor.execute("SELECT exemplar_sequence_id FROM script WHERE code = ?", (script_code,)).fetchall()
+        sequence_id = self._get_exemplar_sequence_id_with_fallback(cursor, script_code)
         if not sequence_id:
             raise ValueError("Script does not yet have an identified canonical set of letters")
 
         results = [('Parent Script', 'Number of Letters')]
-        raw_results = self._get_sequence_script_parents(cursor, sequence_id[0][0], real_skips)
+        raw_results = self._get_sequence_script_parents(cursor, sequence_id, real_skips)
+        total = 0
+        missing_data = 0
         for script, value in sorted(raw_results.items(), key=lambda item: item[1], reverse=True):
+            total += value
             if script == self.COMMON_SCRIPT:
                 script_name = '(symbol)' # probably
             elif script == 'Zzzz':  # only the signal U+FFFF character
                 script_name = '(original/unknown)'
             elif script == '':
                 script_name = '(missing data)'
+                missing_data = value
             else:
                 script_name = cursor.execute("SELECT name FROM script WHERE code = ?", (script,)).fetchone()[0]
             results.append((script_name, f"{value:.2f}"))
 
+        results.append((" -- Total:", round(total))) # rounding for floating point imprecision
+        if missing_data:
+            results.append((" --  excl. missing data:", f"{total - missing_data:.2f}"))
         return results
 
 
@@ -2424,13 +2436,13 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.OPTIMIZED_DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
     # db.print_table(results)
     # Get a breakdown of a script's parent scripts:
-    # db.print_table(db.get_script_parents('Glag', ['Glag']))
+    # db.print_table(db.get_script_parents('Glag', 'Glag'))
     # or your own custom query: db.execute_query('YOUR QUERY HERE', parameters=None)
 
     cursor.close()

@@ -1,4 +1,4 @@
-Child,Parent,Certainty Type,Source,Multiplicity
+Child,Parent,Certainty Type,Source,Notes,Multiplicity
 ก,ក,1,Ferlus 1997
 ข,ខ,1,Ferlus 1997
 ฃ,ข,1,Ferlus 1997
@@ -9,6 +9,16 @@ Child,Parent,Certainty Type,Source,Multiplicity
 ป,บ,1,Ferlus 1997
 ผ,ផ,1,Ferlus 1997
 ฝ,ผ,1,Ferlus 1997
-พ,บ,3,Ferlus 1997,2
+พ,บ,3,Ferlus 1997,,2
 ฟ,พ,1,Ferlus 1997
 ว,វ,1,Ferlus 1997
+
+ิ,ិ,2,Ferlus 1999,"Ferlus notes the symbols available in ancient Khmer"
+ี,ី,2,Ferlus 1999,"Ferlus notes the symbols available in ancient Khmer"
+ึ,ឹ,2,Ferlus 1999,"Ferlus notes the symbols available in ancient Khmer"
+ื,ឺ,2,Ferlus 1999,"Ferlus notes the symbols available in ancient Khmer"
+ุ,ុ,2,Ferlus 1999,"Ferlus notes the symbols available in ancient Khmer"
+ู,ូ,2,Ferlus 1999,"Ferlus notes the symbols available in ancient Khmer"
+แ,เ,1,Ferlus 1999,,2
+
+

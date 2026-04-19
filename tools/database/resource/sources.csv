@@ -3,12 +3,17 @@ Adiego 2006,,Ignacio Adiego,The Carian Language,https://books.google.ca/books?id
 CLDR,,The Unicode Consortium,Unicode CLDR Project,https://cldr.unicode.org/
 Colless 2008,,Brian Colless,Cuneiform Alphabet and Picto-Proto-Alphabet,https://web.archive.org/web/20201112003152/https://sites.google.com/site/collesseum/cuneiformalphabet
 Cooper 1996,Daniels & Bright 1996,Jerrold S. Cooper,Sumerian and Akkadian
+Daniels 1996,Daniels & Bright 1996,Peter T. Daniels,Aramaic Scripts for Aramaic Languages
 Daniels & Bright 1996,,Peter T. Daniels & William Bright,The World's Writing Systems,https://archive.org/details/isbn_9780195079937/mode/2up
 Daniels 2012,,Christian Daniels,Script Without Buddhism: Burmese Influence on the Tay (Shan) Script of Mäng2 Maaw2 as Seen in a Chinese Scroll Painting of 1407,https://www.academia.edu/108614678/Script_Without_Buddhism_Burmese_Influence_on_the_Tay_Shan_Script_of_M%C3%84NG2_MAAW2_as_Seen_in_a_Chinese_Scroll_Painting_of_1407
 de Voogt & Quack 2012,,Alex de Voogt & Joachim Friedrich Quack,The Idea of Writing,https://brill.com/edcollbook/title/19909
 Enwall 1994,,Joakim Enwall,A Myth Become Reality: History and Development of the Miao Written Language,https://openlibrary.org/books/OL564936M/A_myth_become_reality
+Ferlus 1995,,Michel Ferlus,Les circonstances de l'introduction de l'alphabet Tham Lanna,https://shs.hal.science/halshs-00985986v1
 Ferlus 1997,,Michel Ferlus,The Origin of the Graph <b> in the Thai Script,https://shs.hal.science/halshs-00922729/document
+Ferlus 1999,,Michel Ferlus,Sur l'ancienneté des écritures thai d'origine indo-khmère,https://shs.hal.science/halshs-00922719
+Geitler 1883,,Leopold Geitler,Die albanesischen und slavischen Schriften,https://archive.org/details/diealbanesische00geit/mode/2up
 Gong 1983,,Hwang-cherng Gong,Chinese Elements in the Tangut Script,https://www11.ihp.sinica.edu.tw/storage/w2_file/3546BwnwZUM.pdf
+Haile 1996,Daniels & Bright 1996,Getatchew Haile,Ethiopic Writing
 Ibnulyemen 2017,,Ibnulyemen اِبْنُ اليَمَن,"Tanween [Nunation] in Arabic: Types, Meanings, and Assignment",https://blogs.transparent.com/arabic/tanween-nunation-in-arabic-types/
 Kim-Renaud 1997,,The Korean Alphabet: Its History and Structure,Young-Key Kim-Renaud,https://books.google.ca/books?id=nonRl2cerIgC&redir_esc=y
 Kychanov 1996,Daniels & Bright 1996,E. I. Kychanov,Siniform Scripts of Inner Asia
@@ -16,6 +21,7 @@ Laroche 1960,,Emmanuel Laroche,Les hiéroglyphes hittites,https://archive.org/de
 Ledyard 1997,Kim-Renaud 1997,Gari Ledyard,The International Linguistic Background of the Correct Sounds for the Instruction of the People,
 Marazzi 1998,,,Il geroglifico anatolico: sviluppi della ricerca a venti anni dalla sua "ridecifrazione",https://www.academia.edu/7385826
 McDonald 2015,,Katherine McDonald,https://ia800703.us.archive.org/15/items/CompleteBooksSetsarchive/Katherine%20McDonald%20-%20Oscan%20in%20Southern%20Italy%20and%20Sicily.%20Evaluating%20Language%20Contact%20in%20a%20Fragmentary%20Corpus%20%28Cambridge%20Classical%20Studies%29%20%28Retail%29.pdf
+Mistry 1996,,Daniels & Bright 1996,P. J. Mistry,Gujarati Writing
 OED 1933,,,The Oxford English Dictionary 1933,https://archive.org/details/the-oxford-english-dictionary-1933-all-volumes/
 Osterkamp 2012,de Voogt & Quack 2012,Sven Osterkamp,Early Adaptations of the Korean Script to Render Foreign Languages,
 Panjabi Lab FAQ,,Sukhjinder Sidhu,Panjabi Lab: Frequently Asked Questions,https://panjabilab.com/faq/
@@ -25,6 +31,7 @@ Ritner 1996,Daniels & Bright 1996,Robert K. Ritner,Egyptian Writing
 Saha 2016,,Ranita Saha,How Did Hiragana and Katakana Originate?,https://www.sakuramani.com/how-did-hiragana-and-katakana-originate/
 Salomon 1998,,Richard Salomon,Indian Epigraphy,https://archive.org/details/IndianEpigraphy/mode/2up
 Stuart-Smith 2004,,Jane Stuart-Smith,Phonetics and Philology: Sound Change in Italic,https://books.google.ca/books?id=TFUTDAAAQBAJ&source=gbs_navlinks_s
+Skjærvø 1996,Daniels & Bright 1996,P. Oktor Skjærvø,Aramaic Scripts for Iranian Languages 
 Swiggers & Jenniges 1996,Daniels & Bright 1996,Pierre Swiggers & Wolfgang Jenniges,The Anatolian Alphabets
 UCC: Old Italic,,The Unicode Consortium,Old Italic,https://www.unicode.org/charts/PDF/U10300.pdf
 UCD,,The Unicode Consortium,Unicode Character Database,https://www.unicode.org/Public/UCD/latest/ucd/
@@ -36,6 +43,7 @@ UEP: Brahmi,,Stefan Baums & Andrew Glass,Proposal for the Encoding of Brāhmī i
 UEP: Brahmi additions,,Vinodh Rajan & Shriramana Sharma,Proposal to Encode 6 Characters in the Brahmi Block,https://www.unicode.org/L2/L2019/19402-brahmi-adds.pdf
 UEP: Devanagari Siddham,,Anshuman Pandey,Proposal to Encode the Sign SIDDHAM for Devanagari,https://www.unicode.org/L2/L2012/12123r2-devanagari-siddham.pdf
 UEP: Meroitic,,Michael Everson,Proposal for encoding the Meroitic Hieroglyphic and the Meroitic Cursive scripts in the SMP of the UCS,https://www.unicode.org/L2/L2009/09250-n3665-meroitic.pdf
+UEP: Old Permic,,Michael Everson,Revised proposal for encoding the Old Permic script in the SMP of the UCS,https://www.unicode.org/L2/L2012/12137-n4263-permic.pdf
 UEP: Tangut Radicals,,Andrew West & Viacheslav Zaytsev & Sun Bojun & Michael Everson,Proposal to encode Tangut radicals in the UCS,https://www.unicode.org/L2/L2014/14228-n4636.pdf
 UEP: Three Old Italic,,Michael Everson,Proposal for the addition of three Old Italic characters,https://www.unicode.org/L2/L2015/15181r-n4669r-olditalic.pdf
 UEP: Tigalari,,Vaishnavi Murthy Yerkadithaya & Vinodh Rajan,Updated proposal to encode Tulu-Tigalari script in Unicode,https://www.unicode.org/L2/L2021/21210-tulu-tigalari.pdf

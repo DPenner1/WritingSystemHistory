@@ -1,4 +1,7 @@
-Child,Parent
+Child,Parent,Certainty Type,Source
+ፐ,Π,2,Haile 1996
+ጰ,ጸ
+
 ቈ,ቀ
 ኈ,ኀ
 ጐ,ገ
@@ -6,10 +9,11 @@ Child,Parent
 ቨ,በ
 ቸ,ተ
 ጀ,ደ
-ጨ,ጠ
+ጨ,ጠ,1,Haile 1996
 ቐ,ቀ
 ኸ,ከ
 ቘ,ቐ/ቈ
 ዀ,ኸ/ኰ
 ጘ,ገ
 ⶓ,ጘ/ጐ
+

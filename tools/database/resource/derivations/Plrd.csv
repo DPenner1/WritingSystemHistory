@@ -1,4 +1,4 @@
-Child,Parent,Certainty Type,Derivation Type
+Child,Parent,Certainty Type,Derivation Type,Source,Notes,Multiplicity
 𖽃,Y,3
 𖼖,L
 𖼀,ᒧ
@@ -50,7 +50,29 @@ Child,Parent,Certainty Type,Derivation Type
  𖽞, 𖽝/𖼐
  𖽟, 𖽝/𖼣
  𖽼,ᑫ,3
- 𖽫, 𖽪/𖽔
+ 𖽫,𖽪/𖽔
+
+𖽚,𖽙,4
+𖽛,𖽙,4
+𖽣,𖽡/𖽗,4
+𖽤,𖽡/𖽘,4
+𖽥,𖽡/𖽙,4
+𖽧,𖽡,4,,,,2
+𖽨,𖽡/𖽪,4
+𖽩,𖽡/𖼣,5,,Enwall 1994 # Vol. 1 pgs. 185-188,Following similar pattern as in Enwall 1994
+𖽬,𖽪/𖽗,4
+𖽭,𖽪/𖽘,4
+𖽮,𖽪,4,,,,2
+𖽰,𖽪/𖼣,5,,Enwall 1994 # Vol. 1 pgs. 185-188,Following similar pattern as in Enwall 1994
+𖽯,𖽪/𖽺,4
+𖾇,𖽪/𖽡,4
+
+𖽽,𖼐,4
+𖽾,𖼣,4
+
+𖼃,𖼀,4
+𖼔,𖼐,4
+𖼧,𖼦
 
 𖼁,𖼀,4
 𖼅,𖼄,4

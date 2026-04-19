@@ -1,11 +1,11 @@
-Child,Parent,Certainty Type,Notes
-ળ,ळ,5,Sound similarity
+Child,Parent,Certainty Type,Source,Notes
+ળ,ळ,5,,Sound similarity
 ૐ,ॐ,4,
-ઑ,ऑ,5,Sound/glyph similarity
-ઍ,ऍ,5,Sound similarity
+ઑ,ઍ/ૉ,4,
+ઍ,અ/ૅ,4,
 
-ૅ,ॅ,5,Sound/glyph similarity
-ૉ,ॉ,5,Sound/glyph similarity
+ૅ,ે,1,Mistry 1996
+ૉ,ો,1,Mistry 1996
 
 ઁ,ँ,4
 ્,्,4
