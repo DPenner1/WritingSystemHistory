@@ -29,7 +29,7 @@ The general design philophy is to create interesting/informative charts that are
 
 ## FAQ
 
- - **Why isn't script X included?** Usually this will be because it's considered a variant and not a full script in its own right. For Modern Scripts, this may additionally be because it's close to unused. See Script Inclusion Criteria at the top of the [main doc](https://github.com/DPenner1/WritingSystemHistory/blob/main/docs/Diagram%main.md) for further details.
+ - **Why isn't script X included?** Usually this will be because it's considered a variant and not a full script in its own right. For Modern Scripts, this may additionally be because it's close to unused. See Script Inclusion Criteria at the top of the [main doc](https://github.com/DPenner1/WritingSystemHistory/blob/main/docs/Diagram%20main.md) for further details.
  - **Shouldn't script X derive from Y?** Maybe. But, a [decent amount of research](https://github.com/DPenner1/WritingSystemHistory/blob/main/docs/Script%20Specific%20Notes.md) has been done for these diagrams. Feel free to open an issue. Speaking of which...
 
 ## Reporting an issue
