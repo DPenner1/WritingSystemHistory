@@ -1,5 +1,6 @@
 Script,Derivation Type,Certainty Type,Source,Notes
 Arab,1,2,Wikipedia: Semitic letter pages/Wiktionary
+Armn,,2,Wikipedia: Armenian letter pages - 2026-04-20,Possibly from proto-lowercase form (uncial)
 Bopo,,1,Wikipedia: Bopomofo - 2026-02-17
 Brah,,2,Salomon 1998#p. 25/Wikipedia: Indic letter pages
 Cans,,,Wikipedia: Canadian Aboriginal Syllabics
@@ -13,6 +14,7 @@ Hebr,,1,Wikipedia: Semitic letter pages,"Many sources state Aramaic uses the sam
 Hira,4,1,Wikipedia: Kana pages - 2026-02-17 / Wiktionary - 2026-02-17 / Saha 2016
 Hluw,,2,Marazzi 1998#C.4 & C.5
 Ital,,,Wikipedia: Old Italic - 2026-02-19 / Wikipedia: Etruscan alphabet - 2026-02-19
+Kali,,2,UEP: Kayah Li
 Kana,,1,Wikipedia: Kana pages - 2026-02-17 / Wiktionary - 2026-02-17 / Saha 2016
 Lana,,1,Wikipedia: Tai_Tham_script,
 Latn,,1,Wikipedia: Latin letter pages / Wikipedia: Etruscan alphabet / Wiktionary
@@ -36,4 +38,5 @@ Tang,,2,,
 Thaa,1,1,Wikipedia: Thaana - 2026-03-10
 Todr,4,2,Geitler 1883
 Ugar,,3,Colless 2008
+Wara,,2,Pinnow 1972 # Tabelle 2
 Zanb,,5,,Sound/glyph similarity

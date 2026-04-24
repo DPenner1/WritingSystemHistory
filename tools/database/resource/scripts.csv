@@ -78,7 +78,7 @@ Jamo,284,4,Jamo,,1,1
 Java,361,5,Javanese,Javanese,5,2,Kawi,jv
 Jpan,413,3,Japanese,,1,1,,ja
 Jurc,510,8,Jurchen,,,,Kitl,juc
-Kali,357,4,Kayah Li,Kayah_Li,5,1,,eky
+Kali,357,4,Kayah Li,Kayah_Li,5,1,Zzzz,eky
 Kana,411,7,Katakana,Katakana,1,1,Hani,ja
 Kawi,368,5,Kawi,Kawi,15,0,Qabp
 Khar,305,5,Kharoshthi,Kharoshthi,4,1
@@ -182,7 +182,7 @@ Sinh,348,5,Sinhala,Sinhala,3,0,Gran,si
 Sogd,141,6,Sogdian,Sogdian,11,0,Sogo,sog
 Sogo,142,6,Old Sogdian,Old_Sogdian,11,0,Armi,sog
 Sora,398,4,Sorang Sompeng,Sora_Sompeng,6,1,Zzzz,srb
-Soyo,329,5,Soyombo,Soyombo,10,0
+Soyo,329,5,Soyombo,Soyombo,10,0,Newa
 Sund,362,5,Sundanese,Sundanese,5,1,Kawi
 Sunu,274,4,Sunuwar,Sunuwar,16,0,Zzzz,suz
 Sylo,316,5,Sylheti Nagri,Syloti_Nagri,4,1,Kthi

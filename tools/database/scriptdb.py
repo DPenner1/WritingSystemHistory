@@ -100,12 +100,12 @@ class ScriptDatabase:
 
     # Brahmi, Kharoshti, Arabic, Phoenician which will be manually specified and the Aramaic code point not generally being included in Indic source
     # Can abo, Hangul, Kayah Li, Masaram Gondi, Sorang Sompeng, Pau cin hau will be manually specified due to higher independence or contribution from other scripts
-    # Soyombo excluded due to elevated probability of script relationships being modified
     # Non-unicode scripts Ranjana, Tocharian, Brahmic variants 'asho', 'kush' excluded
     # Cuneiform has its own automated processes
     # Tangut has a strong tendency to compose characters internally
-    _EXCLUDED_GEN_CODES = ['Brah', 'Khar', 'Hang', 'Cans', 'Kali', 'Soyo', 'Gonm', 'Sora', 'Pauc', 'Gupt', 'Plav', 'Tang',
-                           'Ranj', 'Asho', 'Kush', 'Toch', 'Grek', 'Latn', 'Cyrl', 'Arab', 'Phnx', 'Psin', 'Xsux']
+    # Thaana is Thaana
+    _EXCLUDED_GEN_CODES = ['Brah', 'Khar', 'Hang', 'Kali', 'Cans', 'Gonm', 'Sora', 'Pauc', 'Gupt', 'Plav', 'Tang',
+                           'Ranj', 'Asho', 'Kush', 'Toch', 'Grek', 'Latn', 'Cyrl', 'Arab', 'Phnx', 'Psin', 'Xsux', 'Thaa']
 
     def __init__(self, path='.', name='scripts.db'):
         self._db_name = name
@@ -1220,6 +1220,7 @@ class ScriptDatabase:
         TANGUT_COMP_SUPP_START = 0x18D80
         TANGUT_COMP_SUPP_END = 0x18DFF
         # TODO - may consider putting blocks in DB at some point
+        # TODO - To find a parsable Wei He [sic?] / Sea of Characters source for the compound characters
 
         set_tangut_block(TANGUT_COMP_START, TANGUT_COMP_END)
         set_tangut_block(TANGUT_COMP_SUPP_START, TANGUT_COMP_SUPP_END)
@@ -1227,7 +1228,7 @@ class ScriptDatabase:
 
     def _load_cuneiform_derivations(self, cursor):
         process_id = self._get_process_id(cursor, 'Cuneiform Unicode name')
-        # TODO - this one is more notes on certain derivations than notes on the process
+        # TODO - still need to process the compound ones
 
         cursor.execute("""
             INSERT INTO code_point_derivation (child_id, parent_id, certainty_type_id, process_type_id)
@@ -2148,6 +2149,8 @@ class ScriptDatabase:
         else:
             for parent in parent_code_points:
                 if scripts_to_skip and parent[1] in scripts_to_skip:
+                    if parent[0] in (22888, 22892):
+                        raise ValueError("Currently a cycle in the data")  # TODO
                     grand_parents = self._get_code_point_script_parents(cursor, parent[0], scripts_to_skip, weight / num_parents)
                     for grand_parent in grand_parents:
                         self._add_or_increment_dict_entry(retval, grand_parent, grand_parents[grand_parent])
@@ -2204,6 +2207,32 @@ class ScriptDatabase:
             if seq:
                 sequence_id = seq[0][0]
         return sequence_id
+
+    # rough method for analysis
+    def _find_independent_scripts(self, cursor):
+        scripts = cursor.execute("SELECT code FROM script WHERE canonical_script_code IS NULL").fetchall()
+        results = dict()
+        for script in scripts:
+            code = script[0]
+            total = 0
+            sequence_id = self._get_exemplar_sequence_id_with_fallback(cursor, code)
+            try:
+                if sequence_id:
+                    script_parents = self._get_sequence_script_parents(cursor, sequence_id, [code, self.INHERITED_SCRIPT])
+                    if 'Zzzz' in script_parents: # has some independent letters
+                        for parent_code in script_parents:
+                            if parent_code:  # avoid the empty string missing data value
+                                total += script_parents[parent_code]
+                        results[code] = script_parents['Zzzz'] / total * 100
+            except ValueError:
+                None # cycle in the data to resolve
+
+        retval = [('Script', 'Independence percentage')]
+        for script, value in sorted(results.items(), key=lambda item: item[1], reverse=True):
+            script_name = cursor.execute("SELECT name FROM script WHERE code = ?", (script,)).fetchone()[0]
+            retval.append((script_name, f"{value:.2f}"))
+
+        return retval
 
     # Script skipping has two main uses: Can avoid self-derivation, and avoid a parent script you think isn't that distinct
     def get_script_parents(self, script_code, scripts_to_skip=None):
@@ -2436,13 +2465,15 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.OPTIMIZED_DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
     # db.print_table(results)
     # Get a breakdown of a script's parent scripts:
-    # db.print_table(db.get_script_parents('Glag', 'Glag'))
+    db.print_table(db.get_script_parents('Plrd', 'Plrd'))
     # or your own custom query: db.execute_query('YOUR QUERY HERE', parameters=None)
+
+    db.print_table(db._find_independent_scripts(cursor))
 
     cursor.close()

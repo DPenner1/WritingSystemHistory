@@ -1,19 +1,22 @@
 Child,Parent,Derivation Type,Certainty Type,Source,Notes
 Ⰰ,𐤀
+Ⰰ,א,,,Jung 2013
 Ⰱ,ב/ܒ/ࠌ
+Ⰱ,Բ,,,Jung 2013
 Ⰲ,V
 Ⰲ,υ,4
 Ⰳ,γ,4
 Ⰴ,Δ,,2
 Ⰵ,ϡ/ࠄ
-Ⰶ,Ϫ/♓/ⵣ,
-Ⰷ,Ձ
+Ⰶ,Ϫ/♓/ⵣ
+Ⰶ,Ժ,,,Jung 2013
+Ⰷ,Ձ,,,Jung 2013
 Ⰸ,θ
 Ⰹ,Y/ϊ
 Ⰺ,Y/ϊ
 Ⰻ,,
-Ⰼ,,
-Ⰽ,ק,,2
+Ⰼ,,,,Jung 2013
+Ⰽ,ק,,2,Jung 2013
 Ⰾ,λ
 Ⰿ,μ,,2
 Ⱀ,ν
@@ -26,15 +29,22 @@ Child,Parent,Derivation Type,Certainty Type,Source,Notes
 Ⱇ,φ,,1
 Ⱈ,,
 Ⱒ,Ⴉ
+Ⱒ,Խ,,,Jung 2013
 Ⱉ,Ο,1,,,Potentially derived from two Ⱁ's but avoiding cycles for now
 Ⱋ,Ⱎ/Ⱅ,,1
-Ⱌ,ץ,,2
+Ⱋ,Չ,,,Jung 2013
+Ⱌ,ץ,,2,Jung 2013
+Ⱌ,Ծ,,,Jung 2013
 Ⱍ,𐍁/צ
-Ⱎ,ש,,2
+Ⱍ,Ճ,,,Jung 2013
+Ⱎ,ש,,2,Jung 2013
+Ⱎ,Շ,,,Jung 2013
 Ⱏ,Ⱁ
+Ⱏ,Ը,,,Jung 2013
 Ⱜ,’,,2
 Ⱐ,Ⱁ
 Ⱑ,Α
+Ⱑ,Է,,,Jung 2013
 Ⱖ,,
 Ⱓ,,
 Ⱔ,ε,,1

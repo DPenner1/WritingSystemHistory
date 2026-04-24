@@ -1,4 +1,4 @@
-Child,Parent,Certainty Type
+Child,Parent,Certainty Type,Source,Multiplicity
 ހ,١
 ށ,٢
 ނ,٣
@@ -24,3 +24,15 @@ Child,Parent,Certainty Type
 ޖ,ދ
 ޗ,ތ
 ޏ,ނ
+
+ަ,َ,,Wikipedia: Thaana#Vowels
+ާ,ަ,,Wikipedia: Thaana#Vowels,2
+ި,ِ,,Wikipedia: Thaana#Vowels
+ީ,ި,,Wikipedia: Thaana#Vowels,2
+ު,ُ,,Wikipedia: Thaana#Vowels
+ޫ,ު,,Wikipedia: Thaana#Vowels,2
+ެ,ے,2,Wikipedia: Thaana#Vowels
+ޭ,ެ,,Wikipedia: Thaana#Vowels,2
+ޯ,ޮ,,Wikipedia: Thaana#Vowels
+
+ް,ْ,4
