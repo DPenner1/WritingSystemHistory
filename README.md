@@ -17,15 +17,17 @@ And a section of the comprehensive diagram (as the full thing is excessive for a
 ![Writing System History](https://github.com/DPenner1/WritingSystemHistory/blob/main/All%20Scripts%20preview.png)
 
 
-See [here](https://github.com/DPenner1/WritingSystemHistory/blob/main/docs/Script%20Inclusion%20Criteria.md) for general inclusion criteria, and [here](https://github.com/DPenner1/WritingSystemHistory/blob/main/docs/Script%20Specific%20Notes.md) for script-specific decisions and research notes.
-
 ## Diagram Notes
 
   - There are probably mistakes.
   - The diagrams show **graphical** derivision of scripts which can be very different from spoken language derivation.
   - "Specialized use" means use in specific use cases, but not for general default written communication of a language (or the language itself is specialized). Most frequently, this is religious or ceremonial uses.
 
-The general design philophy is to create interesting/informative charts that are self-consistent. To that end, the diagram "rules" are engineered to result in a good end product. However, as much as reasonable, exceptions are avoided to keep the diagram self-consistent to avoid any bias. There will of course have to be judgment calls to make, as is normal for trying to categorize things that fundamentally do not have hard boundaries. These rules and judgment calls are [documented](https://github.com/DPenner1/WritingSystemHistory/tree/main/docs) for transparency.
+## Bias avoidance
+
+The general design philosophy is to create interesting/informative charts that are self-consistent. To that end, the diagram "rules" are engineered to result in a good end result. However, as much as reasonable, exceptions are avoided to keep the diagram self-consistent to avoid any bias. Additionally, authoritative sources, such as academic papers and [Unicode data](https://home.unicode.org/) are followed.
+
+There will of course have to be judgment calls to make, as is normal for trying to categorize things that fundamentally do not have hard boundaries. These rules and judgment calls are [documented](https://github.com/DPenner1/WritingSystemHistory/tree/main/docs) for transparency.
 
 ## FAQ
 
