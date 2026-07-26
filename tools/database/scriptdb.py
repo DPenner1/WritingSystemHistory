@@ -1137,7 +1137,7 @@ class ScriptDatabase:
             with open(script_file, 'r') as file:
                 for row in csv.DictReader(file):
                     child = row['Child'].strip()
-                    parents = row['Parent'].strip()
+                    parents = row['Parent'].strip() if row['Parent'] else ''
 
                     # Logic for defaulting to Uncertain on no parent: For historical scripts, this is usually more a function of a lack of records
                     # For modern scripts, the inventor is generally aware of existing writing systems, and may have been inspired
@@ -2465,15 +2465,13 @@ class DerivationType(Enum):
 if __name__ == '__main__':
     db = ScriptDatabase()
 
-    cursor = db.load_database(ScriptDatabase.OPTIMIZED_DEBUG_LOAD)  # replace with DEBUG_LOAD for development run
+    cursor = db.load_database(ScriptDatabase.DEFAULT_LOAD)  # replace with DEBUG_LOAD for development run
 
     # do stuff here if you want, for example:
     # results = db.execute_saved_query('Get Character Ancestors', parameters=('a',))
     # db.print_table(results)
     # Get a breakdown of a script's parent scripts:
-    db.print_table(db.get_script_parents('Plrd', 'Plrd'))
+    # db.print_table(db.get_script_parents('Plrd', 'Plrd'))
     # or your own custom query: db.execute_query('YOUR QUERY HERE', parameters=None)
-
-    db.print_table(db._find_independent_scripts(cursor))
 
     cursor.close()

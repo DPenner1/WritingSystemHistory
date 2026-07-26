@@ -19,7 +19,7 @@ Though there are no current plans, the functionality of the database could be ex
 
 *As of 2026-04-16*
 
-  - *(The vast majority of characters in Unicode are from logographic scripts. These stats are notated "All / Non-Logographic")*. There are ⁨131,852 / 15,235 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 22,189 / 8,614 have a historical ancestor specified (16.8% / 56.5%, including no known ancestor), of which 2123 / 1949 are manually reviewed (1.6% / 12.8%).
+  - *(The vast majority of characters in Unicode are from logographic scripts. These stats are notated "All / Non-Logographic")*. There are ⁨131,852 / 15,235 distinct<sup>1</sup> letters<sup>2</sup> in the database. Of those, 22,556 / 8,981 have a historical ancestor specified (17.1% / 58.9%, including no known ancestor), of which 2468 / 2294 are manually reviewed (1.9% / 15.1%).
   - The database is about 20 MB with minimalistic settings (configurable to keep more data/indexes).
 
   1. Distinct being defined for this project has having no other equivalent representation in Unicode. See schema documentation on `code_point.equivalent_sequence_id`.
