@@ -28,9 +28,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="true"
-     inkscape:zoom="0.78579573"
-     inkscape:cx="2159.5943"
-     inkscape:cy="4099.6659"
+     inkscape:zoom="5.0005378"
+     inkscape:cx="999.29251"
+     inkscape:cy="267.27125"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
@@ -1238,7 +1238,9 @@
    id="tspan23-0"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">Ω</tspan><tspan
    style="font-style:italic;font-size:12px"
-   id="tspan288-7-5-5-0-1-7-5-4-0"> Chisoi</tspan> <tspan
+   id="tspan288-7-5-5-0-1-7-5-4-0"> <tspan
+   style="font-style:normal"
+   id="tspan136">Chisoi</tspan></tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:'Noto Sans Symbols2';-inkscape-font-specification:'Noto Sans Symbols2'"
    id="tspan551">▶</tspan></tspan></text>
     </a>
@@ -6418,7 +6420,7 @@
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans'"><tspan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Noto Sans CJK JP';-inkscape-font-specification:'Noto Sans CJK JP Bold'"
    id="tspan245">文</tspan> <tspan
-   style="font-style:italic;font-size:12px"
+   style="font-style:normal;font-size:12px"
    id="tspan186">Small Seal</tspan> <tspan
    id="tspan260-0-0-3"
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:'Noto Sans Symbols2';-inkscape-font-specification:'Noto Sans Symbols2';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">▼</tspan></tspan></text>
@@ -6571,7 +6573,7 @@
    id="tspan300-7">文</tspan><tspan
    id="tspan36-7"
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:'Noto Sans CJK JP';-inkscape-font-specification:'Noto Sans CJK JP Bold'">か</tspan> <tspan
-   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan261-6">Jurchen</tspan> <tspan
    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;font-family:'Noto Sans Symbols2';-inkscape-font-specification:'Noto Sans Symbols2, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
    id="tspan48">▶</tspan></tspan></text>
@@ -9424,7 +9426,7 @@
          x="59.744827"
          y="83.209007"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;text-anchor:start"
-         id="tspan243-9">Last Updated: Jluly 26, 2026</tspan></text>
+         id="tspan243-9">Last Updated: August 23, 2026</tspan></text>
     <a
        id="a126-1"
        xlink:href="https://github.com/DPenner1/"
