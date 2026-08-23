@@ -28,15 +28,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="true"
-     inkscape:zoom="5.0005378"
-     inkscape:cx="999.29251"
-     inkscape:cy="267.27125"
+     inkscape:zoom="1.2678289"
+     inkscape:cx="177.46874"
+     inkscape:cy="53.240623"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1080"
      inkscape:window-y="840"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer14"
      inkscape:document-units="px">
     <inkscape:grid
        id="grid254"
@@ -9464,540 +9464,803 @@
     <g
        inkscape:groupmode="layer"
        id="layer13"
-       inkscape:label="Lower Timestamps">
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="530.76086"
-         y="4411.0708"
-         id="text317-3-9-4-5-3"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-0"
-           x="530.76086"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1400 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="629.8999"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-4"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-4"
-           x="629.8999"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1200 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="730.13867"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-4"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-4"
-           x="730.13867"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1000 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="830.15363"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-7"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-6"
-           x="830.15363"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">800 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="930.2027"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-31"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-7"
-           x="930.2027"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">600 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1030.3303"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-3-5"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-9"
-           x="1030.3303"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">400 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1130.6144"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-3-9-6"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-2"
-           x="1130.6144"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">200 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1330.3441"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-1"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-78"
-           x="1330.3441"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">200 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1430.5084"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-5"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-7"
-           x="1430.5084"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">400 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1531.0166"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-4"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-18"
-           x="1531.0166"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">600 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1629.9182"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-5"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-9"
-           x="1629.9182"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">800 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1730.3184"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-7"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-5"
-           x="1730.3184"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1000 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1829.9364"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-3"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-8"
-           x="1829.9364"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1200 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1929.6901"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-8"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-3"
-           x="1929.6901"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1400 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2029.9382"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-1"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-8"
-           x="2029.9382"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1600 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2129.8052"
-         y="4411.0708"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-9"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-6"
-           x="2129.8052"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1800 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2230.3186"
-         y="4411.2012"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-4"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-3"
-           x="2230.3186"
-           y="4411.2012"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1850 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2330.1033"
-         y="4411.2012"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8-3"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5-3"
-           x="2330.1033"
-           y="4411.2012"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1900 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2529.948"
-         y="4411.2012"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8-0-8"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5-9-6"
-           x="2529.948"
-           y="4411.2012"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">2000 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2429.6943"
-         y="4411.2012"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8-9-0"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5-7-4"
-           x="2429.6943"
-           y="4411.2012"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1950 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1230.5643"
-         y="4410.9302"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-5-8"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-7-8"
-           x="1230.5643"
-           y="4410.9302"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="230.47032"
-         y="4411.0708"
-         id="text317-3-8"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-97"
-           x="230.47032"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">2000 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="330.31915"
-         y="4411.0708"
-         id="text317-3-9-7"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-6"
-           x="330.31915"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1800 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="430.43124"
-         y="4411.0708"
-         id="text317-3-9-4-4"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-3"
-           x="430.43124"
-           y="4411.0708"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1600 BC</tspan></text>
-    </g>
+       inkscape:label="Lower Timestamps" />
     <g
        inkscape:groupmode="layer"
        id="layer14"
        inkscape:label="Upper Timestamps">
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="529.98364"
-         y="105.93963"
-         id="text317-3-9-4-5"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9"
+      <a
+         id="a14"
+         xlink:href="https://en.wikipedia.org/wiki/14th_century_BC"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="529.98364"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1400 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="629.12268"
-         y="105.93963"
-         id="text317-3-9-4-5-1"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1"
+           id="text317-3-9-4-5"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9"
+             x="529.98364"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1400 BC</tspan></text>
+      </a>
+      <a
+         id="a15"
+         xlink:href="https://en.wikipedia.org/wiki/12th_century_BC"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="629.12268"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1200 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="729.36145"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2"
+           id="text317-3-9-4-5-1"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1"
+             x="629.12268"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1200 BC</tspan></text>
+      </a>
+      <a
+         id="a16"
+         xlink:href="https://en.wikipedia.org/wiki/10th_century_BC"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="729.36145"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1000 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="829.3764"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9"
+           id="text317-3-9-4-5-1-7"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2"
+             x="729.36145"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1000 BC</tspan></text>
+      </a>
+      <a
+         id="a17"
+         xlink:href="https://en.wikipedia.org/wiki/8th_century_BC"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="829.3764"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">800 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="929.42548"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4"
+           id="text317-3-9-4-5-1-7-3"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9"
+             x="829.3764"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">800 BC</tspan></text>
+      </a>
+      <a
+         id="a18"
+         xlink:href="https://en.wikipedia.org/wiki/6th_century_BC"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="929.42548"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">600 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1029.5531"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8"
+           id="text317-3-9-4-5-1-7-3-4"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4"
+             x="929.42548"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">600 BC</tspan></text>
+      </a>
+      <a
+         id="a19"
+         xlink:href="https://en.wikipedia.org/wiki/4th_century_BC"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="1029.5531"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">400 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1129.8372"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5"
+           id="text317-3-9-4-5-1-7-3-4-3"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8"
+             x="1029.5531"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">400 BC</tspan></text>
+      </a>
+      <a
+         id="a20"
+         target="_blank"
+         xlink:href="https://en.wikipedia.org/wiki/2nd_century_BC">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="1129.8372"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">200 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1329.5669"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4"
+           id="text317-3-9-4-5-1-7-3-4-3-9"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5"
+             x="1129.8372"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">200 BC</tspan></text>
+      </a>
+      <a
+         id="a22"
+         xlink:href="https://en.wikipedia.org/wiki/3rd_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="1329.5669"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">200 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1429.7312"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4"
+             x="1329.5669"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">200 AD</tspan></text>
+      </a>
+      <a
+         id="a23"
+         xlink:href="https://en.wikipedia.org/wiki/5th_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="1429.7312"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">400 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1530.2395"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9"
+             x="1429.7312"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">400 AD</tspan></text>
+      </a>
+      <a
+         id="a24"
+         xlink:href="https://en.wikipedia.org/wiki/7th_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="1530.2395"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">600 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1629.1411"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9"
+             x="1530.2395"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">600 AD</tspan></text>
+      </a>
+      <a
+         id="a25"
+         xlink:href="https://en.wikipedia.org/wiki/9th_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="1629.1411"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">800 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1729.5413"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1"
+             x="1629.1411"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">800 AD</tspan></text>
+      </a>
+      <a
+         id="a26"
+         xlink:href="https://en.wikipedia.org/wiki/11th_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="1729.5413"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1000 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1829.1593"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1"
+             x="1729.5413"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1000 AD</tspan></text>
+      </a>
+      <a
+         id="a27"
+         xlink:href="https://en.wikipedia.org/wiki/13th_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="1829.1593"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1200 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1928.913"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0"
+             x="1829.1593"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1200 AD</tspan></text>
+      </a>
+      <a
+         id="a28"
+         xlink:href="https://en.wikipedia.org/wiki/15th_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="1928.913"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1400 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2029.1611"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1"
+             x="1928.913"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1400 AD</tspan></text>
+      </a>
+      <a
+         id="a29"
+         xlink:href="https://en.wikipedia.org/wiki/17th_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="2029.1611"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1600 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2129.0281"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8"
+             x="2029.1611"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1600 AD</tspan></text>
+      </a>
+      <a
+         id="a30"
+         xlink:href="https://en.wikipedia.org/wiki/19th_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="2129.0281"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1800 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2229.5415"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4"
+             x="2129.0281"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1800 AD</tspan></text>
+      </a>
+      <a
+         id="a31"
+         xlink:href="https://en.wikipedia.org/wiki/19th_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="2229.5415"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1850 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2329.3262"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9"
+             x="2229.5415"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1850 AD</tspan></text>
+      </a>
+      <a
+         id="a32"
+         xlink:href="https://en.wikipedia.org/wiki/20th_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="2329.3262"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1900 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2529.1707"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8-0"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5-9"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5"
+             x="2329.3262"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1900 AD</tspan></text>
+      </a>
+      <a
+         id="a34"
+         xlink:href="https://en.wikipedia.org/wiki/21st_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="2529.1707"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">2000 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="2428.9172"
-         y="105.93963"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8-9"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5-7"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8-0"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5-9"
+             x="2529.1707"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">2000 AD</tspan></text>
+      </a>
+      <a
+         id="a33"
+         xlink:href="https://en.wikipedia.org/wiki/20th_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="2428.9172"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1950 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="1229.7871"
-         y="105.799"
-         id="text317-3-9-4-5-1-7-3-4-3-9-9-5"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2-9-1-2-9-4-8-5-4-7"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8-9"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5-7"
+             x="2428.9172"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1950 AD</tspan></text>
+      </a>
+      <a
+         id="a21"
+         xlink:href="https://en.wikipedia.org/wiki/1st_century"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="1229.7871"
            y="105.799"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1 AD</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="229.69313"
-         y="105.93963"
-         id="text317-3"><tspan
-           sodipodi:role="line"
-           id="tspan317-7"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-5"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-7"
+             x="1229.7871"
+             y="105.799"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1 AD</tspan></text>
+      </a>
+      <a
+         id="a6"
+         xlink:href="https://en.wikipedia.org/wiki/20th_century_BC"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="229.69313"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">2000 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="429.65402"
-         y="105.93963"
-         id="text317-3-9-4"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9-2"
+           id="text317-3"><tspan
+             sodipodi:role="line"
+             id="tspan317-7"
+             x="229.69313"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">2000 BC</tspan></text>
+      </a>
+      <a
+         id="a13"
+         xlink:href="https://en.wikipedia.org/wiki/16th_century_BC"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="429.65402"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1600 BC</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-         x="329.54193"
-         y="105.93963"
-         id="text317-3-9"><tspan
-           sodipodi:role="line"
-           id="tspan317-7-9"
+           id="text317-3-9-4"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2"
+             x="429.65402"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1600 BC</tspan></text>
+      </a>
+      <a
+         id="a12"
+         xlink:href="https://en.wikipedia.org/wiki/18th_century_BC"
+         target="_blank">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
            x="329.54193"
            y="105.93963"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1800 BC</tspan></text>
+           id="text317-3-9"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9"
+             x="329.54193"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1800 BC</tspan></text>
+      </a>
+      <a
+         id="a14-6"
+         xlink:href="https://en.wikipedia.org/wiki/14th_century_BC"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="529.98364"
+           y="105.93963"
+           id="text317-3-9-4-5-3"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-9"
+             x="529.98364"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1400 BC</tspan></text>
+      </a>
+      <a
+         id="a15-4"
+         xlink:href="https://en.wikipedia.org/wiki/12th_century_BC"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="629.12268"
+           y="105.93963"
+           id="text317-3-9-4-5-1-8"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-1"
+             x="629.12268"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1200 BC</tspan></text>
+      </a>
+      <a
+         id="a16-2"
+         xlink:href="https://en.wikipedia.org/wiki/10th_century_BC"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="729.36145"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-9"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-3"
+             x="729.36145"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1000 BC</tspan></text>
+      </a>
+      <a
+         id="a17-9"
+         xlink:href="https://en.wikipedia.org/wiki/8th_century_BC"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="829.3764"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-0"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-8"
+             x="829.3764"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">800 BC</tspan></text>
+      </a>
+      <a
+         id="a18-8"
+         xlink:href="https://en.wikipedia.org/wiki/6th_century_BC"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="929.42548"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-5"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-0"
+             x="929.42548"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">600 BC</tspan></text>
+      </a>
+      <a
+         id="a19-9"
+         xlink:href="https://en.wikipedia.org/wiki/4th_century_BC"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="1029.5531"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-6"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-3"
+             x="1029.5531"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">400 BC</tspan></text>
+      </a>
+      <a
+         id="a20-8"
+         target="_blank"
+         xlink:href="https://en.wikipedia.org/wiki/2nd_century_BC"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="1129.8372"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-5"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-6"
+             x="1129.8372"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">200 BC</tspan></text>
+      </a>
+      <a
+         id="a22-1"
+         xlink:href="https://en.wikipedia.org/wiki/3rd_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="1329.5669"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-1"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-5"
+             x="1329.5669"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">200 AD</tspan></text>
+      </a>
+      <a
+         id="a23-9"
+         xlink:href="https://en.wikipedia.org/wiki/5th_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="1429.7312"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-84"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-8"
+             x="1429.7312"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">400 AD</tspan></text>
+      </a>
+      <a
+         id="a24-1"
+         xlink:href="https://en.wikipedia.org/wiki/7th_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="1530.2395"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-0"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-3"
+             x="1530.2395"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">600 AD</tspan></text>
+      </a>
+      <a
+         id="a25-0"
+         xlink:href="https://en.wikipedia.org/wiki/9th_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="1629.1411"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-4"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-4"
+             x="1629.1411"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">800 AD</tspan></text>
+      </a>
+      <a
+         id="a26-4"
+         xlink:href="https://en.wikipedia.org/wiki/11th_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="1729.5413"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-4"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-7"
+             x="1729.5413"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1000 AD</tspan></text>
+      </a>
+      <a
+         id="a27-6"
+         xlink:href="https://en.wikipedia.org/wiki/13th_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="1829.1593"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-3"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-17"
+             x="1829.1593"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1200 AD</tspan></text>
+      </a>
+      <a
+         id="a28-5"
+         xlink:href="https://en.wikipedia.org/wiki/15th_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="1928.913"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-9"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-6"
+             x="1928.913"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1400 AD</tspan></text>
+      </a>
+      <a
+         id="a29-2"
+         xlink:href="https://en.wikipedia.org/wiki/17th_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="2029.1611"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-1"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-7"
+             x="2029.1611"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1600 AD</tspan></text>
+      </a>
+      <a
+         id="a30-8"
+         xlink:href="https://en.wikipedia.org/wiki/19th_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="2129.0281"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-5"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-7"
+             x="2129.0281"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1800 AD</tspan></text>
+      </a>
+      <a
+         id="a31-4"
+         xlink:href="https://en.wikipedia.org/wiki/19th_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="2229.5415"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-1"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-8"
+             x="2229.5415"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1850 AD</tspan></text>
+      </a>
+      <a
+         id="a32-5"
+         xlink:href="https://en.wikipedia.org/wiki/20th_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="2329.3262"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8-97"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5-5"
+             x="2329.3262"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1900 AD</tspan></text>
+      </a>
+      <a
+         id="a34-3"
+         xlink:href="https://en.wikipedia.org/wiki/21st_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="2529.1707"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8-0-8"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5-9-8"
+             x="2529.1707"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">2000 AD</tspan></text>
+      </a>
+      <a
+         id="a33-3"
+         xlink:href="https://en.wikipedia.org/wiki/20th_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="2428.9172"
+           y="105.93963"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-7-8-2-9-1-2-6-6-6-8-9-1"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-9-9-1-1-0-1-8-4-9-5-7-8"
+             x="2428.9172"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1950 AD</tspan></text>
+      </a>
+      <a
+         id="a21-9"
+         xlink:href="https://en.wikipedia.org/wiki/1st_century"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="1229.7871"
+           y="105.799"
+           id="text317-3-9-4-5-1-7-3-4-3-9-9-5-6"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-9-1-2-9-4-8-5-4-7-4"
+             x="1229.7871"
+             y="105.799"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1 AD</tspan></text>
+      </a>
+      <a
+         id="a6-3"
+         xlink:href="https://en.wikipedia.org/wiki/20th_century_BC"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="229.69313"
+           y="105.93963"
+           id="text317-3-3"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-3"
+             x="229.69313"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">2000 BC</tspan></text>
+      </a>
+      <a
+         id="a13-8"
+         xlink:href="https://en.wikipedia.org/wiki/16th_century_BC"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="429.65402"
+           y="105.93963"
+           id="text317-3-9-4-6"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-2-0"
+             x="429.65402"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1600 BC</tspan></text>
+      </a>
+      <a
+         id="a12-4"
+         xlink:href="https://en.wikipedia.org/wiki/18th_century_BC"
+         target="_blank"
+         transform="translate(0,4305.2331)">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+           x="329.54193"
+           y="105.93963"
+           id="text317-3-9-8"><tspan
+             sodipodi:role="line"
+             id="tspan317-7-9-8"
+             x="329.54193"
+             y="105.93963"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">1800 BC</tspan></text>
+      </a>
     </g>
   </g>
   <g
