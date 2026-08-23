@@ -8,6 +8,7 @@ Ge'ez Unicode name,Derivation of Ge'ez code points by identifying the inherent v
 Indic letters,Indic derivations from cognate letters and known script ancestors,Wikipedia: Indic letter pages
 Latin Unicode name,Derivation of Latin code points based on Unicode name,UCD # UnicodeData.txt name property
 Independent scripts - general,Sets characters from independent scripts to independently derived,,General assumption for independent scripts; could be incorrect due to script-internal derivations (mitigated for some scripts)
+Seal,Derivation of Han Ideographs from Seal,UCD # SealSources.txt kSEAL_MCJK property
 Semitic letters,Semitic derivations from cognate letters and known script ancestors,Wikipedia: Semitic letter pages
 Simplified Chinese,Derivation of Simplified Chinese code points from their corresponding Traditional Chinese code points,UCD # Unihan.zip->Unihan_Variants.txt kTraditionalVariant property
 Sogdian Unicode name,Derivation of Sogdian code points based on matching Old Sogdian Unicode names,UCD # UnicodeData.txt name property

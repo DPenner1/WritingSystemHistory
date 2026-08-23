@@ -221,6 +221,7 @@ class ScriptDatabase:
             unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'Unikemet.txt', os.path.join(self._unicode_path, 'Unikemet.txt')),
             unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'NameAliases.txt', os.path.join(self._unicode_path, 'NameAliases.txt')),
             unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'PropList.txt', os.path.join(self._unicode_path, 'PropList.txt')),
+            unzip_file(os.path.join(zip_dir_path, 'UCD.zip'), 'SealSources.txt', os.path.join(self._unicode_path, 'SealSources.txt')),
             unzip_file(os.path.join(zip_dir_path, 'Unihan.zip'), 'Unihan_Variants.txt', os.path.join(self._unicode_path, 'Unihan_Variants.txt')),
         ]
 
@@ -1019,6 +1020,15 @@ class ScriptDatabase:
                         if principal_id > other_id:  #TODO i definitely mixed up the naming here, but this one makes my brain hurt trying to fix it
                             self._load_equivalent_unit_sequence(cursor, SequenceType.Z_VARIANT, other_id, principal_id)
 
+    def _load_from_seal(self, cursor):
+        process_id = self._get_process_id(cursor, 'Seal')
+        with open(os.path.join(self._unicode_path, 'SealSources.txt'), 'r') as file:
+            for row in csv.reader(filter(lambda r: not r.isspace() and not r.startswith('#'), file), delimiter='\t'):
+                if row[1] == 'kSEAL_MCJK':
+                    self._load_single_derivation(cursor, int(row[0][2:], 16), int(row[2].strip(), 16),
+                         DerivationType.DEFAULT, Certainty.VARIED, # tentative certainty, I'm not expert enough to evaluate this
+                         process_id)
+
 
     def _load_derivations_from_equivalencies(self, cursor):
         position_process_id = self._get_process_id(cursor, "Equivalencies from name")
@@ -1251,6 +1261,7 @@ class ScriptDatabase:
 
         self._load_derivations_from_case_data(cursor, load_options.drop_case_columns)
         self._load_from_unihan(cursor)  # derivation and equivalency data
+        self._load_from_seal(cursor)  # derivation data
         exception_ids |= self._load_from_unikemet(cursor, load_options.verify_data_sources) # derivation, equivalency data and an alphabet
         self._load_derivations_from_equivalencies(cursor)
         self._load_independent_derivations(cursor) # after equivalency loading to allow that to take priority
