@@ -26,7 +26,7 @@ Cans,440,5,Canadian Aboriginal,Canadian_Aboriginal,3,0,,csw
 Cari,201,4,Carian,Carian,5,1,Grek
 Cham,358,5,Cham,Cham,5,1,Qabp,cjm
 Cher,445,7,Cherokee,Cherokee,3,0,Latn,chr
-Chis,298,3,Chisoi,,,,Zzzz,kyw
+Chis,298,3,Chisoi,Chisoi,18,0,Zzzz,kyw
 Chrs,109,6,Khwarezmian,Chorasmian,13,0,Armi,xco
 Cirt,291,4,Cirth,,,,Runr,
 Copt,204,4,Coptic,Coptic,4,1,,cop
@@ -77,7 +77,7 @@ Ital,210,4,Old Italic,Old_Italic,3,1,Grek,ett
 Jamo,284,4,Jamo,,1,1
 Java,361,5,Javanese,Javanese,5,2,Kawi,jv
 Jpan,413,3,Japanese,,1,1,,ja
-Jurc,510,8,Jurchen,,,,Kitl,juc
+Jurc,510,8,Jurchen,Jurchen,18,0,Kitl,juc
 Kali,357,4,Kayah Li,Kayah_Li,5,1,Zzzz,eky
 Kana,411,7,Katakana,Katakana,1,1,Hani,ja
 Kawi,368,5,Kawi,Kawi,15,0,Qabp
@@ -142,7 +142,7 @@ Osma,260,4,Osmanya,Osmanya,4,0,Zzzz,so
 Ougr,143,4,Old Uyghur,Old_Uyghur,14,0,Sogd,oui
 Palm,126,6,Palmyrene,Palmyrene,7,0,Armi
 Pauc,263,4,Pau Cin Hau,Pau_Cin_Hau,7,0
-Pcun,15,1,Proto-Cuneiform,,,
+Pcun,15,1,Proto-Cuneiform,Proto_Cuneiform,18,0
 Pelm,16,1,Proto-Elamite,,,
 Perm,227,4,Old Permic,Old_Permic,7,0
 Phag,331,5,'Phags-Pa,Phags_Pa,5,0,Tibt
@@ -170,7 +170,7 @@ Samr,123,6,Samaritan,Samaritan,5,2,Phnx
 Sara,292,5,Sarati,,,
 Sarb,105,6,Ancient South Arabian,Old_South_Arabian,5,2,Psin
 Saur,344,5,Saurashtra,Saurashtra,5,1,Gran
-Seal,590,8,Small Seal,,,
+Seal,590,8,Small Seal,Seal,18,0
 Sgnw,95,4,SignWriting,SignWriting,8,0,Zzzz
 Shaw,281,4,Shavian,Shavian,4,0,Zzzz,en
 Shrd,319,5,Sharada,Sharada,6,1,Qabg
