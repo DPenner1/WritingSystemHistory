@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS code_point (
         WHEN id BETWEEN 0x3400 AND 0x4DBF OR
              id BETWEEN 0x4E00 AND 0x9FFF OR  -- range a bit of a shortcut for these last 2, since we don't have unassigned in this DB
              id BETWEEN 0x20000 AND 0x33FFF THEN CONCAT('CJK UNIFIED IDEOGRAPH-', printf('%X', id))
-        WHEN id BETWEEN 0x3D000 AND 0x3FFFD THEN CONCAT('SEAL CHARACTER-', printf('%X', id)) --anticipatory
+        WHEN id BETWEEN 0x3D000 AND 0x3FFFD THEN CONCAT('SEAL CHARACTER-', printf('%X', id))
         ELSE raw_name END) VIRTUAL,
     script_code TEXT NOT NULL DEFAULT 'Zzzz' REFERENCES script (code),
     general_category_code TEXT NOT NULL DEFAULT 'Cn',
