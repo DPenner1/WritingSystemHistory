@@ -46,7 +46,7 @@ The Modern Scripts diagram was made in Draw.IO and All Scripts in Inkscape SVG. 
 
 The Modern Scripts diagram though still has old references to Helvetica I'm still working on fixing, but I believe these are whitespace/formatting characters which hopefully don't impact the intended appearance.
 
-The `./tools` folder contains a Linux bash shell script to automatically export the diagrams into the various image/pdf formats. It requires the Inkscape & draw.IO command line interfaces, as well as Imagemagick for the All Scripts preview file. Run it from the project home folder with `./tools/export.sh`. The Inkscape SVG to PDF export throws a lot of "Invalid glyph found" errors, I've not yet figured out why that's the case, but it seems to work just fine. Draw.io does not yet support the HTML export via CLI, so this one still has to be manual.
+The `./tools` folder contains a Linux bash shell script to automatically export the diagrams into the various image/pdf formats. It requires the Inkscape & draw.IO command line interfaces, as well as Imagemagick for the All Scripts preview file. Run it from the project home folder with `./tools/export.sh`. The Inkscape SVG to PDF export throws a lot of "Invalid glyph found" errors, I've not yet figured out why that's the case, but it seems to work just fine (maybe there's still font issues and there is a font fallback happening?). Draw.io does not yet support the HTML export via CLI, so this one still has to be manual. Use `-a` option for All Scripts only, `m` for Modern Scripts only.
 
 The source files are sometimes ahead of the PDF/PNG/HTML exports, this will only occur with minor updates.
 
